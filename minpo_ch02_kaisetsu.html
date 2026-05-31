@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法 ch02 失踪宣告</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4A017;
+    --gold-light: #F0C040;
+    --bg: #F5F3EE;
+    --white: #FFFFFF;
+    --text: #1A1A1A;
+    --text-light: #555555;
+    --border: #D0C8B8;
+    --correct: #27AE60;
+    --wrong: #C0392B;
+    --section-bg: #EEF1F7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Meiryo', 'メイリオ', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+  header {
+    background: var(--navy);
+    color: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-title { font-size: 18px; font-weight: bold; letter-spacing: 0.05em; }
+  .header-title span { color: var(--gold); }
+  .header-sub { font-size: 12px; color: #aaa; margin-top: 2px; }
+  .header-badge {
+    background: var(--crimson);
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+  }
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 60px; }
+  .chapter-title {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    border-left: 6px solid var(--gold);
+  }
+  .chapter-title h1 { font-size: 20px; font-weight: bold; letter-spacing: 0.05em; }
+  .chapter-title .subtitle { font-size: 13px; color: var(--gold-light); margin-top: 4px; }
+  .section {
+    background: var(--white);
+    border-radius: 8px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .section-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-header .num {
+    background: var(--gold);
+    color: var(--navy);
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: bold; flex-shrink: 0;
+  }
+  .section-body { padding: 18px 20px; }
+  .def-box {
+    background: var(--section-bg);
+    border-left: 4px solid var(--navy);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .def-box .def-title { font-weight: bold; color: var(--navy); margin-bottom: 4px; font-size: 13px; }
+  .point-box {
+    background: #FFF8E8;
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .point-box .point-title { color: var(--gold); font-weight: bold; font-size: 12px; margin-bottom: 4px; }
+  .caution-box {
+    background: #FEF0EE;
+    border: 1px solid var(--crimson);
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .caution-box .caution-title { color: var(--crimson); font-weight: bold; font-size: 12px; margin-bottom: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+  th { background: var(--navy); color: var(--white); padding: 8px 10px; text-align: center; font-weight: bold; }
+  td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+  tr:nth-child(even) td { background: #F8F6F2; }
+  .td-center { text-align: center; }
+  .goro-box {
+    background: var(--navy);
+    color: var(--gold-light);
+    border-radius: 6px;
+    padding: 10px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .goro-box .goro-label { font-size: 11px; color: #aaa; margin-bottom: 2px; font-weight: normal; }
+  .quiz-section {
+    background: var(--white);
+    border-radius: 8px;
+    margin-bottom: 24px;
+    border: 2px solid var(--navy);
+    overflow: hidden;
+  }
+  .quiz-header {
+    background: var(--navy);
+    color: var(--gold);
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+  .quiz-body { padding: 18px 20px; }
+  .quiz-q { font-size: 14px; margin-bottom: 16px; line-height: 1.7; }
+  .quiz-q .q-num { font-weight: bold; color: var(--navy); }
+  .blank {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--navy);
+    border-radius: 4px;
+    padding: 1px 8px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    min-width: 60px;
+    text-align: center;
+    font-weight: bold;
+    border: 2px solid var(--navy);
+    user-select: none;
+  }
+  .blank:hover { background: #2C3E6A; border-color: #2C3E6A; }
+  .blank.revealed { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+  .quiz-hint { font-size: 12px; color: var(--text-light); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
+  h3 { font-size: 14px; color: var(--navy); margin: 16px 0 8px; padding-left: 8px; border-left: 3px solid var(--gold); }
+  p { margin: 8px 0; font-size: 14px; }
+  ul, ol { padding-left: 20px; margin: 8px 0; }
+  li { margin: 4px 0; font-size: 14px; }
+  .nav-btn-wrap { display: flex; gap: 12px; justify-content: center; margin-top: 32px; }
+  .nav-btn {
+    background: var(--navy); color: var(--gold);
+    border: none; border-radius: 6px; padding: 10px 24px;
+    font-size: 13px; font-family: inherit; font-weight: bold;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: background 0.2s;
+  }
+  .nav-btn:hover { background: #2C3E6A; }
+  .nav-btn.crimson { background: var(--crimson); color: white; }
+  .nav-btn.crimson:hover { background: #A93226; }
+  footer { background: var(--navy); color: #aaa; text-align: center; padding: 14px; font-size: 12px; margin-top: 40px; }
+  .stars { color: var(--gold); font-size: 13px; }
+  .flow-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  .flow-item {
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-weight: bold;
+    color: var(--navy);
+  }
+  .flow-arrow { color: var(--gold); font-size: 18px; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="header-title"><span>GAMBA</span> 民法</div>
+      <div class="header-sub">大卒程度公務員試験対策</div>
+    </div>
+    <div class="header-badge">ch02 解説</div>
+  </div>
+</header>
+
+<main>
+
+  <div class="chapter-title">
+    <h1>第２章　失踪宣告</h1>
+    <div class="subtitle">寺本民法Ⅰ 第2章 ｜ 頻出度 <span class="stars">★★☆</span></div>
+  </div>
+
+  <!-- セクション1 不在者 -->
+  <div class="section">
+    <div class="section-header"><div class="num">1</div>不在者と財産管理</div>
+    <div class="section-body">
+      <div class="def-box">
+        <div class="def-title">不在者とは</div>
+        従来の住所・居所を去り、容易に帰来する見込みのない者をいいます（25条）。
+      </div>
+      <p>不在者が財産管理人を置かなかった場合、利害関係人または検察官の請求により、<strong>家庭裁判所が財産管理人を選任</strong>できます（25条1項）。</p>
+      <div class="point-box">
+        <div class="point-title">💡 財産管理人の権限</div>
+        財産管理人は原則として<strong>保存・利用・改良行為</strong>（103条準用）しかできません。それを超える行為（処分行為）には家庭裁判所の許可が必要です（28条）。
+      </div>
+    </div>
+  </div>
+
+  <!-- セクション2 失踪宣告 -->
+  <div class="section">
+    <div class="section-header"><div class="num">2</div>失踪宣告の要件と効果</div>
+    <div class="section-body">
+      <div class="def-box">
+        <div class="def-title">失踪宣告とは</div>
+        生死不明の不在者について、家庭裁判所が一定の要件のもとで死亡したものとみなす制度です（30条・31条）。
+      </div>
+
+      <h3>2種類の失踪宣告</h3>
+      <table>
+        <thead>
+          <tr><th>種類</th><th>要件</th><th>死亡とみなされる時期</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>普通失踪</strong><br>（30条1項）</td>
+            <td>不在者の生死が<strong>7年間</strong>不明</td>
+            <td><strong>7年間の期間が満了した時</strong></td>
+          </tr>
+          <tr>
+            <td><strong>特別失踪</strong><br>（危難失踪）<br>（30条2項）</td>
+            <td>戦争・船舶沈没・その他の<strong>危難</strong>に遭遇し、危難が去った後<strong>1年間</strong>生死不明</td>
+            <td><strong>危難が去った時</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="goro-box">
+        <div class="goro-label">ゴロ合わせ</div>
+        普通失踪「<strong>なな（7年）→まんりょう（満了時）死亡</strong>」<br>
+        特別失踪「<strong>いち（1年）→きなん（危難）去った時に死亡</strong>」
+      </div>
+
+      <div class="caution-box">
+        <div class="caution-title">⚠ 失踪宣告の申請権者</div>
+        利害関係人（配偶者・相続人・財産管理人など）のみが申請できます。検察官は申請できません。
+      </div>
+
+      <h3>失踪宣告の手続</h3>
+      <div class="flow-box">
+        <div class="flow-item">利害関係人が申請</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-item">家庭裁判所が公示催告</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-item">失踪宣告</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-item">死亡とみなす</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ミニテスト1 -->
+  <div class="mini" id="mini1">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">① 失踪宣告の要件</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 普通失踪は生死不明<span class="mblank" data-ans="7年間" data-gid="g1" data-qid="1-1">　　</span>で、<span class="mblank" data-ans="7年間の期間が満了した時" data-gid="g1" data-qid="1-2">　　　　</span>に死亡とみなされる。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 特別失踪は危難が去った後<span class="mblank" data-ans="1年間" data-gid="g1" data-qid="1-3">　　</span>生死不明で、<span class="mblank" data-ans="危難が去った時" data-gid="g1" data-qid="1-4">　　　　</span>に死亡とみなされる。</div></div>
+      <div class="q-block"><div class="q-text">Q3. 失踪宣告の申請権者は<span class="mblank" data-ans="利害関係人" data-gid="g1" data-qid="1-5">　　　　</span>に限られ、検察官は申請できない。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini1','g1')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini1','g1')">やり直す</button>
+      <span class="mini-score" id="score-mini1"></span>
+    </div>
+  </div>
+  </div>
+
+  <!-- セクション3 失踪宣告の取消 -->
+  <div class="section">
+    <div class="section-header"><div class="num">3</div>失踪宣告の取消（32条）</div>
+    <div class="section-body">
+      <p>失踪者が生存していること、または死亡時期が異なることが証明された場合、<strong>本人または利害関係人の請求</strong>により、家庭裁判所は失踪宣告を取り消すことができます（32条1項前段）。</p>
+
+      <h3>取消の効果と善意者保護</h3>
+      <div class="caution-box">
+        <div class="caution-title">⚠ 重要！善意者保護の2つのルール</div>
+        <p style="margin-top:6px"><strong>①行為の効力（32条1項後段）</strong><br>
+        失踪宣告の取消は、宣告後取消前に<strong>善意でした行為</strong>には影響を及ぼしません。<br>
+        ここでの「善意」は<strong>当事者双方が善意</strong>であることが必要（判例・通説）。</p>
+        <p style="margin-top:8px"><strong>②財産返還の範囲（32条2項）</strong><br>
+        失踪宣告により財産を取得した者は、取消によって<strong>現存利益の限度で返還</strong>すればよいです。<br>
+        ただし、<strong>悪意の者は全部返還</strong>＋損害賠償義務あり。</p>
+      </div>
+
+      <h3>具体例で理解する</h3>
+      <table>
+        <thead>
+          <tr><th>場面</th><th>当事者の善悪</th><th>行為の効力</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>失踪宣告後、配偶者Aが再婚（BC間の婚姻）</td>
+            <td class="td-center">A・C双方善意</td>
+            <td>再婚は有効に成立したまま（取消されない）</td>
+          </tr>
+          <tr>
+            <td>同上</td>
+            <td class="td-center">C（新配偶者）が悪意</td>
+            <td>再婚の効力は取消の影響を受ける</td>
+          </tr>
+          <tr>
+            <td>相続人が相続財産を消費</td>
+            <td class="td-center">善意で消費</td>
+            <td>現存利益の限度で返還（消費分は返還不要）</td>
+          </tr>
+          <tr>
+            <td>相続人が相続財産を消費</td>
+            <td class="td-center">悪意で消費</td>
+            <td>全額返還＋損害賠償</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="point-box">
+        <div class="point-title">💡 「双方善意」が必要な理由</div>
+        一方のみが善意でも行為の効力を維持すると、悪意の当事者を保護することになり不当です。そのため、判例・通説は当事者双方の善意を要求します。
+      </div>
+    </div>
+  </div>
+
+  <!-- ミニテスト2 -->
+  <div class="mini" id="mini2">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">② 失踪宣告の取消</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 失踪宣告の取消は、宣告後取消前に<span class="mblank" data-ans="当事者双方が善意" data-gid="g2" data-qid="2-1">　　　　</span>でした行為には影響しない（32条1項後段）。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 善意で財産を取得した者は<span class="mblank" data-ans="現存利益の限度" data-gid="g2" data-qid="2-2">　　　　</span>で返還すればよい（32条2項）。悪意の者は<span class="mblank" data-ans="全部返還と損害賠償" data-gid="g2" data-qid="2-3">　　　　</span>を負う。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini2','g2')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini2','g2')">やり直す</button>
+      <span class="mini-score" id="score-mini2"></span>
+    </div>
+  </div>
+  </div>
+
+  <!-- セクション4 失踪宣告と再婚 -->
+  <div class="section">
+    <div class="section-header"><div class="num">4</div>失踪宣告と婚姻・再婚の問題</div>
+    <div class="section-body">
+      <p>失踪宣告後に配偶者が再婚した後、失踪宣告が取り消された場合、<strong>前婚と後婚のどちらが有効か</strong>という問題があります。</p>
+
+      <table>
+        <thead>
+          <tr><th>前婚（元の婚姻）</th><th>後婚（再婚）</th><th>結論</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-center">失踪宣告取消で復活か？</td>
+            <td class="td-center">双方善意なら有効継続</td>
+            <td>後婚が優先（後婚が有効）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="point-box">
+        <div class="point-title">💡 判例・通説の立場</div>
+        後婚の当事者双方が善意の場合、後婚は有効に存続します。この場合、前婚は後婚成立により重婚状態となりますが、前婚の配偶者は離婚請求や取消請求をすることができます。実質的には後婚が優先します。
+      </div>
+
+      <div class="caution-box">
+        <div class="caution-title">⚠ 試験では「前婚が復活する」という誤りに注意</div>
+        失踪宣告が取り消されても、後婚の双方が善意であれば後婚は有効。前婚が自動的に復活するわけではありません。
+      </div>
+    </div>
+  </div>
+
+  <!-- ミニテスト3 -->
+  <div class="mini" id="mini3">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">③ 婚姻と失踪宣告</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 失踪宣告後に再婚し、後に宣告が取り消された場合、再婚の当事者双方が善意なら後婚は<span class="mblank" data-ans="有効に存続する" data-gid="g3" data-qid="3-1">　　　　</span>。</div></div>
+      <div class="q-block"><div class="q-text">Q2. その場合、前婚は<span class="mblank" data-ans="自動的に復活するわけではない" data-gid="g3" data-qid="3-2">　　　　</span>（後婚の当事者双方が善意のとき）。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini3','g3')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini3','g3')">やり直す</button>
+      <span class="mini-score" id="score-mini3"></span>
+    </div>
+  </div>
+  </div>
+
+  <!-- セクション5 まとめ -->
+  <div class="section">
+    <div class="section-header"><div class="num">5</div>第2章 まとめ</div>
+    <div class="section-body">
+      <table>
+        <thead>
+          <tr><th>項目</th><th>内容</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>普通失踪の要件</strong></td>
+            <td>生死不明7年間 → 期間満了時に死亡とみなす</td>
+          </tr>
+          <tr>
+            <td><strong>特別失踪の要件</strong></td>
+            <td>危難後1年間生死不明 → 危難が去った時に死亡とみなす</td>
+          </tr>
+          <tr>
+            <td><strong>申請権者</strong></td>
+            <td>利害関係人のみ（検察官は不可）</td>
+          </tr>
+          <tr>
+            <td><strong>取消と善意者保護</strong></td>
+            <td>双方善意の行為は影響なし／善意者は現存利益のみ返還</td>
+          </tr>
+          <tr>
+            <td><strong>再婚後の取消</strong></td>
+            <td>後婚当事者双方善意 → 後婚有効（前婚は自動復活しない）</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="point-box">
+        <div class="point-title">💡 試験頻出ポイント</div>
+        <ul>
+          <li>普通7年・特別1年の数字と死亡時期の違い</li>
+          <li>申請権者は利害関係人のみ（検察官は不可）</li>
+          <li>取消の善意保護は「双方善意」が必要</li>
+          <li>善意者は現存利益のみ返還、悪意者は全部＋損害賠償</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ミニテスト4 総合 -->
+  <div class="mini" id="mini4">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">④ 総合確認</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 普通失踪<span class="mblank" data-ans="7年間" data-gid="g4" data-qid="4-1">　　</span>、特別失踪は危難後<span class="mblank" data-ans="1年間" data-gid="g4" data-qid="4-2">　　</span>生死不明で認められる。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 取消後も<span class="mblank" data-ans="双方が善意" data-gid="g4" data-qid="4-3">　　　　</span>でした行為は有効。悪意者は<span class="mblank" data-ans="全部返還と損害賠償" data-gid="g4" data-qid="4-4">　　　　</span>を負う。</div></div>
+      <div class="q-block"><div class="q-text">Q3. 申請権者は<span class="mblank" data-ans="利害関係人" data-gid="g4" data-qid="4-5">　　　　</span>に限られ、<span class="mblank" data-ans="検察官" data-gid="g4" data-qid="4-6">　　　　</span>は申請できない。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini4','g4')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini4','g4')">やり直す</button>
+      <span class="mini-score" id="score-mini4"></span>
+    </div>
+  </div>
+  </div>
+
+  <div class="nav-btn-wrap">
+    <a href="minpo_ch01_kaisetsu.html" class="nav-btn">← 前の章</a>
+    <a href="minpo_index.html" class="nav-btn">目次へ</a>
+    <a href="minpo_ch02_enshu.html" class="nav-btn crimson">演習問題へ →</a>
+  </div>
+
+</main>
+
+<footer>
+  GAMBA民法 ch02 ｜ 音声：VOICEVOX（四国めたん）｜ © 江原予備校
+</footer>
+
+<script>
+const WORD_TIPS_02 = {
+  "7年間":"普通失踪の要件（30条1項）。",
+  "7年間の期間が満了した時":"普通失踪の死亡みなし時期。",
+  "1年間":"特別失踪の要件（30条2項）。危難が去った後1年間。",
+  "危難が去った時":"特別失踪の死亡みなし時期。",
+  "利害関係人":"配偶者・相続人など法律上の利害関係がある者（30条1項）。",
+  "当事者双方が善意":"32条1項の「善意」は当事者双方が善意（判例・通説）。片方だけでは不可。",
+  "現存利益の限度":"善意で取得した財産は現存する利益の範囲で返還（32条2項）。",
+  "全部返還と損害賠償":"悪意で取得した財産は全部返還＋損害賠償義務（32条2項）。",
+  "有効に存続する":"再婚の当事者双方が善意なら後婚（再婚）は有効に存続（判例）。",
+  "自動的に復活するわけではない":"後婚が有効に存続している場合、前婚は自動復活しない（判例）。",
+  "双方が善意":"取消後の影響を受けないための要件は当事者双方の善意。",
+  "検察官":"検察官は申請権者に含まれない（30条1項参照）。",
+};
+const GROUP_WORDS_02 = {
+  g1: ["7年間","7年間の期間が満了した時","1年間","危難が去った時","利害関係人"],
+  g2: ["当事者双方が善意","現存利益の限度","全部返還と損害賠償"],
+  g3: ["有効に存続する","自動的に復活するわけではない"],
+  g4: ["7年間","1年間","双方が善意","全部返還と損害賠償","利害関係人","検察官"],
+};
+let activePopup02 = null;
+function closeAllPopups02(){document.querySelectorAll('.word-popup').forEach(p=>p.classList.remove('show'));activePopup02=null;}
+function buildPopup02(blank){
+  const gid=blank.dataset.gid,words=GROUP_WORDS_02[gid]||[];
+  const pop=document.createElement('div');pop.className='word-popup';
+  pop.innerHTML='<div class="word-popup-title">▼ 語群から選んでください</div><div class="word-chips"></div>';
+  const cd=pop.querySelector('.word-chips');
+  words.forEach(w=>{
+    const chip=document.createElement('span');chip.className='wchip';chip.textContent=w;
+    const tip=WORD_TIPS_02[w];
+    if(tip){const te=document.createElement('span');te.className='wchip-tip';te.textContent=tip;chip.appendChild(te);}
+    chip.addEventListener('click',e=>{
+      e.stopPropagation();
+      document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b=>{if(b!==blank&&b.dataset.current===w){b.textContent='';b.dataset.current='';b.classList.remove('filled','correct');}});
+      blank.textContent=w;blank.dataset.current=w;blank.classList.add('filled');blank.classList.remove('correct');
+      updateChipUsed02(gid);closeAllPopups02();
+    });
+    cd.appendChild(chip);
+  });
+  return pop;
+}
+function updateChipUsed02(gid){
+  const used=[];
+  document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b=>{if(b.dataset.current)used.push(b.dataset.current);});
+  document.querySelectorAll('.word-popup').forEach(pop=>{pop.querySelectorAll('.wchip').forEach(c=>{c.classList.toggle('used',used.includes(c.childNodes[0].textContent.trim()));});});
+}
+document.querySelectorAll('.mblank').forEach(blank=>{
+  blank.dataset.current='';
+  blank.addEventListener('click',e=>{
+    e.stopPropagation();
+    if(activePopup02&&activePopup02.blankEl===blank){closeAllPopups02();return;}
+    closeAllPopups02();
+    const pop=buildPopup02(blank);blank.appendChild(pop);
+    updateChipUsed02(blank.dataset.gid);
+    requestAnimationFrame(()=>pop.classList.add('show'));
+    activePopup02={blankEl:blank,popupEl:pop};
+  });
+});
+document.addEventListener('click',()=>closeAllPopups02());
+function checkMini(miniId,gid){
+  let c=0,t=0;
+  document.querySelectorAll(`#${miniId} .mblank`).forEach(b=>{t++;if((b.dataset.current||'')===b.dataset.ans){b.classList.add('correct');c++;}else b.classList.remove('correct');});
+  const s=document.getElementById('score-'+miniId);
+  if(s){s.textContent=c===t?`✅ 全問正解！(${c}/${t})`:`${c}/${t} 正解`;s.style.color=c===t?'#2e7d32':'#C0392B';}
+}
+function resetMini(miniId,gid){
+  document.querySelectorAll(`#${miniId} .mblank`).forEach(b=>{b.textContent='';b.dataset.current='';b.classList.remove('filled','correct');});
+  const s=document.getElementById('score-'+miniId);if(s)s.textContent='';
+  closeAllPopups02();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>GAMBA民法 ch06 代理①（代理の基本・無権代理・表見代理）</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'BIZ UDGothic','Hiragino Kaku Gothic Pro','Meiryo',sans-serif;background:#eef2f7;color:#1a1a2e;min-height:100vh;font-size:15px}
+.top-header{background:linear-gradient(135deg,#1B2A4A 0%,#C0392B 100%);color:#fff;padding:16px 16px 12px;text-align:center}
+.top-header h1{font-size:18px;font-weight:700;letter-spacing:.05em}
+.top-header p{font-size:12px;margin-top:3px;opacity:.85}
+.ch-nav{background:#1B2A4A;display:flex;overflow-x:auto;gap:0}
+.ch-nav a{color:rgba(255,255,255,.75);text-decoration:none;padding:9px 14px;font-size:12px;white-space:nowrap;border-right:1px solid rgba(255,255,255,.15);transition:.15s;font-weight:700}
+.ch-nav a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.wrap{max-width:860px;margin:0 auto;padding:16px 12px 48px}
+.section{background:#fff;border-radius:14px;border:1px solid #dde3ee;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden}
+.sec-hd{background:linear-gradient(90deg,#1B2A4A,#2c447a);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:10px}
+.sec-num{background:rgba(255,255,255,.2);border-radius:8px;padding:3px 10px;font-size:12px;font-weight:700;white-space:nowrap}
+.sec-hd h2{font-size:16px;font-weight:700}
+.sec-body{padding:16px 18px}
+.lead{background:#f0f4ff;border-left:4px solid #1B2A4A;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:14px;font-size:13px;color:#444}
+.goro{background:linear-gradient(135deg,#fff9ed,#fff3d0);border:2px solid #f4a62a;border-radius:10px;padding:12px 16px;margin:12px 0;text-align:center}
+.goro-label{font-size:10px;color:#8a5a00;letter-spacing:2px;font-weight:700;margin-bottom:4px}
+.goro-text{font-size:17px;font-weight:700;color:#7a4a00;letter-spacing:1px}
+.goro-note{font-size:11px;color:#a07030;margin-top:4px}
+.hanrei{background:#fff5f0;border:1px solid #fbc8b5;border-radius:10px;margin:12px 0;overflow:hidden}
+.hanrei-head{background:#C0392B;padding:7px 14px;font-size:12px;font-weight:700;color:#fff}
+.hanrei-body{padding:10px 14px}
+.hanrei-row{display:grid;grid-template-columns:56px 1fr;gap:6px;margin-bottom:6px;font-size:13px}
+.hanrei-label{color:#C0392B;font-weight:700;font-size:11px;padding-top:2px}
+.hanrei-point{background:#C0392B;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:4px;margin-top:6px;display:inline-block}
+.tbl{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+.tbl th{background:#1B2A4A;color:#fff;padding:8px 10px;border:1px solid #b3c6ee;text-align:center;font-size:12px}
+.tbl td{padding:8px 10px;border:1px solid #dde3ee;vertical-align:top;line-height:1.6}
+.tbl tr:nth-child(even) td{background:#f8f9ff}
+.tbl td:first-child{color:#1B2A4A;font-weight:700;text-align:center;white-space:nowrap}
+.fig-wrap{background:#f8f9ff;border:1px solid #dde3ee;border-radius:10px;padding:14px;margin:12px 0;text-align:center}
+.fig-caption{font-size:11px;color:#888;margin-top:6px}
+.key{color:#C0392B;font-weight:700}
+.blue{color:#1B2A4A;font-weight:700}
+.point-box{background:#f0f4ff;border:1px solid #b3c6ee;border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13px}
+.point-box::before{content:"POINT ";color:#1B2A4A;font-weight:700;font-size:11px}
+.warn-box{background:#fff5f0;border-left:4px solid #C0392B;border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0;font-size:13px}
+.info-box{background:#f0f4ff;border-left:4px solid #2c447a;border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0;font-size:13px}
+ul.styled{padding-left:18px;margin:8px 0}
+ul.styled li{margin-bottom:5px}
+ul.styled li::marker{color:#C0392B}
+hr.div{border:none;border-top:1px solid #dde3ee;margin:14px 0}
+h3.sub{font-size:14px;color:#1B2A4A;margin:14px 0 8px;border-bottom:2px solid #C0392B;padding-bottom:4px;display:inline-block}
+/* ミニテスト */
+.mini{background:#fff;border:2px solid #1B2A4A;border-radius:12px;margin-top:20px;overflow:visible}
+.mini-hd{background:linear-gradient(90deg,#1B2A4A,#2c447a);padding:10px 16px;display:flex;align-items:center;gap:10px}
+.mini-hd-badge{background:#D4AF37;color:#1B2A4A;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:1px}
+.mini-hd-title{color:#fff;font-size:13px;font-weight:700}
+.mini-hd-hint{font-size:11px;color:rgba(255,255,255,.7);margin-left:auto}
+.mini-body{padding:14px 16px}
+.q-block{margin-bottom:18px;position:relative}
+.q-text{font-size:14px;line-height:2.2}
+.mblank{display:inline-block;min-width:90px;height:28px;background:#1B2A4A;border-radius:6px;margin:0 3px;text-align:center;cursor:pointer;font-weight:700;font-size:13px;color:transparent;vertical-align:middle;position:relative;transition:background .2s;border:2px solid #1B2A4A;line-height:24px;padding:0 8px;white-space:nowrap}
+.mblank.filled{color:#fff;background:#2c447a;border-color:#2c447a}
+.mblank.correct{color:#1a1a2e;background:#ffd700;border-color:#b8860b}
+.mblank:hover{opacity:.85}
+.word-popup{display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#1B2A4A;border:2px solid #D4AF37;border-radius:10px;padding:10px;z-index:500;box-shadow:0 6px 20px rgba(0,0,0,.3);min-width:260px;}
+.word-popup.show{display:block}
+.word-popup::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#D4AF37}
+.word-popup-title{font-size:10px;color:#D4AF37;font-weight:700;letter-spacing:1px;margin-bottom:8px}
+.word-chips{display:flex;flex-wrap:wrap;gap:6px}
+.wchip{padding:5px 11px;border-radius:16px;border:1.5px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;position:relative}
+.wchip:hover{background:#D4AF37;color:#1B2A4A;border-color:#D4AF37}
+.wchip.used{opacity:.3;pointer-events:none}
+.wchip-tip{display:none;position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);width:190px;background:#2c1800;color:#fff;border-radius:8px;padding:8px 10px;font-size:11px;line-height:1.7;z-index:600;pointer-events:none;text-align:left;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.wchip-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#2c1800}
+.wchip:hover .wchip-tip{display:block}
+.mini-footer{padding:10px 16px 14px;display:flex;align-items:center;gap:10px;border-top:1px solid #dde3ee;flex-wrap:wrap}
+.mini-check-btn{background:#C0392B;color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.mini-check-btn:hover{background:#8a2820}
+.mini-reset-btn{background:#6c757d;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.mini-reset-btn:hover{background:#495057}
+.mini-score{font-size:13px;font-weight:700;color:#1B2A4A;margin-left:auto}
+footer{text-align:center;padding:20px 16px;font-size:11px;color:#888;border-top:1px solid #dde3ee;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="top-header">
+  <h1>📖 GAMBA 民法 第6章</h1>
+  <p>代理①（代理の基本・無権代理・表見代理）｜江原予備校</p>
+</div>
+<nav class="ch-nav">
+  <a href="#sec1">§1 代理の基礎</a>
+  <a href="#sec2">§2 代理の要件・効果</a>
+  <a href="#sec3">§3 無権代理</a>
+  <a href="#sec4">§4 表見代理</a>
+</nav>
+
+<div class="wrap">
+
+<!-- ====== SEC 1 ====== -->
+<div class="section" id="sec1">
+  <div class="sec-hd"><span class="sec-num">SEC.1</span><h2>代理とは何か——三者関係の基礎</h2></div>
+  <div class="sec-body">
+    <div class="lead">代理は試験最頻出テーマの一つ。本人・代理人・相手方の三者関係、「顕名」の意味、任意代理と法定代理の違いを確実に押さえよう。</div>
+
+    <p><span class="key">代理</span>とは、代理人が本人のために意思表示を行い、その効果が直接本人に帰属する制度をいう（99条）。</p>
+
+    <div class="fig-wrap">
+      <svg viewBox="0 0 580 200" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1B2A4A"/></marker>
+          <marker id="arg" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#2e7d32"/></marker>
+        </defs>
+        <!-- 本人 -->
+        <rect x="10" y="70" width="120" height="60" rx="10" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="70" y="98" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="14" fill="#1B2A4A" font-weight="bold">本人（A）</text>
+        <text x="70" y="116" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#888">代理権を授与</text>
+        <!-- 代理人 -->
+        <rect x="225" y="10" width="130" height="60" rx="10" fill="#fff9ed" stroke="#f4a62a" stroke-width="2"/>
+        <text x="290" y="38" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="14" fill="#7a4a00" font-weight="bold">代理人（B）</text>
+        <text x="290" y="56" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#888">顕名して意思表示</text>
+        <!-- 相手方 -->
+        <rect x="440" y="70" width="130" height="60" rx="10" fill="#f8f9ff" stroke="#b3c6ee" stroke-width="1.5"/>
+        <text x="505" y="98" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">相手方（C）</text>
+        <text x="505" y="116" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#888">契約の相手</text>
+        <!-- 矢印：A→B（代理権授与） -->
+        <line x1="130" y1="85" x2="222" y2="48" stroke="#1B2A4A" stroke-width="1.5" stroke-dasharray="5" marker-end="url(#ar)"/>
+        <text x="168" y="62" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#1B2A4A">代理権授与</text>
+        <!-- 矢印：B→C（意思表示） -->
+        <line x1="355" y1="48" x2="445" y2="82" stroke="#f4a62a" stroke-width="2" marker-end="url(#ar)"/>
+        <text x="412" y="58" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#7a4a00">顕名＋意思表示</text>
+        <!-- 矢印：A↔C（効果帰属） -->
+        <line x1="130" y1="108" x2="438" y2="108" stroke="#2e7d32" stroke-width="2" marker-end="url(#arg)"/>
+        <text x="284" y="126" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#2e7d32" font-weight="bold">効果が本人Aに直接帰属</text>
+        <rect x="200" y="148" width="168" height="26" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+        <text x="284" y="165" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#2e7d32" font-weight="bold">A・C間に契約成立</text>
+      </svg>
+      <div class="fig-caption">図1：代理の三者関係——効果は本人に直接帰属する</div>
+    </div>
+
+    <h3 class="sub">顕名（けんめい）とは</h3>
+    <p>代理人が意思表示をする際、「<span class="key">本人のためにすることを示す</span>」こと（99条1項）。顕名がなければ原則として代理人自身の行為として扱われる（100条）。</p>
+    <div class="warn-box"><span class="key">顕名なし</span>の場合：相手方が代理人の行為と知っていた（悪意）または知ることができた（有過失）ときを除き、<strong>代理人自身の行為</strong>になる（100条ただし書）。</div>
+
+    <h3 class="sub">代理の2種類</h3>
+    <table class="tbl">
+      <tr><th style="width:22%">種類</th><th>根拠</th><th>例</th><th>特徴</th></tr>
+      <tr><td>任意代理</td><td>本人の委任（授権行為）</td><td>委任状による不動産取引</td><td>本人が代理権の範囲を決める</td></tr>
+      <tr><td>法定代理</td><td>法律の規定</td><td>親権者（未成年の親）、後見人</td><td>法律が自動的に代理権を与える</td></tr>
+    </table>
+
+    <!-- ミニテスト §1 -->
+    <div class="mini" id="mini1">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§1 確認クイズ</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block"><div class="q-text">Q1. 代理とは、代理人が行った意思表示の効果が
+          <span class="mblank" data-ans="本人" data-gid="g1" data-qid="1-1">　　</span>
+          に直接帰属する制度である（99条）。</div></div>
+        <div class="q-block"><div class="q-text">Q2. 代理人が本人のためにすることを示すことを
+          <span class="mblank" data-ans="顕名" data-gid="g1" data-qid="1-2">　　</span>
+          という。顕名がなければ原則として代理人自身の行為となる。</div></div>
+        <div class="q-block"><div class="q-text">Q3. 親権者が未成年の子に代わって契約を結ぶのは
+          <span class="mblank" data-ans="法定代理" data-gid="g1" data-qid="1-3">　　　　</span>
+          であり、委任状に基づく不動産取引の代理は
+          <span class="mblank" data-ans="任意代理" data-gid="g1" data-qid="1-4">　　　　</span>
+          である。</div></div>
+        <div class="q-block"><div class="q-text">Q4. 顕名がない場合、相手方が代理であることを
+          <span class="mblank" data-ans="悪意" data-gid="g1" data-qid="1-5">　　</span>
+          または
+          <span class="mblank" data-ans="有過失" data-gid="g1" data-qid="1-6">　　　</span>
+          でない限り、代理人自身の行為となる（100条）。</div></div>
+      </div>
+      <div class="mini-footer">
+        <button class="mini-check-btn" onclick="checkMini('mini1','g1')">判定する</button>
+        <button class="mini-reset-btn" onclick="resetMini('mini1','g1')">やり直す</button>
+        <span class="mini-score" id="score-mini1"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SEC 2 ====== -->
+<div class="section" id="sec2">
+  <div class="sec-hd"><span class="sec-num">SEC.2</span><h2>代理の要件と効果・代理権の範囲</h2></div>
+  <div class="sec-body">
+    <div class="lead">代理が有効に成立するための3要件、代理権の範囲の解釈（103条）、代理権消滅原因を押さえよう。</div>
+
+    <h3 class="sub">代理が有効に成立する3要件</h3>
+    <ul class="styled">
+      <li><span class="blue">①代理権の存在</span>——本人から授権（または法律の規定）があること</li>
+      <li><span class="blue">②顕名</span>——「本人Aのために」と示すこと（99条1項）</li>
+      <li><span class="blue">③代理権の範囲内の行為</span>——与えられた権限の範囲で行動すること</li>
+    </ul>
+
+    <h3 class="sub">代理権の範囲（103条）——権限の定めがない場合</h3>
+    <p>代理権の範囲が不明確な場合、103条により次の行為のみができる。</p>
+
+    <div class="fig-wrap">
+      <svg viewBox="0 0 560 160" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="20" width="160" height="120" rx="10" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="90" y="48" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#1B2A4A" font-weight="bold">①保存行為</text>
+        <text x="90" y="68" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">現状を維持する行為</text>
+        <text x="90" y="86" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">例）家屋の修繕、</text>
+        <text x="90" y="100" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">期限到来前の弁済</text>
+        <rect x="200" y="20" width="160" height="120" rx="10" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="280" y="48" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#1B2A4A" font-weight="bold">②利用行為</text>
+        <text x="280" y="68" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">性質を変えない範囲で</text>
+        <text x="280" y="84" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">利用・収益する行為</text>
+        <text x="280" y="100" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">例）金銭の利息付き預金</text>
+        <rect x="390" y="20" width="160" height="120" rx="10" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="470" y="48" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#1B2A4A" font-weight="bold">③改良行為</text>
+        <text x="470" y="68" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">価値を高める行為</text>
+        <text x="470" y="86" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">（性質を変えない範囲）</text>
+        <text x="470" y="102" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">例）無利息債権を</text>
+        <text x="470" y="116" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">利息付きに変更</text>
+      </svg>
+      <div class="fig-caption">図2：103条——権限の定めがない代理人ができる3つの行為</div>
+    </div>
+
+    <h3 class="sub">代理権の消滅原因（111条）</h3>
+    <table class="tbl">
+      <tr><th></th><th>任意代理</th><th>法定代理</th></tr>
+      <tr><td>共通</td><td colspan="2" style="text-align:center">本人の死亡／代理人の死亡・破産・後見開始</td></tr>
+      <tr><td>個別</td><td>委任の終了（委任者からの解除など）</td><td>本人（被後見人等）の能力回復</td></tr>
+    </table>
+
+    <div class="goro">
+      <div class="goro-label">GORO — 代理権消滅の共通原因</div>
+      <div class="goro-text">ほん（本人）し（死亡）に・だい（代理人）し（死亡）は・は（破産）・こう（後見開始）</div>
+      <div class="goro-note">本人の死亡・代理人の死亡・破産・後見開始——4つが共通消滅原因</div>
+    </div>
+
+    <!-- ミニテスト §2 -->
+    <div class="mini" id="mini2">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§2 確認クイズ</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block"><div class="q-text">Q1. 代理が有効に成立する3要件は、代理権の存在・
+          <span class="mblank" data-ans="顕名" data-gid="g2" data-qid="2-1">　　</span>
+          ・代理権の範囲内の行為である。</div></div>
+        <div class="q-block"><div class="q-text">Q2. 権限の定めがない代理人は103条により、
+          <span class="mblank" data-ans="保存行為" data-gid="g2" data-qid="2-2">　　　　</span>
+          ・利用行為・改良行為のみができる。</div></div>
+        <div class="q-block"><div class="q-text">Q3. 代理権の消滅原因として任意代理・法定代理に共通するのは、本人の
+          <span class="mblank" data-ans="死亡" data-gid="g2" data-qid="2-3">　　</span>
+          、代理人の死亡・
+          <span class="mblank" data-ans="破産" data-gid="g2" data-qid="2-4">　　</span>
+          ・後見開始である（111条）。</div></div>
+        <div class="q-block"><div class="q-text">Q4. 家屋の修繕のように現状を維持する行為を
+          <span class="mblank" data-ans="保存行為" data-gid="g2" data-qid="2-5">　　　　</span>
+          といい、権限の定めがない代理人でもできる。</div></div>
+      </div>
+      <div class="mini-footer">
+        <button class="mini-check-btn" onclick="checkMini('mini2','g2')">判定する</button>
+        <button class="mini-reset-btn" onclick="resetMini('mini2','g2')">やり直す</button>
+        <span class="mini-score" id="score-mini2"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SEC 3 ====== -->
+<div class="section" id="sec3">
+  <div class="sec-hd"><span class="sec-num">SEC.3</span><h2>無権代理——代理権なき代理行為</h2></div>
+  <div class="sec-body">
+    <div class="lead">代理権がないのに代理人として行動した場合（無権代理）。本人・相手方それぞれの保護手段と、本人死亡・代理人死亡の相続問題が頻出。</div>
+
+    <p><span class="key">無権代理</span>とは、代理権を持たない者が代理人として行動した場合をいう。原則として<span class="key">本人に効果が帰属しない</span>が、相手方保護のための制度が設けられている。</p>
+
+    <div class="fig-wrap">
+      <svg viewBox="0 0 600 200" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1B2A4A"/></marker>
+          <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#C0392B"/></marker>
+        </defs>
+        <!-- 無権代理人 -->
+        <rect x="200" y="10" width="130" height="55" rx="10" fill="#fce8e8" stroke="#C0392B" stroke-width="2"/>
+        <text x="265" y="36" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#C0392B" font-weight="bold">無権代理人（B）</text>
+        <text x="265" y="54" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">代理権なし</text>
+        <!-- 本人 -->
+        <rect x="10" y="90" width="120" height="60" rx="10" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="70" y="118" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1B2A4A" font-weight="bold">本人（A）</text>
+        <!-- 相手方 -->
+        <rect x="450" y="90" width="130" height="60" rx="10" fill="#f8f9ff" stroke="#b3c6ee" stroke-width="1.5"/>
+        <text x="515" y="118" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">相手方（C）</text>
+        <!-- 矢印 -->
+        <line x1="265" y1="65" x2="130" y2="105" stroke="#1B2A4A" stroke-width="1.5" stroke-dasharray="5"/>
+        <text x="178" y="82" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#C0392B">代理権なし</text>
+        <line x1="330" y1="50" x2="460" y2="100" stroke="#C0392B" stroke-width="2" marker-end="url(#arr)"/>
+        <text x="415" y="68" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#C0392B">「A代理人B」として契約</text>
+        <!-- 効果不帰属 -->
+        <rect x="10" y="168" width="560" height="26" rx="6" fill="#fce8e8" stroke="#C0392B" stroke-width="1.5"/>
+        <text x="290" y="184" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#C0392B" font-weight="bold">原則：本人Aに効果は帰属しない（契約は不確定的に無効）</text>
+      </svg>
+      <div class="fig-caption">図3：無権代理——代理権なき行為は原則本人に帰属しない</div>
+    </div>
+
+    <h3 class="sub">本人による追認（113条）</h3>
+    <ul class="styled">
+      <li><span class="blue">追認</span>——本人が後から承認すれば、<span class="key">契約時にさかのぼって有効</span>になる</li>
+      <li><span class="blue">追認拒絶</span>——確定的に無効。ただし相手方は無権代理人に責任追及可</li>
+      <li>相手方が追認するよう催告できる（114条）。相当期間内に本人が確答しなければ拒絶とみなす</li>
+    </ul>
+
+    <h3 class="sub">相手方の保護手段（115・117条）</h3>
+    <table class="tbl">
+      <tr><th>手段</th><th>要件</th><th>効果</th></tr>
+      <tr><td>取消権<br>（115条）</td><td>相手方が善意であること（悪意は不可）</td><td>本人の追認前に限り契約を取消し可</td></tr>
+      <tr><td>無権代理人への<br>責任追及（117条）</td><td>相手方が善意・無過失。無権代理人が制限行為能力者でないこと</td><td>無権代理人に履行または損害賠償を請求可</td></tr>
+    </table>
+
+    <div class="point-box">117条の<span class="key">無権代理人の責任</span>は、無過失責任（故意・過失不要）。ただし相手方が<span class="key">悪意または有過失</span>の場合は請求できない。</div>
+
+    <h3 class="sub">無権代理と相続——頻出ひっかけ</h3>
+    <div class="hanrei">
+      <div class="hanrei-head">⚖️ 判例 無権代理人が本人を相続した場合（最判昭40）</div>
+      <div class="hanrei-body">
+        <div class="hanrei-row"><span class="hanrei-label">事案</span><span>BがAの代理人と称して土地売買。後にBがAを相続した。</span></div>
+        <div class="hanrei-row"><span class="hanrei-label">判旨</span><span>無権代理人Bが本人Aを相続した場合、BはAの地位を引き継ぐため、<strong>追認拒絶は信義則上許されない</strong>→契約は有効となる。</span></div>
+        <span class="hanrei-point">POINT：無権代理人が本人を相続→追認拒絶不可（有効）</span>
+      </div>
+    </div>
+    <div class="hanrei">
+      <div class="hanrei-head">⚖️ 判例 本人が無権代理人を相続した場合（最判昭37）</div>
+      <div class="hanrei-body">
+        <div class="hanrei-row"><span class="hanrei-label">事案</span><span>BがAの代理人と称して土地売買。後にAがBを相続した。</span></div>
+        <div class="hanrei-row"><span class="hanrei-label">判旨</span><span>本人Aが無権代理人Bを相続した場合、AはBの117条責任も引き継ぐが、<strong>追認拒絶は可能</strong>。ただし相手方はAに117条責任を追及できる。</span></div>
+        <span class="hanrei-point">POINT：本人が無権代理人を相続→追認拒絶は可、ただし117条責任あり</span>
+      </div>
+    </div>
+
+    <!-- ミニテスト §3 -->
+    <div class="mini" id="mini3">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§3 確認クイズ</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block"><div class="q-text">Q1. 無権代理の場合、本人が後から承認する
+          <span class="mblank" data-ans="追認" data-gid="g3" data-qid="3-1">　　</span>
+          をすれば、契約時にさかのぼって有効になる（113条）。</div></div>
+        <div class="q-block"><div class="q-text">Q2. 相手方が
+          <span class="mblank" data-ans="善意" data-gid="g3" data-qid="3-2">　　</span>
+          の場合、本人の追認前に限り契約を取消しできる（115条）。</div></div>
+        <div class="q-block"><div class="q-text">Q3. 無権代理人に対する117条の責任追及には、相手方が
+          <span class="mblank" data-ans="善意・無過失" data-gid="g3" data-qid="3-3">　　　　　　</span>
+          であることが必要である。</div></div>
+        <div class="q-block"><div class="q-text">Q4. 無権代理人が本人を相続した場合、追認拒絶は
+          <span class="mblank" data-ans="信義則上許されない" data-gid="g3" data-qid="3-4">　　　　　　　　</span>
+          とされ、契約は有効となる（最判昭40）。</div></div>
+      </div>
+      <div class="mini-footer">
+        <button class="mini-check-btn" onclick="checkMini('mini3','g3')">判定する</button>
+        <button class="mini-reset-btn" onclick="resetMini('mini3','g3')">やり直す</button>
+        <span class="mini-score" id="score-mini3"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SEC 4 ====== -->
+<div class="section" id="sec4">
+  <div class="sec-hd"><span class="sec-num">SEC.4</span><h2>表見代理——外観を信頼した相手方の保護</h2></div>
+  <div class="sec-body">
+    <div class="lead">代理権はないが、外観上代理権があるように見える場合に相手方を保護する制度。3類型の要件を正確に区別しよう。</div>
+
+    <p><span class="key">表見代理</span>とは、代理権がないにもかかわらず、本人に帰責性がある外観が作られた場合に、<span class="key">善意・無過失の相手方</span>を保護して契約を有効とする制度。</p>
+
+    <div class="fig-wrap">
+      <svg viewBox="0 0 600 110" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="15" width="178" height="80" rx="10" fill="#fff9ed" stroke="#f4a62a" stroke-width="2"/>
+        <text x="94" y="40" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#7a4a00" font-weight="bold">①109条</text>
+        <text x="94" y="58" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">代理権授与表示</text>
+        <text x="94" y="74" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">本人が「Bに代理権あり」</text>
+        <text x="94" y="88" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">と表示した場合</text>
+        <rect x="211" y="15" width="178" height="80" rx="10" fill="#fff9ed" stroke="#f4a62a" stroke-width="2"/>
+        <text x="300" y="40" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#7a4a00" font-weight="bold">②110条</text>
+        <text x="300" y="58" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">権限外行為の表見代理</text>
+        <text x="300" y="74" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">基本代理権はあるが</text>
+        <text x="300" y="88" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">権限を超えた行為</text>
+        <rect x="417" y="15" width="178" height="80" rx="10" fill="#fff9ed" stroke="#f4a62a" stroke-width="2"/>
+        <text x="506" y="40" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#7a4a00" font-weight="bold">③112条</text>
+        <text x="506" y="58" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">代理権消滅後の</text>
+        <text x="506" y="74" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">表見代理</text>
+        <text x="506" y="88" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">消滅した代理権の範囲内</text>
+      </svg>
+      <div class="fig-caption">図4：表見代理の3類型（109・110・112条）</div>
+    </div>
+
+    <h3 class="sub">3類型の比較</h3>
+    <table class="tbl">
+      <tr><th>条文</th><th>名称</th><th>要件（本人側の帰責）</th><th>相手方の要件</th></tr>
+      <tr><td>109条</td><td>代理権授与表示</td><td>本人が「Bに代理権あり」と表示した</td><td>善意・無過失</td></tr>
+      <tr><td>110条</td><td>権限外行為</td><td>基本代理権あり＋代理人が権限を超えた</td><td>正当理由あり（善意・無過失）</td></tr>
+      <tr><td>112条</td><td>代理権消滅後</td><td>以前は代理権があったが消滅した</td><td>善意・無過失</td></tr>
+    </table>
+
+    <div class="warn-box"><span class="key">重要：</span>表見代理は<strong>相手方が主張できる制度</strong>（本人側からは主張できない）。また110条の「正当理由」は相手方側に立証責任がある。</div>
+
+    <h3 class="sub">表見代理と無権代理の関係</h3>
+    <div class="info-box">
+      表見代理が成立しても、相手方は無権代理人への<strong>117条責任追及（履行・損賠）</strong>を選択することもできる。表見代理の主張は相手方の権利であり、義務ではない。
+    </div>
+
+    <div class="goro">
+      <div class="goro-label">GORO — 表見代理 3類型の条文番号</div>
+      <div class="goro-text">ひゃく・く（109）・ひゃく・じゅう（110）・ひゃく・じゅうに（112）</div>
+      <div class="goro-note">授権表示（109）→権限外（110）→消滅後（112）　奇数番号の間に110が挟まる</div>
+    </div>
+
+    <!-- ミニテスト §4 -->
+    <div class="mini" id="mini4">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§4 確認クイズ</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block"><div class="q-text">Q1. 表見代理が成立するには、いずれの類型でも相手方が
+          <span class="mblank" data-ans="善意・無過失" data-gid="g4" data-qid="4-1">　　　　　　</span>
+          であることが必要である。</div></div>
+        <div class="q-block"><div class="q-text">Q2. 本人が「Bに代理権がある」と表示した場合の表見代理は
+          <span class="mblank" data-ans="109条" data-gid="g4" data-qid="4-2">　　　</span>
+          、基本代理権はあるが権限を超えた行為は
+          <span class="mblank" data-ans="110条" data-gid="g4" data-qid="4-3">　　　</span>
+          が根拠となる。</div></div>
+        <div class="q-block"><div class="q-text">Q3. 以前あった代理権が消滅した後に行われた行為の表見代理は
+          <span class="mblank" data-ans="112条" data-gid="g4" data-qid="4-4">　　　</span>
+          を根拠とする。</div></div>
+        <div class="q-block"><div class="q-text">Q4. 表見代理は
+          <span class="mblank" data-ans="相手方" data-gid="g4" data-qid="4-5">　　　　</span>
+          が主張できる制度であり、本人側からは主張できない。</div></div>
+      </div>
+      <div class="mini-footer">
+        <button class="mini-check-btn" onclick="checkMini('mini4','g4')">判定する</button>
+        <button class="mini-reset-btn" onclick="resetMini('mini4','g4')">やり直す</button>
+        <span class="mini-score" id="score-mini4"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+<footer>
+  <p>GAMBA民法 第6章 代理①（代理の基本・無権代理・表見代理）</p>
+  <p style="margin-top:4px">音声合成：VOICEVOX（四国めたん）｜江原予備校 © 2025</p>
+</footer>
+
+<script>
+const WORD_TIPS = {
+  "本人":           "代理の効果が帰属する人。代理人が行動しても、契約の当事者は本人になります。",
+  "顕名":           "「本人Aのために」と示すこと。顕名がないと代理人自身の行為になります（100条）。",
+  "法定代理":       "法律の規定によって当然に代理権が与えられる代理。親権者や後見人が典型例。",
+  "任意代理":       "本人の委任（授権行為）によって生じる代理。委任状による取引がこれにあたります。",
+  "悪意":           "法律用語で「知っていること」。道徳的な悪さではありません。",
+  "有過失":         "不注意があること。注意すれば知ることができたのに知らなかった状態。",
+  "顕名":           "本人のためにすることを示すこと。代理が有効に成立するための必須要件。",
+  "保存行為":       "現状を維持する行為。家屋の修繕・時効中断のための請求など。権限の定めがなくてもできる。",
+  "死亡":           "本人または代理人が死亡すると代理権は消滅します（111条）。",
+  "破産":           "代理人が破産すると代理権は消滅します。任意・法定代理共通の消滅原因。",
+  "追認":           "無権代理行為を後から承認すること。契約時にさかのぼって有効になります（113条）。",
+  "善意":           "その事情を知らないこと。115条の取消権は善意の相手方のみが行使できます。",
+  "善意・無過失":   "知らず（善意）かつ不注意もない（無過失）状態。117条責任追及の要件。",
+  "信義則上許されない": "無権代理人が本人を相続した場合、追認拒絶は信義則（1条2項）違反として許されない（最判昭40）。",
+  "109条":          "代理権授与表示の表見代理。本人が代理権があると表示した場合。",
+  "110条":          "権限外行為の表見代理。基本代理権はあるが権限を超えた場合。正当理由が必要。",
+  "112条":          "代理権消滅後の表見代理。以前あった代理権が消滅した後の行為。",
+  "相手方":         "表見代理は相手方が主張できる権利。本人側からは主張できません。",
+};
+
+const GROUP_WORDS = {
+  g1: ["本人","顕名","法定代理","任意代理","悪意","有過失"],
+  g2: ["顕名","保存行為","死亡","破産"],
+  g3: ["追認","善意","善意・無過失","信義則上許されない"],
+  g4: ["善意・無過失","109条","110条","112条","相手方"],
+};
+
+let activePopup = null;
+
+function closeAllPopups() {
+  document.querySelectorAll('.word-popup').forEach(p => p.classList.remove('show'));
+  activePopup = null;
+}
+
+function buildPopup(blank) {
+  const gid = blank.dataset.gid;
+  const words = GROUP_WORDS[gid] || [];
+  const pop = document.createElement('div');
+  pop.className = 'word-popup';
+  pop.innerHTML = '<div class="word-popup-title">▼ 語群から選んでください</div><div class="word-chips"></div>';
+  const chipsDiv = pop.querySelector('.word-chips');
+  words.forEach(w => {
+    const chip = document.createElement('span');
+    chip.className = 'wchip';
+    chip.textContent = w;
+    const tip = WORD_TIPS[w];
+    if (tip) {
+      const tipEl = document.createElement('span');
+      tipEl.className = 'wchip-tip';
+      tipEl.textContent = tip;
+      chip.appendChild(tipEl);
+    }
+    chip.addEventListener('click', e => {
+      e.stopPropagation();
+      document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b => {
+        if (b !== blank && b.dataset.current === w) {
+          b.textContent = '';
+          b.dataset.current = '';
+          b.classList.remove('filled','correct');
+        }
+      });
+      blank.textContent = w;
+      blank.dataset.current = w;
+      blank.classList.add('filled');
+      blank.classList.remove('correct');
+      updateChipUsed(gid);
+      closeAllPopups();
+    });
+    chipsDiv.appendChild(chip);
+  });
+  return pop;
+}
+
+function updateChipUsed(gid) {
+  const usedWords = [];
+  document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b => {
+    if (b.dataset.current) usedWords.push(b.dataset.current);
+  });
+  document.querySelectorAll('.word-popup').forEach(pop => {
+    pop.querySelectorAll('.wchip').forEach(chip => {
+      const word = chip.childNodes[0].textContent.trim();
+      chip.classList.toggle('used', usedWords.includes(word));
+    });
+  });
+}
+
+document.querySelectorAll('.mblank').forEach(blank => {
+  blank.dataset.current = '';
+  blank.addEventListener('click', e => {
+    e.stopPropagation();
+    if (activePopup && activePopup.blankEl === blank) { closeAllPopups(); return; }
+    closeAllPopups();
+    const pop = buildPopup(blank);
+    blank.appendChild(pop);
+    updateChipUsed(blank.dataset.gid);
+    requestAnimationFrame(() => pop.classList.add('show'));
+    activePopup = { blankEl: blank, popupEl: pop };
+  });
+});
+
+document.addEventListener('click', () => closeAllPopups());
+
+function checkMini(miniId, gid) {
+  let correct = 0, total = 0;
+  document.querySelectorAll(`#${miniId} .mblank`).forEach(b => {
+    total++;
+    if ((b.dataset.current || '') === b.dataset.ans) { b.classList.add('correct'); correct++; }
+    else b.classList.remove('correct');
+  });
+  const scoreEl = document.getElementById('score-' + miniId);
+  if (scoreEl) {
+    scoreEl.textContent = correct === total ? `✅ 全問正解！ (${correct}/${total})` : `${correct}/${total} 正解`;
+    scoreEl.style.color = correct === total ? '#2e7d32' : '#C0392B';
+  }
+}
+
+function resetMini(miniId, gid) {
+  document.querySelectorAll(`#${miniId} .mblank`).forEach(b => {
+    b.textContent = ''; b.dataset.current = ''; b.classList.remove('filled','correct');
+  });
+  const scoreEl = document.getElementById('score-' + miniId);
+  if (scoreEl) scoreEl.textContent = '';
+  closeAllPopups();
+}
+</script>
+</body>
+</html>

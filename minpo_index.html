@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>GAMBA 民法 全26章 目次</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'BIZ UDGothic','Hiragino Kaku Gothic Pro','Meiryo',sans-serif;background:#eef2f7;color:#1a1a2e;min-height:100vh;font-size:15px}
+.top-header{background:linear-gradient(135deg,#1B2A4A 0%,#C0392B 100%);color:#fff;padding:16px 16px 0;text-align:center}
+.top-header h1{font-size:18px;font-weight:700;letter-spacing:.05em}
+.top-header p{font-size:12px;margin-top:3px;opacity:.85}
+.summary-bar{background:rgba(0,0,0,.25);margin-top:12px;padding:9px 14px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:12px;color:#fff}
+.sum-item{display:flex;align-items:center;gap:5px;white-space:nowrap}
+.sum-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.sum-dot-a{background:#4caf50}
+.sum-dot-b{background:#f9a825}
+.sum-dot-c{background:#e53935}
+.sum-dot-n{background:#aaa}
+.sum-count{font-weight:700;font-size:15px;min-width:18px;text-align:center}
+.wrap{max-width:920px;margin:0 auto;padding:16px 12px 48px}
+.unit{background:#fff;border-radius:14px;border:1px solid #dde3ee;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden}
+.unit-hd{background:linear-gradient(90deg,#1B2A4A,#2c447a);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:10px}
+.unit-num{background:rgba(255,255,255,.2);border-radius:8px;padding:3px 10px;font-size:13px;font-weight:700;white-space:nowrap}
+.unit-title{font-size:16px;font-weight:700;flex:1}
+.unit-badge{font-size:11px;background:rgba(255,255,255,.3);border-radius:10px;padding:2px 8px;white-space:nowrap;font-weight:700}
+.unit-body{padding:14px 16px}
+.sec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:4px}
+.sec-card{border-radius:10px;border:1.5px solid #dde3ee;overflow:hidden;transition:.2s;background:#fff}
+.sec-card:hover{box-shadow:0 3px 12px rgba(0,0,0,.1);transform:translateY(-1px)}
+.sec-card a{text-decoration:none;color:inherit;display:block}
+.sc-hd{background:#f0f4ff;border-bottom:2px solid #C0392B;padding:9px 12px;display:flex;align-items:center;gap:8px}
+.sc-num{width:30px;height:24px;background:#1B2A4A;color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.sc-title{font-size:13px;font-weight:700;color:#1B2A4A;flex:1;line-height:1.3}
+.sc-stars{font-size:11px;color:#f9a825;letter-spacing:-1px;flex-shrink:0}
+.sc-body{padding:9px 12px;background:#fff}
+.sc-topics{list-style:none;margin:0;padding:0}
+.sc-topics li{font-size:12px;color:#555;padding:2px 0;border-bottom:1px solid #f0f0f5;line-height:1.5}
+.sc-topics li:last-child{border-bottom:none}
+.sc-topics li::before{content:"・";color:#C0392B}
+.sc-mini-badge{display:inline-block;background:#fff5f0;color:#C0392B;border:1px solid #fbc8b5;border-radius:8px;padding:1px 7px;font-size:10px;font-weight:700;margin-left:5px}
+.sc-btn-row{display:flex;gap:6px;margin-top:8px}
+.sc-btn{flex:1;text-align:center;padding:7px 4px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;transition:.15s;font-family:inherit;border:none;cursor:pointer;display:block}
+.sc-btn-learn{background:#1B2A4A;color:#fff}
+.sc-btn-learn:hover{background:#0f1a30}
+.sc-btn-practice{background:#C0392B;color:#fff;border:1.5px solid #8a2820}
+.sc-btn-practice:hover{background:#8a2820;color:#fff}
+.sc-btn-soon{background:#bbb;color:#fff;cursor:not-allowed}
+.abc-row{display:flex;gap:6px;padding:8px 12px 10px}
+.abc-btn{flex:1;padding:7px 2px;border-radius:20px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;transition:.15s;border:2px solid;text-align:center;background:#fff}
+.abc-btn-a{border-color:#2e7d32;color:#fff;background:#43a047}
+.abc-btn-b{border-color:#f9a825;color:#fff;background:#f9a825}
+.abc-btn-c{border-color:#e53935;color:#fff;background:#e53935}
+.abc-btn:hover{opacity:.85}
+.abc-btn-a.sel{background:#1b5e20;border-color:#1b5e20}
+.abc-btn-b.sel{background:#bf360c;color:#fff;border-color:#bf360c}
+.abc-btn-c.sel{background:#b71c1c;color:#fff;border-color:#b71c1c}
+.sec-card.status-a{border-color:#2e7d32}
+.sec-card.status-a .sc-hd{background:#e8f5e9;border-bottom-color:#2e7d32}
+.sec-card.status-b{border-color:#f9a825}
+.sec-card.status-b .sc-hd{background:#fff9e6;border-bottom-color:#f9a825}
+.sec-card.status-c{border-color:#e53935}
+.sec-card.status-c .sc-hd{background:#fce8e8;border-bottom-color:#e53935}
+.sec-card.coming-soon{opacity:.65}
+.sec-card.coming-soon .sc-hd{background:#f5f5f5;border-bottom-color:#bbb}
+.flow{background:#fff;border-radius:14px;border:1px solid #dde3ee;padding:14px 16px;margin-bottom:20px}
+.flow-title{font-size:14px;font-weight:700;color:#1B2A4A;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #C0392B}
+.flow-steps{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.flow-step{background:#f0f4ff;border:1px solid #b3c6ee;border-radius:8px;padding:7px 12px;font-size:12px;color:#1B2A4A;font-weight:700;white-space:nowrap}
+.flow-arrow{color:#C0392B;font-size:16px;font-weight:700}
+.review-link{display:block;text-align:center;background:#fff9ed;border:1.5px solid #f4a62a;border-radius:10px;padding:12px;margin-bottom:20px;text-decoration:none;color:#8a5a00;font-weight:700;font-size:14px;transition:.2s}
+.review-link:hover{background:#ffe9b8;transform:translateY(-1px)}
+canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;display:none}
+</style>
+</head>
+<body>
+<canvas id="cc"></canvas>
+<div class="top-header">
+  <h1>📚 GAMBA 民法 全26章 目次</h1>
+  <p>国家公務員(大卒程度)・地方上級公務員 試験対策 ― 章をタップして学習を始めよう ―</p>
+  <div class="summary-bar">
+    <div class="sum-item"><span class="sum-dot sum-dot-a"></span>A OK <span class="sum-count" id="cnt-a">0</span> 章</div>
+    <div class="sum-item"><span class="sum-dot sum-dot-b"></span>B 要復習 <span class="sum-count" id="cnt-b">0</span> 章</div>
+    <div class="sum-item"><span class="sum-dot sum-dot-c"></span>C 何度も復習 <span class="sum-count" id="cnt-c">0</span> 章</div>
+    <div class="sum-item"><span class="sum-dot sum-dot-n"></span>未実施 <span class="sum-count" id="cnt-n">26</span> 章</div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="flow">
+    <div class="flow-title">📖 学習の流れ</div>
+    <div class="flow-steps">
+      <div class="flow-step">① 解説を読む</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">② ✏️ ミニテスト</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">③ 演習問題</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">④ A/B/C で自己評価</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">⑤ 復習リストへ</div>
+    </div>
+  </div>
+
+  <a href="review.html" class="review-link">📌 復習リストを開く ― ブックマーク・間違えた問題を確認</a>
+
+  <!-- Unit 1: 総則① 能力・意思表示 -->
+  <div class="unit">
+    <div class="unit-hd"><span class="unit-num">Unit 1</span><span class="unit-title">総則① 権利能力・行為能力・意思表示</span><span class="unit-badge">★ 基礎・頻出</span></div>
+    <div class="unit-body">
+      <div class="sec-grid">
+
+        <div class="sec-card" data-id="ch01">
+          <a href="minpo_ch01_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第1章</span><span class="sc-title">権利能力・意思能力・行為能力</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>権利能力の始期・終期</li><li>意思無能力者の行為（取消ではなく無効）</li><li>制限行為能力者の4類型・保護の仕組み</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch01_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch01_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch01','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch01','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch01','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch02">
+          <a href="minpo_ch02_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第2章</span><span class="sc-title">失踪宣告</span><span class="sc-stars">★★☆</span></div><div class="sc-body"><ul class="sc-topics"><li>普通失踪・特別失踪の要件と期間</li><li>失踪宣告の取消しと善意の第三者保護</li><li>失踪宣告取消し後の財産返還の範囲</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch02_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch02_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch02','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch02','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch02','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch03">
+          <a href="minpo_ch03_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第3章</span><span class="sc-title">権利能力なき社団</span><span class="sc-stars">★★☆</span></div><div class="sc-body"><ul class="sc-topics"><li>権利能力なき社団の4要件（最判昭39）</li><li>財産の帰属と代表者の対外的責任</li><li>法人と権利能力なき社団の比較</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch03_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch03_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch03','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch03','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch03','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch04">
+          <a href="minpo_ch04_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第4章</span><span class="sc-title">意思表示①（心裡留保・通謀虚偽表示）</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>心裡留保——善意の相手方は有効</li><li>通謀虚偽表示——善意の第三者保護（94条2項）</li><li>94条2項類推適用（最判昭45等）</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch04_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch04_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch04','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch04','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch04','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch05">
+          <a href="minpo_ch05_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第5章</span><span class="sc-title">意思表示②（錯誤・詐欺・強迫）</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>錯誤の2類型・動機の錯誤（95条）</li><li>詐欺取消し・第三者詐欺（96条）</li><li>強迫——第三者保護なし・最強の取消権</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch05_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch05_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch05','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch05','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch05','c',this)">C 何度も</button></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 2: 総則② 代理・条件・時効 -->
+  <div class="unit">
+    <div class="unit-hd"><span class="unit-num">Unit 2</span><span class="unit-title">総則② 代理・条件・時効</span><span class="unit-badge">⭐ 重要</span></div>
+    <div class="unit-body">
+      <div class="sec-grid">
+
+        <div class="sec-card" data-id="ch06">
+          <a href="minpo_ch06_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第6章</span><span class="sc-title">代理①（代理の基本・無権代理）</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>代理の要件・種類・効果</li><li>無権代理の効果・本人追認・相手方保護</li><li>表見代理の3類型（109・110・112条）</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch06_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch06_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch06','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch06','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch06','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch07">
+          <a href="minpo_ch07_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第7章</span><span class="sc-title">代理②（復代理・自己契約）</span><span class="sc-stars">★★☆</span></div><div class="sc-body"><ul class="sc-topics"><li>復代理の要件・任意代理と法定代理の差</li><li>自己契約・双方代理の禁止と例外</li><li>代理権濫用・代理権の消滅原因</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch07_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch07_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch07','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch07','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch07','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch08">
+          <a href="minpo_ch08_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第8章</span><span class="sc-title">条件・期限</span><span class="sc-stars">★★☆</span></div><div class="sc-body"><ul class="sc-topics"><li>停止条件・解除条件の違いと効果</li><li>条件成就の妨害・擬制（130条）</li><li>始期・終期・不確定期限</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch08_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch08_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch08','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch08','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch08','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch09">
+          <a href="minpo_ch09_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第9章</span><span class="sc-title">時効①（取得時効）</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>取得時効の要件——所有の意思・平穏公然</li><li>10年時効（善意無過失）と20年時効</li><li>時効の援用・時効利益の放棄</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch09_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch09_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch09','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch09','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch09','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch10">
+          <a href="minpo_ch10_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第10章</span><span class="sc-title">時効②（消滅時効・完成猶予・更新）</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>債権の消滅時効——主観5年・客観10年</li><li>完成猶予と更新の違い（2017年改正）</li><li>時効の中断事由・当事者・援用権者</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch10_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch10_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch10','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch10','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch10','c',this)">C 何度も</button></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 3: 物権総論・不動産物権変動 -->
+  <div class="unit">
+    <div class="unit-hd"><span class="unit-num">Unit 3</span><span class="unit-title">物権総論・不動産物権変動</span><span class="unit-badge">⭐ 重要</span></div>
+    <div class="unit-body">
+      <div class="sec-grid">
+
+        <div class="sec-card" data-id="ch11">
+          <a href="minpo_ch11_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第11章</span><span class="sc-title">物権総論</span><span class="sc-stars">★★☆</span></div><div class="sc-body"><ul class="sc-topics"><li>物権の意義・効力（排他性・追及効・優先効）</li><li>物権法定主義（175条）</li><li>物権的請求権の3種類</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch11_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch11_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch11','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch11','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch11','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch12">
+          <a href="minpo_ch12_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第12章</span><span class="sc-title">不動産物権変動</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>177条「第三者」の範囲（背信的悪意者除外）</li><li>登記の対抗力・登記なくして対抗できる場合</li><li>二重譲渡・取消後の第三者・時効完成後の第三者</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch12_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch12_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch12','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch12','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch12','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch13">
+          <a href="minpo_ch13_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第13章</span><span class="sc-title">動産物権変動・即時取得</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>動産の対抗要件——引渡し（192条）</li><li>即時取得の要件（善意・無過失・平穏公然・占有）</li><li>盗品・遺失物の特則（193・194条）</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch13_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch13_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch13','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch13','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch13','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch14">
+          <a href="minpo_ch14_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第14章</span><span class="sc-title">占有権</span><span class="sc-stars">★★☆</span></div><div class="sc-body"><ul class="sc-topics"><li>占有の意義・占有訴権の3種類</li><li>本権との分離・自主占有と他主占有</li><li>占有の承継・選択的援用</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch14_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch14_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch14','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch14','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch14','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch15">
+          <a href="minpo_ch15_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第15章</span><span class="sc-title">所有権</span><span class="sc-stars">★★☆</span></div><div class="sc-body"><ul class="sc-topics"><li>所有権の内容・限界・相隣関係</li><li>付合・混和・加工（添付）</li><li>共有——持分・分割請求・対外関係</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch15_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch15_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch15','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch15','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch15','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch16">
+          <a href="minpo_ch16_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第16章</span><span class="sc-title">共有</span><span class="sc-stars">★★☆</span></div><div class="sc-body"><ul class="sc-topics"><li>持分・管理行為・変更行為の要件</li><li>共有物の分割請求・裁判上の分割</li><li>共有持分の処分・第三者への対抗</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch16_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch16_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch16','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch16','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch16','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch17">
+          <a href="minpo_ch17_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第17章</span><span class="sc-title">用益物権（地上権・地役権・永小作権）</span><span class="sc-stars">★☆☆</span></div><div class="sc-body"><ul class="sc-topics"><li>地上権——賃借権との違い・第三者対抗</li><li>地役権——要役地・承役地・不可分性</li><li>永小作権の概要</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch17_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch17_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch17','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch17','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch17','c',this)">C 何度も</button></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 4: 担保物権 -->
+  <div class="unit">
+    <div class="unit-hd"><span class="unit-num">Unit 4</span><span class="unit-title">担保物権</span><span class="unit-badge">⭐ 重要・頻出</span></div>
+    <div class="unit-body">
+      <div class="sec-grid">
+
+        <div class="sec-card" data-id="ch18">
+          <a href="minpo_ch18_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第18章</span><span class="sc-title">担保物権総論</span><span class="sc-stars">★★☆</span></div><div class="sc-body"><ul class="sc-topics"><li>担保物権の4通有性（付従性・随伴性等）</li><li>約定担保物権と法定担保物権の比較</li><li>物的担保と人的担保の違い</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch18_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch18_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch18','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch18','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch18','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch19">
+          <a href="minpo_ch19_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第19章</span><span class="sc-title">留置権</span><span class="sc-stars">★★☆</span></div><div class="sc-body"><ul class="sc-topics"><li>留置権の要件——牽連関係・占有継続</li><li>留置権の行使と競売権・果実収取権</li><li>留置権の消滅——担保提供・占有喪失</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch19_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch19_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch19','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch19','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch19','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch20">
+          <a href="minpo_ch20_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第20章</span><span class="sc-title">質権</span><span class="sc-stars">★★☆</span></div><div class="sc-body"><ul class="sc-topics"><li>質権の設定・占有移転の要件</li><li>動産質・不動産質・権利質の比較</li><li>質権者の使用収益禁止と例外</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch20_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch20_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch20','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch20','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch20','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch21">
+          <a href="minpo_ch21_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第21章</span><span class="sc-title">先取特権</span><span class="sc-stars">★★☆</span></div><div class="sc-body"><ul class="sc-topics"><li>一般先取特権・特別先取特権の種類</li><li>先取特権の優先順位</li><li>動産売買先取特権・追及効の制限</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch21_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch21_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch21','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch21','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch21','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch22">
+          <a href="minpo_ch22_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第22章</span><span class="sc-title">抵当権①（基本・効力範囲）</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>抵当権設定・被担保債権の範囲</li><li>付加一体物・従物・果実への効力</li><li>物上代位——差押えの要件（最判平10等）</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch22_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch22_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch22','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch22','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch22','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch23">
+          <a href="minpo_ch23_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第23章</span><span class="sc-title">抵当権②（第三者・競売・消滅）</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>第三取得者保護——代価弁済・抵当権消滅請求</li><li>後順位抵当権者の代位・競売手続</li><li>抵当権の消滅（消滅時効・混同・放棄）</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch23_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch23_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch23','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch23','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch23','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch24">
+          <a href="minpo_ch24_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第24章</span><span class="sc-title">法定地上権</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>法定地上権の4要件（388条）</li><li>共同抵当・土地・建物別個の抵当権</li><li>法定地上権成立パターンの場合分け</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch24_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch24_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch24','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch24','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch24','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch25">
+          <a href="minpo_ch25_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第25章</span><span class="sc-title">根抵当権</span><span class="sc-stars">★★☆</span></div><div class="sc-body"><ul class="sc-topics"><li>根抵当権と普通抵当権の違い</li><li>極度額・元本確定前後の処分</li><li>元本確定事由・確定後の処理</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch25_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch25_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch25','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch25','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch25','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch26">
+          <a href="minpo_ch26_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第26章</span><span class="sc-title">譲渡担保</span><span class="sc-stars">★★☆</span></div><div class="sc-body"><ul class="sc-topics"><li>譲渡担保の仕組み・所有権的構成と担保的構成</li><li>設定者の受戻権・第三者への対抗</li><li>流担保禁止との関係・清算義務</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo_ch26_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo_ch26_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch26','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch26','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch26','c',this)">C 何度も</button></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+var STORAGE_KEY = 'gamba_minpo_status';
+var status = {};
+var activeIds = ['ch01','ch02','ch03','ch04','ch05'];
+// 完成済みの章のみカウント対象。完成次第 activeIds に追加。
+
+try {
+  var saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) status = JSON.parse(saved);
+} catch(e) { status = {}; }
+
+function applyStoredStatus() {
+  Object.keys(status).forEach(function(id) {
+    var grade = status[id];
+    if (!grade) return;
+    var card = document.querySelector('[data-id="'+id+'"]');
+    if (!card) return;
+    card.classList.add('status-' + grade);
+    var btnClass = 'abc-btn-' + grade;
+    var btn = card.querySelector('.' + btnClass);
+    if (btn) btn.classList.add('sel');
+  });
+}
+
+function saveStatus() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(status)); } catch(e) {}
+}
+
+function setABC(id, grade, btn) {
+  var card = document.querySelector('[data-id="'+id+'"]');
+  if (!card) return;
+  if (status[id] === grade) {
+    delete status[id];
+    card.className = card.className.replace(/ ?status-[abc]/g,'');
+    card.querySelectorAll('.abc-btn').forEach(function(b){b.classList.remove('sel');});
+    saveStatus();
+    updateSummary();
+    return;
+  }
+  status[id] = grade;
+  card.className = card.className.replace(/ ?status-[abc]/g,'');
+  card.classList.add('status-' + grade);
+  card.querySelectorAll('.abc-btn').forEach(function(b){b.classList.remove('sel');});
+  btn.classList.add('sel');
+  saveStatus();
+  if (grade === 'a') confetti();
+  updateSummary();
+}
+
+function updateSummary() {
+  var ca=0, cb=0, cc=0, cn=0;
+  activeIds.forEach(function(id) {
+    var s = status[id];
+    if (s === 'a') ca++;
+    else if (s === 'b') cb++;
+    else if (s === 'c') cc++;
+    else cn++;
+  });
+  document.getElementById('cnt-a').textContent = ca;
+  document.getElementById('cnt-b').textContent = cb;
+  document.getElementById('cnt-c').textContent = cc;
+  document.getElementById('cnt-n').textContent = cn;
+}
+
+function confetti() {
+  var cv = document.getElementById('cc');
+  cv.width = window.innerWidth;
+  cv.height = window.innerHeight;
+  cv.style.display = 'block';
+  var ctx = cv.getContext('2d');
+  var cols = ['#f9a825','#0097A7','#1B2A4A','#e53935','#2e7d32','#ff6f00','#7b1fa2','#ff4081','#C0392B'];
+  var ps = [];
+  for (var k=0; k<130; k++) {
+    ps.push({
+      x: Math.random() * cv.width,
+      y: -20 - Math.random() * 180,
+      w: 7 + Math.random() * 9,
+      h: 3 + Math.random() * 5,
+      c: cols[Math.floor(Math.random() * cols.length)],
+      s: 2 + Math.random() * 4,
+      a: Math.random() * 360,
+      sp: 3 - Math.random() * 6,
+      d: (Math.random() - 0.5) * 2.5
+    });
+  }
+  var fr = 0;
+  function draw() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    ps.forEach(function(p) {
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.a * Math.PI / 180);
+      ctx.fillStyle = p.c;
+      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+      p.y += p.s;
+      p.x += p.d;
+      p.a += p.sp;
+    });
+    fr++;
+    if (fr < 100) requestAnimationFrame(draw);
+    else {
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      cv.style.display = 'none';
+    }
+  }
+  draw();
+}
+
+applyStoredStatus();
+updateSummary();
+</script>
+</body>
+</html>

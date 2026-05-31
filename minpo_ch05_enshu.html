@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法 ch05 演習</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4AF37;
+    --gold-light: #F0D060;
+    --bg: #0F1A30;
+    --card: #1E2E50;
+    --card2: #162240;
+    --text: #E8EAF0;
+    --text-dim: #9AA5BE;
+    --border: #2A3F6F;
+    --correct: #27AE60;
+    --wrong: #E74C3C;
+    --highlight: #2C4A7A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Meiryo', 'メイリオ', sans-serif;
+    line-height: 1.8;
+    font-size: 15px;
+  }
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, #0D1F3C 100%);
+    border-bottom: 3px solid var(--gold);
+    padding: 22px 20px 18px;
+    text-align: center;
+  }
+  .chapter-label { font-size: 11px; color: var(--gold); letter-spacing: 3px; margin-bottom: 8px; }
+  header h1 { font-size: 20px; font-weight: bold; color: #fff; margin-bottom: 4px; }
+  header h1 span { color: var(--gold); }
+  .header-sub { font-size: 12px; color: var(--text-dim); }
+  main { max-width: 800px; margin: 0 auto; padding: 24px 16px 60px; }
+  .score-bar {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .score-label { font-size: 13px; color: var(--text-dim); }
+  .score-value { font-size: 20px; font-weight: bold; color: var(--gold); }
+  .progress-wrap { flex: 1; min-width: 200px; height: 8px; background: var(--card2); border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--crimson)); border-radius: 4px; transition: width 0.4s; width: 0%; }
+  /* 問題カード */
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .q-head {
+    background: linear-gradient(90deg, var(--navy), var(--highlight));
+    border-left: 5px solid var(--gold);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .q-num {
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .q-type {
+    font-size: 11px;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+  .q-body { padding: 18px 20px; }
+  .q-text {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  /* OX選択肢 */
+  .ox-wrap { display: flex; gap: 14px; margin-bottom: 14px; }
+  .ox-btn {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: var(--card2);
+    color: var(--text);
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .ox-btn:hover:not(:disabled) { border-color: var(--gold); background: var(--highlight); }
+  .ox-btn.correct { border-color: var(--correct); background: #0A2A14; color: #4EC994; }
+  .ox-btn.wrong { border-color: var(--wrong); background: #2A0A0A; color: #FF6B6B; }
+  .ox-btn.missed { border-color: var(--correct); background: #0A1A0A; opacity: 0.7; }
+  /* 5択 */
+  .choices { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+  .choice-btn {
+    padding: 11px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    background: var(--card2);
+    color: var(--text);
+    font-size: 13px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    line-height: 1.6;
+  }
+  .choice-btn:hover:not(:disabled) { border-color: var(--gold); background: var(--highlight); }
+  .choice-btn.correct { border-color: var(--correct); background: #0A2A14; color: #4EC994; font-weight: bold; }
+  .choice-btn.wrong { border-color: var(--wrong); background: #2A0A0A; color: #FF6B6B; }
+  .choice-btn.missed { border-color: var(--correct); background: #0A1A0A; opacity: 0.7; }
+  /* 解説 */
+  .explanation {
+    display: none;
+    background: var(--card2);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .explanation.show { display: block; }
+  .exp-correct { color: #4EC994; font-weight: bold; margin-bottom: 6px; }
+  .exp-wrong { color: #FF6B6B; font-weight: bold; margin-bottom: 6px; }
+  /* リセットボタン */
+  .reset-wrap { text-align: center; margin-top: 30px; }
+  .reset-btn {
+    background: var(--crimson);
+    color: #fff;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'Meiryo', sans-serif;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .reset-btn:hover { opacity: 0.85; }
+  footer { text-align: center; padding: 24px 16px; font-size: 11px; color: var(--text-dim); border-top: 1px solid var(--border); margin-top: 20px; }
+  .key { color: var(--gold); font-weight: bold; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="chapter-label">GAMBA 民法 ▶ Chapter 05 ▶ 演習</div>
+  <h1>意思表示② <span>錯誤・詐欺・強迫</span></h1>
+  <div class="header-sub">大卒程度 国家・地方公務員試験対応｜江原予備校</div>
+</header>
+
+<main>
+  <div class="score-bar">
+    <div>
+      <div class="score-label">得点</div>
+      <div class="score-value"><span id="score">0</span> / <span id="total">5</span></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-fill" id="progress"></div>
+    </div>
+    <div style="font-size:12px; color:var(--text-dim);" id="status-text">解答してください</div>
+  </div>
+
+  <!-- Q1 OX -->
+  <div class="q-card" id="qcard-1">
+    <div class="q-head">
+      <span class="q-num">問 1</span>
+      <span class="q-type">○×問題</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">錯誤取消しの効果は2017年改正前は「無効」であったが、改正後は「取消し」に変更され、取消しを主張できるのは原則として表意者に限られる。</div>
+      <div class="ox-wrap">
+        <button class="ox-btn" data-q="1" data-v="O">○</button>
+        <button class="ox-btn" data-q="1" data-v="X">×</button>
+      </div>
+      <div class="explanation" id="exp-1">
+        <div class="exp-correct">正解：○</div>
+        2017年民法改正で錯誤の効果は「無効」（旧95条）から「<span class="key">取消し</span>」（新95条1項）に改められた。取消権者は原則として表意者のみである（120条2項参照）。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 OX -->
+  <div class="q-card" id="qcard-2">
+    <div class="q-head">
+      <span class="q-num">問 2</span>
+      <span class="q-type">○×問題</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">AがBに詐欺されてBと売買契約を締結し、その後BがCに目的物を転売した場合、CがAの詐欺取消し前に善意・無過失で権利を取得していれば、AはCに対して取消しを対抗できない。</div>
+      <div class="ox-wrap">
+        <button class="ox-btn" data-q="2" data-v="O">○</button>
+        <button class="ox-btn" data-q="2" data-v="X">×</button>
+      </div>
+      <div class="explanation" id="exp-2">
+        <div class="exp-correct">正解：○</div>
+        詐欺による意思表示の取消しは、<span class="key">善意・無過失</span>の第三者に対抗できない（96条3項）。本問のCは善意・無過失なので保護される。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 OX -->
+  <div class="q-card" id="qcard-3">
+    <div class="q-head">
+      <span class="q-num">問 3</span>
+      <span class="q-type">○×問題</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">AがBから強迫されてBと契約し、その後BがCに目的物を転売した。Cが善意・無過失であっても、AはCに対して強迫取消しを対抗することができる。</div>
+      <div class="ox-wrap">
+        <button class="ox-btn" data-q="3" data-v="O">○</button>
+        <button class="ox-btn" data-q="3" data-v="X">×</button>
+      </div>
+      <div class="explanation" id="exp-3">
+        <div class="exp-correct">正解：○</div>
+        強迫取消しについては<span class="key">第三者保護規定が存在しない</span>（96条1項のみ）。強迫は詐欺よりも非難性が高く被害者に落ち度がないため、善意の第三者であっても取消しを対抗できる。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 OX -->
+  <div class="q-card" id="qcard-4">
+    <div class="q-head">
+      <span class="q-num">問 4</span>
+      <span class="q-type">○×問題</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">動機の錯誤は、その動機が相手方に表示されていた場合でも、錯誤取消しの対象とはならない。</div>
+      <div class="ox-wrap">
+        <button class="ox-btn" data-q="4" data-v="O">○</button>
+        <button class="ox-btn" data-q="4" data-v="X">×</button>
+      </div>
+      <div class="explanation" id="exp-4">
+        <div class="exp-wrong">正解：×</div>
+        動機の錯誤は、その動機が<span class="key">相手方に表示されていた</span>場合には錯誤取消しの対象となる（95条2項）。相手方に表示されていない動機の錯誤のみが保護されない。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5 5択 -->
+  <div class="q-card" id="qcard-5">
+    <div class="q-head">
+      <span class="q-num">問 5</span>
+      <span class="q-type">5択問題</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">詐欺・強迫・錯誤に関する次の記述のうち、正しいものはどれか。</div>
+      <div class="choices">
+        <button class="choice-btn" data-q="5" data-v="1">1. 強迫取消しは、善意・無過失の第三者に対抗できない。</button>
+        <button class="choice-btn" data-q="5" data-v="2">2. 第三者が詐欺を行った場合（第三者詐欺）、相手方の善悪にかかわらず取消しができる。</button>
+        <button class="choice-btn" data-q="5" data-v="3">3. 錯誤取消しは、善意・無過失の第三者に対抗できない。</button>
+        <button class="choice-btn" data-q="5" data-v="4">4. 通謀虚偽表示の第三者保護の要件は「善意・無過失」である。</button>
+        <button class="choice-btn" data-q="5" data-v="5">5. 表意者に重大な過失がある場合、相手方が悪意であっても錯誤取消しはできない。</button>
+      </div>
+      <div class="explanation" id="exp-5">
+        <div class="exp-correct">正解：3</div>
+        <strong>3が正しい。</strong>錯誤取消しは善意・無過失の第三者に対抗できない（95条4項）。<br><br>
+        1 → <span style="color:#FF6B6B">誤り。</span>強迫取消しは第三者保護規定がなく、善意でも対抗できる。<br>
+        2 → <span style="color:#FF6B6B">誤り。</span>第三者詐欺は、相手方が悪意・有過失の場合に限り取消し可（96条2項）。<br>
+        4 → <span style="color:#FF6B6B">誤り。</span>通謀虚偽表示の第三者保護は「善意のみ」（94条2項）。無過失不要。<br>
+        5 → <span style="color:#FF6B6B">誤り。</span>重過失があっても相手方が悪意・重過失なら取消し可（95条3項）。
+      </div>
+    </div>
+  </div>
+
+  <div class="reset-wrap">
+    <button class="reset-btn" onclick="resetAll()">もう一度解く</button>
+  </div>
+</main>
+
+<footer>
+  <p>GAMBA民法 ch05 意思表示②（錯誤・詐欺・強迫）演習</p>
+  <p style="margin-top:4px;">音声合成：VOICEVOX（四国めたん）｜江原予備校 © 2025</p>
+</footer>
+
+<script>
+  const answers = { 1: 'O', 2: 'O', 3: 'O', 4: 'X', 5: '3' };
+  let answered = {};
+  let score = 0;
+
+  function updateScore() {
+    const done = Object.keys(answered).length;
+    document.getElementById('score').textContent = score;
+    document.getElementById('progress').style.width = (score / 5 * 100) + '%';
+    if (done === 5) {
+      document.getElementById('status-text').textContent = '全問完了！';
+    } else {
+      document.getElementById('status-text').textContent = done + '/5 回答済み';
+    }
+  }
+
+  function handleAnswer(q, v) {
+    if (answered[q]) return;
+    answered[q] = v;
+    const correct = answers[q];
+    const isCorrect = (String(v) === String(correct));
+    if (isCorrect) score++;
+
+    const card = document.getElementById('qcard-' + q);
+    const btns = card.querySelectorAll('[data-q="' + q + '"]');
+    btns.forEach(function(btn) {
+      btn.disabled = true;
+      const bv = btn.dataset.v;
+      if (String(bv) === String(correct)) {
+        btn.classList.add(isCorrect && String(v) === String(bv) ? 'correct' : 'missed');
+      } else if (String(bv) === String(v)) {
+        btn.classList.add('wrong');
+      }
+    });
+    document.getElementById('exp-' + q).classList.add('show');
+    updateScore();
+  }
+
+  document.querySelectorAll('.ox-btn, .choice-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      handleAnswer(this.dataset.q, this.dataset.v);
+    });
+  });
+
+  function resetAll() {
+    answered = {};
+    score = 0;
+    document.querySelectorAll('.ox-btn, .choice-btn').forEach(function(btn) {
+      btn.disabled = false;
+      btn.classList.remove('correct', 'wrong', 'missed');
+    });
+    document.querySelectorAll('.explanation').forEach(function(el) {
+      el.classList.remove('show');
+    });
+    updateScore();
+    document.getElementById('status-text').textContent = '解答してください';
+  }
+
+  updateScore();
+</script>
+</body>
+</html>

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法 ch01 権利能力・意思能力・行為能力</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4A017;
+    --gold-light: #F0C040;
+    --bg: #F5F3EE;
+    --white: #FFFFFF;
+    --text: #1A1A1A;
+    --text-light: #555555;
+    --border: #D0C8B8;
+    --correct: #27AE60;
+    --wrong: #C0392B;
+    --section-bg: #EEF1F7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Meiryo', 'メイリオ', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* ヘッダー */
+  header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-title {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+  .header-title span {
+    color: var(--gold);
+  }
+  .header-sub {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 2px;
+  }
+  .header-badge {
+    background: var(--crimson);
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+
+  /* メイン */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+  }
+
+  /* チャプタータイトル */
+  .chapter-title {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    border-left: 6px solid var(--gold);
+  }
+  .chapter-title h1 {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+  .chapter-title .subtitle {
+    font-size: 13px;
+    color: var(--gold-light);
+    margin-top: 4px;
+  }
+
+  /* セクション */
+  .section {
+    background: var(--white);
+    border-radius: 8px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .section-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-header .num {
+    background: var(--gold);
+    color: var(--navy);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  .section-body {
+    padding: 18px 20px;
+  }
+
+  /* 定義ボックス */
+  .def-box {
+    background: var(--section-bg);
+    border-left: 4px solid var(--navy);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .def-box .def-title {
+    font-weight: bold;
+    color: var(--navy);
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+
+  /* ポイントボックス */
+  .point-box {
+    background: #FFF8E8;
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .point-box .point-title {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* 注意ボックス */
+  .caution-box {
+    background: #FEF0EE;
+    border: 1px solid var(--crimson);
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .caution-box .caution-title {
+    color: var(--crimson);
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  /* 比較表 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  th {
+    background: var(--navy);
+    color: var(--white);
+    padding: 8px 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+  td {
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:nth-child(even) td {
+    background: #F8F6F2;
+  }
+  .td-center { text-align: center; }
+
+  /* ゴロ */
+  .goro-box {
+    background: var(--navy);
+    color: var(--gold-light);
+    border-radius: 6px;
+    padding: 10px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+  .goro-box .goro-label {
+    font-size: 11px;
+    color: #aaa;
+    margin-bottom: 2px;
+    font-weight: normal;
+  }
+
+  /* ミニテスト */
+  .mini{background:#fff;border:2px solid #1B2A4A;border-radius:12px;margin-top:20px;overflow:visible}
+  .mini-hd{background:linear-gradient(90deg,#1B2A4A,#2c447a);padding:10px 16px;display:flex;align-items:center;gap:10px}
+  .mini-hd-badge{background:#D4AF37;color:#1B2A4A;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:1px}
+  .mini-hd-title{color:#fff;font-size:13px;font-weight:700}
+  .mini-hd-hint{font-size:11px;color:rgba(255,255,255,.7);margin-left:auto}
+  .mini-body{padding:14px 16px}
+  .q-block{margin-bottom:18px;position:relative}
+  .q-text{font-size:14px;line-height:2.2}
+  .mblank{display:inline-block;min-width:90px;height:28px;background:#1B2A4A;border-radius:6px;margin:0 3px;text-align:center;cursor:pointer;font-weight:700;font-size:13px;color:transparent;vertical-align:middle;position:relative;transition:background .2s;border:2px solid #1B2A4A;line-height:24px;padding:0 8px;white-space:nowrap}
+  .mblank.filled{color:#fff;background:#2c447a;border-color:#2c447a}
+  .mblank.correct{color:#1a1a2e;background:#ffd700;border-color:#b8860b}
+  .mblank:hover{opacity:.85}
+  .word-popup{display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#1B2A4A;border:2px solid #D4AF37;border-radius:10px;padding:10px;z-index:500;box-shadow:0 6px 20px rgba(0,0,0,.3);min-width:260px;}
+  .word-popup.show{display:block}
+  .word-popup::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#D4AF37}
+  .word-popup-title{font-size:10px;color:#D4AF37;font-weight:700;letter-spacing:1px;margin-bottom:8px}
+  .word-chips{display:flex;flex-wrap:wrap;gap:6px}
+  .wchip{padding:5px 11px;border-radius:16px;border:1.5px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;position:relative}
+  .wchip:hover{background:#D4AF37;color:#1B2A4A;border-color:#D4AF37}
+  .wchip.used{opacity:.3;pointer-events:none}
+  .wchip-tip{display:none;position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);width:190px;background:#2c1800;color:#fff;border-radius:8px;padding:8px 10px;font-size:11px;line-height:1.7;z-index:600;pointer-events:none;text-align:left;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+  .wchip-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#2c1800}
+  .wchip:hover .wchip-tip{display:block}
+  .mini-footer{padding:10px 16px 14px;display:flex;align-items:center;gap:10px;border-top:1px solid #dde3ee;flex-wrap:wrap}
+  .mini-check-btn{background:#C0392B;color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+  .mini-check-btn:hover{background:#8a2820}
+  .mini-reset-btn{background:#6c757d;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+  .mini-reset-btn:hover{background:#495057}
+  .mini-score{font-size:13px;font-weight:700;color:#1B2A4A;margin-left:auto}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="header-title"><span>GAMBA</span> 民法</div>
+      <div class="header-sub">大卒程度公務員試験対策</div>
+    </div>
+    <div class="header-badge">ch01 解説</div>
+  </div>
+</header>
+
+<main>
+
+  <div class="chapter-title">
+    <h1>第１章　権利能力・意思能力・行為能力</h1>
+    <div class="subtitle">寺本民法Ⅰ 第1章 ｜ 頻出度 <span class="stars">★★★</span></div>
+  </div>
+
+  <!-- セクション1 権利能力 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">1</div>
+      権利能力
+    </div>
+    <div class="section-body">
+      <div class="def-box">
+        <div class="def-title">権利能力とは</div>
+        権利・義務の主体となることができる地位・資格のことをいいます。
+      </div>
+      <h3>自然人の権利能力</h3>
+      <p>すべての自然人は、<strong>出生により権利能力を取得</strong>します（民法3条1項）。権利能力は<strong>死亡により消滅</strong>します。</p>
+      <div class="caution-box">
+        <div class="caution-title">⚠ 胎児の権利能力</div>
+        原則として、胎児には権利能力がありません。ただし、例外として以下の3場面では権利能力を有します。
+        <ul style="margin-top:6px">
+          <li>不法行為に基づく損害賠償請求（721条）</li>
+          <li>相続（886条）</li>
+          <li>遺贈（965条・886条準用）</li>
+        </ul>
+      </div>
+      <div class="goro-box">
+        <div class="goro-label">ゴロ合わせ</div>
+        「胎児の例外は <strong>ふ（不法行為）そ（相続）い（遺贈）</strong>」
+      </div>
+      <div class="point-box">
+        <div class="point-title">💡 POINT</div>
+        胎児の例外場面では「すでに生まれたものとみなす」（停止条件説が通説）。ただし、死産の場合はさかのぼって権利能力なし。
+      </div>
+      <h3>法人の権利能力</h3>
+      <p>法人も権利能力の主体となれます（33条）。ただし、<strong>性質上または法令上の制限</strong>を受けます（生命・身体に関する権利等は享有できない）。</p>
+    </div>
+  </div>
+
+  <!-- ミニテスト1 -->
+  <div class="mini" id="mini1">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">① 権利能力</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 胎児が保護される例外3つ：<span class="mblank" data-ans="不法行為に基づく損害賠償" data-gid="g1" data-qid="1-1">　　　　</span>・<span class="mblank" data-ans="相続" data-gid="g1" data-qid="1-2">　　</span>・<span class="mblank" data-ans="遺贈" data-gid="g1" data-qid="1-3">　　</span>。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 自然人の権利能力は<span class="mblank" data-ans="出生" data-gid="g1" data-qid="1-4">　　</span>により取得し、<span class="mblank" data-ans="死亡" data-gid="g1" data-qid="1-5">　　</span>により消滅する。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini1','g1')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini1','g1')">やり直す</button>
+      <span class="mini-score" id="score-mini1"></span>
+    </div>
+  </div>
+  </div>
+
+  <!-- セクション2 意思能力 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">2</div>
+      意思能力
+    </div>
+    <div class="section-body">
+      <div class="def-box">
+        <div class="def-title">意思能力とは</div>
+        自己の行為の法律上の意味・結果を判断できる精神能力（知的能力）のことをいいます。概ね<strong>7〜10歳程度</strong>の知的能力とされています。
+      </div>
+      <p>意思能力を欠く状態でなされた法律行為は<strong>無効</strong>となります（3条の2）。</p>
+      <div class="caution-box">
+        <div class="caution-title">⚠ 行為能力との違い</div>
+        意思能力の有無は個別の行為ごとに判断します（行為能力は制度的に画一処理）。また、意思能力がない者の行為の無効は<strong>絶対的無効</strong>ではなく、意思能力のない者や相続人が主張できます。
+      </div>
+    </div>
+  </div>
+
+  <!-- セクション3 行為能力 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">3</div>
+      行為能力と制限行為能力者制度
+    </div>
+    <div class="section-body">
+      <div class="def-box">
+        <div class="def-title">行為能力とは</div>
+        単独で完全に有効な法律行為をすることができる能力をいいます。
+      </div>
+      <p>行為能力が制限されている者を<strong>制限行為能力者</strong>といいます。制限行為能力者の行為は<strong>取り消すことができます</strong>（原則として無効ではなく取消）。</p>
+
+      <h3>制限行為能力者の種類</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>種類</th>
+            <th>要件</th>
+            <th>保護者</th>
+            <th>単独でできる行為</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>未成年者</strong></td>
+            <td class="td-center">18歳未満</td>
+            <td class="td-center">親権者・未成年後見人</td>
+            <td>単に権利を得/義務を免れる行為、処分許可財産の処分、営業許可後の営業行為</td>
+          </tr>
+          <tr>
+            <td><strong>成年被後見人</strong></td>
+            <td class="td-center">精神上の障害で判断能力を欠く常況（家裁の審判）</td>
+            <td class="td-center">成年後見人</td>
+            <td>日用品の購入その他日常生活に関する行為</td>
+          </tr>
+          <tr>
+            <td><strong>被保佐人</strong></td>
+            <td class="td-center">精神上の障害で判断能力が著しく不十分（家裁の審判）</td>
+            <td class="td-center">保佐人</td>
+            <td>13条1項所定の行為以外の行為</td>
+          </tr>
+          <tr>
+            <td><strong>被補助人</strong></td>
+            <td class="td-center">精神上の障害で判断能力が不十分（家裁の審判）</td>
+            <td class="td-center">補助人</td>
+            <td>補助人の同意が必要とされた行為以外</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="point-box">
+        <div class="point-title">💡 未成年者が単独でできる行為（重要3類型）</div>
+        <ol>
+          <li>単に権利を得、または義務を免れる法律行為（5条1項但書）<br>例：負担のない贈与を受ける</li>
+          <li>法定代理人が目的を定めて処分を許した財産の処分（5条3項）<br>例：「お小遣い」の使途</li>
+          <li>営業を許可された場合の当該営業に関する行為（6条1項）</li>
+        </ol>
+      </div>
+
+      <h3>保佐人の同意が必要な行為（13条1項・主要なもの）</h3>
+      <ul>
+        <li>元本の領収・利用</li>
+        <li>借財・保証</li>
+        <li>不動産・重要な財産の得喪</li>
+        <li>訴訟行為</li>
+        <li>贈与・和解・仲裁合意</li>
+        <li>相続の承認・放棄・遺産分割</li>
+        <li>民法602条を超える賃貸借（長期賃貸借）</li>
+        <li>新築・改築・増築・大修繕</li>
+        <li>民法13条1項各号の行為を制限行為能力者の法定代理人としてすること</li>
+      </ul>
+      <div class="goro-box">
+        <div class="goro-label">ゴロ合わせ（保佐人同意が必要な行為の頭文字）</div>
+        「<strong>も（元本）か（借財）ふ（不動産）そ（訴訟）ぞ（贈与）そ（相続）ちょ（長期）し（新築）ほ（法定代理）</strong>」
+      </div>
+
+      <h3>取消・追認・催告</h3>
+      <div class="def-box">
+        <div class="def-title">取消権者（120条）</div>
+        制限行為能力者本人・代理人・承継人・同意権者が取り消せます。相手方は取り消せません。
+      </div>
+      <div class="def-box">
+        <div class="def-title">催告権（20条）</div>
+        相手方は、制限行為能力者が行為能力者となった後（または保護者に対し）、1か月以上の期間を定めて追認するかどうかの催告ができます。期間内に確答なき場合は<strong>追認とみなされます</strong>（成年被後見人の場合は取消とみなす）。
+      </div>
+
+      <div class="caution-box">
+        <div class="caution-title">⚠ 制限行為能力者の詐術（21条）</div>
+        制限行為能力者が<strong>詐術</strong>（相手方を誤信させる積極的な行動）を用いた場合は、取り消すことができなくなります。
+        単に行為能力者であることを黙秘しただけでは詐術に当たりません（判例）。ただし、黙秘と他の言動が相まって相手方を誤信させた場合は詐術となります。
+      </div>
+    </div>
+  </div>
+
+  <!-- ミニテスト2 -->
+  <div class="mini" id="mini2">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">② 制限行為能力者</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 成年被後見人が単独で有効にできるのは<span class="mblank" data-ans="日用品の購入その他日常生活に関する行為" data-gid="g2" data-qid="2-1">　　　　</span>に限られる（9条但書）。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 制限行為能力者の行為は原則として<span class="mblank" data-ans="取り消すことができる" data-gid="g2" data-qid="2-2">　　　　</span>（無効ではない）。</div></div>
+      <div class="q-block"><div class="q-text">Q3. 制限行為能力者が詐術を用いた場合は<span class="mblank" data-ans="取り消すことができない" data-gid="g2" data-qid="2-3">　　　　</span>（21条）。</div></div>
+      <div class="q-block"><div class="q-text">Q4. 相手方の催告に能力者となった後期間内に確答しなかった場合は<span class="mblank" data-ans="追認" data-gid="g2" data-qid="2-4">　　</span>とみなされる（成年被後見人は<span class="mblank" data-ans="取消" data-gid="g2" data-qid="2-5">　　</span>とみなす）。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini2','g2')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini2','g2')">やり直す</button>
+      <span class="mini-score" id="score-mini2"></span>
+    </div>
+  </div>
+  </div>
+
+  <!-- セクション4 失踪宣告との関係 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">4</div>
+      不在者と失踪宣告（補足）
+    </div>
+    <div class="section-body">
+      <p>権利能力は死亡により消滅しますが、生死不明の者については<strong>失踪宣告</strong>（30条・31条）により死亡したものとみなすことができます。</p>
+      <table>
+        <thead>
+          <tr><th>種類</th><th>要件</th><th>死亡時期</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>普通失踪</strong></td>
+            <td>不在者の生死が7年間不明</td>
+            <td>7年期間満了時</td>
+          </tr>
+          <tr>
+            <td><strong>特別失踪</strong>（危難失踪）</td>
+            <td>戦争・船舶沈没・その他危難の中にあった者が危難去後1年間生死不明</td>
+            <td>危難が去った時</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="caution-box">
+        <div class="caution-title">⚠ 失踪宣告の取消と善意の第三者</div>
+        失踪宣告が取り消された場合、宣告後取消前に<strong>善意でした行為</strong>は影響を受けません（32条1項後段）。財産の返還は現存利益の範囲内でよいです（善意の場合）。
+      </div>
+    </div>
+  </div>
+
+  <!-- ミニテスト3 -->
+  <div class="mini" id="mini3">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">③ 失踪宣告</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 普通失踪の要件は生死不明<span class="mblank" data-ans="7年間" data-gid="g3" data-qid="3-1">　　</span>で、死亡時期は<span class="mblank" data-ans="7年期間満了時" data-gid="g3" data-qid="3-2">　　　　</span>とみなされる。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 特別失踪は危難が去った後<span class="mblank" data-ans="1年間" data-gid="g3" data-qid="3-3">　　</span>生死不明の場合で、<span class="mblank" data-ans="危難が去った時" data-gid="g3" data-qid="3-4">　　　　</span>に死亡とみなされる。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini3','g3')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini3','g3')">やり直す</button>
+      <span class="mini-score" id="score-mini3"></span>
+    </div>
+  </div>
+  </div>
+
+  <!-- セクション5 まとめ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">5</div>
+      第1章 まとめ
+    </div>
+    <div class="section-body">
+      <table>
+        <thead>
+          <tr><th>概念</th><th>意味</th><th>欠く場合の効果</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>権利能力</strong></td>
+            <td>権利・義務の主体となれる資格</td>
+            <td>法律関係に立てない</td>
+          </tr>
+          <tr>
+            <td><strong>意思能力</strong></td>
+            <td>行為の意味・結果を判断できる知的能力（7〜10歳相当）</td>
+            <td>法律行為は<strong>無効</strong>（3条の2）</td>
+          </tr>
+          <tr>
+            <td><strong>行為能力</strong></td>
+            <td>単独で完全有効な法律行為をする能力</td>
+            <td>法律行為は<strong>取り消せる</strong>（制限行為能力者制度）</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="point-box">
+        <div class="point-title">💡 試験頻出ポイント</div>
+        <ul>
+          <li>意思無能力→<strong>無効</strong>、制限行為能力→<strong>取消</strong>の違いは最頻出！</li>
+          <li>胎児の例外3場面（不法・相続・遺贈）は必ず覚える</li>
+          <li>詐術の判例（単なる黙秘≠詐術、黙秘＋他の言動＝詐術）</li>
+          <li>催告の確答なし→原則追認、成年被後見人への催告→取消</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ミニテスト4 総合 -->
+  <div class="mini" id="mini4">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">④ 総合確認</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 意思能力を欠く状態でした法律行為は<span class="mblank" data-ans="無効" data-gid="g4" data-qid="4-1">　　</span>であり（3条の2）、制限行為能力者の行為は<span class="mblank" data-ans="取り消すことができる" data-gid="g4" data-qid="4-2">　　　　</span>。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 取消権者は<span class="mblank" data-ans="未成年者本人・法定代理人・承継人・同意権者" data-gid="g4" data-qid="4-3">　　　　</span>である（120条）。</div></div>
+      <div class="q-block"><div class="q-text">Q3. 制限行為能力者が相手方の質問に<span class="mblank" data-ans="黙秘" data-gid="g4" data-qid="4-4">　　</span>しただけでは詐術にはあたらない（判例）。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini4','g4')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini4','g4')">やり直す</button>
+      <span class="mini-score" id="score-mini4"></span>
+    </div>
+  </div>
+  </div>
+
+  <div class="nav-btn-wrap">
+    <a href="minpo_index.html" class="nav-btn">← 目次へ</a>
+    <a href="minpo_ch01_enshu.html" class="nav-btn crimson">演習問題へ →</a>
+  </div>
+
+</main>
+
+<footer>
+  GAMBA民法 ch01 ｜ 音声：VOICEVOX（四国めたん）｜ © 江原予備校
+</footer>
+
+<script>
+const WORD_TIPS_01 = {
+  "不法行為に基づく損害賠償":"胎児が権利能力なき状態でも、例外的に損害賠償請求が認められます。",
+  "相続":"胎児は相続については既に生まれたものとみなされます（886条）。",
+  "遺贈":"胎児は遺贈についても権利能力が認められます（965条）。",
+  "出生":"自然人の権利能力は出生によって始まります（3条1項）。",
+  "死亡":"権利能力は死亡によって消滅します。",
+  "日用品の購入その他日常生活に関する行為":"成年被後見人が単独でできる唯一の例外（9条但書）。",
+  "取り消すことができる":"制限行為能力者の行為は「無効」ではなく「取消し」できる行為です。",
+  "取り消すことができない":"詐術を用いた場合は保護に値しないとして取消権が失われます（21条）。",
+  "追認":"能力者となった後に催告されて沈黙→追認とみなされます。",
+  "取消":"成年被後見人に対する催告は沈黙→取消とみなされます。",
+  "7年間":"普通失踪の要件は生死不明7年間（30条1項）。",
+  "7年期間満了時":"普通失踪の死亡みなし時期は7年間の期間が満了した時。",
+  "1年間":"特別失踪は危難が去った後1年間生死不明（30条2項）。",
+  "危難が去った時":"特別失踪の死亡みなし時期は危難が去った時。",
+  "無効":"意思能力なき行為は無効（3条の2）。",
+  "未成年者本人・法定代理人・承継人・同意権者":"120条に列挙された取消権者。",
+  "黙秘":"単なる沈黙は詐術にあたらない（判例）。積極的に欺く行為が必要。",
+};
+const GROUP_WORDS_01 = {
+  g1: ["不法行為に基づく損害賠償","相続","遺贈","出生","死亡"],
+  g2: ["日用品の購入その他日常生活に関する行為","取り消すことができる","取り消すことができない","追認","取消"],
+  g3: ["7年間","7年期間満了時","1年間","危難が去った時"],
+  g4: ["無効","取り消すことができる","未成年者本人・法定代理人・承継人・同意権者","黙秘"],
+};
+let activePopup01 = null;
+function closeAllPopups01(){document.querySelectorAll('.word-popup').forEach(p=>p.classList.remove('show'));activePopup01=null;}
+function buildPopup01(blank){
+  const gid=blank.dataset.gid;
+  const words=GROUP_WORDS_01[gid]||[];
+  const pop=document.createElement('div');pop.className='word-popup';
+  pop.innerHTML='<div class="word-popup-title">▼ 語群から選んでください</div><div class="word-chips"></div>';
+  const cd=pop.querySelector('.word-chips');
+  words.forEach(w=>{
+    const chip=document.createElement('span');chip.className='wchip';chip.textContent=w;
+    const tip=WORD_TIPS_01[w];
+    if(tip){const te=document.createElement('span');te.className='wchip-tip';te.textContent=tip;chip.appendChild(te);}
+    chip.addEventListener('click',e=>{
+      e.stopPropagation();
+      document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b=>{if(b!==blank&&b.dataset.current===w){b.textContent='';b.dataset.current='';b.classList.remove('filled','correct');}});
+      blank.textContent=w;blank.dataset.current=w;blank.classList.add('filled');blank.classList.remove('correct');
+      updateChipUsed01(gid);closeAllPopups01();
+    });
+    cd.appendChild(chip);
+  });
+  return pop;
+}
+function updateChipUsed01(gid){
+  const used=[];
+  document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b=>{if(b.dataset.current)used.push(b.dataset.current);});
+  document.querySelectorAll('.word-popup').forEach(pop=>{pop.querySelectorAll('.wchip').forEach(c=>{const w=c.childNodes[0].textContent.trim();c.classList.toggle('used',used.includes(w));});});
+}
+document.querySelectorAll('.mblank').forEach(blank=>{
+  blank.dataset.current='';
+  blank.addEventListener('click',e=>{
+    e.stopPropagation();
+    if(activePopup01&&activePopup01.blankEl===blank){closeAllPopups01();return;}
+    closeAllPopups01();
+    const pop=buildPopup01(blank);blank.appendChild(pop);
+    updateChipUsed01(blank.dataset.gid);
+    requestAnimationFrame(()=>pop.classList.add('show'));
+    activePopup01={blankEl:blank,popupEl:pop};
+  });
+});
+document.addEventListener('click',()=>closeAllPopups01());
+function checkMini(miniId,gid){
+  let correct=0,total=0;
+  document.querySelectorAll(`#${miniId} .mblank`).forEach(b=>{total++;if((b.dataset.current||'')===b.dataset.ans){b.classList.add('correct');correct++;}else b.classList.remove('correct');});
+  const s=document.getElementById('score-'+miniId);
+  if(s){s.textContent=correct===total?`✅ 全問正解！(${correct}/${total})`:`${correct}/${total} 正解`;s.style.color=correct===total?'#2e7d32':'#C0392B';}
+}
+function resetMini(miniId,gid){
+  document.querySelectorAll(`#${miniId} .mblank`).forEach(b=>{b.textContent='';b.dataset.current='';b.classList.remove('filled','correct');});
+  const s=document.getElementById('score-'+miniId);if(s)s.textContent='';
+  closeAllPopups01();
+}
+</script>
+
+</body>
+</html>

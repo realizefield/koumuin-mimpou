@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法 ch04 演習問題</title>
+<style>
+  :root {
+    --navy: #1B2A4A; --crimson: #C0392B; --gold: #D4A017; --gold-light: #F0C040;
+    --bg: #F5F3EE; --white: #FFFFFF; --text: #1A1A1A; --border: #D0C8B8;
+    --correct: #27AE60; --wrong: #C0392B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Meiryo','メイリオ','Yu Gothic',sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; font-size: 15px; }
+  header { background: var(--navy); color: #fff; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+  .header-inner { max-width: 860px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+  .header-title { font-size: 18px; font-weight: bold; }
+  .header-title span { color: var(--gold); }
+  .header-sub { font-size: 12px; color: #aaa; margin-top: 2px; }
+  .header-badge { background: var(--crimson); color: #fff; font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: bold; }
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 60px; }
+  .chapter-title { background: var(--crimson); color: #fff; border-radius: 8px; padding: 20px 24px; margin-bottom: 28px; border-left: 6px solid var(--gold); }
+  .chapter-title h1 { font-size: 20px; font-weight: bold; }
+  .chapter-title .subtitle { font-size: 13px; color: #ffc; margin-top: 4px; }
+  .q-card { background: #fff; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--border); overflow: hidden; }
+  .q-header { background: var(--navy); color: #fff; padding: 10px 18px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; }
+  .q-header .q-num { font-weight: bold; font-size: 15px; color: var(--gold); }
+  .q-header .q-tag { font-size: 11px; background: rgba(255,255,255,0.15); padding: 2px 8px; border-radius: 10px; }
+  .q-body { padding: 18px 20px; }
+  .q-text { font-size: 14px; line-height: 1.8; margin-bottom: 16px; }
+  .ox-wrap { display: flex; gap: 12px; margin-bottom: 12px; }
+  .btn-o, .btn-x { flex: 1; padding: 12px; font-size: 22px; font-weight: bold; border: 2px solid; border-radius: 8px; cursor: pointer; font-family: inherit; transition: all 0.2s; background: #fff; }
+  .btn-o { border-color: var(--correct); color: var(--correct); }
+  .btn-x { border-color: var(--wrong); color: var(--wrong); }
+  .btn-o:hover:not(:disabled) { background: #EAFAF1; }
+  .btn-x:hover:not(:disabled) { background: #FDEDEC; }
+  .btn-o.selected-correct { background: var(--correct); color: #fff; }
+  .btn-x.selected-correct { background: var(--correct); color: #fff; border-color: var(--correct); }
+  .btn-o.selected-wrong { background: var(--wrong); color: #fff; border-color: var(--wrong); }
+  .btn-x.selected-wrong { background: var(--wrong); color: #fff; }
+  .btn-o:disabled, .btn-x:disabled { cursor: not-allowed; opacity: 0.85; }
+  .explanation { display: none; margin-top: 12px; border-radius: 6px; overflow: hidden; font-size: 13px; }
+  .explanation.show { display: block; }
+  .exp-header { padding: 8px 14px; font-weight: bold; font-size: 13px; }
+  .exp-header.correct { background: var(--correct); color: #fff; }
+  .exp-header.wrong { background: var(--wrong); color: #fff; }
+  .exp-body { padding: 12px 14px; background: #F8F8F5; border: 1px solid var(--border); border-top: none; line-height: 1.7; }
+  .exp-body .key { font-weight: bold; color: var(--navy); }
+  .exp-body .law { font-size: 12px; color: #888; }
+  .choices { margin-bottom: 12px; }
+  .choice-btn { display: block; width: 100%; text-align: left; padding: 10px 14px; margin-bottom: 6px; border: 2px solid var(--border); border-radius: 6px; background: #fff; cursor: pointer; font-family: inherit; font-size: 13px; transition: all 0.2s; line-height: 1.6; }
+  .choice-btn:hover:not(:disabled) { border-color: var(--navy); background: #F0F4FF; }
+  .choice-btn.correct { border-color: var(--correct); background: #EAFAF1; color: #1a5c35; font-weight: bold; }
+  .choice-btn.wrong { border-color: var(--wrong); background: #FDEDEC; color: #7B241C; }
+  .choice-btn:disabled { cursor: not-allowed; }
+  .score-board { background: var(--navy); color: #fff; border-radius: 8px; padding: 20px 24px; text-align: center; margin-top: 28px; display: none; }
+  .score-board.show { display: block; }
+  .score-num { font-size: 48px; font-weight: bold; color: var(--gold); }
+  .score-label { font-size: 14px; color: #aaa; margin-top: 4px; }
+  .score-msg { font-size: 16px; margin-top: 12px; }
+  .nav-btn-wrap { display: flex; gap: 12px; justify-content: center; margin-top: 28px; flex-wrap: wrap; }
+  .nav-btn { background: var(--navy); color: var(--gold); border: none; border-radius: 6px; padding: 10px 24px; font-size: 13px; font-family: inherit; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; }
+  .nav-btn.crimson { background: var(--crimson); color: #fff; }
+  footer { background: var(--navy); color: #aaa; text-align: center; padding: 14px; font-size: 12px; margin-top: 40px; }
+  .progress-wrap { background: #ddd; border-radius: 4px; height: 6px; margin-bottom: 20px; overflow: hidden; }
+  .progress-bar { height: 100%; background: var(--gold); border-radius: 4px; transition: width 0.4s; width: 0%; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="header-title"><span>GAMBA</span> 民法</div>
+      <div class="header-sub">大卒程度公務員試験対策</div>
+    </div>
+    <div class="header-badge">ch04 演習</div>
+  </div>
+</header>
+
+<main>
+  <div class="chapter-title">
+    <h1>第４章　演習問題</h1>
+    <div class="subtitle">意思表示①（心裡留保・虚偽表示）　全5問</div>
+  </div>
+
+  <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="q1">
+    <div class="q-header">
+      <span class="q-num">問題 1</span>
+      <span class="q-tag">○×問題 ｜ 心裡留保</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        AがBに対して冗談で「この土地を100万円で売る」と申し込み、Bがそれを真意と信じて承諾した場合、AB間の売買契約は有効に成立する。
+      </div>
+      <div class="ox-wrap">
+        <button class="btn-o" onclick="answerOX(this,'q1','o','o')">○</button>
+        <button class="btn-x" onclick="answerOX(this,'q1','x','o')">×</button>
+      </div>
+      <div class="explanation" id="exp-q1">
+        <div class="exp-header correct">✔ 正解：○</div>
+        <div class="exp-body">
+          心裡留保による意思表示は<span class="key">原則として有効</span>です（93条1項本文）。Bが善意（真意でないことを知らない）で、かつ過失もない場合は有効に売買契約が成立します。表意者Aは真意でないことを理由に無効を主張できません。<br>
+          <span class="law">民法93条1項本文</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="q2">
+    <div class="q-header">
+      <span class="q-num">問題 2</span>
+      <span class="q-tag">○×問題 ｜ 心裡留保・第三者保護</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        AがBに対して心裡留保による意思表示をし、Bがその真意でないことを知っていた場合、AB間の契約は無効となるが、この無効はBから不動産を購入した善意の第三者Cには対抗できない。ただしCに過失があった場合は対抗できる。
+      </div>
+      <div class="ox-wrap">
+        <button class="btn-o" onclick="answerOX(this,'q2','o','x')">○</button>
+        <button class="btn-x" onclick="answerOX(this,'q2','x','x')">×</button>
+      </div>
+      <div class="explanation" id="exp-q2">
+        <div class="exp-header wrong">✘ 正解：×</div>
+        <div class="exp-body">
+          前半は正しいです。しかし後半が誤りです。93条2項の第三者保護は<span class="key">善意であれば足り、無過失は不要</span>です。したがってCに過失があっても善意であれば保護され、無効を対抗できません。「過失あり→対抗できる」は誤りです。<br>
+          <span class="law">民法93条2項</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="q3">
+    <div class="q-header">
+      <span class="q-num">問題 3</span>
+      <span class="q-tag">○×問題 ｜ 虚偽表示・第三者</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        AとBが通謀して、A所有の土地をBに売却したように見せかける虚偽の売買契約を締結した。その後Bから善意のCが土地を購入した場合、CはAに対して所有権取得を主張するために登記を備えなければならない。
+      </div>
+      <div class="ox-wrap">
+        <button class="btn-o" onclick="answerOX(this,'q3','o','x')">○</button>
+        <button class="btn-x" onclick="answerOX(this,'q3','x','x')">×</button>
+      </div>
+      <div class="explanation" id="exp-q3">
+        <div class="exp-header wrong">✘ 正解：×</div>
+        <div class="exp-body">
+          94条2項の「善意の第三者」として保護されるには、<span class="key">登記は不要</span>です（判例）。善意であれば登記がなくてもAに所有権取得を対抗できます。登記を要求するのは177条の問題であり、94条2項の第三者保護とは別の話です。<br>
+          <span class="law">民法94条2項、判例</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="q4">
+    <div class="q-header">
+      <span class="q-num">問題 4</span>
+      <span class="q-tag">○×問題 ｜ 94条2項類推適用</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        Bが権利者Aの不動産について無断で登記名義をBに移転し、Aがこの事実を知りながら長期間放置していた場合、善意かつ無過失のCがBから当該不動産を購入したときは、AはCに対して所有権を主張できない。
+      </div>
+      <div class="ox-wrap">
+        <button class="btn-o" onclick="answerOX(this,'q4','o','o')">○</button>
+        <button class="btn-x" onclick="answerOX(this,'q4','x','o')">×</button>
+      </div>
+      <div class="explanation" id="exp-q4">
+        <div class="exp-header correct">✔ 正解：○</div>
+        <div class="exp-body">
+          <span class="key">外形他人作出型</span>の94条2項・110条類推適用の問題です（最判昭45.9.22）。Aが虚偽の外形を知りながら放置した点に帰責性があります。この場合、第三者は<strong>善意かつ無過失</strong>であることが必要です。本問のCは善意無過失なので保護されます。<br>
+          <span class="law">民法94条2項・110条類推、最判昭45.9.22</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="q5">
+    <div class="q-header">
+      <span class="q-num">問題 5</span>
+      <span class="q-tag">5択問題 ｜ 心裡留保・虚偽表示・総合</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        意思表示に関する次の記述のうち、<strong>正しいもの</strong>はどれか。
+      </div>
+      <div class="choices">
+        <button class="choice-btn" onclick="answerChoice(this,'q5',1,3)">
+          1　心裡留保による意思表示は、相手方が善意であっても無効である。
+        </button>
+        <button class="choice-btn" onclick="answerChoice(this,'q5',2,3)">
+          2　虚偽表示による意思表示は当事者間では無効であり、善意の第三者に無効を対抗するためには第三者が無過失であることが必要である。
+        </button>
+        <button class="choice-btn" onclick="answerChoice(this,'q5',3,3)">
+          3　権利者自身が虚偽の外形を作り出した場合（外形自己作出型）に94条2項を類推適用するには、第三者が善意であれば足り無過失は不要であるが、他人が作り出した虚偽の外形を知りながら放置した場合（外形他人作出型）は、第三者が善意かつ無過失であることが必要である。
+        </button>
+        <button class="choice-btn" onclick="answerChoice(this,'q5',4,3)">
+          4　虚偽表示による無効は善意の第三者に対抗できないが、この第三者として保護されるには登記を備えていることが必要である。
+        </button>
+        <button class="choice-btn" onclick="answerChoice(this,'q5',5,3)">
+          5　心裡留保による意思表示について、相手方が悪意の場合は無効となるが、この無効は悪意の第三者にも対抗することができる。
+        </button>
+      </div>
+      <div class="explanation" id="exp-q5">
+        <div class="exp-header correct">✔ 正解：3</div>
+        <div class="exp-body">
+          <span class="key">肢3が正解。</span>外形自己作出型は善意のみ、外形他人作出型は善意＋無過失という判例の違いを正確に述べています。<br><br>
+          肢1：心裡留保は<strong>原則有効</strong>。相手方が悪意または有過失の場合に無効（93条1項）。✗<br>
+          肢2：94条2項の第三者保護は<strong>善意のみで足り、無過失不要</strong>（判例）。✗<br>
+          肢3：<strong>正しい</strong>。判例（最判昭41.3.18・最判昭45.9.22）の正確な理解。✓<br>
+          肢4：94条2項の第三者保護に<strong>登記は不要</strong>（判例）。✗<br>
+          肢5：心裡留保の無効は<strong>善意の第三者に対抗できない</strong>（93条2項）。悪意の第三者には対抗できます。✗<br>
+          <span class="law">民法93条・94条、最判昭41.3.18、最判昭45.9.22</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="score-board" id="scoreBoard">
+    <div class="score-num" id="scoreNum">0/5</div>
+    <div class="score-label">正解数</div>
+    <div class="score-msg" id="scoreMsg"></div>
+  </div>
+
+  <div class="nav-btn-wrap">
+    <a href="minpo_ch04_kaisetsu.html" class="nav-btn">← 解説に戻る</a>
+    <a href="minpo_index.html" class="nav-btn">目次へ</a>
+    <a href="minpo_ch05_kaisetsu.html" class="nav-btn crimson">次の章へ →</a>
+  </div>
+</main>
+
+<footer>GAMBA民法 ch04 演習 ｜ © 江原予備校</footer>
+
+<script>
+let answered = {}, correct = 0;
+const total = 5;
+
+function updateProgress() {
+  const done = Object.keys(answered).length;
+  document.getElementById('progressBar').style.width = (done / total * 100) + '%';
+  if (done === total) showScore();
+}
+
+function answerOX(btn, qid, chosen, answer) {
+  if (answered[qid]) return;
+  answered[qid] = true;
+  const btns = btn.parentElement.querySelectorAll('button');
+  btns.forEach(b => b.disabled = true);
+  document.getElementById('exp-' + qid).classList.add('show');
+  if (chosen === answer) {
+    btn.classList.add('selected-correct'); correct++;
+  } else {
+    btn.classList.add('selected-wrong');
+    btns.forEach(b => {
+      const isO = b.classList.contains('btn-o');
+      if ((answer === 'o' && isO) || (answer === 'x' && !isO)) b.classList.add('selected-correct');
+    });
+  }
+  updateProgress();
+}
+
+function answerChoice(btn, qid, chosen, answer) {
+  if (answered[qid]) return;
+  answered[qid] = true;
+  const btns = btn.parentElement.querySelectorAll('button');
+  btns.forEach(b => b.disabled = true);
+  document.getElementById('exp-' + qid).classList.add('show');
+  if (chosen === answer) {
+    btn.classList.add('correct'); correct++;
+  } else {
+    btn.classList.add('wrong');
+    btns[answer - 1].classList.add('correct');
+  }
+  updateProgress();
+}
+
+function showScore() {
+  document.getElementById('scoreBoard').classList.add('show');
+  document.getElementById('scoreNum').textContent = correct + '/' + total;
+  const p = correct / total;
+  document.getElementById('scoreMsg').textContent =
+    p === 1 ? '🎉 全問正解！完璧です！' :
+    p >= 0.8 ? '✨ 優秀です！もう一息！' :
+    p >= 0.6 ? '📖 解説を読み直してもう一度挑戦しよう' :
+    '💪 解説をしっかり読んで復習しましょう';
+}
+</script>
+</body>
+</html>

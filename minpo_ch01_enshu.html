@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法 ch01 演習問題</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4A017;
+    --gold-light: #F0C040;
+    --bg: #F5F3EE;
+    --white: #FFFFFF;
+    --text: #1A1A1A;
+    --text-light: #555555;
+    --border: #D0C8B8;
+    --correct: #27AE60;
+    --wrong: #C0392B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Meiryo', 'メイリオ', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+  header {
+    background: var(--navy);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-title { font-size: 18px; font-weight: bold; }
+  .header-title span { color: var(--gold); }
+  .header-sub { font-size: 12px; color: #aaa; margin-top: 2px; }
+  .header-badge {
+    background: var(--crimson);
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+  }
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 60px; }
+  .chapter-title {
+    background: var(--crimson);
+    color: white;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    border-left: 6px solid var(--gold);
+  }
+  .chapter-title h1 { font-size: 20px; font-weight: bold; }
+  .chapter-title .subtitle { font-size: 13px; color: #ffc; margin-top: 4px; }
+
+  /* 問題カード */
+  .q-card {
+    background: var(--white);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .q-header {
+    background: var(--navy);
+    color: white;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+  .q-header .q-num { font-weight: bold; font-size: 15px; color: var(--gold); }
+  .q-header .q-tag {
+    font-size: 11px;
+    background: rgba(255,255,255,0.15);
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .q-body { padding: 18px 20px; }
+  .q-text {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  /* OX ボタン */
+  .ox-wrap {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .btn-o, .btn-x {
+    flex: 1;
+    padding: 12px;
+    font-size: 22px;
+    font-weight: bold;
+    border: 2px solid;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+    background: white;
+  }
+  .btn-o { border-color: var(--correct); color: var(--correct); }
+  .btn-x { border-color: var(--wrong); color: var(--wrong); }
+  .btn-o:hover { background: #EAFAF1; }
+  .btn-x:hover { background: #FDEDEC; }
+  .btn-o.selected-correct { background: var(--correct); color: white; }
+  .btn-x.selected-correct { background: var(--correct); color: white; border-color: var(--correct); }
+  .btn-o.selected-wrong { background: var(--wrong); color: white; border-color: var(--wrong); }
+  .btn-x.selected-wrong { background: var(--wrong); color: white; }
+  .btn-o:disabled, .btn-x:disabled { cursor: not-allowed; opacity: 0.85; }
+
+  /* 解説 */
+  .explanation {
+    display: none;
+    margin-top: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 13px;
+  }
+  .explanation.show { display: block; }
+  .exp-header {
+    padding: 8px 14px;
+    font-weight: bold;
+    font-size: 13px;
+  }
+  .exp-header.correct { background: var(--correct); color: white; }
+  .exp-header.wrong { background: var(--wrong); color: white; }
+  .exp-body {
+    padding: 12px 14px;
+    background: #F8F8F5;
+    border: 1px solid var(--border);
+    border-top: none;
+    line-height: 1.7;
+  }
+  .exp-body .key { font-weight: bold; color: var(--navy); }
+  .exp-body .law { font-size: 12px; color: #888; }
+
+  /* 5択 */
+  .choices { margin-bottom: 12px; }
+  .choice-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    transition: all 0.2s;
+    line-height: 1.6;
+  }
+  .choice-btn:hover:not(:disabled) { border-color: var(--navy); background: #F0F4FF; }
+  .choice-btn.correct { border-color: var(--correct); background: #EAFAF1; color: #1a5c35; font-weight: bold; }
+  .choice-btn.wrong { border-color: var(--wrong); background: #FDEDEC; color: #7B241C; }
+  .choice-btn:disabled { cursor: not-allowed; }
+
+  /* スコア */
+  .score-board {
+    background: var(--navy);
+    color: white;
+    border-radius: 8px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 28px;
+    display: none;
+  }
+  .score-board.show { display: block; }
+  .score-num { font-size: 48px; font-weight: bold; color: var(--gold); }
+  .score-label { font-size: 14px; color: #aaa; margin-top: 4px; }
+  .score-msg { font-size: 16px; margin-top: 12px; }
+
+  .nav-btn-wrap {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 28px;
+  }
+  .nav-btn {
+    background: var(--navy);
+    color: var(--gold);
+    border: none;
+    border-radius: 6px;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .nav-btn.crimson { background: var(--crimson); color: white; }
+
+  footer {
+    background: var(--navy);
+    color: #aaa;
+    text-align: center;
+    padding: 14px;
+    font-size: 12px;
+    margin-top: 40px;
+  }
+
+  .progress-wrap {
+    background: #ddd;
+    border-radius: 4px;
+    height: 6px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 4px;
+    transition: width 0.4s;
+    width: 0%;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="header-title"><span>GAMBA</span> 民法</div>
+      <div class="header-sub">大卒程度公務員試験対策</div>
+    </div>
+    <div class="header-badge">ch01 演習</div>
+  </div>
+</header>
+
+<main>
+
+  <div class="chapter-title">
+    <h1>第１章　演習問題</h1>
+    <div class="subtitle">権利能力・意思能力・行為能力　全5問</div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="q1">
+    <div class="q-header">
+      <span class="q-num">問題 1</span>
+      <span class="q-tag">○×問題 ｜ 権利能力</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        胎児は、不法行為に基づく損害賠償請求・相続・遺贈の3場面に限り、すでに生まれたものとみなされ、権利能力が認められる。
+      </div>
+      <div class="ox-wrap">
+        <button class="btn-o" onclick="answerOX(this,'q1','o','o')">○</button>
+        <button class="btn-x" onclick="answerOX(this,'q1','x','o')">×</button>
+      </div>
+      <div class="explanation" id="exp-q1">
+        <div class="exp-header correct">✔ 正解：○</div>
+        <div class="exp-body">
+          <span class="key">胎児の権利能力の例外</span>は3場面です。①不法行為に基づく損害賠償（721条）、②相続（886条）、③遺贈（965条・886条準用）。これらの場面では「すでに生まれたものとみなす」と規定されています（停止条件説が通説）。ただし死産の場合はさかのぼって権利能力なし。<br>
+          <span class="law">民法721条・886条・965条</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="q2">
+    <div class="q-header">
+      <span class="q-num">問題 2</span>
+      <span class="q-tag">○×問題 ｜ 意思能力・行為能力</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        意思能力を欠く者がした法律行為は取り消すことができ、制限行為能力者がした法律行為は無効である。
+      </div>
+      <div class="ox-wrap">
+        <button class="btn-o" onclick="answerOX(this,'q2','o','x')">○</button>
+        <button class="btn-x" onclick="answerOX(this,'q2','x','x')">×</button>
+      </div>
+      <div class="explanation" id="exp-q2">
+        <div class="exp-header wrong">✘ 正解：×</div>
+        <div class="exp-body">
+          <span class="key">逆です。</span>意思能力を欠く者がした法律行為は<strong>無効</strong>（3条の2）、制限行為能力者がした法律行為は<strong>取り消すことができる</strong>のが原則です。この対比は最頻出！必ず区別して覚えましょう。<br>
+          <span class="law">民法3条の2、5条2項など</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="q3">
+    <div class="q-header">
+      <span class="q-num">問題 3</span>
+      <span class="q-tag">○×問題 ｜ 未成年者</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        未成年者Aが法定代理人の同意を得ずにBから負担のない贈与を受けた場合、Aはこの贈与契約を取り消すことができる。
+      </div>
+      <div class="ox-wrap">
+        <button class="btn-o" onclick="answerOX(this,'q3','o','x')">○</button>
+        <button class="btn-x" onclick="answerOX(this,'q3','x','x')">×</button>
+      </div>
+      <div class="explanation" id="exp-q3">
+        <div class="exp-header wrong">✘ 正解：×</div>
+        <div class="exp-body">
+          負担のない贈与を受けることは<span class="key">「単に権利を得る行為」</span>に該当し（5条1項但書）、未成年者が法定代理人の同意なく単独でできる行為です。したがって有効であり、取り消すことはできません。<br>
+          <span class="law">民法5条1項但書</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="q4">
+    <div class="q-header">
+      <span class="q-num">問題 4</span>
+      <span class="q-tag">○×問題 ｜ 詐術・催告</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        判例によれば、制限行為能力者が行為能力者であることを黙秘していただけでは民法21条の「詐術」には当たらないが、黙秘がその他の言動と相まって相手方を誤信させた場合には詐術に当たる。
+      </div>
+      <div class="ox-wrap">
+        <button class="btn-o" onclick="answerOX(this,'q4','o','o')">○</button>
+        <button class="btn-x" onclick="answerOX(this,'q4','x','o')">×</button>
+      </div>
+      <div class="explanation" id="exp-q4">
+        <div class="exp-header correct">✔ 正解：○</div>
+        <div class="exp-body">
+          判例（最判昭44.2.13）の正確な理解です。<span class="key">単なる黙秘≠詐術</span>、<span class="key">黙秘＋他の言動で誤信＝詐術</span>と判例は区別します。詐術があると取り消すことができなくなります（21条）。<br>
+          <span class="law">民法21条、最判昭44.2.13</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="q5">
+    <div class="q-header">
+      <span class="q-num">問題 5</span>
+      <span class="q-tag">5択問題 ｜ 制限行為能力者・総合</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        制限行為能力者に関する次の記述のうち、<strong>正しいもの</strong>はどれか。
+      </div>
+      <div class="choices">
+        <button class="choice-btn" onclick="answerChoice(this,'q5',1,4)">
+          1　成年被後見人は、日用品の購入であっても成年後見人の同意を得なければ有効にできない。
+        </button>
+        <button class="choice-btn" onclick="answerChoice(this,'q5',2,4)">
+          2　被保佐人が不動産を売却するには、保佐人の同意が必要であり、その同意を得ずにした売買契約は無効である。
+        </button>
+        <button class="choice-btn" onclick="answerChoice(this,'q5',3,4)">
+          3　未成年者が法定代理人の同意なく自己の所有する不動産を売却した場合、その法律行為は当然に無効である。
+        </button>
+        <button class="choice-btn" onclick="answerChoice(this,'q5',4,4)">
+          4　制限行為能力者の相手方は、制限行為能力者が行為能力者となった後、1か月以上の期間を定めて追認するか否かを催告でき、期間内に確答がない場合は追認とみなされる。
+        </button>
+        <button class="choice-btn" onclick="answerChoice(this,'q5',5,4)">
+          5　成年被後見人への催告について、期間内に確答がない場合は追認とみなされる。
+        </button>
+      </div>
+      <div class="explanation" id="exp-q5">
+        <div class="exp-header correct">✔ 正解：4</div>
+        <div class="exp-body">
+          <span class="key">肢4が正解。</span>20条1項の規定通りです。<br><br>
+          肢1：成年被後見人は<strong>日用品の購入その他日常生活に関する行為</strong>は単独で有効にできます（9条但書）。✗<br>
+          肢2：保佐人の同意なき行為は<strong>取り消すことができる</strong>（無効ではない）（13条4項）。✗<br>
+          肢3：未成年者の同意なき行為は<strong>取り消すことができる</strong>（当然無効ではない）（5条2項）。✗<br>
+          肢4：<strong>正しい</strong>。20条1項の規定通り。能力者となった後に催告→確答なし→追認とみなす。✓<br>
+          肢5：成年被後見人への催告で期間内に確答なき場合は<strong>取消とみなす</strong>（追認ではない）（20条3項）。✗<br>
+          <span class="law">民法20条</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- スコア -->
+  <div class="score-board" id="scoreBoard">
+    <div class="score-num" id="scoreNum">0/5</div>
+    <div class="score-label">正解数</div>
+    <div class="score-msg" id="scoreMsg"></div>
+  </div>
+
+  <div class="nav-btn-wrap">
+    <a href="minpo_ch01_kaisetsu.html" class="nav-btn">← 解説に戻る</a>
+    <a href="minpo_index.html" class="nav-btn">目次へ</a>
+    <a href="minpo_ch02_kaisetsu.html" class="nav-btn crimson">次の章へ →</a>
+  </div>
+
+</main>
+
+<footer>
+  GAMBA民法 ch01 演習 ｜ © 江原予備校
+</footer>
+
+<script>
+let answered = {};
+let correct = 0;
+const total = 5;
+
+function updateProgress() {
+  const done = Object.keys(answered).length;
+  document.getElementById('progressBar').style.width = (done / total * 100) + '%';
+  if (done === total) showScore();
+}
+
+function answerOX(btn, qid, chosen, answer) {
+  if (answered[qid]) return;
+  answered[qid] = true;
+  const parent = btn.parentElement;
+  const btns = parent.querySelectorAll('button');
+  btns.forEach(b => b.disabled = true);
+  const exp = document.getElementById('exp-' + qid);
+  exp.classList.add('show');
+  if (chosen === answer) {
+    btn.classList.add('selected-correct');
+    correct++;
+  } else {
+    btn.classList.add('selected-wrong');
+    // 正解ボタンを光らせる
+    btns.forEach(b => {
+      const isO = b.classList.contains('btn-o');
+      if ((answer === 'o' && isO) || (answer === 'x' && !isO)) {
+        b.classList.add('selected-correct');
+      }
+    });
+  }
+  updateProgress();
+}
+
+function answerChoice(btn, qid, chosen, answer) {
+  if (answered[qid]) return;
+  answered[qid] = true;
+  const parent = btn.parentElement;
+  const btns = parent.querySelectorAll('button');
+  btns.forEach(b => b.disabled = true);
+  const exp = document.getElementById('exp-' + qid);
+  exp.classList.add('show');
+  if (chosen === answer) {
+    btn.classList.add('correct');
+    correct++;
+  } else {
+    btn.classList.add('wrong');
+    btns[answer - 1].classList.add('correct');
+  }
+  updateProgress();
+}
+
+function showScore() {
+  const board = document.getElementById('scoreBoard');
+  board.classList.add('show');
+  document.getElementById('scoreNum').textContent = correct + '/' + total;
+  const pct = correct / total;
+  let msg = '';
+  if (pct === 1) msg = '🎉 全問正解！完璧です！';
+  else if (pct >= 0.8) msg = '✨ 優秀です！もう一息！';
+  else if (pct >= 0.6) msg = '📖 解説を読み直してもう一度挑戦しよう';
+  else msg = '💪 解説をしっかり読んで復習しましょう';
+  document.getElementById('scoreMsg').textContent = msg;
+}
+</script>
+
+</body>
+</html>

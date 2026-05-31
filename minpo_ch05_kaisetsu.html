@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>GAMBA民法 ch05 意思表示②（錯誤・詐欺・強迫）</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'BIZ UDGothic','Hiragino Kaku Gothic Pro','Meiryo',sans-serif;background:#eef2f7;color:#1a1a2e;min-height:100vh;font-size:15px}
+.top-header{background:linear-gradient(135deg,#1B2A4A 0%,#C0392B 100%);color:#fff;padding:16px 16px 12px;text-align:center}
+.top-header h1{font-size:18px;font-weight:700;letter-spacing:.05em}
+.top-header p{font-size:12px;margin-top:3px;opacity:.85}
+.ch-nav{background:#1B2A4A;display:flex;overflow-x:auto;gap:0}
+.ch-nav a{color:rgba(255,255,255,.75);text-decoration:none;padding:9px 14px;font-size:12px;white-space:nowrap;border-right:1px solid rgba(255,255,255,.15);transition:.15s;font-weight:700}
+.ch-nav a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.wrap{max-width:860px;margin:0 auto;padding:16px 12px 48px}
+.section{background:#fff;border-radius:14px;border:1px solid #dde3ee;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden}
+.sec-hd{background:linear-gradient(90deg,#1B2A4A,#2c447a);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:10px}
+.sec-num{background:rgba(255,255,255,.2);border-radius:8px;padding:3px 10px;font-size:12px;font-weight:700;white-space:nowrap}
+.sec-hd h2{font-size:16px;font-weight:700}
+.sec-body{padding:16px 18px}
+.lead{background:#f0f4ff;border-left:4px solid #1B2A4A;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:14px;font-size:13px;color:#444}
+.goro{background:linear-gradient(135deg,#fff9ed,#fff3d0);border:2px solid #f4a62a;border-radius:10px;padding:12px 16px;margin:12px 0;text-align:center}
+.goro-label{font-size:10px;color:#8a5a00;letter-spacing:2px;font-weight:700;margin-bottom:4px}
+.goro-text{font-size:17px;font-weight:700;color:#7a4a00;letter-spacing:1px}
+.goro-note{font-size:11px;color:#a07030;margin-top:4px}
+.tbl{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+.tbl th{background:#1B2A4A;color:#fff;padding:8px 10px;border:1px solid #b3c6ee;text-align:center;font-size:12px}
+.tbl td{padding:8px 10px;border:1px solid #dde3ee;vertical-align:top;line-height:1.6}
+.tbl tr:nth-child(even) td{background:#f8f9ff}
+.tbl td:first-child{color:#1B2A4A;font-weight:700;text-align:center;white-space:nowrap}
+.fig-wrap{background:#f8f9ff;border:1px solid #dde3ee;border-radius:10px;padding:14px;margin:12px 0;text-align:center}
+.fig-caption{font-size:11px;color:#888;margin-top:6px}
+.key{color:#C0392B;font-weight:700}
+.blue{color:#1B2A4A;font-weight:700}
+.point-box{background:#f0f4ff;border:1px solid #b3c6ee;border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13px}
+.point-box::before{content:"POINT ";color:#1B2A4A;font-weight:700;font-size:11px}
+.warn-box{background:#fff5f0;border-left:4px solid #C0392B;border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0;font-size:13px}
+.info-box{background:#f0f4ff;border-left:4px solid #2c447a;border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0;font-size:13px}
+ul.styled{padding-left:18px;margin:8px 0}
+ul.styled li{margin-bottom:5px}
+ul.styled li::marker{color:#C0392B}
+hr.div{border:none;border-top:1px solid #dde3ee;margin:14px 0}
+h3.sub{font-size:14px;color:#1B2A4A;margin:14px 0 8px;border-bottom:2px solid #C0392B;padding-bottom:4px;display:inline-block}
+
+/* ===== 江戸スタイル ミニテスト ===== */
+.mini{background:#fff;border:2px solid #1B2A4A;border-radius:12px;margin-top:20px;overflow:visible}
+.mini-hd{background:linear-gradient(90deg,#1B2A4A,#2c447a);padding:10px 16px;display:flex;align-items:center;gap:10px}
+.mini-hd-badge{background:#D4AF37;color:#1B2A4A;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:1px}
+.mini-hd-title{color:#fff;font-size:13px;font-weight:700}
+.mini-hd-hint{font-size:11px;color:rgba(255,255,255,.7);margin-left:auto}
+.mini-body{padding:14px 16px}
+.q-block{margin-bottom:18px;position:relative}
+.q-text{font-size:14px;line-height:2.2}
+
+/* 空欄 */
+.mblank{display:inline-block;min-width:90px;height:28px;background:#1B2A4A;border-radius:6px;margin:0 3px;text-align:center;cursor:pointer;font-weight:700;font-size:13px;color:transparent;vertical-align:middle;position:relative;transition:background .2s;border:2px solid #1B2A4A;line-height:24px;padding:0 8px;white-space:nowrap}
+.mblank.filled{color:#fff;background:#2c447a;border-color:#2c447a}
+.mblank.correct{color:#1a1a2e;background:#ffd700;border-color:#b8860b}
+.mblank:hover{opacity:.85}
+
+/* 語群ポップアップ */
+.word-popup{
+  display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);
+  background:#1B2A4A;border:2px solid #D4AF37;border-radius:10px;padding:10px;
+  z-index:500;box-shadow:0 6px 20px rgba(0,0,0,.3);min-width:260px;
+}
+.word-popup.show{display:block}
+.word-popup::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:8px solid transparent;border-top-color:#D4AF37}
+.word-popup-title{font-size:10px;color:#D4AF37;font-weight:700;letter-spacing:1px;margin-bottom:8px}
+.word-chips{display:flex;flex-wrap:wrap;gap:6px}
+.wchip{padding:5px 11px;border-radius:16px;border:1.5px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);
+  color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;position:relative}
+.wchip:hover{background:#D4AF37;color:#1B2A4A;border-color:#D4AF37}
+.wchip.used{opacity:.3;pointer-events:none}
+/* チップのホバーポップ説明 */
+.wchip-tip{display:none;position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);
+  width:190px;background:#2c1800;color:#fff;border-radius:8px;padding:8px 10px;font-size:11px;line-height:1.7;
+  z-index:600;pointer-events:none;text-align:left;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.wchip-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:#2c1800}
+.wchip:hover .wchip-tip{display:block}
+
+/* 判定ボタン */
+.mini-footer{padding:10px 16px 14px;display:flex;align-items:center;gap:10px;border-top:1px solid #dde3ee;flex-wrap:wrap}
+.mini-check-btn{background:#C0392B;color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.mini-check-btn:hover{background:#8a2820}
+.mini-reset-btn{background:#6c757d;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.mini-reset-btn:hover{background:#495057}
+.mini-score{font-size:13px;font-weight:700;color:#1B2A4A;margin-left:auto}
+
+footer{text-align:center;padding:20px 16px;font-size:11px;color:#888;border-top:1px solid #dde3ee;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="top-header">
+  <h1>📖 GAMBA 民法 第5章</h1>
+  <p>意思表示②（錯誤・詐欺・強迫）｜江原予備校</p>
+</div>
+<nav class="ch-nav">
+  <a href="#sec1">§1 錯誤の基礎</a>
+  <a href="#sec2">§2 錯誤の要件・効果</a>
+  <a href="#sec3">§3 詐欺</a>
+  <a href="#sec4">§4 強迫</a>
+</nav>
+
+<div class="wrap">
+
+<!-- ====== SEC 1 ====== -->
+<div class="section" id="sec1">
+  <div class="sec-hd"><span class="sec-num">SEC.1</span><h2>錯誤とは何か——意思と表示のズレ</h2></div>
+  <div class="sec-body">
+    <div class="lead">前章（ch04）では心裡留保・通謀虚偽表示を学んだ。ch05では本人が気づかぬまま意思と表示がズレてしまう「錯誤」と、外部からの不正干渉（詐欺・強迫）を扱う。</div>
+    <p><span class="key">錯誤（さくご）</span>とは、意思表示の内容と真意（内心の意思）が食い違っているのに、表意者本人がそのことに<strong>気づいていない</strong>状態をいう。</p>
+    <div class="fig-wrap">
+      <svg viewBox="0 0 580 170" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1B2A4A"/></marker></defs>
+        <rect x="10" y="40" width="155" height="90" rx="10" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="87" y="68" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#1B2A4A" font-weight="bold">心の中（真意）</text>
+        <text x="87" y="94" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1a1a2e">「100万円の</text>
+        <text x="87" y="113" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1a1a2e">つもり」</text>
+        <text x="205" y="93" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="22" fill="#C0392B">⚡</text>
+        <text x="205" y="113" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#C0392B" font-weight="bold">ズレ</text>
+        <rect x="250" y="40" width="155" height="90" rx="10" fill="#fff5f0" stroke="#C0392B" stroke-width="2"/>
+        <text x="327" y="68" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#C0392B" font-weight="bold">表示内容</text>
+        <text x="327" y="94" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1a1a2e">「1000万円で</text>
+        <text x="327" y="113" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1a1a2e">売ります」</text>
+        <line x1="408" y1="85" x2="480" y2="85" stroke="#1B2A4A" stroke-width="2" marker-end="url(#a1)"/>
+        <rect x="480" y="55" width="90" height="60" rx="8" fill="#f8f9ff" stroke="#b3c6ee" stroke-width="1.5"/>
+        <text x="525" y="84" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#555">相手方</text>
+        <text x="525" y="100" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#888">（承諾）</text>
+      </svg>
+      <div class="fig-caption">図1：錯誤——真意と表示のズレを本人が気づいていない</div>
+    </div>
+    <h3 class="sub">錯誤の2類型（95条）</h3>
+    <table class="tbl">
+      <tr><th style="width:18%">類型</th><th style="width:32%">内容</th><th>具体例</th></tr>
+      <tr><td>表示の錯誤</td><td>言い間違い・書き間違い等で表示内容に錯誤</td><td>「100万円」のつもりで「1000万円」と書いた</td></tr>
+      <tr><td>動機の錯誤</td><td>意思形成の前提となる動機に誤認がある</td><td>「隣に駅ができる」と誤信して土地を高値購入</td></tr>
+    </table>
+    <div class="point-box">動機の錯誤が取消しの対象となるのは、その動機が<span class="key">相手方に表示されていた</span>場合に限る（95条2項）。</div>
+
+    <!-- ミニテスト §1 -->
+    <div class="mini" id="mini1">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§1 確認クイズ</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block">
+          <div class="q-text">Q1. 錯誤とは、表示内容と真意が食い違っていることを表意者本人が
+            <span class="mblank" data-ans="気づいていない" data-gid="g1" data-qid="1-1">　　　　　</span>
+            状態をいう。</div>
+        </div>
+        <div class="q-block">
+          <div class="q-text">Q2. 「1000万円」のつもりで「100万円」と書き間違えた場合は
+            <span class="mblank" data-ans="表示の錯誤" data-gid="g1" data-qid="1-2">　　　　　</span>
+            にあたる。</div>
+        </div>
+        <div class="q-block">
+          <div class="q-text">Q3. 動機の錯誤が取消し対象になるには、その動機が相手方に
+            <span class="mblank" data-ans="表示されていた" data-gid="g1" data-qid="1-3">　　　　　</span>
+            ことが必要（95条2項）。</div>
+        </div>
+        <div class="q-block">
+          <div class="q-text">Q4. 隣に駅ができると誤信して土地を購入した場合は
+            <span class="mblank" data-ans="動機の錯誤" data-gid="g1" data-qid="1-4">　　　　　</span>
+            にあたる。</div>
+        </div>
+      </div>
+      <div class="mini-footer">
+        <button class="mini-check-btn" onclick="checkMini('mini1','g1')">判定する</button>
+        <button class="mini-reset-btn" onclick="resetMini('mini1','g1')">やり直す</button>
+        <span class="mini-score" id="score-mini1"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SEC 2 ====== -->
+<div class="section" id="sec2">
+  <div class="sec-hd"><span class="sec-num">SEC.2</span><h2>錯誤の要件・効果と第三者保護</h2></div>
+  <div class="sec-body">
+    <div class="lead">2017年改正で「無効」から「取消し」に変更。要件・第三者保護の仕組みを押さえよう。</div>
+    <h3 class="sub">錯誤取消しの要件（95条1項）</h3>
+    <div class="fig-wrap">
+      <svg viewBox="0 0 620 200" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1B2A4A"/></marker></defs>
+        <rect x="10" y="20" width="160" height="55" rx="8" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="90" y="46" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#1B2A4A" font-weight="bold">要件①</text>
+        <text x="90" y="64" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#1a1a2e">意思表示に錯誤がある</text>
+        <rect x="230" y="20" width="160" height="55" rx="8" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="310" y="46" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#1B2A4A" font-weight="bold">要件②</text>
+        <text x="310" y="64" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#1a1a2e">法律行為の要素の錯誤</text>
+        <rect x="450" y="20" width="160" height="55" rx="8" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="530" y="46" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#1B2A4A" font-weight="bold">要件③</text>
+        <text x="530" y="64" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#1a1a2e">表意者に重過失なし</text>
+        <line x1="170" y1="47" x2="228" y2="47" stroke="#1B2A4A" stroke-width="1.5" marker-end="url(#a2)"/>
+        <text x="199" y="42" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">AND</text>
+        <line x1="390" y1="47" x2="448" y2="47" stroke="#1B2A4A" stroke-width="1.5" marker-end="url(#a2)"/>
+        <text x="419" y="42" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">AND</text>
+        <line x1="310" y1="75" x2="310" y2="115" stroke="#1B2A4A" stroke-width="1.5" marker-end="url(#a2)"/>
+        <rect x="190" y="115" width="240" height="48" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+        <text x="310" y="140" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#2e7d32" font-weight="bold">取消し可能</text>
+        <text x="310" y="156" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">（表意者のみが主張可）</text>
+        <line x1="530" y1="75" x2="530" y2="168" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="4"/>
+        <rect x="430" y="168" width="180" height="26" rx="6" fill="#fff5f0" stroke="#C0392B" stroke-width="1.5"/>
+        <text x="520" y="184" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#C0392B" font-weight="bold">重過失あり→原則取消不可</text>
+      </svg>
+      <div class="fig-caption">図2：錯誤取消しの要件フロー（95条）</div>
+    </div>
+    <h3 class="sub">重過失がある場合の特則（95条3項）</h3>
+    <p>表意者に<span class="key">重大な過失</span>があっても、次の場合は取消しができる。</p>
+    <ul class="styled" style="margin-top:8px">
+      <li>相手方が錯誤について<span class="key">悪意</span>であった場合</li>
+      <li>相手方が錯誤について<span class="key">重大な過失</span>があった場合</li>
+    </ul>
+    <hr class="div">
+    <h3 class="sub">第三者保護（95条4項）</h3>
+    <p>錯誤取消しは、<span class="key">善意・無過失の第三者</span>に対抗できない。</p>
+    <div class="fig-wrap">
+      <svg viewBox="0 0 540 140" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="a3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1B2A4A"/></marker></defs>
+        <rect x="10" y="40" width="110" height="60" rx="8" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="65" y="68" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1B2A4A" font-weight="bold">A（表意者）</text>
+        <text x="65" y="86" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">錯誤あり</text>
+        <rect x="200" y="40" width="110" height="60" rx="8" fill="#f8f9ff" stroke="#b3c6ee" stroke-width="1.5"/>
+        <text x="255" y="72" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1a1a2e">B（相手方）</text>
+        <line x1="120" y1="70" x2="198" y2="70" stroke="#1B2A4A" stroke-width="1.5" marker-end="url(#a3)"/>
+        <text x="159" y="62" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#C0392B">取消し</text>
+        <rect x="390" y="40" width="130" height="60" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+        <text x="455" y="68" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#2e7d32" font-weight="bold">C（第三者）</text>
+        <text x="455" y="86" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#2e7d32">善意・無過失</text>
+        <line x1="310" y1="70" x2="388" y2="70" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#a3)"/>
+        <text x="349" y="62" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#2e7d32">B→C転売</text>
+        <rect x="280" y="108" width="200" height="24" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+        <text x="380" y="124" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#2e7d32" font-weight="bold">AはCに取消しを対抗できない</text>
+      </svg>
+      <div class="fig-caption">図3：善意・無過失の第三者は錯誤取消しから保護される</div>
+    </div>
+    <h3 class="sub">錯誤 vs 心裡留保・通謀虚偽表示 比較</h3>
+    <table class="tbl">
+      <tr><th>類型</th><th>本人の認識</th><th>効果</th><th>第三者保護</th></tr>
+      <tr><td>心裡留保</td><td>ズレを知っている</td><td>原則有効（相手方善意なら有効）</td><td>善意で保護</td></tr>
+      <tr><td>通謀虚偽表示</td><td>ズレを知っている</td><td>無効</td><td>善意で保護</td></tr>
+      <tr><td>錯誤</td><td>ズレに気づかない</td><td>取消し</td><td>善意・無過失で保護</td></tr>
+    </table>
+
+    <!-- ミニテスト §2 -->
+    <div class="mini" id="mini2">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§2 確認クイズ</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block">
+          <div class="q-text">Q1. 2017年改正により錯誤の効果は「無効」から
+            <span class="mblank" data-ans="取消し" data-gid="g2" data-qid="2-1">　　　　</span>
+            に変更された。</div>
+        </div>
+        <div class="q-block">
+          <div class="q-text">Q2. 表意者に重過失があっても、相手方が
+            <span class="mblank" data-ans="悪意" data-gid="g2" data-qid="2-2">　　</span>
+            または
+            <span class="mblank" data-ans="重大な過失" data-gid="g2" data-qid="2-3">　　　　　　</span>
+            あれば取消し可能（95条3項）。</div>
+        </div>
+        <div class="q-block">
+          <div class="q-text">Q3. 錯誤取消しは
+            <span class="mblank" data-ans="善意・無過失" data-gid="g2" data-qid="2-4">　　　　　　</span>
+            の第三者に対抗できない（95条4項）。</div>
+        </div>
+        <div class="q-block">
+          <div class="q-text">Q4. 錯誤取消しを主張できるのは原則として
+            <span class="mblank" data-ans="表意者" data-gid="g2" data-qid="2-5">　　　　</span>
+            のみである。</div>
+        </div>
+      </div>
+      <div class="mini-footer">
+        <button class="mini-check-btn" onclick="checkMini('mini2','g2')">判定する</button>
+        <button class="mini-reset-btn" onclick="resetMini('mini2','g2')">やり直す</button>
+        <span class="mini-score" id="score-mini2"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SEC 3 ====== -->
+<div class="section" id="sec3">
+  <div class="sec-hd"><span class="sec-num">SEC.3</span><h2>詐欺による意思表示</h2></div>
+  <div class="sec-body">
+    <div class="lead">だまされた意思表示は取り消せるが、善意・無過失の第三者には対抗できない。第三者詐欺の場合は要件が加わる。</div>
+    <h3 class="sub">詐欺の要件</h3>
+    <ul class="styled">
+      <li><span class="blue">欺罔（ぎもう）行為</span>——人を欺く行為があること</li>
+      <li><span class="blue">二重の故意</span>——欺罔の故意 ＋ 相手方を意思表示に誘導する故意</li>
+      <li><span class="blue">因果関係</span>——欺罔→錯誤→意思表示の流れがあること</li>
+    </ul>
+    <div class="fig-wrap">
+      <svg viewBox="0 0 580 140" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="a4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1B2A4A"/></marker></defs>
+        <rect x="10" y="40" width="110" height="60" rx="8" fill="#fff5f0" stroke="#C0392B" stroke-width="2"/>
+        <text x="65" y="68" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#C0392B" font-weight="bold">詐欺師（B）</text>
+        <text x="65" y="86" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">欺罔行為</text>
+        <line x1="120" y1="70" x2="195" y2="70" stroke="#C0392B" stroke-width="1.5" marker-end="url(#a4)"/>
+        <text x="157" y="62" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#C0392B">だます</text>
+        <rect x="195" y="40" width="110" height="60" rx="8" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="250" y="65" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1B2A4A" font-weight="bold">A（被害者）</text>
+        <text x="250" y="83" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">錯誤に陥る</text>
+        <line x1="305" y1="70" x2="378" y2="70" stroke="#1B2A4A" stroke-width="1.5" marker-end="url(#a4)"/>
+        <text x="341" y="62" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#1B2A4A">意思表示</text>
+        <rect x="378" y="40" width="110" height="60" rx="8" fill="#f8f9ff" stroke="#b3c6ee" stroke-width="1.5"/>
+        <text x="433" y="72" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1a1a2e">C（相手方）</text>
+        <rect x="495" y="50" width="80" height="40" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+        <text x="535" y="72" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#2e7d32" font-weight="bold">取消可</text>
+      </svg>
+      <div class="fig-caption">図4：詐欺の流れ（欺罔→錯誤→意思表示）</div>
+    </div>
+    <hr class="div">
+    <h3 class="sub">第三者詐欺（96条2項）</h3>
+    <p>相手方ではなく<span class="key">第三者が詐欺</span>を行った場合、取消しできるのは<span class="key">相手方が悪意または有過失</span>のときのみ。</p>
+    <div class="fig-wrap">
+      <svg viewBox="0 0 560 175" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="a5" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1B2A4A"/></marker></defs>
+        <rect x="20" y="10" width="120" height="50" rx="8" fill="#fff5f0" stroke="#C0392B" stroke-width="2"/>
+        <text x="80" y="34" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#C0392B" font-weight="bold">X（第三者）</text>
+        <text x="80" y="50" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">詐欺を行う</text>
+        <rect x="210" y="70" width="120" height="60" rx="8" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="270" y="97" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1B2A4A" font-weight="bold">A（被害者）</text>
+        <text x="270" y="115" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">だまされて意思表示</text>
+        <rect x="410" y="70" width="130" height="60" rx="8" fill="#f8f9ff" stroke="#b3c6ee" stroke-width="1.5"/>
+        <text x="475" y="97" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1a1a2e">B（相手方）</text>
+        <text x="475" y="113" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">善意→取消不可</text>
+        <line x1="80" y1="60" x2="230" y2="88" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="5" marker-end="url(#a5)"/>
+        <text x="140" y="70" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#C0392B">詐欺</text>
+        <line x1="330" y1="100" x2="408" y2="100" stroke="#1B2A4A" stroke-width="1.5" marker-end="url(#a5)"/>
+        <rect x="150" y="145" width="310" height="24" rx="6" fill="#fff9ed" stroke="#f4a62a" stroke-width="1.5"/>
+        <text x="305" y="161" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#7a4a00" font-weight="bold">B が悪意・有過失の場合のみ取消し可</text>
+      </svg>
+      <div class="fig-caption">図5：第三者詐欺——相手方の善悪が取消しの可否を左右する</div>
+    </div>
+    <hr class="div">
+    <h3 class="sub">第三者保護比較表（まとめ）</h3>
+    <table class="tbl">
+      <tr><th>類型</th><th>第三者保護の要件</th><th>条文</th></tr>
+      <tr><td>心裡留保</td><td>善意（無過失不要）</td><td>93条2項</td></tr>
+      <tr><td>通謀虚偽表示</td><td>善意（無過失不要）</td><td>94条2項</td></tr>
+      <tr><td>錯誤</td><td>善意・無過失</td><td>95条4項</td></tr>
+      <tr><td>詐欺</td><td>善意・無過失</td><td>96条3項</td></tr>
+      <tr><td>強迫</td><td>第三者保護なし</td><td>—（善意でも対抗可）</td></tr>
+    </table>
+
+    <!-- ミニテスト §3 -->
+    <div class="mini" id="mini3">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§3 確認クイズ</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block">
+          <div class="q-text">Q1. 詐欺取消しは
+            <span class="mblank" data-ans="善意・無過失" data-gid="g3" data-qid="3-1">　　　　　　</span>
+            の第三者に対抗できない（96条3項）。</div>
+        </div>
+        <div class="q-block">
+          <div class="q-text">Q2. 第三者詐欺の場合、相手方Bが
+            <span class="mblank" data-ans="善意" data-gid="g3" data-qid="3-2">　　</span>
+            であれば取消しできない（96条2項）。</div>
+        </div>
+        <div class="q-block">
+          <div class="q-text">Q3. 通謀虚偽表示の第三者保護は「善意のみ」だが、詐欺は「善意・
+            <span class="mblank" data-ans="無過失" data-gid="g3" data-qid="3-3">　　　　</span>
+            」が必要。</div>
+        </div>
+        <div class="q-block">
+          <div class="q-text">Q4. 詐欺の成立には
+            <span class="mblank" data-ans="二重の故意" data-gid="g3" data-qid="3-4">　　　　　　</span>
+            （欺罔の故意＋誘導の故意）が必要である。</div>
+        </div>
+      </div>
+      <div class="mini-footer">
+        <button class="mini-check-btn" onclick="checkMini('mini3','g3')">判定する</button>
+        <button class="mini-reset-btn" onclick="resetMini('mini3','g3')">やり直す</button>
+        <span class="mini-score" id="score-mini3"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SEC 4 ====== -->
+<div class="section" id="sec4">
+  <div class="sec-hd"><span class="sec-num">SEC.4</span><h2>強迫による意思表示——最強の取消権</h2></div>
+  <div class="sec-body">
+    <div class="lead">強迫の取消しには第三者保護規定がない。善意の第三者にも対抗できる点が詐欺との最大の違い。</div>
+    <h3 class="sub">強迫の要件</h3>
+    <ul class="styled">
+      <li><span class="blue">強迫行為</span>——害悪を告知して畏怖させること</li>
+      <li><span class="blue">二重の故意</span>——詐欺と同様（強迫の故意＋誘導の故意）</li>
+      <li><span class="blue">因果関係</span>——強迫→畏怖→意思表示の流れ</li>
+    </ul>
+    <div class="fig-wrap">
+      <svg viewBox="0 0 560 190" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <text x="280" y="18" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1B2A4A" font-weight="bold">詐欺 vs 強迫：第三者保護の決定的な違い</text>
+        <rect x="10" y="28" width="250" height="155" rx="10" fill="#f8f9ff" stroke="#1B2A4A" stroke-width="1.5"/>
+        <text x="135" y="50" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1B2A4A" font-weight="bold">詐欺（96条3項）</text>
+        <rect x="30" y="60" width="80" height="45" rx="6" fill="#f0f4ff" stroke="#b3c6ee" stroke-width="1"/>
+        <text x="70" y="81" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#1a1a2e">A取消し</text>
+        <text x="70" y="95" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">B→C転売</text>
+        <line x1="110" y1="82" x2="150" y2="82" stroke="#1B2A4A" stroke-width="1.5" marker-end="url(#a4)"/>
+        <rect x="150" y="60" width="90" height="45" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+        <text x="195" y="81" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#2e7d32" font-weight="bold">C保護</text>
+        <text x="195" y="95" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#555">善意・無過失</text>
+        <text x="135" y="128" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">Aの取消しは</text>
+        <text x="135" y="146" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">善意・無過失のCに</text>
+        <text x="135" y="164" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#C0392B" font-weight="bold">対抗できない</text>
+        <rect x="300" y="28" width="250" height="155" rx="10" fill="#fff5f0" stroke="#C0392B" stroke-width="2"/>
+        <text x="425" y="50" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#C0392B" font-weight="bold">強迫（96条1項）</text>
+        <rect x="320" y="60" width="80" height="45" rx="6" fill="#fff5f0" stroke="#fbc8b5" stroke-width="1"/>
+        <text x="360" y="81" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#1a1a2e">A取消し</text>
+        <text x="360" y="95" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">B→C転売</text>
+        <line x1="400" y1="82" x2="442" y2="82" stroke="#C0392B" stroke-width="1.5" marker-end="url(#a5)"/>
+        <rect x="442" y="60" width="90" height="45" rx="6" fill="#fce8e8" stroke="#e53935" stroke-width="2"/>
+        <text x="487" y="81" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#C0392B" font-weight="bold">C保護なし</text>
+        <text x="487" y="95" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">善意でも×</text>
+        <text x="425" y="128" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">Aの取消しは</text>
+        <text x="425" y="146" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">Cが善意でも</text>
+        <text x="425" y="164" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#C0392B" font-weight="bold">対抗できる</text>
+      </svg>
+      <div class="fig-caption">図6：詐欺と強迫の第三者保護の決定的な違い</div>
+    </div>
+    <div class="goro">
+      <div class="goro-label">GORO — 強迫の取消しはだれにでも対抗できる</div>
+      <div class="goro-text">きょうはくは 善意の第三者も 守れない</div>
+      <div class="goro-note">強迫は被害者に落ち度なし→最優先保護。善意の第三者でも取消しを対抗できる</div>
+    </div>
+    <h3 class="sub">第三者強迫（第三者が強迫した場合）</h3>
+    <div class="info-box">
+      条文上、第三者強迫に関する明文規定はない（第三者詐欺の96条2項のような規定がない）。<br>
+      → 通説・判例は<span class="key">相手方の善悪を問わず取消し可</span>と解する（強迫はより非難性が高いため）。
+    </div>
+    <h3 class="sub">詐欺・強迫の総まとめ</h3>
+    <table class="tbl">
+      <tr><th>項目</th><th>詐欺（96条）</th><th>強迫（96条）</th></tr>
+      <tr><td>効果</td><td>取消し</td><td>取消し</td></tr>
+      <tr><td>第三者による場合</td><td>相手方が悪意・有過失なら取消可</td><td>相手方の善悪問わず取消可（通説）</td></tr>
+      <tr><td>第三者保護</td><td>善意・無過失の第三者は保護</td><td>第三者保護なし（善意でも対抗可）</td></tr>
+      <tr><td>理由</td><td>被害者も一定の落ち度</td><td>被害者に落ち度なし・最優先保護</td></tr>
+    </table>
+
+    <!-- ミニテスト §4 -->
+    <div class="mini" id="mini4">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§4 確認クイズ</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block">
+          <div class="q-text">Q1. 強迫による取消しは、善意の第三者に対しても
+            <span class="mblank" data-ans="対抗できる" data-gid="g4" data-qid="4-1">　　　　　　</span>
+            。</div>
+        </div>
+        <div class="q-block">
+          <div class="q-text">Q2. 詐欺取消しは善意・無過失の第三者に対抗
+            <span class="mblank" data-ans="できない" data-gid="g4" data-qid="4-2">　　　　</span>
+            が、強迫には第三者保護規定が
+            <span class="mblank" data-ans="ない" data-gid="g4" data-qid="4-3">　　</span>
+            。</div>
+        </div>
+        <div class="q-block">
+          <div class="q-text">Q3. 第三者が強迫した場合、相手方の善悪を問わず取消しが
+            <span class="mblank" data-ans="できる" data-gid="g4" data-qid="4-4">　　　　</span>
+            と解されている（通説）。</div>
+        </div>
+        <div class="q-block">
+          <div class="q-text">Q4. 詐欺・強迫の成立にはいずれも
+            <span class="mblank" data-ans="二重の故意" data-gid="g4" data-qid="4-5">　　　　　　</span>
+            （行為の故意と誘導の故意）が必要である。</div>
+        </div>
+      </div>
+      <div class="mini-footer">
+        <button class="mini-check-btn" onclick="checkMini('mini4','g4')">判定する</button>
+        <button class="mini-reset-btn" onclick="resetMini('mini4','g4')">やり直す</button>
+        <span class="mini-score" id="score-mini4"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+<footer>
+  <p>GAMBA民法 第5章 意思表示②（錯誤・詐欺・強迫）</p>
+  <p style="margin-top:4px">音声合成：VOICEVOX（四国めたん）｜江原予備校 © 2025</p>
+</footer>
+
+<script>
+// ===== 語群データ（グループ別） =====
+const WORD_TIPS = {
+  "気づいていない":   "錯誤は本人が気づいていないのが特徴。気づいていれば心裡留保になります。",
+  "表示の錯誤":      "言い間違い・書き間違いなど表示行為そのもののミス。動機の錯誤と対比して覚えよう。",
+  "表示されていた":   "動機が相手方に表示されていた場合のみ保護されます（95条2項）。",
+  "動機の錯誤":      "意思形成の前提（動機）に誤りがあるケース。相手方への表示が保護の条件。",
+  "取消し":          "2017年改正で「無効」から変更。錯誤・詐欺・強迫はすべて「取消し」です。",
+  "悪意":            "「悪意」=知っていること（法律用語）。道徳的な悪さではありません。",
+  "重大な過失":       "著しく注意を欠いた状態。単なる過失より重い不注意です。",
+  "善意・無過失":     "知らず（善意）かつ不注意もない（無過失）状態。錯誤・詐欺の第三者保護はこれが必要。",
+  "表意者":          "意思表示をした人。錯誤取消しは原則として表意者だけが主張できます。",
+  "善意":            "その事情を知らないこと（法律用語）。心裡留保・通謀虚偽表示の第三者保護はこれだけでOK。",
+  "無過失":          "不注意がないこと。錯誤・詐欺の第三者保護では善意に加えこれも必要。",
+  "二重の故意":       "詐欺・強迫の成立には①欺罔（強迫）行為の故意と②相手方を意思表示に誘導する故意の2つが必要。",
+  "対抗できる":       "強迫取消しは第三者保護規定がないため、善意の第三者にも対抗できます。",
+  "できない":         "詐欺取消しは善意・無過失の第三者に対抗できません（96条3項）。",
+  "ない":            "強迫には第三者保護規定がありません。詐欺の96条3項のような規定がない。",
+  "できる":          "第三者強迫は相手方の善悪を問わず取消し可（通説）。強迫はより非難性が高いため。",
+};
+
+// グループ別語群
+const GROUP_WORDS = {
+  g1: ["気づいていない","表示の錯誤","表示されていた","動機の錯誤"],
+  g2: ["取消し","悪意","重大な過失","善意・無過失","表意者"],
+  g3: ["善意・無過失","善意","無過失","二重の故意"],
+  g4: ["対抗できる","できない","ない","できる","二重の故意"],
+};
+
+// グループ別にポップアップを管理
+let activePopup = null; // {blankEl, popupEl}
+
+function closeAllPopups() {
+  document.querySelectorAll('.word-popup').forEach(p => p.classList.remove('show'));
+  activePopup = null;
+}
+
+function buildPopup(blank) {
+  const gid = blank.dataset.gid;
+  const words = GROUP_WORDS[gid] || [];
+  const pop = document.createElement('div');
+  pop.className = 'word-popup';
+  pop.innerHTML = '<div class="word-popup-title">▼ 語群から選んでください</div><div class="word-chips"></div>';
+  const chipsDiv = pop.querySelector('.word-chips');
+  words.forEach(w => {
+    const chip = document.createElement('span');
+    chip.className = 'wchip';
+    chip.textContent = w;
+    const tip = WORD_TIPS[w];
+    if (tip) {
+      const tipEl = document.createElement('span');
+      tipEl.className = 'wchip-tip';
+      tipEl.textContent = tip;
+      chip.appendChild(tipEl);
+    }
+    chip.addEventListener('click', e => {
+      e.stopPropagation();
+      // 既に他の空欄でこの語が使われていれば戻す
+      const gidBlanks = document.querySelectorAll(`.mblank[data-gid="${gid}"]`);
+      gidBlanks.forEach(b => {
+        if (b !== blank && b.dataset.current === w) {
+          b.textContent = '';
+          b.dataset.current = '';
+          b.classList.remove('filled','correct');
+        }
+      });
+      blank.textContent = w;
+      blank.dataset.current = w;
+      blank.classList.add('filled');
+      blank.classList.remove('correct');
+      // チップのused状態を更新
+      updateChipUsed(gid);
+      closeAllPopups();
+    });
+    chipsDiv.appendChild(chip);
+  });
+  return pop;
+}
+
+function updateChipUsed(gid) {
+  // 各ポップアップのチップのused状態を更新（現在開いているポップアップ）
+  const usedWords = [];
+  document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b => {
+    if (b.dataset.current) usedWords.push(b.dataset.current);
+  });
+  document.querySelectorAll('.word-popup').forEach(pop => {
+    pop.querySelectorAll('.wchip').forEach(chip => {
+      const word = chip.childNodes[0].textContent.trim();
+      chip.classList.toggle('used', usedWords.includes(word));
+    });
+  });
+}
+
+document.querySelectorAll('.mblank').forEach(blank => {
+  blank.dataset.current = '';
+  blank.addEventListener('click', e => {
+    e.stopPropagation();
+    // 既にポップアップが開いている同じblankなら閉じる
+    if (activePopup && activePopup.blankEl === blank) {
+      closeAllPopups();
+      return;
+    }
+    closeAllPopups();
+    // ポップアップを作成・挿入
+    const pop = buildPopup(blank);
+    blank.appendChild(pop);
+    // used状態を反映
+    updateChipUsed(blank.dataset.gid);
+    // 少し遅延してshow（アニメーション）
+    requestAnimationFrame(() => pop.classList.add('show'));
+    activePopup = { blankEl: blank, popupEl: pop };
+  });
+});
+
+// 外クリックで閉じる
+document.addEventListener('click', () => closeAllPopups());
+
+// 判定
+function checkMini(miniId, gid) {
+  let correct = 0, total = 0;
+  document.querySelectorAll(`#${miniId} .mblank`).forEach(b => {
+    total++;
+    if ((b.dataset.current || '') === b.dataset.ans) {
+      b.classList.add('correct');
+      correct++;
+    } else {
+      b.classList.remove('correct');
+    }
+  });
+  const scoreEl = document.getElementById('score-' + miniId);
+  if (scoreEl) {
+    scoreEl.textContent = correct === total
+      ? `✅ 全問正解！ (${correct}/${total})`
+      : `${correct}/${total} 正解`;
+    scoreEl.style.color = correct === total ? '#2e7d32' : '#C0392B';
+  }
+}
+
+// リセット
+function resetMini(miniId, gid) {
+  document.querySelectorAll(`#${miniId} .mblank`).forEach(b => {
+    b.textContent = '';
+    b.dataset.current = '';
+    b.classList.remove('filled', 'correct');
+  });
+  const scoreEl = document.getElementById('score-' + miniId);
+  if (scoreEl) scoreEl.textContent = '';
+  closeAllPopups();
+}
+</script>
+</body>
+</html>

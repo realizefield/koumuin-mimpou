@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>GAMBA民法 ch06 演習</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'BIZ UDGothic','Hiragino Kaku Gothic Pro','Meiryo',sans-serif;background:#eef2f7;color:#1a1a2e;min-height:100vh;font-size:15px}
+.top-header{background:linear-gradient(135deg,#1B2A4A 0%,#C0392B 100%);color:#fff;padding:16px 16px 12px;text-align:center}
+.top-header h1{font-size:18px;font-weight:700;letter-spacing:.05em}
+.top-header p{font-size:12px;margin-top:3px;opacity:.85}
+.wrap{max-width:800px;margin:0 auto;padding:16px 12px 48px}
+.score-bar{background:#fff;border-radius:12px;border:1px solid #dde3ee;padding:12px 16px;margin-bottom:18px;display:flex;align-items:center;flex-wrap:wrap;gap:12px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.score-label{font-size:12px;color:#888}
+.score-value{font-size:20px;font-weight:700;color:#1B2A4A}
+.progress-wrap{flex:1;min-width:180px;height:8px;background:#eef2f7;border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#1B2A4A,#C0392B);border-radius:4px;transition:width .4s;width:0%}
+.status-text{font-size:12px;color:#888}
+.q-card{background:#fff;border-radius:14px;border:1px solid #dde3ee;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden}
+.q-head{background:linear-gradient(90deg,#1B2A4A,#2c447a);color:#fff;padding:11px 16px;display:flex;align-items:center;gap:10px}
+.q-num{background:rgba(255,255,255,.2);border-radius:8px;padding:3px 10px;font-size:12px;font-weight:700}
+.q-type{font-size:11px;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.3);padding:2px 8px;border-radius:6px}
+.q-body{padding:16px 18px}
+.q-text{font-size:14px;line-height:1.8;margin-bottom:14px}
+.ox-wrap{display:flex;gap:12px;margin-bottom:12px}
+.ox-btn{flex:1;padding:12px;border:2px solid #dde3ee;border-radius:10px;background:#f8f9ff;color:#1a1a2e;font-size:22px;font-weight:700;cursor:pointer;text-align:center;transition:.2s;font-family:inherit}
+.ox-btn:hover:not(:disabled){border-color:#1B2A4A;background:#f0f4ff}
+.ox-btn.correct{border-color:#2e7d32;background:#e8f5e9;color:#2e7d32}
+.ox-btn.wrong{border-color:#e53935;background:#fce8e8;color:#e53935}
+.ox-btn.missed{border-color:#2e7d32;background:#f0f8f0;opacity:.7}
+.choices{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.choice-btn{padding:10px 14px;border:1.5px solid #dde3ee;border-radius:8px;background:#f8f9ff;color:#1a1a2e;font-size:13px;cursor:pointer;text-align:left;transition:.2s;line-height:1.6;font-family:inherit}
+.choice-btn:hover:not(:disabled){border-color:#1B2A4A;background:#f0f4ff}
+.choice-btn.correct{border-color:#2e7d32;background:#e8f5e9;color:#1a1a2e;font-weight:700}
+.choice-btn.wrong{border-color:#e53935;background:#fce8e8}
+.choice-btn.missed{border-color:#2e7d32;background:#f0f8f0;opacity:.7}
+.explanation{display:none;background:#f8f9ff;border-left:4px solid #f4a62a;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:12px;font-size:13px;line-height:1.7}
+.explanation.show{display:block}
+.exp-correct{color:#2e7d32;font-weight:700;margin-bottom:4px}
+.exp-wrong{color:#C0392B;font-weight:700;margin-bottom:4px}
+.key{color:#C0392B;font-weight:700}
+.reset-wrap{text-align:center;margin-top:24px}
+.reset-btn{background:#1B2A4A;color:#fff;border:none;padding:11px 28px;border-radius:8px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;transition:.2s}
+.reset-btn:hover{background:#0f1a30}
+footer{text-align:center;padding:20px 16px;font-size:11px;color:#888;border-top:1px solid #dde3ee;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="top-header">
+  <h1>✏️ GAMBA 民法 第6章 演習</h1>
+  <p>代理①（代理の基本・無権代理・表見代理）｜江原予備校</p>
+</div>
+<div class="wrap">
+  <div class="score-bar">
+    <div><div class="score-label">得点</div><div class="score-value"><span id="score">0</span> / <span id="total">5</span></div></div>
+    <div class="progress-wrap"><div class="progress-fill" id="progress"></div></div>
+    <div class="status-text" id="status-text">解答してください</div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-1">
+    <div class="q-head"><span class="q-num">問 1</span><span class="q-type">○×問題</span></div>
+    <div class="q-body">
+      <div class="q-text">代理人が本人のためにすることを示さずに（顕名なしに）意思表示をした場合、原則として相手方が悪意であるか否かにかかわらず、代理人自身の行為となる。</div>
+      <div class="ox-wrap">
+        <button class="ox-btn" data-q="1" data-v="O">○</button>
+        <button class="ox-btn" data-q="1" data-v="X">×</button>
+      </div>
+      <div class="explanation" id="exp-1">
+        <div class="exp-wrong">正解：×</div>
+        顕名がない場合、原則として代理人自身の行為となるが（100条本文）、相手方が<span class="key">悪意または有過失</span>であった場合には代理の効果が本人に帰属する（100条ただし書）。「相手方の善悪にかかわらず」は誤り。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-2">
+    <div class="q-head"><span class="q-num">問 2</span><span class="q-type">○×問題</span></div>
+    <div class="q-body">
+      <div class="q-text">無権代理人Bが本人Aを相続した場合、Bは本人Aの地位を引き継ぐため、追認を拒絶することは信義則上許されず、契約は有効となる（最判昭40）。</div>
+      <div class="ox-wrap">
+        <button class="ox-btn" data-q="2" data-v="O">○</button>
+        <button class="ox-btn" data-q="2" data-v="X">×</button>
+      </div>
+      <div class="explanation" id="exp-2">
+        <div class="exp-correct">正解：○</div>
+        無権代理人が本人を相続した場合、本人の地位と代理人の地位が同一人に帰属する。この場合、追認拒絶は<span class="key">信義則（1条2項）上許されない</span>とされ、契約は有効となる（最判昭40.6.18）。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-3">
+    <div class="q-head"><span class="q-num">問 3</span><span class="q-type">○×問題</span></div>
+    <div class="q-body">
+      <div class="q-text">権限の定めがない代理人は、保存行為・利用行為・改良行為のみができるが（103条）、建物を売却するような処分行為はできない。</div>
+      <div class="ox-wrap">
+        <button class="ox-btn" data-q="3" data-v="O">○</button>
+        <button class="ox-btn" data-q="3" data-v="X">×</button>
+      </div>
+      <div class="explanation" id="exp-3">
+        <div class="exp-correct">正解：○</div>
+        103条により、権限の定めのない代理人は<span class="key">保存行為・利用行為・改良行為</span>のみができる。建物の売却のような処分行為は権限の範囲外であり、できない。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-4">
+    <div class="q-head"><span class="q-num">問 4</span><span class="q-type">○×問題</span></div>
+    <div class="q-body">
+      <div class="q-text">無権代理人に対する117条の責任追及（履行または損害賠償の請求）は、相手方が善意であれば足り、無過失は要件とされない。</div>
+      <div class="ox-wrap">
+        <button class="ox-btn" data-q="4" data-v="O">○</button>
+        <button class="ox-btn" data-q="4" data-v="X">×</button>
+      </div>
+      <div class="explanation" id="exp-4">
+        <div class="exp-wrong">正解：×</div>
+        117条の責任追及には、相手方が<span class="key">善意かつ無過失</span>であることが必要（117条2項1号）。善意だけでは足りず、無過失も要件となる。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-5">
+    <div class="q-head"><span class="q-num">問 5</span><span class="q-type">5択問題</span></div>
+    <div class="q-body">
+      <div class="q-text">表見代理に関する次の記述のうち、正しいものはどれか。</div>
+      <div class="choices">
+        <button class="choice-btn" data-q="5" data-v="1">1. 110条の権限外行為の表見代理は、基本代理権が存在しない場合でも成立する。</button>
+        <button class="choice-btn" data-q="5" data-v="2">2. 表見代理が成立した場合、本人は相手方に対して表見代理を主張して契約を有効と扱うことができる。</button>
+        <button class="choice-btn" data-q="5" data-v="3">3. 以前に代理権があったが消滅した後に行われた行為は、相手方が善意・無過失であれば112条の表見代理が成立する。</button>
+        <button class="choice-btn" data-q="5" data-v="4">4. 109条の代理権授与表示による表見代理は、相手方が悪意でも成立する。</button>
+        <button class="choice-btn" data-q="5" data-v="5">5. 表見代理が成立する場合、相手方は無権代理人への117条責任追及を選択することはできない。</button>
+      </div>
+      <div class="explanation" id="exp-5">
+        <div class="exp-correct">正解：3</div>
+        <strong>3が正しい。</strong>112条の代理権消滅後の表見代理は、以前あった代理権が消滅した後の行為について、相手方が善意・無過失であれば成立する。<br><br>
+        1→<span style="color:#C0392B">誤り。</span>110条には<span class="key">基本代理権の存在</span>が必要（権限の逸脱が問題）。<br>
+        2→<span style="color:#C0392B">誤り。</span>表見代理は<span class="key">相手方が主張できる</span>制度。本人側からは主張できない。<br>
+        4→<span style="color:#C0392B">誤り。</span>表見代理は<span class="key">善意・無過失の相手方</span>の保護制度。悪意の相手方には成立しない。<br>
+        5→<span style="color:#C0392B">誤り。</span>表見代理の主張は相手方の権利（選択肢）。117条責任追及との選択は相手方の自由。
+      </div>
+    </div>
+  </div>
+
+  <div class="reset-wrap">
+    <button class="reset-btn" onclick="resetAll()">もう一度解く</button>
+  </div>
+</div>
+<footer>
+  <p>GAMBA民法 第6章 代理①（代理の基本・無権代理・表見代理）演習</p>
+  <p style="margin-top:4px">音声合成：VOICEVOX（四国めたん）｜江原予備校 © 2025</p>
+</footer>
+<script>
+var answers={1:'X',2:'O',3:'O',4:'X',5:'3'};
+var answered={};
+var score=0;
+function updateScore(){
+  var done=Object.keys(answered).length;
+  document.getElementById('score').textContent=score;
+  document.getElementById('progress').style.width=(score/5*100)+'%';
+  document.getElementById('status-text').textContent=done===5?'全問完了！':done+'/5 回答済み';
+}
+function handleAnswer(q,v){
+  if(answered[q])return;
+  answered[q]=v;
+  var correct=answers[q];
+  var isCorrect=(String(v)===String(correct));
+  if(isCorrect)score++;
+  var card=document.getElementById('qcard-'+q);
+  card.querySelectorAll('[data-q="'+q+'"]').forEach(function(btn){
+    btn.disabled=true;
+    var bv=btn.dataset.v;
+    if(String(bv)===String(correct)){btn.classList.add(isCorrect&&String(v)===String(bv)?'correct':'missed');}
+    else if(String(bv)===String(v)){btn.classList.add('wrong');}
+  });
+  document.getElementById('exp-'+q).classList.add('show');
+  updateScore();
+}
+document.querySelectorAll('.ox-btn,.choice-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){handleAnswer(this.dataset.q,this.dataset.v);});
+});
+function resetAll(){
+  answered={};score=0;
+  document.querySelectorAll('.ox-btn,.choice-btn').forEach(function(btn){btn.disabled=false;btn.classList.remove('correct','wrong','missed');});
+  document.querySelectorAll('.explanation').forEach(function(el){el.classList.remove('show');});
+  updateScore();
+  document.getElementById('status-text').textContent='解答してください';
+}
+updateScore();
+</script>
+</body>
+</html>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法 ch04 意思表示①</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4A017;
+    --gold-light: #F0C040;
+    --bg: #F5F3EE;
+    --white: #FFFFFF;
+    --text: #1A1A1A;
+    --text-light: #555555;
+    --border: #D0C8B8;
+    --section-bg: #EEF1F7;
+    --correct: #27AE60;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Meiryo','メイリオ','Yu Gothic',sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; font-size: 15px; }
+
+  header { background: var(--navy); color: #fff; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+  .header-inner { max-width: 860px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+  .header-title { font-size: 18px; font-weight: bold; }
+  .header-title span { color: var(--gold); }
+  .header-sub { font-size: 12px; color: #aaa; margin-top: 2px; }
+  .header-badge { background: var(--crimson); color: #fff; font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: bold; }
+
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  .chapter-title { background: var(--navy); color: #fff; border-radius: 8px; padding: 20px 24px; margin-bottom: 28px; border-left: 6px solid var(--gold); }
+  .chapter-title h1 { font-size: 20px; font-weight: bold; }
+  .chapter-title .subtitle { font-size: 13px; color: var(--gold-light); margin-top: 4px; }
+  .stars { color: var(--gold); }
+
+  .section { background: #fff; border-radius: 8px; margin-bottom: 8px; border: 1px solid var(--border); overflow: hidden; }
+  .section-header { background: var(--navy); color: #fff; padding: 10px 18px; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 8px; }
+  .section-header .num { background: var(--gold); color: var(--navy); width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; flex-shrink: 0; }
+  .section-body { padding: 18px 20px; }
+
+  .def-box { background: var(--section-bg); border-left: 4px solid var(--navy); border-radius: 0 6px 6px 0; padding: 12px 16px; margin: 12px 0; font-size: 14px; }
+  .def-box .def-title { font-weight: bold; color: var(--navy); margin-bottom: 4px; font-size: 13px; }
+  .point-box { background: #FFF8E8; border: 1px solid var(--gold); border-radius: 6px; padding: 12px 16px; margin: 12px 0; font-size: 14px; }
+  .point-box .point-title { color: var(--gold); font-weight: bold; font-size: 12px; margin-bottom: 4px; }
+  .caution-box { background: #FEF0EE; border: 1px solid var(--crimson); border-radius: 6px; padding: 12px 16px; margin: 12px 0; font-size: 14px; }
+  .caution-box .caution-title { color: var(--crimson); font-weight: bold; font-size: 12px; margin-bottom: 4px; }
+
+  h3 { font-size: 14px; color: var(--navy); margin: 16px 0 8px; padding-left: 8px; border-left: 3px solid var(--gold); }
+  p { margin: 8px 0; font-size: 14px; }
+  ul, ol { padding-left: 20px; margin: 8px 0; }
+  li { margin: 4px 0; font-size: 14px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+  th { background: var(--navy); color: #fff; padding: 8px 10px; text-align: center; font-weight: bold; }
+  td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: middle; }
+  tr:nth-child(even) td { background: #F8F6F2; }
+  .td-center { text-align: center; }
+
+  .goro-box { background: var(--navy); color: var(--gold-light); border-radius: 6px; padding: 10px 16px; margin: 12px 0; font-size: 14px; font-weight: bold; }
+  .goro-box .goro-label { font-size: 11px; color: #aaa; margin-bottom: 2px; font-weight: normal; }
+
+  /* 図 */
+  .flow-h {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 14px 0;
+    flex-wrap: wrap;
+  }
+  .flow-h .fbox {
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--navy);
+    text-align: center;
+  }
+  .flow-h .fbox.navy { background: var(--navy); color: #fff; }
+  .flow-h .fbox.gold { background: var(--gold); color: var(--navy); }
+  .flow-h .fbox.red { background: #FEF0EE; border-color: var(--crimson); color: var(--crimson); }
+  .flow-h .farrow { font-size: 20px; color: var(--navy); font-weight: bold; }
+
+  .compare-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .c2-card { border-radius: 8px; overflow: hidden; border: 2px solid var(--border); }
+  .c2-head { padding: 8px 14px; font-weight: bold; font-size: 13px; text-align: center; }
+  .c2-head.navy { background: var(--navy); color: #fff; }
+  .c2-head.crimson { background: var(--crimson); color: #fff; }
+  .c2-head.gray { background: #6C757D; color: #fff; }
+  .c2-head.gold { background: var(--gold); color: var(--navy); }
+  .c2-body { padding: 10px 14px; font-size: 13px; background: #fff; }
+  .c2-body li { margin: 4px 0; }
+  .ok { color: var(--correct); font-weight: bold; }
+  .ng { color: var(--crimson); font-weight: bold; }
+
+  .hanrei-box {
+    border: 2px solid var(--navy);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 14px 0;
+    font-size: 13px;
+  }
+  .hanrei-head { background: var(--navy); color: var(--gold-light); padding: 7px 14px; font-weight: bold; font-size: 12px; }
+  .hanrei-body { padding: 10px 14px; background: #fff; }
+  .hanrei-body .jian { color: var(--text-light); margin-bottom: 4px; }
+  .hanrei-body .hanshi { color: var(--navy); font-weight: bold; }
+
+  /* ミニテスト */
+  .mini{background:#fff;border:2px solid #1B2A4A;border-radius:12px;margin-top:20px;overflow:visible}
+  .mini-hd{background:linear-gradient(90deg,#1B2A4A,#2c447a);padding:10px 16px;display:flex;align-items:center;gap:10px}
+  .mini-hd-badge{background:#D4AF37;color:#1B2A4A;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:1px}
+  .mini-hd-title{color:#fff;font-size:13px;font-weight:700}
+  .mini-hd-hint{font-size:11px;color:rgba(255,255,255,.7);margin-left:auto}
+  .mini-body{padding:14px 16px}
+  .q-block{margin-bottom:18px;position:relative}
+  .q-text{font-size:14px;line-height:2.2}
+  .mblank{display:inline-block;min-width:90px;height:28px;background:#1B2A4A;border-radius:6px;margin:0 3px;text-align:center;cursor:pointer;font-weight:700;font-size:13px;color:transparent;vertical-align:middle;position:relative;transition:background .2s;border:2px solid #1B2A4A;line-height:24px;padding:0 8px;white-space:nowrap}
+  .mblank.filled{color:#fff;background:#2c447a;border-color:#2c447a}
+  .mblank.correct{color:#1a1a2e;background:#ffd700;border-color:#b8860b}
+  .mblank:hover{opacity:.85}
+  .word-popup{display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#1B2A4A;border:2px solid #D4AF37;border-radius:10px;padding:10px;z-index:500;box-shadow:0 6px 20px rgba(0,0,0,.3);min-width:260px;}
+  .word-popup.show{display:block}
+  .word-popup::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#D4AF37}
+  .word-popup-title{font-size:10px;color:#D4AF37;font-weight:700;letter-spacing:1px;margin-bottom:8px}
+  .word-chips{display:flex;flex-wrap:wrap;gap:6px}
+  .wchip{padding:5px 11px;border-radius:16px;border:1.5px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;position:relative}
+  .wchip:hover{background:#D4AF37;color:#1B2A4A;border-color:#D4AF37}
+  .wchip.used{opacity:.3;pointer-events:none}
+  .wchip-tip{display:none;position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);width:190px;background:#2c1800;color:#fff;border-radius:8px;padding:8px 10px;font-size:11px;line-height:1.7;z-index:600;pointer-events:none;text-align:left;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+  .wchip-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#2c1800}
+  .wchip:hover .wchip-tip{display:block}
+  .mini-footer{padding:10px 16px 14px;display:flex;align-items:center;gap:10px;border-top:1px solid #dde3ee;flex-wrap:wrap}
+  .mini-check-btn{background:#C0392B;color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+  .mini-check-btn:hover{background:#8a2820}
+  .mini-reset-btn{background:#6c757d;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+  .mini-reset-btn:hover{background:#495057}
+  .mini-score{font-size:13px;font-weight:700;color:#1B2A4A;margin-left:auto}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="header-title"><span>GAMBA</span> 民法</div>
+      <div class="header-sub">大卒程度公務員試験対策</div>
+    </div>
+    <div class="header-badge">ch04 解説</div>
+  </div>
+</header>
+
+<main>
+
+  <div class="chapter-title">
+    <h1>第４章　意思表示①</h1>
+    <div class="subtitle">寺本民法Ⅰ 第4章 ｜ 心裡留保・虚偽表示 ｜ 頻出度 <span class="stars">★★★</span></div>
+  </div>
+
+  <!-- ===== セクション1 意思表示の構造 ===== -->
+  <div class="section">
+    <div class="section-header"><div class="num">1</div>意思表示の構造</div>
+    <div class="section-body">
+      <div class="def-box">
+        <div class="def-title">意思表示とは</div>
+        一定の法律効果の発生を欲する意思を外部に表示する行為。売買・贈与・契約の申込み・承諾などはすべて意思表示です。
+      </div>
+
+      <h3>意思の形成プロセス（図）</h3>
+      <div class="flow-h">
+        <div class="fbox">動機<br><span style="font-size:11px;font-weight:normal">買いたいな</span></div>
+        <div class="farrow">→</div>
+        <div class="fbox">効果意思<br><span style="font-size:11px;font-weight:normal">買う意思</span></div>
+        <div class="farrow">→</div>
+        <div class="fbox">表示意思<br><span style="font-size:11px;font-weight:normal">表示しようとする意思</span></div>
+        <div class="farrow">→</div>
+        <div class="fbox navy">表示行為<br><span style="font-size:11px">「買います」</span></div>
+      </div>
+
+      <div class="point-box">
+        <div class="point-title">💡 意思の不存在（意思の欠缺）と瑕疵ある意思表示</div>
+        <table>
+          <thead><tr><th>分類</th><th>種類</th><th>条文</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="3"><strong>意思の不存在</strong><br>（表示と内心が不一致）</td><td>心裡留保</td><td>93条</td></tr>
+            <tr><td>虚偽表示</td><td>94条</td></tr>
+            <tr><td>錯誤</td><td>95条</td></tr>
+            <tr><td rowspan="2"><strong>瑕疵ある意思表示</strong><br>（意思形成過程に問題）</td><td>詐欺</td><td>96条</td></tr>
+            <tr><td>強迫</td><td>96条</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ミニテスト：意思表示の構造 -->
+  <div class="mini" id="mini1">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">意思表示の構造</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 意思の不存在（意思の欠缺）には、<span class="mblank" data-ans="心裡留保" data-gid="g1" data-qid="1-1">　　　　</span>・<span class="mblank" data-ans="虚偽表示" data-gid="g1" data-qid="1-2">　　　　</span>・<span class="mblank" data-ans="錯誤" data-gid="g1" data-qid="1-3">　　</span>の3つがある。瑕疵ある意思表示には<span class="mblank" data-ans="詐欺" data-gid="g1" data-qid="1-4">　　</span>・<span class="mblank" data-ans="強迫" data-gid="g1" data-qid="1-5">　　</span>がある。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini1','g1')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini1','g1')">やり直す</button>
+      <span class="mini-score" id="score-mini1"></span>
+    </div>
+  </div>
+  </div>
+
+  <!-- ===== セクション2 心裡留保 ===== -->
+  <div class="section">
+    <div class="section-header"><div class="num">2</div>心裡留保（93条）</div>
+    <div class="section-body">
+      <div class="def-box">
+        <div class="def-title">心裡留保とは</div>
+        表意者が、真意でないことを知りながら意思表示をすること（冗談・嘘など）。
+      </div>
+
+      <h3>原則と例外（図）</h3>
+      <div class="flow-h">
+        <div class="fbox navy">心裡留保による意思表示</div>
+        <div class="farrow">→</div>
+        <div class="fbox gold">原則：有効<br><span style="font-size:11px">（相手方保護）</span></div>
+      </div>
+      <div class="flow-h" style="margin-top:4px">
+        <div class="fbox navy">相手方が悪意または有過失</div>
+        <div class="farrow">→</div>
+        <div class="fbox red">例外：無効<br><span style="font-size:11px">（93条1項但書）</span></div>
+      </div>
+
+      <div class="compare-2col" style="margin-top:14px">
+        <div class="c2-card">
+          <div class="c2-head navy">相手方が善意・無過失</div>
+          <div class="c2-body">
+            意思表示は<span class="ok">有効</span><br>
+            表意者は真意でなかったことを主張して無効にできない
+          </div>
+        </div>
+        <div class="c2-card">
+          <div class="c2-head crimson">相手方が悪意または有過失</div>
+          <div class="c2-body">
+            意思表示は<span class="ng">無効</span><br>
+            ただし善意の第三者には無効を対抗できない（93条2項）
+          </div>
+        </div>
+      </div>
+
+      <div class="caution-box">
+        <div class="caution-title">⚠ 第三者保護（93条2項）</div>
+        心裡留保による無効は、<strong>善意の第三者に対抗することができません</strong>。第三者に過失があっても保護されます（善意であれば足りる）。
+      </div>
+    </div>
+  </div>
+
+  <!-- ミニテスト：心裡留保 -->
+  <div class="mini" id="mini2">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">心裡留保（93条）</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 心裡留保による意思表示は原則<span class="mblank" data-ans="有効" data-gid="g2" data-qid="2-1">　　</span>。相手方が<span class="mblank" data-ans="悪意または有過失" data-gid="g2" data-qid="2-2">　　　　</span>の場合は<span class="mblank" data-ans="無効" data-gid="g2" data-qid="2-3">　　</span>（93条1項）。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 心裡留保の無効は<span class="mblank" data-ans="善意の第三者" data-gid="g2" data-qid="2-4">　　　　</span>に対抗不可（93条2項）。第三者に過失があっても<span class="mblank" data-ans="保護される" data-gid="g2" data-qid="2-5">　　　　</span>。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini2','g2')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini2','g2')">やり直す</button>
+      <span class="mini-score" id="score-mini2"></span>
+    </div>
+  </div>
+  </div>
+
+  <!-- ===== セクション3 虚偽表示 ===== -->
+  <div class="section">
+    <div class="section-header"><div class="num">3</div>虚偽表示（通謀虚偽表示）（94条）</div>
+    <div class="section-body">
+      <div class="def-box">
+        <div class="def-title">虚偽表示とは</div>
+        相手方と通謀して行う虚偽の意思表示。例：実際には売る気がないのに、強制執行を免れるため相手方と示し合わせて売買契約書を作成する。
+      </div>
+
+      <h3>効力（図）</h3>
+      <div class="flow-h">
+        <div class="fbox navy">虚偽表示（AB間の通謀）</div>
+        <div class="farrow">→</div>
+        <div class="fbox red">当事者間では無効<br><span style="font-size:11px">（94条1項）</span></div>
+      </div>
+      <div class="flow-h" style="margin-top:4px">
+        <div class="fbox navy">善意の第三者Cが登場</div>
+        <div class="farrow">→</div>
+        <div class="fbox gold">Cに無効を対抗できない<br><span style="font-size:11px">（94条2項）</span></div>
+      </div>
+
+      <div class="caution-box">
+        <div class="caution-title">⚠ 94条2項「第三者」の要件（重要！）</div>
+        <ul>
+          <li>虚偽表示の<strong>当事者・包括承継人以外</strong>の者</li>
+          <li>虚偽の外形を信頼して<strong>新たな法律関係を築いた者</strong></li>
+          <li><strong>善意</strong>であること（無過失は不要・判例）</li>
+          <li><strong>登記は不要</strong>（判例）</li>
+        </ul>
+      </div>
+
+      <h3>第三者の具体例</h3>
+      <table>
+        <thead>
+          <tr><th>第三者に当たる（保護される）</th><th>第三者に当たらない（保護されない）</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              ・虚偽表示の目的物を買い受けた者<br>
+              ・目的物に抵当権を設定した者<br>
+              ・差押債権者（善意の場合）
+            </td>
+            <td>
+              ・虚偽表示の当事者の一般債権者<br>
+              ・包括承継人（相続人）<br>
+              ・転得者が悪意の場合
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ミニテスト：虚偽表示 -->
+  <div class="mini" id="mini3">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">虚偽表示（94条）</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 虚偽表示は当事者間では<span class="mblank" data-ans="無効" data-gid="g3" data-qid="3-1">　　</span>（94条1項）。<span class="mblank" data-ans="善意の第三者" data-gid="g3" data-qid="3-2">　　　　</span>には無効を対抗できない（94条2項）。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 94条2項の第三者保護は善意で足り、<span class="mblank" data-ans="無過失は不要" data-gid="g3" data-qid="3-3">　　　　</span>（判例）。登記も<span class="mblank" data-ans="不要" data-gid="g3" data-qid="3-4">　　</span>（判例）。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini3','g3')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini3','g3')">やり直す</button>
+      <span class="mini-score" id="score-mini3"></span>
+    </div>
+  </div>
+  </div>
+
+  <!-- ===== セクション4 94条2項類推適用 ===== -->
+  <div class="section">
+    <div class="section-header"><div class="num">4</div>94条2項の類推適用</div>
+    <div class="section-body">
+      <p>虚偽の外形を<strong>自ら作り出した</strong>場合や、他人が作り出した虚偽の外形を<strong>知りながら放置</strong>した場合にも、94条2項が類推適用されます。</p>
+
+      <h3>2つのパターン（図）</h3>
+      <div class="compare-2col">
+        <div class="c2-card">
+          <div class="c2-head navy">①外形自己作出型</div>
+          <div class="c2-body">
+            <strong>権利者自身</strong>が虚偽の外形を作り出した場合<br><br>
+            例：AがBに名義を貸した→CがBから購入<br><br>
+            要件：C（第三者）が<strong>善意</strong>であること<br>
+            <span style="font-size:11px;color:#888">（最判昭41.3.18）</span>
+          </div>
+        </div>
+        <div class="c2-card">
+          <div class="c2-head gray">②外形他人作出型</div>
+          <div class="c2-body">
+            <strong>他人</strong>が虚偽の外形を作り出したが、権利者がこれを<strong>知りながら放置</strong>した場合<br><br>
+            例：BがAの不動産を無断で登記→Aが放置→CがBから購入<br><br>
+            要件：C（第三者）が<strong>善意無過失</strong>であること<br>
+            <span style="font-size:11px;color:#888">（最判昭45.9.22）</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="point-box">
+        <div class="point-title">💡 善意の要件の違い（重要！）</div>
+        <table>
+          <thead><tr><th>類型</th><th>第三者に必要な要件</th></tr></thead>
+          <tbody>
+            <tr><td>本来の94条2項（通謀虚偽表示）</td><td class="td-center">善意のみ（無過失不要）</td></tr>
+            <tr><td>①外形自己作出型</td><td class="td-center">善意のみ（無過失不要）</td></tr>
+            <tr><td>②外形他人作出型</td><td class="td-center"><strong>善意かつ無過失</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="hanrei-box">
+        <div class="hanrei-head">📋 判例ボックス　最判昭45.9.22（外形他人作出型）</div>
+        <div class="hanrei-body">
+          <div class="jian">【事案】Bが権利者Aの不動産につき無断で登記名義を自己に移転。AはBの行為を知りながら長期間放置。その後Cが善意・無過失でBから購入。</div>
+          <div class="hanshi">【判旨】Aの帰責性がBによる外形作出への積極的関与と同視しうるほど重いため、94条2項・110条を類推適用し、善意無過失のCを保護する。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ミニテスト：94条2項類推適用 -->
+  <div class="mini" id="mini4">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">94条2項の類推適用</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 外形自己作出型の類推適用では、第三者は<span class="mblank" data-ans="善意" data-gid="g4" data-qid="4-1">　　</span>であれば足り無過失は不要（最判昭41）。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 外形他人作出型（放置）では94条2項・<span class="mblank" data-ans="110条" data-gid="g4" data-qid="4-2">　　</span>を類推適用。第三者は<span class="mblank" data-ans="善意かつ無過失" data-gid="g4" data-qid="4-3">　　　　</span>が必要（最判昭45）。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini4','g4')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini4','g4')">やり直す</button>
+      <span class="mini-score" id="score-mini4"></span>
+    </div>
+  </div>
+
+  <!-- ===== セクション5 心裡留保・虚偽表示の比較まとめ ===== -->
+  <div class="section">
+    <div class="section-header"><div class="num">5</div>心裡留保・虚偽表示の比較</div>
+    <div class="section-body">
+      <table>
+        <thead>
+          <tr><th>項目</th><th>心裡留保（93条）</th><th>虚偽表示（94条）</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>当事者間の効力</strong></td>
+            <td class="td-center">原則<span class="ok">有効</span><br>相手方悪意・有過失→<span class="ng">無効</span></td>
+            <td class="td-center">常に<span class="ng">無効</span></td>
+          </tr>
+          <tr>
+            <td><strong>第三者保護要件</strong></td>
+            <td class="td-center">善意（無過失不要）</td>
+            <td class="td-center">善意（無過失不要）</td>
+          </tr>
+          <tr>
+            <td><strong>登記の要否</strong></td>
+            <td class="td-center">不要</td>
+            <td class="td-center">不要</td>
+          </tr>
+          <tr>
+            <td><strong>通謀の有無</strong></td>
+            <td class="td-center">なし（一方的）</td>
+            <td class="td-center">あり（相手方と通謀）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="goro-box">
+        <div class="goro-label">ゴロ合わせ（第三者の要件）</div>
+        心裡留保・虚偽表示・外形自己作出型：「<strong>善意だけでOK（無過失不要）</strong>」<br>
+        外形他人作出型：「<strong>善意＋無過失が必要（他人が作ったから厳しめ）</strong>」
+      </div>
+    </div>
+  </div>
+
+  <!-- ミニテスト：比較まとめ -->
+  <div class="mini" id="mini5">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">心裡留保・虚偽表示の比較</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 心裡留保は当事者間では原則<span class="mblank" data-ans="有効" data-gid="g5" data-qid="5-1">　　</span>。虚偽表示は当事者間では常に<span class="mblank" data-ans="無効" data-gid="g5" data-qid="5-2">　　</span>。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 心裡留保・虚偽表示いずれも第三者保護の要件は<span class="mblank" data-ans="善意" data-gid="g5" data-qid="5-3">　　</span>のみで足り、<span class="mblank" data-ans="無過失" data-gid="g5" data-qid="5-4">　　　　</span>は不要。登記も<span class="mblank" data-ans="不要" data-gid="g5" data-qid="5-5">　　</span>。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini5','g5')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini5','g5')">やり直す</button>
+      <span class="mini-score" id="score-mini5"></span>
+    </div>
+  </div>
+  </div>
+
+  <div class="nav-btn-wrap">
+    <a href="minpo_ch03_kaisetsu.html" class="nav-btn">← 前の章</a>
+    <a href="minpo_index.html" class="nav-btn">目次へ</a>
+    <a href="minpo_ch04_enshu.html" class="nav-btn crimson">演習問題へ →</a>
+  </div>
+
+</main>
+
+<footer>
+  GAMBA民法 ch04 ｜ 音声：VOICEVOX（四国めたん）｜ © 江原予備校
+</footer>
+
+<script>
+const WORD_TIPS_04 = {
+  "心裡留保":"冗談など、真意と異なることを自分で知りながら意思表示すること。",
+  "虚偽表示":"相手方と示し合わせて（通謀して）する虚偽の意思表示。",
+  "錯誤":"本人が気づかないまま意思と表示がズレている状態。",
+  "詐欺":"だまされて行った意思表示。取消しができる（96条）。",
+  "強迫":"おどされて行った意思表示。取消しができる（96条）。",
+  "有効":"心裡留保は相手方が善意・無過失なら有効（93条1項本文）。",
+  "悪意または有過失":"相手方がこの状態なら心裡留保は無効になる（93条1項但書）。",
+  "無効":"虚偽表示は当事者間では常に無効（94条1項）。",
+  "善意の第三者":"第三者が善意であれば無効を対抗できない（93条2項・94条2項）。",
+  "保護される":"心裡留保の第三者保護は無過失不要。過失があっても保護される。",
+  "無過失は不要":"94条2項の類推は善意だけで足りる（外形自己作出型）。",
+  "不要":"登記なくして善意の第三者に対抗できない。",
+  "善意":"外形自己作出型の類推適用は善意のみで足りる（無過失不要）。",
+  "110条":"外形他人作出型では94条2項＋110条を類推適用（最判昭45）。",
+  "善意かつ無過失":"外形他人作出型の類推適用では善意＋無過失が必要。",
+  "無過失":"虚偽表示・心裡留保の第三者保護は無過失不要。",
+};
+const GROUP_WORDS_04 = {
+  g1: ["心裡留保","虚偽表示","錯誤","詐欺","強迫"],
+  g2: ["有効","悪意または有過失","無効","善意の第三者","保護される"],
+  g3: ["無効","善意の第三者","無過失は不要","不要"],
+  g4: ["善意","110条","善意かつ無過失"],
+  g5: ["有効","無効","善意","無過失","不要"],
+};
+let activePopup04 = null;
+function closeAllPopups04(){document.querySelectorAll('.word-popup').forEach(p=>p.classList.remove('show'));activePopup04=null;}
+function buildPopup04(blank){
+  const gid=blank.dataset.gid,words=GROUP_WORDS_04[gid]||[];
+  const pop=document.createElement('div');pop.className='word-popup';
+  pop.innerHTML='<div class="word-popup-title">▼ 語群から選んでください</div><div class="word-chips"></div>';
+  const cd=pop.querySelector('.word-chips');
+  words.forEach(w=>{
+    const chip=document.createElement('span');chip.className='wchip';chip.textContent=w;
+    const tip=WORD_TIPS_04[w];
+    if(tip){const te=document.createElement('span');te.className='wchip-tip';te.textContent=tip;chip.appendChild(te);}
+    chip.addEventListener('click',e=>{
+      e.stopPropagation();
+      document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b=>{if(b!==blank&&b.dataset.current===w){b.textContent='';b.dataset.current='';b.classList.remove('filled','correct');}});
+      blank.textContent=w;blank.dataset.current=w;blank.classList.add('filled');blank.classList.remove('correct');
+      updateChipUsed04(gid);closeAllPopups04();
+    });
+    cd.appendChild(chip);
+  });
+  return pop;
+}
+function updateChipUsed04(gid){
+  const used=[];
+  document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b=>{if(b.dataset.current)used.push(b.dataset.current);});
+  document.querySelectorAll('.word-popup').forEach(pop=>{pop.querySelectorAll('.wchip').forEach(c=>{c.classList.toggle('used',used.includes(c.childNodes[0].textContent.trim()));});});
+}
+document.querySelectorAll('.mblank').forEach(blank=>{
+  blank.dataset.current='';
+  blank.addEventListener('click',e=>{
+    e.stopPropagation();
+    if(activePopup04&&activePopup04.blankEl===blank){closeAllPopups04();return;}
+    closeAllPopups04();
+    const pop=buildPopup04(blank);blank.appendChild(pop);
+    updateChipUsed04(blank.dataset.gid);
+    requestAnimationFrame(()=>pop.classList.add('show'));
+    activePopup04={blankEl:blank,popupEl:pop};
+  });
+});
+document.addEventListener('click',()=>closeAllPopups04());
+function checkMini(miniId,gid){
+  let c=0,t=0;
+  document.querySelectorAll(`#${miniId} .mblank`).forEach(b=>{t++;if((b.dataset.current||'')===b.dataset.ans){b.classList.add('correct');c++;}else b.classList.remove('correct');});
+  const s=document.getElementById('score-'+miniId);
+  if(s){s.textContent=c===t?`✅ 全問正解！(${c}/${t})`:`${c}/${t} 正解`;s.style.color=c===t?'#2e7d32':'#C0392B';}
+}
+function resetMini(miniId,gid){
+  document.querySelectorAll(`#${miniId} .mblank`).forEach(b=>{b.textContent='';b.dataset.current='';b.classList.remove('filled','correct');});
+  const s=document.getElementById('score-'+miniId);if(s)s.textContent='';
+  closeAllPopups04();
+}
+</script>
+
+</body>
+</html>

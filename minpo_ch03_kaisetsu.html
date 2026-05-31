@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法 ch03 権利能力なき社団</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4A017;
+    --gold-light: #F0C040;
+    --bg: #F5F3EE;
+    --white: #FFFFFF;
+    --text: #1A1A1A;
+    --text-light: #555555;
+    --border: #D0C8B8;
+    --section-bg: #EEF1F7;
+    --correct: #27AE60;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Meiryo','メイリオ','Yu Gothic',sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; font-size: 15px; }
+
+  header { background: var(--navy); color: #fff; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+  .header-inner { max-width: 860px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+  .header-title { font-size: 18px; font-weight: bold; }
+  .header-title span { color: var(--gold); }
+  .header-sub { font-size: 12px; color: #aaa; margin-top: 2px; }
+  .header-badge { background: var(--crimson); color: #fff; font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: bold; }
+
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  .chapter-title { background: var(--navy); color: #fff; border-radius: 8px; padding: 20px 24px; margin-bottom: 28px; border-left: 6px solid var(--gold); }
+  .chapter-title h1 { font-size: 20px; font-weight: bold; }
+  .chapter-title .subtitle { font-size: 13px; color: var(--gold-light); margin-top: 4px; }
+  .stars { color: var(--gold); }
+
+  .section { background: #fff; border-radius: 8px; margin-bottom: 24px; border: 1px solid var(--border); overflow: hidden; }
+  .section-header { background: var(--navy); color: #fff; padding: 10px 18px; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 8px; }
+  .section-header .num { background: var(--gold); color: var(--navy); width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; flex-shrink: 0; }
+  .section-body { padding: 18px 20px; }
+
+  .def-box { background: var(--section-bg); border-left: 4px solid var(--navy); border-radius: 0 6px 6px 0; padding: 12px 16px; margin: 12px 0; font-size: 14px; }
+  .def-box .def-title { font-weight: bold; color: var(--navy); margin-bottom: 4px; font-size: 13px; }
+  .point-box { background: #FFF8E8; border: 1px solid var(--gold); border-radius: 6px; padding: 12px 16px; margin: 12px 0; font-size: 14px; }
+  .point-box .point-title { color: var(--gold); font-weight: bold; font-size: 12px; margin-bottom: 4px; }
+  .caution-box { background: #FEF0EE; border: 1px solid var(--crimson); border-radius: 6px; padding: 12px 16px; margin: 12px 0; font-size: 14px; }
+  .caution-box .caution-title { color: var(--crimson); font-weight: bold; font-size: 12px; margin-bottom: 4px; }
+
+  h3 { font-size: 14px; color: var(--navy); margin: 16px 0 8px; padding-left: 8px; border-left: 3px solid var(--gold); }
+  p { margin: 8px 0; font-size: 14px; }
+  ul,ol { padding-left: 20px; margin: 8px 0; }
+  li { margin: 4px 0; font-size: 14px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+  th { background: var(--navy); color: #fff; padding: 8px 10px; text-align: center; font-weight: bold; }
+  td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: middle; }
+  tr:nth-child(even) td { background: #F8F6F2; }
+  .td-center { text-align: center; }
+
+  .goro-box { background: var(--navy); color: var(--gold-light); border-radius: 6px; padding: 10px 16px; margin: 12px 0; font-size: 14px; font-weight: bold; }
+  .goro-box .goro-label { font-size: 11px; color: #aaa; margin-bottom: 2px; font-weight: normal; }
+
+  /* ===== 図系スタイル ===== */
+
+  /* 比較図：法人 vs 権利能力なき社団 */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .compare-card {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--border);
+  }
+  .compare-card-header {
+    padding: 8px 14px;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+  }
+  .compare-card-header.blue { background: var(--navy); color: #fff; }
+  .compare-card-header.gray { background: #6C757D; color: #fff; }
+  .compare-card-body { padding: 10px 14px; font-size: 13px; background: #fff; }
+  .compare-card-body li { margin: 5px 0; }
+  .compare-card-body .ok { color: var(--correct); font-weight: bold; }
+  .compare-card-body .ng { color: var(--crimson); font-weight: bold; }
+
+  /* 成立要件図 */
+  .req-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .req-item {
+    background: var(--section-bg);
+    border-radius: 8px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .req-item .req-num {
+    background: var(--navy);
+    color: var(--gold);
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: bold;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .req-item .req-title { font-weight: bold; color: var(--navy); }
+  .req-item .req-body { margin-top: 4px; font-size: 12px; color: #555; padding-left: 30px; }
+
+  /* 財産帰属の図解 */
+  .property-diagram {
+    background: #fff;
+    border: 2px solid var(--navy);
+    border-radius: 10px;
+    padding: 16px;
+    margin: 14px 0;
+    font-size: 13px;
+  }
+  .property-diagram .diag-title {
+    text-align: center;
+    font-weight: bold;
+    color: var(--navy);
+    font-size: 14px;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px dashed var(--gold);
+  }
+  .diag-row {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    gap: 10px;
+  }
+  .diag-box {
+    flex: 1;
+    background: var(--section-bg);
+    border-radius: 6px;
+    padding: 8px 12px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid var(--border);
+  }
+  .diag-box.navy { background: var(--navy); color: #fff; }
+  .diag-box.gold { background: var(--gold); color: var(--navy); }
+  .diag-box.crimson { background: #FEF0EE; border-color: var(--crimson); color: var(--crimson); }
+  .diag-arrow {
+    font-size: 20px;
+    color: var(--navy);
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  .diag-label {
+    font-size: 11px;
+    color: #888;
+    text-align: center;
+    margin-top: 2px;
+  }
+
+  /* 登記の図解 */
+  .reg-diagram {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 8px;
+    align-items: center;
+    margin: 14px 0;
+    font-size: 13px;
+  }
+  .reg-box {
+    background: var(--section-bg);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .reg-box.subject { background: var(--navy); color: #fff; }
+  .reg-box.name { background: #FFF8E8; border-color: var(--gold); }
+  .reg-arrow { text-align: center; font-size: 22px; color: var(--navy); }
+
+  /* フロー図（法人格否認の法理） */
+  .flow-diagram {
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin: 14px 0;
+  }
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 8px 0;
+  }
+  .flow-step-num {
+    background: var(--crimson);
+    color: #fff;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .flow-step-body { font-size: 13px; flex: 1; }
+  .flow-down {
+    text-align: center;
+    color: var(--navy);
+    font-size: 20px;
+    margin: 2px 0;
+  }
+  .flow-result {
+    background: var(--navy);
+    color: var(--gold-light);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  /* ミニテスト */
+  .mini{background:#fff;border:2px solid #1B2A4A;border-radius:12px;margin-top:20px;overflow:visible}
+  .mini-hd{background:linear-gradient(90deg,#1B2A4A,#2c447a);padding:10px 16px;display:flex;align-items:center;gap:10px}
+  .mini-hd-badge{background:#D4AF37;color:#1B2A4A;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:1px}
+  .mini-hd-title{color:#fff;font-size:13px;font-weight:700}
+  .mini-hd-hint{font-size:11px;color:rgba(255,255,255,.7);margin-left:auto}
+  .mini-body{padding:14px 16px}
+  .q-block{margin-bottom:18px;position:relative}
+  .q-text{font-size:14px;line-height:2.2}
+  .mblank{display:inline-block;min-width:90px;height:28px;background:#1B2A4A;border-radius:6px;margin:0 3px;text-align:center;cursor:pointer;font-weight:700;font-size:13px;color:transparent;vertical-align:middle;position:relative;transition:background .2s;border:2px solid #1B2A4A;line-height:24px;padding:0 8px;white-space:nowrap}
+  .mblank.filled{color:#fff;background:#2c447a;border-color:#2c447a}
+  .mblank.correct{color:#1a1a2e;background:#ffd700;border-color:#b8860b}
+  .mblank:hover{opacity:.85}
+  .word-popup{display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#1B2A4A;border:2px solid #D4AF37;border-radius:10px;padding:10px;z-index:500;box-shadow:0 6px 20px rgba(0,0,0,.3);min-width:260px;}
+  .word-popup.show{display:block}
+  .word-popup::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#D4AF37}
+  .word-popup-title{font-size:10px;color:#D4AF37;font-weight:700;letter-spacing:1px;margin-bottom:8px}
+  .word-chips{display:flex;flex-wrap:wrap;gap:6px}
+  .wchip{padding:5px 11px;border-radius:16px;border:1.5px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;position:relative}
+  .wchip:hover{background:#D4AF37;color:#1B2A4A;border-color:#D4AF37}
+  .wchip.used{opacity:.3;pointer-events:none}
+  .wchip-tip{display:none;position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);width:190px;background:#2c1800;color:#fff;border-radius:8px;padding:8px 10px;font-size:11px;line-height:1.7;z-index:600;pointer-events:none;text-align:left;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+  .wchip-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#2c1800}
+  .wchip:hover .wchip-tip{display:block}
+  .mini-footer{padding:10px 16px 14px;display:flex;align-items:center;gap:10px;border-top:1px solid #dde3ee;flex-wrap:wrap}
+  .mini-check-btn{background:#C0392B;color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+  .mini-check-btn:hover{background:#8a2820}
+  .mini-reset-btn{background:#6c757d;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+  .mini-reset-btn:hover{background:#495057}
+  .mini-score{font-size:13px;font-weight:700;color:#1B2A4A;margin-left:auto}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="header-title"><span>GAMBA</span> 民法</div>
+      <div class="header-sub">大卒程度公務員試験対策</div>
+    </div>
+    <div class="header-badge">ch03 解説</div>
+  </div>
+</header>
+
+<main>
+
+  <div class="chapter-title">
+    <h1>第３章　権利能力なき社団</h1>
+    <div class="subtitle">寺本民法Ⅰ 第3章 ｜ 頻出度 <span class="stars">★★★</span></div>
+  </div>
+
+  <!-- セクション1 概念図 -->
+  <div class="section">
+    <div class="section-header"><div class="num">1</div>権利能力なき社団とは</div>
+    <div class="section-body">
+
+      <div class="def-box">
+        <div class="def-title">権利能力なき社団とは</div>
+        社団としての実体（団体的組織）を備えているにもかかわらず、法人格を取得していない団体のことをいいます。「法人格なき社団」とも呼ばれます。
+      </div>
+
+      <h3>法人との違い（比較図）</h3>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <div class="compare-card-header blue">法　人</div>
+          <div class="compare-card-body">
+            <ul>
+              <li><span class="ok">○</span> 法人格あり</li>
+              <li><span class="ok">○</span> 自己名義で登記できる</li>
+              <li><span class="ok">○</span> 財産は法人に帰属</li>
+              <li><span class="ok">○</span> 訴訟の当事者になれる</li>
+              <li><span class="ok">○</span> 代表者個人は無限責任を負わない</li>
+            </ul>
+          </div>
+        </div>
+        <div class="compare-card">
+          <div class="compare-card-header gray">権利能力なき社団</div>
+          <div class="compare-card-body">
+            <ul>
+              <li><span class="ng">×</span> 法人格なし</li>
+              <li><span class="ng">×</span> 自己名義で登記できない</li>
+              <li><span class="ok">○</span> 財産は構成員全員に総有</li>
+              <li><span class="ok">○</span> 訴訟の当事者になれる（民訴法29条）</li>
+              <li><span class="ng">×</span> 代表者が個人名義で登記</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p>例）同窓会・町内会・マンション管理組合（法人化していないもの）・PTA など</p>
+
+    </div>
+  </div>
+
+  <!-- セクション2 成立要件 -->
+  <div class="section">
+    <div class="section-header"><div class="num">2</div>成立要件（判例・最判昭39.10.15）</div>
+    <div class="section-body">
+
+      <p>判例は、権利能力なき社団として認められるための要件を4つ示しています。</p>
+
+      <div class="req-grid">
+        <div class="req-item">
+          <div><span class="req-num">①</span><span class="req-title">団体としての組織</span></div>
+          <div class="req-body">単なる個人の集合ではなく、団体としての組織を有すること</div>
+        </div>
+        <div class="req-item">
+          <div><span class="req-num">②</span><span class="req-title">多数決原則</span></div>
+          <div class="req-body">意思決定が多数決によって行われること</div>
+        </div>
+        <div class="req-item">
+          <div><span class="req-num">③</span><span class="req-title">構成員の変動にかかわらず団体が存続</span></div>
+          <div class="req-body">構成員が変わっても団体として存続していること</div>
+        </div>
+        <div class="req-item">
+          <div><span class="req-num">④</span><span class="req-title">代表の方法・総会の運営等の定め</span></div>
+          <div class="req-body">代表の方法・総会の運営・財産の管理等について規定が定められていること</div>
+        </div>
+      </div>
+
+      <div class="goro-box">
+        <div class="goro-label">ゴロ合わせ（4要件の頭文字）</div>
+        「<strong>そ（組織）た（多数決）け（継続存続）き（規定）</strong>」→ 「組織立ってた継続規定」
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ミニテスト1 -->
+  <div class="mini" id="mini1">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">① 成立要件</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 権利能力なき社団の4要件：①<span class="mblank" data-ans="団体としての組織" data-gid="g1" data-qid="1-1">　　　　</span>②<span class="mblank" data-ans="多数決原則" data-gid="g1" data-qid="1-2">　　　　</span>③<span class="mblank" data-ans="団体が存続" data-gid="g1" data-qid="1-3">　　　　</span>④<span class="mblank" data-ans="代表の方法・総会の運営等の定め" data-gid="g1" data-qid="1-4">　　　　</span>（判例）。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini1','g1')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini1','g1')">やり直す</button>
+      <span class="mini-score" id="score-mini1"></span>
+    </div>
+  </div>
+  </div>
+
+  <!-- セクション3 財産の帰属 -->
+  <div class="section">
+    <div class="section-header"><div class="num">3</div>財産の帰属（総有）</div>
+    <div class="section-body">
+
+      <p>権利能力なき社団に帰属する財産は、構成員全員に<strong>総有</strong>として帰属します。</p>
+
+      <div class="property-diagram">
+        <div class="diag-title">財産帰属の3形態</div>
+
+        <div class="diag-row">
+          <div class="diag-box navy">単独所有</div>
+          <div class="diag-arrow">→</div>
+          <div class="diag-box">1人が完全に所有<br><span style="font-size:11px;font-weight:normal">自由に処分・譲渡できる</span></div>
+        </div>
+
+        <div class="diag-row">
+          <div class="diag-box navy">共　有<br><span style="font-size:11px;font-weight:normal">（249条〜）</span></div>
+          <div class="diag-arrow">→</div>
+          <div class="diag-box">各自が<strong>持分</strong>を有し<br>自由に処分・分割請求できる</div>
+        </div>
+
+        <div class="diag-row">
+          <div class="diag-box gold">総　有<br><span style="font-size:11px;font-weight:normal">（権利能力なき社団）</span></div>
+          <div class="diag-arrow">→</div>
+          <div class="diag-box crimson">持分なし・分割請求不可<br>構成員全員に帰属するが<br>個人は処分・持分請求できない</div>
+        </div>
+      </div>
+
+      <div class="caution-box">
+        <div class="caution-title">⚠ 総有の重要ポイント</div>
+        <ul>
+          <li>各構成員は<strong>持分を有しない</strong>（共有との最大の違い）</li>
+          <li>構成員は財産の<strong>分割請求ができない</strong></li>
+          <li>構成員は自己の持分を<strong>第三者に譲渡できない</strong></li>
+          <li>退会しても財産の払い戻しを<strong>請求できない</strong>（原則）</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ミニテスト2 -->
+  <div class="mini" id="mini2">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">② 財産の帰属（総有）</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 権利能力なき社団の財産は<span class="mblank" data-ans="総有" data-gid="g2" data-qid="2-1">　　</span>として帰属し、各構成員は<span class="mblank" data-ans="持分を有しない" data-gid="g2" data-qid="2-2">　　　　</span>。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 総有では<span class="mblank" data-ans="分割請求" data-gid="g2" data-qid="2-3">　　　　</span>はできず、持分の<span class="mblank" data-ans="第三者への譲渡" data-gid="g2" data-qid="2-4">　　　　</span>もできない。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini2','g2')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini2','g2')">やり直す</button>
+      <span class="mini-score" id="score-mini2"></span>
+    </div>
+  </div>
+  </div>
+
+  <!-- セクション4 登記・訴訟 -->
+  <div class="section">
+    <div class="section-header"><div class="num">4</div>登記・訴訟・債務</div>
+    <div class="section-body">
+
+      <h3>不動産の登記（登記名義）</h3>
+      <p>権利能力なき社団は法人格がないため、<strong>社団名義での登記はできません</strong>。</p>
+
+      <div class="reg-diagram">
+        <div class="reg-box subject">
+          権利能力なき社団<br>
+          <span style="font-size:11px;color:#aaa">（例：○○同窓会）</span>
+        </div>
+        <div class="reg-arrow">→</div>
+        <div class="reg-box name">
+          <strong>代表者個人名義</strong>または<br>
+          <strong>構成員全員の共有名義</strong><br>
+          <span style="font-size:11px;color:#888">（判例：最判昭47.6.2）</span>
+        </div>
+      </div>
+
+      <div class="point-box">
+        <div class="point-title">💡 代表者交代時の登記</div>
+        代表者が交代した場合、新代表者は旧代表者に対して<strong>自己名義への所有権移転登記手続を求めることができる</strong>（判例・最判昭47.6.2）。
+      </div>
+
+      <h3>訴訟上の当事者能力</h3>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <div class="compare-card-header blue">訴訟上の当事者能力</div>
+          <div class="compare-card-body">
+            民事訴訟法29条により、権利能力なき社団も<span class="ok">当事者能力を有する</span>（代表者の定めがある場合）。社団名で訴え・訴えられることができる。
+          </div>
+        </div>
+        <div class="compare-card">
+          <div class="compare-card-header gray">強制執行</div>
+          <div class="compare-card-body">
+            社団名義の判決を得ても、<span class="ng">社団名義の財産に対して直接強制執行はできない</span>。代表者名義の財産に対して執行することになる。
+          </div>
+        </div>
+      </div>
+
+      <h3>社団の債務と構成員の責任</h3>
+      <div class="property-diagram">
+        <div class="diag-title">債務負担の構造</div>
+        <div class="diag-row">
+          <div class="diag-box navy">社団が負った債務</div>
+          <div class="diag-arrow">→</div>
+          <div class="diag-box">社団の<strong>総有財産のみ</strong>が責任財産</div>
+        </div>
+        <div style="text-align:center; margin: 6px 0; font-size:13px; color:var(--crimson); font-weight:bold;">
+          ↓ 構成員個人は？
+        </div>
+        <div class="diag-row">
+          <div class="diag-box crimson">構成員個人</div>
+          <div class="diag-arrow">→</div>
+          <div class="diag-box"><strong>個人責任を負わない</strong><br><span style="font-size:11px">（判例・最判昭44.11.4）</span></div>
+        </div>
+      </div>
+
+      <div class="caution-box">
+        <div class="caution-title">⚠ 代表者の責任</div>
+        代表者も個人として社団の債務を当然に負うわけではありません。ただし、代表者が個人として契約した場合は別です。
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ミニテスト3 -->
+  <div class="mini" id="mini3">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">③ 登記・訴訟・債務</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 不動産登記は<span class="mblank" data-ans="代表者個人名義または構成員全員の共有名義" data-gid="g3" data-qid="3-1">　　　　</span>でなされる。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 構成員個人は<span class="mblank" data-ans="個人責任を負わない" data-gid="g3" data-qid="3-2">　　　　</span>。責任財産は<span class="mblank" data-ans="総有財産のみ" data-gid="g3" data-qid="3-3">　　　　</span>。</div></div>
+      <div class="q-block"><div class="q-text">Q3. 民事訴訟法29条により<span class="mblank" data-ans="訴訟上の当事者能力" data-gid="g3" data-qid="3-4">　　　　</span>を有し、社団名で訴え・訴えられることができる。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini3','g3')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini3','g3')">やり直す</button>
+      <span class="mini-score" id="score-mini3"></span>
+    </div>
+  </div>
+  </div>
+
+  <!-- セクション5 法人格否認の法理 -->
+  <div class="section">
+    <div class="section-header"><div class="num">5</div>法人格否認の法理</div>
+    <div class="section-body">
+
+      <div class="def-box">
+        <div class="def-title">法人格否認の法理とは</div>
+        法人格が形式的には存在する場合でも、その法人格の主張が<strong>濫用</strong>に当たるとき、または法人格が<strong>形骸化</strong>しているときに、その法人格を否認して実態に即した法律効果を認める法理です（判例・最判昭44.2.27）。
+      </div>
+
+      <h3>適用される2つの場面</h3>
+      <div class="flow-diagram">
+        <div class="flow-step">
+          <div class="flow-step-num">①</div>
+          <div class="flow-step-body">
+            <strong>法人格の濫用</strong><br>
+            背後にいる実質的支配者が、法人格を違法・不当な目的に利用している場合<br>
+            <span style="font-size:12px;color:#888">例：債務逃れのための法人設立、強制執行免脱目的</span>
+          </div>
+        </div>
+        <div class="flow-down">↓</div>
+        <div class="flow-step">
+          <div class="flow-step-num">②</div>
+          <div class="flow-step-body">
+            <strong>法人格の形骸化</strong><br>
+            法人と個人（背後者）が完全に一体化しており、法人格が全くの形骸にすぎない場合<br>
+            <span style="font-size:12px;color:#888">例：個人企業的な法人で財産・業務の区別が全くない</span>
+          </div>
+        </div>
+        <div class="flow-down">↓</div>
+        <div class="flow-result">
+          法人格を否認 → 背後の実質的支配者（個人）に直接責任を追及できる
+        </div>
+      </div>
+
+      <div class="point-box">
+        <div class="point-title">💡 判例のポイント（最判昭44.2.27）</div>
+        「法人格が全くの形骸にすぎない場合、またはそれが法律の適用を回避するために濫用される場合においては、法人格を認めることは、法人格なるものの本来の目的に照らして許すべきでなく、法人格を否認すべきことが要請される」
+      </div>
+
+      <div class="caution-box">
+        <div class="caution-title">⚠ 法人格否認は個別的効力</div>
+        法人格否認の法理は、<strong>特定の事件・当事者間における個別的な否認</strong>にすぎず、法人格そのものが消滅するわけではありません。他の取引関係には影響しません。
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ミニテスト4 総合 -->
+  <div class="mini" id="mini4">
+    <div class="mini-hd">
+      <span class="mini-hd-badge">MINI TEST</span>
+      <span class="mini-hd-title">④ 総合確認</span>
+      <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+    </div>
+    <div class="mini-body">
+      <div class="q-block"><div class="q-text">Q1. 法人格否認の法理の2場面：①法人格の<span class="mblank" data-ans="濫用" data-gid="g4" data-qid="4-1">　　</span>②法人格の<span class="mblank" data-ans="形骸化" data-gid="g4" data-qid="4-2">　　</span>（判例）。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 法人格否認の法理は<span class="mblank" data-ans="特定の事件・当事者間における個別的な否認" data-gid="g4" data-qid="4-3">　　　　</span>にすぎない。</div></div>
+      <div class="q-block"><div class="q-text">Q3. 権利能力なき社団の財産は<span class="mblank" data-ans="総有" data-gid="g4" data-qid="4-4">　　</span>。成立要件④は<span class="mblank" data-ans="代表・運営等の定め" data-gid="g4" data-qid="4-5">　　　　</span>。</div></div>
+    </div>
+    <div class="mini-footer">
+      <button class="mini-check-btn" onclick="checkMini('mini4','g4')">判定する</button>
+      <button class="mini-reset-btn" onclick="resetMini('mini4','g4')">やり直す</button>
+      <span class="mini-score" id="score-mini4"></span>
+    </div>
+  </div>
+  </div>
+
+  <div class="nav-btn-wrap">
+    <a href="minpo_ch02_kaisetsu.html" class="nav-btn">← 前の章</a>
+    <a href="minpo_index.html" class="nav-btn">目次へ</a>
+    <a href="minpo_ch03_enshu.html" class="nav-btn crimson">演習問題へ →</a>
+  </div>
+
+</main>
+
+<footer>
+  GAMBA民法 ch03 ｜ 音声：VOICEVOX（四国めたん）｜ © 江原予備校
+</footer>
+
+<script>
+const WORD_TIPS_03 = {
+  "団体としての組織":"独自のルール・意思決定の仕組みを持つ組織体であること。",
+  "多数決原則":"意思決定は多数決で行われること。",
+  "団体が存続":"構成員が変わっても団体が存続・継続すること。",
+  "代表の方法・総会の運営等の定め":"代表者の選出方法や総会の運営規則など規約がある。",
+  "総有":"構成員全員が一体として所有する形態。共有・合有とは異なる。",
+  "持分を有しない":"総有では各構成員に持分はない。共有とは違う。",
+  "分割請求":"総有財産の分割請求は不可。",
+  "第三者への譲渡":"持分がないため第三者への譲渡も不可。",
+  "代表者個人名義または構成員全員の共有名義":"自己名義では登記できないため代表者個人または全員の共有名義になる。",
+  "個人責任を負わない":"社団の債務に構成員個人は責任を負わない（判例）。",
+  "総有財産のみ":"責任財産は社団の総有財産のみに限られる。",
+  "訴訟上の当事者能力":"民事訴訟法29条により社団名で訴え・訴えられる能力。",
+  "濫用":"法人格を不当な目的に利用する場合。",
+  "形骸化":"法人と個人の区別が実質的になくなっている場合。",
+  "特定の事件・当事者間における個別的な否認":"法人格否認は個別的・相対的なもの。一般的に法人格が消滅するわけではない。",
+  "代表・運営等の定め":"要件④の簡略版。代表の方法・総会の運営等に関する定め。",
+};
+const GROUP_WORDS_03 = {
+  g1: ["団体としての組織","多数決原則","団体が存続","代表の方法・総会の運営等の定め"],
+  g2: ["総有","持分を有しない","分割請求","第三者への譲渡"],
+  g3: ["代表者個人名義または構成員全員の共有名義","個人責任を負わない","総有財産のみ","訴訟上の当事者能力"],
+  g4: ["濫用","形骸化","特定の事件・当事者間における個別的な否認","総有","代表・運営等の定め"],
+};
+let activePopup03 = null;
+function closeAllPopups03(){document.querySelectorAll('.word-popup').forEach(p=>p.classList.remove('show'));activePopup03=null;}
+function buildPopup03(blank){
+  const gid=blank.dataset.gid,words=GROUP_WORDS_03[gid]||[];
+  const pop=document.createElement('div');pop.className='word-popup';
+  pop.innerHTML='<div class="word-popup-title">▼ 語群から選んでください</div><div class="word-chips"></div>';
+  const cd=pop.querySelector('.word-chips');
+  words.forEach(w=>{
+    const chip=document.createElement('span');chip.className='wchip';chip.textContent=w;
+    const tip=WORD_TIPS_03[w];
+    if(tip){const te=document.createElement('span');te.className='wchip-tip';te.textContent=tip;chip.appendChild(te);}
+    chip.addEventListener('click',e=>{
+      e.stopPropagation();
+      document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b=>{if(b!==blank&&b.dataset.current===w){b.textContent='';b.dataset.current='';b.classList.remove('filled','correct');}});
+      blank.textContent=w;blank.dataset.current=w;blank.classList.add('filled');blank.classList.remove('correct');
+      updateChipUsed03(gid);closeAllPopups03();
+    });
+    cd.appendChild(chip);
+  });
+  return pop;
+}
+function updateChipUsed03(gid){
+  const used=[];
+  document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b=>{if(b.dataset.current)used.push(b.dataset.current);});
+  document.querySelectorAll('.word-popup').forEach(pop=>{pop.querySelectorAll('.wchip').forEach(c=>{c.classList.toggle('used',used.includes(c.childNodes[0].textContent.trim()));});});
+}
+document.querySelectorAll('.mblank').forEach(blank=>{
+  blank.dataset.current='';
+  blank.addEventListener('click',e=>{
+    e.stopPropagation();
+    if(activePopup03&&activePopup03.blankEl===blank){closeAllPopups03();return;}
+    closeAllPopups03();
+    const pop=buildPopup03(blank);blank.appendChild(pop);
+    updateChipUsed03(blank.dataset.gid);
+    requestAnimationFrame(()=>pop.classList.add('show'));
+    activePopup03={blankEl:blank,popupEl:pop};
+  });
+});
+document.addEventListener('click',()=>closeAllPopups03());
+function checkMini(miniId,gid){
+  let c=0,t=0;
+  document.querySelectorAll(`#${miniId} .mblank`).forEach(b=>{t++;if((b.dataset.current||'')===b.dataset.ans){b.classList.add('correct');c++;}else b.classList.remove('correct');});
+  const s=document.getElementById('score-'+miniId);
+  if(s){s.textContent=c===t?`✅ 全問正解！(${c}/${t})`:`${c}/${t} 正解`;s.style.color=c===t?'#2e7d32':'#C0392B';}
+}
+function resetMini(miniId,gid){
+  document.querySelectorAll(`#${miniId} .mblank`).forEach(b=>{b.textContent='';b.dataset.current='';b.classList.remove('filled','correct');});
+  const s=document.getElementById('score-'+miniId);if(s)s.textContent='';
+  closeAllPopups03();
+}
+</script>
+
+</body>
+</html>
