@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>GAMBA民法 ch07 代理②（復代理・自己契約・双方代理・代理権濫用）</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'BIZ UDGothic','Hiragino Kaku Gothic Pro','Meiryo',sans-serif;background:#eef2f7;color:#1a1a2e;min-height:100vh;font-size:15px}
+.top-header{background:linear-gradient(135deg,#1B2A4A 0%,#C0392B 100%);color:#fff;padding:16px 16px 12px;text-align:center}
+.top-header h1{font-size:18px;font-weight:700;letter-spacing:.05em}
+.top-header p{font-size:12px;margin-top:3px;opacity:.85}
+.ch-nav{background:#1B2A4A;display:flex;overflow-x:auto;gap:0}
+.ch-nav a{color:rgba(255,255,255,.75);text-decoration:none;padding:9px 14px;font-size:12px;white-space:nowrap;border-right:1px solid rgba(255,255,255,.15);transition:.15s;font-weight:700}
+.ch-nav a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.wrap{max-width:860px;margin:0 auto;padding:16px 12px 48px}
+.section{background:#fff;border-radius:14px;border:1px solid #dde3ee;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden}
+.sec-hd{background:linear-gradient(90deg,#1B2A4A,#2c447a);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:10px}
+.sec-num{background:rgba(255,255,255,.2);border-radius:8px;padding:3px 10px;font-size:12px;font-weight:700;white-space:nowrap}
+.sec-hd h2{font-size:16px;font-weight:700}
+.sec-body{padding:16px 18px}
+.lead{background:#f0f4ff;border-left:4px solid #1B2A4A;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:14px;font-size:13px;color:#444}
+.goro{background:linear-gradient(135deg,#fff9ed,#fff3d0);border:2px solid #f4a62a;border-radius:10px;padding:12px 16px;margin:12px 0;text-align:center}
+.goro-label{font-size:10px;color:#8a5a00;letter-spacing:2px;font-weight:700;margin-bottom:4px}
+.goro-text{font-size:17px;font-weight:700;color:#7a4a00;letter-spacing:1px}
+.goro-note{font-size:11px;color:#a07030;margin-top:4px}
+.hanrei{background:#fff5f0;border:1px solid #fbc8b5;border-radius:10px;margin:12px 0;overflow:hidden}
+.hanrei-head{background:#C0392B;padding:7px 14px;font-size:12px;font-weight:700;color:#fff}
+.hanrei-body{padding:10px 14px}
+.hanrei-row{display:grid;grid-template-columns:56px 1fr;gap:6px;margin-bottom:6px;font-size:13px}
+.hanrei-label{color:#C0392B;font-weight:700;font-size:11px;padding-top:2px}
+.hanrei-point{background:#C0392B;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:4px;margin-top:6px;display:inline-block}
+.tbl{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+.tbl th{background:#1B2A4A;color:#fff;padding:8px 10px;border:1px solid #b3c6ee;text-align:center;font-size:12px}
+.tbl td{padding:8px 10px;border:1px solid #dde3ee;vertical-align:top;line-height:1.6}
+.tbl tr:nth-child(even) td{background:#f8f9ff}
+.tbl td:first-child{color:#1B2A4A;font-weight:700;text-align:center;white-space:nowrap}
+.fig-wrap{background:#f8f9ff;border:1px solid #dde3ee;border-radius:10px;padding:14px;margin:12px 0;text-align:center}
+.fig-caption{font-size:11px;color:#888;margin-top:6px}
+.key{color:#C0392B;font-weight:700}
+.blue{color:#1B2A4A;font-weight:700}
+.point-box{background:#f0f4ff;border:1px solid #b3c6ee;border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13px}
+.point-box::before{content:"POINT ";color:#1B2A4A;font-weight:700;font-size:11px}
+.warn-box{background:#fff5f0;border-left:4px solid #C0392B;border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0;font-size:13px}
+.info-box{background:#f0f4ff;border-left:4px solid #2c447a;border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0;font-size:13px}
+ul.styled{padding-left:18px;margin:8px 0}
+ul.styled li{margin-bottom:5px}
+ul.styled li::marker{color:#C0392B}
+hr.div{border:none;border-top:1px solid #dde3ee;margin:14px 0}
+h3.sub{font-size:14px;color:#1B2A4A;margin:14px 0 8px;border-bottom:2px solid #C0392B;padding-bottom:4px;display:inline-block}
+.mini{background:#fff;border:2px solid #1B2A4A;border-radius:12px;margin-top:20px;overflow:visible}
+.mini-hd{background:linear-gradient(90deg,#1B2A4A,#2c447a);padding:10px 16px;display:flex;align-items:center;gap:10px}
+.mini-hd-badge{background:#D4AF37;color:#1B2A4A;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:1px}
+.mini-hd-title{color:#fff;font-size:13px;font-weight:700}
+.mini-hd-hint{font-size:11px;color:rgba(255,255,255,.7);margin-left:auto}
+.mini-body{padding:14px 16px}
+
+.q-text{font-size:14px;line-height:2.2}
+
+
+
+.mblank:hover{opacity:.85}
+
+
+
+
+
+.wchip{padding:5px 11px;border-radius:16px;border:1.5px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;position:relative}
+.wchip:hover{background:#D4AF37;color:#1B2A4A;border-color:#D4AF37}
+.wchip.used{opacity:.3;pointer-events:none}
+.wchip-tip{display:none;position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);width:190px;background:#2c1800;color:#fff;border-radius:8px;padding:8px 10px;font-size:11px;line-height:1.7;z-index:600;pointer-events:none;text-align:left;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.wchip-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#2c1800}
+.wchip:hover .wchip-tip{display:block}
+.mini-footer{padding:10px 16px 14px;display:flex;align-items:center;gap:10px;border-top:1px solid #dde3ee;flex-wrap:wrap}
+
+
+.mini-reset-btn{background:#6c757d;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.mini-reset-btn:hover{background:#495057}
+.mini-score{font-size:13px;font-weight:700;color:#1B2A4A;margin-left:auto}
+footer{text-align:center;padding:20px 16px;font-size:11px;color:#888;border-top:1px solid #dde3ee;margin-top:20px}
+
+  /* ===== ミニテスト新仕様 ===== */
+  .mini-test { background: #f4f0fa; border: 2px solid #9b59b6; border-radius: 10px; padding: 16px 18px; margin-top: 24px; }
+  .mt-title { font-weight: bold; color: #6c3483; font-size: 14px; display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+  .mt-title::before { content: "✏️"; }
+  .mt-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .btn { border: none; border-radius: 6px; padding: 6px 16px; font-size: 13px; cursor: pointer; font-family: "Meiryo",sans-serif; font-weight: bold; transition: opacity 0.15s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-challenge { background: #C0392B; color: #fff; }
+  .btn-judge     { background: #27ae60; color: #fff; }
+  .btn-show      { background: #D4A017; color: #1B2A4A; }
+  .btn:disabled  { opacity: 0.4; cursor: not-allowed; }
+  .word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; padding: 10px 12px; background: #ece8f5; border-radius: 8px; min-height: 42px; }
+  .word-chip { background: #1B2A4A; color: #fff; border-radius: 20px; padding: 4px 14px; font-size: 13px; cursor: pointer; user-select: none; transition: all 0.15s; }
+  .word-chip:hover { opacity: 0.85; }
+  .word-chip.used { opacity: 0.3; pointer-events: none; }
+  .mblank { display: inline-block; border-radius: 4px; padding: 1px 8px; min-width: 72px; text-align: center; font-weight: bold; font-size: 14px; cursor: pointer; transition: all 0.2s; border: 2px solid #bbb; vertical-align: middle; background: #ddd; color: #ddd; user-select: none; }
+  .mblank.preview { background: #d4edda; border-color: #27ae60; color: #155724; cursor: default; }
+  .mblank.active  { background: #fff3cd; border-color: #D4A017; color: #1B2A4A; }
+  .mblank.filled  { background: #eaf0fb; border-color: #6c8ebf; color: #1B2A4A; }
+  .mblank.correct { background: #d4edda; border-color: #27ae60; color: #155724; }
+  .mblank.wrong   { background: #f8d7da; border-color: #e74c3c; color: #721c24; }
+  .mt-q { font-size: 14px; margin-bottom: 10px; line-height: 2; }
+  .result-msg { font-size: 14px; margin-top: 10px; font-weight: bold; min-height: 22px; }
+  .result-msg.ok { color: #27ae60; }
+  .result-msg.ng { color: #C0392B; }
+  #confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; display:none; }
+</style>
+</head>
+<body>
+<div class="top-header">
+  <h1>📖 GAMBA 民法 第7章</h1>
+  <p>代理②（復代理・自己契約・双方代理・代理権濫用）｜江原予備校</p>
+</div>
+<nav class="ch-nav">
+  <a href="#sec1">§1 復代理</a>
+  <a href="#sec2">§2 自己契約・双方代理</a>
+  <a href="#sec3">§3 代理権濫用</a>
+  <a href="#sec4">§4 まとめ比較</a>
+</nav>
+<div class="wrap">
+
+<!-- ====== SEC 1 ====== -->
+<div class="section" id="sec1">
+  <div class="sec-hd"><span class="sec-num">SEC.1</span><h2>復代理——代理人が選んだ代理人</h2></div>
+  <div class="sec-body">
+    <div class="lead">復代理は「代理人が選んだ代理人」。任意代理と法定代理で選任できる場面が大きく異なる。復代理人の地位と本人・代理人それぞれへの責任が頻出。</div>
+
+    <p><span class="key">復代理</span>とは、代理人が自己の権限内で選任した代理人のことをいう（104〜106条）。復代理人は<span class="key">本人の代理人</span>として行動し、その効果は直接本人に帰属する。</p>
+
+    <div class="fig-wrap">
+      <svg viewBox="0 0 580 190" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1B2A4A"/></marker>
+          <marker id="arg" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#2e7d32"/></marker>
+        </defs>
+        <rect x="10" y="75" width="110" height="55" rx="10" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="65" y="101" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1B2A4A" font-weight="bold">本人（A）</text>
+        <rect x="220" y="20" width="120" height="50" rx="10" fill="#fff9ed" stroke="#f4a62a" stroke-width="2"/>
+        <text x="280" y="44" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#7a4a00" font-weight="bold">代理人（B）</text>
+        <text x="280" y="60" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">元の代理人</text>
+        <rect x="220" y="120" width="120" height="50" rx="10" fill="#f8f9ff" stroke="#b3c6ee" stroke-width="2"/>
+        <text x="280" y="144" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">復代理人（C）</text>
+        <text x="280" y="160" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">Bが選任</text>
+        <rect x="430" y="75" width="130" height="55" rx="10" fill="#f8f9ff" stroke="#b3c6ee" stroke-width="1.5"/>
+        <text x="495" y="101" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">相手方（D）</text>
+        <line x1="120" y1="95" x2="218" y2="60" stroke="#1B2A4A" stroke-width="1.5" stroke-dasharray="5" marker-end="url(#ar)"/>
+        <text x="163" y="72" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#1B2A4A">代理権授与</text>
+        <line x1="280" y1="70" x2="280" y2="118" stroke="#C0392B" stroke-width="1.5" marker-end="url(#ar)"/>
+        <text x="298" y="98" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#C0392B">選任</text>
+        <line x1="340" y1="148" x2="428" y2="108" stroke="#1B2A4A" stroke-width="2" marker-end="url(#ar)"/>
+        <text x="396" y="124" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#1B2A4A">Aの代理人として</text>
+        <rect x="130" y="158" width="260" height="24" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+        <text x="260" y="174" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#2e7d32" font-weight="bold">効果はAに直接帰属（CはAの代理人）</text>
+      </svg>
+      <div class="fig-caption">図1：復代理——CはBの代理人ではなく本人Aの代理人として行動する</div>
+    </div>
+
+    <h3 class="sub">任意代理人の復代理選任（104条）</h3>
+    <div class="warn-box">任意代理人は原則として<span class="key">復代理人を選任できない</span>。ただし次の場合は例外として選任できる。
+      <ul class="styled" style="margin-top:6px">
+        <li><span class="blue">本人の許諾を得たとき</span></li>
+        <li><span class="blue">やむを得ない事由があるとき</span></li>
+      </ul>
+    </div>
+
+    <h3 class="sub">法定代理人の復代理選任（105条）</h3>
+    <div class="info-box">法定代理人は<span class="key">いつでも復代理人を選任できる</span>。ただし、選任・監督について本人に対して責任を負う。やむを得ない事由により選任した場合は、選任・監督の責任のみ負う。</div>
+
+    <h3 class="sub">任意代理 vs 法定代理の比較</h3>
+    <table class="tbl">
+      <tr><th style="width:24%">項目</th><th>任意代理（104条）</th><th>法定代理（105条）</th></tr>
+      <tr><td>選任の可否</td><td>原則<span class="key">不可</span>（例外：許諾・やむを得ない事由）</td><td><span class="key">いつでも可</span></td></tr>
+      <tr><td>本人への責任</td><td>許諾あり→全責任<br>やむを得ない事由→選任・監督の責任のみ</td><td>原則全責任<br>やむを得ない事由→選任・監督の責任のみ</td></tr>
+      <tr><td>理由</td><td>本人が代理人本人を信頼して委任したから</td><td>代理人が自ら選んだわけではないので緩和</td></tr>
+    </table>
+
+    <div class="point-box">復代理人の代理権は<span class="key">代理人の代理権を超えられない</span>。また代理人の代理権が消滅すると復代理権も消滅する（付従性）。</div>
+
+    <div class="mini" id="mini1" data-group="1">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§1 確認クイズ</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block"><div class="q-text">Q1. 復代理人は、代理人の代理人ではなく<span class="mblank preview" data-ans="本人" data-group="1">本人</span>の代理人として行動し、効果は直接本人に帰属する。</div></div>
+        <div class="q-block"><div class="q-text">Q2. 任意代理人は原則として復代理人を選任<span class="mblank preview" data-ans="できない" data-group="1">できない</span>が、本人の<span class="mblank preview" data-ans="許諾" data-group="1">許諾</span>またはやむを得ない事由がある場合は選任できる（104条）。</div></div>
+        <div class="q-block"><div class="q-text">Q3. 法定代理人は<span class="mblank preview" data-ans="いつでも" data-group="1">いつでも</span>復代理人を選任できる（105条）。</div></div>
+        <div class="q-block"><div class="q-text">Q4. 代理人の代理権が消滅すると、復代理権も<span class="mblank preview" data-ans="消滅する" data-group="1">消滅する</span>（付従性）。</div></div>
+      </div>
+      <div class="mini-footer">
+        <div class="word-bank" id="wb1"><span class="word-chip" data-word="本人">本人</span><span class="word-chip" data-word="できない">できない</span><span class="word-chip" data-word="許諾">許諾</span><span class="word-chip" data-word="いつでも">いつでも</span><span class="word-chip" data-word="消滅する">消滅する</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(1)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(1)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(1)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm1"></div>
+        <button class="mini-reset-btn" onclick="resetMini('mini1','g1')">やり直す</button>
+        <span class="mini-score" id="score-mini1"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SEC 2 ====== -->
+<div class="section" id="sec2">
+  <div class="sec-hd"><span class="sec-num">SEC.2</span><h2>自己契約・双方代理——禁止の原則と例外</h2></div>
+  <div class="sec-body">
+    <div class="lead">自己契約・双方代理はいずれも「利益相反」が問題の核心。禁止の原則と例外2つを正確に押さえよう。</div>
+
+    <h3 class="sub">自己契約とは（108条1項）</h3>
+    <p>代理人が本人を代理しつつ、<span class="key">相手方として自分自身が契約する</span>こと。代理人の利益と本人の利益が衝突するため、原則として<span class="key">無権代理</span>とみなされる。</p>
+
+    <div class="fig-wrap">
+      <svg viewBox="0 0 500 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#C0392B"/></marker></defs>
+        <rect x="10" y="50" width="110" height="55" rx="10" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="65" y="76" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1B2A4A" font-weight="bold">本人（A）</text>
+        <text x="65" y="94" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">売主</text>
+        <rect x="280" y="15" width="130" height="55" rx="10" fill="#fce8e8" stroke="#C0392B" stroke-width="2"/>
+        <text x="345" y="38" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#C0392B" font-weight="bold">代理人 兼</text>
+        <text x="345" y="55" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#C0392B" font-weight="bold">相手方（B）</text>
+        <text x="345" y="70" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">買主にもなる！</text>
+        <line x1="120" y1="77" x2="278" y2="50" stroke="#C0392B" stroke-width="2" marker-end="url(#ar2)"/>
+        <text x="200" y="55" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#C0392B">「Aの代理人B」として</text>
+        <text x="200" y="68" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#C0392B">自分と契約！</text>
+        <rect x="120" y="115" width="260" height="26" rx="6" fill="#fce8e8" stroke="#C0392B" stroke-width="1.5"/>
+        <text x="250" y="131" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#C0392B" font-weight="bold">→ 原則：無権代理とみなす（108条1項）</text>
+      </svg>
+      <div class="fig-caption">図2：自己契約——代理人が本人の相手方にもなる利益相反行為</div>
+    </div>
+
+    <h3 class="sub">双方代理とは（108条1項）</h3>
+    <p>同一人物が<span class="key">契約の両当事者の代理人</span>を同時に務めること。両者の利益が相反する可能性があるため、原則として<span class="key">無権代理</span>とみなされる。</p>
+
+    <div class="fig-wrap">
+      <svg viewBox="0 0 500 140" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="ar3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#C0392B"/></marker></defs>
+        <rect x="10" y="40" width="110" height="55" rx="10" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="65" y="66" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1B2A4A" font-weight="bold">A（売主）</text>
+        <rect x="380" y="40" width="110" height="55" rx="10" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="435" y="66" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1B2A4A" font-weight="bold">C（買主）</text>
+        <rect x="185" y="20" width="130" height="55" rx="10" fill="#fce8e8" stroke="#C0392B" stroke-width="2"/>
+        <text x="250" y="44" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#C0392B" font-weight="bold">代理人（B）</text>
+        <text x="250" y="62" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#C0392B">AとC、両方の代理人！</text>
+        <line x1="120" y1="68" x2="183" y2="52" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#ar3)"/>
+        <text x="149" y="45" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="9" fill="#C0392B">Aから委任</text>
+        <line x1="317" y1="52" x2="378" y2="68" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#ar3)"/>
+        <text x="354" y="45" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="9" fill="#C0392B">Cから委任</text>
+        <rect x="110" y="110" width="280" height="24" rx="6" fill="#fce8e8" stroke="#C0392B" stroke-width="1.5"/>
+        <text x="250" y="126" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#C0392B" font-weight="bold">→ 原則：無権代理とみなす（108条1項）</text>
+      </svg>
+      <div class="fig-caption">図3：双方代理——同一人が売主・買主双方の代理人を兼ねる</div>
+    </div>
+
+    <h3 class="sub">例外——禁止されない場合（108条1・2項ただし書）</h3>
+    <table class="tbl">
+      <tr><th style="width:22%">例外</th><th>内容</th><th>根拠</th></tr>
+      <tr><td>本人があらかじめ許諾した行為</td><td>本人が事前に同意している場合は利益相反のおそれがない</td><td>108条1項ただし書</td></tr>
+      <tr><td>債務の履行</td><td>すでに確定した債務を履行するだけなので本人の不利益なし</td><td>108条1項ただし書</td></tr>
+    </table>
+
+    <div class="goro">
+      <div class="goro-label">GORO — 自己契約・双方代理の例外</div>
+      <div class="goro-text">きょか（許諾）と さいむ（債務）の りこう（履行）はOK</div>
+      <div class="goro-note">本人があらかじめ許諾した行為・債務の履行——この2つだけが例外</div>
+    </div>
+
+    <h3 class="sub">利益相反行為（108条2項）</h3>
+    <p>自己契約・双方代理以外でも、<span class="key">代理人と本人の利益が相反する行為</span>は無権代理とみなされる。ただし本人があらかじめ許諾した場合は除く。</p>
+    <div class="point-box">利益相反かどうかは<span class="key">行為の外形</span>（客観的な内容）で判断する。代理人の主観的な動機は考慮しない（判例）。</div>
+
+    <div class="mini" id="mini2" data-group="2">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§2 確認クイズ</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block"><div class="q-text">Q1. 自己契約・双方代理は原則として<span class="mblank preview" data-ans="無権代理" data-group="2">無権代理</span>とみなされる（108条1項）。</div></div>
+        <div class="q-block"><div class="q-text">Q2. 自己契約・双方代理が許される例外は、本人の<span class="mblank preview" data-ans="許諾" data-group="2">許諾</span>がある場合と<span class="mblank preview" data-ans="債務の履行" data-group="2">債務の履行</span>の場合である。</div></div>
+        <div class="q-block"><div class="q-text">Q3. 利益相反行為かどうかは、代理人の主観的動機ではなく<span class="mblank preview" data-ans="行為の外形" data-group="2">行為の外形</span>（客観的内容）で判断する（判例）。</div></div>
+        <div class="q-block"><div class="q-text">Q4. 双方代理とは、同一人が契約の<span class="mblank preview" data-ans="両当事者の代理人" data-group="2">両当事者の代理人</span>を同時に務めることをいう。</div></div>
+      </div>
+      <div class="mini-footer">
+        <div class="word-bank" id="wb2"><span class="word-chip" data-word="無権代理">無権代理</span><span class="word-chip" data-word="許諾">許諾</span><span class="word-chip" data-word="債務の履行">債務の履行</span><span class="word-chip" data-word="行為の外形">行為の外形</span><span class="word-chip" data-word="両当事者の代理人">両当事者の代理人</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(2)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(2)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(2)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm2"></div>
+        <button class="mini-reset-btn" onclick="resetMini('mini2','g2')">やり直す</button>
+        <span class="mini-score" id="score-mini2"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SEC 3 ====== -->
+<div class="section" id="sec3">
+  <div class="sec-hd"><span class="sec-num">SEC.3</span><h2>代理権の濫用——107条の新設規定</h2></div>
+  <div class="sec-body">
+    <div class="lead">2017年改正で明文化された代理権濫用（107条）。代理権はあるが目的に反して使った場合の処理。相手方の悪意・有過失が鍵。</div>
+
+    <p><span class="key">代理権の濫用</span>とは、代理人が代理権の範囲内で行動しているが、<span class="key">自己または第三者の利益を図る目的</span>で権限を行使することをいう。</p>
+
+    <div class="fig-wrap">
+      <svg viewBox="0 0 560 165" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="ar4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1B2A4A"/></marker></defs>
+        <rect x="10" y="55" width="110" height="55" rx="10" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="2"/>
+        <text x="65" y="81" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1B2A4A" font-weight="bold">本人（A）</text>
+        <text x="65" y="98" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">代理権授与済み</text>
+        <rect x="215" y="10" width="130" height="55" rx="10" fill="#fce8e8" stroke="#C0392B" stroke-width="2"/>
+        <text x="280" y="34" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#C0392B" font-weight="bold">代理人（B）</text>
+        <text x="280" y="52" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#C0392B">権限内だが自己利益目的</text>
+        <rect x="420" y="55" width="130" height="55" rx="10" fill="#f8f9ff" stroke="#b3c6ee" stroke-width="1.5"/>
+        <text x="485" y="78" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">相手方（C）</text>
+        <text x="485" y="96" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">善意・無過失 or 悪意</text>
+        <line x1="120" y1="82" x2="213" y2="48" stroke="#1B2A4A" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#ar4)"/>
+        <line x1="345" y1="48" x2="418" y2="78" stroke="#C0392B" stroke-width="2" marker-end="url(#ar4)"/>
+        <text x="388" y="56" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#C0392B">権限内で契約</text>
+        <rect x="50" y="128" width="200" height="28" rx="7" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+        <text x="150" y="146" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#2e7d32" font-weight="bold">C 善意・無過失→有効</text>
+        <rect x="300" y="128" width="200" height="28" rx="7" fill="#fce8e8" stroke="#C0392B" stroke-width="1.5"/>
+        <text x="400" y="146" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#C0392B" font-weight="bold">C 悪意・有過失→無権代理</text>
+      </svg>
+      <div class="fig-caption">図4：代理権濫用——相手方の善悪で効果が変わる（107条）</div>
+    </div>
+
+    <h3 class="sub">107条の規律</h3>
+    <table class="tbl">
+      <tr><th>相手方の状態</th><th>効果</th></tr>
+      <tr><td>善意・無過失</td><td>契約は<span class="key">有効</span>（本人に帰属）。本人はBに損害賠償請求可</td></tr>
+      <tr><td>悪意または有過失</td><td><span class="key">無権代理</span>とみなす（本人は追認拒絶可）</td></tr>
+    </table>
+
+    <div class="hanrei">
+      <div class="hanrei-head">⚖️ 改正前の判例との関係</div>
+      <div class="hanrei-body">
+        <div class="hanrei-row"><span class="hanrei-label">改正前</span><span>判例は代理権濫用を「心裡留保（93条）類推適用」で処理していた（相手方が悪意・有過失なら無効）。</span></div>
+        <div class="hanrei-row"><span class="hanrei-label">改正後</span><span>107条として明文化。「悪意または有過失」の相手方に対しては無権代理扱いとなった。</span></div>
+        <span class="hanrei-point">POINT：2017年改正で107条が新設——判例法理を明文化</span>
+      </div>
+    </div>
+
+    <div class="mini" id="mini3" data-group="3">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§3 確認クイズ</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block"><div class="q-text">Q1. 代理権の濫用とは、代理権の範囲内で行動しながら<span class="mblank preview" data-ans="自己または第三者の利益" data-group="3">自己または第三者の利益</span>を図る目的で権限を行使することをいう。</div></div>
+        <div class="q-block"><div class="q-text">Q2. 相手方が<span class="mblank preview" data-ans="善意・無過失" data-group="3">善意・無過失</span>の場合、代理権濫用があっても契約は有効となる（107条）。</div></div>
+        <div class="q-block"><div class="q-text">Q3. 相手方が悪意または有過失の場合は<span class="mblank preview" data-ans="無権代理" data-group="3">無権代理</span>とみなされる（107条）。</div></div>
+        <div class="q-block"><div class="q-text">Q4. 代理権濫用に関する107条は<span class="mblank preview" data-ans="2017年" data-group="3">2017年</span>の民法改正で新設された。</div></div>
+      </div>
+      <div class="mini-footer">
+        <div class="word-bank" id="wb3"><span class="word-chip" data-word="自己または第三者の利益">自己または第三者の利益</span><span class="word-chip" data-word="善意・無過失">善意・無過失</span><span class="word-chip" data-word="無権代理">無権代理</span><span class="word-chip" data-word="2017年">2017年</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(3)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(3)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(3)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm3"></div>
+        <button class="mini-reset-btn" onclick="resetMini('mini3','g3')">やり直す</button>
+        <span class="mini-score" id="score-mini3"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SEC 4 ====== -->
+<div class="section" id="sec4">
+  <div class="sec-hd"><span class="sec-num">SEC.4</span><h2>代理②まとめ比較表</h2></div>
+  <div class="sec-body">
+    <div class="lead">復代理・自己契約・双方代理・代理権濫用の4テーマを一表で整理。試験直前の最終確認に使おう。</div>
+
+    <table class="tbl">
+      <tr><th>テーマ</th><th>条文</th><th>原則</th><th>例外・相手方保護</th></tr>
+      <tr><td>任意代理の復代理</td><td>104条</td><td>選任不可</td><td>本人許諾・やむを得ない事由→選任可</td></tr>
+      <tr><td>法定代理の復代理</td><td>105条</td><td>いつでも選任可</td><td>選任・監督責任を負う</td></tr>
+      <tr><td>自己契約</td><td>108条1項</td><td>無権代理とみなす</td><td>本人許諾・債務の履行→許容</td></tr>
+      <tr><td>双方代理</td><td>108条1項</td><td>無権代理とみなす</td><td>本人許諾・債務の履行→許容</td></tr>
+      <tr><td>代理権濫用</td><td>107条</td><td>（権限内だが目的逸脱）</td><td>相手方善意・無過失→有効、悪意・有過失→無権代理</td></tr>
+    </table>
+
+    <hr class="div">
+    <h3 class="sub">復代理の効果まとめ</h3>
+    <ul class="styled">
+      <li>復代理人は<span class="key">本人の代理人</span>——効果は本人に直接帰属</li>
+      <li>復代理人の権限は代理人の権限を<span class="key">超えられない</span></li>
+      <li>代理人の代理権消滅→復代理権も<span class="key">消滅</span>（付従性）</li>
+      <li>復代理人は本人・第三者に対して代理人と<span class="key">同一の権利義務</span>を有する（106条）</li>
+    </ul>
+
+    <div class="mini" id="mini4" data-group="4">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§4 総合確認</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block"><div class="q-text">Q1. 任意代理人は原則として復代理人を選任<span class="mblank preview" data-ans="できない" data-group="4">できない</span>が、法定代理人は<span class="mblank preview" data-ans="いつでも" data-group="4">いつでも</span>選任できる。</div></div>
+        <div class="q-block"><div class="q-text">Q2. 自己契約・双方代理が許容される例外は、本人の<span class="mblank preview" data-ans="許諾" data-group="4">許諾</span>がある場合と<span class="mblank preview" data-ans="債務の履行" data-group="4">債務の履行</span>の場合のみである。</div></div>
+        <div class="q-block"><div class="q-text">Q3. 代理権濫用において、相手方が<span class="mblank preview" data-ans="悪意または有過失" data-group="4">悪意または有過失</span>の場合は無権代理とみなされる（107条）。</div></div>
+        <div class="q-block"><div class="q-text">Q4. 復代理人は本人・第三者に対して代理人と<span class="mblank preview" data-ans="同一の権利義務" data-group="4">同一の権利義務</span>を有する（106条）。</div></div>
+      </div>
+      <div class="mini-footer">
+        <div class="word-bank" id="wb4"><span class="word-chip" data-word="できない">できない</span><span class="word-chip" data-word="いつでも">いつでも</span><span class="word-chip" data-word="許諾">許諾</span><span class="word-chip" data-word="債務の履行">債務の履行</span><span class="word-chip" data-word="悪意または有過失">悪意または有過失</span><span class="word-chip" data-word="同一の権利義務">同一の権利義務</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(4)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(4)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(4)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm4"></div>
+        <button class="mini-reset-btn" onclick="resetMini('mini4','g4')">やり直す</button>
+        <span class="mini-score" id="score-mini4"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+<footer>
+  <p>GAMBA民法 第7章 代理②（復代理・自己契約・双方代理・代理権濫用）</p>
+  <p style="margin-top:4px">音声合成：VOICEVOX（四国めたん）｜江原予備校 © 2025</p>
+</footer>
+
+
+<canvas id="confetti-canvas"></canvas>
+<script>
+const state={};let activeBlank=null;
+window.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.mini-test').forEach(mt=>{
+    const g=mt.dataset.group; if(g) state[g]='preview';
+    shuffleBank(g);
+  });
+});
+function shuffleBank(g){
+  const wb=document.getElementById('wb'+g); if(!wb)return;
+  const chips=Array.from(wb.querySelectorAll('.word-chip'));
+  for(let i=chips.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));wb.insertBefore(chips[j],chips[i]);const t=chips[i];chips[i]=chips[j];chips[j]=t;}
+}
+function getBtn(g,cls){const mt=document.querySelector(`.mini-test[data-group="${g}"]`);return mt?mt.querySelector(cls):null;}
+function setBtns(g,mode){const isC=mode==='challenge';const bc=getBtn(g,'.btn-challenge');const bj=getBtn(g,'.btn-judge');if(bc)bc.disabled=isC;if(bj)bj.disabled=!isC;}
+function startChallenge(g){
+  state[g]='challenge'; activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent='　　　';b.className='mblank';b.dataset.filled='';b.onclick=()=>selectBlank(b,g);});
+  resetChips(g); shuffleBank(g);
+  document.querySelectorAll(`#wb${g} .word-chip`).forEach(chip=>{chip.onclick=()=>selectChip(chip,g);});
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'challenge');
+}
+function resetChips(g){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{c.className='word-chip';c.onclick=null;});}
+function selectBlank(b,g){
+  if(state[g]!=='challenge')return;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(x=>{if(x!==b)x.classList.remove('active');});
+  if(b.classList.contains('active')){b.classList.remove('active');activeBlank=null;}
+  else{b.classList.add('active');activeBlank={el:b,group:g};}
+}
+function selectChip(chip,g){
+  if(state[g]!=='challenge')return;
+  if(!activeBlank||activeBlank.group!==g)return;
+  const b=activeBlank.el; const word=chip.dataset.word;
+  const prev=b.dataset.filled;
+  if(prev){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{if(c.dataset.word===prev)c.classList.remove('used');});}
+  b.textContent=word; b.dataset.filled=word;
+  b.classList.remove('active','correct','wrong'); b.classList.add('filled');
+  chip.classList.add('used'); activeBlank=null;
+}
+function judgeGroup(g){
+  if(state[g]!=='challenge')return;
+  const blanks=document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  let allFilled=true; blanks.forEach(b=>{if(!b.dataset.filled)allFilled=false;});
+  if(!allFilled){const rm=document.getElementById('rm'+g);if(rm){rm.textContent='⚠️ 全ての空欄を埋めてから判定してください。';rm.className='result-msg ng';}return;}
+  let correct=0;
+  blanks.forEach(b=>{b.classList.remove('active','filled');if(b.dataset.filled===b.dataset.ans){b.classList.add('correct');correct++;}else b.classList.add('wrong');});
+  const rm=document.getElementById('rm'+g);
+  if(correct===blanks.length){if(rm){rm.textContent='🎉 全問正解！';rm.className='result-msg ok';}launchConfetti();}
+  else{if(rm){rm.textContent=`${correct} / ${blanks.length} 正解。もう一度チャレンジしてみよう！`;rm.className='result-msg ng';}}
+}
+function showAnswer(g){
+  state[g]='preview'; activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent=b.dataset.ans;b.className='mblank preview';b.dataset.filled=b.dataset.ans;b.onclick=null;});
+  resetChips(g);
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'preview');
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');if(!canvas)return;
+  canvas.style.display='block'; const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  const colors=['#C0392B','#D4A017','#00AEEF','#27ae60','#9b59b6','#e67e22','#1B2A4A'];
+  const pieces=Array.from({length:150},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*6+4,d:Math.random()*80+40,color:colors[Math.floor(Math.random()*colors.length)],tilt:0,tiltAngle:0,tiltSpeed:Math.random()*0.1+0.05}));
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{p.tiltAngle+=p.tiltSpeed;p.y+=(Math.cos(frame/20+p.d)+1+p.r/2)*1.2;p.x+=Math.sin(frame/20)*1.5;p.tilt=Math.sin(p.tiltAngle)*15;ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/3);ctx.stroke();});
+    frame++;
+    if(frame<200)requestAnimationFrame(draw);
+    else{ctx.clearRect(0,0,canvas.width,canvas.height);canvas.style.display='none';}
+  }
+  draw();
+}
+</script>
+</body>
+</html>

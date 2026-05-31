@@ -233,17 +233,17 @@
   .mini-hd-title{color:#fff;font-size:13px;font-weight:700}
   .mini-hd-hint{font-size:11px;color:rgba(255,255,255,.7);margin-left:auto}
   .mini-body{padding:14px 16px}
-  .q-block{margin-bottom:18px;position:relative}
+  
   .q-text{font-size:14px;line-height:2.2}
-  .mblank{display:inline-block;min-width:90px;height:28px;background:#1B2A4A;border-radius:6px;margin:0 3px;text-align:center;cursor:pointer;font-weight:700;font-size:13px;color:transparent;vertical-align:middle;position:relative;transition:background .2s;border:2px solid #1B2A4A;line-height:24px;padding:0 8px;white-space:nowrap}
-  .mblank.filled{color:#fff;background:#2c447a;border-color:#2c447a}
-  .mblank.correct{color:#1a1a2e;background:#ffd700;border-color:#b8860b}
+  
+  
+  
   .mblank:hover{opacity:.85}
-  .word-popup{display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#1B2A4A;border:2px solid #D4AF37;border-radius:10px;padding:10px;z-index:500;box-shadow:0 6px 20px rgba(0,0,0,.3);min-width:260px;}
-  .word-popup.show{display:block}
-  .word-popup::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#D4AF37}
-  .word-popup-title{font-size:10px;color:#D4AF37;font-weight:700;letter-spacing:1px;margin-bottom:8px}
-  .word-chips{display:flex;flex-wrap:wrap;gap:6px}
+  
+  
+  
+  
+  
   .wchip{padding:5px 11px;border-radius:16px;border:1.5px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;position:relative}
   .wchip:hover{background:#D4AF37;color:#1B2A4A;border-color:#D4AF37}
   .wchip.used{opacity:.3;pointer-events:none}
@@ -251,11 +251,38 @@
   .wchip-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#2c1800}
   .wchip:hover .wchip-tip{display:block}
   .mini-footer{padding:10px 16px 14px;display:flex;align-items:center;gap:10px;border-top:1px solid #dde3ee;flex-wrap:wrap}
-  .mini-check-btn{background:#C0392B;color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
-  .mini-check-btn:hover{background:#8a2820}
+  
+  
   .mini-reset-btn{background:#6c757d;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
   .mini-reset-btn:hover{background:#495057}
   .mini-score{font-size:13px;font-weight:700;color:#1B2A4A;margin-left:auto}
+
+  /* ===== ミニテスト新仕様 ===== */
+  .mini-test { background: #f4f0fa; border: 2px solid #9b59b6; border-radius: 10px; padding: 16px 18px; margin-top: 24px; }
+  .mt-title { font-weight: bold; color: #6c3483; font-size: 14px; display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+  .mt-title::before { content: "✏️"; }
+  .mt-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .btn { border: none; border-radius: 6px; padding: 6px 16px; font-size: 13px; cursor: pointer; font-family: "Meiryo",sans-serif; font-weight: bold; transition: opacity 0.15s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-challenge { background: #C0392B; color: #fff; }
+  .btn-judge     { background: #27ae60; color: #fff; }
+  .btn-show      { background: #D4A017; color: #1B2A4A; }
+  .btn:disabled  { opacity: 0.4; cursor: not-allowed; }
+  .word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; padding: 10px 12px; background: #ece8f5; border-radius: 8px; min-height: 42px; }
+  .word-chip { background: #1B2A4A; color: #fff; border-radius: 20px; padding: 4px 14px; font-size: 13px; cursor: pointer; user-select: none; transition: all 0.15s; }
+  .word-chip:hover { opacity: 0.85; }
+  .word-chip.used { opacity: 0.3; pointer-events: none; }
+  .mblank { display: inline-block; border-radius: 4px; padding: 1px 8px; min-width: 72px; text-align: center; font-weight: bold; font-size: 14px; cursor: pointer; transition: all 0.2s; border: 2px solid #bbb; vertical-align: middle; background: #ddd; color: #ddd; user-select: none; }
+  .mblank.preview { background: #d4edda; border-color: #27ae60; color: #155724; cursor: default; }
+  .mblank.active  { background: #fff3cd; border-color: #D4A017; color: #1B2A4A; }
+  .mblank.filled  { background: #eaf0fb; border-color: #6c8ebf; color: #1B2A4A; }
+  .mblank.correct { background: #d4edda; border-color: #27ae60; color: #155724; }
+  .mblank.wrong   { background: #f8d7da; border-color: #e74c3c; color: #721c24; }
+  .mt-q { font-size: 14px; margin-bottom: 10px; line-height: 2; }
+  .result-msg { font-size: 14px; margin-top: 10px; font-weight: bold; min-height: 22px; }
+  .result-msg.ok { color: #27ae60; }
+  .result-msg.ng { color: #C0392B; }
+  #confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; display:none; }
 </style>
 </head>
 <body>
@@ -313,18 +340,24 @@
   </div>
 
   <!-- ミニテスト1 -->
-  <div class="mini" id="mini1">
+  <div class="mini" id="mini1" data-group="1">
     <div class="mini-hd">
       <span class="mini-hd-badge">MINI TEST</span>
       <span class="mini-hd-title">① 権利能力</span>
       <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
     </div>
     <div class="mini-body">
-      <div class="q-block"><div class="q-text">Q1. 胎児が保護される例外3つ：<span class="mblank" data-ans="不法行為に基づく損害賠償" data-gid="g1" data-qid="1-1">　　　　</span>・<span class="mblank" data-ans="相続" data-gid="g1" data-qid="1-2">　　</span>・<span class="mblank" data-ans="遺贈" data-gid="g1" data-qid="1-3">　　</span>。</div></div>
-      <div class="q-block"><div class="q-text">Q2. 自然人の権利能力は<span class="mblank" data-ans="出生" data-gid="g1" data-qid="1-4">　　</span>により取得し、<span class="mblank" data-ans="死亡" data-gid="g1" data-qid="1-5">　　</span>により消滅する。</div></div>
+      <div class="q-block"><div class="q-text">Q1. 胎児が保護される例外3つ：<span class="mblank preview" data-ans="不法行為に基づく損害賠償" data-group="1">不法行為に基づく損害賠償</span>・<span class="mblank preview" data-ans="相続" data-group="1">相続</span>・<span class="mblank preview" data-ans="遺贈" data-group="1">遺贈</span>。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 自然人の権利能力は<span class="mblank preview" data-ans="出生" data-group="1">出生</span>により取得し、<span class="mblank preview" data-ans="死亡" data-group="1">死亡</span>により消滅する。</div></div>
     </div>
     <div class="mini-footer">
-      <button class="mini-check-btn" onclick="checkMini('mini1','g1')">判定する</button>
+      <div class="word-bank" id="wb1"><span class="word-chip" data-word="不法行為に基づく損害賠償">不法行為に基づく損害賠償</span><span class="word-chip" data-word="相続">相続</span><span class="word-chip" data-word="遺贈">遺贈</span><span class="word-chip" data-word="出生">出生</span><span class="word-chip" data-word="死亡">死亡</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(1)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(1)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(1)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm1"></div>
       <button class="mini-reset-btn" onclick="resetMini('mini1','g1')">やり直す</button>
       <span class="mini-score" id="score-mini1"></span>
     </div>
@@ -446,20 +479,26 @@
   </div>
 
   <!-- ミニテスト2 -->
-  <div class="mini" id="mini2">
+  <div class="mini" id="mini2" data-group="2">
     <div class="mini-hd">
       <span class="mini-hd-badge">MINI TEST</span>
       <span class="mini-hd-title">② 制限行為能力者</span>
       <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
     </div>
     <div class="mini-body">
-      <div class="q-block"><div class="q-text">Q1. 成年被後見人が単独で有効にできるのは<span class="mblank" data-ans="日用品の購入その他日常生活に関する行為" data-gid="g2" data-qid="2-1">　　　　</span>に限られる（9条但書）。</div></div>
-      <div class="q-block"><div class="q-text">Q2. 制限行為能力者の行為は原則として<span class="mblank" data-ans="取り消すことができる" data-gid="g2" data-qid="2-2">　　　　</span>（無効ではない）。</div></div>
-      <div class="q-block"><div class="q-text">Q3. 制限行為能力者が詐術を用いた場合は<span class="mblank" data-ans="取り消すことができない" data-gid="g2" data-qid="2-3">　　　　</span>（21条）。</div></div>
-      <div class="q-block"><div class="q-text">Q4. 相手方の催告に能力者となった後期間内に確答しなかった場合は<span class="mblank" data-ans="追認" data-gid="g2" data-qid="2-4">　　</span>とみなされる（成年被後見人は<span class="mblank" data-ans="取消" data-gid="g2" data-qid="2-5">　　</span>とみなす）。</div></div>
+      <div class="q-block"><div class="q-text">Q1. 成年被後見人が単独で有効にできるのは<span class="mblank preview" data-ans="日用品の購入その他日常生活に関する行為" data-group="2">日用品の購入その他日常生活に関する行為</span>に限られる（9条但書）。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 制限行為能力者の行為は原則として<span class="mblank preview" data-ans="取り消すことができる" data-group="2">取り消すことができる</span>（無効ではない）。</div></div>
+      <div class="q-block"><div class="q-text">Q3. 制限行為能力者が詐術を用いた場合は<span class="mblank preview" data-ans="取り消すことができない" data-group="2">取り消すことができない</span>（21条）。</div></div>
+      <div class="q-block"><div class="q-text">Q4. 相手方の催告に能力者となった後期間内に確答しなかった場合は<span class="mblank preview" data-ans="追認" data-group="2">追認</span>とみなされる（成年被後見人は<span class="mblank preview" data-ans="取消" data-group="2">取消</span>とみなす）。</div></div>
     </div>
     <div class="mini-footer">
-      <button class="mini-check-btn" onclick="checkMini('mini2','g2')">判定する</button>
+      <div class="word-bank" id="wb2"><span class="word-chip" data-word="日用品の購入その他日常生活に関する行為">日用品の購入その他日常生活に関する行為</span><span class="word-chip" data-word="取り消すことができる">取り消すことができる</span><span class="word-chip" data-word="取り消すことができない">取り消すことができない</span><span class="word-chip" data-word="追認">追認</span><span class="word-chip" data-word="取消">取消</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(2)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(2)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(2)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm2"></div>
       <button class="mini-reset-btn" onclick="resetMini('mini2','g2')">やり直す</button>
       <span class="mini-score" id="score-mini2"></span>
     </div>
@@ -499,18 +538,24 @@
   </div>
 
   <!-- ミニテスト3 -->
-  <div class="mini" id="mini3">
+  <div class="mini" id="mini3" data-group="3">
     <div class="mini-hd">
       <span class="mini-hd-badge">MINI TEST</span>
       <span class="mini-hd-title">③ 失踪宣告</span>
       <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
     </div>
     <div class="mini-body">
-      <div class="q-block"><div class="q-text">Q1. 普通失踪の要件は生死不明<span class="mblank" data-ans="7年間" data-gid="g3" data-qid="3-1">　　</span>で、死亡時期は<span class="mblank" data-ans="7年期間満了時" data-gid="g3" data-qid="3-2">　　　　</span>とみなされる。</div></div>
-      <div class="q-block"><div class="q-text">Q2. 特別失踪は危難が去った後<span class="mblank" data-ans="1年間" data-gid="g3" data-qid="3-3">　　</span>生死不明の場合で、<span class="mblank" data-ans="危難が去った時" data-gid="g3" data-qid="3-4">　　　　</span>に死亡とみなされる。</div></div>
+      <div class="q-block"><div class="q-text">Q1. 普通失踪の要件は生死不明<span class="mblank preview" data-ans="7年間" data-group="3">7年間</span>で、死亡時期は<span class="mblank preview" data-ans="7年期間満了時" data-group="3">7年期間満了時</span>とみなされる。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 特別失踪は危難が去った後<span class="mblank preview" data-ans="1年間" data-group="3">1年間</span>生死不明の場合で、<span class="mblank preview" data-ans="危難が去った時" data-group="3">危難が去った時</span>に死亡とみなされる。</div></div>
     </div>
     <div class="mini-footer">
-      <button class="mini-check-btn" onclick="checkMini('mini3','g3')">判定する</button>
+      <div class="word-bank" id="wb3"><span class="word-chip" data-word="7年間">7年間</span><span class="word-chip" data-word="7年期間満了時">7年期間満了時</span><span class="word-chip" data-word="1年間">1年間</span><span class="word-chip" data-word="危難が去った時">危難が去った時</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(3)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(3)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(3)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm3"></div>
       <button class="mini-reset-btn" onclick="resetMini('mini3','g3')">やり直す</button>
       <span class="mini-score" id="score-mini3"></span>
     </div>
@@ -559,19 +604,25 @@
   </div>
 
   <!-- ミニテスト4 総合 -->
-  <div class="mini" id="mini4">
+  <div class="mini" id="mini4" data-group="4">
     <div class="mini-hd">
       <span class="mini-hd-badge">MINI TEST</span>
       <span class="mini-hd-title">④ 総合確認</span>
       <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
     </div>
     <div class="mini-body">
-      <div class="q-block"><div class="q-text">Q1. 意思能力を欠く状態でした法律行為は<span class="mblank" data-ans="無効" data-gid="g4" data-qid="4-1">　　</span>であり（3条の2）、制限行為能力者の行為は<span class="mblank" data-ans="取り消すことができる" data-gid="g4" data-qid="4-2">　　　　</span>。</div></div>
-      <div class="q-block"><div class="q-text">Q2. 取消権者は<span class="mblank" data-ans="未成年者本人・法定代理人・承継人・同意権者" data-gid="g4" data-qid="4-3">　　　　</span>である（120条）。</div></div>
-      <div class="q-block"><div class="q-text">Q3. 制限行為能力者が相手方の質問に<span class="mblank" data-ans="黙秘" data-gid="g4" data-qid="4-4">　　</span>しただけでは詐術にはあたらない（判例）。</div></div>
+      <div class="q-block"><div class="q-text">Q1. 意思能力を欠く状態でした法律行為は<span class="mblank preview" data-ans="無効" data-group="4">無効</span>であり（3条の2）、制限行為能力者の行為は<span class="mblank preview" data-ans="取り消すことができる" data-group="4">取り消すことができる</span>。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 取消権者は<span class="mblank preview" data-ans="未成年者本人・法定代理人・承継人・同意権者" data-group="4">未成年者本人・法定代理人・承継人・同意権者</span>である（120条）。</div></div>
+      <div class="q-block"><div class="q-text">Q3. 制限行為能力者が相手方の質問に<span class="mblank preview" data-ans="黙秘" data-group="4">黙秘</span>しただけでは詐術にはあたらない（判例）。</div></div>
     </div>
     <div class="mini-footer">
-      <button class="mini-check-btn" onclick="checkMini('mini4','g4')">判定する</button>
+      <div class="word-bank" id="wb4"><span class="word-chip" data-word="無効">無効</span><span class="word-chip" data-word="取り消すことができる">取り消すことができる</span><span class="word-chip" data-word="未成年者本人・法定代理人・承継人・同意権者">未成年者本人・法定代理人・承継人・同意権者</span><span class="word-chip" data-word="黙秘">黙秘</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(4)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(4)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(4)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm4"></div>
       <button class="mini-reset-btn" onclick="resetMini('mini4','g4')">やり直す</button>
       <span class="mini-score" id="score-mini4"></span>
     </div>
@@ -589,84 +640,83 @@
   GAMBA民法 ch01 ｜ 音声：VOICEVOX（四国めたん）｜ © 江原予備校
 </footer>
 
+
+
+<canvas id="confetti-canvas"></canvas>
 <script>
-const WORD_TIPS_01 = {
-  "不法行為に基づく損害賠償":"胎児が権利能力なき状態でも、例外的に損害賠償請求が認められます。",
-  "相続":"胎児は相続については既に生まれたものとみなされます（886条）。",
-  "遺贈":"胎児は遺贈についても権利能力が認められます（965条）。",
-  "出生":"自然人の権利能力は出生によって始まります（3条1項）。",
-  "死亡":"権利能力は死亡によって消滅します。",
-  "日用品の購入その他日常生活に関する行為":"成年被後見人が単独でできる唯一の例外（9条但書）。",
-  "取り消すことができる":"制限行為能力者の行為は「無効」ではなく「取消し」できる行為です。",
-  "取り消すことができない":"詐術を用いた場合は保護に値しないとして取消権が失われます（21条）。",
-  "追認":"能力者となった後に催告されて沈黙→追認とみなされます。",
-  "取消":"成年被後見人に対する催告は沈黙→取消とみなされます。",
-  "7年間":"普通失踪の要件は生死不明7年間（30条1項）。",
-  "7年期間満了時":"普通失踪の死亡みなし時期は7年間の期間が満了した時。",
-  "1年間":"特別失踪は危難が去った後1年間生死不明（30条2項）。",
-  "危難が去った時":"特別失踪の死亡みなし時期は危難が去った時。",
-  "無効":"意思能力なき行為は無効（3条の2）。",
-  "未成年者本人・法定代理人・承継人・同意権者":"120条に列挙された取消権者。",
-  "黙秘":"単なる沈黙は詐術にあたらない（判例）。積極的に欺く行為が必要。",
-};
-const GROUP_WORDS_01 = {
-  g1: ["不法行為に基づく損害賠償","相続","遺贈","出生","死亡"],
-  g2: ["日用品の購入その他日常生活に関する行為","取り消すことができる","取り消すことができない","追認","取消"],
-  g3: ["7年間","7年期間満了時","1年間","危難が去った時"],
-  g4: ["無効","取り消すことができる","未成年者本人・法定代理人・承継人・同意権者","黙秘"],
-};
-let activePopup01 = null;
-function closeAllPopups01(){document.querySelectorAll('.word-popup').forEach(p=>p.classList.remove('show'));activePopup01=null;}
-function buildPopup01(blank){
-  const gid=blank.dataset.gid;
-  const words=GROUP_WORDS_01[gid]||[];
-  const pop=document.createElement('div');pop.className='word-popup';
-  pop.innerHTML='<div class="word-popup-title">▼ 語群から選んでください</div><div class="word-chips"></div>';
-  const cd=pop.querySelector('.word-chips');
-  words.forEach(w=>{
-    const chip=document.createElement('span');chip.className='wchip';chip.textContent=w;
-    const tip=WORD_TIPS_01[w];
-    if(tip){const te=document.createElement('span');te.className='wchip-tip';te.textContent=tip;chip.appendChild(te);}
-    chip.addEventListener('click',e=>{
-      e.stopPropagation();
-      document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b=>{if(b!==blank&&b.dataset.current===w){b.textContent='';b.dataset.current='';b.classList.remove('filled','correct');}});
-      blank.textContent=w;blank.dataset.current=w;blank.classList.add('filled');blank.classList.remove('correct');
-      updateChipUsed01(gid);closeAllPopups01();
-    });
-    cd.appendChild(chip);
-  });
-  return pop;
-}
-function updateChipUsed01(gid){
-  const used=[];
-  document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b=>{if(b.dataset.current)used.push(b.dataset.current);});
-  document.querySelectorAll('.word-popup').forEach(pop=>{pop.querySelectorAll('.wchip').forEach(c=>{const w=c.childNodes[0].textContent.trim();c.classList.toggle('used',used.includes(w));});});
-}
-document.querySelectorAll('.mblank').forEach(blank=>{
-  blank.dataset.current='';
-  blank.addEventListener('click',e=>{
-    e.stopPropagation();
-    if(activePopup01&&activePopup01.blankEl===blank){closeAllPopups01();return;}
-    closeAllPopups01();
-    const pop=buildPopup01(blank);blank.appendChild(pop);
-    updateChipUsed01(blank.dataset.gid);
-    requestAnimationFrame(()=>pop.classList.add('show'));
-    activePopup01={blankEl:blank,popupEl:pop};
+const state={};let activeBlank=null;
+window.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.mini-test').forEach(mt=>{
+    const g=mt.dataset.group; if(g) state[g]='preview';
+    shuffleBank(g);
   });
 });
-document.addEventListener('click',()=>closeAllPopups01());
-function checkMini(miniId,gid){
-  let correct=0,total=0;
-  document.querySelectorAll(`#${miniId} .mblank`).forEach(b=>{total++;if((b.dataset.current||'')===b.dataset.ans){b.classList.add('correct');correct++;}else b.classList.remove('correct');});
-  const s=document.getElementById('score-'+miniId);
-  if(s){s.textContent=correct===total?`✅ 全問正解！(${correct}/${total})`:`${correct}/${total} 正解`;s.style.color=correct===total?'#2e7d32':'#C0392B';}
+function shuffleBank(g){
+  const wb=document.getElementById('wb'+g); if(!wb)return;
+  const chips=Array.from(wb.querySelectorAll('.word-chip'));
+  for(let i=chips.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));wb.insertBefore(chips[j],chips[i]);const t=chips[i];chips[i]=chips[j];chips[j]=t;}
 }
-function resetMini(miniId,gid){
-  document.querySelectorAll(`#${miniId} .mblank`).forEach(b=>{b.textContent='';b.dataset.current='';b.classList.remove('filled','correct');});
-  const s=document.getElementById('score-'+miniId);if(s)s.textContent='';
-  closeAllPopups01();
+function getBtn(g,cls){const mt=document.querySelector(`.mini-test[data-group="${g}"]`);return mt?mt.querySelector(cls):null;}
+function setBtns(g,mode){const isC=mode==='challenge';const bc=getBtn(g,'.btn-challenge');const bj=getBtn(g,'.btn-judge');if(bc)bc.disabled=isC;if(bj)bj.disabled=!isC;}
+function startChallenge(g){
+  state[g]='challenge'; activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent='　　　';b.className='mblank';b.dataset.filled='';b.onclick=()=>selectBlank(b,g);});
+  resetChips(g); shuffleBank(g);
+  document.querySelectorAll(`#wb${g} .word-chip`).forEach(chip=>{chip.onclick=()=>selectChip(chip,g);});
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'challenge');
+}
+function resetChips(g){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{c.className='word-chip';c.onclick=null;});}
+function selectBlank(b,g){
+  if(state[g]!=='challenge')return;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(x=>{if(x!==b)x.classList.remove('active');});
+  if(b.classList.contains('active')){b.classList.remove('active');activeBlank=null;}
+  else{b.classList.add('active');activeBlank={el:b,group:g};}
+}
+function selectChip(chip,g){
+  if(state[g]!=='challenge')return;
+  if(!activeBlank||activeBlank.group!==g)return;
+  const b=activeBlank.el; const word=chip.dataset.word;
+  const prev=b.dataset.filled;
+  if(prev){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{if(c.dataset.word===prev)c.classList.remove('used');});}
+  b.textContent=word; b.dataset.filled=word;
+  b.classList.remove('active','correct','wrong'); b.classList.add('filled');
+  chip.classList.add('used'); activeBlank=null;
+}
+function judgeGroup(g){
+  if(state[g]!=='challenge')return;
+  const blanks=document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  let allFilled=true; blanks.forEach(b=>{if(!b.dataset.filled)allFilled=false;});
+  if(!allFilled){const rm=document.getElementById('rm'+g);if(rm){rm.textContent='⚠️ 全ての空欄を埋めてから判定してください。';rm.className='result-msg ng';}return;}
+  let correct=0;
+  blanks.forEach(b=>{b.classList.remove('active','filled');if(b.dataset.filled===b.dataset.ans){b.classList.add('correct');correct++;}else b.classList.add('wrong');});
+  const rm=document.getElementById('rm'+g);
+  if(correct===blanks.length){if(rm){rm.textContent='🎉 全問正解！';rm.className='result-msg ok';}launchConfetti();}
+  else{if(rm){rm.textContent=`${correct} / ${blanks.length} 正解。もう一度チャレンジしてみよう！`;rm.className='result-msg ng';}}
+}
+function showAnswer(g){
+  state[g]='preview'; activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent=b.dataset.ans;b.className='mblank preview';b.dataset.filled=b.dataset.ans;b.onclick=null;});
+  resetChips(g);
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'preview');
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');if(!canvas)return;
+  canvas.style.display='block'; const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  const colors=['#C0392B','#D4A017','#00AEEF','#27ae60','#9b59b6','#e67e22','#1B2A4A'];
+  const pieces=Array.from({length:150},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*6+4,d:Math.random()*80+40,color:colors[Math.floor(Math.random()*colors.length)],tilt:0,tiltAngle:0,tiltSpeed:Math.random()*0.1+0.05}));
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{p.tiltAngle+=p.tiltSpeed;p.y+=(Math.cos(frame/20+p.d)+1+p.r/2)*1.2;p.x+=Math.sin(frame/20)*1.5;p.tilt=Math.sin(p.tiltAngle)*15;ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/3);ctx.stroke();});
+    frame++;
+    if(frame<200)requestAnimationFrame(draw);
+    else{ctx.clearRect(0,0,canvas.width,canvas.height);canvas.style.display='none';}
+  }
+  draw();
 }
 </script>
-
 </body>
 </html>

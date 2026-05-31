@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch09 時効①</title>
+<style>
+  :root {
+    --bg: #eef2f7;
+    --card: #ffffff;
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4A017;
+    --cyan: #00AEEF;
+    --text: #2c3e50;
+    --border: #dde3ec;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); font-family: 'Meiryo','メイリオ',sans-serif; color: var(--text); font-size: 15px; line-height: 1.8; }
+
+  header { background: var(--navy); color: #fff; padding: 18px 24px 14px; }
+  header .chapter-num { font-size: 13px; color: var(--gold); letter-spacing: 2px; margin-bottom: 4px; }
+  header h1 { font-size: 22px; font-weight: bold; }
+  header .stars { font-size: 13px; margin-top: 4px; color: #aac; }
+  header .stars span { color: var(--gold); }
+
+  .container { max-width: 800px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  .section-card { background: var(--card); border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); margin-bottom: 24px; overflow: hidden; }
+  .section-header { background: var(--navy); color: #fff; padding: 10px 18px; font-size: 15px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+  .section-header .num { background: var(--gold); color: var(--navy); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; flex-shrink: 0; }
+  .section-body { padding: 18px 20px; }
+
+  .sub-heading { font-size: 14px; font-weight: bold; color: var(--navy); border-left: 4px solid var(--cyan); padding-left: 10px; margin: 18px 0 10px; }
+  .sub-heading:first-child { margin-top: 0; }
+  p { margin-bottom: 10px; }
+  p:last-child { margin-bottom: 0; }
+
+  .kw { color: var(--crimson); font-weight: bold; }
+  .kw-b { color: #1a6ea8; font-weight: bold; }
+  .kw-g { color: #27ae60; font-weight: bold; }
+
+  .formula-box { background: #e8f4fd; border: 1px solid #a8d4f0; border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 15px; text-align: center; font-weight: bold; color: var(--navy); }
+  .formula-box .eq { color: var(--crimson); }
+
+  .table-wrap { overflow-x: auto; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { background: var(--navy); color: #fff; padding: 8px 12px; text-align: center; }
+  td { border: 1px solid var(--border); padding: 8px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f8fc; }
+  .td-ok { color: #27ae60; font-weight: bold; text-align: center; }
+  .td-ng { color: var(--crimson); font-weight: bold; text-align: center; }
+
+  .enyo-box { border: 2px solid var(--cyan); border-radius: 8px; margin: 12px 0; overflow: hidden; }
+  .enyo-box .enyo-title { background: var(--cyan); color: #fff; font-weight: bold; font-size: 13px; padding: 6px 14px; }
+  .enyo-box .enyo-body { padding: 10px 14px; }
+  .enyo-box.ng .enyo-title { background: #e67e22; }
+  .enyo-box.ng { border-color: #e67e22; }
+
+  .hanrei { background: #fff8e1; border-left: 4px solid var(--gold); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 14px; }
+  .hanrei .hanrei-title { font-weight: bold; color: #8a6000; margin-bottom: 6px; font-size: 13px; }
+
+  .point-box { background: #fef9ec; border: 1px solid var(--gold); border-radius: 8px; padding: 10px 14px; margin: 12px 0; font-size: 14px; }
+  .point-box::before { content: "📌 POINT"; font-weight: bold; color: #8a6000; display: block; margin-bottom: 4px; font-size: 12px; }
+
+  .goro { background: #f0f9ff; border: 2px dashed var(--cyan); border-radius: 8px; padding: 10px 16px; margin: 12px 0; font-size: 14px; text-align: center; }
+  .goro .goro-text { font-size: 18px; font-weight: bold; color: var(--navy); letter-spacing: 2px; }
+  .goro .goro-note { font-size: 12px; color: #777; margin-top: 4px; }
+
+  ul.list { padding-left: 20px; margin: 8px 0; }
+  ul.list li { margin-bottom: 6px; }
+
+  /* ===== ミニテスト ===== */
+  .mini-test { background: #f4f0fa; border: 2px solid #9b59b6; border-radius: 10px; padding: 16px 18px; margin-top: 24px; }
+  .mt-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+  .mt-title { font-weight: bold; color: #6c3483; font-size: 14px; display: flex; align-items: center; gap: 6px; }
+  .mt-title::before { content: "✏️"; }
+  .mt-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  /* ボタン共通 */
+  .btn { border: none; border-radius: 6px; padding: 6px 16px; font-size: 13px; cursor: pointer; font-family: 'Meiryo',sans-serif; font-weight: bold; transition: opacity 0.15s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-challenge { background: var(--crimson); color: #fff; }
+  .btn-judge    { background: #27ae60; color: #fff; }
+  .btn-show     { background: var(--gold); color: var(--navy); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* 語群 */
+  .word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; padding: 10px 12px; background: #ece8f5; border-radius: 8px; min-height: 42px; }
+  .word-chip { background: var(--navy); color: #fff; border-radius: 20px; padding: 4px 14px; font-size: 13px; cursor: pointer; user-select: none; border: 2px solid transparent; transition: all 0.15s; }
+  .word-chip:hover { opacity: 0.85; }
+  .word-chip.used { opacity: 0.3; pointer-events: none; }
+
+  /* 空欄 */
+  .mblank { display: inline-block; border-radius: 4px; padding: 1px 8px; min-width: 72px; text-align: center; font-weight: bold; font-size: 14px; cursor: pointer; transition: all 0.2s; border: 2px solid #bbb; vertical-align: middle; background: #ddd; color: #ddd; user-select: none; }
+  .mblank.preview { background: #d4edda; border-color: #27ae60; color: #155724; cursor: default; }
+  .mblank.active  { background: #fff3cd; border-color: var(--gold); color: var(--navy); }
+  .mblank.filled  { background: #eaf0fb; border-color: #6c8ebf; color: var(--navy); }
+  .mblank.correct { background: #d4edda; border-color: #27ae60; color: #155724; }
+  .mblank.wrong   { background: #f8d7da; border-color: #e74c3c; color: #721c24; }
+
+  .mt-q { font-size: 14px; margin-bottom: 10px; line-height: 2; }
+  .result-msg { font-size: 14px; margin-top: 10px; font-weight: bold; min-height: 22px; }
+  .result-msg.ok { color: #27ae60; }
+  .result-msg.ng { color: var(--crimson); }
+
+  /* 花吹雪 */
+  #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; display: none; }
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<header>
+  <div class="chapter-num">CHAPTER 09 ／ 民法</div>
+  <h1>時効①</h1>
+  <div class="stars">重要度 <span>★★★</span> ／ 頻出度 <span>★★★</span></div>
+</header>
+
+<div class="container">
+
+<!-- ===== セクション1 ===== -->
+<div class="section-card">
+  <div class="section-header"><span class="num">1</span>時効の意義・効果・援用</div>
+  <div class="section-body">
+    <div class="sub-heading">（1）時効とは？</div>
+    <p>「<span class="kw">時効</span>」とは、時の経過によって新たな法律関係を形成する制度です。<span style="text-decoration:underline;text-decoration-color:var(--cyan)">継続した事実状態を尊重する</span>ことをその趣旨としています。時効には「<span class="kw">取得時効</span>」と「<span class="kw">消滅時効</span>」の2種類があります。</p>
+    <div class="formula-box">取得時効：一定期間の経過 → <span class="eq">権利を取得</span><br>消滅時効：一定期間権利を行使しない → <span class="eq">権利が消滅</span></div>
+    <div class="point-box">所有権は消滅時効にかからない「魔法の権利」。これは頻出！</div>
+
+    <div class="sub-heading">（2）時効の効果</div>
+    <p>時効の効果は、<span class="kw">起算日に遡ります</span>（民法144条）。遡及効があります。</p>
+
+    <div class="sub-heading">（3）時効の援用（停止条件説）</div>
+    <p>一定の期間が経過しただけでは効果は発生しません。援用権者が「<span class="kw">援用</span>」をして初めて効果が生じます（<span class="kw-b">停止条件説</span>・最判昭61・3・17）。</p>
+    <div class="formula-box">一定期間の経過 <span class="eq">＋</span> 時効の援用 <span class="eq">＝</span> 時効の効果発生（停止条件説）</div>
+    <p>援用権者が複数いても、1人の援用効果は他に影響しません（<span class="kw">相対効の原則</span>）。</p>
+
+    <!-- ミニテスト1 -->
+    <div class="mini-test" data-group="1">
+      <div class="mt-header">
+        <div class="mt-title">ミニテスト①</div>
+        <div class="mt-btns">
+          <button class="btn btn-challenge" onclick="startChallenge(1)">チャレンジ</button>
+          <button class="btn btn-judge"     onclick="judgeGroup(1)" disabled>判定する</button>
+          <button class="btn btn-show"      onclick="showAnswer(1)">手本を見る</button>
+        </div>
+      </div>
+      <div class="word-bank" id="wb1">
+        <span class="word-chip" data-word="起算日">起算日</span>
+        <span class="word-chip" data-word="援用">援用</span>
+        <span class="word-chip" data-word="停止条件説">停止条件説</span>
+        <span class="word-chip" data-word="所有権">所有権</span>
+        <span class="word-chip" data-word="相対効">相対効</span>
+      </div>
+      <div class="mt-q">① 時効の効果は<span class="mblank preview" data-ans="起算日" data-group="1">起算日</span>に遡る。</div>
+      <div class="mt-q">② 時効の効果発生には当事者の<span class="mblank preview" data-ans="援用" data-group="1">援用</span>が必要であるという見解を<span class="mblank preview" data-ans="停止条件説" data-group="1">停止条件説</span>という。</div>
+      <div class="mt-q">③ <span class="mblank preview" data-ans="所有権" data-group="1">所有権</span>は消滅時効にかからない。</div>
+      <div class="mt-q">④ 1人の援用の効果は他の援用権者に影響しない。これを<span class="mblank preview" data-ans="相対効" data-group="1">相対効</span>の原則という。</div>
+      <div class="result-msg" id="rm1"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== セクション2 ===== -->
+<div class="section-card">
+  <div class="section-header"><span class="num">2</span>援用権者</div>
+  <div class="section-body">
+    <p>援用権者とは「時効によって<span class="kw">直接</span>利益を受ける者」（大判明43・1・25）。間接的な利益は含まれません。</p>
+    <div class="goro">
+      <div class="goro-text">保証・物上・第三・詐害　→　援用○</div>
+      <div class="goro-note">保証人・物上保証人・第三取得者・詐害行為受益者は援用権者</div>
+    </div>
+    <div class="enyo-box">
+      <div class="enyo-title">✅ 援用権者と認められた者</div>
+      <div class="enyo-body">
+        <ul class="list">
+          <li><span class="kw-g">①主たる債務の保証人・連帯保証人</span>：付従性により主債務消滅→保証債務も消滅→直接利益あり</li>
+          <li><span class="kw-g">②物上保証人</span>：被担保債権消滅→抵当権も消滅→直接利益あり</li>
+          <li><span class="kw-g">③抵当不動産の第三取得者</span>：被担保債権消滅→抵当権の負担なく完全な所有権を取得</li>
+          <li><span class="kw-g">④詐害行為の受益者</span>（最判平10・6・22）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="enyo-box ng">
+      <div class="enyo-title">❌ 援用権者と認められなかった者</div>
+      <div class="enyo-body">
+        <ul class="list">
+          <li><span class="kw">⑤建物の賃借人</span>：土地と建物は別個独立の不動産→直接利益なし（最判昭44・7・15）</li>
+          <li><span class="kw">⑥後順位抵当権者</span>：順位上昇は<span class="kw">反射的利益</span>に過ぎない（最判平11・10・21）</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ミニテスト2 -->
+    <div class="mini-test" data-group="2">
+      <div class="mt-header">
+        <div class="mt-title">ミニテスト②</div>
+        <div class="mt-btns">
+          <button class="btn btn-challenge" onclick="startChallenge(2)">チャレンジ</button>
+          <button class="btn btn-judge"     onclick="judgeGroup(2)" disabled>判定する</button>
+          <button class="btn btn-show"      onclick="showAnswer(2)">手本を見る</button>
+        </div>
+      </div>
+      <div class="word-bank" id="wb2">
+        <span class="word-chip" data-word="直接">直接</span>
+        <span class="word-chip" data-word="付従性">付従性</span>
+        <span class="word-chip" data-word="第三取得者">第三取得者</span>
+        <span class="word-chip" data-word="反射的利益">反射的利益</span>
+        <span class="word-chip" data-word="受益者">受益者</span>
+      </div>
+      <div class="mt-q">① 援用権者とは時効によって<span class="mblank preview" data-ans="直接" data-group="2">直接</span>利益を受ける者である。</div>
+      <div class="mt-q">② 保証人が援用権者である理由は、主債務消滅により保証債務も<span class="mblank preview" data-ans="付従性" data-group="2">付従性</span>によって消滅するからである。</div>
+      <div class="mt-q">③ 抵当不動産の<span class="mblank preview" data-ans="第三取得者" data-group="2">第三取得者</span>は援用権者に該当する。</div>
+      <div class="mt-q">④ 後順位抵当権者の順位上昇は<span class="mblank preview" data-ans="反射的利益" data-group="2">反射的利益</span>に過ぎないため援用権者ではない。</div>
+      <div class="result-msg" id="rm2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== セクション3 ===== -->
+<div class="section-card">
+  <div class="section-header"><span class="num">3</span>時効利益の放棄と援用権喪失の理論</div>
+  <div class="section-body">
+    <div class="sub-heading">（1）時効利益の放棄</div>
+    <p>時効の利益は、<span class="kw">あらかじめ放棄することができません</span>（146条）。債権者が強制するおそれを防ぐためです。<span class="kw-b">時効完成後</span>の放棄は認められます。放棄には時効期間経過の事実を「<span class="kw">認識</span>」した意思表示が必要です。</p>
+    <div class="point-box">放棄の効果は<strong>相対効</strong>。主たる債務者が放棄しても、保証人はなお援用できる（大判大5・12・25）。</div>
+
+    <div class="sub-heading">（2）援用権喪失の理論</div>
+    <p>時効完成後、その事実を<span class="kw">知らずに</span>債務の承認行為をした場合、判例は<span class="kw-b">信義則の観点</span>から以後の<span class="kw">援用権行使を認めない</span>（最大判昭41・4・20）。これを「<span class="kw">援用権喪失の理論</span>」といいます。</p>
+    <div class="hanrei">
+      <div class="hanrei-title">判例：最大判昭41・4・20</div>
+      <p>時効完成を知らずに承認行為をした場合、<strong>信義則上、以後援用権を行使することができない</strong>。</p>
+    </div>
+    <div class="point-box">放棄・援用権喪失後もさらに時効期間が経過すれば、新たに援用できる。</div>
+
+    <!-- ミニテスト3 -->
+    <div class="mini-test" data-group="3">
+      <div class="mt-header">
+        <div class="mt-title">ミニテスト③</div>
+        <div class="mt-btns">
+          <button class="btn btn-challenge" onclick="startChallenge(3)">チャレンジ</button>
+          <button class="btn btn-judge"     onclick="judgeGroup(3)" disabled>判定する</button>
+          <button class="btn btn-show"      onclick="showAnswer(3)">手本を見る</button>
+        </div>
+      </div>
+      <div class="word-bank" id="wb3">
+        <span class="word-chip" data-word="あらかじめ">あらかじめ</span>
+        <span class="word-chip" data-word="認識">認識</span>
+        <span class="word-chip" data-word="相対効">相対効</span>
+        <span class="word-chip" data-word="信義則">信義則</span>
+        <span class="word-chip" data-word="完成後">完成後</span>
+      </div>
+      <div class="mt-q">① 時効の利益は<span class="mblank preview" data-ans="あらかじめ" data-group="3">あらかじめ</span>放棄することができない。</div>
+      <div class="mt-q">② 時効完成後の放棄には時効期間経過の事実の<span class="mblank preview" data-ans="認識" data-group="3">認識</span>が必要である。</div>
+      <div class="mt-q">③ 時効利益の放棄の効果は<span class="mblank preview" data-ans="相対効" data-group="3">相対効</span>である。</div>
+      <div class="mt-q">④ 時効完成を知らずに承認行為をした場合、<span class="mblank preview" data-ans="信義則" data-group="3">信義則</span>上、以後援用権を行使できない（援用権喪失の理論）。</div>
+      <div class="result-msg" id="rm3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== セクション4 ===== -->
+<div class="section-card">
+  <div class="section-header"><span class="num">4</span>時効の完成猶予・更新</div>
+  <div class="section-body">
+    <p>「<span class="kw">完成猶予</span>」＝時効完成が一定期間猶予される。「<span class="kw">更新</span>」＝時効期間がリセットされゼロから再スタート。</p>
+
+    <div class="sub-heading">（1）裁判上の請求等</div>
+    <p>訴えの提起等 → <span class="kw">終了するまでの間、完成猶予</span>。確定判決等で権利確定 → <span class="kw-b">更新</span>。訴え却下・取下げ → 終了時から<span class="kw">6か月、完成猶予のみ</span>。</p>
+
+    <div class="sub-heading">（2）強制執行等</div>
+    <p>強制執行等 → <span class="kw">終了するまでの間、完成猶予</span>。債権満足を得た場合 → <span class="kw-b">終了時から更新</span>。取下げ等 → <span class="kw">終了時から6か月、完成猶予のみ</span>。</p>
+
+    <div class="sub-heading">（3）仮差押え・仮処分</div>
+    <p><span class="kw">終了時から6か月、完成猶予のみ</span>。更新なし。</p>
+
+    <div class="sub-heading">（4）催告</div>
+    <p><span class="kw">催告時から6か月、完成猶予のみ</span>。更新なし。再度の催告は効力なし（150条2項）。</p>
+
+    <div class="sub-heading">（5）協議を行う旨の合意（書面）</div>
+    <p>①合意から<span class="kw">1年</span>　②当事者が定めた協議期間（1年未満）　③協議拒絶通知から<span class="kw">6か月</span>　のいずれか早い時まで完成猶予。更新なし。</p>
+
+    <div class="sub-heading">（6）承認</div>
+    <p>承認は<span class="kw">更新事由</span>（完成猶予ではない）。承認時からゼロカウント（152条）。未成年者・成年被後見人は単独不可。</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th>事由</th><th>完成猶予</th><th>更新</th></tr>
+        <tr><td>裁判上の請求等</td><td class="td-ok">終了するまでの間</td><td class="td-ok">権利確定時</td></tr>
+        <tr><td>強制執行等</td><td class="td-ok">終了するまでの間</td><td class="td-ok">終了時</td></tr>
+        <tr><td>仮差押え・仮処分</td><td class="td-ok">終了時から6か月</td><td class="td-ng">なし</td></tr>
+        <tr><td>催告</td><td class="td-ok">催告から6か月</td><td class="td-ng">なし</td></tr>
+        <tr><td>協議合意</td><td class="td-ok">①②③の早い時まで</td><td class="td-ng">なし</td></tr>
+        <tr><td>承認</td><td class="td-ng">なし</td><td class="td-ok">承認時</td></tr>
+      </table>
+    </div>
+    <div class="point-box">完成猶予・更新の効力は<strong>当事者及びその承継人の間においてのみ</strong>（相対効）（153条）。</div>
+
+    <!-- ミニテスト4 -->
+    <div class="mini-test" data-group="4">
+      <div class="mt-header">
+        <div class="mt-title">ミニテスト④</div>
+        <div class="mt-btns">
+          <button class="btn btn-challenge" onclick="startChallenge(4)">チャレンジ</button>
+          <button class="btn btn-judge"     onclick="judgeGroup(4)" disabled>判定する</button>
+          <button class="btn btn-show"      onclick="showAnswer(4)">手本を見る</button>
+        </div>
+      </div>
+      <div class="word-bank" id="wb4">
+        <span class="word-chip" data-word="6か月">6か月</span>
+        <span class="word-chip" data-word="更新">更新</span>
+        <span class="word-chip" data-word="1年">1年</span>
+        <span class="word-chip" data-word="完成猶予">完成猶予</span>
+        <span class="word-chip" data-word="承認">承認</span>
+      </div>
+      <div class="mt-q">① 催告による完成猶予期間は催告時から<span class="mblank preview" data-ans="6か月" data-group="4">6か月</span>である。</div>
+      <div class="mt-q">② 催告には<span class="mblank preview" data-ans="更新" data-group="4">更新</span>の効力はない。</div>
+      <div class="mt-q">③ 仮差押え・仮処分は<span class="mblank preview" data-ans="完成猶予" data-group="4">完成猶予</span>のみで更新なし。</div>
+      <div class="mt-q">④ 協議合意による完成猶予は、合意から<span class="mblank preview" data-ans="1年" data-group="4">1年</span>を超えられない。</div>
+      <div class="mt-q">⑤ <span class="mblank preview" data-ans="承認" data-group="4">承認</span>は完成猶予事由ではなく更新事由である。</div>
+      <div class="result-msg" id="rm4"></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div style="text-align:center;font-size:11px;color:#aaa;padding:8px 0 30px;">音声：VOICEVOX / 四国めたん</div>
+
+<script>
+// ===== 状態管理 =====
+// mode: 'preview' | 'challenge'
+const state = { 1:'preview', 2:'preview', 3:'preview', 4:'preview' };
+let activeBlank = null; // { el, group }
+
+// ===== ページ読み込み時：語群シャッフル =====
+window.addEventListener('DOMContentLoaded', () => {
+  [1,2,3,4].forEach(g => shuffleBank(g));
+});
+
+function shuffleBank(g){
+  const wb = document.getElementById('wb'+g);
+  const chips = Array.from(wb.querySelectorAll('.word-chip'));
+  for(let i = chips.length-1; i>0; i--){
+    const j = Math.floor(Math.random()*(i+1));
+    wb.insertBefore(chips[j], chips[i]);
+    const tmp = chips[i]; chips[i]=chips[j]; chips[j]=tmp;
+  }
+}
+
+// ===== ボタン有効化ヘルパー =====
+function getBtn(g, cls){
+  const mt = document.querySelector(`.mini-test[data-group="${g}"]`);
+  return mt.querySelector(cls);
+}
+function setBtns(g, mode){
+  // mode: 'preview' or 'challenge'
+  const isC = mode==='challenge';
+  getBtn(g,'.btn-challenge').disabled = isC;
+  getBtn(g,'.btn-judge').disabled     = !isC;
+}
+
+// ===== チャレンジ開始 =====
+function startChallenge(g){
+  state[g] = 'challenge';
+  activeBlank = null;
+
+  // 空欄を空にする
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b => {
+    b.textContent = '　　　';
+    b.className = 'mblank';
+    b.dataset.filled = '';
+  });
+  // 語群チップをリセット
+  resetChips(g);
+  // 語群シャッフル
+  shuffleBank(g);
+  // 結果メッセージ消す
+  document.getElementById('rm'+g).textContent = '';
+  document.getElementById('rm'+g).className = 'result-msg';
+
+  // 空欄クリックイベント（チャレンジ中のみ有効）
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b => {
+    b.onclick = () => selectBlank(b, g);
+  });
+  // 語群チップクリック
+  document.querySelectorAll(`#wb${g} .word-chip`).forEach(chip => {
+    chip.onclick = () => selectChip(chip, g);
+  });
+
+  setBtns(g, 'challenge');
+}
+
+function resetChips(g){
+  document.querySelectorAll(`#wb${g} .word-chip`).forEach(chip => {
+    chip.className = 'word-chip';
+    chip.onclick = null;
+  });
+}
+
+// ===== 空欄選択 =====
+function selectBlank(b, g){
+  if(state[g]!=='challenge') return;
+  // 既に別の空欄がactiveなら解除
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(x => {
+    if(x !== b && x.classList.contains('active')) x.classList.remove('active');
+  });
+  if(b.classList.contains('active')){
+    b.classList.remove('active');
+    activeBlank = null;
+  } else {
+    b.classList.add('active');
+    activeBlank = { el: b, group: g };
+  }
+}
+
+// ===== 語群チップ選択 =====
+function selectChip(chip, g){
+  if(state[g]!=='challenge') return;
+  if(!activeBlank || activeBlank.group!==g) return;
+  const b = activeBlank.el;
+  const word = chip.dataset.word;
+
+  // 既にその空欄に何か入っていたら元のチップを戻す
+  const prev = b.dataset.filled;
+  if(prev){
+    document.querySelectorAll(`#wb${g} .word-chip`).forEach(c => {
+      if(c.dataset.word===prev) c.classList.remove('used');
+    });
+  }
+
+  b.textContent = word;
+  b.dataset.filled = word;
+  b.classList.remove('active','correct','wrong');
+  b.classList.add('filled');
+  chip.classList.add('used');
+  activeBlank = null;
+}
+
+// ===== 判定 =====
+function judgeGroup(g){
+  if(state[g]!=='challenge') return;
+  const blanks = document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  let allFilled = true;
+  blanks.forEach(b => { if(!b.dataset.filled) allFilled=false; });
+  if(!allFilled){
+    const rm = document.getElementById('rm'+g);
+    rm.textContent = '⚠️ 全ての空欄を埋めてから判定してください。';
+    rm.className = 'result-msg ng';
+    return;
+  }
+
+  let correct = 0;
+  blanks.forEach(b => {
+    b.classList.remove('active','filled');
+    if(b.dataset.filled === b.dataset.ans){
+      b.classList.add('correct');
+      correct++;
+    } else {
+      b.classList.add('wrong');
+    }
+  });
+
+  const rm = document.getElementById('rm'+g);
+  if(correct === blanks.length){
+    rm.textContent = '🎉 全問正解！';
+    rm.className = 'result-msg ok';
+    launchConfetti();
+  } else {
+    rm.textContent = `${correct} / ${blanks.length} 正解。もう一度チャレンジしてみよう！`;
+    rm.className = 'result-msg ng';
+  }
+}
+
+// ===== 手本を見る =====
+function showAnswer(g){
+  state[g] = 'preview';
+  activeBlank = null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b => {
+    b.textContent = b.dataset.ans;
+    b.className = 'mblank preview';
+    b.dataset.filled = b.dataset.ans;
+    b.onclick = null;
+  });
+  resetChips(g);
+  document.querySelectorAll(`#wb${g} .word-chip`).forEach(chip => chip.onclick=null);
+  document.getElementById('rm'+g).textContent = '';
+  setBtns(g, 'preview');
+}
+
+// ===== 花吹雪 =====
+function launchConfetti(){
+  const canvas = document.getElementById('confetti-canvas');
+  canvas.style.display = 'block';
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const colors = ['#C0392B','#D4A017','#00AEEF','#27ae60','#9b59b6','#e67e22','#1B2A4A'];
+  const pieces = Array.from({length:150}, () => ({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height - canvas.height,
+    r: Math.random()*6+4,
+    d: Math.random()*80+40,
+    color: colors[Math.floor(Math.random()*colors.length)],
+    tilt: Math.random()*10-10,
+    tiltAngle: 0,
+    tiltSpeed: Math.random()*0.1+0.05
+  }));
+
+  let frame = 0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      p.tiltAngle += p.tiltSpeed;
+      p.y += (Math.cos(frame/20+p.d)+1+p.r/2)*1.2;
+      p.x += Math.sin(frame/20)*1.5;
+      p.tilt = Math.sin(p.tiltAngle)*15;
+      ctx.beginPath();
+      ctx.lineWidth = p.r;
+      ctx.strokeStyle = p.color;
+      ctx.moveTo(p.x+p.tilt+p.r/3, p.y);
+      ctx.lineTo(p.x+p.tilt, p.y+p.tilt+p.r/3);
+      ctx.stroke();
+    });
+    frame++;
+    if(frame < 200) requestAnimationFrame(draw);
+    else { ctx.clearRect(0,0,canvas.width,canvas.height); canvas.style.display='none'; }
+  }
+  draw();
+}
+</script>
+
+</body>
+</html>

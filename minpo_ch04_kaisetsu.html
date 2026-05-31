@@ -120,17 +120,17 @@
   .mini-hd-title{color:#fff;font-size:13px;font-weight:700}
   .mini-hd-hint{font-size:11px;color:rgba(255,255,255,.7);margin-left:auto}
   .mini-body{padding:14px 16px}
-  .q-block{margin-bottom:18px;position:relative}
+  
   .q-text{font-size:14px;line-height:2.2}
-  .mblank{display:inline-block;min-width:90px;height:28px;background:#1B2A4A;border-radius:6px;margin:0 3px;text-align:center;cursor:pointer;font-weight:700;font-size:13px;color:transparent;vertical-align:middle;position:relative;transition:background .2s;border:2px solid #1B2A4A;line-height:24px;padding:0 8px;white-space:nowrap}
-  .mblank.filled{color:#fff;background:#2c447a;border-color:#2c447a}
-  .mblank.correct{color:#1a1a2e;background:#ffd700;border-color:#b8860b}
+  
+  
+  
   .mblank:hover{opacity:.85}
-  .word-popup{display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#1B2A4A;border:2px solid #D4AF37;border-radius:10px;padding:10px;z-index:500;box-shadow:0 6px 20px rgba(0,0,0,.3);min-width:260px;}
-  .word-popup.show{display:block}
-  .word-popup::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#D4AF37}
-  .word-popup-title{font-size:10px;color:#D4AF37;font-weight:700;letter-spacing:1px;margin-bottom:8px}
-  .word-chips{display:flex;flex-wrap:wrap;gap:6px}
+  
+  
+  
+  
+  
   .wchip{padding:5px 11px;border-radius:16px;border:1.5px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;position:relative}
   .wchip:hover{background:#D4AF37;color:#1B2A4A;border-color:#D4AF37}
   .wchip.used{opacity:.3;pointer-events:none}
@@ -138,11 +138,38 @@
   .wchip-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#2c1800}
   .wchip:hover .wchip-tip{display:block}
   .mini-footer{padding:10px 16px 14px;display:flex;align-items:center;gap:10px;border-top:1px solid #dde3ee;flex-wrap:wrap}
-  .mini-check-btn{background:#C0392B;color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
-  .mini-check-btn:hover{background:#8a2820}
+  
+  
   .mini-reset-btn{background:#6c757d;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
   .mini-reset-btn:hover{background:#495057}
   .mini-score{font-size:13px;font-weight:700;color:#1B2A4A;margin-left:auto}
+
+  /* ===== ミニテスト新仕様 ===== */
+  .mini-test { background: #f4f0fa; border: 2px solid #9b59b6; border-radius: 10px; padding: 16px 18px; margin-top: 24px; }
+  .mt-title { font-weight: bold; color: #6c3483; font-size: 14px; display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+  .mt-title::before { content: "✏️"; }
+  .mt-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .btn { border: none; border-radius: 6px; padding: 6px 16px; font-size: 13px; cursor: pointer; font-family: "Meiryo",sans-serif; font-weight: bold; transition: opacity 0.15s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-challenge { background: #C0392B; color: #fff; }
+  .btn-judge     { background: #27ae60; color: #fff; }
+  .btn-show      { background: #D4A017; color: #1B2A4A; }
+  .btn:disabled  { opacity: 0.4; cursor: not-allowed; }
+  .word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; padding: 10px 12px; background: #ece8f5; border-radius: 8px; min-height: 42px; }
+  .word-chip { background: #1B2A4A; color: #fff; border-radius: 20px; padding: 4px 14px; font-size: 13px; cursor: pointer; user-select: none; transition: all 0.15s; }
+  .word-chip:hover { opacity: 0.85; }
+  .word-chip.used { opacity: 0.3; pointer-events: none; }
+  .mblank { display: inline-block; border-radius: 4px; padding: 1px 8px; min-width: 72px; text-align: center; font-weight: bold; font-size: 14px; cursor: pointer; transition: all 0.2s; border: 2px solid #bbb; vertical-align: middle; background: #ddd; color: #ddd; user-select: none; }
+  .mblank.preview { background: #d4edda; border-color: #27ae60; color: #155724; cursor: default; }
+  .mblank.active  { background: #fff3cd; border-color: #D4A017; color: #1B2A4A; }
+  .mblank.filled  { background: #eaf0fb; border-color: #6c8ebf; color: #1B2A4A; }
+  .mblank.correct { background: #d4edda; border-color: #27ae60; color: #155724; }
+  .mblank.wrong   { background: #f8d7da; border-color: #e74c3c; color: #721c24; }
+  .mt-q { font-size: 14px; margin-bottom: 10px; line-height: 2; }
+  .result-msg { font-size: 14px; margin-top: 10px; font-weight: bold; min-height: 22px; }
+  .result-msg.ok { color: #27ae60; }
+  .result-msg.ng { color: #C0392B; }
+  #confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; display:none; }
 </style>
 </head>
 <body>
@@ -201,17 +228,23 @@
   </div>
 
   <!-- ミニテスト：意思表示の構造 -->
-  <div class="mini" id="mini1">
+  <div class="mini" id="mini1" data-group="1">
     <div class="mini-hd">
       <span class="mini-hd-badge">MINI TEST</span>
       <span class="mini-hd-title">意思表示の構造</span>
       <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
     </div>
     <div class="mini-body">
-      <div class="q-block"><div class="q-text">Q1. 意思の不存在（意思の欠缺）には、<span class="mblank" data-ans="心裡留保" data-gid="g1" data-qid="1-1">　　　　</span>・<span class="mblank" data-ans="虚偽表示" data-gid="g1" data-qid="1-2">　　　　</span>・<span class="mblank" data-ans="錯誤" data-gid="g1" data-qid="1-3">　　</span>の3つがある。瑕疵ある意思表示には<span class="mblank" data-ans="詐欺" data-gid="g1" data-qid="1-4">　　</span>・<span class="mblank" data-ans="強迫" data-gid="g1" data-qid="1-5">　　</span>がある。</div></div>
+      <div class="q-block"><div class="q-text">Q1. 意思の不存在（意思の欠缺）には、<span class="mblank preview" data-ans="心裡留保" data-group="1">心裡留保</span>・<span class="mblank preview" data-ans="虚偽表示" data-group="1">虚偽表示</span>・<span class="mblank preview" data-ans="錯誤" data-group="1">錯誤</span>の3つがある。瑕疵ある意思表示には<span class="mblank preview" data-ans="詐欺" data-group="1">詐欺</span>・<span class="mblank preview" data-ans="強迫" data-group="1">強迫</span>がある。</div></div>
     </div>
     <div class="mini-footer">
-      <button class="mini-check-btn" onclick="checkMini('mini1','g1')">判定する</button>
+      <div class="word-bank" id="wb1"><span class="word-chip" data-word="心裡留保">心裡留保</span><span class="word-chip" data-word="虚偽表示">虚偽表示</span><span class="word-chip" data-word="錯誤">錯誤</span><span class="word-chip" data-word="詐欺">詐欺</span><span class="word-chip" data-word="強迫">強迫</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(1)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(1)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(1)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm1"></div>
       <button class="mini-reset-btn" onclick="resetMini('mini1','g1')">やり直す</button>
       <span class="mini-score" id="score-mini1"></span>
     </div>
@@ -264,18 +297,24 @@
   </div>
 
   <!-- ミニテスト：心裡留保 -->
-  <div class="mini" id="mini2">
+  <div class="mini" id="mini2" data-group="2">
     <div class="mini-hd">
       <span class="mini-hd-badge">MINI TEST</span>
       <span class="mini-hd-title">心裡留保（93条）</span>
       <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
     </div>
     <div class="mini-body">
-      <div class="q-block"><div class="q-text">Q1. 心裡留保による意思表示は原則<span class="mblank" data-ans="有効" data-gid="g2" data-qid="2-1">　　</span>。相手方が<span class="mblank" data-ans="悪意または有過失" data-gid="g2" data-qid="2-2">　　　　</span>の場合は<span class="mblank" data-ans="無効" data-gid="g2" data-qid="2-3">　　</span>（93条1項）。</div></div>
-      <div class="q-block"><div class="q-text">Q2. 心裡留保の無効は<span class="mblank" data-ans="善意の第三者" data-gid="g2" data-qid="2-4">　　　　</span>に対抗不可（93条2項）。第三者に過失があっても<span class="mblank" data-ans="保護される" data-gid="g2" data-qid="2-5">　　　　</span>。</div></div>
+      <div class="q-block"><div class="q-text">Q1. 心裡留保による意思表示は原則<span class="mblank preview" data-ans="有効" data-group="2">有効</span>。相手方が<span class="mblank preview" data-ans="悪意または有過失" data-group="2">悪意または有過失</span>の場合は<span class="mblank preview" data-ans="無効" data-group="2">無効</span>（93条1項）。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 心裡留保の無効は<span class="mblank preview" data-ans="善意の第三者" data-group="2">善意の第三者</span>に対抗不可（93条2項）。第三者に過失があっても<span class="mblank preview" data-ans="保護される" data-group="2">保護される</span>。</div></div>
     </div>
     <div class="mini-footer">
-      <button class="mini-check-btn" onclick="checkMini('mini2','g2')">判定する</button>
+      <div class="word-bank" id="wb2"><span class="word-chip" data-word="有効">有効</span><span class="word-chip" data-word="悪意または有過失">悪意または有過失</span><span class="word-chip" data-word="無効">無効</span><span class="word-chip" data-word="善意の第三者">善意の第三者</span><span class="word-chip" data-word="保護される">保護される</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(2)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(2)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(2)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm2"></div>
       <button class="mini-reset-btn" onclick="resetMini('mini2','g2')">やり直す</button>
       <span class="mini-score" id="score-mini2"></span>
     </div>
@@ -337,18 +376,24 @@
   </div>
 
   <!-- ミニテスト：虚偽表示 -->
-  <div class="mini" id="mini3">
+  <div class="mini" id="mini3" data-group="3">
     <div class="mini-hd">
       <span class="mini-hd-badge">MINI TEST</span>
       <span class="mini-hd-title">虚偽表示（94条）</span>
       <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
     </div>
     <div class="mini-body">
-      <div class="q-block"><div class="q-text">Q1. 虚偽表示は当事者間では<span class="mblank" data-ans="無効" data-gid="g3" data-qid="3-1">　　</span>（94条1項）。<span class="mblank" data-ans="善意の第三者" data-gid="g3" data-qid="3-2">　　　　</span>には無効を対抗できない（94条2項）。</div></div>
-      <div class="q-block"><div class="q-text">Q2. 94条2項の第三者保護は善意で足り、<span class="mblank" data-ans="無過失は不要" data-gid="g3" data-qid="3-3">　　　　</span>（判例）。登記も<span class="mblank" data-ans="不要" data-gid="g3" data-qid="3-4">　　</span>（判例）。</div></div>
+      <div class="q-block"><div class="q-text">Q1. 虚偽表示は当事者間では<span class="mblank preview" data-ans="無効" data-group="3">無効</span>（94条1項）。<span class="mblank preview" data-ans="善意の第三者" data-group="3">善意の第三者</span>には無効を対抗できない（94条2項）。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 94条2項の第三者保護は善意で足り、<span class="mblank preview" data-ans="無過失は不要" data-group="3">無過失は不要</span>（判例）。登記も<span class="mblank preview" data-ans="不要" data-group="3">不要</span>（判例）。</div></div>
     </div>
     <div class="mini-footer">
-      <button class="mini-check-btn" onclick="checkMini('mini3','g3')">判定する</button>
+      <div class="word-bank" id="wb3"><span class="word-chip" data-word="無効">無効</span><span class="word-chip" data-word="善意の第三者">善意の第三者</span><span class="word-chip" data-word="無過失は不要">無過失は不要</span><span class="word-chip" data-word="不要">不要</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(3)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(3)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(3)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm3"></div>
       <button class="mini-reset-btn" onclick="resetMini('mini3','g3')">やり直す</button>
       <span class="mini-score" id="score-mini3"></span>
     </div>
@@ -406,18 +451,24 @@
   </div>
 
   <!-- ミニテスト：94条2項類推適用 -->
-  <div class="mini" id="mini4">
+  <div class="mini" id="mini4" data-group="4">
     <div class="mini-hd">
       <span class="mini-hd-badge">MINI TEST</span>
       <span class="mini-hd-title">94条2項の類推適用</span>
       <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
     </div>
     <div class="mini-body">
-      <div class="q-block"><div class="q-text">Q1. 外形自己作出型の類推適用では、第三者は<span class="mblank" data-ans="善意" data-gid="g4" data-qid="4-1">　　</span>であれば足り無過失は不要（最判昭41）。</div></div>
-      <div class="q-block"><div class="q-text">Q2. 外形他人作出型（放置）では94条2項・<span class="mblank" data-ans="110条" data-gid="g4" data-qid="4-2">　　</span>を類推適用。第三者は<span class="mblank" data-ans="善意かつ無過失" data-gid="g4" data-qid="4-3">　　　　</span>が必要（最判昭45）。</div></div>
+      <div class="q-block"><div class="q-text">Q1. 外形自己作出型の類推適用では、第三者は<span class="mblank preview" data-ans="善意" data-group="4">善意</span>であれば足り無過失は不要（最判昭41）。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 外形他人作出型（放置）では94条2項・<span class="mblank preview" data-ans="110条" data-group="4">110条</span>を類推適用。第三者は<span class="mblank preview" data-ans="善意かつ無過失" data-group="4">善意かつ無過失</span>が必要（最判昭45）。</div></div>
     </div>
     <div class="mini-footer">
-      <button class="mini-check-btn" onclick="checkMini('mini4','g4')">判定する</button>
+      <div class="word-bank" id="wb4"><span class="word-chip" data-word="善意">善意</span><span class="word-chip" data-word="110条">110条</span><span class="word-chip" data-word="善意かつ無過失">善意かつ無過失</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(4)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(4)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(4)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm4"></div>
       <button class="mini-reset-btn" onclick="resetMini('mini4','g4')">やり直す</button>
       <span class="mini-score" id="score-mini4"></span>
     </div>
@@ -464,18 +515,24 @@
   </div>
 
   <!-- ミニテスト：比較まとめ -->
-  <div class="mini" id="mini5">
+  <div class="mini" id="mini5" data-group="5">
     <div class="mini-hd">
       <span class="mini-hd-badge">MINI TEST</span>
       <span class="mini-hd-title">心裡留保・虚偽表示の比較</span>
       <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
     </div>
     <div class="mini-body">
-      <div class="q-block"><div class="q-text">Q1. 心裡留保は当事者間では原則<span class="mblank" data-ans="有効" data-gid="g5" data-qid="5-1">　　</span>。虚偽表示は当事者間では常に<span class="mblank" data-ans="無効" data-gid="g5" data-qid="5-2">　　</span>。</div></div>
-      <div class="q-block"><div class="q-text">Q2. 心裡留保・虚偽表示いずれも第三者保護の要件は<span class="mblank" data-ans="善意" data-gid="g5" data-qid="5-3">　　</span>のみで足り、<span class="mblank" data-ans="無過失" data-gid="g5" data-qid="5-4">　　　　</span>は不要。登記も<span class="mblank" data-ans="不要" data-gid="g5" data-qid="5-5">　　</span>。</div></div>
+      <div class="q-block"><div class="q-text">Q1. 心裡留保は当事者間では原則<span class="mblank preview" data-ans="有効" data-group="5">有効</span>。虚偽表示は当事者間では常に<span class="mblank preview" data-ans="無効" data-group="5">無効</span>。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 心裡留保・虚偽表示いずれも第三者保護の要件は<span class="mblank preview" data-ans="善意" data-group="5">善意</span>のみで足り、<span class="mblank preview" data-ans="無過失" data-group="5">無過失</span>は不要。登記も<span class="mblank preview" data-ans="不要" data-group="5">不要</span>。</div></div>
     </div>
     <div class="mini-footer">
-      <button class="mini-check-btn" onclick="checkMini('mini5','g5')">判定する</button>
+      <div class="word-bank" id="wb5"><span class="word-chip" data-word="有効">有効</span><span class="word-chip" data-word="無効">無効</span><span class="word-chip" data-word="善意">善意</span><span class="word-chip" data-word="無過失">無過失</span><span class="word-chip" data-word="不要">不要</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(5)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(5)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(5)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm5"></div>
       <button class="mini-reset-btn" onclick="resetMini('mini5','g5')">やり直す</button>
       <span class="mini-score" id="score-mini5"></span>
     </div>
@@ -494,83 +551,83 @@
   GAMBA民法 ch04 ｜ 音声：VOICEVOX（四国めたん）｜ © 江原予備校
 </footer>
 
+
+
+<canvas id="confetti-canvas"></canvas>
 <script>
-const WORD_TIPS_04 = {
-  "心裡留保":"冗談など、真意と異なることを自分で知りながら意思表示すること。",
-  "虚偽表示":"相手方と示し合わせて（通謀して）する虚偽の意思表示。",
-  "錯誤":"本人が気づかないまま意思と表示がズレている状態。",
-  "詐欺":"だまされて行った意思表示。取消しができる（96条）。",
-  "強迫":"おどされて行った意思表示。取消しができる（96条）。",
-  "有効":"心裡留保は相手方が善意・無過失なら有効（93条1項本文）。",
-  "悪意または有過失":"相手方がこの状態なら心裡留保は無効になる（93条1項但書）。",
-  "無効":"虚偽表示は当事者間では常に無効（94条1項）。",
-  "善意の第三者":"第三者が善意であれば無効を対抗できない（93条2項・94条2項）。",
-  "保護される":"心裡留保の第三者保護は無過失不要。過失があっても保護される。",
-  "無過失は不要":"94条2項の類推は善意だけで足りる（外形自己作出型）。",
-  "不要":"登記なくして善意の第三者に対抗できない。",
-  "善意":"外形自己作出型の類推適用は善意のみで足りる（無過失不要）。",
-  "110条":"外形他人作出型では94条2項＋110条を類推適用（最判昭45）。",
-  "善意かつ無過失":"外形他人作出型の類推適用では善意＋無過失が必要。",
-  "無過失":"虚偽表示・心裡留保の第三者保護は無過失不要。",
-};
-const GROUP_WORDS_04 = {
-  g1: ["心裡留保","虚偽表示","錯誤","詐欺","強迫"],
-  g2: ["有効","悪意または有過失","無効","善意の第三者","保護される"],
-  g3: ["無効","善意の第三者","無過失は不要","不要"],
-  g4: ["善意","110条","善意かつ無過失"],
-  g5: ["有効","無効","善意","無過失","不要"],
-};
-let activePopup04 = null;
-function closeAllPopups04(){document.querySelectorAll('.word-popup').forEach(p=>p.classList.remove('show'));activePopup04=null;}
-function buildPopup04(blank){
-  const gid=blank.dataset.gid,words=GROUP_WORDS_04[gid]||[];
-  const pop=document.createElement('div');pop.className='word-popup';
-  pop.innerHTML='<div class="word-popup-title">▼ 語群から選んでください</div><div class="word-chips"></div>';
-  const cd=pop.querySelector('.word-chips');
-  words.forEach(w=>{
-    const chip=document.createElement('span');chip.className='wchip';chip.textContent=w;
-    const tip=WORD_TIPS_04[w];
-    if(tip){const te=document.createElement('span');te.className='wchip-tip';te.textContent=tip;chip.appendChild(te);}
-    chip.addEventListener('click',e=>{
-      e.stopPropagation();
-      document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b=>{if(b!==blank&&b.dataset.current===w){b.textContent='';b.dataset.current='';b.classList.remove('filled','correct');}});
-      blank.textContent=w;blank.dataset.current=w;blank.classList.add('filled');blank.classList.remove('correct');
-      updateChipUsed04(gid);closeAllPopups04();
-    });
-    cd.appendChild(chip);
-  });
-  return pop;
-}
-function updateChipUsed04(gid){
-  const used=[];
-  document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b=>{if(b.dataset.current)used.push(b.dataset.current);});
-  document.querySelectorAll('.word-popup').forEach(pop=>{pop.querySelectorAll('.wchip').forEach(c=>{c.classList.toggle('used',used.includes(c.childNodes[0].textContent.trim()));});});
-}
-document.querySelectorAll('.mblank').forEach(blank=>{
-  blank.dataset.current='';
-  blank.addEventListener('click',e=>{
-    e.stopPropagation();
-    if(activePopup04&&activePopup04.blankEl===blank){closeAllPopups04();return;}
-    closeAllPopups04();
-    const pop=buildPopup04(blank);blank.appendChild(pop);
-    updateChipUsed04(blank.dataset.gid);
-    requestAnimationFrame(()=>pop.classList.add('show'));
-    activePopup04={blankEl:blank,popupEl:pop};
+const state={};let activeBlank=null;
+window.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.mini-test').forEach(mt=>{
+    const g=mt.dataset.group; if(g) state[g]='preview';
+    shuffleBank(g);
   });
 });
-document.addEventListener('click',()=>closeAllPopups04());
-function checkMini(miniId,gid){
-  let c=0,t=0;
-  document.querySelectorAll(`#${miniId} .mblank`).forEach(b=>{t++;if((b.dataset.current||'')===b.dataset.ans){b.classList.add('correct');c++;}else b.classList.remove('correct');});
-  const s=document.getElementById('score-'+miniId);
-  if(s){s.textContent=c===t?`✅ 全問正解！(${c}/${t})`:`${c}/${t} 正解`;s.style.color=c===t?'#2e7d32':'#C0392B';}
+function shuffleBank(g){
+  const wb=document.getElementById('wb'+g); if(!wb)return;
+  const chips=Array.from(wb.querySelectorAll('.word-chip'));
+  for(let i=chips.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));wb.insertBefore(chips[j],chips[i]);const t=chips[i];chips[i]=chips[j];chips[j]=t;}
 }
-function resetMini(miniId,gid){
-  document.querySelectorAll(`#${miniId} .mblank`).forEach(b=>{b.textContent='';b.dataset.current='';b.classList.remove('filled','correct');});
-  const s=document.getElementById('score-'+miniId);if(s)s.textContent='';
-  closeAllPopups04();
+function getBtn(g,cls){const mt=document.querySelector(`.mini-test[data-group="${g}"]`);return mt?mt.querySelector(cls):null;}
+function setBtns(g,mode){const isC=mode==='challenge';const bc=getBtn(g,'.btn-challenge');const bj=getBtn(g,'.btn-judge');if(bc)bc.disabled=isC;if(bj)bj.disabled=!isC;}
+function startChallenge(g){
+  state[g]='challenge'; activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent='　　　';b.className='mblank';b.dataset.filled='';b.onclick=()=>selectBlank(b,g);});
+  resetChips(g); shuffleBank(g);
+  document.querySelectorAll(`#wb${g} .word-chip`).forEach(chip=>{chip.onclick=()=>selectChip(chip,g);});
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'challenge');
+}
+function resetChips(g){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{c.className='word-chip';c.onclick=null;});}
+function selectBlank(b,g){
+  if(state[g]!=='challenge')return;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(x=>{if(x!==b)x.classList.remove('active');});
+  if(b.classList.contains('active')){b.classList.remove('active');activeBlank=null;}
+  else{b.classList.add('active');activeBlank={el:b,group:g};}
+}
+function selectChip(chip,g){
+  if(state[g]!=='challenge')return;
+  if(!activeBlank||activeBlank.group!==g)return;
+  const b=activeBlank.el; const word=chip.dataset.word;
+  const prev=b.dataset.filled;
+  if(prev){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{if(c.dataset.word===prev)c.classList.remove('used');});}
+  b.textContent=word; b.dataset.filled=word;
+  b.classList.remove('active','correct','wrong'); b.classList.add('filled');
+  chip.classList.add('used'); activeBlank=null;
+}
+function judgeGroup(g){
+  if(state[g]!=='challenge')return;
+  const blanks=document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  let allFilled=true; blanks.forEach(b=>{if(!b.dataset.filled)allFilled=false;});
+  if(!allFilled){const rm=document.getElementById('rm'+g);if(rm){rm.textContent='⚠️ 全ての空欄を埋めてから判定してください。';rm.className='result-msg ng';}return;}
+  let correct=0;
+  blanks.forEach(b=>{b.classList.remove('active','filled');if(b.dataset.filled===b.dataset.ans){b.classList.add('correct');correct++;}else b.classList.add('wrong');});
+  const rm=document.getElementById('rm'+g);
+  if(correct===blanks.length){if(rm){rm.textContent='🎉 全問正解！';rm.className='result-msg ok';}launchConfetti();}
+  else{if(rm){rm.textContent=`${correct} / ${blanks.length} 正解。もう一度チャレンジしてみよう！`;rm.className='result-msg ng';}}
+}
+function showAnswer(g){
+  state[g]='preview'; activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent=b.dataset.ans;b.className='mblank preview';b.dataset.filled=b.dataset.ans;b.onclick=null;});
+  resetChips(g);
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'preview');
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');if(!canvas)return;
+  canvas.style.display='block'; const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  const colors=['#C0392B','#D4A017','#00AEEF','#27ae60','#9b59b6','#e67e22','#1B2A4A'];
+  const pieces=Array.from({length:150},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*6+4,d:Math.random()*80+40,color:colors[Math.floor(Math.random()*colors.length)],tilt:0,tiltAngle:0,tiltSpeed:Math.random()*0.1+0.05}));
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{p.tiltAngle+=p.tiltSpeed;p.y+=(Math.cos(frame/20+p.d)+1+p.r/2)*1.2;p.x+=Math.sin(frame/20)*1.5;p.tilt=Math.sin(p.tiltAngle)*15;ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/3);ctx.stroke();});
+    frame++;
+    if(frame<200)requestAnimationFrame(draw);
+    else{ctx.clearRect(0,0,canvas.width,canvas.height);canvas.style.display='none';}
+  }
+  draw();
 }
 </script>
-
 </body>
 </html>

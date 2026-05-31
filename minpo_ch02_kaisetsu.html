@@ -202,6 +202,33 @@
     color: var(--navy);
   }
   .flow-arrow { color: var(--gold); font-size: 18px; font-weight: bold; }
+
+  /* ===== ミニテスト新仕様 ===== */
+  .mini-test { background: #f4f0fa; border: 2px solid #9b59b6; border-radius: 10px; padding: 16px 18px; margin-top: 24px; }
+  .mt-title { font-weight: bold; color: #6c3483; font-size: 14px; display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+  .mt-title::before { content: "✏️"; }
+  .mt-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .btn { border: none; border-radius: 6px; padding: 6px 16px; font-size: 13px; cursor: pointer; font-family: "Meiryo",sans-serif; font-weight: bold; transition: opacity 0.15s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-challenge { background: #C0392B; color: #fff; }
+  .btn-judge     { background: #27ae60; color: #fff; }
+  .btn-show      { background: #D4A017; color: #1B2A4A; }
+  .btn:disabled  { opacity: 0.4; cursor: not-allowed; }
+  .word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; padding: 10px 12px; background: #ece8f5; border-radius: 8px; min-height: 42px; }
+  .word-chip { background: #1B2A4A; color: #fff; border-radius: 20px; padding: 4px 14px; font-size: 13px; cursor: pointer; user-select: none; transition: all 0.15s; }
+  .word-chip:hover { opacity: 0.85; }
+  .word-chip.used { opacity: 0.3; pointer-events: none; }
+  .mblank { display: inline-block; border-radius: 4px; padding: 1px 8px; min-width: 72px; text-align: center; font-weight: bold; font-size: 14px; cursor: pointer; transition: all 0.2s; border: 2px solid #bbb; vertical-align: middle; background: #ddd; color: #ddd; user-select: none; }
+  .mblank.preview { background: #d4edda; border-color: #27ae60; color: #155724; cursor: default; }
+  .mblank.active  { background: #fff3cd; border-color: #D4A017; color: #1B2A4A; }
+  .mblank.filled  { background: #eaf0fb; border-color: #6c8ebf; color: #1B2A4A; }
+  .mblank.correct { background: #d4edda; border-color: #27ae60; color: #155724; }
+  .mblank.wrong   { background: #f8d7da; border-color: #e74c3c; color: #721c24; }
+  .mt-q { font-size: 14px; margin-bottom: 10px; line-height: 2; }
+  .result-msg { font-size: 14px; margin-top: 10px; font-weight: bold; min-height: 22px; }
+  .result-msg.ok { color: #27ae60; }
+  .result-msg.ng { color: #C0392B; }
+  #confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; display:none; }
 </style>
 </head>
 <body>
@@ -292,19 +319,25 @@
   </div>
 
   <!-- ミニテスト1 -->
-  <div class="mini" id="mini1">
+  <div class="mini" id="mini1" data-group="1">
     <div class="mini-hd">
       <span class="mini-hd-badge">MINI TEST</span>
       <span class="mini-hd-title">① 失踪宣告の要件</span>
       <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
     </div>
     <div class="mini-body">
-      <div class="q-block"><div class="q-text">Q1. 普通失踪は生死不明<span class="mblank" data-ans="7年間" data-gid="g1" data-qid="1-1">　　</span>で、<span class="mblank" data-ans="7年間の期間が満了した時" data-gid="g1" data-qid="1-2">　　　　</span>に死亡とみなされる。</div></div>
-      <div class="q-block"><div class="q-text">Q2. 特別失踪は危難が去った後<span class="mblank" data-ans="1年間" data-gid="g1" data-qid="1-3">　　</span>生死不明で、<span class="mblank" data-ans="危難が去った時" data-gid="g1" data-qid="1-4">　　　　</span>に死亡とみなされる。</div></div>
-      <div class="q-block"><div class="q-text">Q3. 失踪宣告の申請権者は<span class="mblank" data-ans="利害関係人" data-gid="g1" data-qid="1-5">　　　　</span>に限られ、検察官は申請できない。</div></div>
+      <div class="q-block"><div class="q-text">Q1. 普通失踪は生死不明<span class="mblank preview" data-ans="7年間" data-group="1">7年間</span>で、<span class="mblank preview" data-ans="7年間の期間が満了した時" data-group="1">7年間の期間が満了した時</span>に死亡とみなされる。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 特別失踪は危難が去った後<span class="mblank preview" data-ans="1年間" data-group="1">1年間</span>生死不明で、<span class="mblank preview" data-ans="危難が去った時" data-group="1">危難が去った時</span>に死亡とみなされる。</div></div>
+      <div class="q-block"><div class="q-text">Q3. 失踪宣告の申請権者は<span class="mblank preview" data-ans="利害関係人" data-group="1">利害関係人</span>に限られ、検察官は申請できない。</div></div>
     </div>
     <div class="mini-footer">
-      <button class="mini-check-btn" onclick="checkMini('mini1','g1')">判定する</button>
+      <div class="word-bank" id="wb1"><span class="word-chip" data-word="7年間">7年間</span><span class="word-chip" data-word="7年間の期間が満了した時">7年間の期間が満了した時</span><span class="word-chip" data-word="1年間">1年間</span><span class="word-chip" data-word="危難が去った時">危難が去った時</span><span class="word-chip" data-word="利害関係人">利害関係人</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(1)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(1)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(1)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm1"></div>
       <button class="mini-reset-btn" onclick="resetMini('mini1','g1')">やり直す</button>
       <span class="mini-score" id="score-mini1"></span>
     </div>
@@ -365,18 +398,24 @@
   </div>
 
   <!-- ミニテスト2 -->
-  <div class="mini" id="mini2">
+  <div class="mini" id="mini2" data-group="2">
     <div class="mini-hd">
       <span class="mini-hd-badge">MINI TEST</span>
       <span class="mini-hd-title">② 失踪宣告の取消</span>
       <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
     </div>
     <div class="mini-body">
-      <div class="q-block"><div class="q-text">Q1. 失踪宣告の取消は、宣告後取消前に<span class="mblank" data-ans="当事者双方が善意" data-gid="g2" data-qid="2-1">　　　　</span>でした行為には影響しない（32条1項後段）。</div></div>
-      <div class="q-block"><div class="q-text">Q2. 善意で財産を取得した者は<span class="mblank" data-ans="現存利益の限度" data-gid="g2" data-qid="2-2">　　　　</span>で返還すればよい（32条2項）。悪意の者は<span class="mblank" data-ans="全部返還と損害賠償" data-gid="g2" data-qid="2-3">　　　　</span>を負う。</div></div>
+      <div class="q-block"><div class="q-text">Q1. 失踪宣告の取消は、宣告後取消前に<span class="mblank preview" data-ans="当事者双方が善意" data-group="2">当事者双方が善意</span>でした行為には影響しない（32条1項後段）。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 善意で財産を取得した者は<span class="mblank preview" data-ans="現存利益の限度" data-group="2">現存利益の限度</span>で返還すればよい（32条2項）。悪意の者は<span class="mblank preview" data-ans="全部返還と損害賠償" data-group="2">全部返還と損害賠償</span>を負う。</div></div>
     </div>
     <div class="mini-footer">
-      <button class="mini-check-btn" onclick="checkMini('mini2','g2')">判定する</button>
+      <div class="word-bank" id="wb2"><span class="word-chip" data-word="当事者双方が善意">当事者双方が善意</span><span class="word-chip" data-word="現存利益の限度">現存利益の限度</span><span class="word-chip" data-word="全部返還と損害賠償">全部返還と損害賠償</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(2)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(2)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(2)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm2"></div>
       <button class="mini-reset-btn" onclick="resetMini('mini2','g2')">やり直す</button>
       <span class="mini-score" id="score-mini2"></span>
     </div>
@@ -415,18 +454,24 @@
   </div>
 
   <!-- ミニテスト3 -->
-  <div class="mini" id="mini3">
+  <div class="mini" id="mini3" data-group="3">
     <div class="mini-hd">
       <span class="mini-hd-badge">MINI TEST</span>
       <span class="mini-hd-title">③ 婚姻と失踪宣告</span>
       <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
     </div>
     <div class="mini-body">
-      <div class="q-block"><div class="q-text">Q1. 失踪宣告後に再婚し、後に宣告が取り消された場合、再婚の当事者双方が善意なら後婚は<span class="mblank" data-ans="有効に存続する" data-gid="g3" data-qid="3-1">　　　　</span>。</div></div>
-      <div class="q-block"><div class="q-text">Q2. その場合、前婚は<span class="mblank" data-ans="自動的に復活するわけではない" data-gid="g3" data-qid="3-2">　　　　</span>（後婚の当事者双方が善意のとき）。</div></div>
+      <div class="q-block"><div class="q-text">Q1. 失踪宣告後に再婚し、後に宣告が取り消された場合、再婚の当事者双方が善意なら後婚は<span class="mblank preview" data-ans="有効に存続する" data-group="3">有効に存続する</span>。</div></div>
+      <div class="q-block"><div class="q-text">Q2. その場合、前婚は<span class="mblank preview" data-ans="自動的に復活するわけではない" data-group="3">自動的に復活するわけではない</span>（後婚の当事者双方が善意のとき）。</div></div>
     </div>
     <div class="mini-footer">
-      <button class="mini-check-btn" onclick="checkMini('mini3','g3')">判定する</button>
+      <div class="word-bank" id="wb3"><span class="word-chip" data-word="有効に存続する">有効に存続する</span><span class="word-chip" data-word="自動的に復活するわけではない">自動的に復活するわけではない</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(3)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(3)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(3)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm3"></div>
       <button class="mini-reset-btn" onclick="resetMini('mini3','g3')">やり直す</button>
       <span class="mini-score" id="score-mini3"></span>
     </div>
@@ -477,19 +522,25 @@
   </div>
 
   <!-- ミニテスト4 総合 -->
-  <div class="mini" id="mini4">
+  <div class="mini" id="mini4" data-group="4">
     <div class="mini-hd">
       <span class="mini-hd-badge">MINI TEST</span>
       <span class="mini-hd-title">④ 総合確認</span>
       <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
     </div>
     <div class="mini-body">
-      <div class="q-block"><div class="q-text">Q1. 普通失踪<span class="mblank" data-ans="7年間" data-gid="g4" data-qid="4-1">　　</span>、特別失踪は危難後<span class="mblank" data-ans="1年間" data-gid="g4" data-qid="4-2">　　</span>生死不明で認められる。</div></div>
-      <div class="q-block"><div class="q-text">Q2. 取消後も<span class="mblank" data-ans="双方が善意" data-gid="g4" data-qid="4-3">　　　　</span>でした行為は有効。悪意者は<span class="mblank" data-ans="全部返還と損害賠償" data-gid="g4" data-qid="4-4">　　　　</span>を負う。</div></div>
-      <div class="q-block"><div class="q-text">Q3. 申請権者は<span class="mblank" data-ans="利害関係人" data-gid="g4" data-qid="4-5">　　　　</span>に限られ、<span class="mblank" data-ans="検察官" data-gid="g4" data-qid="4-6">　　　　</span>は申請できない。</div></div>
+      <div class="q-block"><div class="q-text">Q1. 普通失踪<span class="mblank preview" data-ans="7年間" data-group="4">7年間</span>、特別失踪は危難後<span class="mblank preview" data-ans="1年間" data-group="4">1年間</span>生死不明で認められる。</div></div>
+      <div class="q-block"><div class="q-text">Q2. 取消後も<span class="mblank preview" data-ans="双方が善意" data-group="4">双方が善意</span>でした行為は有効。悪意者は<span class="mblank preview" data-ans="全部返還と損害賠償" data-group="4">全部返還と損害賠償</span>を負う。</div></div>
+      <div class="q-block"><div class="q-text">Q3. 申請権者は<span class="mblank preview" data-ans="利害関係人" data-group="4">利害関係人</span>に限られ、<span class="mblank preview" data-ans="検察官" data-group="4">検察官</span>は申請できない。</div></div>
     </div>
     <div class="mini-footer">
-      <button class="mini-check-btn" onclick="checkMini('mini4','g4')">判定する</button>
+      <div class="word-bank" id="wb4"><span class="word-chip" data-word="7年間">7年間</span><span class="word-chip" data-word="1年間">1年間</span><span class="word-chip" data-word="双方が善意">双方が善意</span><span class="word-chip" data-word="全部返還と損害賠償">全部返還と損害賠償</span><span class="word-chip" data-word="利害関係人">利害関係人</span><span class="word-chip" data-word="検察官">検察官</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(4)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(4)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(4)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm4"></div>
       <button class="mini-reset-btn" onclick="resetMini('mini4','g4')">やり直す</button>
       <span class="mini-score" id="score-mini4"></span>
     </div>
@@ -508,78 +559,83 @@
   GAMBA民法 ch02 ｜ 音声：VOICEVOX（四国めたん）｜ © 江原予備校
 </footer>
 
+
+
+<canvas id="confetti-canvas"></canvas>
 <script>
-const WORD_TIPS_02 = {
-  "7年間":"普通失踪の要件（30条1項）。",
-  "7年間の期間が満了した時":"普通失踪の死亡みなし時期。",
-  "1年間":"特別失踪の要件（30条2項）。危難が去った後1年間。",
-  "危難が去った時":"特別失踪の死亡みなし時期。",
-  "利害関係人":"配偶者・相続人など法律上の利害関係がある者（30条1項）。",
-  "当事者双方が善意":"32条1項の「善意」は当事者双方が善意（判例・通説）。片方だけでは不可。",
-  "現存利益の限度":"善意で取得した財産は現存する利益の範囲で返還（32条2項）。",
-  "全部返還と損害賠償":"悪意で取得した財産は全部返還＋損害賠償義務（32条2項）。",
-  "有効に存続する":"再婚の当事者双方が善意なら後婚（再婚）は有効に存続（判例）。",
-  "自動的に復活するわけではない":"後婚が有効に存続している場合、前婚は自動復活しない（判例）。",
-  "双方が善意":"取消後の影響を受けないための要件は当事者双方の善意。",
-  "検察官":"検察官は申請権者に含まれない（30条1項参照）。",
-};
-const GROUP_WORDS_02 = {
-  g1: ["7年間","7年間の期間が満了した時","1年間","危難が去った時","利害関係人"],
-  g2: ["当事者双方が善意","現存利益の限度","全部返還と損害賠償"],
-  g3: ["有効に存続する","自動的に復活するわけではない"],
-  g4: ["7年間","1年間","双方が善意","全部返還と損害賠償","利害関係人","検察官"],
-};
-let activePopup02 = null;
-function closeAllPopups02(){document.querySelectorAll('.word-popup').forEach(p=>p.classList.remove('show'));activePopup02=null;}
-function buildPopup02(blank){
-  const gid=blank.dataset.gid,words=GROUP_WORDS_02[gid]||[];
-  const pop=document.createElement('div');pop.className='word-popup';
-  pop.innerHTML='<div class="word-popup-title">▼ 語群から選んでください</div><div class="word-chips"></div>';
-  const cd=pop.querySelector('.word-chips');
-  words.forEach(w=>{
-    const chip=document.createElement('span');chip.className='wchip';chip.textContent=w;
-    const tip=WORD_TIPS_02[w];
-    if(tip){const te=document.createElement('span');te.className='wchip-tip';te.textContent=tip;chip.appendChild(te);}
-    chip.addEventListener('click',e=>{
-      e.stopPropagation();
-      document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b=>{if(b!==blank&&b.dataset.current===w){b.textContent='';b.dataset.current='';b.classList.remove('filled','correct');}});
-      blank.textContent=w;blank.dataset.current=w;blank.classList.add('filled');blank.classList.remove('correct');
-      updateChipUsed02(gid);closeAllPopups02();
-    });
-    cd.appendChild(chip);
-  });
-  return pop;
-}
-function updateChipUsed02(gid){
-  const used=[];
-  document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b=>{if(b.dataset.current)used.push(b.dataset.current);});
-  document.querySelectorAll('.word-popup').forEach(pop=>{pop.querySelectorAll('.wchip').forEach(c=>{c.classList.toggle('used',used.includes(c.childNodes[0].textContent.trim()));});});
-}
-document.querySelectorAll('.mblank').forEach(blank=>{
-  blank.dataset.current='';
-  blank.addEventListener('click',e=>{
-    e.stopPropagation();
-    if(activePopup02&&activePopup02.blankEl===blank){closeAllPopups02();return;}
-    closeAllPopups02();
-    const pop=buildPopup02(blank);blank.appendChild(pop);
-    updateChipUsed02(blank.dataset.gid);
-    requestAnimationFrame(()=>pop.classList.add('show'));
-    activePopup02={blankEl:blank,popupEl:pop};
+const state={};let activeBlank=null;
+window.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.mini-test').forEach(mt=>{
+    const g=mt.dataset.group; if(g) state[g]='preview';
+    shuffleBank(g);
   });
 });
-document.addEventListener('click',()=>closeAllPopups02());
-function checkMini(miniId,gid){
-  let c=0,t=0;
-  document.querySelectorAll(`#${miniId} .mblank`).forEach(b=>{t++;if((b.dataset.current||'')===b.dataset.ans){b.classList.add('correct');c++;}else b.classList.remove('correct');});
-  const s=document.getElementById('score-'+miniId);
-  if(s){s.textContent=c===t?`✅ 全問正解！(${c}/${t})`:`${c}/${t} 正解`;s.style.color=c===t?'#2e7d32':'#C0392B';}
+function shuffleBank(g){
+  const wb=document.getElementById('wb'+g); if(!wb)return;
+  const chips=Array.from(wb.querySelectorAll('.word-chip'));
+  for(let i=chips.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));wb.insertBefore(chips[j],chips[i]);const t=chips[i];chips[i]=chips[j];chips[j]=t;}
 }
-function resetMini(miniId,gid){
-  document.querySelectorAll(`#${miniId} .mblank`).forEach(b=>{b.textContent='';b.dataset.current='';b.classList.remove('filled','correct');});
-  const s=document.getElementById('score-'+miniId);if(s)s.textContent='';
-  closeAllPopups02();
+function getBtn(g,cls){const mt=document.querySelector(`.mini-test[data-group="${g}"]`);return mt?mt.querySelector(cls):null;}
+function setBtns(g,mode){const isC=mode==='challenge';const bc=getBtn(g,'.btn-challenge');const bj=getBtn(g,'.btn-judge');if(bc)bc.disabled=isC;if(bj)bj.disabled=!isC;}
+function startChallenge(g){
+  state[g]='challenge'; activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent='　　　';b.className='mblank';b.dataset.filled='';b.onclick=()=>selectBlank(b,g);});
+  resetChips(g); shuffleBank(g);
+  document.querySelectorAll(`#wb${g} .word-chip`).forEach(chip=>{chip.onclick=()=>selectChip(chip,g);});
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'challenge');
+}
+function resetChips(g){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{c.className='word-chip';c.onclick=null;});}
+function selectBlank(b,g){
+  if(state[g]!=='challenge')return;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(x=>{if(x!==b)x.classList.remove('active');});
+  if(b.classList.contains('active')){b.classList.remove('active');activeBlank=null;}
+  else{b.classList.add('active');activeBlank={el:b,group:g};}
+}
+function selectChip(chip,g){
+  if(state[g]!=='challenge')return;
+  if(!activeBlank||activeBlank.group!==g)return;
+  const b=activeBlank.el; const word=chip.dataset.word;
+  const prev=b.dataset.filled;
+  if(prev){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{if(c.dataset.word===prev)c.classList.remove('used');});}
+  b.textContent=word; b.dataset.filled=word;
+  b.classList.remove('active','correct','wrong'); b.classList.add('filled');
+  chip.classList.add('used'); activeBlank=null;
+}
+function judgeGroup(g){
+  if(state[g]!=='challenge')return;
+  const blanks=document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  let allFilled=true; blanks.forEach(b=>{if(!b.dataset.filled)allFilled=false;});
+  if(!allFilled){const rm=document.getElementById('rm'+g);if(rm){rm.textContent='⚠️ 全ての空欄を埋めてから判定してください。';rm.className='result-msg ng';}return;}
+  let correct=0;
+  blanks.forEach(b=>{b.classList.remove('active','filled');if(b.dataset.filled===b.dataset.ans){b.classList.add('correct');correct++;}else b.classList.add('wrong');});
+  const rm=document.getElementById('rm'+g);
+  if(correct===blanks.length){if(rm){rm.textContent='🎉 全問正解！';rm.className='result-msg ok';}launchConfetti();}
+  else{if(rm){rm.textContent=`${correct} / ${blanks.length} 正解。もう一度チャレンジしてみよう！`;rm.className='result-msg ng';}}
+}
+function showAnswer(g){
+  state[g]='preview'; activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent=b.dataset.ans;b.className='mblank preview';b.dataset.filled=b.dataset.ans;b.onclick=null;});
+  resetChips(g);
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'preview');
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');if(!canvas)return;
+  canvas.style.display='block'; const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  const colors=['#C0392B','#D4A017','#00AEEF','#27ae60','#9b59b6','#e67e22','#1B2A4A'];
+  const pieces=Array.from({length:150},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*6+4,d:Math.random()*80+40,color:colors[Math.floor(Math.random()*colors.length)],tilt:0,tiltAngle:0,tiltSpeed:Math.random()*0.1+0.05}));
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{p.tiltAngle+=p.tiltSpeed;p.y+=(Math.cos(frame/20+p.d)+1+p.r/2)*1.2;p.x+=Math.sin(frame/20)*1.5;p.tilt=Math.sin(p.tiltAngle)*15;ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/3);ctx.stroke();});
+    frame++;
+    if(frame<200)requestAnimationFrame(draw);
+    else{ctx.clearRect(0,0,canvas.width,canvas.height);canvas.style.display='none';}
+  }
+  draw();
 }
 </script>
-
 </body>
 </html>

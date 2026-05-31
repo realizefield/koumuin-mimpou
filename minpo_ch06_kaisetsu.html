@@ -55,17 +55,17 @@ h3.sub{font-size:14px;color:#1B2A4A;margin:14px 0 8px;border-bottom:2px solid #C
 .mini-hd-title{color:#fff;font-size:13px;font-weight:700}
 .mini-hd-hint{font-size:11px;color:rgba(255,255,255,.7);margin-left:auto}
 .mini-body{padding:14px 16px}
-.q-block{margin-bottom:18px;position:relative}
+
 .q-text{font-size:14px;line-height:2.2}
-.mblank{display:inline-block;min-width:90px;height:28px;background:#1B2A4A;border-radius:6px;margin:0 3px;text-align:center;cursor:pointer;font-weight:700;font-size:13px;color:transparent;vertical-align:middle;position:relative;transition:background .2s;border:2px solid #1B2A4A;line-height:24px;padding:0 8px;white-space:nowrap}
-.mblank.filled{color:#fff;background:#2c447a;border-color:#2c447a}
-.mblank.correct{color:#1a1a2e;background:#ffd700;border-color:#b8860b}
+
+
+
 .mblank:hover{opacity:.85}
-.word-popup{display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#1B2A4A;border:2px solid #D4AF37;border-radius:10px;padding:10px;z-index:500;box-shadow:0 6px 20px rgba(0,0,0,.3);min-width:260px;}
-.word-popup.show{display:block}
-.word-popup::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#D4AF37}
-.word-popup-title{font-size:10px;color:#D4AF37;font-weight:700;letter-spacing:1px;margin-bottom:8px}
-.word-chips{display:flex;flex-wrap:wrap;gap:6px}
+
+
+
+
+
 .wchip{padding:5px 11px;border-radius:16px;border:1.5px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;position:relative}
 .wchip:hover{background:#D4AF37;color:#1B2A4A;border-color:#D4AF37}
 .wchip.used{opacity:.3;pointer-events:none}
@@ -73,12 +73,39 @@ h3.sub{font-size:14px;color:#1B2A4A;margin:14px 0 8px;border-bottom:2px solid #C
 .wchip-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#2c1800}
 .wchip:hover .wchip-tip{display:block}
 .mini-footer{padding:10px 16px 14px;display:flex;align-items:center;gap:10px;border-top:1px solid #dde3ee;flex-wrap:wrap}
-.mini-check-btn{background:#C0392B;color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
-.mini-check-btn:hover{background:#8a2820}
+
+
 .mini-reset-btn{background:#6c757d;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
 .mini-reset-btn:hover{background:#495057}
 .mini-score{font-size:13px;font-weight:700;color:#1B2A4A;margin-left:auto}
 footer{text-align:center;padding:20px 16px;font-size:11px;color:#888;border-top:1px solid #dde3ee;margin-top:20px}
+
+  /* ===== ミニテスト新仕様 ===== */
+  .mini-test { background: #f4f0fa; border: 2px solid #9b59b6; border-radius: 10px; padding: 16px 18px; margin-top: 24px; }
+  .mt-title { font-weight: bold; color: #6c3483; font-size: 14px; display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+  .mt-title::before { content: "✏️"; }
+  .mt-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .btn { border: none; border-radius: 6px; padding: 6px 16px; font-size: 13px; cursor: pointer; font-family: "Meiryo",sans-serif; font-weight: bold; transition: opacity 0.15s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-challenge { background: #C0392B; color: #fff; }
+  .btn-judge     { background: #27ae60; color: #fff; }
+  .btn-show      { background: #D4A017; color: #1B2A4A; }
+  .btn:disabled  { opacity: 0.4; cursor: not-allowed; }
+  .word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; padding: 10px 12px; background: #ece8f5; border-radius: 8px; min-height: 42px; }
+  .word-chip { background: #1B2A4A; color: #fff; border-radius: 20px; padding: 4px 14px; font-size: 13px; cursor: pointer; user-select: none; transition: all 0.15s; }
+  .word-chip:hover { opacity: 0.85; }
+  .word-chip.used { opacity: 0.3; pointer-events: none; }
+  .mblank { display: inline-block; border-radius: 4px; padding: 1px 8px; min-width: 72px; text-align: center; font-weight: bold; font-size: 14px; cursor: pointer; transition: all 0.2s; border: 2px solid #bbb; vertical-align: middle; background: #ddd; color: #ddd; user-select: none; }
+  .mblank.preview { background: #d4edda; border-color: #27ae60; color: #155724; cursor: default; }
+  .mblank.active  { background: #fff3cd; border-color: #D4A017; color: #1B2A4A; }
+  .mblank.filled  { background: #eaf0fb; border-color: #6c8ebf; color: #1B2A4A; }
+  .mblank.correct { background: #d4edda; border-color: #27ae60; color: #155724; }
+  .mblank.wrong   { background: #f8d7da; border-color: #e74c3c; color: #721c24; }
+  .mt-q { font-size: 14px; margin-bottom: 10px; line-height: 2; }
+  .result-msg { font-size: 14px; margin-top: 10px; font-weight: bold; min-height: 22px; }
+  .result-msg.ok { color: #27ae60; }
+  .result-msg.ng { color: #C0392B; }
+  #confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; display:none; }
 </style>
 </head>
 <body>
@@ -148,7 +175,7 @@ footer{text-align:center;padding:20px 16px;font-size:11px;color:#888;border-top:
     </table>
 
     <!-- ミニテスト §1 -->
-    <div class="mini" id="mini1">
+    <div class="mini" id="mini1" data-group="1">
       <div class="mini-hd">
         <span class="mini-hd-badge">MINI TEST</span>
         <span class="mini-hd-title">§1 確認クイズ</span>
@@ -156,24 +183,30 @@ footer{text-align:center;padding:20px 16px;font-size:11px;color:#888;border-top:
       </div>
       <div class="mini-body">
         <div class="q-block"><div class="q-text">Q1. 代理とは、代理人が行った意思表示の効果が
-          <span class="mblank" data-ans="本人" data-gid="g1" data-qid="1-1">　　</span>
+          <span class="mblank preview" data-ans="本人" data-group="1">本人</span>
           に直接帰属する制度である（99条）。</div></div>
         <div class="q-block"><div class="q-text">Q2. 代理人が本人のためにすることを示すことを
-          <span class="mblank" data-ans="顕名" data-gid="g1" data-qid="1-2">　　</span>
+          <span class="mblank preview" data-ans="顕名" data-group="1">顕名</span>
           という。顕名がなければ原則として代理人自身の行為となる。</div></div>
         <div class="q-block"><div class="q-text">Q3. 親権者が未成年の子に代わって契約を結ぶのは
-          <span class="mblank" data-ans="法定代理" data-gid="g1" data-qid="1-3">　　　　</span>
+          <span class="mblank preview" data-ans="法定代理" data-group="1">法定代理</span>
           であり、委任状に基づく不動産取引の代理は
-          <span class="mblank" data-ans="任意代理" data-gid="g1" data-qid="1-4">　　　　</span>
+          <span class="mblank preview" data-ans="任意代理" data-group="1">任意代理</span>
           である。</div></div>
         <div class="q-block"><div class="q-text">Q4. 顕名がない場合、相手方が代理であることを
-          <span class="mblank" data-ans="悪意" data-gid="g1" data-qid="1-5">　　</span>
+          <span class="mblank preview" data-ans="悪意" data-group="1">悪意</span>
           または
-          <span class="mblank" data-ans="有過失" data-gid="g1" data-qid="1-6">　　　</span>
+          <span class="mblank preview" data-ans="有過失" data-group="1">有過失</span>
           でない限り、代理人自身の行為となる（100条）。</div></div>
       </div>
       <div class="mini-footer">
-        <button class="mini-check-btn" onclick="checkMini('mini1','g1')">判定する</button>
+        <div class="word-bank" id="wb1"><span class="word-chip" data-word="本人">本人</span><span class="word-chip" data-word="顕名">顕名</span><span class="word-chip" data-word="法定代理">法定代理</span><span class="word-chip" data-word="任意代理">任意代理</span><span class="word-chip" data-word="悪意">悪意</span><span class="word-chip" data-word="有過失">有過失</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(1)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(1)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(1)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm1"></div>
         <button class="mini-reset-btn" onclick="resetMini('mini1','g1')">やり直す</button>
         <span class="mini-score" id="score-mini1"></span>
       </div>
@@ -233,7 +266,7 @@ footer{text-align:center;padding:20px 16px;font-size:11px;color:#888;border-top:
     </div>
 
     <!-- ミニテスト §2 -->
-    <div class="mini" id="mini2">
+    <div class="mini" id="mini2" data-group="2">
       <div class="mini-hd">
         <span class="mini-hd-badge">MINI TEST</span>
         <span class="mini-hd-title">§2 確認クイズ</span>
@@ -241,22 +274,28 @@ footer{text-align:center;padding:20px 16px;font-size:11px;color:#888;border-top:
       </div>
       <div class="mini-body">
         <div class="q-block"><div class="q-text">Q1. 代理が有効に成立する3要件は、代理権の存在・
-          <span class="mblank" data-ans="顕名" data-gid="g2" data-qid="2-1">　　</span>
+          <span class="mblank preview" data-ans="顕名" data-group="2">顕名</span>
           ・代理権の範囲内の行為である。</div></div>
         <div class="q-block"><div class="q-text">Q2. 権限の定めがない代理人は103条により、
-          <span class="mblank" data-ans="保存行為" data-gid="g2" data-qid="2-2">　　　　</span>
+          <span class="mblank preview" data-ans="保存行為" data-group="2">保存行為</span>
           ・利用行為・改良行為のみができる。</div></div>
         <div class="q-block"><div class="q-text">Q3. 代理権の消滅原因として任意代理・法定代理に共通するのは、本人の
-          <span class="mblank" data-ans="死亡" data-gid="g2" data-qid="2-3">　　</span>
+          <span class="mblank preview" data-ans="死亡" data-group="2">死亡</span>
           、代理人の死亡・
-          <span class="mblank" data-ans="破産" data-gid="g2" data-qid="2-4">　　</span>
+          <span class="mblank preview" data-ans="破産" data-group="2">破産</span>
           ・後見開始である（111条）。</div></div>
         <div class="q-block"><div class="q-text">Q4. 家屋の修繕のように現状を維持する行為を
-          <span class="mblank" data-ans="保存行為" data-gid="g2" data-qid="2-5">　　　　</span>
+          <span class="mblank preview" data-ans="保存行為" data-group="2">保存行為</span>
           といい、権限の定めがない代理人でもできる。</div></div>
       </div>
       <div class="mini-footer">
-        <button class="mini-check-btn" onclick="checkMini('mini2','g2')">判定する</button>
+        <div class="word-bank" id="wb2"><span class="word-chip" data-word="顕名">顕名</span><span class="word-chip" data-word="保存行為">保存行為</span><span class="word-chip" data-word="死亡">死亡</span><span class="word-chip" data-word="破産">破産</span><span class="word-chip" data-word="保存行為">保存行為</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(2)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(2)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(2)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm2"></div>
         <button class="mini-reset-btn" onclick="resetMini('mini2','g2')">やり直す</button>
         <span class="mini-score" id="score-mini2"></span>
       </div>
@@ -335,7 +374,7 @@ footer{text-align:center;padding:20px 16px;font-size:11px;color:#888;border-top:
     </div>
 
     <!-- ミニテスト §3 -->
-    <div class="mini" id="mini3">
+    <div class="mini" id="mini3" data-group="3">
       <div class="mini-hd">
         <span class="mini-hd-badge">MINI TEST</span>
         <span class="mini-hd-title">§3 確認クイズ</span>
@@ -343,20 +382,26 @@ footer{text-align:center;padding:20px 16px;font-size:11px;color:#888;border-top:
       </div>
       <div class="mini-body">
         <div class="q-block"><div class="q-text">Q1. 無権代理の場合、本人が後から承認する
-          <span class="mblank" data-ans="追認" data-gid="g3" data-qid="3-1">　　</span>
+          <span class="mblank preview" data-ans="追認" data-group="3">追認</span>
           をすれば、契約時にさかのぼって有効になる（113条）。</div></div>
         <div class="q-block"><div class="q-text">Q2. 相手方が
-          <span class="mblank" data-ans="善意" data-gid="g3" data-qid="3-2">　　</span>
+          <span class="mblank preview" data-ans="善意" data-group="3">善意</span>
           の場合、本人の追認前に限り契約を取消しできる（115条）。</div></div>
         <div class="q-block"><div class="q-text">Q3. 無権代理人に対する117条の責任追及には、相手方が
-          <span class="mblank" data-ans="善意・無過失" data-gid="g3" data-qid="3-3">　　　　　　</span>
+          <span class="mblank preview" data-ans="善意・無過失" data-group="3">善意・無過失</span>
           であることが必要である。</div></div>
         <div class="q-block"><div class="q-text">Q4. 無権代理人が本人を相続した場合、追認拒絶は
-          <span class="mblank" data-ans="信義則上許されない" data-gid="g3" data-qid="3-4">　　　　　　　　</span>
+          <span class="mblank preview" data-ans="信義則上許されない" data-group="3">信義則上許されない</span>
           とされ、契約は有効となる（最判昭40）。</div></div>
       </div>
       <div class="mini-footer">
-        <button class="mini-check-btn" onclick="checkMini('mini3','g3')">判定する</button>
+        <div class="word-bank" id="wb3"><span class="word-chip" data-word="追認">追認</span><span class="word-chip" data-word="善意">善意</span><span class="word-chip" data-word="善意・無過失">善意・無過失</span><span class="word-chip" data-word="信義則上許されない">信義則上許されない</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(3)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(3)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(3)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm3"></div>
         <button class="mini-reset-btn" onclick="resetMini('mini3','g3')">やり直す</button>
         <span class="mini-score" id="score-mini3"></span>
       </div>
@@ -415,7 +460,7 @@ footer{text-align:center;padding:20px 16px;font-size:11px;color:#888;border-top:
     </div>
 
     <!-- ミニテスト §4 -->
-    <div class="mini" id="mini4">
+    <div class="mini" id="mini4" data-group="4">
       <div class="mini-hd">
         <span class="mini-hd-badge">MINI TEST</span>
         <span class="mini-hd-title">§4 確認クイズ</span>
@@ -423,22 +468,28 @@ footer{text-align:center;padding:20px 16px;font-size:11px;color:#888;border-top:
       </div>
       <div class="mini-body">
         <div class="q-block"><div class="q-text">Q1. 表見代理が成立するには、いずれの類型でも相手方が
-          <span class="mblank" data-ans="善意・無過失" data-gid="g4" data-qid="4-1">　　　　　　</span>
+          <span class="mblank preview" data-ans="善意・無過失" data-group="4">善意・無過失</span>
           であることが必要である。</div></div>
         <div class="q-block"><div class="q-text">Q2. 本人が「Bに代理権がある」と表示した場合の表見代理は
-          <span class="mblank" data-ans="109条" data-gid="g4" data-qid="4-2">　　　</span>
+          <span class="mblank preview" data-ans="109条" data-group="4">109条</span>
           、基本代理権はあるが権限を超えた行為は
-          <span class="mblank" data-ans="110条" data-gid="g4" data-qid="4-3">　　　</span>
+          <span class="mblank preview" data-ans="110条" data-group="4">110条</span>
           が根拠となる。</div></div>
         <div class="q-block"><div class="q-text">Q3. 以前あった代理権が消滅した後に行われた行為の表見代理は
-          <span class="mblank" data-ans="112条" data-gid="g4" data-qid="4-4">　　　</span>
+          <span class="mblank preview" data-ans="112条" data-group="4">112条</span>
           を根拠とする。</div></div>
         <div class="q-block"><div class="q-text">Q4. 表見代理は
-          <span class="mblank" data-ans="相手方" data-gid="g4" data-qid="4-5">　　　　</span>
+          <span class="mblank preview" data-ans="相手方" data-group="4">相手方</span>
           が主張できる制度であり、本人側からは主張できない。</div></div>
       </div>
       <div class="mini-footer">
-        <button class="mini-check-btn" onclick="checkMini('mini4','g4')">判定する</button>
+        <div class="word-bank" id="wb4"><span class="word-chip" data-word="善意・無過失">善意・無過失</span><span class="word-chip" data-word="109条">109条</span><span class="word-chip" data-word="110条">110条</span><span class="word-chip" data-word="112条">112条</span><span class="word-chip" data-word="相手方">相手方</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(4)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(4)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(4)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm4"></div>
         <button class="mini-reset-btn" onclick="resetMini('mini4','g4')">やり直す</button>
         <span class="mini-score" id="score-mini4"></span>
       </div>
@@ -452,131 +503,81 @@ footer{text-align:center;padding:20px 16px;font-size:11px;color:#888;border-top:
   <p style="margin-top:4px">音声合成：VOICEVOX（四国めたん）｜江原予備校 © 2025</p>
 </footer>
 
+
+<canvas id="confetti-canvas"></canvas>
 <script>
-const WORD_TIPS = {
-  "本人":           "代理の効果が帰属する人。代理人が行動しても、契約の当事者は本人になります。",
-  "顕名":           "「本人Aのために」と示すこと。顕名がないと代理人自身の行為になります（100条）。",
-  "法定代理":       "法律の規定によって当然に代理権が与えられる代理。親権者や後見人が典型例。",
-  "任意代理":       "本人の委任（授権行為）によって生じる代理。委任状による取引がこれにあたります。",
-  "悪意":           "法律用語で「知っていること」。道徳的な悪さではありません。",
-  "有過失":         "不注意があること。注意すれば知ることができたのに知らなかった状態。",
-  "顕名":           "本人のためにすることを示すこと。代理が有効に成立するための必須要件。",
-  "保存行為":       "現状を維持する行為。家屋の修繕・時効中断のための請求など。権限の定めがなくてもできる。",
-  "死亡":           "本人または代理人が死亡すると代理権は消滅します（111条）。",
-  "破産":           "代理人が破産すると代理権は消滅します。任意・法定代理共通の消滅原因。",
-  "追認":           "無権代理行為を後から承認すること。契約時にさかのぼって有効になります（113条）。",
-  "善意":           "その事情を知らないこと。115条の取消権は善意の相手方のみが行使できます。",
-  "善意・無過失":   "知らず（善意）かつ不注意もない（無過失）状態。117条責任追及の要件。",
-  "信義則上許されない": "無権代理人が本人を相続した場合、追認拒絶は信義則（1条2項）違反として許されない（最判昭40）。",
-  "109条":          "代理権授与表示の表見代理。本人が代理権があると表示した場合。",
-  "110条":          "権限外行為の表見代理。基本代理権はあるが権限を超えた場合。正当理由が必要。",
-  "112条":          "代理権消滅後の表見代理。以前あった代理権が消滅した後の行為。",
-  "相手方":         "表見代理は相手方が主張できる権利。本人側からは主張できません。",
-};
-
-const GROUP_WORDS = {
-  g1: ["本人","顕名","法定代理","任意代理","悪意","有過失"],
-  g2: ["顕名","保存行為","死亡","破産"],
-  g3: ["追認","善意","善意・無過失","信義則上許されない"],
-  g4: ["善意・無過失","109条","110条","112条","相手方"],
-};
-
-let activePopup = null;
-
-function closeAllPopups() {
-  document.querySelectorAll('.word-popup').forEach(p => p.classList.remove('show'));
-  activePopup = null;
-}
-
-function buildPopup(blank) {
-  const gid = blank.dataset.gid;
-  const words = GROUP_WORDS[gid] || [];
-  const pop = document.createElement('div');
-  pop.className = 'word-popup';
-  pop.innerHTML = '<div class="word-popup-title">▼ 語群から選んでください</div><div class="word-chips"></div>';
-  const chipsDiv = pop.querySelector('.word-chips');
-  words.forEach(w => {
-    const chip = document.createElement('span');
-    chip.className = 'wchip';
-    chip.textContent = w;
-    const tip = WORD_TIPS[w];
-    if (tip) {
-      const tipEl = document.createElement('span');
-      tipEl.className = 'wchip-tip';
-      tipEl.textContent = tip;
-      chip.appendChild(tipEl);
-    }
-    chip.addEventListener('click', e => {
-      e.stopPropagation();
-      document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b => {
-        if (b !== blank && b.dataset.current === w) {
-          b.textContent = '';
-          b.dataset.current = '';
-          b.classList.remove('filled','correct');
-        }
-      });
-      blank.textContent = w;
-      blank.dataset.current = w;
-      blank.classList.add('filled');
-      blank.classList.remove('correct');
-      updateChipUsed(gid);
-      closeAllPopups();
-    });
-    chipsDiv.appendChild(chip);
-  });
-  return pop;
-}
-
-function updateChipUsed(gid) {
-  const usedWords = [];
-  document.querySelectorAll(`.mblank[data-gid="${gid}"]`).forEach(b => {
-    if (b.dataset.current) usedWords.push(b.dataset.current);
-  });
-  document.querySelectorAll('.word-popup').forEach(pop => {
-    pop.querySelectorAll('.wchip').forEach(chip => {
-      const word = chip.childNodes[0].textContent.trim();
-      chip.classList.toggle('used', usedWords.includes(word));
-    });
-  });
-}
-
-document.querySelectorAll('.mblank').forEach(blank => {
-  blank.dataset.current = '';
-  blank.addEventListener('click', e => {
-    e.stopPropagation();
-    if (activePopup && activePopup.blankEl === blank) { closeAllPopups(); return; }
-    closeAllPopups();
-    const pop = buildPopup(blank);
-    blank.appendChild(pop);
-    updateChipUsed(blank.dataset.gid);
-    requestAnimationFrame(() => pop.classList.add('show'));
-    activePopup = { blankEl: blank, popupEl: pop };
+const state={};let activeBlank=null;
+window.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.mini-test').forEach(mt=>{
+    const g=mt.dataset.group; if(g) state[g]='preview';
+    shuffleBank(g);
   });
 });
-
-document.addEventListener('click', () => closeAllPopups());
-
-function checkMini(miniId, gid) {
-  let correct = 0, total = 0;
-  document.querySelectorAll(`#${miniId} .mblank`).forEach(b => {
-    total++;
-    if ((b.dataset.current || '') === b.dataset.ans) { b.classList.add('correct'); correct++; }
-    else b.classList.remove('correct');
-  });
-  const scoreEl = document.getElementById('score-' + miniId);
-  if (scoreEl) {
-    scoreEl.textContent = correct === total ? `✅ 全問正解！ (${correct}/${total})` : `${correct}/${total} 正解`;
-    scoreEl.style.color = correct === total ? '#2e7d32' : '#C0392B';
-  }
+function shuffleBank(g){
+  const wb=document.getElementById('wb'+g); if(!wb)return;
+  const chips=Array.from(wb.querySelectorAll('.word-chip'));
+  for(let i=chips.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));wb.insertBefore(chips[j],chips[i]);const t=chips[i];chips[i]=chips[j];chips[j]=t;}
 }
-
-function resetMini(miniId, gid) {
-  document.querySelectorAll(`#${miniId} .mblank`).forEach(b => {
-    b.textContent = ''; b.dataset.current = ''; b.classList.remove('filled','correct');
-  });
-  const scoreEl = document.getElementById('score-' + miniId);
-  if (scoreEl) scoreEl.textContent = '';
-  closeAllPopups();
+function getBtn(g,cls){const mt=document.querySelector(`.mini-test[data-group="${g}"]`);return mt?mt.querySelector(cls):null;}
+function setBtns(g,mode){const isC=mode==='challenge';const bc=getBtn(g,'.btn-challenge');const bj=getBtn(g,'.btn-judge');if(bc)bc.disabled=isC;if(bj)bj.disabled=!isC;}
+function startChallenge(g){
+  state[g]='challenge'; activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent='　　　';b.className='mblank';b.dataset.filled='';b.onclick=()=>selectBlank(b,g);});
+  resetChips(g); shuffleBank(g);
+  document.querySelectorAll(`#wb${g} .word-chip`).forEach(chip=>{chip.onclick=()=>selectChip(chip,g);});
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'challenge');
+}
+function resetChips(g){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{c.className='word-chip';c.onclick=null;});}
+function selectBlank(b,g){
+  if(state[g]!=='challenge')return;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(x=>{if(x!==b)x.classList.remove('active');});
+  if(b.classList.contains('active')){b.classList.remove('active');activeBlank=null;}
+  else{b.classList.add('active');activeBlank={el:b,group:g};}
+}
+function selectChip(chip,g){
+  if(state[g]!=='challenge')return;
+  if(!activeBlank||activeBlank.group!==g)return;
+  const b=activeBlank.el; const word=chip.dataset.word;
+  const prev=b.dataset.filled;
+  if(prev){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{if(c.dataset.word===prev)c.classList.remove('used');});}
+  b.textContent=word; b.dataset.filled=word;
+  b.classList.remove('active','correct','wrong'); b.classList.add('filled');
+  chip.classList.add('used'); activeBlank=null;
+}
+function judgeGroup(g){
+  if(state[g]!=='challenge')return;
+  const blanks=document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  let allFilled=true; blanks.forEach(b=>{if(!b.dataset.filled)allFilled=false;});
+  if(!allFilled){const rm=document.getElementById('rm'+g);if(rm){rm.textContent='⚠️ 全ての空欄を埋めてから判定してください。';rm.className='result-msg ng';}return;}
+  let correct=0;
+  blanks.forEach(b=>{b.classList.remove('active','filled');if(b.dataset.filled===b.dataset.ans){b.classList.add('correct');correct++;}else b.classList.add('wrong');});
+  const rm=document.getElementById('rm'+g);
+  if(correct===blanks.length){if(rm){rm.textContent='🎉 全問正解！';rm.className='result-msg ok';}launchConfetti();}
+  else{if(rm){rm.textContent=`${correct} / ${blanks.length} 正解。もう一度チャレンジしてみよう！`;rm.className='result-msg ng';}}
+}
+function showAnswer(g){
+  state[g]='preview'; activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent=b.dataset.ans;b.className='mblank preview';b.dataset.filled=b.dataset.ans;b.onclick=null;});
+  resetChips(g);
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'preview');
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');if(!canvas)return;
+  canvas.style.display='block'; const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  const colors=['#C0392B','#D4A017','#00AEEF','#27ae60','#9b59b6','#e67e22','#1B2A4A'];
+  const pieces=Array.from({length:150},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*6+4,d:Math.random()*80+40,color:colors[Math.floor(Math.random()*colors.length)],tilt:0,tiltAngle:0,tiltSpeed:Math.random()*0.1+0.05}));
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{p.tiltAngle+=p.tiltSpeed;p.y+=(Math.cos(frame/20+p.d)+1+p.r/2)*1.2;p.x+=Math.sin(frame/20)*1.5;p.tilt=Math.sin(p.tiltAngle)*15;ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/3);ctx.stroke();});
+    frame++;
+    if(frame<200)requestAnimationFrame(draw);
+    else{ctx.clearRect(0,0,canvas.width,canvas.height);canvas.style.display='none';}
+  }
+  draw();
 }
 </script>
 </body>

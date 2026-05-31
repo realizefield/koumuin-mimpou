@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>GAMBA民法 ch08 条件・期限</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'BIZ UDGothic','Hiragino Kaku Gothic Pro','Meiryo',sans-serif;background:#eef2f7;color:#1a1a2e;min-height:100vh;font-size:15px}
+.top-header{background:linear-gradient(135deg,#1B2A4A 0%,#C0392B 100%);color:#fff;padding:16px 16px 12px;text-align:center}
+.top-header h1{font-size:18px;font-weight:700;letter-spacing:.05em}
+.top-header p{font-size:12px;margin-top:3px;opacity:.85}
+.ch-nav{background:#1B2A4A;display:flex;overflow-x:auto;gap:0}
+.ch-nav a{color:rgba(255,255,255,.75);text-decoration:none;padding:9px 14px;font-size:12px;white-space:nowrap;border-right:1px solid rgba(255,255,255,.15);transition:.15s;font-weight:700}
+.ch-nav a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.wrap{max-width:860px;margin:0 auto;padding:16px 12px 48px}
+.section{background:#fff;border-radius:14px;border:1px solid #dde3ee;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden}
+.sec-hd{background:linear-gradient(90deg,#1B2A4A,#2c447a);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:10px}
+.sec-num{background:rgba(255,255,255,.2);border-radius:8px;padding:3px 10px;font-size:12px;font-weight:700;white-space:nowrap}
+.sec-hd h2{font-size:16px;font-weight:700}
+.sec-body{padding:16px 18px}
+.lead{background:#f0f4ff;border-left:4px solid #1B2A4A;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:14px;font-size:13px;color:#444}
+.goro{background:linear-gradient(135deg,#fff9ed,#fff3d0);border:2px solid #f4a62a;border-radius:10px;padding:12px 16px;margin:12px 0;text-align:center}
+.goro-label{font-size:10px;color:#8a5a00;letter-spacing:2px;font-weight:700;margin-bottom:4px}
+.goro-text{font-size:17px;font-weight:700;color:#7a4a00;letter-spacing:1px}
+.goro-note{font-size:11px;color:#a07030;margin-top:4px}
+.hanrei{background:#fff5f0;border:1px solid #fbc8b5;border-radius:10px;margin:12px 0;overflow:hidden}
+.hanrei-head{background:#C0392B;padding:7px 14px;font-size:12px;font-weight:700;color:#fff}
+.hanrei-body{padding:10px 14px}
+.hanrei-row{display:grid;grid-template-columns:56px 1fr;gap:6px;margin-bottom:6px;font-size:13px}
+.hanrei-label{color:#C0392B;font-weight:700;font-size:11px;padding-top:2px}
+.hanrei-point{background:#C0392B;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:4px;margin-top:6px;display:inline-block}
+.tbl{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+.tbl th{background:#1B2A4A;color:#fff;padding:8px 10px;border:1px solid #b3c6ee;text-align:center;font-size:12px}
+.tbl td{padding:8px 10px;border:1px solid #dde3ee;vertical-align:top;line-height:1.6}
+.tbl tr:nth-child(even) td{background:#f8f9ff}
+.tbl td:first-child{color:#1B2A4A;font-weight:700;text-align:center;white-space:nowrap}
+.fig-wrap{background:#f8f9ff;border:1px solid #dde3ee;border-radius:10px;padding:14px;margin:12px 0;text-align:center}
+.fig-caption{font-size:11px;color:#888;margin-top:6px}
+.key{color:#C0392B;font-weight:700}
+.blue{color:#1B2A4A;font-weight:700}
+.point-box{background:#f0f4ff;border:1px solid #b3c6ee;border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13px}
+.point-box::before{content:"POINT ";color:#1B2A4A;font-weight:700;font-size:11px}
+.warn-box{background:#fff5f0;border-left:4px solid #C0392B;border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0;font-size:13px}
+.info-box{background:#f0f4ff;border-left:4px solid #2c447a;border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0;font-size:13px}
+ul.styled{padding-left:18px;margin:8px 0}
+ul.styled li{margin-bottom:5px}
+ul.styled li::marker{color:#C0392B}
+hr.div{border:none;border-top:1px solid #dde3ee;margin:14px 0}
+h3.sub{font-size:14px;color:#1B2A4A;margin:14px 0 8px;border-bottom:2px solid #C0392B;padding-bottom:4px;display:inline-block}
+.mini{background:#fff;border:2px solid #1B2A4A;border-radius:12px;margin-top:20px;overflow:visible}
+.mini-hd{background:linear-gradient(90deg,#1B2A4A,#2c447a);padding:10px 16px;display:flex;align-items:center;gap:10px}
+.mini-hd-badge{background:#D4AF37;color:#1B2A4A;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:1px}
+.mini-hd-title{color:#fff;font-size:13px;font-weight:700}
+.mini-hd-hint{font-size:11px;color:rgba(255,255,255,.7);margin-left:auto}
+.mini-body{padding:14px 16px}
+
+.q-text{font-size:14px;line-height:2.2}
+
+
+
+.mblank:hover{opacity:.85}
+
+
+
+
+
+.wchip{padding:5px 11px;border-radius:16px;border:1.5px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;position:relative}
+.wchip:hover{background:#D4AF37;color:#1B2A4A;border-color:#D4AF37}
+.wchip.used{opacity:.3;pointer-events:none}
+.wchip-tip{display:none;position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);width:190px;background:#2c1800;color:#fff;border-radius:8px;padding:8px 10px;font-size:11px;line-height:1.7;z-index:600;pointer-events:none;text-align:left;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.wchip-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#2c1800}
+.wchip:hover .wchip-tip{display:block}
+.mini-footer{padding:10px 16px 14px;display:flex;align-items:center;gap:10px;border-top:1px solid #dde3ee;flex-wrap:wrap}
+
+
+.mini-reset-btn{background:#6c757d;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.mini-reset-btn:hover{background:#495057}
+.mini-score{font-size:13px;font-weight:700;color:#1B2A4A;margin-left:auto}
+footer{text-align:center;padding:20px 16px;font-size:11px;color:#888;border-top:1px solid #dde3ee;margin-top:20px}
+
+  /* ===== ミニテスト新仕様 ===== */
+  .mini-test { background: #f4f0fa; border: 2px solid #9b59b6; border-radius: 10px; padding: 16px 18px; margin-top: 24px; }
+  .mt-title { font-weight: bold; color: #6c3483; font-size: 14px; display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+  .mt-title::before { content: "✏️"; }
+  .mt-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .btn { border: none; border-radius: 6px; padding: 6px 16px; font-size: 13px; cursor: pointer; font-family: "Meiryo",sans-serif; font-weight: bold; transition: opacity 0.15s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-challenge { background: #C0392B; color: #fff; }
+  .btn-judge     { background: #27ae60; color: #fff; }
+  .btn-show      { background: #D4A017; color: #1B2A4A; }
+  .btn:disabled  { opacity: 0.4; cursor: not-allowed; }
+  .word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; padding: 10px 12px; background: #ece8f5; border-radius: 8px; min-height: 42px; }
+  .word-chip { background: #1B2A4A; color: #fff; border-radius: 20px; padding: 4px 14px; font-size: 13px; cursor: pointer; user-select: none; transition: all 0.15s; }
+  .word-chip:hover { opacity: 0.85; }
+  .word-chip.used { opacity: 0.3; pointer-events: none; }
+  .mblank { display: inline-block; border-radius: 4px; padding: 1px 8px; min-width: 72px; text-align: center; font-weight: bold; font-size: 14px; cursor: pointer; transition: all 0.2s; border: 2px solid #bbb; vertical-align: middle; background: #ddd; color: #ddd; user-select: none; }
+  .mblank.preview { background: #d4edda; border-color: #27ae60; color: #155724; cursor: default; }
+  .mblank.active  { background: #fff3cd; border-color: #D4A017; color: #1B2A4A; }
+  .mblank.filled  { background: #eaf0fb; border-color: #6c8ebf; color: #1B2A4A; }
+  .mblank.correct { background: #d4edda; border-color: #27ae60; color: #155724; }
+  .mblank.wrong   { background: #f8d7da; border-color: #e74c3c; color: #721c24; }
+  .mt-q { font-size: 14px; margin-bottom: 10px; line-height: 2; }
+  .result-msg { font-size: 14px; margin-top: 10px; font-weight: bold; min-height: 22px; }
+  .result-msg.ok { color: #27ae60; }
+  .result-msg.ng { color: #C0392B; }
+  #confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; display:none; }
+</style>
+</head>
+<body>
+<div class="top-header">
+  <h1>📖 GAMBA 民法 第8章</h1>
+  <p>条件・期限｜江原予備校</p>
+</div>
+<nav class="ch-nav">
+  <a href="#sec1">§1 条件の種類</a>
+  <a href="#sec2">§2 条件の効果</a>
+  <a href="#sec3">§3 条件成就の妨害・擬制</a>
+  <a href="#sec4">§4 期限</a>
+</nav>
+<div class="wrap">
+
+<!-- ====== SEC 1 ====== -->
+<div class="section" id="sec1">
+  <div class="sec-hd"><span class="sec-num">SEC.1</span><h2>条件とは何か——停止条件と解除条件</h2></div>
+  <div class="sec-body">
+    <div class="lead">条件とは将来の不確実な事実に法律行為の効力を係らせる附款。停止条件と解除条件の違い、および条件に親しまない行為を確実に区別しよう。</div>
+
+    <p><span class="key">条件</span>とは、法律行為の効力の発生または消滅を、<span class="key">将来の不確実な事実</span>にかからせる意思表示の附款をいう。</p>
+
+    <h3 class="sub">停止条件と解除条件</h3>
+    <table class="tbl">
+      <tr><th style="width:22%">種類</th><th>意味</th><th>条件成就の効果</th><th>具体例</th></tr>
+      <tr><td>停止条件</td><td>条件成就により法律行為の効力が<span class="key">発生</span>する</td><td>効力が生じる</td><td>「試験に合格したら車を贈る」</td></tr>
+      <tr><td>解除条件</td><td>条件成就により法律行為の効力が<span class="key">消滅</span>する</td><td>効力が消える</td><td>「留年したら仕送りを止める」</td></tr>
+    </table>
+
+    <div class="fig-wrap">
+      <svg viewBox="0 0 580 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1B2A4A"/></marker></defs>
+        <!-- 停止条件 -->
+        <rect x="5" y="15" width="265" height="115" rx="10" fill="#f0f4ff" stroke="#1B2A4A" stroke-width="1.5"/>
+        <text x="137" y="38" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#1B2A4A" font-weight="bold">停止条件</text>
+        <rect x="20" y="48" width="70" height="30" rx="6" fill="#dde3ee" stroke="#b3c6ee" stroke-width="1"/>
+        <text x="55" y="67" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">効力なし</text>
+        <line x1="92" y1="63" x2="140" y2="63" stroke="#1B2A4A" stroke-width="1.5" marker-end="url(#ar)"/>
+        <text x="116" y="56" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#C0392B">条件成就</text>
+        <rect x="143" y="48" width="110" height="30" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+        <text x="198" y="67" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#2e7d32" font-weight="bold">効力発生！</text>
+        <text x="137" y="100" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">例：合格したら車を贈る</text>
+        <text x="137" y="118" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">→合格まで効力は停止中</text>
+        <!-- 解除条件 -->
+        <rect x="310" y="15" width="265" height="115" rx="10" fill="#fff5f0" stroke="#C0392B" stroke-width="1.5"/>
+        <text x="442" y="38" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="13" fill="#C0392B" font-weight="bold">解除条件</text>
+        <rect x="325" y="48" width="110" height="30" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1"/>
+        <text x="380" y="67" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#2e7d32">効力あり</text>
+        <line x1="437" y1="63" x2="485" y2="63" stroke="#C0392B" stroke-width="1.5" marker-end="url(#ar)"/>
+        <text x="461" y="56" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#C0392B">条件成就</text>
+        <rect x="488" y="48" width="70" height="30" rx="6" fill="#fce8e8" stroke="#e53935" stroke-width="1.5"/>
+        <text x="523" y="67" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#C0392B" font-weight="bold">効力消滅</text>
+        <text x="442" y="100" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">例：留年したら仕送りを止める</text>
+        <text x="442" y="118" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">→留年するまで効力は継続中</text>
+      </svg>
+      <div class="fig-caption">図1：停止条件（成就→効力発生）と解除条件（成就→効力消滅）</div>
+    </div>
+
+    <h3 class="sub">条件に親しまない行為——条件を付けられないもの</h3>
+    <ul class="styled">
+      <li><span class="blue">身分行為</span>——婚姻・離婚・養子縁組・認知など（当事者の意思を尊重）</li>
+      <li><span class="blue">単独行為で相手方のある行為</span>——取消し・解除・相殺など（相手方の地位が不安定になるため）</li>
+      <li><span class="blue">手形行為</span>——流通安全のため条件不可</li>
+    </ul>
+    <div class="warn-box">相殺に条件を付けることは<span class="key">禁止</span>（506条1項）。相手方の地位を不安定にするため。ただし<span class="key">停止条件付き債権</span>であっても、その他の要件を満たせば相殺に用いることができる（最判）。</div>
+
+    <div class="mini" id="mini1" data-group="1">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§1 確認クイズ</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block"><div class="q-text">Q1. 条件とは、法律行為の効力を将来の<span class="mblank preview" data-ans="不確実な事実" data-group="1">不確実な事実</span>にかからせる附款をいう。</div></div>
+        <div class="q-block"><div class="q-text">Q2. 条件成就によって効力が<span class="mblank preview" data-ans="発生" data-group="1">発生</span>するのが停止条件、効力が<span class="mblank preview" data-ans="消滅" data-group="1">消滅</span>するのが解除条件である。</div></div>
+        <div class="q-block"><div class="q-text">Q3. 取消し・解除・相殺などの<span class="mblank preview" data-ans="単独行為" data-group="1">単独行為</span>には条件を付けることができない（条件に親しまない行為）。</div></div>
+        <div class="q-block"><div class="q-text">Q4.「試験に合格したら車を贈る」は<span class="mblank preview" data-ans="停止条件" data-group="1">停止条件</span>付き贈与契約であり、合格するまで効力は生じない。</div></div>
+      </div>
+      <div class="mini-footer">
+        <div class="word-bank" id="wb1"><span class="word-chip" data-word="不確実な事実">不確実な事実</span><span class="word-chip" data-word="発生">発生</span><span class="word-chip" data-word="消滅">消滅</span><span class="word-chip" data-word="単独行為">単独行為</span><span class="word-chip" data-word="停止条件">停止条件</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(1)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(1)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(1)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm1"></div>
+        <button class="mini-reset-btn" onclick="resetMini('mini1','g1')">やり直す</button>
+        <span class="mini-score" id="score-mini1"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SEC 2 ====== -->
+<div class="section" id="sec2">
+  <div class="sec-hd"><span class="sec-num">SEC.2</span><h2>条件の効果——遡及効と期待権の保護</h2></div>
+  <div class="sec-body">
+    <div class="lead">条件付き法律行為の効果はいつから生じるか。また条件成就前の当事者の「期待」はどう保護されるか。</div>
+
+    <h3 class="sub">条件成就の効果（127条）</h3>
+    <table class="tbl">
+      <tr><th style="width:22%">原則</th><th>内容</th></tr>
+      <tr><td>停止条件</td><td>条件成就時から効力発生（<span class="key">遡及しない</span>のが原則）</td></tr>
+      <tr><td>解除条件</td><td>条件成就時から効力消滅（遡及しないのが原則）</td></tr>
+      <tr><td>遡及の合意</td><td>当事者が合意すれば<span class="key">条件成就の効果を遡及させること</span>ができる（127条3項）</td></tr>
+    </table>
+
+    <h3 class="sub">条件成就前の期待権の保護（128・129条）</h3>
+    <p>条件付き法律行為においても、条件成就前の当事者は<span class="key">期待権（条件付き権利）</span>を有し、これは財産権として保護される。</p>
+    <ul class="styled">
+      <li><span class="blue">128条</span>——条件成就前に条件付き権利を侵害した者は損害賠償責任を負う</li>
+      <li><span class="blue">129条</span>——条件付き権利は<span class="key">処分・相続・保全</span>することができる</li>
+    </ul>
+
+    <div class="point-box">「条件付き権利」は条件未成就でも財産的価値があり、<span class="key">譲渡・担保設定・差押え</span>の対象となる（129条）。</div>
+
+    <h3 class="sub">不法な条件・既成条件（131〜132条）</h3>
+    <table class="tbl">
+      <tr><th style="width:28%">種類</th><th>効果</th></tr>
+      <tr><td>不法な条件（132条）</td><td>法律行為全体が<span class="key">無効</span>（例：犯罪行為を条件とする）</td></tr>
+      <tr><td>不法行為をしないことを条件</td><td>法律行為全体が<span class="key">無効</span>（132条）</td></tr>
+      <tr><td>既成条件——すでに成就（131条1項）</td><td>停止条件→<span class="key">無条件の法律行為</span>として有効</td></tr>
+      <tr><td>既成条件——すでに不成就（131条1項）</td><td>停止条件→法律行為は<span class="key">無効</span></td></tr>
+      <tr><td>純粋随意条件（133条）</td><td>債務者の意思のみにかかる停止条件→<span class="key">無効</span></td></tr>
+    </table>
+
+    <div class="mini" id="mini2" data-group="2">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§2 確認クイズ</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block"><div class="q-text">Q1. 条件成就の効果は原則として条件成就時から生じ、<span class="mblank preview" data-ans="遡及しない" data-group="2">遡及しない</span>のが原則だが、当事者の合意により遡及させることができる（127条）。</div></div>
+        <div class="q-block"><div class="q-text">Q2. 条件付き権利は<span class="mblank preview" data-ans="処分・相続・保全" data-group="2">処分・相続・保全</span>することができる（129条）。</div></div>
+        <div class="q-block"><div class="q-text">Q3. 不法な行為を条件とする法律行為は、法律行為全体が<span class="mblank preview" data-ans="無効" data-group="2">無効</span>となる（132条）。</div></div>
+        <div class="q-block"><div class="q-text">Q4. 債務者の意思のみにかかる停止条件（純粋随意条件）を付した法律行為は<span class="mblank preview" data-ans="無効" data-group="2">無効</span>である（133条）。</div></div>
+      </div>
+      <div class="mini-footer">
+        <div class="word-bank" id="wb2"><span class="word-chip" data-word="遡及しない">遡及しない</span><span class="word-chip" data-word="処分・相続・保全">処分・相続・保全</span><span class="word-chip" data-word="無効">無効</span><span class="word-chip" data-word="無効">無効</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(2)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(2)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(2)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm2"></div>
+        <button class="mini-reset-btn" onclick="resetMini('mini2','g2')">やり直す</button>
+        <span class="mini-score" id="score-mini2"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SEC 3 ====== -->
+<div class="section" id="sec3">
+  <div class="sec-hd"><span class="sec-num">SEC.3</span><h2>条件成就の妨害・擬制（130条）</h2></div>
+  <div class="sec-body">
+    <div class="lead">130条は試験超頻出。「妨害」と「故意成就」の両方向、そして擬制の効果を正確に押さえよう。</div>
+
+    <h3 class="sub">条件成就の妨害（130条1項）</h3>
+    <p>条件が成就することによって<span class="key">不利益を受ける当事者</span>が、故意に条件の成就を妨げた場合、相手方は<span class="key">条件が成就したものとみなす</span>ことができる。</p>
+
+    <div class="fig-wrap">
+      <svg viewBox="0 0 560 160" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1B2A4A"/></marker></defs>
+        <rect x="10" y="30" width="540" height="50" rx="8" fill="#fff9ed" stroke="#f4a62a" stroke-width="1.5"/>
+        <text x="280" y="53" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#7a4a00" font-weight="bold">「試験に合格したらAの土地をBに売る」（停止条件）</text>
+        <text x="280" y="70" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#888">→ A（売主）がBの試験を妨害！</text>
+        <rect x="10" y="98" width="250" height="50" rx="8" fill="#fce8e8" stroke="#C0392B" stroke-width="1.5"/>
+        <text x="135" y="120" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#C0392B" font-weight="bold">Aが故意に妨害</text>
+        <text x="135" y="137" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">（条件成就で不利益を受ける側）</text>
+        <line x1="262" y1="123" x2="298" y2="123" stroke="#1B2A4A" stroke-width="1.5" marker-end="url(#ar2)"/>
+        <rect x="300" y="98" width="250" height="50" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+        <text x="425" y="120" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#2e7d32" font-weight="bold">Bは条件成就とみなせる</text>
+        <text x="425" y="137" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#2e7d32">→ 売買契約が有効に成立</text>
+      </svg>
+      <div class="fig-caption">図2：条件成就の妨害——被害者は条件成就とみなすことができる（130条1項）</div>
+    </div>
+
+    <h3 class="sub">条件の故意成就（130条2項）——2017年改正で追加</h3>
+    <p>条件が成就することによって<span class="key">利益を受ける当事者</span>が、不正に条件を成就させた場合、相手方は<span class="key">条件が成就しなかったものとみなす</span>ことができる。</p>
+
+    <div class="hanrei">
+      <div class="hanrei-head">⚖️ 130条のまとめ——妨害 vs 故意成就</div>
+      <div class="hanrei-body">
+        <div class="hanrei-row"><span class="hanrei-label">1項</span><span>不利益当事者が故意に<span style="color:#C0392B;font-weight:bold">妨害</span>→相手方は<span style="color:#2e7d32;font-weight:bold">成就とみなせる</span></span></div>
+        <div class="hanrei-row"><span class="hanrei-label">2項</span><span>利益当事者が不正に<span style="color:#C0392B;font-weight:bold">故意成就</span>→相手方は<span style="color:#2e7d32;font-weight:bold">不成就とみなせる</span></span></div>
+        <span class="hanrei-point">POINT：どちらも「みなすことができる」——相手方の選択権</span>
+      </div>
+    </div>
+
+    <div class="goro">
+      <div class="goro-label">GORO — 130条の2方向</div>
+      <div class="goro-text">さまたげたら（妨害）→ なったとみなす　　ふせいで（不正）なしたら→ なかったとみなす</div>
+      <div class="goro-note">妨害→成就みなし（1項）　不正成就→不成就みなし（2項）</div>
+    </div>
+
+    <div class="mini" id="mini3" data-group="3">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§3 確認クイズ</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block"><div class="q-text">Q1. 条件成就によって不利益を受ける当事者が故意に条件成就を妨害した場合、相手方は条件が<span class="mblank preview" data-ans="成就したものとみなす" data-group="3">成就したものとみなす</span>ことができる（130条1項）。</div></div>
+        <div class="q-block"><div class="q-text">Q2. 条件成就によって利益を受ける当事者が不正に条件を成就させた場合、相手方は条件が<span class="mblank preview" data-ans="成就しなかったものとみなす" data-group="3">成就しなかったものとみなす</span>ことができる（130条2項）。</div></div>
+        <div class="q-block"><div class="q-text">Q3. 130条の「みなすことができる」という文言は、相手方に<span class="mblank preview" data-ans="選択権" data-group="3">選択権</span>があることを意味する。</div></div>
+        <div class="q-block"><div class="q-text">Q4. 130条2項（故意成就）は<span class="mblank preview" data-ans="2017年" data-group="3">2017年</span>の民法改正で新設された規定である。</div></div>
+      </div>
+      <div class="mini-footer">
+        <div class="word-bank" id="wb3"><span class="word-chip" data-word="成就したものとみなす">成就したものとみなす</span><span class="word-chip" data-word="成就しなかったものとみなす">成就しなかったものとみなす</span><span class="word-chip" data-word="選択権">選択権</span><span class="word-chip" data-word="2017年">2017年</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(3)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(3)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(3)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm3"></div>
+        <button class="mini-reset-btn" onclick="resetMini('mini3','g3')">やり直す</button>
+        <span class="mini-score" id="score-mini3"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SEC 4 ====== -->
+<div class="section" id="sec4">
+  <div class="sec-hd"><span class="sec-num">SEC.4</span><h2>期限——確実な将来の事実</h2></div>
+  <div class="sec-body">
+    <div class="lead">条件は「不確実」、期限は「確実」。始期・終期・確定期限・不確定期限の4分類と、期限の利益の放棄・喪失を押さえよう。</div>
+
+    <p><span class="key">期限</span>とは、法律行為の効力の発生・消滅または債務の履行を、<span class="key">将来の確実な事実</span>の到来にかからせる附款をいう。条件との最大の違いは<span class="key">到来が確実</span>な点。</p>
+
+    <h3 class="sub">期限の4分類</h3>
+    <table class="tbl">
+      <tr><th style="width:26%">種類</th><th>意味</th><th>例</th></tr>
+      <tr><td>始期（確定期限）</td><td>特定の日が来ると効力発生・履行開始</td><td>「4月1日から賃料を払う」</td></tr>
+      <tr><td>終期（確定期限）</td><td>特定の日が来ると効力消滅</td><td>「3月31日まで賃貸する」</td></tr>
+      <tr><td>始期（不確定期限）</td><td>到来は確実だが時期が不明な事実</td><td>「Aが死亡したら支払う」</td></tr>
+      <tr><td>終期（不確定期限）</td><td>到来は確実だが時期が不明な事実で消滅</td><td>「Aが死亡するまで貸す」</td></tr>
+    </table>
+
+    <div class="point-box">「Aが死亡したら」は<span class="key">不確定期限</span>（死亡は必ず来る＝確実）。「試験に合格したら」は<span class="key">停止条件</span>（合格するかは不確実）。ここを混同しないこと。</div>
+
+    <h3 class="sub">期限の利益（136条）</h3>
+    <p><span class="key">期限の利益</span>とは、期限が到来するまで履行しなくてよいという債務者の利益をいう。</p>
+    <ul class="styled">
+      <li>期限の利益は<span class="key">債務者のもの</span>が原則（136条1項）</li>
+      <li>債務者は期限の利益を<span class="key">放棄できる</span>（ただし相手方の損害を賠償する必要あり——136条2項）</li>
+    </ul>
+
+    <h3 class="sub">期限の利益の喪失（137条）</h3>
+    <p>次の場合、債務者は期限の利益を失い、<span class="key">直ちに履行しなければならない</span>。</p>
+
+    <div class="fig-wrap">
+      <svg viewBox="0 0 560 135" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="10" width="165" height="115" rx="10" fill="#fff5f0" stroke="#C0392B" stroke-width="1.5"/>
+        <text x="87" y="35" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#C0392B" font-weight="bold">①破産手続開始</text>
+        <text x="87" y="55" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">債務者について</text>
+        <text x="87" y="73" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">破産手続開始決定</text>
+        <text x="87" y="91" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">137条1号</text>
+        <rect x="197" y="10" width="165" height="115" rx="10" fill="#fff5f0" stroke="#C0392B" stroke-width="1.5"/>
+        <text x="280" y="35" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#C0392B" font-weight="bold">②担保の滅失・損傷</text>
+        <text x="280" y="55" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">担保を滅失・損傷・</text>
+        <text x="280" y="73" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">減少させた</text>
+        <text x="280" y="91" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">137条2号</text>
+        <rect x="389" y="10" width="166" height="115" rx="10" fill="#fff5f0" stroke="#C0392B" stroke-width="1.5"/>
+        <text x="472" y="35" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="12" fill="#C0392B" font-weight="bold">③担保不供与</text>
+        <text x="472" y="55" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">担保を供与する義務を</text>
+        <text x="472" y="73" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="11" fill="#555">果たさない</text>
+        <text x="472" y="91" text-anchor="middle" font-family="Meiryo,sans-serif" font-size="10" fill="#888">137条3号</text>
+      </svg>
+      <div class="fig-caption">図3：期限の利益の喪失事由3つ（137条）</div>
+    </div>
+
+    <div class="goro">
+      <div class="goro-label">GORO — 条件と期限の決定的な違い</div>
+      <div class="goro-text">じょうけん（条件）は「ふかくじつ」　きげん（期限）は「かくじつ」</div>
+      <div class="goro-note">到来が不確実→条件　到来が確実→期限　この一言で区別できる</div>
+    </div>
+
+    <div class="mini" id="mini4" data-group="4">
+      <div class="mini-hd">
+        <span class="mini-hd-badge">MINI TEST</span>
+        <span class="mini-hd-title">§4 確認クイズ</span>
+        <span class="mini-hd-hint">空欄をクリック→語群から選ぶ</span>
+      </div>
+      <div class="mini-body">
+        <div class="q-block"><div class="q-text">Q1. 期限は将来の<span class="mblank preview" data-ans="確実な" data-group="4">確実な</span>事実の到来にかからせる附款であり、条件と異なり到来が確定している。</div></div>
+        <div class="q-block"><div class="q-text">Q2.「Aが死亡したら支払う」は、死亡は必ず訪れるため<span class="mblank preview" data-ans="不確定期限" data-group="4">不確定期限</span>（条件ではない）。</div></div>
+        <div class="q-block"><div class="q-text">Q3. 期限の利益は原則として<span class="mblank preview" data-ans="債務者" data-group="4">債務者</span>のためにあるとされ（136条1項）、放棄することができる。</div></div>
+        <div class="q-block"><div class="q-text">Q4. 債務者が破産手続開始決定を受けた場合、期限の利益を<span class="mblank preview" data-ans="喪失する" data-group="4">喪失する</span>（137条1号）。</div></div>
+      </div>
+      <div class="mini-footer">
+        <div class="word-bank" id="wb4"><span class="word-chip" data-word="確実な">確実な</span><span class="word-chip" data-word="不確定期限">不確定期限</span><span class="word-chip" data-word="債務者">債務者</span><span class="word-chip" data-word="喪失する">喪失する</span></div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(4)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(4)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(4)">手本を見る</button>
+      </div>
+      <div class="result-msg" id="rm4"></div>
+        <button class="mini-reset-btn" onclick="resetMini('mini4','g4')">やり直す</button>
+        <span class="mini-score" id="score-mini4"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<footer>
+  <p>GAMBA民法 第8章 条件・期限</p>
+  <p style="margin-top:4px">音声合成：VOICEVOX（四国めたん）｜江原予備校 © 2025</p>
+</footer>
+
+<canvas id="confetti-canvas"></canvas>
+<script>
+const state={};let activeBlank=null;
+window.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.mini-test').forEach(mt=>{
+    const g=mt.dataset.group; if(g) state[g]='preview';
+    shuffleBank(g);
+  });
+});
+function shuffleBank(g){
+  const wb=document.getElementById('wb'+g); if(!wb)return;
+  const chips=Array.from(wb.querySelectorAll('.word-chip'));
+  for(let i=chips.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));wb.insertBefore(chips[j],chips[i]);const t=chips[i];chips[i]=chips[j];chips[j]=t;}
+}
+function getBtn(g,cls){const mt=document.querySelector(`.mini-test[data-group="${g}"]`);return mt?mt.querySelector(cls):null;}
+function setBtns(g,mode){const isC=mode==='challenge';const bc=getBtn(g,'.btn-challenge');const bj=getBtn(g,'.btn-judge');if(bc)bc.disabled=isC;if(bj)bj.disabled=!isC;}
+function startChallenge(g){
+  state[g]='challenge'; activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent='　　　';b.className='mblank';b.dataset.filled='';b.onclick=()=>selectBlank(b,g);});
+  resetChips(g); shuffleBank(g);
+  document.querySelectorAll(`#wb${g} .word-chip`).forEach(chip=>{chip.onclick=()=>selectChip(chip,g);});
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'challenge');
+}
+function resetChips(g){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{c.className='word-chip';c.onclick=null;});}
+function selectBlank(b,g){
+  if(state[g]!=='challenge')return;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(x=>{if(x!==b)x.classList.remove('active');});
+  if(b.classList.contains('active')){b.classList.remove('active');activeBlank=null;}
+  else{b.classList.add('active');activeBlank={el:b,group:g};}
+}
+function selectChip(chip,g){
+  if(state[g]!=='challenge')return;
+  if(!activeBlank||activeBlank.group!==g)return;
+  const b=activeBlank.el; const word=chip.dataset.word;
+  const prev=b.dataset.filled;
+  if(prev){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{if(c.dataset.word===prev)c.classList.remove('used');});}
+  b.textContent=word; b.dataset.filled=word;
+  b.classList.remove('active','correct','wrong'); b.classList.add('filled');
+  chip.classList.add('used'); activeBlank=null;
+}
+function judgeGroup(g){
+  if(state[g]!=='challenge')return;
+  const blanks=document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  let allFilled=true; blanks.forEach(b=>{if(!b.dataset.filled)allFilled=false;});
+  if(!allFilled){const rm=document.getElementById('rm'+g);if(rm){rm.textContent='⚠️ 全ての空欄を埋めてから判定してください。';rm.className='result-msg ng';}return;}
+  let correct=0;
+  blanks.forEach(b=>{b.classList.remove('active','filled');if(b.dataset.filled===b.dataset.ans){b.classList.add('correct');correct++;}else b.classList.add('wrong');});
+  const rm=document.getElementById('rm'+g);
+  if(correct===blanks.length){if(rm){rm.textContent='🎉 全問正解！';rm.className='result-msg ok';}launchConfetti();}
+  else{if(rm){rm.textContent=`${correct} / ${blanks.length} 正解。もう一度チャレンジしてみよう！`;rm.className='result-msg ng';}}
+}
+function showAnswer(g){
+  state[g]='preview'; activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent=b.dataset.ans;b.className='mblank preview';b.dataset.filled=b.dataset.ans;b.onclick=null;});
+  resetChips(g);
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'preview');
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');if(!canvas)return;
+  canvas.style.display='block'; const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  const colors=['#C0392B','#D4A017','#00AEEF','#27ae60','#9b59b6','#e67e22','#1B2A4A'];
+  const pieces=Array.from({length:150},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*6+4,d:Math.random()*80+40,color:colors[Math.floor(Math.random()*colors.length)],tilt:0,tiltAngle:0,tiltSpeed:Math.random()*0.1+0.05}));
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{p.tiltAngle+=p.tiltSpeed;p.y+=(Math.cos(frame/20+p.d)+1+p.r/2)*1.2;p.x+=Math.sin(frame/20)*1.5;p.tilt=Math.sin(p.tiltAngle)*15;ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/3);ctx.stroke();});
+    frame++;
+    if(frame<200)requestAnimationFrame(draw);
+    else{ctx.clearRect(0,0,canvas.width,canvas.height);canvas.style.display='none';}
+  }
+  draw();
+}
+</script>
+</body>
+</html>
