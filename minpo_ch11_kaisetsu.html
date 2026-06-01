@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch11 物権</title>
+<style>
+  :root{ --bg:#eef2f7;--card:#fff;--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--cyan:#00AEEF;--text:#2c3e50;--border:#dde3ec; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);font-family:'Meiryo','メイリオ',sans-serif;color:var(--text);font-size:15px;line-height:1.8;}
+  header{background:var(--navy);color:#fff;padding:18px 24px 14px;}
+  header .chapter-num{font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:4px;}
+  header h1{font-size:22px;font-weight:bold;}
+  header .stars{font-size:13px;margin-top:4px;color:#aac;}
+  header .stars span{color:var(--gold);}
+  .container{max-width:800px;margin:0 auto;padding:20px 16px 60px;}
+  .section-card{background:var(--card);border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.07);margin-bottom:24px;overflow:hidden;}
+  .section-header{background:var(--navy);color:#fff;padding:10px 18px;font-size:15px;font-weight:bold;display:flex;align-items:center;gap:10px;}
+  .section-header .num{background:var(--gold);color:var(--navy);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;flex-shrink:0;}
+  .section-body{padding:18px 20px;}
+  .sub-heading{font-size:14px;font-weight:bold;color:var(--navy);border-left:4px solid var(--cyan);padding-left:10px;margin:18px 0 10px;}
+  .sub-heading:first-child{margin-top:0;}
+  p{margin-bottom:10px;}
+  p:last-child{margin-bottom:0;}
+  .kw{color:var(--crimson);font-weight:bold;}
+  .kw-b{color:#1a6ea8;font-weight:bold;}
+  .kw-g{color:#27ae60;font-weight:bold;}
+  .formula-box{background:#e8f4fd;border:1px solid #a8d4f0;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:15px;text-align:center;font-weight:bold;color:var(--navy);}
+  .formula-box .eq{color:var(--crimson);}
+  .table-wrap{overflow-x:auto;margin:12px 0;}
+  table{width:100%;border-collapse:collapse;font-size:14px;}
+  th{background:var(--navy);color:#fff;padding:8px 12px;text-align:center;}
+  td{border:1px solid var(--border);padding:8px 12px;vertical-align:top;}
+  tr:nth-child(even) td{background:#f5f8fc;}
+  .td-ok{color:#27ae60;font-weight:bold;text-align:center;}
+  .td-ng{color:var(--crimson);font-weight:bold;text-align:center;}
+  .hanrei{background:#fff8e1;border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:14px;}
+  .hanrei .hanrei-title{font-weight:bold;color:#8a6000;margin-bottom:6px;font-size:13px;}
+  .point-box{background:#fef9ec;border:1px solid var(--gold);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .point-box::before{content:"📌 POINT";font-weight:bold;color:#8a6000;display:block;margin-bottom:4px;font-size:12px;}
+  .note-box{background:#f0f7ff;border:1px solid var(--cyan);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .note-box::before{content:"💡 補足";font-weight:bold;color:#1a6ea8;display:block;margin-bottom:4px;font-size:12px;}
+  .goro{background:#f0f9ff;border:2px dashed var(--cyan);border-radius:8px;padding:10px 16px;margin:12px 0;text-align:center;}
+  .goro .goro-text{font-size:17px;font-weight:bold;color:var(--navy);letter-spacing:2px;}
+  .goro .goro-note{font-size:12px;color:#777;margin-top:4px;}
+  ul.list{padding-left:20px;margin:8px 0;}
+  ul.list li{margin-bottom:6px;}
+  /* ミニテスト */
+  .mini-test{background:#f4f0fa;border:2px solid #9b59b6;border-radius:10px;padding:16px 18px;margin-top:24px;}
+  .mt-title{font-weight:bold;color:#6c3483;font-size:14px;display:flex;align-items:center;gap:6px;margin-bottom:10px;}
+  .mt-title::before{content:"✏️";}
+  .mt-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .btn{border:none;border-radius:6px;padding:6px 16px;font-size:13px;cursor:pointer;font-family:'Meiryo',sans-serif;font-weight:bold;transition:opacity 0.15s;}
+  .btn:hover{opacity:.85;}
+  .btn-challenge{background:#C0392B;color:#fff;}
+  .btn-judge{background:#27ae60;color:#fff;}
+  .btn-show{background:#D4A017;color:#1B2A4A;}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+  .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;padding:10px 12px;background:#ece8f5;border-radius:8px;min-height:42px;}
+  .word-chip{background:#1B2A4A;color:#fff;border-radius:20px;padding:4px 14px;font-size:13px;cursor:pointer;user-select:none;transition:all .15s;}
+  .word-chip:hover{opacity:.85;}
+  .word-chip.used{opacity:.3;pointer-events:none;}
+  .mblank{display:inline-block;border-radius:4px;padding:1px 8px;min-width:72px;text-align:center;font-weight:bold;font-size:14px;cursor:pointer;transition:all .2s;border:2px solid #bbb;vertical-align:middle;background:#ddd;color:#ddd;user-select:none;}
+  .mblank.preview{background:#d4edda;border-color:#27ae60;color:#155724;cursor:default;}
+  .mblank.active{background:#fff3cd;border-color:#D4A017;color:#1B2A4A;}
+  .mblank.filled{background:#eaf0fb;border-color:#6c8ebf;color:#1B2A4A;}
+  .mblank.correct{background:#d4edda;border-color:#27ae60;color:#155724;}
+  .mblank.wrong{background:#f8d7da;border-color:#e74c3c;color:#721c24;}
+  .mt-q{font-size:14px;margin-bottom:10px;line-height:2;}
+  .result-msg{font-size:14px;margin-top:10px;font-weight:bold;min-height:22px;}
+  .result-msg.ok{color:#27ae60;}
+  .result-msg.ng{color:#C0392B;}
+  #confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;display:none;}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<header>
+  <div class="chapter-num">CHAPTER 11 ／ 民法</div>
+  <h1>物権</h1>
+  <div class="stars">重要度 <span>★★☆</span> ／ 頻出度 <span>★★☆</span></div>
+</header>
+<div class="container">
+
+<!-- セクション1 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">1</span>物権の意義と種類</div>
+  <div class="section-body">
+    <div class="sub-heading">（1）物権とは</div>
+    <p>「<span class="kw">物権</span>」とは、物を直接・排他的に支配する権利です。物権には次の2つの重要な性質があります。</p>
+    <ul class="list">
+      <li><span class="kw">直接性</span>：他人の行為を介さずに物を直接支配できる</li>
+      <li><span class="kw">排他性</span>：同一の物の上に同一内容の物権は1つしか成立しない（一物一権主義）</li>
+    </ul>
+    <div class="point-box">物権と債権が衝突する場合、原則として<strong>物権が優先</strong>する。ただし例外あり（不動産賃借権の対抗力など）。</div>
+
+    <div class="sub-heading">（2）物権法定主義</div>
+    <p>物権は<span class="kw">民法その他の法律に定めるもの</span>のみ認められます（175条）。これを<span class="kw">物権法定主義</span>といいます。当事者の合意だけで新たな種類の物権を創設することはできません。</p>
+    <div class="note-box">ただし慣習法上の物権（温泉専用権＝湯口権など）は判例上認められる場合があります。</div>
+
+    <div class="sub-heading">（3）物権の種類</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th colspan="2">分類</th><th>内容</th></tr>
+        <tr><td rowspan="2"><strong>自己の物<br>に対する<br>物権</strong></td><td>所有権</td><td>物を全面的に支配する権利</td></tr>
+        <tr><td>占有権</td><td>物を事実上支配している状態を保護</td></tr>
+        <tr><td rowspan="5"><strong>他人の物<br>に対する<br>物権<br>（制限物権）</strong></td><td>地上権</td><td rowspan="2">用益物権：他人の土地を利用する権利</td></tr>
+        <tr><td>地役権・永小作権</td></tr>
+        <tr><td>留置権</td><td rowspan="3">担保物権：債権担保のための物権</td></tr>
+        <tr><td>先取特権・質権</td></tr>
+        <tr><td>抵当権</td></tr>
+      </table>
+    </div>
+
+    <div class="sub-heading">（4）物の概念</div>
+    <p>民法上の「物」とは<span class="kw">有体物</span>（固体・液体・気体）をいいます（85条）。電気などの無体物は原則として物ではありませんが、判例は電気を財物と認めています。</p>
+    <p>土地に生立する樹木は、<span class="kw">明認方法</span>（立木登記または明認方法）を備えることで、<span class="kw">土地とは別個独立の不動産</span>として所有権譲渡の目的とすることができます。</p>
+
+    <!-- ミニテスト1 -->
+    <div class="mini-test" data-group="1">
+      <div class="mt-title">ミニテスト①</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(1)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(1)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(1)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb1">
+        <span class="word-chip" data-word="物権法定主義">物権法定主義</span>
+        <span class="word-chip" data-word="排他性">排他性</span>
+        <span class="word-chip" data-word="有体物">有体物</span>
+        <span class="word-chip" data-word="用益物権">用益物権</span>
+        <span class="word-chip" data-word="直接性">直接性</span>
+      </div>
+      <div class="mt-q">① 他人の行為を介さずに物を支配できる性質を<span class="mblank preview" data-ans="直接性" data-group="1">直接性</span>、同一の物に同一内容の物権は1つしか成立しない性質を<span class="mblank preview" data-ans="排他性" data-group="1">排他性</span>という。</div>
+      <div class="mt-q">② 物権は法律に定めるもののみ認められるという原則を<span class="mblank preview" data-ans="物権法定主義" data-group="1">物権法定主義</span>という。</div>
+      <div class="mt-q">③ 地上権・地役権・永小作権は他人の土地を利用する<span class="mblank preview" data-ans="用益物権" data-group="1">用益物権</span>である。</div>
+      <div class="mt-q">④ 民法上の「物」とは<span class="mblank preview" data-ans="有体物" data-group="1">有体物</span>をいう（85条）。</div>
+      <div class="result-msg" id="rm1"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション2 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">2</span>物権的請求権</div>
+  <div class="section-body">
+    <div class="sub-heading">（1）物権的請求権とは</div>
+    <p>物権が侵害されまたは侵害されるおそれがある場合に、その侵害の除去・予防を請求できる権利を「<span class="kw">物権的請求権</span>」といいます。3種類あります。</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>種類</th><th>内容</th><th>要件（故意・過失）</th></tr>
+        <tr><td><span class="kw-g">返還請求権</span></td><td>物を占有されている場合に返還を求める</td><td class="td-ng">不要</td></tr>
+        <tr><td><span class="kw-g">妨害排除請求権</span></td><td>物の使用・収益が妨害されている場合に排除を求める</td><td class="td-ng">不要</td></tr>
+        <tr><td><span class="kw-g">妨害予防請求権</span></td><td>妨害が生じるおそれがある場合に予防を求める</td><td class="td-ng">不要</td></tr>
+      </table>
+    </div>
+    <div class="point-box">物権的請求権の行使に<strong>相手方の故意・過失は不要</strong>。不法行為に基づく損害賠償請求とここが違う。</div>
+
+    <div class="sub-heading">（2）費用の負担</div>
+    <p>妨害排除・妨害予防の費用は原則として<span class="kw">請求を受けた者（妨害者）が負担</span>します。ただし妨害者に故意・過失がない場合でも請求できますが、費用負担については争いがあります。</p>
+
+    <div class="sub-heading">（3）物権的請求権と消滅時効</div>
+    <p>所有権に基づく物権的請求権は、<span class="kw">消滅時効にかかりません</span>。所有権自体が消滅時効にかからないことの当然の帰結です。</p>
+
+    <!-- ミニテスト2 -->
+    <div class="mini-test" data-group="2">
+      <div class="mt-title">ミニテスト②</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(2)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(2)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(2)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb2">
+        <span class="word-chip" data-word="不要">不要</span>
+        <span class="word-chip" data-word="返還請求権">返還請求権</span>
+        <span class="word-chip" data-word="妨害排除請求権">妨害排除請求権</span>
+        <span class="word-chip" data-word="かからない">かからない</span>
+        <span class="word-chip" data-word="妨害予防請求権">妨害予防請求権</span>
+      </div>
+      <div class="mt-q">① 物を占有されている場合に返還を求めるのが<span class="mblank preview" data-ans="返還請求権" data-group="2">返還請求権</span>、妨害されている場合が<span class="mblank preview" data-ans="妨害排除請求権" data-group="2">妨害排除請求権</span>、おそれがある場合が<span class="mblank preview" data-ans="妨害予防請求権" data-group="2">妨害予防請求権</span>。</div>
+      <div class="mt-q">② 物権的請求権の行使に相手方の故意・過失は<span class="mblank preview" data-ans="不要" data-group="2">不要</span>。</div>
+      <div class="mt-q">③ 所有権に基づく物権的請求権は消滅時効に<span class="mblank preview" data-ans="かからない" data-group="2">かからない</span>。</div>
+      <div class="result-msg" id="rm2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション3 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">3</span>混同</div>
+  <div class="section-body">
+    <div class="sub-heading">（1）混同とは</div>
+    <p>「<span class="kw">混同</span>」とは、同一人に所有権と制限物権（または債権）が帰属した場合に、制限物権（または債権）が消滅する制度です（179条・520条）。</p>
+
+    <div class="sub-heading">（2）物権の混同</div>
+    <p>所有権と制限物権が同一人に帰属したときは、制限物権は消滅します（179条1項本文）。</p>
+    <p>ただし例外として、その<span class="kw">制限物権が第三者の権利の目的となっているとき</span>は消滅しません（179条1項ただし書）。</p>
+
+    <div class="hanrei">
+      <div class="hanrei-title">混同の例（重要判例）</div>
+      <p>①地上権者Bが土地所有者Aから相続した場合→地上権と所有権が同一人に帰属→<span class="kw">地上権は消滅</span>（原則）</p>
+      <p>②ただし地上権にCの抵当権が設定されている場合→Cのために地上権は<span class="kw-b">消滅しない</span>（例外）</p>
+      <p>③1番抵当権者Bが土地を相続取得→1番抵当権は消滅するか？→2番抵当権者Cがいる場合は<span class="kw-b">消滅しない</span>（1番が消滅するとCが有利になりすぎる）</p>
+    </div>
+
+    <div class="point-box">混同の例外：制限物権が<strong>第三者の権利の目的</strong>となっているとき→消滅しない。</div>
+
+    <!-- ミニテスト3 -->
+    <div class="mini-test" data-group="3">
+      <div class="mt-title">ミニテスト③</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(3)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(3)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(3)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb3">
+        <span class="word-chip" data-word="消滅する">消滅する</span>
+        <span class="word-chip" data-word="消滅しない">消滅しない</span>
+        <span class="word-chip" data-word="第三者の権利の目的">第三者の権利の目的</span>
+        <span class="word-chip" data-word="混同">混同</span>
+      </div>
+      <div class="mt-q">① 所有権と制限物権が同一人に帰属することを<span class="mblank preview" data-ans="混同" data-group="3">混同</span>という。</div>
+      <div class="mt-q">② 原則として制限物権は<span class="mblank preview" data-ans="消滅する" data-group="3">消滅する</span>。</div>
+      <div class="mt-q">③ 制限物権が<span class="mblank preview" data-ans="第三者の権利の目的" data-group="3">第三者の権利の目的</span>となっているときは例外として<span class="mblank preview" data-ans="消滅しない" data-group="3">消滅しない</span>。</div>
+      <div class="result-msg" id="rm3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション4 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">4</span>地上権・地役権・永小作権</div>
+  <div class="section-body">
+    <div class="sub-heading">（1）地上権</div>
+    <p>「<span class="kw">地上権</span>」とは、他人の土地において工作物または竹木を所有するため、その土地を使用する権利です（265条）。</p>
+    <ul class="list">
+      <li>地代は必須ではない（無償でも設定可）</li>
+      <li>土地所有者の承諾なしに<span class="kw">譲渡・担保提供・賃貸</span>が可能（≠賃借権）</li>
+      <li>存続期間の上限なし（≠賃借権）</li>
+      <li>地上権消滅時：地上権者は工作物・竹木を収去して土地を返還できる（269条）。土地所有者が時価で買い取ることも可</li>
+    </ul>
+
+    <div class="sub-heading">（2）地役権</div>
+    <p>「<span class="kw">地役権</span>」とは、他人の土地（<span class="kw">承役地</span>）を自己の土地（<span class="kw">要役地</span>）の便益のために利用する権利です（280条）。</p>
+    <ul class="list">
+      <li>地役権は<span class="kw">要役地の従たる権利</span>→要役地と分離して譲渡・担保提供はできない</li>
+      <li>要役地と承役地は<span class="kw">隣接している必要はない</span></li>
+      <li>時効取得が認められる（283条）：継続的・表現的な地役権に限る</li>
+    </ul>
+
+    <div class="sub-heading">（3）永小作権</div>
+    <p>「<span class="kw">永小作権</span>」とは、小作料を支払って他人の土地で耕作・牧畜をする権利です（270条）。存続期間は<span class="kw">20年以上50年以下</span>。</p>
+
+    <div class="goro">
+      <div class="goro-text">地上権：譲渡・担保・賃貸OK　地役権：要役地の従たる権利</div>
+      <div class="goro-note">地上権は地代不要・上限なし。地役権は要役地と分離不可。</div>
+    </div>
+
+    <!-- ミニテスト4 -->
+    <div class="mini-test" data-group="4">
+      <div class="mt-title">ミニテスト④</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(4)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(4)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(4)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb4">
+        <span class="word-chip" data-word="承役地">承役地</span>
+        <span class="word-chip" data-word="要役地">要役地</span>
+        <span class="word-chip" data-word="不要">不要</span>
+        <span class="word-chip" data-word="20年以上50年以下">20年以上50年以下</span>
+        <span class="word-chip" data-word="できない">できない</span>
+      </div>
+      <div class="mt-q">① 地上権に地代は<span class="mblank preview" data-ans="不要" data-group="4">不要</span>で、土地所有者の承諾なく譲渡・担保提供ができる。</div>
+      <div class="mt-q">② 地役権は他人の土地（<span class="mblank preview" data-ans="承役地" data-group="4">承役地</span>）を自己の土地（<span class="mblank preview" data-ans="要役地" data-group="4">要役地</span>）の便益のために利用する権利。</div>
+      <div class="mt-q">③ 地役権は要役地から分離して譲渡<span class="mblank preview" data-ans="できない" data-group="4">できない</span>。</div>
+      <div class="mt-q">④ 永小作権の存続期間は<span class="mblank preview" data-ans="20年以上50年以下" data-group="4">20年以上50年以下</span>。</div>
+      <div class="result-msg" id="rm4"></div>
+    </div>
+  </div>
+</div>
+
+</div>
+<div style="text-align:center;font-size:11px;color:#aaa;padding:8px 0 30px;">音声：VOICEVOX / 四国めたん</div>
+
+<script>
+const state={};let activeBlank=null;
+window.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.mini-test').forEach(mt=>{
+    const g=mt.dataset.group;if(g){state[g]='preview';shuffleBank(g);}
+  });
+});
+function shuffleBank(g){
+  const wb=document.getElementById('wb'+g);if(!wb)return;
+  const chips=Array.from(wb.querySelectorAll('.word-chip'));
+  for(let i=chips.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));wb.insertBefore(chips[j],chips[i]);const t=chips[i];chips[i]=chips[j];chips[j]=t;}
+}
+function getBtn(g,cls){const mt=document.querySelector(`.mini-test[data-group="${g}"]`);return mt?mt.querySelector(cls):null;}
+function setBtns(g,mode){const isC=mode==='challenge';const bc=getBtn(g,'.btn-challenge');const bj=getBtn(g,'.btn-judge');if(bc)bc.disabled=isC;if(bj)bj.disabled=!isC;}
+function startChallenge(g){
+  state[g]='challenge';activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent='　　　';b.className='mblank';b.dataset.filled='';b.onclick=()=>selectBlank(b,g);});
+  resetChips(g);shuffleBank(g);
+  document.querySelectorAll(`#wb${g} .word-chip`).forEach(chip=>{chip.onclick=()=>selectChip(chip,g);});
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'challenge');
+}
+function resetChips(g){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{c.className='word-chip';c.onclick=null;});}
+function selectBlank(b,g){
+  if(state[g]!=='challenge')return;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(x=>{if(x!==b)x.classList.remove('active');});
+  if(b.classList.contains('active')){b.classList.remove('active');activeBlank=null;}
+  else{b.classList.add('active');activeBlank={el:b,group:g};}
+}
+function selectChip(chip,g){
+  if(state[g]!=='challenge')return;
+  if(!activeBlank||activeBlank.group!==g)return;
+  const b=activeBlank.el;const word=chip.dataset.word;
+  const prev=b.dataset.filled;
+  if(prev){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{if(c.dataset.word===prev)c.classList.remove('used');});}
+  b.textContent=word;b.dataset.filled=word;
+  b.classList.remove('active','correct','wrong');b.classList.add('filled');
+  chip.classList.add('used');activeBlank=null;
+}
+function judgeGroup(g){
+  if(state[g]!=='challenge')return;
+  const blanks=document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  let allFilled=true;blanks.forEach(b=>{if(!b.dataset.filled)allFilled=false;});
+  if(!allFilled){const rm=document.getElementById('rm'+g);if(rm){rm.textContent='⚠️ 全ての空欄を埋めてから判定してください。';rm.className='result-msg ng';}return;}
+  let correct=0;
+  blanks.forEach(b=>{b.classList.remove('active','filled');if(b.dataset.filled===b.dataset.ans){b.classList.add('correct');correct++;}else b.classList.add('wrong');});
+  const rm=document.getElementById('rm'+g);
+  if(correct===blanks.length){if(rm){rm.textContent='🎉 全問正解！';rm.className='result-msg ok';}launchConfetti();}
+  else{if(rm){rm.textContent=`${correct} / ${blanks.length} 正解。もう一度チャレンジしてみよう！`;rm.className='result-msg ng';}}
+}
+function showAnswer(g){
+  state[g]='preview';activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent=b.dataset.ans;b.className='mblank preview';b.dataset.filled=b.dataset.ans;b.onclick=null;});
+  resetChips(g);
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'preview');
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');if(!canvas)return;
+  canvas.style.display='block';const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const colors=['#C0392B','#D4A017','#00AEEF','#27ae60','#9b59b6','#e67e22','#1B2A4A'];
+  const pieces=Array.from({length:150},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*6+4,d:Math.random()*80+40,color:colors[Math.floor(Math.random()*colors.length)],tilt:0,tiltAngle:0,tiltSpeed:Math.random()*0.1+0.05}));
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{p.tiltAngle+=p.tiltSpeed;p.y+=(Math.cos(frame/20+p.d)+1+p.r/2)*1.2;p.x+=Math.sin(frame/20)*1.5;p.tilt=Math.sin(p.tiltAngle)*15;ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/3);ctx.stroke();});
+    frame++;
+    if(frame<200)requestAnimationFrame(draw);
+    else{ctx.clearRect(0,0,canvas.width,canvas.height);canvas.style.display='none';}
+  }
+  draw();
+}
+</script>
+</body>
+</html>

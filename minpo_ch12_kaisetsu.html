@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch12 不動産物権変動</title>
+<style>
+  :root{--bg:#eef2f7;--card:#fff;--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--cyan:#00AEEF;--text:#2c3e50;--border:#dde3ec;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);font-family:'Meiryo','メイリオ',sans-serif;color:var(--text);font-size:15px;line-height:1.8;}
+  header{background:var(--navy);color:#fff;padding:18px 24px 14px;}
+  header .chapter-num{font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:4px;}
+  header h1{font-size:22px;font-weight:bold;}
+  header .stars{font-size:13px;margin-top:4px;color:#aac;}
+  header .stars span{color:var(--gold);}
+  .container{max-width:800px;margin:0 auto;padding:20px 16px 60px;}
+  .section-card{background:var(--card);border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:24px;overflow:hidden;}
+  .section-header{background:var(--navy);color:#fff;padding:10px 18px;font-size:15px;font-weight:bold;display:flex;align-items:center;gap:10px;}
+  .section-header .num{background:var(--gold);color:var(--navy);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;flex-shrink:0;}
+  .section-body{padding:18px 20px;}
+  .sub-heading{font-size:14px;font-weight:bold;color:var(--navy);border-left:4px solid var(--cyan);padding-left:10px;margin:18px 0 10px;}
+  .sub-heading:first-child{margin-top:0;}
+  p{margin-bottom:10px;}
+  p:last-child{margin-bottom:0;}
+  .kw{color:var(--crimson);font-weight:bold;}
+  .kw-b{color:#1a6ea8;font-weight:bold;}
+  .kw-g{color:#27ae60;font-weight:bold;}
+  .formula-box{background:#e8f4fd;border:1px solid #a8d4f0;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:15px;text-align:center;font-weight:bold;color:var(--navy);}
+  .formula-box .eq{color:var(--crimson);}
+  .table-wrap{overflow-x:auto;margin:12px 0;}
+  table{width:100%;border-collapse:collapse;font-size:14px;}
+  th{background:var(--navy);color:#fff;padding:8px 12px;text-align:center;}
+  td{border:1px solid var(--border);padding:8px 12px;vertical-align:top;}
+  tr:nth-child(even) td{background:#f5f8fc;}
+  .td-ok{color:#27ae60;font-weight:bold;text-align:center;}
+  .td-ng{color:var(--crimson);font-weight:bold;text-align:center;}
+  .hanrei{background:#fff8e1;border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:14px;}
+  .hanrei .hanrei-title{font-weight:bold;color:#8a6000;margin-bottom:6px;font-size:13px;}
+  .point-box{background:#fef9ec;border:1px solid var(--gold);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .point-box::before{content:"📌 POINT";font-weight:bold;color:#8a6000;display:block;margin-bottom:4px;font-size:12px;}
+  .warn-box{background:#fdf0f0;border:1px solid var(--crimson);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .warn-box::before{content:"⚠️ 注意";font-weight:bold;color:var(--crimson);display:block;margin-bottom:4px;font-size:12px;}
+  .note-box{background:#f0f7ff;border:1px solid var(--cyan);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .note-box::before{content:"💡 補足";font-weight:bold;color:#1a6ea8;display:block;margin-bottom:4px;font-size:12px;}
+  .goro{background:#f0f9ff;border:2px dashed var(--cyan);border-radius:8px;padding:10px 16px;margin:12px 0;text-align:center;}
+  .goro .goro-text{font-size:17px;font-weight:bold;color:var(--navy);letter-spacing:1px;}
+  .goro .goro-note{font-size:12px;color:#777;margin-top:4px;}
+  ul.list{padding-left:20px;margin:8px 0;}
+  ul.list li{margin-bottom:6px;}
+  /* ミニテスト */
+  .mini-test{background:#f4f0fa;border:2px solid #9b59b6;border-radius:10px;padding:16px 18px;margin-top:24px;}
+  .mt-title{font-weight:bold;color:#6c3483;font-size:14px;display:flex;align-items:center;gap:6px;margin-bottom:10px;}
+  .mt-title::before{content:"✏️";}
+  .mt-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .btn{border:none;border-radius:6px;padding:6px 16px;font-size:13px;cursor:pointer;font-family:'Meiryo',sans-serif;font-weight:bold;transition:opacity .15s;}
+  .btn:hover{opacity:.85;}
+  .btn-challenge{background:#C0392B;color:#fff;}
+  .btn-judge{background:#27ae60;color:#fff;}
+  .btn-show{background:#D4A017;color:#1B2A4A;}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+  .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;padding:10px 12px;background:#ece8f5;border-radius:8px;min-height:42px;}
+  .word-chip{background:#1B2A4A;color:#fff;border-radius:20px;padding:4px 14px;font-size:13px;cursor:pointer;user-select:none;transition:all .15s;}
+  .word-chip:hover{opacity:.85;}
+  .word-chip.used{opacity:.3;pointer-events:none;}
+  .mblank{display:inline-block;border-radius:4px;padding:1px 8px;min-width:72px;text-align:center;font-weight:bold;font-size:14px;cursor:pointer;transition:all .2s;border:2px solid #bbb;vertical-align:middle;background:#ddd;color:#ddd;user-select:none;}
+  .mblank.preview{background:#d4edda;border-color:#27ae60;color:#155724;cursor:default;}
+  .mblank.active{background:#fff3cd;border-color:#D4A017;color:#1B2A4A;}
+  .mblank.filled{background:#eaf0fb;border-color:#6c8ebf;color:#1B2A4A;}
+  .mblank.correct{background:#d4edda;border-color:#27ae60;color:#155724;}
+  .mblank.wrong{background:#f8d7da;border-color:#e74c3c;color:#721c24;}
+  .mt-q{font-size:14px;margin-bottom:10px;line-height:2;}
+  .result-msg{font-size:14px;margin-top:10px;font-weight:bold;min-height:22px;}
+  .result-msg.ok{color:#27ae60;}
+  .result-msg.ng{color:#C0392B;}
+  #confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;display:none;}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<header>
+  <div class="chapter-num">CHAPTER 12 ／ 民法</div>
+  <h1>不動産物権変動</h1>
+  <div class="stars">重要度 <span>★★★</span> ／ 頻出度 <span>★★★</span></div>
+</header>
+<div class="container">
+
+<!-- セクション1 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">1</span>177条の原則と登記の対抗力</div>
+  <div class="section-body">
+    <div class="sub-heading">（1）177条の原則</div>
+    <p>不動産に関する物権の得喪・変更は、<span class="kw">登記をしなければ第三者に対抗することができません</span>（177条）。</p>
+    <p>つまり不動産の売買などで物権変動があっても、<span class="kw-b">登記なくして第三者に「自分が所有者だ」と主張できない</span>のが原則です。</p>
+
+    <div class="formula-box">
+      不動産物権変動の<span class="eq">対抗要件</span> ＝ <span class="eq">登記</span>（177条）
+    </div>
+
+    <div class="sub-heading">（2）二重譲渡と登記</div>
+    <p>AがBとCに同じ不動産を二重に譲渡した場合、先に<span class="kw">登記を備えた者</span>が所有権を取得します。</p>
+
+    <div class="hanrei">
+      <div class="hanrei-title">二重譲渡の例</div>
+      <p>A→B（先に売買契約）、A→C（後に売買契約）の場合</p>
+      <p>・Cが先に登記 → <span class="kw-g">Cが所有権取得</span>、BはCに対抗できない</p>
+      <p>・Bが先に登記 → <span class="kw-g">Bが所有権取得</span>、CはBに対抗できない</p>
+    </div>
+
+    <div class="sub-heading">（3）「第三者」の意義</div>
+    <p>177条の「第三者」とは、<span class="kw">当事者及びその包括承継人以外の者で、不動産物権変動の登記欠缺を主張するにつき正当な利益を有する者</span>をいいます（判例）。</p>
+    <p>すべての第三者が177条の「第三者」にあたるわけではありません。</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th>177条の第三者に<span style="color:#27ae60">あたる</span>者</th><th>177条の第三者に<span style="color:#C0392B">あたらない</span>者</th></tr>
+        <tr>
+          <td>
+            ・二重譲受人<br>
+            ・差押債権者<br>
+            ・抵当権者<br>
+            ・取得時効完成後の第三取得者
+          </td>
+          <td>
+            ・不法行為者・不法占拠者<br>
+            ・当事者・包括承継人（相続人）<br>
+            ・背信的悪意者<br>
+            ・詐欺・強迫による取消後の第三者
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="sub-heading">（4）背信的悪意者</div>
+    <p>登記の欠缺を主張することが<span class="kw">信義則上許されない者</span>を「<span class="kw">背信的悪意者</span>」といいます。単なる悪意者（知っていた者）は177条の第三者にあたりますが、背信的悪意者はあたりません。</p>
+    <div class="point-box">単純な悪意者（Aの二重譲渡を知っていたC）は177条の第三者に<strong>あたる</strong>。背信的悪意者のみ除外。</div>
+
+    <!-- ミニテスト1 -->
+    <div class="mini-test" data-group="1">
+      <div class="mt-title">ミニテスト①</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(1)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(1)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(1)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb1">
+        <span class="word-chip" data-word="登記">登記</span>
+        <span class="word-chip" data-word="先に登記した者">先に登記した者</span>
+        <span class="word-chip" data-word="背信的悪意者">背信的悪意者</span>
+        <span class="word-chip" data-word="あたる">あたる</span>
+        <span class="word-chip" data-word="正当な利益">正当な利益</span>
+      </div>
+      <div class="mt-q">① 不動産物権変動の対抗要件は<span class="mblank preview" data-ans="登記" data-group="1">登記</span>である（177条）。</div>
+      <div class="mt-q">② 二重譲渡の場合、<span class="mblank preview" data-ans="先に登記した者" data-group="1">先に登記した者</span>が所有権を取得できる。</div>
+      <div class="mt-q">③ 177条の「第三者」とは登記欠缺を主張するにつき<span class="mblank preview" data-ans="正当な利益" data-group="1">正当な利益</span>を有する者をいう。</div>
+      <div class="mt-q">④ 単純な悪意者は177条の第三者に<span class="mblank preview" data-ans="あたる" data-group="1">あたる</span>が、<span class="mblank preview" data-ans="背信的悪意者" data-group="1">背信的悪意者</span>はあたらない。</div>
+      <div class="result-msg" id="rm1"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション2 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">2</span>登記なしで対抗できる場合</div>
+  <div class="section-body">
+    <div class="sub-heading">（1）取消し・解除と登記</div>
+    <p>物権変動の原因が<span class="kw">取消し・解除</span>によって消滅した後に第三者が登場した場合と、第三者登場後に取消し・解除した場合とで扱いが異なります。</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th>場面</th><th>登記の要否</th><th>理由</th></tr>
+        <tr>
+          <td><span class="kw-b">取消前</span>の第三者<br>（詐欺・錯誤による取消）</td>
+          <td class="td-ng">登記不要<br>→善意・無過失の第三者を保護（96条3項など）</td>
+          <td>第三者保護規定で対処</td>
+        </tr>
+        <tr>
+          <td><span class="kw-b">取消後</span>の第三者</td>
+          <td class="td-ok">登記必要<br>→177条適用・先に登記した方が勝つ</td>
+          <td>取消後は復帰的物権変動</td>
+        </tr>
+        <tr>
+          <td><span class="kw-b">解除前</span>の第三者</td>
+          <td class="td-ng">登記不要<br>→545条1項ただし書で第三者保護</td>
+          <td>第三者保護規定で対処</td>
+        </tr>
+        <tr>
+          <td><span class="kw-b">解除後</span>の第三者</td>
+          <td class="td-ok">登記必要<br>→177条適用・先に登記した方が勝つ</td>
+          <td>解除後は復帰的物権変動</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="goro">
+      <div class="goro-text">取消前・解除前の第三者 → 登記不要（条文保護）</div>
+      <div class="goro-note">取消後・解除後の第三者 → 登記必要（177条対抗）</div>
+    </div>
+
+    <div class="sub-heading">（2）相続と登記</div>
+    <p>相続による物権変動は、<span class="kw">登記なしで相続人であることを第三者に対抗できます</span>（相続は法定の原因による物権変動のため）。</p>
+    <p>ただし<span class="kw">法定相続分を超える持分</span>の取得（遺産分割・遺贈など）については、<span class="kw-b">登記なしに第三者に対抗できません</span>。</p>
+
+    <div class="hanrei">
+      <div class="hanrei-title">相続と登記の判例ポイント</div>
+      <p>①単純相続（法定相続分）→ <span class="kw-g">登記不要</span></p>
+      <p>②遺産分割で法定相続分を超えて取得→ <span class="kw">超える部分は登記必要</span></p>
+      <p>③相続人Bが不動産を単独名義に偽装してCに売却→ Aは法定相続分の範囲で登記なしにCに対抗できる</p>
+    </div>
+
+    <div class="sub-heading">（3）取得時効と登記</div>
+    <p>取得時効完成前に第三者が不動産を取得していた場合、時効取得者は<span class="kw">登記なしに時効取得を対抗できません</span>（時効完成後に登場した第三者は177条の第三者）。</p>
+    <p>ただし<span class="kw">時効完成後</span>に登記を取得した第三者に対しては、占有者が時効を<span class="kw-b">再起算</span>して時効を完成させれば対抗できます。</p>
+
+    <!-- ミニテスト2 -->
+    <div class="mini-test" data-group="2">
+      <div class="mt-title">ミニテスト②</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(2)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(2)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(2)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb2">
+        <span class="word-chip" data-word="不要">不要</span>
+        <span class="word-chip" data-word="必要">必要</span>
+        <span class="word-chip" data-word="不要">不要</span>
+        <span class="word-chip" data-word="必要">必要</span>
+        <span class="word-chip" data-word="超える部分">超える部分</span>
+      </div>
+      <div class="mt-q">① 取消前の第三者に対しては登記は<span class="mblank preview" data-ans="不要" data-group="2">不要</span>。取消後の第三者に対しては登記が<span class="mblank preview" data-ans="必要" data-group="2">必要</span>。</div>
+      <div class="mt-q">② 解除前の第三者に対しては登記は<span class="mblank preview" data-ans="不要" data-group="2">不要</span>。解除後の第三者に対しては登記が<span class="mblank preview" data-ans="必要" data-group="2">必要</span>。</div>
+      <div class="mt-q">③ 相続で法定相続分を<span class="mblank preview" data-ans="超える部分" data-group="2">超える部分</span>の取得については登記なしに第三者に対抗できない。</div>
+      <div class="result-msg" id="rm2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション3 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">3</span>中間省略登記・登記請求権</div>
+  <div class="section-body">
+    <div class="sub-heading">（1）中間省略登記</div>
+    <p>A→B→Cと不動産が転々譲渡された場合に、BへのA→B登記を省略してA→Cと直接登記することを「<span class="kw">中間省略登記</span>」といいます。</p>
+    <p>中間省略登記は原則として<span class="kw">A・B・C全員の同意</span>がなければ認められません。Bの同意なしにAに対してCへの直接登記移転を求めることはできません（最判昭40・9・21）。</p>
+
+    <div class="sub-heading">（2）登記請求権</div>
+    <p>売買などで不動産を取得した者は、売主に対して<span class="kw">登記移転を請求する権利</span>（登記請求権）を持ちます。この権利は<span class="kw">消滅時効にかかりません</span>（所有権に基づく請求権だから）。</p>
+    <div class="warn-box">ただし債権的登記請求権（売買契約に基づく登記請求権）は消滅時効にかかります。所有権に基づく物権的登記請求権とは区別して整理しましょう。</div>
+
+    <!-- ミニテスト3 -->
+    <div class="mini-test" data-group="3">
+      <div class="mt-title">ミニテスト③</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(3)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(3)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(3)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb3">
+        <span class="word-chip" data-word="全員の同意">全員の同意</span>
+        <span class="word-chip" data-word="かからない">かからない</span>
+        <span class="word-chip" data-word="中間省略登記">中間省略登記</span>
+        <span class="word-chip" data-word="登記請求権">登記請求権</span>
+      </div>
+      <div class="mt-q">① A→B→Cの転々譲渡でBを飛ばしてA→C登記することを<span class="mblank preview" data-ans="中間省略登記" data-group="3">中間省略登記</span>という。</div>
+      <div class="mt-q">② 中間省略登記にはA・B・C<span class="mblank preview" data-ans="全員の同意" data-group="3">全員の同意</span>が必要。</div>
+      <div class="mt-q">③ 不動産取得者が売主に移転登記を求める権利を<span class="mblank preview" data-ans="登記請求権" data-group="3">登記請求権</span>という。</div>
+      <div class="mt-q">④ 所有権に基づく登記請求権は消滅時効に<span class="mblank preview" data-ans="かからない" data-group="3">かからない</span>。</div>
+      <div class="result-msg" id="rm3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション4 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">4</span>重要判例まとめ</div>
+  <div class="section-body">
+    <div class="sub-heading">登記不要の場面（177条の第三者にあたらない）</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>場面</th><th>結論</th></tr>
+        <tr><td>不法占拠者・不法行為者</td><td class="td-ok">登記不要で対抗できる</td></tr>
+        <tr><td>相続人（法定相続分の範囲内）</td><td class="td-ok">登記不要で対抗できる</td></tr>
+        <tr><td>詐欺・強迫による取消前の第三者</td><td class="td-ok">善意・無過失なら保護（登記不要）</td></tr>
+        <tr><td>解除前の第三者</td><td class="td-ok">登記あれば保護（545条1項ただし書）</td></tr>
+        <tr><td>背信的悪意者</td><td class="td-ok">登記なくして対抗できる</td></tr>
+      </table>
+    </div>
+
+    <div class="sub-heading">登記必要の場面（177条の第三者にあたる）</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>場面</th><th>結論</th></tr>
+        <tr><td>二重譲受人</td><td class="td-ng">先に登記した方が勝つ</td></tr>
+        <tr><td>取消後・解除後の第三者</td><td class="td-ng">先に登記した方が勝つ（復帰的物権変動）</td></tr>
+        <tr><td>時効完成後の第三者</td><td class="td-ng">登記を先に備えた方が勝つ</td></tr>
+        <tr><td>法定相続分を超える部分</td><td class="td-ng">登記なしに対抗不可</td></tr>
+      </table>
+    </div>
+
+    <!-- ミニテスト4 -->
+    <div class="mini-test" data-group="4">
+      <div class="mt-title">ミニテスト④</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(4)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(4)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(4)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb4">
+        <span class="word-chip" data-word="登記不要">登記不要</span>
+        <span class="word-chip" data-word="登記必要">登記必要</span>
+        <span class="word-chip" data-word="登記不要">登記不要</span>
+        <span class="word-chip" data-word="登記必要">登記必要</span>
+        <span class="word-chip" data-word="登記不要">登記不要</span>
+      </div>
+      <div class="mt-q">① 不法占拠者に対しては<span class="mblank preview" data-ans="登記不要" data-group="4">登記不要</span>で対抗できる。</div>
+      <div class="mt-q">② 取消後の第三者に対しては<span class="mblank preview" data-ans="登記必要" data-group="4">登記必要</span>（177条適用）。</div>
+      <div class="mt-q">③ 解除前の第三者に対しては<span class="mblank preview" data-ans="登記不要" data-group="4">登記不要</span>（545条1項ただし書）。</div>
+      <div class="mt-q">④ 時効完成後の第三者に対しては<span class="mblank preview" data-ans="登記必要" data-group="4">登記必要</span>（177条適用）。</div>
+      <div class="mt-q">⑤ 背信的悪意者に対しては<span class="mblank preview" data-ans="登記不要" data-group="4">登記不要</span>で対抗できる。</div>
+      <div class="result-msg" id="rm4"></div>
+    </div>
+  </div>
+</div>
+
+</div>
+<div style="text-align:center;font-size:11px;color:#aaa;padding:8px 0 30px;">音声：VOICEVOX / 四国めたん</div>
+
+<script>
+const state={};let activeBlank=null;
+window.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.mini-test').forEach(mt=>{
+    const g=mt.dataset.group;if(g){state[g]='preview';shuffleBank(g);}
+  });
+});
+function shuffleBank(g){
+  const wb=document.getElementById('wb'+g);if(!wb)return;
+  const chips=Array.from(wb.querySelectorAll('.word-chip'));
+  for(let i=chips.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));wb.insertBefore(chips[j],chips[i]);const t=chips[i];chips[i]=chips[j];chips[j]=t;}
+}
+function getBtn(g,cls){const mt=document.querySelector(`.mini-test[data-group="${g}"]`);return mt?mt.querySelector(cls):null;}
+function setBtns(g,mode){const isC=mode==='challenge';const bc=getBtn(g,'.btn-challenge');const bj=getBtn(g,'.btn-judge');if(bc)bc.disabled=isC;if(bj)bj.disabled=!isC;}
+function startChallenge(g){
+  state[g]='challenge';activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent='　　　';b.className='mblank';b.dataset.filled='';b.onclick=()=>selectBlank(b,g);});
+  resetChips(g);shuffleBank(g);
+  document.querySelectorAll(`#wb${g} .word-chip`).forEach(chip=>{chip.onclick=()=>selectChip(chip,g);});
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'challenge');
+}
+function resetChips(g){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{c.className='word-chip';c.onclick=null;});}
+function selectBlank(b,g){
+  if(state[g]!=='challenge')return;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(x=>{if(x!==b)x.classList.remove('active');});
+  if(b.classList.contains('active')){b.classList.remove('active');activeBlank=null;}
+  else{b.classList.add('active');activeBlank={el:b,group:g};}
+}
+function selectChip(chip,g){
+  if(state[g]!=='challenge')return;
+  if(!activeBlank||activeBlank.group!==g)return;
+  const b=activeBlank.el;const word=chip.dataset.word;
+  const prev=b.dataset.filled;
+  if(prev){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{if(c.dataset.word===prev)c.classList.remove('used');});}
+  b.textContent=word;b.dataset.filled=word;
+  b.classList.remove('active','correct','wrong');b.classList.add('filled');
+  chip.classList.add('used');activeBlank=null;
+}
+function judgeGroup(g){
+  if(state[g]!=='challenge')return;
+  const blanks=document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  let allFilled=true;blanks.forEach(b=>{if(!b.dataset.filled)allFilled=false;});
+  if(!allFilled){const rm=document.getElementById('rm'+g);if(rm){rm.textContent='⚠️ 全ての空欄を埋めてから判定してください。';rm.className='result-msg ng';}return;}
+  let correct=0;
+  blanks.forEach(b=>{b.classList.remove('active','filled');if(b.dataset.filled===b.dataset.ans){b.classList.add('correct');correct++;}else b.classList.add('wrong');});
+  const rm=document.getElementById('rm'+g);
+  if(correct===blanks.length){if(rm){rm.textContent='🎉 全問正解！';rm.className='result-msg ok';}launchConfetti();}
+  else{if(rm){rm.textContent=`${correct} / ${blanks.length} 正解。もう一度チャレンジしてみよう！`;rm.className='result-msg ng';}}
+}
+function showAnswer(g){
+  state[g]='preview';activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent=b.dataset.ans;b.className='mblank preview';b.dataset.filled=b.dataset.ans;b.onclick=null;});
+  resetChips(g);
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'preview');
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');if(!canvas)return;
+  canvas.style.display='block';const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const colors=['#C0392B','#D4A017','#00AEEF','#27ae60','#9b59b6','#e67e22','#1B2A4A'];
+  const pieces=Array.from({length:150},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*6+4,d:Math.random()*80+40,color:colors[Math.floor(Math.random()*colors.length)],tilt:0,tiltAngle:0,tiltSpeed:Math.random()*0.1+0.05}));
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{p.tiltAngle+=p.tiltSpeed;p.y+=(Math.cos(frame/20+p.d)+1+p.r/2)*1.2;p.x+=Math.sin(frame/20)*1.5;p.tilt=Math.sin(p.tiltAngle)*15;ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/3);ctx.stroke();});
+    frame++;
+    if(frame<200)requestAnimationFrame(draw);
+    else{ctx.clearRect(0,0,canvas.width,canvas.height);canvas.style.display='none';}
+  }
+  draw();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch14｜占有権　演習</title>
+<style>
+  :root {
+    --navy: #1B2A4A; --navy-light: #243660;
+    --crimson: #C0392B; --crimson-light: #E74C3C;
+    --gold: #D4A017; --bg: #F4F6FA; --white: #FFFFFF;
+    --text: #1a1a2e; --gray: #6c757d; --border: #dee2e6;
+    --green: #1a7a4a; --green-bg: #e8f5ee;
+    --red-bg: #fdecea; --blue-bg: #EBF0FA;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'BIZ UDGothic','Meiryo','メイリオ',sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; font-size: 15px; }
+  .page-header { background: linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%); color: var(--white); padding: 32px 24px 24px; position: relative; overflow: hidden; }
+  .page-header::before { content:''; position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(192,57,43,0.15); border-radius:50%; }
+  .header-badge { display:inline-block; background:var(--crimson); color:#fff; font-size:11px; font-weight:bold; padding:3px 10px; border-radius:20px; letter-spacing:0.08em; margin-bottom:10px; }
+  .page-header h1 { font-size:22px; font-weight:bold; line-height:1.4; }
+  .page-header .sub { font-size:13px; opacity:0.75; margin-top:6px; }
+  .content { max-width:780px; margin:0 auto; padding:28px 16px 60px; }
+  .score-board { background:var(--white); border:2px solid var(--navy); border-radius:12px; padding:16px 20px; margin-bottom:28px; display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .score-label { font-size:13px; color:var(--gray); font-weight:bold; }
+  .score-val { font-size:26px; font-weight:bold; color:var(--navy); }
+  .score-total { font-size:14px; color:var(--gray); }
+  .progress-bar-wrap { flex:1; min-width:160px; }
+  .progress-bar-bg { background:var(--bg); border-radius:8px; height:10px; overflow:hidden; }
+  .progress-bar-fill { background:var(--navy); height:10px; border-radius:8px; width:0%; transition:width 0.4s; }
+  .q-card { background:var(--white); border:1.5px solid var(--border); border-radius:10px; margin-bottom:20px; overflow:hidden; transition:box-shadow 0.2s; }
+  .q-card:hover { box-shadow:0 2px 12px rgba(27,42,74,0.10); }
+  .q-header { background:var(--navy); color:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; font-size:13px; font-weight:bold; }
+  .q-no { background:var(--crimson); color:#fff; border-radius:50%; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:bold; flex-shrink:0; }
+  .q-type-badge { background:rgba(255,255,255,0.18); border-radius:4px; padding:1px 8px; font-size:11px; margin-left:auto; }
+  .q-body { padding:18px 20px 14px; }
+  .q-text { font-size:14.5px; line-height:1.9; margin-bottom:14px; }
+  .q-text em { font-style:normal; color:var(--crimson); font-weight:bold; }
+  .ox-buttons { display:flex; gap:12px; margin-top:4px; }
+  .btn-ox { flex:1; padding:12px 0; border:2px solid var(--border); border-radius:8px; background:var(--white); font-size:22px; cursor:pointer; transition:all 0.2s; font-weight:bold; }
+  .btn-ox:hover { border-color:var(--navy); background:var(--blue-bg); }
+  .btn-ox.selected-correct { background:var(--green-bg); border-color:var(--green); color:var(--green); }
+  .btn-ox.selected-wrong { background:var(--red-bg); border-color:var(--crimson); color:var(--crimson); }
+  .btn-ox.show-correct { background:var(--green-bg); border-color:var(--green); }
+  .btn-ox:disabled { cursor:not-allowed; opacity:0.7; }
+  .choices { display:flex; flex-direction:column; gap:8px; margin-top:4px; }
+  .btn-choice { width:100%; padding:11px 16px; border:1.5px solid var(--border); border-radius:8px; background:var(--white); font-size:13.5px; text-align:left; cursor:pointer; transition:all 0.2s; line-height:1.6; }
+  .btn-choice:hover { border-color:var(--navy); background:var(--blue-bg); }
+  .btn-choice.selected-correct { background:var(--green-bg); border-color:var(--green); color:var(--green); font-weight:bold; }
+  .btn-choice.selected-wrong { background:var(--red-bg); border-color:var(--crimson); color:var(--crimson); }
+  .btn-choice.show-correct { background:var(--green-bg); border-color:var(--green); }
+  .btn-choice:disabled { cursor:not-allowed; }
+  .explanation { display:none; margin-top:14px; padding:14px 16px; border-radius:8px; font-size:13.5px; line-height:1.8; }
+  .explanation.correct { background:var(--green-bg); border-left:4px solid var(--green); }
+  .explanation.wrong { background:var(--red-bg); border-left:4px solid var(--crimson); }
+  .explanation .verdict { font-weight:bold; font-size:15px; margin-bottom:6px; }
+  .explanation.correct .verdict { color:var(--green); }
+  .explanation.wrong .verdict { color:var(--crimson); }
+  .result-area { display:none; background:var(--navy); color:var(--white); border-radius:12px; padding:28px 24px; text-align:center; margin-top:28px; }
+  .result-area h2 { font-size:20px; margin-bottom:8px; color:#F4D03F; }
+  .result-score { font-size:44px; font-weight:bold; margin:12px 0 4px; }
+  .result-msg { font-size:14px; opacity:0.85; margin-bottom:20px; }
+  .btn-reset { background:var(--crimson); color:#fff; border:none; border-radius:24px; padding:12px 36px; font-size:14px; font-weight:bold; cursor:pointer; transition:background 0.2s; }
+  .btn-reset:hover { background:var(--crimson-light); }
+  .back-top { text-align:center; margin-top:36px; }
+  .back-top a { display:inline-block; background:var(--navy); color:#fff; text-decoration:none; padding:10px 28px; border-radius:24px; font-size:13px; font-weight:bold; }
+</style>
+</head>
+<body>
+
+<header class="page-header" id="top">
+  <div class="header-badge">民法 ｜ 演習</div>
+  <h1>占有権　演習問題</h1>
+  <div class="sub">Chapter 14　○×問題 4問＋5択問題 1問</div>
+</header>
+
+<div class="content">
+  <div class="score-board">
+    <div>
+      <div class="score-label">スコア</div>
+      <span class="score-val" id="score-val">0</span>
+      <span class="score-total"> / <span id="score-total">0</span> 問</span>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="score-label" style="margin-bottom:6px;">進捗</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- Q1 ○× -->
+  <div class="q-card" id="card-q1">
+    <div class="q-header">
+      <div class="q-no">1</div>
+      善意占有者の果実収取権
+      <span class="q-type-badge">○×</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        善意の占有者は占有物から生じる果実を取得することができるが、善意の占有者が本権の訴えにおいて敗訴したときは、その<em>敗訴の時</em>から悪意の占有者とみなされ、以後の果実を返還する義務を負う。
+      </div>
+      <div class="ox-buttons">
+        <button class="btn-ox" onclick="answerOX('q1', true, this)">○</button>
+        <button class="btn-ox" onclick="answerOX('q1', false, this)">×</button>
+      </div>
+      <div class="explanation" id="exp-q1">
+        <div class="verdict" id="verdict-q1"></div>
+        善意占有者が本権の訴えで敗訴した場合、悪意とみなされるのは<strong>「訴えの提起の時から」</strong>です（189条2項）。「敗訴の時から」ではありません。訴えを起こされた段階で、自分の権原に問題があることを知り得るという趣旨です。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 ○× -->
+  <div class="q-card" id="card-q2">
+    <div class="q-header">
+      <div class="q-no">2</div>
+      占有者による損害賠償
+      <span class="q-type-badge">○×</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        占有物が占有者の責めに帰すべき事由によって滅失・損傷した場合、善意の占有者であっても、他主占有者（賃借人など）であるときは、損害の全部を賠償する義務を負う。
+      </div>
+      <div class="ox-buttons">
+        <button class="btn-ox" onclick="answerOX('q2', true, this)">○</button>
+        <button class="btn-ox" onclick="answerOX('q2', false, this)">×</button>
+      </div>
+      <div class="explanation" id="exp-q2">
+        <div class="verdict" id="verdict-q2"></div>
+        正しい記述です。損害賠償の範囲は、悪意占有者または他主占有者であれば<strong>損害の全部</strong>、善意かつ自主占有者であれば<strong>現存利益の限度</strong>です（191条）。賃借人（他主占有者）は、たとえ善意であっても他人の物を使っている認識があるため、損害全部の賠償義務を負います。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 ○× -->
+  <div class="q-card" id="card-q3">
+    <div class="q-header">
+      <div class="q-no">3</div>
+      占有訴権の行使
+      <span class="q-type-badge">○×</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        占有訴権は占有権を有する者であれば誰でも行使することができるため、悪意の占有者や他主占有者（賃借人）も占有回収の訴えを提起することができる。
+      </div>
+      <div class="ox-buttons">
+        <button class="btn-ox" onclick="answerOX('q3', true, this)">○</button>
+        <button class="btn-ox" onclick="answerOX('q3', false, this)">×</button>
+      </div>
+      <div class="explanation" id="exp-q3">
+        <div class="verdict" id="verdict-q3"></div>
+        正しい記述です。占有訴権は<strong>占有権を有する者であれば誰でも</strong>行使できます（197条）。善意・悪意、自主・他主、代理・自己、直接・間接など占有の形態を問いません。ただし、<strong>占有補助者</strong>（会社の代表取締役等）だけは独立した占有権を有しないため行使できません。「悪意の占有者は行使できない」という肢は典型的な×パターンです。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 ○× -->
+  <div class="q-card" id="card-q4">
+    <div class="q-header">
+      <div class="q-no">4</div>
+      占有回収の訴え
+      <span class="q-type-badge">○×</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        占有回収の訴えは、占有者がその占有を奪われたときに提起できるが、占有を<em>詐欺によって</em>失った場合や<em>遺失した</em>場合も「奪われた」に含まれるため、これらの場合にも占有回収の訴えを提起することができる。
+      </div>
+      <div class="ox-buttons">
+        <button class="btn-ox" onclick="answerOX('q4', true, this)">○</button>
+        <button class="btn-ox" onclick="answerOX('q4', false, this)">×</button>
+      </div>
+      <div class="explanation" id="exp-q4">
+        <div class="verdict" id="verdict-q4"></div>
+        誤りです。占有回収の訴えが提起できるのは、占有を<strong>「奪われた」</strong>ときに限られます（200条1項）。詐欺による占有の喪失や遺失は「奪われた」には含まれません。詐欺の場合は自分の意思で引き渡しており、遺失も自ら失ったものだからです。したがって、これらの場合には占有回収の訴えを提起することはできません。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5 5択 -->
+  <div class="q-card" id="card-q5">
+    <div class="q-header">
+      <div class="q-no">5</div>
+      占有権に関する記述（5択）
+      <span class="q-type-badge">5択</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        民法に規定する占有権に関する記述として、判例・通説に照らして、<em>妥当なもの</em>はどれか。
+      </div>
+      <div class="choices" id="choices-q5">
+        <button class="btn-choice" onclick="answerChoice('q5', 1, this)">
+          1. 占有者は、所有の意思をもって、善意で、平穏に、かつ公然と占有するものと推定されるが、所有の意思については推定されず、占有者が自ら所有の意思をもって占有していることを表示する必要がある。
+        </button>
+        <button class="btn-choice" onclick="answerChoice('q5', 2, this)">
+          2. 他主占有が自主占有に転換するのは、①自己に占有させた者に対して所有の意思があることを表示した場合、②新たな権原により所有の意思をもって占有を始めた場合の2つに限られ、相続は当然には新たな権原にあたらない。
+        </button>
+        <button class="btn-choice" onclick="answerChoice('q5', 3, this)">
+          3. 占有者が占有物を返還する際、占有者の善意・悪意を問わず、占有物の保存のために支出した必要費の全額を回復者から償還させることができるが、占有者が果実を取得したときでも通常の必要費は占有者の自己負担とはならない。
+        </button>
+        <button class="btn-choice" onclick="answerChoice('q5', 4, this)">
+          4. 占有保全の訴えにおいて請求できる内容は、妨害の予防のみであり、損害賠償の担保を請求することはできない。
+        </button>
+        <button class="btn-choice" onclick="answerChoice('q5', 5, this)">
+          5. 占有回収の訴えは、占有を奪われた時から1年以内に提起しなければならず、また占有者が侵奪者の特定承継人に対しても、その者の善意・悪意を問わず占有回収の訴えを提起することができる。
+        </button>
+      </div>
+      <div class="explanation" id="exp-q5">
+        <div class="verdict" id="verdict-q5"></div>
+        <div id="exp-q5-text"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-area" id="result-area">
+    <h2>🎉 演習完了！</h2>
+    <div class="result-score" id="result-score"></div>
+    <div class="result-msg" id="result-msg"></div>
+    <button class="btn-reset" onclick="resetAll()">もう一度挑戦する</button>
+  </div>
+
+  <div class="back-top"><a href="#top">▲ ページトップに戻る</a></div>
+</div>
+
+<script>
+const TOTAL = 5;
+const CORRECT_ANSWERS = {
+  q1: false,  // ×（敗訴の時→訴え提起の時）
+  q2: true,   // ○（他主占有者は善意でも全部賠償）
+  q3: true,   // ○（誰でも行使可）
+  q4: false,  // ×（詐欺・遺失は「奪われた」に含まない）
+  q5: 2       // 肢2（他主→自主転換・相続は原則新権原にならない）
+};
+
+const EXPLANATIONS_5 = {
+  1: { correct: false, text: '誤りです。民法186条1項は「占有者は、<strong>所有の意思をもって</strong>、善意で、平穏に、かつ公然と占有するものと推定する」と規定しており、所有の意思も含めてすべて推定されます。占有者が自ら表示する必要はありません。' },
+  2: { correct: true,  text: '正解です。他主占有から自主占有への転換が認められるのは①所有の意思の表示、②新権原の2つの場合のみです（最判昭58・3・24）。相続は原則として「新たな権原」にあたりませんが、①新たに相続財産を事実上支配することによって占有を開始し、②その占有に所有の意思があると認められるとき（賃料不払い等）に例外的に新権原にあたるとされています（最判昭46・11・30）。' },
+  3: { correct: false, text: '誤りです。必要費の償還は善意・悪意を問わず全額請求できますが、<strong>占有者が果実を取得したときは、通常の必要費は占有者の自己負担</strong>となります（196条1項ただし書）。果実収取のメリットを受けているのだから通常の維持費は自分で負担すべきという趣旨です。' },
+  4: { correct: false, text: '誤りです。占有保全の訴えでは、<strong>妨害の予防</strong>または<strong>損害賠償の担保</strong>の請求ができます（199条）。「担保」であって「損害賠償」そのものではない点に注意です。まだ侵害が起きていないので、将来の損害賠償に備えた担保を求めることができるということです。' },
+  5: { correct: false, text: '誤りです。前半の「奪われた時から1年以内」は正しいですが、後半が誤りです。占有回収の訴えは<strong>善意の特定承継人には提起できません</strong>。その特定承継人が<strong>侵奪の事実を知っていた（悪意）ときに限り</strong>提起できます（200条2項）。' }
+};
+
+let answered = {}, scoreCount = 0, answeredCount = 0;
+
+function updateScore() {
+  document.getElementById('score-val').textContent = scoreCount;
+  document.getElementById('score-total').textContent = answeredCount;
+  document.getElementById('progress-fill').style.width = (answeredCount / TOTAL * 100) + '%';
+  if (answeredCount === TOTAL) showResult();
+}
+
+function answerOX(qid, userAnswer, btn) {
+  if (answered[qid]) return;
+  answered[qid] = true; answeredCount++;
+  const correct = CORRECT_ANSWERS[qid];
+  const isCorrect = userAnswer === correct;
+  const card = document.getElementById('card-' + qid);
+  const buttons = card.querySelectorAll('.btn-ox');
+  const exp = document.getElementById('exp-' + qid);
+  const verdict = document.getElementById('verdict-' + qid);
+  buttons.forEach(b => b.disabled = true);
+  (correct ? buttons[0] : buttons[1]).classList.add('show-correct');
+  btn.classList.add(isCorrect ? 'selected-correct' : 'selected-wrong');
+  if (isCorrect) scoreCount++;
+  verdict.textContent = isCorrect ? '✅ 正解！' : '❌ 不正解';
+  exp.classList.add(isCorrect ? 'correct' : 'wrong');
+  exp.style.display = 'block';
+  updateScore();
+}
+
+function answerChoice(qid, num, btn) {
+  if (answered[qid]) return;
+  answered[qid] = true; answeredCount++;
+  const correct = CORRECT_ANSWERS[qid];
+  const isCorrect = num === correct;
+  const card = document.getElementById('card-' + qid);
+  const buttons = card.querySelectorAll('.btn-choice');
+  const exp = document.getElementById('exp-' + qid);
+  const verdict = document.getElementById('verdict-' + qid);
+  const expText = document.getElementById('exp-q5-text');
+  buttons.forEach(b => b.disabled = true);
+  buttons[correct - 1].classList.add('show-correct');
+  btn.classList.add(isCorrect ? 'selected-correct' : 'selected-wrong');
+  if (isCorrect) scoreCount++;
+  verdict.textContent = (isCorrect ? '✅ 正解！' : '❌ 不正解') + '　正答：肢' + correct;
+  expText.innerHTML = EXPLANATIONS_5[num].text + (!isCorrect ? '<br><br><strong>【正答（肢' + correct + '）の解説】</strong><br>' + EXPLANATIONS_5[correct].text : '');
+  exp.classList.add(isCorrect ? 'correct' : 'wrong');
+  exp.style.display = 'block';
+  updateScore();
+}
+
+function showResult() {
+  const area = document.getElementById('result-area');
+  area.style.display = 'block';
+  document.getElementById('result-score').textContent = scoreCount + ' / ' + TOTAL + ' 点';
+  const pct = scoreCount / TOTAL;
+  document.getElementById('result-msg').textContent =
+    pct === 1 ? '満点です！完璧な理解です。' :
+    pct >= 0.8 ? '優秀です！惜しい問題を復習しましょう。' :
+    pct >= 0.6 ? 'もう一息！解説をしっかり確認しましょう。' :
+    '解説を読み直して、再挑戦してみましょう。';
+  area.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function resetAll() {
+  answered = {}; scoreCount = 0; answeredCount = 0;
+  document.getElementById('score-val').textContent = '0';
+  document.getElementById('score-total').textContent = '0';
+  document.getElementById('progress-fill').style.width = '0%';
+  document.getElementById('result-area').style.display = 'none';
+  ['q1','q2','q3','q4'].forEach(qid => {
+    const card = document.getElementById('card-' + qid);
+    card.querySelectorAll('.btn-ox').forEach(b => { b.disabled = false; b.className = 'btn-ox'; });
+    const exp = document.getElementById('exp-' + qid);
+    exp.style.display = 'none'; exp.className = 'explanation';
+  });
+  document.getElementById('card-q5').querySelectorAll('.btn-choice').forEach(b => { b.disabled = false; b.className = 'btn-choice'; });
+  const e5 = document.getElementById('exp-q5');
+  e5.style.display = 'none'; e5.className = 'explanation';
+  document.getElementById('exp-q5-text').innerHTML = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

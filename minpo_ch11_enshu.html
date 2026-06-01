@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch11 物権 演習</title>
+<style>
+  :root{--bg:#eef2f7;--card:#fff;--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--cyan:#00AEEF;--text:#2c3e50;--border:#dde3ec;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);font-family:'Meiryo','メイリオ',sans-serif;color:var(--text);font-size:15px;line-height:1.8;}
+  header{background:var(--navy);color:#fff;padding:18px 24px 14px;}
+  header .chapter-num{font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:4px;}
+  header h1{font-size:22px;font-weight:bold;}
+  header p{font-size:13px;color:#aac;margin-top:4px;}
+  .container{max-width:800px;margin:0 auto;padding:20px 16px 60px;}
+  .q-card{background:var(--card);border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:20px;overflow:hidden;}
+  .q-header{background:var(--navy);color:#fff;padding:8px 18px;font-size:13px;display:flex;align-items:center;gap:10px;}
+  .q-header .qnum{background:var(--gold);color:var(--navy);font-weight:bold;font-size:12px;padding:2px 10px;border-radius:12px;}
+  .q-body{padding:18px 20px;}
+  .q-text{font-size:15px;margin-bottom:14px;line-height:1.85;}
+  .ox-btn-wrap{display:flex;gap:12px;margin-bottom:10px;}
+  .ox-btn{flex:1;padding:10px;font-size:20px;border:2px solid var(--border);border-radius:8px;background:#f5f8fc;cursor:pointer;font-family:'Meiryo',sans-serif;transition:all .15s;}
+  .ox-btn:hover{background:#e8f0f8;}
+  .ox-btn.correct{background:#d4edda;border-color:#27ae60;}
+  .ox-btn.wrong{background:#f8d7da;border-color:#e74c3c;}
+  .choice-list{list-style:none;margin-bottom:10px;}
+  .choice-list li{padding:9px 14px;border:2px solid var(--border);border-radius:8px;margin-bottom:8px;cursor:pointer;font-size:14px;transition:all .15s;background:#f5f8fc;}
+  .choice-list li:hover{background:#e8f0f8;border-color:var(--cyan);}
+  .choice-list li.correct{background:#d4edda;border-color:#27ae60;color:#155724;}
+  .choice-list li.wrong{background:#f8d7da;border-color:#e74c3c;color:#721c24;}
+  .explanation{display:none;background:#f0f7ff;border-left:4px solid var(--cyan);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:12px;font-size:14px;line-height:1.75;}
+  .explanation.show{display:block;}
+  .ex-label{font-weight:bold;color:var(--navy);font-size:13px;margin-bottom:6px;}
+  .result-badge{display:inline-block;padding:2px 12px;border-radius:12px;font-size:13px;font-weight:bold;margin-bottom:8px;}
+  .badge-ok{background:#d4edda;color:#155724;}
+  .badge-ng{background:#f8d7da;color:#721c24;}
+  .kw{color:var(--crimson);font-weight:bold;}
+  .kw-b{color:#1a6ea8;font-weight:bold;}
+  .score-card{background:var(--card);border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px 20px;text-align:center;display:none;margin-bottom:20px;}
+  .score-card.show{display:block;}
+  .score-num{font-size:48px;font-weight:bold;color:var(--navy);}
+  .score-sub{font-size:14px;color:#777;margin-top:4px;}
+  .retry-btn{background:var(--crimson);color:#fff;border:none;border-radius:6px;padding:10px 28px;font-size:15px;cursor:pointer;margin-top:16px;font-family:'Meiryo',sans-serif;}
+</style>
+</head>
+<body>
+<header>
+  <div class="chapter-num">CHAPTER 11 ／ 民法 演習</div>
+  <h1>物権　演習問題</h1>
+  <p>OX問題4問 ＋ 5択1問　全5問</p>
+</header>
+<div class="container">
+<div class="score-card" id="scoreCard">
+  <div class="score-num" id="scoreNum">0/5</div>
+  <div class="score-sub">お疲れさまでした！</div>
+  <button class="retry-btn" onclick="location.reload()">もう一度チャレンジ</button>
+</div>
+
+<!-- Q1 -->
+<div class="q-card">
+  <div class="q-header"><span class="qnum">Q1</span> OX問題</div>
+  <div class="q-body">
+    <div class="q-text">物権法定主義とは、物権の内容を民法その他の法律に定めるものとは違ったものとすることはできないという原則であり、当事者の合意だけで新たな種類の物権を創設することはできない。</div>
+    <div class="ox-btn-wrap">
+      <button class="ox-btn" onclick="answerOX(1,'O',this)">○</button>
+      <button class="ox-btn" onclick="answerOX(1,'X',this)">×</button>
+    </div>
+    <div class="explanation" id="ex1">
+      <span class="result-badge" id="badge1"></span>
+      <div class="ex-label">解説</div>
+      <p>正しい。民法175条は<span class="kw">物権法定主義</span>を定めており、物権は法律に定めるものに限られます。当事者が合意で新たな種類の物権を創設することはできません。ただし慣習法上の物権は判例上認められる場合があります。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q2 -->
+<div class="q-card">
+  <div class="q-header"><span class="qnum">Q2</span> OX問題</div>
+  <div class="q-body">
+    <div class="q-text">所有権に基づく物権的請求権（妨害排除請求権）を行使するためには、相手方に故意または過失があることが必要である。</div>
+    <div class="ox-btn-wrap">
+      <button class="ox-btn" onclick="answerOX(2,'O',this)">○</button>
+      <button class="ox-btn" onclick="answerOX(2,'X',this)">×</button>
+    </div>
+    <div class="explanation" id="ex2">
+      <span class="result-badge" id="badge2"></span>
+      <div class="ex-label">解説</div>
+      <p>誤り。物権的請求権の行使には相手方の<span class="kw">故意・過失は不要</span>です。これが不法行為に基づく損害賠償請求権との大きな違いです。故意・過失がなくても妨害状態が存在すれば請求できます。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q3 -->
+<div class="q-card">
+  <div class="q-header"><span class="qnum">Q3</span> OX問題</div>
+  <div class="q-body">
+    <div class="q-text">地上権者は、土地所有者の承諾を得なければ、その地上権を他人に譲渡することができない。</div>
+    <div class="ox-btn-wrap">
+      <button class="ox-btn" onclick="answerOX(3,'O',this)">○</button>
+      <button class="ox-btn" onclick="answerOX(3,'X',this)">×</button>
+    </div>
+    <div class="explanation" id="ex3">
+      <span class="result-badge" id="badge3"></span>
+      <div class="ex-label">解説</div>
+      <p>誤り。地上権は物権であるため、<span class="kw">土地所有者の承諾なしに譲渡・担保提供・賃貸</span>が可能です。これは賃借権（債権）との大きな違いです。賃借権は原則として賃貸人の承諾が必要です（612条）。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q4 -->
+<div class="q-card">
+  <div class="q-header"><span class="qnum">Q4</span> OX問題</div>
+  <div class="q-body">
+    <div class="q-text">地役権は要役地の便益のために存在する権利であるため、要役地から分離してそれだけを他人に譲渡することはできない。</div>
+    <div class="ox-btn-wrap">
+      <button class="ox-btn" onclick="answerOX(4,'O',this)">○</button>
+      <button class="ox-btn" onclick="answerOX(4,'X',this)">×</button>
+    </div>
+    <div class="explanation" id="ex4">
+      <span class="result-badge" id="badge4"></span>
+      <div class="ex-label">解説</div>
+      <p>正しい。地役権は<span class="kw">要役地の従たる権利</span>であるため、要役地と分離して譲渡したり担保に供したりすることはできません（281条2項）。地役権は要役地の所有権とともに移転します。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q5 -->
+<div class="q-card">
+  <div class="q-header"><span class="qnum">Q5</span> 5択問題</div>
+  <div class="q-body">
+    <div class="q-text">民法に規定する物権に関する記述として、妥当なのはどれか。<br><small style="color:#777;">（2009年東京特別区Ⅰ類改題）</small></div>
+    <ul class="choice-list" id="choices5">
+      <li onclick="answerChoice(5,1,this)">1. 契約自由の原則から、物権は民法その他の法律に定めるもののほか、契約によって自由に創設することができるが、物権法定主義により、物権の内容を民法その他の法律に定められているものとは違ったものとすることはできない。</li>
+      <li onclick="answerChoice(5,2,this)">2. 物権の客体は物であることを要し、民法において物とは有体物をいうものとされているので、物権には、有体物以外のものを客体とするものはない。</li>
+      <li onclick="answerChoice(5,3,this)">3. 民法上の物権を分類すると、自分の物に対する物権である所有権と他人の物に対する物権である制限物権に分けられるが、制限物権のうち他人の物を利用する用益物権には、占有権、永小作権及び地役権が含まれる。</li>
+      <li onclick="answerChoice(5,4,this)">4. 物権は絶対的・排他的な支配権であるが、物権と債権が衝突するときに、債権が物権に優先する場合がある。</li>
+      <li onclick="answerChoice(5,5,this)">5. 土地に生立する樹木は、取引上の必要がある場合には、土地とは別個独立の不動産として所有権譲渡の目的とすることができ、この場合、立木登記又は明認方法と呼ばれる公示方法を備えた場合に限り、有効な取引とされる。</li>
+    </ul>
+    <div class="explanation" id="ex5">
+      <span class="result-badge" id="badge5"></span>
+      <div class="ex-label">解説</div>
+      <p><span class="kw">正解は4</span>。物権と債権が衝突する場合、原則は物権優先ですが、例外として<span class="kw-b">不動産賃借権の対抗力</span>（605条）など債権が物権に優先する場合があります。</p>
+      <p>1は×：物権法定主義により<span class="kw">契約で自由に物権を創設することはできない</span>。</p>
+      <p>2は×：物は有体物が原則ですが、<span class="kw">電気など無体物を財物とする立場</span>も認められる場合がある。</p>
+      <p>3は×：占有権は用益物権ではなく<span class="kw">自己の物に対する物権</span>の一種（事実状態の保護）。用益物権は地上権・永小作権・地役権。</p>
+      <p>5は×：明認方法は<span class="kw">有効性の要件ではなく対抗要件</span>。明認方法がなくても当事者間では有効。</p>
+    </div>
+  </div>
+</div>
+
+</div>
+<script>
+const answers={1:'O',2:'X',3:'X',4:'O',5:4};
+const scored={};
+function answerOX(q,choice,btn){
+  if(scored[q])return;scored[q]=true;
+  const correct=answers[q];
+  const btns=btn.closest('.ox-btn-wrap').querySelectorAll('.ox-btn');
+  btns.forEach(b=>b.disabled=true);
+  const badge=document.getElementById('badge'+q);
+  const ex=document.getElementById('ex'+q);
+  if(choice===correct){btn.classList.add('correct');badge.textContent='✅ 正解';badge.className='result-badge badge-ok';}
+  else{btn.classList.add('wrong');btns.forEach(b=>{if((correct==='O'&&b.textContent==='○')||(correct==='X'&&b.textContent==='×'))b.classList.add('correct');});badge.textContent='❌ 不正解';badge.className='result-badge badge-ng';}
+  ex.classList.add('show');checkDone();
+}
+function answerChoice(q,choice,li){
+  if(scored[q])return;scored[q]=true;
+  const correct=answers[q];
+  const lis=document.getElementById('choices'+q).querySelectorAll('li');
+  lis.forEach(l=>l.style.pointerEvents='none');
+  const badge=document.getElementById('badge'+q);
+  const ex=document.getElementById('ex'+q);
+  if(choice===correct){li.classList.add('correct');badge.textContent='✅ 正解';badge.className='result-badge badge-ok';}
+  else{li.classList.add('wrong');lis[correct-1].classList.add('correct');badge.textContent='❌ 不正解';badge.className='result-badge badge-ng';}
+  ex.classList.add('show');checkDone();
+}
+function checkDone(){
+  if(Object.keys(scored).length<5)return;
+  let cnt=0;
+  [1,2,3,4,5].forEach(q=>{const b=document.getElementById('badge'+q);if(b&&b.textContent.includes('✅'))cnt++;});
+  document.getElementById('scoreNum').textContent=cnt+'/5';
+  const sc=document.getElementById('scoreCard');sc.classList.add('show');
+  sc.scrollIntoView({behavior:'smooth',block:'center'});
+}
+</script>
+<div style="text-align:center;font-size:11px;color:#aaa;padding:16px 0 30px;">音声：VOICEVOX / 四国めたん</div>
+</body>
+</html>

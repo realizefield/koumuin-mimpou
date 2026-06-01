@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch13｜動産物権変動・即時取得　演習</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --navy-light: #243660;
+    --crimson: #C0392B;
+    --crimson-light: #E74C3C;
+    --gold: #D4A017;
+    --bg: #F4F6FA;
+    --white: #FFFFFF;
+    --text: #1a1a2e;
+    --gray: #6c757d;
+    --border: #dee2e6;
+    --green: #1a7a4a;
+    --green-bg: #e8f5ee;
+    --red-bg: #fdecea;
+    --blue-bg: #EBF0FA;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'BIZ UDGothic', 'Meiryo', 'メイリオ', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  .page-header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 32px 24px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: rgba(192,57,43,0.15);
+    border-radius: 50%;
+  }
+  .header-badge {
+    display: inline-block;
+    background: var(--crimson);
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  .page-header h1 { font-size: 22px; font-weight: bold; line-height: 1.4; }
+  .page-header .sub { font-size: 13px; opacity: 0.75; margin-top: 6px; }
+
+  .content { max-width: 780px; margin: 0 auto; padding: 28px 16px 60px; }
+
+  /* スコアボード */
+  .score-board {
+    background: var(--white);
+    border: 2px solid var(--navy);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .score-label { font-size: 13px; color: var(--gray); font-weight: bold; }
+  .score-val { font-size: 26px; font-weight: bold; color: var(--navy); }
+  .score-total { font-size: 14px; color: var(--gray); }
+  .progress-bar-wrap { flex: 1; min-width: 160px; }
+  .progress-bar-bg { background: var(--bg); border-radius: 8px; height: 10px; overflow: hidden; }
+  .progress-bar-fill { background: var(--navy); height: 10px; border-radius: 8px; width: 0%; transition: width 0.4s; }
+
+  /* 問題カード */
+  .q-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .q-card:hover { box-shadow: 0 2px 12px rgba(27,42,74,0.10); }
+  .q-header {
+    background: var(--navy);
+    color: #fff;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .q-no {
+    background: var(--crimson);
+    color: #fff;
+    border-radius: 50%;
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  .q-type-badge {
+    background: rgba(255,255,255,0.18);
+    border-radius: 4px;
+    padding: 1px 8px;
+    font-size: 11px;
+    margin-left: auto;
+  }
+  .q-body { padding: 18px 20px 14px; }
+  .q-text { font-size: 14.5px; line-height: 1.9; margin-bottom: 14px; }
+  .q-text em { font-style: normal; color: var(--crimson); font-weight: bold; }
+
+  /* ○×ボタン */
+  .ox-buttons { display: flex; gap: 12px; margin-top: 4px; }
+  .btn-ox {
+    flex: 1;
+    padding: 12px 0;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+  }
+  .btn-ox:hover { border-color: var(--navy); background: var(--blue-bg); }
+  .btn-ox.selected-correct { background: var(--green-bg); border-color: var(--green); color: var(--green); }
+  .btn-ox.selected-wrong { background: var(--red-bg); border-color: var(--crimson); color: var(--crimson); }
+  .btn-ox.show-correct { background: var(--green-bg); border-color: var(--green); }
+  .btn-ox:disabled { cursor: not-allowed; opacity: 0.7; }
+
+  /* 5択 */
+  .choices { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+  .btn-choice {
+    width: 100%;
+    padding: 11px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    font-size: 13.5px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+    line-height: 1.6;
+  }
+  .btn-choice:hover { border-color: var(--navy); background: var(--blue-bg); }
+  .btn-choice.selected-correct { background: var(--green-bg); border-color: var(--green); color: var(--green); font-weight: bold; }
+  .btn-choice.selected-wrong { background: var(--red-bg); border-color: var(--crimson); color: var(--crimson); }
+  .btn-choice.show-correct { background: var(--green-bg); border-color: var(--green); }
+  .btn-choice:disabled { cursor: not-allowed; }
+
+  /* 解説 */
+  .explanation {
+    display: none;
+    margin-top: 14px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    line-height: 1.8;
+  }
+  .explanation.correct { background: var(--green-bg); border-left: 4px solid var(--green); }
+  .explanation.wrong { background: var(--red-bg); border-left: 4px solid var(--crimson); }
+  .explanation .verdict {
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .explanation.correct .verdict { color: var(--green); }
+  .explanation.wrong .verdict { color: var(--crimson); }
+
+  /* 結果 */
+  .result-area {
+    display: none;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 12px;
+    padding: 28px 24px;
+    text-align: center;
+    margin-top: 28px;
+  }
+  .result-area h2 { font-size: 20px; margin-bottom: 8px; color: #F4D03F; }
+  .result-score { font-size: 44px; font-weight: bold; margin: 12px 0 4px; }
+  .result-msg { font-size: 14px; opacity: 0.85; margin-bottom: 20px; }
+  .btn-reset {
+    background: var(--crimson);
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 12px 36px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-reset:hover { background: var(--crimson-light); }
+
+  .back-top { text-align: center; margin-top: 36px; }
+  .back-top a {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 28px;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header" id="top">
+  <div class="header-badge">民法 ｜ 演習</div>
+  <h1>動産物権変動・即時取得　演習問題</h1>
+  <div class="sub">Chapter 13　○×問題 4問＋5択問題 1問</div>
+</header>
+
+<div class="content">
+
+  <div class="score-board">
+    <div>
+      <div class="score-label">スコア</div>
+      <span class="score-val" id="score-val">0</span>
+      <span class="score-total"> / <span id="score-total">0</span> 問</span>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="score-label" style="margin-bottom:6px;">進捗</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- Q1 ○× -->
+  <div class="q-card" id="card-q1">
+    <div class="q-header">
+      <div class="q-no">1</div>
+      動産物権変動の対抗要件
+      <span class="q-type-badge">○×</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        動産物権変動の対抗要件は「引渡し」（178条）であり、この「引渡し」には現実の引渡し・簡易の引渡し・占有改定・指図による占有移転の4つが含まれる。
+      </div>
+      <div class="ox-buttons">
+        <button class="btn-ox" onclick="answerOX('q1', true, this)">○</button>
+        <button class="btn-ox" onclick="answerOX('q1', false, this)">×</button>
+      </div>
+      <div class="explanation" id="exp-q1">
+        <div class="verdict" id="verdict-q1"></div>
+        <div>178条の「引渡し」には、①現実の引渡し（182条1項）、②簡易の引渡し（182条2項）、③占有改定（183条）、④指図による占有移転（184条）の4つがすべて含まれます。動産物権変動の場面では「4つともすべて対抗要件となる」と理解しておきましょう。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 ○× -->
+  <div class="q-card" id="card-q2">
+    <div class="q-header">
+      <div class="q-no">2</div>
+      即時取得の要件（推定）
+      <span class="q-type-badge">○×</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        即時取得（192条）が認められるためには、占有の取得が平穏・公然・善意・無過失で行われる必要があるが、このうち平穏・公然・善意は186条1項により推定されるものの、無過失については推定されず、即時取得を主張する者が自ら立証しなければならない。
+      </div>
+      <div class="ox-buttons">
+        <button class="btn-ox" onclick="answerOX('q2', true, this)">○</button>
+        <button class="btn-ox" onclick="answerOX('q2', false, this)">×</button>
+      </div>
+      <div class="explanation" id="exp-q2">
+        <div class="verdict" id="verdict-q2"></div>
+        <div>平穏・公然・善意は186条1項により推定されます。さらに、<em style="color:var(--crimson);font-weight:bold;">無過失も188条を通じて推定</em>されます（最判昭41・6・9）。つまり、即時取得の場合は平穏・公然・善意・無過失すべてが推定されるため、即時取得を主張する側が無過失を立証する必要はありません。これが取得時効（無過失は推定されない）との重要な違いです。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 ○× -->
+  <div class="q-card" id="card-q3">
+    <div class="q-header">
+      <div class="q-no">3</div>
+      占有改定と即時取得
+      <span class="q-type-badge">○×</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        AはBに動産甲を預けていた。Bが甲をCに売却し、代金の受取りと引換えに「以後CのためにCの代理人として甲を占有する」旨の意思表示をした（占有改定）。この場合、Cは即時取得により甲の所有権を取得することができる。
+      </div>
+      <div class="ox-buttons">
+        <button class="btn-ox" onclick="answerOX('q3', true, this)">○</button>
+        <button class="btn-ox" onclick="answerOX('q3', false, this)">×</button>
+      </div>
+      <div class="explanation" id="exp-q3">
+        <div class="verdict" id="verdict-q3"></div>
+        <div>占有改定による引渡しでは、<em style="color:var(--crimson);font-weight:bold;">即時取得は認められません</em>（最判昭35・2・11）。占有改定は外形上何らの変化も生じないため、真の権利者が所有権を失ったことに気づくきっかけすら与えられません。取引の静的安全を害するため不可とされています。なお、その後に現実の引渡しがなされ、その時点で相手方が善意・無過失であれば即時取得が認められます。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 ○× -->
+  <div class="q-card" id="card-q4">
+    <div class="q-header">
+      <div class="q-no">4</div>
+      盗品・遺失物の特例
+      <span class="q-type-badge">○×</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        Aが所有する動産甲をBが盗取し、Cに売り渡した。CはBが無権利者であることを知らず（善意）、かつそのことについて過失がなかった。この場合、Aは盗難の時から2年間、Cに対して甲の回復を請求することができるが、Aがその動産甲をDに詐取された場合（AはDに騙されて甲を渡した場合）も同様に、2年間の回復請求が認められる。
+      </div>
+      <div class="ox-buttons">
+        <button class="btn-ox" onclick="answerOX('q4', true, this)">○</button>
+        <button class="btn-ox" onclick="answerOX('q4', false, this)">×</button>
+      </div>
+      <div class="explanation" id="exp-q4">
+        <div class="verdict" id="verdict-q4"></div>
+        <div>前半（盗品の場合）は正しいです。193条により、盗品又は遺失物の場合、被害者・遺失者は盗難・遺失の時から2年間、占有者に対して無償で物の回復を請求できます。しかし後半が誤りです。<em style="color:var(--crimson);font-weight:bold;">「詐欺」によって占有を失った場合は盗品・遺失物にあたらない</em>ため、193条・194条の2年間の回復請求規定は適用されません。詐欺の場合、Aは意思に基づいて甲を交付しており、193条の保護対象外となります。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5 5択 -->
+  <div class="q-card" id="card-q5">
+    <div class="q-header">
+      <div class="q-no">5</div>
+      即時取得に関する記述（5択）
+      <span class="q-type-badge">5択</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">
+        民法に規定する即時取得に関する記述として、判例・通説に照らして、<em>妥当なもの</em>はどれか。
+      </div>
+      <div class="choices" id="choices-q5">
+        <button class="btn-choice" onclick="answerChoice('q5', 1, this)">
+          1. 即時取得の制度は動産のみに適用されるが、道路運送車両法による登録を受けていない自動車（未登録自動車）にも適用される。
+        </button>
+        <button class="btn-choice" onclick="answerChoice('q5', 2, this)">
+          2. 即時取得が認められるためには取引行為の存在が必要であるため、競売（強制競売）による競落の場合は「取引行為」とはいえず、即時取得の適用はない。
+        </button>
+        <button class="btn-choice" onclick="answerChoice('q5', 3, this)">
+          3. 制限行為能力者との取引の相手方Bが動産を取得した場合、AB間の取引は取り消すことができるにとどまり完全に有効とは言えないが、BはAB間の取引を根拠として即時取得できる。
+        </button>
+        <button class="btn-choice" onclick="answerChoice('q5', 4, this)">
+          4. 即時取得が成立するためには占有の取得が必要であり、4つの引渡し類型のうち占有改定を除くすべての方法によって占有を取得した場合に即時取得が認められる。
+        </button>
+        <button class="btn-choice" onclick="answerChoice('q5', 5, this)">
+          5. 即時取得の対象物が盗品であった場合、被害者は盗難の時から2年間、善意の占有者に対して無償でその物の回復を請求できるが、占有者が競売において当該盗品を善意で取得した場合も同様に無償で回復請求できる。
+        </button>
+      </div>
+      <div class="explanation" id="exp-q5">
+        <div class="verdict" id="verdict-q5"></div>
+        <div id="exp-q5-text"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-area" id="result-area">
+    <h2>🎉 演習完了！</h2>
+    <div class="result-score" id="result-score"></div>
+    <div class="result-msg" id="result-msg"></div>
+    <button class="btn-reset" onclick="resetAll()">もう一度挑戦する</button>
+  </div>
+
+  <div class="back-top"><a href="#top">▲ ページトップに戻る</a></div>
+
+</div>
+
+<script>
+const TOTAL = 5;
+const CORRECT_ANSWERS = {
+  q1: true,   // ○
+  q2: false,  // ×（無過失も推定される）
+  q3: false,  // ×（占有改定では即時取得不可）
+  q4: false,  // ×（詐欺には2年回復請求不可）
+  q5: 1       // 肢1（未登録自動車には即時取得適用あり）
+};
+
+const EXPLANATIONS_5 = {
+  1: { correct: true,  text: '正解です。即時取得が適用されるのは動産のみです。道路運送車両法による<strong>登録済みの自動車</strong>には適用されませんが、<strong>未登録自動車や登録を抹消された自動車</strong>には即時取得の適用があります（最判昭62・4・24）。' },
+  2: { correct: false, text: '誤りです。競売（強制競売）による競落も「<strong>取引行為</strong>」に含まれます。したがって、執行債務者の所有に属しない動産が競売に付された場合であっても、競落人が即時取得の要件を充たせば動産の所有権を取得できます。' },
+  3: { correct: false, text: '誤りです。即時取得が認められるには取引行為が「<strong>有効</strong>」でなければなりません。制限行為能力者との取引は完全に有効とは言えないため、その直接の相手方Bは即時取得できません。ただし、BからさらにCが取得した場合、BC間の取引が有効であればCは即時取得できます。' },
+  4: { correct: false, text: '誤りです。設問の記述は概ね正しいですが、「指図による占有移転」については即時取得が<strong>認められます</strong>。即時取得が認められないのは「<strong>占有改定</strong>」のみです。占有改定は外形上の変化がないため、真の権利者保護の観点から除外されています。' },
+  5: { correct: false, text: '誤りです。前半は正しいですが、後半が誤りです。占有者が盗品を<strong>競売・公の市場・同種物を販売する商人</strong>から善意で買い受けた場合（194条）、被害者はその占有者が支払った<strong>代価を弁償しなければ</strong>回復請求できません。善意で競売から取得した占有者を保護する規定です。' }
+};
+
+let answered = {};
+let scoreCount = 0;
+let answeredCount = 0;
+
+function updateScore() {
+  document.getElementById('score-val').textContent = scoreCount;
+  document.getElementById('score-total').textContent = answeredCount;
+  const pct = (answeredCount / TOTAL) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  if (answeredCount === TOTAL) {
+    showResult();
+  }
+}
+
+function answerOX(qid, userAnswer, btn) {
+  if (answered[qid]) return;
+  answered[qid] = true;
+  answeredCount++;
+
+  const correct = CORRECT_ANSWERS[qid];
+  const isCorrect = (userAnswer === correct);
+  const card = document.getElementById('card-' + qid);
+  const buttons = card.querySelectorAll('.btn-ox');
+  const exp = document.getElementById('exp-' + qid);
+  const verdict = document.getElementById('verdict-' + qid);
+
+  buttons.forEach(b => b.disabled = true);
+
+  // ○ボタンは index 0、×ボタンは index 1
+  const correctBtn = correct ? buttons[0] : buttons[1];
+  correctBtn.classList.add('show-correct');
+
+  if (isCorrect) {
+    btn.classList.add('selected-correct');
+    scoreCount++;
+    verdict.textContent = '✅ 正解！';
+    exp.classList.add('correct');
+  } else {
+    btn.classList.add('selected-wrong');
+    verdict.textContent = '❌ 不正解';
+    exp.classList.add('wrong');
+  }
+  exp.style.display = 'block';
+  updateScore();
+}
+
+function answerChoice(qid, num, btn) {
+  if (answered[qid]) return;
+  answered[qid] = true;
+  answeredCount++;
+
+  const correct = CORRECT_ANSWERS[qid];
+  const isCorrect = (num === correct);
+  const card = document.getElementById('card-' + qid);
+  const buttons = card.querySelectorAll('.btn-choice');
+  const exp = document.getElementById('exp-' + qid);
+  const verdict = document.getElementById('verdict-' + qid);
+  const expText = document.getElementById('exp-q5-text');
+
+  buttons.forEach(b => b.disabled = true);
+  buttons[correct - 1].classList.add('show-correct');
+
+  if (isCorrect) {
+    btn.classList.add('selected-correct');
+    scoreCount++;
+    verdict.textContent = '✅ 正解！　正答：肢' + correct;
+    exp.classList.add('correct');
+  } else {
+    btn.classList.add('selected-wrong');
+    verdict.textContent = '❌ 不正解　正答：肢' + correct;
+    exp.classList.add('wrong');
+  }
+
+  expText.innerHTML = EXPLANATIONS_5[num].text + (isCorrect ? '' : '<br><br><strong>【正答（肢' + correct + '）の解説】</strong><br>' + EXPLANATIONS_5[correct].text);
+  exp.style.display = 'block';
+  updateScore();
+}
+
+function showResult() {
+  const area = document.getElementById('result-area');
+  area.style.display = 'block';
+  document.getElementById('result-score').textContent = scoreCount + ' / ' + TOTAL + ' 点';
+  const pct = scoreCount / TOTAL;
+  let msg = '';
+  if (pct === 1) msg = '満点です！完璧な理解です。';
+  else if (pct >= 0.8) msg = '優秀です！惜しい問題を復習しましょう。';
+  else if (pct >= 0.6) msg = 'もう一息！解説をしっかり確認しましょう。';
+  else msg = '解説を読み直して、再挑戦してみましょう。';
+  document.getElementById('result-msg').textContent = msg;
+  area.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function resetAll() {
+  answered = {};
+  scoreCount = 0;
+  answeredCount = 0;
+  document.getElementById('score-val').textContent = '0';
+  document.getElementById('score-total').textContent = '0';
+  document.getElementById('progress-fill').style.width = '0%';
+  document.getElementById('result-area').style.display = 'none';
+
+  ['q1','q2','q3','q4'].forEach(qid => {
+    const card = document.getElementById('card-' + qid);
+    const buttons = card.querySelectorAll('.btn-ox');
+    const exp = document.getElementById('exp-' + qid);
+    buttons.forEach(b => {
+      b.disabled = false;
+      b.className = 'btn-ox';
+    });
+    exp.style.display = 'none';
+    exp.className = 'explanation';
+  });
+
+  const card5 = document.getElementById('card-q5');
+  const choices = card5.querySelectorAll('.btn-choice');
+  choices.forEach(b => {
+    b.disabled = false;
+    b.className = 'btn-choice';
+  });
+  document.getElementById('exp-q5').style.display = 'none';
+  document.getElementById('exp-q5').className = 'explanation';
+  document.getElementById('exp-q5-text').innerHTML = '';
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

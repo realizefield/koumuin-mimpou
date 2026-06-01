@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch14｜占有権</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --navy-light: #243660;
+    --crimson: #C0392B;
+    --crimson-light: #E74C3C;
+    --gold: #D4A017;
+    --bg: #F4F6FA;
+    --white: #FFFFFF;
+    --text: #1a1a2e;
+    --gray: #6c757d;
+    --border: #dee2e6;
+    --green: #1a7a4a;
+    --green-bg: #e8f5ee;
+    --red-bg: #fdecea;
+    --blue-bg: #EBF0FA;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'BIZ UDGothic', 'Meiryo', 'メイリオ', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  .page-header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 36px 24px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: rgba(192,57,43,0.15);
+    border-radius: 50%;
+  }
+  .header-badge {
+    display: inline-block;
+    background: var(--crimson);
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: bold; letter-spacing: 0.04em; line-height: 1.4; }
+  .page-header .chapter-no { font-size: 13px; opacity: 0.75; margin-top: 6px; }
+  .importance-row { display: flex; gap: 20px; margin-top: 14px; flex-wrap: wrap; }
+  .importance-item { display: flex; flex-direction: column; gap: 2px; }
+  .importance-label { font-size: 10px; opacity: 0.7; letter-spacing: 0.05em; }
+  .stars { color: #F4D03F; font-size: 14px; }
+
+  .content { max-width: 780px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin: 36px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--navy);
+  }
+  .section-no {
+    background: var(--navy); color: #fff;
+    font-size: 13px; font-weight: bold;
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 18px; font-weight: bold; color: var(--navy); }
+  .sub-section {
+    font-size: 15px; font-weight: bold; color: var(--navy);
+    margin: 22px 0 10px;
+    padding-left: 10px;
+    border-left: 3px solid var(--crimson);
+  }
+
+  .article-box {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 18px 20px; margin: 14px 0; line-height: 1.9;
+  }
+  .article-box p { margin-bottom: 8px; }
+  .article-box p:last-child { margin-bottom: 0; }
+
+  .point-card {
+    background: var(--blue-bg); border-left: 4px solid var(--navy);
+    border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 14px 0;
+  }
+  .point-card .point-title { font-size: 13px; font-weight: bold; color: var(--navy); margin-bottom: 6px; }
+
+  .goro-box {
+    background: linear-gradient(135deg, #fff8e1, #fff3cd);
+    border: 2px solid var(--gold); border-radius: 10px;
+    padding: 16px 20px; margin: 16px 0;
+  }
+  .goro-box::before { content: '🎯 ゴロ合わせ'; font-size: 11px; font-weight: bold; color: var(--gold); display: block; margin-bottom: 8px; }
+  .goro-main { font-size: 17px; font-weight: bold; color: #7b5e00; text-align: center; margin-bottom: 6px; }
+  .goro-sub { font-size: 12px; color: #856404; text-align: center; }
+
+  .caution-box {
+    background: var(--red-bg); border: 1.5px solid var(--crimson);
+    border-radius: 8px; padding: 14px 18px; margin: 14px 0;
+  }
+  .caution-box::before { content: '⚠️ 注意'; font-size: 12px; font-weight: bold; color: var(--crimson); display: block; margin-bottom: 6px; }
+
+  .info-box {
+    background: #f0faf4; border: 1.5px solid var(--green);
+    border-radius: 8px; padding: 14px 18px; margin: 14px 0;
+  }
+  .info-box::before { content: '📌 ポイント'; font-size: 12px; font-weight: bold; color: var(--green); display: block; margin-bottom: 6px; }
+
+  .hanrei-box {
+    background: #f9f4ff; border: 1.5px solid #7b2fbe;
+    border-radius: 8px; padding: 14px 18px; margin: 14px 0; font-size: 13.5px;
+  }
+  .hanrei-box::before { content: '⚖️ 判例'; font-size: 12px; font-weight: bold; color: #7b2fbe; display: block; margin-bottom: 6px; }
+
+  /* 比較表 */
+  .compare-table {
+    width: 100%; border-collapse: collapse; margin: 16px 0;
+    font-size: 13px; background: var(--white);
+    border-radius: 8px; overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .compare-table th {
+    background: var(--navy); color: var(--white);
+    padding: 10px 10px; text-align: center; font-weight: bold;
+  }
+  .compare-table td {
+    padding: 9px 10px; border: 1px solid var(--border);
+    vertical-align: middle; text-align: center; line-height: 1.6;
+  }
+  .compare-table tr:nth-child(even) td { background: var(--blue-bg); }
+  .td-left { text-align: left !important; }
+  .ok { color: var(--green); font-weight: bold; }
+  .ng { color: var(--crimson); font-weight: bold; }
+
+  /* ミニテスト */
+  .mini-test {
+    background: #FAFBFF; border: 2px solid var(--navy);
+    border-radius: 10px; padding: 20px; margin: 24px 0;
+  }
+  .mini-test-title {
+    font-size: 14px; font-weight: bold; color: var(--navy);
+    margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+  }
+  .mini-test-title::before { content: '✏️'; }
+  .test-q { margin-bottom: 14px; }
+  .test-q-text { font-size: 14px; margin-bottom: 8px; line-height: 1.8; }
+  .blank-word {
+    display: inline-block; background: var(--navy); color: var(--navy);
+    border-radius: 4px; padding: 0 4px; min-width: 60px;
+    cursor: pointer; transition: background 0.25s, color 0.25s;
+    font-weight: bold; user-select: none;
+  }
+  .blank-word.revealed { background: #FFF3CD; color: #7b5e00; }
+  .chips-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .chip {
+    background: var(--white); border: 1.5px solid var(--navy);
+    border-radius: 20px; padding: 4px 14px; font-size: 13px;
+    cursor: pointer; transition: background 0.2s, color 0.2s; user-select: none;
+  }
+  .chip:hover { background: var(--navy); color: #fff; }
+  .chip.correct { background: var(--green); color: #fff; border-color: var(--green); }
+  .chip.wrong { background: var(--crimson); color: #fff; border-color: var(--crimson); animation: shake 0.3s; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+
+  /* まとめ箱 */
+  .summary-box {
+    background: var(--navy); color: var(--white);
+    border-radius: 10px; padding: 20px 22px; margin: 28px 0 8px;
+  }
+  .summary-box h3 { font-size: 15px; font-weight: bold; margin-bottom: 12px; color: #F4D03F; }
+  .summary-box ul { list-style: none; padding: 0; }
+  .summary-box li {
+    padding: 5px 0 5px 18px; position: relative;
+    font-size: 14px; line-height: 1.7;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .summary-box li:last-child { border-bottom: none; }
+  .summary-box li::before { content: '▶'; position: absolute; left: 0; color: var(--crimson-light); font-size: 10px; top: 8px; }
+
+  /* 占有訴権まとめ用グリッド */
+  .sosoken-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  @media(max-width:580px){ .sosoken-grid{ grid-template-columns:1fr; } }
+  .sosoken-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    border-top: 3px solid var(--navy);
+  }
+  .sosoken-card.type-b { border-top-color: var(--gold); }
+  .sosoken-card.type-c { border-top-color: var(--crimson); }
+  .sosoken-card-title { font-size: 13px; font-weight: bold; color: var(--navy); margin-bottom: 8px; }
+  .sosoken-card.type-b .sosoken-card-title { color: #856404; }
+  .sosoken-card.type-c .sosoken-card-title { color: var(--crimson); }
+  .sosoken-row { font-size: 12px; margin-bottom: 4px; line-height: 1.6; }
+  .sosoken-row span { font-weight: bold; }
+
+  /* 損害賠償表 */
+  .law-badge {
+    display: inline-block; background: var(--navy); color: #fff;
+    font-size: 11px; font-weight: bold;
+    padding: 1px 7px; border-radius: 4px; margin-left: 4px; vertical-align: middle;
+  }
+
+  em { font-style: normal; color: var(--crimson); font-weight: bold; }
+  .navy { color: var(--navy); font-weight: bold; }
+  .green { color: var(--green); font-weight: bold; }
+  hr.section-divider { border: none; border-top: 1px dashed var(--border); margin: 28px 0; }
+
+  .back-top { text-align: center; margin-top: 40px; }
+  .back-top a {
+    display: inline-block; background: var(--navy); color: #fff;
+    text-decoration: none; padding: 10px 28px; border-radius: 24px;
+    font-size: 13px; font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header" id="top">
+  <div class="header-badge">民法 ｜ 物権</div>
+  <h1>占有権</h1>
+  <div class="chapter-no">Chapter 14　民法 180条・181条・186〜191条・196〜202条</div>
+  <div class="importance-row">
+    <div class="importance-item">
+      <span class="importance-label">重要度</span>
+      <span class="stars">★★★</span>
+    </div>
+    <div class="importance-item">
+      <span class="importance-label">頻出度</span>
+      <span class="stars">★★☆</span>
+    </div>
+  </div>
+</header>
+
+<div class="content">
+
+<!-- ========== SECTION 1 ========== -->
+<div class="section-header">
+  <div class="section-no">1</div>
+  <h2>占有権とは？</h2>
+</div>
+
+<div class="article-box">
+  <p>「<em>占有権</em>」とは、<em>自己のためにする意思</em>をもって物を<em>所持</em>することによって取得できる権利です（180条）。</p>
+  <p>「自己のためにする意思」とは、事実上自分が利益を受けようとする意思のことで、通常はあると考えられます。</p>
+  <p>「所持」とは物に対する事実上の支配であり、実際に手で持っていることだけでなく、<em>自己のコントロールの及ぶ状態</em>にあればよいとされています（例：家に置いてあるパソコンも所持）。</p>
+  <p>また、<em>所有権をはじめとする「本権」がなくても、占有権を有することはある</em>ので注意しましょう。借りている本は「所有権はないが占有権はある」状態です。所有権と占有権はそれぞれ全く別の権利です（202条）。</p>
+</div>
+
+<!-- ========== SECTION 2 ========== -->
+<div class="section-header">
+  <div class="section-no">2</div>
+  <h2>占有の形態</h2>
+</div>
+
+<div class="sub-section">（1）代理占有（181条）</div>
+
+<div class="article-box">
+  <p>「<em>代理占有</em>」とは、占有代理人が所持をなし、本人がこれに基づいて占有をなすことです。「<em>間接占有</em>」とも言います。</p>
+  <p>例えば、賃貸借契約を締結している場合、<em>賃貸人Aは賃借人Bを通じて間接的に占有権を有する</em>ことになります。賃借人Bが直接占有、賃貸人Aが代理占有（間接占有）です。</p>
+</div>
+
+<div class="point-card">
+  <div class="point-title">💡 代理占有のポイント</div>
+  賃貸借契約が終了したからといって、<em>直ちに代理占有関係が終了することはありません</em>（204条2項）。代理占有関係は、法律上の権原に基づかなくても、事実上の状態があれば足ります。
+</div>
+
+<hr class="section-divider">
+
+<div class="sub-section">（2）自主占有と他主占有</div>
+
+<div class="article-box">
+  <p>「<em>自主占有</em>」とは、<em>所有の意思</em>を持って占有することです。「所有の意思」とは、自分よりも優先した支配を認めない意思をいいます。無効な売買における買主の占有や、盗人の占有も自主占有です。</p>
+  <p>「<em>他主占有</em>」とは、所有の意思がない占有のことで、<em>賃借人・質権者・受寄者</em>の占有がその典型です。</p>
+  <p>この区別の実益は、<em>所有権の取得時効の可否</em>に現れます。自主占有であれば所有権を時効取得できますが、他主占有では何年続けても時効取得できません。</p>
+</div>
+
+<div class="point-card">
+  <div class="point-title">💡 自主・他主の判断基準と推定</div>
+  自主占有か他主占有かは、<em>占有の取得原因たる権原、又は占有に関する事情により、客観的・外形的に判断</em>します（最判昭58・3・24）。占有の最初の段階で決まり、通常、他主占有が自主占有に変わることはありません。<br><br>
+  また、民法186条1項は「<em>占有者は、所有の意思をもって、善意で、平穏に、かつ公然と占有するものと推定する</em>」と定めています。
+</div>
+
+<div class="sub-section">他主占有から自主占有への転換（例外2つ）</div>
+
+<div class="article-box">
+  <p>例外的に、次の<em>2つの場合</em>に他主占有から自主占有への転換が認められます。</p>
+  <p>①<span class="navy">自己に占有させた者に対して所有の意思があることを表示した場合</span><br>
+  例：賃借人が賃貸人に対して「今後は所有の意思をもって占有する旨を表示」するような場合。</p>
+  <p>②<span class="navy">新たな権原（新権原）によりさらに所有の意思をもって占有を始めた場合</span><br>
+  例：賃借人が賃借物を賃貸人から買い取ったような場合。</p>
+</div>
+
+<div class="hanrei-box">
+  <strong>相続と新権原（最判昭46・11・30）</strong><br>
+  賃借人Bが死亡しCが相続した場合、相続は自動的に「新たな権原」とはなりません。①新たに相続財産を事実上支配することによって占有を開始し、②その占有に所有の意思があると認められるとき（Cが賃料を支払っていない場合）に限り、相続も「新たな権原」にあたります。
+</div>
+
+<hr class="section-divider">
+
+<div class="sub-section">（3）占有の承継</div>
+
+<div class="article-box">
+  <p>占有を承継した者は、その選択に従い、<em>①自己の占有のみを主張する</em>こともできますし、<em>②自己の占有に前の占有者の占有を併せて主張する</em>こともできます（187条1項）。</p>
+  <p>ただし、前の占有者の占有を併せて主張する場合には、<em>その瑕疵も承継</em>することになります（187条2項）。例えば、前の占有者が悪意占有であった場合、それを併せて主張するとCは悪意占有として承継することになります。</p>
+</div>
+
+<!-- ミニテスト① -->
+<div class="mini-test">
+  <div class="mini-test-title">ミニテスト①　占有の形態</div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q1. 占有者は、所有の意思をもって、善意で、平穏に、かつ公然と占有するものと（　<span class="mblank blank-word" data-ans="推定" onclick="revealBlank(this)">推定</span>　）される（186条1項）。
+    </div>
+  </div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q2. 他主占有から自主占有に転換する例外として正しいものはどれか。
+    </div>
+    <div class="chips-row" id="chips-q2">
+      <span class="chip" onclick="checkChip(this,'chips-q2','新たな権原により所有の意思をもって占有を始めた場合')">相続した場合</span>
+      <span class="chip" onclick="checkChip(this,'chips-q2','新たな権原により所有の意思をもって占有を始めた場合')">新たな権原により所有の意思をもって占有を始めた場合</span>
+      <span class="chip" onclick="checkChip(this,'chips-q2','新たな権原により所有の意思をもって占有を始めた場合')">善意で占有した場合</span>
+    </div>
+  </div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q3. 占有の承継において、前の占有者の占有を併せて主張する場合、その（　<span class="mblank blank-word" data-ans="瑕疵" onclick="revealBlank(this)">瑕疵</span>　）も承継する。
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECTION 3 ========== -->
+<div class="section-header">
+  <div class="section-no">3</div>
+  <h2>占有権の効力</h2>
+</div>
+
+<div class="sub-section">（1）善意占有者の果実収取権（189条）</div>
+
+<div class="article-box">
+  <p>善意の占有者は、占有物から生じる<em>果実を取得</em>することができます（189条1項）。自分の所有物だと信じているので、そこから生じた果実であれば収取してよいということです。</p>
+  <p>なお、<em>善意であれば足り、無過失である必要はありません</em>。</p>
+  <p>一方、悪意の占有者は果実収取権がなく、果実を返還し、かつ既に消費した果実等の代価を償還する義務を負います（190条1項）。</p>
+</div>
+
+<div class="caution-box">
+  善意占有者が<em>本権の訴え</em>（所有権に基づく返還請求など）において<em>敗訴した場合</em>には、<em>訴えの提起の時から</em>（敗訴の時からではない）悪意であったものとみなされます（悪意擬制、189条2項）。よってそれ以降の果実は返還が必要です。
+</div>
+
+<hr class="section-divider">
+
+<div class="sub-section">（2）占有者による損害賠償（191条）</div>
+
+<div class="article-box">
+  <p>占有物が占有者の責めに帰すべき事由によって滅失・損傷したときの賠償範囲は、占有者の主観によって異なります。</p>
+</div>
+
+<table class="compare-table">
+  <thead>
+    <tr>
+      <th>占有者の種類</th>
+      <th>賠償範囲</th>
+      <th>備考</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>悪意占有者</strong><br>他主占有者</td>
+      <td><em class="ng">損害の全部</em></td>
+      <td class="td-left">修繕して返還</td>
+    </tr>
+    <tr>
+      <td><strong>善意かつ自主占有者</strong></td>
+      <td><em class="ok">現存利益の限度</em></td>
+      <td class="td-left">壊れたまま返還すればよい</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="info-box">
+  <strong>他主占有者（賃借人など）</strong>は、たとえ善意であっても<em>損害全部の賠償義務</em>を負います（191条）。他人の物を使っている認識があるからです。
+</div>
+
+<hr class="section-divider">
+
+<div class="sub-section">（3）占有者による費用の償還請求（196条）</div>
+
+<table class="compare-table">
+  <thead>
+    <tr>
+      <th>費用の種類</th>
+      <th>内容</th>
+      <th>善意・悪意</th>
+      <th>償還範囲</th>
+      <th>注意事項</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>必要費</strong></td>
+      <td class="td-left">物の保存・管理に必要な費用<br>（修繕費・公租公課など）</td>
+      <td>問わず</td>
+      <td><em class="ok">全額</em></td>
+      <td class="td-left">果実を取得したときは通常の必要費は占有者の自己負担</td>
+    </tr>
+    <tr>
+      <td><strong>有益費</strong></td>
+      <td class="td-left">物の価値を増加させる費用<br>（壁紙張替え・エアコン設置など）</td>
+      <td>問わず</td>
+      <td><em>価格増加が現存する場合に限り</em>、回復者の選択に従い支出額又は増価額</td>
+      <td class="td-left">悪意の占有者には裁判所が相当の期限を許与できる</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr class="section-divider">
+
+<div class="sub-section">（4）占有訴権（197条）</div>
+
+<div class="article-box">
+  <p>占有権を害された（ないし害されそうな）場合、占有権を有する者は、占有に関する訴えを提起することができます。これが「<em>占有訴権</em>」です（197条）。</p>
+  <p>この占有訴権は、<em>占有権を有する者であれば誰でも行使することができます</em>。善意・悪意、自主・他主、代理・自己、直接・間接など、<em>占有の形態を問いません</em>。</p>
+  <p>ただし、<em>占有補助者</em>（会社の代表取締役など）だけは独立した占有権を有していないため、占有訴権を行使できません。</p>
+</div>
+
+<div class="sosoken-grid">
+  <div class="sosoken-card">
+    <div class="sosoken-card-title">① 占有保持の訴え<br><span style="font-size:11px;font-weight:normal;">198条「邪魔だからどいて」</span></div>
+    <div class="sosoken-row"><span>要件：</span>占有が現に妨害されているとき</div>
+    <div class="sosoken-row"><span>請求内容：</span>妨害の停止（相手の故意・過失は<em>不要</em>）<br>及び損害賠償（相手の故意・過失が<em>必要</em>）</div>
+    <div class="sosoken-row"><span>行使期間：</span>妨害の存する間又はその消滅後1年以内</div>
+  </div>
+  <div class="sosoken-card type-b">
+    <div class="sosoken-card-title">② 占有保全の訴え<br><span style="font-size:11px;font-weight:normal;">199条「危ないから何とかして」</span></div>
+    <div class="sosoken-row"><span>要件：</span>占有を妨害されるおそれがあるとき</div>
+    <div class="sosoken-row"><span>請求内容：</span>妨害の予防（相手の故意・過失は<em>不要</em>）<br>又は損害賠償の<em>担保</em>（故意・過失は<em>不要</em>）</div>
+    <div class="sosoken-row"><span>行使期間：</span>妨害の危険が存する間</div>
+  </div>
+  <div class="sosoken-card type-c">
+    <div class="sosoken-card-title">③ 占有回収の訴え<br><span style="font-size:11px;font-weight:normal;">200条「返して」という訴え</span></div>
+    <div class="sosoken-row"><span>要件：</span>占有を<em>奪われた</em>とき（詐取・遺失は×）</div>
+    <div class="sosoken-row"><span>請求内容：</span>物の返還（故意・過失は<em>不要</em>）<br>及び損害賠償（相手の故意・過失が<em>必要</em>）</div>
+    <div class="sosoken-row"><span>行使期間：</span>占有を<em>奪われた時から1年以内</em>（知った時からは×）</div>
+  </div>
+</div>
+
+<div class="caution-box">
+  占有回収の訴えは、<em>善意の特定承継人</em>（侵奪者からさらに占有を取得した者）に対して提起できません。その特定承継人が<em>侵奪の事実を知っていた（悪意）ときに限り</em>、その者に対して提起できます（200条2項）。
+</div>
+
+<!-- ミニテスト② -->
+<div class="mini-test">
+  <div class="mini-test-title">ミニテスト②　占有訴権</div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q4. 占有回収の訴えは、占有を（　<span class="mblank blank-word" data-ans="奪われた時" onclick="revealBlank(this)">奪われた時</span>　）から1年以内に提起しなければならない。
+    </div>
+  </div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q5. 占有を詐取された場合、占有回収の訴えを提起することができるか？
+    </div>
+    <div class="chips-row" id="chips-q5">
+      <span class="chip" onclick="checkChip(this,'chips-q5','できない')">できない</span>
+      <span class="chip" onclick="checkChip(this,'chips-q5','できない')">できる</span>
+    </div>
+  </div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q6. 占有保全の訴えの請求内容として正しいものはどれか。
+    </div>
+    <div class="chips-row" id="chips-q6">
+      <span class="chip" onclick="checkChip(this,'chips-q6','妨害の予防又は損害賠償の担保')">妨害の予防又は損害賠償の担保</span>
+      <span class="chip" onclick="checkChip(this,'chips-q6','妨害の予防又は損害賠償の担保')">妨害の停止及び損害賠償</span>
+      <span class="chip" onclick="checkChip(this,'chips-q6','妨害の予防又は損害賠償の担保')">物の返還及び損害賠償</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECTION 4 ========== -->
+<div class="section-header">
+  <div class="section-no">4</div>
+  <h2>物権的請求権と占有訴権との関係</h2>
+</div>
+
+<div class="article-box">
+  <p>民法202条1項は「<em>占有の訴えは本権の訴えを妨げず、また、本権の訴えは占有の訴えを妨げない</em>」と規定しています。つまり、所有者かつ占有者であるAが占有を奪われた場合、<em>占有回収の訴え（占有権ベース）</em>でも<em>所有権に基づく返還請求（本権ベース）</em>でも、どちらを提起してもよいということです。</p>
+</div>
+
+<div class="point-card">
+  <div class="point-title">💡 交互侵奪と反訴・抗弁の問題</div>
+  盗人Aが所有者Bの物を奪い、BがAから自力で奪い返した場合：<br>
+  ・Aの占有回収の訴えに対し、Bは「自分に所有権がある」旨の<em>反訴提起はできる</em>（○）<br>
+  ・ただし、同じ内容を<em>抗弁（攻撃防御方法）として提出することはできない</em>（×）<br><br>
+  理由：占有回収の訴えの争点は「占有権が害されたか否か」であり、「所有権があるか否か」は争点がずれているから。所有権を主張したいなら、ちゃんと反訴として提起すること。
+</div>
+
+<!-- ========== SECTION 5 ========== -->
+<div class="section-header">
+  <div class="section-no">5</div>
+  <h2>占有権の消滅</h2>
+</div>
+
+<div class="article-box">
+  <p>占有権は、占有者が<em>占有の意思を放棄し、又は占有物の所持を失う</em>ことによって消滅します。</p>
+  <p>ただし、占有者が<em>占有回収の訴えを提起したときは占有権は消滅しません</em>。占有回収の訴えに勝訴し、その物の占有を回復したときは、現実に占有しなかった間も<em>占有が継続していたものと擬制</em>されます（最判昭44・12・2）。</p>
+</div>
+
+<!-- まとめ -->
+<div class="summary-box">
+  <h3>📝 ch14 まとめ</h3>
+  <ul>
+    <li>占有権とは「自己のためにする意思」＋「所持」によって取得する権利（180条）。本権がなくても占有権はありうる。</li>
+    <li>代理占有（間接占有）は賃貸人のように占有代理人を通じて間接的に占有すること（181条）。契約終了後も直ちには消滅しない。</li>
+    <li>自主占有（所有の意思あり）⇔他主占有（賃借人・質権者等）。区別は客観的・外形的に判断。186条1項で所有の意思・善意・平穏・公然はすべて推定される。</li>
+    <li>他主→自主への転換は①所有の意思の表示 ②新権原の2つの場合のみ。相続は原則として新権原にならない（例外あり）。</li>
+    <li>占有承継：自己の占有のみ主張可 or 前占有者の占有を併せて主張可（選択制）。ただし後者は瑕疵も承継。</li>
+    <li>善意占有者：果実収取権あり（無過失不要）。本権の訴えで敗訴→訴え提起時から悪意擬制。</li>
+    <li>損害賠償：悪意・他主占有者＝損害全部、善意かつ自主占有者＝現存利益のみ。</li>
+    <li>費用償還：必要費は善悪問わず全額（果実取得時の通常必要費は自己負担）、有益費は価格増加現存時に限り善悪問わず可（悪意は期限許与あり）。</li>
+    <li>占有訴権は占有権を有する者なら誰でも行使可（占有補助者のみ不可）。①占有保持（妨害の停止・損害賠償）、②占有保全（妨害予防・担保）、③占有回収（物の返還・損害賠償、奪われた時から1年）。</li>
+    <li>占有回収の訴えは詐取・遺失の場合は不可。善意の特定承継人には提起不可（悪意の場合のみ可）。</li>
+  </ul>
+</div>
+
+<div class="back-top"><a href="#top">▲ ページトップに戻る</a></div>
+
+</div><!-- /content -->
+
+<script>
+function revealBlank(el) {
+  el.classList.add('revealed');
+}
+function checkChip(el, groupId, correctAnswer) {
+  const group = document.getElementById(groupId);
+  const chips = group.querySelectorAll('.chip');
+  chips.forEach(c => { c.onclick = null; c.style.pointerEvents = 'none'; });
+  if (el.textContent.trim() === correctAnswer) {
+    el.classList.add('correct');
+  } else {
+    el.classList.add('wrong');
+    setTimeout(() => {
+      chips.forEach(c => { if (c.textContent.trim() === correctAnswer) c.classList.add('correct'); });
+    }, 400);
+  }
+}
+</script>
+</body>
+</html>

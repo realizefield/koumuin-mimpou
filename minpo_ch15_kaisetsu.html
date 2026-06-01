@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch15｜所有権</title>
+<style>
+  :root {
+    --navy: #1B2A4A; --navy-light: #243660;
+    --crimson: #C0392B; --crimson-light: #E74C3C;
+    --gold: #D4A017; --bg: #F4F6FA; --white: #FFFFFF;
+    --text: #1a1a2e; --gray: #6c757d; --border: #dee2e6;
+    --green: #1a7a4a; --green-bg: #e8f5ee;
+    --red-bg: #fdecea; --blue-bg: #EBF0FA;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'BIZ UDGothic','Meiryo','メイリオ',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; font-size:15px; }
+
+  .page-header { background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%); color:var(--white); padding:36px 24px 28px; position:relative; overflow:hidden; }
+  .page-header::before { content:''; position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(192,57,43,0.15); border-radius:50%; }
+  .header-badge { display:inline-block; background:var(--crimson); color:#fff; font-size:11px; font-weight:bold; padding:3px 10px; border-radius:20px; letter-spacing:0.08em; margin-bottom:10px; }
+  .page-header h1 { font-size:24px; font-weight:bold; letter-spacing:0.04em; line-height:1.4; }
+  .page-header .chapter-no { font-size:13px; opacity:0.75; margin-top:6px; }
+  .importance-row { display:flex; gap:20px; margin-top:14px; flex-wrap:wrap; }
+  .importance-item { display:flex; flex-direction:column; gap:2px; }
+  .importance-label { font-size:10px; opacity:0.7; letter-spacing:0.05em; }
+  .stars { color:#F4D03F; font-size:14px; }
+
+  .content { max-width:780px; margin:0 auto; padding:24px 16px 60px; }
+
+  .section-header { display:flex; align-items:center; gap:12px; margin:36px 0 18px; padding-bottom:10px; border-bottom:2px solid var(--navy); }
+  .section-no { background:var(--navy); color:#fff; font-size:13px; font-weight:bold; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .section-header h2 { font-size:18px; font-weight:bold; color:var(--navy); }
+  .sub-section { font-size:15px; font-weight:bold; color:var(--navy); margin:22px 0 10px; padding-left:10px; border-left:3px solid var(--crimson); }
+
+  .article-box { background:var(--white); border:1px solid var(--border); border-radius:8px; padding:18px 20px; margin:14px 0; line-height:1.9; }
+  .article-box p { margin-bottom:8px; }
+  .article-box p:last-child { margin-bottom:0; }
+
+  .point-card { background:var(--blue-bg); border-left:4px solid var(--navy); border-radius:0 8px 8px 0; padding:14px 18px; margin:14px 0; }
+  .point-card .point-title { font-size:13px; font-weight:bold; color:var(--navy); margin-bottom:6px; }
+
+  .goro-box { background:linear-gradient(135deg,#fff8e1,#fff3cd); border:2px solid var(--gold); border-radius:10px; padding:16px 20px; margin:16px 0; }
+  .goro-box::before { content:'🎯 ゴロ合わせ'; font-size:11px; font-weight:bold; color:var(--gold); display:block; margin-bottom:8px; }
+  .goro-main { font-size:17px; font-weight:bold; color:#7b5e00; text-align:center; margin-bottom:6px; }
+  .goro-sub { font-size:12px; color:#856404; text-align:center; }
+
+  .caution-box { background:var(--red-bg); border:1.5px solid var(--crimson); border-radius:8px; padding:14px 18px; margin:14px 0; }
+  .caution-box::before { content:'⚠️ 注意'; font-size:12px; font-weight:bold; color:var(--crimson); display:block; margin-bottom:6px; }
+
+  .info-box { background:#f0faf4; border:1.5px solid var(--green); border-radius:8px; padding:14px 18px; margin:14px 0; }
+  .info-box::before { content:'📌 ポイント'; font-size:12px; font-weight:bold; color:var(--green); display:block; margin-bottom:6px; }
+
+  .hanrei-box { background:#f9f4ff; border:1.5px solid #7b2fbe; border-radius:8px; padding:14px 18px; margin:14px 0; font-size:13.5px; }
+  .hanrei-box::before { content:'⚖️ 判例'; font-size:12px; font-weight:bold; color:#7b2fbe; display:block; margin-bottom:6px; }
+
+  .compare-table { width:100%; border-collapse:collapse; margin:16px 0; font-size:13px; background:var(--white); border-radius:8px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.08); }
+  .compare-table th { background:var(--navy); color:var(--white); padding:10px 10px; text-align:center; font-weight:bold; }
+  .compare-table td { padding:9px 10px; border:1px solid var(--border); vertical-align:middle; text-align:center; line-height:1.6; }
+  .compare-table tr:nth-child(even) td { background:var(--blue-bg); }
+  .td-left { text-align:left !important; }
+  .ok { color:var(--green); font-weight:bold; }
+  .ng { color:var(--crimson); font-weight:bold; }
+
+  /* 添付グリッド */
+  .tenfu-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:14px 0; }
+  @media(max-width:580px){ .tenfu-grid{ grid-template-columns:1fr; } }
+  .tenfu-card { background:var(--white); border:1.5px solid var(--border); border-radius:8px; padding:14px; border-top:3px solid var(--navy); }
+  .tenfu-card.type-b { border-top-color:var(--gold); }
+  .tenfu-card.type-c { border-top-color:var(--crimson); }
+  .tenfu-card-title { font-size:13px; font-weight:bold; color:var(--navy); margin-bottom:8px; }
+  .tenfu-card.type-b .tenfu-card-title { color:#856404; }
+  .tenfu-card.type-c .tenfu-card-title { color:var(--crimson); }
+  .tenfu-card-body { font-size:13px; line-height:1.7; }
+
+  /* ミニテスト */
+  .mini-test { background:#FAFBFF; border:2px solid var(--navy); border-radius:10px; padding:20px; margin:24px 0; }
+  .mini-test-title { font-size:14px; font-weight:bold; color:var(--navy); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .mini-test-title::before { content:'✏️'; }
+  .test-q { margin-bottom:14px; }
+  .test-q-text { font-size:14px; margin-bottom:8px; line-height:1.8; }
+  .blank-word { display:inline-block; background:var(--navy); color:var(--navy); border-radius:4px; padding:0 4px; min-width:60px; cursor:pointer; transition:background 0.25s,color 0.25s; font-weight:bold; user-select:none; }
+  .blank-word.revealed { background:#FFF3CD; color:#7b5e00; }
+  .chips-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+  .chip { background:var(--white); border:1.5px solid var(--navy); border-radius:20px; padding:4px 14px; font-size:13px; cursor:pointer; transition:background 0.2s,color 0.2s; user-select:none; }
+  .chip:hover { background:var(--navy); color:#fff; }
+  .chip.correct { background:var(--green); color:#fff; border-color:var(--green); }
+  .chip.wrong { background:var(--crimson); color:#fff; border-color:var(--crimson); animation:shake 0.3s; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+
+  .summary-box { background:var(--navy); color:var(--white); border-radius:10px; padding:20px 22px; margin:28px 0 8px; }
+  .summary-box h3 { font-size:15px; font-weight:bold; margin-bottom:12px; color:#F4D03F; }
+  .summary-box ul { list-style:none; padding:0; }
+  .summary-box li { padding:5px 0 5px 18px; position:relative; font-size:14px; line-height:1.7; border-bottom:1px solid rgba(255,255,255,0.1); }
+  .summary-box li:last-child { border-bottom:none; }
+  .summary-box li::before { content:'▶'; position:absolute; left:0; color:var(--crimson-light); font-size:10px; top:8px; }
+
+  .law-badge { display:inline-block; background:var(--navy); color:#fff; font-size:11px; font-weight:bold; padding:1px 7px; border-radius:4px; margin-left:4px; vertical-align:middle; }
+  em { font-style:normal; color:var(--crimson); font-weight:bold; }
+  .navy { color:var(--navy); font-weight:bold; }
+  .green { color:var(--green); font-weight:bold; }
+  hr.section-divider { border:none; border-top:1px dashed var(--border); margin:28px 0; }
+  .back-top { text-align:center; margin-top:40px; }
+  .back-top a { display:inline-block; background:var(--navy); color:#fff; text-decoration:none; padding:10px 28px; border-radius:24px; font-size:13px; font-weight:bold; }
+</style>
+</head>
+<body>
+
+<header class="page-header" id="top">
+  <div class="header-badge">民法 ｜ 物権</div>
+  <h1>所有権</h1>
+  <div class="chapter-no">Chapter 15　民法 206〜213条・222〜224条・233〜234条・239〜248条</div>
+  <div class="importance-row">
+    <div class="importance-item"><span class="importance-label">重要度</span><span class="stars">★☆☆</span></div>
+    <div class="importance-item"><span class="importance-label">頻出度</span><span class="stars">★☆☆</span></div>
+  </div>
+</header>
+
+<div class="content">
+
+<!-- ========== SECTION 1 ========== -->
+<div class="section-header">
+  <div class="section-no">1</div>
+  <h2>所有権</h2>
+</div>
+
+<div class="article-box">
+  <p>「<em>所有権</em>」とは、その目的物を<em>法令の制限内において</em>自由に<em>使用・収益・処分</em>することができる物権です（206条）。無制限に使用・収益・処分が認められているわけではなく、あくまでも「法令の制限内において」という留保が付いています（所有権絶対の原則の修正）。</p>
+  <p>また、<em>土地の所有権は、法令の制限内においてその土地の上下に及びます</em>（207条）。ただし、無制限ではなく相当な範囲に限られます。</p>
+  <p>なお、<em>所有権は消滅時効にかかりません</em>（所有権に基づく物権的請求権なども同じ）。</p>
+</div>
+
+<!-- ========== SECTION 2 ========== -->
+<div class="section-header">
+  <div class="section-no">2</div>
+  <h2>相隣関係</h2>
+</div>
+
+<div class="sub-section">（1）囲繞地通行権（210〜213条）</div>
+
+<div class="article-box">
+  <p>他の土地に囲まれていて公道に出ることができない土地を「<em>袋地（ふくろじ）</em>」といいます。袋地の所有者には、袋地を囲んでいる土地（<em>囲繞地＝いにょうち</em>）を通って公道に出る権利が法律上当然に認められています。これを<em>囲繞地通行権（法定通行権）</em>といいます（210条1項）。</p>
+</div>
+
+<div class="point-card">
+  <div class="point-title">💡 囲繞地通行権のポイント</div>
+  ・通行は囲繞地にとって<em>最も損害が少ない方法</em>で行い、<em>償金を支払う必要</em>がある（211条1項・212条）<br>
+  ・ただし償金の不払いによって当然に通行権が消滅するわけではない<br>
+  ・<em>登記がなくても主張できる</em>（最判昭47・4・14）。177条は適用されない<br>
+  ・囲繞地に特定承継が生じた場合にも<em>消滅しない</em>（最判平2・11・26）
+</div>
+
+<div class="sub-section">分割又は一部譲渡によって袋地が生じた場合（213条）</div>
+
+<div class="article-box">
+  <p>もともと袋地ではなかったのに、土地の<em>分割又は一部譲渡</em>によって袋地が生じた場合は、囲繞地通行権が修正されます。</p>
+  <p>この場合、袋地の所有者は<em>他の分割者又は一部譲渡の関係者の所有地のみ</em>を通行することができます（213条1項）。しかも、<em>無償</em>で通行できます。</p>
+</div>
+
+<div class="goro-box">
+  <div class="goro-main">「分割・一部譲渡 → のみ、かつ無償」</div>
+  <div class="goro-sub">通行できる土地：分割関係者の土地のみ　　償金：不要（無償）</div>
+</div>
+
+<div class="caution-box">
+  分割・一部譲渡の場合は<em>「のみ、かつ無償」</em>が鉄則。通常の囲繞地通行権（有償・最も損害少ない方法）との区別をしっかり押さえましょう。
+</div>
+
+<hr class="section-divider">
+
+<div class="sub-section">（2）その他の相隣関係規定</div>
+
+<table class="compare-table">
+  <thead>
+    <tr><th>規定</th><th>内容</th><th>条文</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="td-left"><strong>①隣地の使用請求</strong></td>
+      <td class="td-left">境界付近の障壁・建物の築造・修繕のため<em>隣地の使用</em>を請求できる。ただし<em>住家への立入りは隣人の任意の承諾が必要</em>（判決で代えることはできない）</td>
+      <td>209条</td>
+    </tr>
+    <tr>
+      <td class="td-left"><strong>②堰の設置及び使用</strong></td>
+      <td class="td-left">流水地の所有者は対岸の他人の土地に堰を付着させて設けることができる（損害があれば償金要）</td>
+      <td>222条1項</td>
+    </tr>
+    <tr>
+      <td class="td-left"><strong>③境界標の設置等</strong></td>
+      <td class="td-left">境界標は<em>共同の費用</em>で設置。設置・保存費用は<em>等しい割合（半額ずつ）</em>で負担。<em>測量の費用</em>は<em>土地の広狭に応じて</em>分担</td>
+      <td>223〜224条</td>
+    </tr>
+    <tr>
+      <td class="td-left"><strong>④竹木の枝・根の処理</strong></td>
+      <td class="td-left">隣地の竹木の<em>枝</em>が越境→竹木の所有者に<em>切除させる</em>ことができる（自ら切ってはいけない）。<em>根</em>が越境→<em>自ら切り取ることができる</em></td>
+      <td>233条</td>
+    </tr>
+    <tr>
+      <td class="td-left"><strong>⑤境界付近の建築制限</strong></td>
+      <td class="td-left">建物築造時は境界線から<em>50センチメートル以上</em>の距離を保つ必要がある。ただし建築基準法65条が特別法として優先</td>
+      <td>234条</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="goro-box">
+  <div class="goro-main">「枝は切除させる、根は自ら切れる」</div>
+  <div class="goro-sub">枝→所有者に切除させる（自分では切れない）　根→自ら切り取れる</div>
+</div>
+
+<!-- ミニテスト① -->
+<div class="mini-test">
+  <div class="mini-test-title">ミニテスト①　相隣関係</div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q1. 分割又は一部譲渡によって袋地が生じた場合、袋地の所有者は（　<span class="mblank blank-word" data-ans="無償" onclick="revealBlank(this)">無償</span>　）で通行でき、通行できるのは分割関係者の土地（　<span class="mblank blank-word" data-ans="のみ" onclick="revealBlank(this)">のみ</span>　）である。
+    </div>
+  </div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q2. 隣地の竹木の枝が境界線を越えるとき、土地の所有者がとれる行動として正しいのはどれか。
+    </div>
+    <div class="chips-row" id="chips-q2">
+      <span class="chip" onclick="checkChip(this,'chips-q2','竹木の所有者に切除させることができる')">竹木の所有者に切除させることができる</span>
+      <span class="chip" onclick="checkChip(this,'chips-q2','竹木の所有者に切除させることができる')">自ら切り取ることができる</span>
+      <span class="chip" onclick="checkChip(this,'chips-q2','竹木の所有者に切除させることができる')">裁判所に申し立てることのみできる</span>
+    </div>
+  </div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q3. 境界標の設置・保存の費用は（　<span class="mblank blank-word" data-ans="等しい割合" onclick="revealBlank(this)">等しい割合</span>　）で負担し、測量の費用は（　<span class="mblank blank-word" data-ans="土地の広狭に応じて" onclick="revealBlank(this)">土地の広狭に応じて</span>　）分担する。
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECTION 3 ========== -->
+<div class="section-header">
+  <div class="section-no">3</div>
+  <h2>所有権の取得</h2>
+</div>
+
+<div class="sub-section">（1）無主物の帰属（239条）</div>
+
+<div class="article-box">
+  <p><em>所有者のない動産</em>は、<em>所有の意思</em>をもって占有することによって所有権を取得できます（239条1項）。一方、<em>所有者のない不動産</em>は、<em>国庫に帰属</em>します（239条2項）。</p>
+</div>
+
+<div class="sub-section">（2）遺失物の拾得（240条）</div>
+
+<div class="article-box">
+  <p>遺失物は、遺失物法の定めるところに従い公告をした後<em>3か月以内</em>にその所有者が判明しないときは、拾得した者がその所有権を取得できます（240条）。</p>
+</div>
+
+<div class="sub-section">（3）埋蔵物の発見（241条）</div>
+
+<div class="article-box">
+  <p>埋蔵物は、遺失物法に従い公告をした後<em>6か月以内</em>にその所有者が判明しないときは、<em>発見した者がその所有権を取得</em>します。ただし、<em>他人の所有する物の中から発見された埋蔵物</em>（他人の土地等）については、<em>発見した者及びその他人が等しい割合</em>でその所有権を取得します（241条）。</p>
+</div>
+
+<div class="goro-box">
+  <div class="goro-main">「遺失物は3か月、埋蔵物は6か月」</div>
+  <div class="goro-sub">遺失物→公告後3か月　　埋蔵物→公告後6か月</div>
+</div>
+
+<hr class="section-divider">
+
+<div class="sub-section">（4）添付（242〜248条）</div>
+
+<div class="article-box">
+  <p>「<em>添付</em>」とは、2つ以上の物がくっついたり混ざり合ったりするケースのことです。添付には<em>①付合・②混和・③加工</em>の3つがあります。</p>
+</div>
+
+<div class="tenfu-grid">
+  <div class="tenfu-card">
+    <div class="tenfu-card-title">① 付合（242〜244条）</div>
+    <div class="tenfu-card-body">
+      <strong>不動産の付合</strong>（242条）：動産が所有者の異なる不動産に付合した場合<br>
+      → <em>原則として不動産の所有者</em>がその動産の所有権を取得<br>
+      （ただし動産の所有者が権原によって留保した場合は除く）<br><br>
+      <strong>動産の付合</strong>（243〜244条）：所有者の異なる動産どうしが付合した場合<br>
+      → 主従の区別ができるとき：<em>主たる動産の所有者</em>の物になる<br>
+      → 主従の区別ができないとき：<em>付合当時の価格の割合に応じて共有</em>
+    </div>
+  </div>
+  <div class="tenfu-card type-b">
+    <div class="tenfu-card-title">② 混和（245条）</div>
+    <div class="tenfu-card-body">
+      固形物（穀物・金銭など）や流動物（油・酒など）が混ざり合って分離できなくなった状態。<br><br>
+      → <em>動産の付合に関する規定が準用</em>される（245条）。動産の付合と同じように処理すれば足ります。
+    </div>
+  </div>
+  <div class="tenfu-card type-c">
+    <div class="tenfu-card-title">③ 加工（246条）</div>
+    <div class="tenfu-card-body">
+      他人の動産に工作を加えて新たな物を作り出すこと。<br><br>
+      <em>原則</em>：加工物の所有権は<em>材料の所有者</em>に帰属<br>
+      <em>例外①</em>：工作によって生じた価格が材料の価格を<em>著しく超えるとき</em>→<em>加工者</em>が所有権取得<br>
+      <em>例外②</em>：加工者が材料の一部を提供した場合、（加工者提供の材料価格＋工作費）が他人の材料価格を超えるとき→<em>加工者</em>が所有権取得
+    </div>
+  </div>
+</div>
+
+<div class="hanrei-box">
+  <strong>建前と加工（最判昭54・1・25）</strong><br>
+  建築途中で未だ独立の不動産に至らない「建前」は動産として扱われます。第三者が材料を提供して工事を施し建物に仕上げた場合の建物所有権の帰属は、<em>動産の付合ではなく加工の規定に基づいて決する</em>とされています。
+</div>
+
+<div class="info-box">
+  <strong>添付の効果（248条）</strong><br>
+  添付によって所有権を失った者は、添付によって所有権を取得した者に対して、<em>償金を請求することができます</em>（公平の観点）。
+</div>
+
+<!-- ミニテスト② -->
+<div class="mini-test">
+  <div class="mini-test-title">ミニテスト②　所有権の取得・添付</div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q4. 所有者のない（　<span class="mblank blank-word" data-ans="不動産" onclick="revealBlank(this)">不動産</span>　）は国庫に帰属し、所有者のない（　<span class="mblank blank-word" data-ans="動産" onclick="revealBlank(this)">動産</span>　）は所有の意思をもって占有することで所有権を取得できる。
+    </div>
+  </div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q5. 動産の付合において主従の区別ができないときの所有権帰属として正しいのはどれか。
+    </div>
+    <div class="chips-row" id="chips-q5">
+      <span class="chip" onclick="checkChip(this,'chips-q5','付合当時の価格の割合に応じて共有')">付合当時の価格の割合に応じて共有</span>
+      <span class="chip" onclick="checkChip(this,'chips-q5','付合当時の価格の割合に応じて共有')">主たる動産の所有者の物になる</span>
+      <span class="chip" onclick="checkChip(this,'chips-q5','付合当時の価格の割合に応じて共有')">国庫に帰属する</span>
+    </div>
+  </div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q6. 加工の原則として、加工物の所有権は（　<span class="mblank blank-word" data-ans="材料の所有者" onclick="revealBlank(this)">材料の所有者</span>　）に帰属するが、工作によって生じた価格が材料の価格を著しく超えるときは（　<span class="mblank blank-word" data-ans="加工者" onclick="revealBlank(this)">加工者</span>　）が所有権を取得する。
+    </div>
+  </div>
+</div>
+
+<!-- まとめ -->
+<div class="summary-box">
+  <h3>📝 ch15 まとめ</h3>
+  <ul>
+    <li>所有権は法令の制限内で使用・収益・処分できる権利（206条）。消滅時効にかからない。</li>
+    <li>囲繞地通行権：袋地所有者は囲繞地を通行可。最も損害少ない方法で償金要。登記不要。特定承継後も消滅しない。</li>
+    <li>分割・一部譲渡による袋地→「のみ、かつ無償」。通行できるのは分割関係者の土地のみ。</li>
+    <li>境界標：設置・保存費用は等しい割合（折半）、測量費用は土地の広狭に応じて分担。</li>
+    <li>竹木の枝→所有者に切除させる（自ら切除不可）、根→自ら切り取れる（233条）。</li>
+    <li>無主物：動産→所有の意思をもって占有で取得、不動産→国庫帰属。</li>
+    <li>遺失物→公告後3か月、埋蔵物→公告後6か月で所有権取得。他人の物の中の埋蔵物→発見者と土地所有者が等しい割合で取得。</li>
+    <li>添付①付合：不動産＋動産→不動産所有者の物（原則）。動産＋動産→主たる動産の所有者の物（主従不明なら価格割合で共有）。</li>
+    <li>添付②混和：動産の付合規定を準用。③加工：原則＝材料所有者、例外＝工作費が著しく超えるとき加工者が取得。</li>
+    <li>添付によって所有権を失った者は償金請求可（248条）。</li>
+  </ul>
+</div>
+
+<div class="back-top"><a href="#top">▲ ページトップに戻る</a></div>
+
+</div>
+
+<script>
+function revealBlank(el) { el.classList.add('revealed'); }
+function checkChip(el, groupId, correctAnswer) {
+  const group = document.getElementById(groupId);
+  const chips = group.querySelectorAll('.chip');
+  chips.forEach(c => { c.onclick = null; c.style.pointerEvents = 'none'; });
+  if (el.textContent.trim() === correctAnswer) {
+    el.classList.add('correct');
+  } else {
+    el.classList.add('wrong');
+    setTimeout(() => { chips.forEach(c => { if (c.textContent.trim() === correctAnswer) c.classList.add('correct'); }); }, 400);
+  }
+}
+</script>
+</body>
+</html>

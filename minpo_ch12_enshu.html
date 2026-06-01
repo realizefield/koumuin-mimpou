@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch12 不動産物権変動 演習</title>
+<style>
+  :root{--bg:#eef2f7;--card:#fff;--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--cyan:#00AEEF;--text:#2c3e50;--border:#dde3ec;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);font-family:'Meiryo','メイリオ',sans-serif;color:var(--text);font-size:15px;line-height:1.8;}
+  header{background:var(--navy);color:#fff;padding:18px 24px 14px;}
+  header .chapter-num{font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:4px;}
+  header h1{font-size:22px;font-weight:bold;}
+  header p{font-size:13px;color:#aac;margin-top:4px;}
+  .container{max-width:800px;margin:0 auto;padding:20px 16px 60px;}
+  .q-card{background:var(--card);border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:20px;overflow:hidden;}
+  .q-header{background:var(--navy);color:#fff;padding:8px 18px;font-size:13px;display:flex;align-items:center;gap:10px;}
+  .q-header .qnum{background:var(--gold);color:var(--navy);font-weight:bold;font-size:12px;padding:2px 10px;border-radius:12px;}
+  .q-body{padding:18px 20px;}
+  .q-text{font-size:15px;margin-bottom:14px;line-height:1.85;}
+  .ox-btn-wrap{display:flex;gap:12px;margin-bottom:10px;}
+  .ox-btn{flex:1;padding:10px;font-size:20px;border:2px solid var(--border);border-radius:8px;background:#f5f8fc;cursor:pointer;font-family:'Meiryo',sans-serif;transition:all .15s;}
+  .ox-btn:hover{background:#e8f0f8;}
+  .ox-btn.correct{background:#d4edda;border-color:#27ae60;}
+  .ox-btn.wrong{background:#f8d7da;border-color:#e74c3c;}
+  .choice-list{list-style:none;margin-bottom:10px;}
+  .choice-list li{padding:9px 14px;border:2px solid var(--border);border-radius:8px;margin-bottom:8px;cursor:pointer;font-size:14px;transition:all .15s;background:#f5f8fc;}
+  .choice-list li:hover{background:#e8f0f8;border-color:var(--cyan);}
+  .choice-list li.correct{background:#d4edda;border-color:#27ae60;color:#155724;}
+  .choice-list li.wrong{background:#f8d7da;border-color:#e74c3c;color:#721c24;}
+  .explanation{display:none;background:#f0f7ff;border-left:4px solid var(--cyan);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:12px;font-size:14px;line-height:1.75;}
+  .explanation.show{display:block;}
+  .ex-label{font-weight:bold;color:var(--navy);font-size:13px;margin-bottom:6px;}
+  .result-badge{display:inline-block;padding:2px 12px;border-radius:12px;font-size:13px;font-weight:bold;margin-bottom:8px;}
+  .badge-ok{background:#d4edda;color:#155724;}
+  .badge-ng{background:#f8d7da;color:#721c24;}
+  .kw{color:var(--crimson);font-weight:bold;}
+  .kw-b{color:#1a6ea8;font-weight:bold;}
+  .score-card{background:var(--card);border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px 20px;text-align:center;display:none;margin-bottom:20px;}
+  .score-card.show{display:block;}
+  .score-num{font-size:48px;font-weight:bold;color:var(--navy);}
+  .score-sub{font-size:14px;color:#777;margin-top:4px;}
+  .retry-btn{background:var(--crimson);color:#fff;border:none;border-radius:6px;padding:10px 28px;font-size:15px;cursor:pointer;margin-top:16px;font-family:'Meiryo',sans-serif;}
+</style>
+</head>
+<body>
+<header>
+  <div class="chapter-num">CHAPTER 12 ／ 民法 演習</div>
+  <h1>不動産物権変動　演習問題</h1>
+  <p>OX問題4問 ＋ 5択1問　全5問</p>
+</header>
+<div class="container">
+<div class="score-card" id="scoreCard">
+  <div class="score-num" id="scoreNum">0/5</div>
+  <div class="score-sub">お疲れさまでした！</div>
+  <button class="retry-btn" onclick="location.reload()">もう一度チャレンジ</button>
+</div>
+
+<!-- Q1 -->
+<div class="q-card">
+  <div class="q-header"><span class="qnum">Q1</span> OX問題</div>
+  <div class="q-body">
+    <div class="q-text">AがBに土地を売却したが登記未了の間に、AがCにも同土地を売却しCが登記を備えた場合、CがAB間の売買を知っていたとしても、BはCに対して土地の所有権を主張することができない。</div>
+    <div class="ox-btn-wrap">
+      <button class="ox-btn" onclick="answerOX(1,'O',this)">○</button>
+      <button class="ox-btn" onclick="answerOX(1,'X',this)">×</button>
+    </div>
+    <div class="explanation" id="ex1">
+      <span class="result-badge" id="badge1"></span>
+      <div class="ex-label">解説</div>
+      <p>正しい。単純な<span class="kw">悪意者（知っていた者）は177条の第三者にあたります</span>。CはAB間の売買を知っていても、先に登記を備えた以上、BはCに対抗できません。ただしCが<span class="kw-b">背信的悪意者</span>に該当する場合は結論が変わります。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q2 -->
+<div class="q-card">
+  <div class="q-header"><span class="qnum">Q2</span> OX問題</div>
+  <div class="q-body">
+    <div class="q-text">AがBの詐欺を理由にAB間の売買契約を取り消した後、BがCに不動産を譲渡しCが登記を備えた場合、AはCに対して登記なしに所有権を主張することができる。</div>
+    <div class="ox-btn-wrap">
+      <button class="ox-btn" onclick="answerOX(2,'O',this)">○</button>
+      <button class="ox-btn" onclick="answerOX(2,'X',this)">×</button>
+    </div>
+    <div class="explanation" id="ex2">
+      <span class="result-badge" id="badge2"></span>
+      <div class="ex-label">解説</div>
+      <p>誤り。<span class="kw">取消後の第三者</span>との関係は177条が適用されます。取消によってAに所有権が復帰する物権変動とCの物権変動が対抗関係に立つため、<span class="kw-b">先に登記を備えた方が勝ち</span>ます。AはCに対抗するためには登記が必要です。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q3 -->
+<div class="q-card">
+  <div class="q-header"><span class="qnum">Q3</span> OX問題</div>
+  <div class="q-body">
+    <div class="q-text">AがBに土地を売却したが登記未了の間にBが債務不履行をしたため、AがAB間の売買契約を解除した。その後、BがCに当該土地を売却しCが登記を備えた。この場合、Aは登記なくしてCに土地の所有権の復帰を主張できない。</div>
+    <div class="ox-btn-wrap">
+      <button class="ox-btn" onclick="answerOX(3,'O',this)">○</button>
+      <button class="ox-btn" onclick="answerOX(3,'X',this)">×</button>
+    </div>
+    <div class="explanation" id="ex3">
+      <span class="result-badge" id="badge3"></span>
+      <div class="ex-label">解説</div>
+      <p>正しい。<span class="kw">解除後の第三者</span>との関係は177条が適用されます。解除によるAへの所有権復帰とCの取得が対抗関係に立ち、<span class="kw-b">先に登記を備えた方が優先</span>します。AはCに対抗するためには登記が必要です。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q4 -->
+<div class="q-card">
+  <div class="q-header"><span class="qnum">Q4</span> OX問題</div>
+  <div class="q-body">
+    <div class="q-text">A・B間で不動産の売買契約が成立し所有権がBに移転したが、BへのA→B登記が未了の間に、AがCにも売却した。Cが登記を備えた場合、BはCに対して所有権を主張できない。この場合に、BがAに対してA→C→Bという登記移転をCの同意なしに求めることはできない。</div>
+    <div class="ox-btn-wrap">
+      <button class="ox-btn" onclick="answerOX(4,'O',this)">○</button>
+      <button class="ox-btn" onclick="answerOX(4,'X',this)">×</button>
+    </div>
+    <div class="explanation" id="ex4">
+      <span class="result-badge" id="badge4"></span>
+      <div class="ex-label">解説</div>
+      <p>正しい。中間省略登記はA・B・C<span class="kw">全員の同意</span>がなければ認められません（最判昭40・9・21）。Cの同意なしにBがAに直接登記移転を求めることはできません。なお、本問でCが先に登記を備えている以上BはCに所有権を主張できない点も確認しましょう。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q5 -->
+<div class="q-card">
+  <div class="q-header"><span class="qnum">Q5</span> 5択問題</div>
+  <div class="q-body">
+    <div class="q-text">不動産物権変動と対抗要件に関する記述として、妥当なのはどれか。<br><small style="color:#777;">（2010年東京特別区Ⅰ類改題）</small></div>
+    <ul class="choice-list" id="choices5">
+      <li onclick="answerChoice(5,1,this)">1. 最高裁判所の判例では、甲所有の不動産が乙丙へと順次移転したのに、登記名義は依然として甲にある場合、丙は甲及び乙の合意があっても、直接甲に対して自己への所有権移転登記を請求することはできないとした。</li>
+      <li onclick="answerChoice(5,2,this)">2. 最高裁判所の判例では、家屋が甲から乙、丙を経て丁に転々譲渡された後、乙の同意なしに丁のために中間省略登記がされた場合、乙は、当該家屋の売却代金を受領済みであっても、中間省略登記の抹消を請求することができるとした。</li>
+      <li onclick="answerChoice(5,3,this)">3. 最高裁判所の判例では、所有者甲から乙が不動産を買い受け、その登記が未了の間に、丙が当該不動産を甲から二重に買い受け、更に丙から転得者丁が買い受けて登記を完了した場合、丙が背信的悪意者でも、丁が乙との関係で背信的悪意者に当たらない限り、丁は所有権取得をもって乙に対抗できるとした。</li>
+      <li onclick="answerChoice(5,4,this)">4. 不動産の買主乙は、売主甲からの所有権移転登記をしないうちに不動産を丙に転売してその所有権を喪失した場合には、甲に対する自己への登記請求権を失う。</li>
+      <li onclick="answerChoice(5,5,this)">5. 登記をしなければ対抗できない第三者とは、不動産物権の得喪及び変更の登記欠缺を主張するにつき正当の利益を有する者をいい、当事者またはその包括承継人を含むすべての者を指す。</li>
+    </ul>
+    <div class="explanation" id="ex5">
+      <span class="result-badge" id="badge5"></span>
+      <div class="ex-label">解説</div>
+      <p><span class="kw">正解は3</span>。丙が背信的悪意者であっても、転得者丁が独自に背信的悪意者でなければ、丁は乙に対抗できます（最判昭43・8・2）。</p>
+      <p>1は×：中間省略登記は<span class="kw">全員の合意</span>があれば認められます。甲・乙・丙全員の合意があれば丙は甲に直接請求できます。</p>
+      <p>2は×：乙は売却代金を受領済みで、実質的な損害がないため<span class="kw">抹消請求できない</span>とされています（最判昭35・4・21）。</p>
+      <p>4は×：乙が丙に転売して所有権を失っても、<span class="kw">甲に対する登記請求権は失わない</span>（最判昭39・3・6）。</p>
+      <p>5は×：177条の第三者は<span class="kw">当事者・包括承継人を含まない</span>。</p>
+    </div>
+  </div>
+</div>
+
+</div>
+<script>
+const answers={1:'O',2:'X',3:'O',4:'O',5:3};
+const scored={};
+function answerOX(q,choice,btn){
+  if(scored[q])return;scored[q]=true;
+  const correct=answers[q];
+  const btns=btn.closest('.ox-btn-wrap').querySelectorAll('.ox-btn');
+  btns.forEach(b=>b.disabled=true);
+  const badge=document.getElementById('badge'+q);
+  const ex=document.getElementById('ex'+q);
+  if(choice===correct){btn.classList.add('correct');badge.textContent='✅ 正解';badge.className='result-badge badge-ok';}
+  else{btn.classList.add('wrong');btns.forEach(b=>{if((correct==='O'&&b.textContent==='○')||(correct==='X'&&b.textContent==='×'))b.classList.add('correct');});badge.textContent='❌ 不正解';badge.className='result-badge badge-ng';}
+  ex.classList.add('show');checkDone();
+}
+function answerChoice(q,choice,li){
+  if(scored[q])return;scored[q]=true;
+  const correct=answers[q];
+  const lis=document.getElementById('choices'+q).querySelectorAll('li');
+  lis.forEach(l=>l.style.pointerEvents='none');
+  const badge=document.getElementById('badge'+q);
+  const ex=document.getElementById('ex'+q);
+  if(choice===correct){li.classList.add('correct');badge.textContent='✅ 正解';badge.className='result-badge badge-ok';}
+  else{li.classList.add('wrong');lis[correct-1].classList.add('correct');badge.textContent='❌ 不正解';badge.className='result-badge badge-ng';}
+  ex.classList.add('show');checkDone();
+}
+function checkDone(){
+  if(Object.keys(scored).length<5)return;
+  let cnt=0;
+  [1,2,3,4,5].forEach(q=>{const b=document.getElementById('badge'+q);if(b&&b.textContent.includes('✅'))cnt++;});
+  document.getElementById('scoreNum').textContent=cnt+'/5';
+  const sc=document.getElementById('scoreCard');sc.classList.add('show');
+  sc.scrollIntoView({behavior:'smooth',block:'center'});
+}
+</script>
+<div style="text-align:center;font-size:11px;color:#aaa;padding:16px 0 30px;">音声：VOICEVOX / 四国めたん</div>
+</body>
+</html>

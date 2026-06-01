@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch10 時効②</title>
+<style>
+  :root {
+    --bg: #eef2f7; --card: #ffffff; --navy: #1B2A4A; --crimson: #C0392B;
+    --gold: #D4A017; --cyan: #00AEEF; --text: #2c3e50; --border: #dde3ec;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); font-family: 'Meiryo','メイリオ',sans-serif; color: var(--text); font-size: 15px; line-height: 1.8; }
+  header { background: var(--navy); color: #fff; padding: 18px 24px 14px; }
+  header .chapter-num { font-size: 13px; color: var(--gold); letter-spacing: 2px; margin-bottom: 4px; }
+  header h1 { font-size: 22px; font-weight: bold; }
+  header .stars { font-size: 13px; margin-top: 4px; color: #aac; }
+  header .stars span { color: var(--gold); }
+  .container { max-width: 800px; margin: 0 auto; padding: 20px 16px 60px; }
+  .section-card { background: var(--card); border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); margin-bottom: 24px; overflow: hidden; }
+  .section-header { background: var(--navy); color: #fff; padding: 10px 18px; font-size: 15px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+  .section-header .num { background: var(--gold); color: var(--navy); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; flex-shrink: 0; }
+  .section-body { padding: 18px 20px; }
+  .sub-heading { font-size: 14px; font-weight: bold; color: var(--navy); border-left: 4px solid var(--cyan); padding-left: 10px; margin: 18px 0 10px; }
+  .sub-heading:first-child { margin-top: 0; }
+  p { margin-bottom: 10px; }
+  p:last-child { margin-bottom: 0; }
+  .kw { color: var(--crimson); font-weight: bold; }
+  .kw-b { color: #1a6ea8; font-weight: bold; }
+  .kw-g { color: #27ae60; font-weight: bold; }
+  .formula-box { background: #e8f4fd; border: 1px solid #a8d4f0; border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 15px; text-align: center; font-weight: bold; color: var(--navy); }
+  .formula-box .eq { color: var(--crimson); }
+  .table-wrap { overflow-x: auto; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { background: var(--navy); color: #fff; padding: 8px 12px; text-align: center; }
+  td { border: 1px solid var(--border); padding: 8px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f8fc; }
+  .td-ok { color: #27ae60; font-weight: bold; text-align: center; }
+  .td-ng { color: var(--crimson); font-weight: bold; text-align: center; }
+  .hanrei { background: #fff8e1; border-left: 4px solid var(--gold); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 14px; }
+  .hanrei .hanrei-title { font-weight: bold; color: #8a6000; margin-bottom: 6px; font-size: 13px; }
+  .point-box { background: #fef9ec; border: 1px solid var(--gold); border-radius: 8px; padding: 10px 14px; margin: 12px 0; font-size: 14px; }
+  .point-box::before { content: "📌 POINT"; font-weight: bold; color: #8a6000; display: block; margin-bottom: 4px; font-size: 12px; }
+  .goro { background: #f0f9ff; border: 2px dashed var(--cyan); border-radius: 8px; padding: 10px 16px; margin: 12px 0; text-align: center; }
+  .goro .goro-text { font-size: 18px; font-weight: bold; color: var(--navy); letter-spacing: 2px; }
+  .goro .goro-note { font-size: 12px; color: #777; margin-top: 4px; }
+  ul.list { padding-left: 20px; margin: 8px 0; }
+  ul.list li { margin-bottom: 6px; }
+  /* ===== ミニテスト ===== */
+  .mini-test { background: #f4f0fa; border: 2px solid #9b59b6; border-radius: 10px; padding: 16px 18px; margin-top: 24px; }
+  .mt-title { font-weight: bold; color: #6c3483; font-size: 14px; display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+  .mt-title::before { content: "✏️"; }
+  .mt-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .btn { border: none; border-radius: 6px; padding: 6px 16px; font-size: 13px; cursor: pointer; font-family: 'Meiryo',sans-serif; font-weight: bold; transition: opacity 0.15s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-challenge { background: #C0392B; color: #fff; }
+  .btn-judge     { background: #27ae60; color: #fff; }
+  .btn-show      { background: #D4A017; color: #1B2A4A; }
+  .btn:disabled  { opacity: 0.4; cursor: not-allowed; }
+  .word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; padding: 10px 12px; background: #ece8f5; border-radius: 8px; min-height: 42px; }
+  .word-chip { background: #1B2A4A; color: #fff; border-radius: 20px; padding: 4px 14px; font-size: 13px; cursor: pointer; user-select: none; transition: all 0.15s; }
+  .word-chip:hover { opacity: 0.85; }
+  .word-chip.used { opacity: 0.3; pointer-events: none; }
+  .mblank { display: inline-block; border-radius: 4px; padding: 1px 8px; min-width: 72px; text-align: center; font-weight: bold; font-size: 14px; cursor: pointer; transition: all 0.2s; border: 2px solid #bbb; vertical-align: middle; background: #ddd; color: #ddd; user-select: none; }
+  .mblank.preview { background: #d4edda; border-color: #27ae60; color: #155724; cursor: default; }
+  .mblank.active  { background: #fff3cd; border-color: #D4A017; color: #1B2A4A; }
+  .mblank.filled  { background: #eaf0fb; border-color: #6c8ebf; color: #1B2A4A; }
+  .mblank.correct { background: #d4edda; border-color: #27ae60; color: #155724; }
+  .mblank.wrong   { background: #f8d7da; border-color: #e74c3c; color: #721c24; }
+  .mt-q { font-size: 14px; margin-bottom: 10px; line-height: 2; }
+  .result-msg { font-size: 14px; margin-top: 10px; font-weight: bold; min-height: 22px; }
+  .result-msg.ok { color: #27ae60; }
+  .result-msg.ng { color: #C0392B; }
+  #confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; display:none; }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<header>
+  <div class="chapter-num">CHAPTER 10 ／ 民法</div>
+  <h1>時効②（取得時効・消滅時効の要件）</h1>
+  <div class="stars">重要度 <span>★★★</span> ／ 頻出度 <span>★★☆</span></div>
+</header>
+
+<div class="container">
+
+<!-- ===== セクション1 取得時効 ===== -->
+<div class="section-card">
+  <div class="section-header"><span class="num">1</span>取得時効</div>
+  <div class="section-body">
+
+    <div class="sub-heading">（1）所有権を時効取得する場合の要件</div>
+    <p>取得時効が成立すると、時効には遡及効があるため、<span class="kw">占有開始時から制限のない完全な所有者</span>として扱われます。これを「<span class="kw">原始取得</span>」といいます。前主の権利に基づかず、独立して新たな権利を取得するので、前主の権利に制限や負担がついていても承継しません。</p>
+
+    <p>要件は以下の4つです。</p>
+    <ul class="list">
+      <li>①<span class="kw">他人の物を占有したこと</span>（動産・不動産問わず。自己の物の時効取得も可・最判昭42・7・21）</li>
+      <li>②<span class="kw">所有の意思をもって占有すること</span>（自主占有）</li>
+      <li>③<span class="kw">平穏かつ公然な占有であること</span></li>
+      <li>④<span class="kw">一定期間継続して占有すること</span></li>
+    </ul>
+
+    <div class="sub-heading">（2）自主占有と他主占有</div>
+    <p>「<span class="kw">自主占有</span>」とは所有者と同様の排他的支配を事実上行うという意思（所有の意思）をもった占有です。自主占有か否かは<span class="kw-b">主観によってではなく、占有取得原因によって外形的・客観的に判断</span>されます（最判昭45・6・18）。</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th>自主占有（○）</th><th>他主占有（×）</th></tr>
+        <tr>
+          <td>盗人・無効な売買の買主・不法占拠者</td>
+          <td>賃借人・質権者・受寄者（預かっているだけ）</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="point-box">「所有の意思」は<strong>民法186条1項で推定</strong>される。相手方が他主占有事情（賃貸借契約の存在など）を立証しなければならない。</div>
+
+    <div class="sub-heading">（3）平穏・公然・善意の推定</div>
+    <p>「平穏かつ公然」と「<span class="kw">善意</span>」は民法186条1項によって<span class="kw">推定</span>されます。</p>
+    <p>一方、「<span class="kw">無過失</span>」は推定されません。10年の短期取得時効を主張したい者が自ら無過失を立証する必要があります。</p>
+
+    <div class="sub-heading">（4）時効期間</div>
+    <div class="formula-box">
+      占有開始時に<span class="eq">善意かつ無過失</span> → <span class="eq">10年</span><br>
+      それ以外（悪意または有過失） → <span class="eq">20年</span>（民法162条）
+    </div>
+    <div class="point-box">起算点は<strong>占有開始時</strong>で固定。任意に動かすことができない。</div>
+
+    <div class="sub-heading">（5）占有の継続の推定</div>
+    <p>前後両時点において占有していた証拠を提出すれば、その間継続していたものと<span class="kw">推定</span>されます（186条2項）。</p>
+
+    <div class="sub-heading">（6）占有の承継</div>
+    <p>物の譲渡などで占有主体が変わった場合、承継人は<span class="kw-b">自己の占有のみ</span>を主張してもよいし、<span class="kw-b">前占有者の占有を併せて主張</span>してもよい（187条1項）。</p>
+    <p>ただし前占有者の占有を<span class="kw">併せて主張する場合は前占有者の瑕疵も承継</span>します（187条2項）。</p>
+
+    <div class="hanrei">
+      <div class="hanrei-title">占有承継の例（重要！）</div>
+      <p>Aが悪意で9年占有→Bに譲渡→Bが善意・無過失で12年占有。</p>
+      <p>①Bは自己の占有のみで<strong>10年の時効取得を主張できる</strong>。</p>
+      <p>②Bが前占有者Aの占有を併せて主張する場合→Aの瑕疵（悪意）を承継→Bも悪意者として扱われ、20年必要→9+12=21年で取得時効成立。</p>
+    </div>
+
+    <div class="sub-heading">（7）所有権以外の財産権の取得時効</div>
+    <p>所有権以外の財産権（不動産賃借権など）も取得時効の対象となります（163条）。判例は<span class="kw">不動産賃借権の時効取得</span>を次の2要件を満たす場合に認めています（最判昭43・10・8）。</p>
+    <ul class="list">
+      <li>①目的物の<span class="kw">継続的用益という外形的事実</span>が存在すること</li>
+      <li>②それが<span class="kw">賃借の意思に基づくことが客観的に表現</span>されていること（賃料の支払いなど）</li>
+    </ul>
+
+    <!-- ミニテスト1 -->
+    <div class="mini-test" data-group="1">
+      <div class="mt-title">ミニテスト①</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(1)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(1)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(1)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb1">
+        <span class="word-chip" data-word="原始取得">原始取得</span>
+        <span class="word-chip" data-word="客観的">客観的</span>
+        <span class="word-chip" data-word="10年">10年</span>
+        <span class="word-chip" data-word="20年">20年</span>
+        <span class="word-chip" data-word="推定されない">推定されない</span>
+      </div>
+      <div class="mt-q">① 取得時効による所有権取得を<span class="mblank preview" data-ans="原始取得" data-group="1">原始取得</span>という。前主の負担を承継しない。</div>
+      <div class="mt-q">② 自主占有か否かは占有取得原因によって外形的・<span class="mblank preview" data-ans="客観的" data-group="1">客観的</span>に判断される。</div>
+      <div class="mt-q">③ 占有開始時に善意かつ無過失の場合の時効期間は<span class="mblank preview" data-ans="10年" data-group="1">10年</span>、それ以外は<span class="mblank preview" data-ans="20年" data-group="1">20年</span>。</div>
+      <div class="mt-q">④ 無過失は民法186条1項によって<span class="mblank preview" data-ans="推定されない" data-group="1">推定されない</span>。</div>
+      <div class="result-msg" id="rm1"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== セクション2 消滅時効 ===== -->
+<div class="section-card">
+  <div class="section-header"><span class="num">2</span>消滅時効</div>
+  <div class="section-body">
+
+    <div class="sub-heading">（1）消滅時効にかかる権利</div>
+    <p>消滅時効にかかる権利は<span class="kw">債権</span>（166条1項）と<span class="kw">所有権以外の財産権</span>（地上権・地役権など）（166条2項）です。</p>
+    <div class="point-box"><strong>所有権は消滅時効にかからない</strong>。また所有権に基づく物権的請求権・登記請求権・相隣権・共有物分割請求権も消滅時効にかかりません（親が時効にかからない以上、子も同じ）。</div>
+
+    <div class="sub-heading">（2）債権の消滅時効期間と起算点</div>
+    <p>債権の消滅時効期間には<span class="kw">主観的起算点</span>と<span class="kw">客観的起算点</span>の2つがあります。</p>
+
+    <div class="formula-box">
+      ①主観的起算点（債権者が権利行使できることを<span class="eq">知った時</span>）から <span class="eq">5年</span><br>
+      ②客観的起算点（権利を行使することができる時）から <span class="eq">10年</span><br>
+      ※①②のいずれか早い方で時効完成（166条1項）
+    </div>
+
+    <div class="point-box">人の生命・身体の侵害による損害賠償請求権（安全配慮義務違反など）は客観的起算点から<strong>20年</strong>（167条）。</div>
+
+    <div class="sub-heading">（3）各債権の客観的起算点まとめ</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>債権の種類</th><th>客観的起算点</th></tr>
+        <tr><td>確定期限のある債権</td><td class="td-ok">期限到来時</td></tr>
+        <tr><td>不確定期限のある債権</td><td class="td-ok">期限到来時（×期限到来を知った時）</td></tr>
+        <tr><td>期限の定めのない債権</td><td class="td-ok">債権成立時</td></tr>
+        <tr><td>債務不履行に基づく損害賠償請求権</td><td class="td-ok">本来の債権について履行を請求できる時（履行期）</td></tr>
+        <tr><td>返還時期の定めのない消費貸借</td><td class="td-ok">債権成立後、相当期間が経過した時</td></tr>
+      </table>
+    </div>
+
+    <div class="sub-heading">（4）不法行為による損害賠償請求権の消滅時効</div>
+    <p>不法行為による損害賠償請求権の主観的起算点は特別で、「<span class="kw">被害者またはその法定代理人が損害及び加害者を知った時</span>」（724条1号）から<span class="kw">3年</span>で時効完成。</p>
+    <p>ただし<span class="kw">人の生命・身体を害する不法行為</span>による損害賠償請求権は<span class="kw">5年</span>（724条の2）。</p>
+    <p>客観的起算点は「<span class="kw">不法行為の時</span>」から<span class="kw">20年</span>（724条2号）。</p>
+
+    <div class="goro">
+      <div class="goro-text">不法行為：知った時から3年・行為の時から20年</div>
+      <div class="goro-note">生命・身体侵害は知った時から5年・行為の時から20年</div>
+    </div>
+
+    <div class="sub-heading">（5）割賦払いと消滅時効</div>
+    <p>割賦払いで1回の支払いを怠った場合、判例は原則として<span class="kw">その1回分ごと</span>に時効が進行するとしています。ただし債権者が「<span class="kw">全額を弁済するように</span>」と意思表示した場合は、<span class="kw-b">例外的に全額について時効が進行</span>します（最判昭42・6・23）。</p>
+
+    <div class="sub-heading">（6）判決で確定した権利の消滅時効</div>
+    <p>確定判決等によって確定した権利は、10年より短い時効期間の定めがあるものでも、<span class="kw">時効期間は10年</span>になります（169条1項）。ただし確定の時に弁済期が到来していない債権はそのまま短い時効期間が適用されます（169条2項）。</p>
+
+    <!-- ミニテスト2 -->
+    <div class="mini-test" data-group="2">
+      <div class="mt-title">ミニテスト②</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(2)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(2)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(2)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb2">
+        <span class="word-chip" data-word="5年">5年</span>
+        <span class="word-chip" data-word="10年">10年</span>
+        <span class="word-chip" data-word="3年">3年</span>
+        <span class="word-chip" data-word="20年">20年</span>
+        <span class="word-chip" data-word="期限到来時">期限到来時</span>
+      </div>
+      <div class="mt-q">① 債権の消滅時効は主観的起算点から<span class="mblank preview" data-ans="5年" data-group="2">5年</span>、客観的起算点から<span class="mblank preview" data-ans="10年" data-group="2">10年</span>。</div>
+      <div class="mt-q">② 不確定期限のある債権の客観的起算点は<span class="mblank preview" data-ans="期限到来時" data-group="2">期限到来時</span>である。</div>
+      <div class="mt-q">③ 不法行為による損害賠償請求権は被害者が損害・加害者を知った時から<span class="mblank preview" data-ans="3年" data-group="2">3年</span>、不法行為の時から<span class="mblank preview" data-ans="20年" data-group="2">20年</span>。</div>
+      <div class="result-msg" id="rm2"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== セクション3 除斥期間 ===== -->
+<div class="section-card">
+  <div class="section-header"><span class="num">3</span>除斥期間</div>
+  <div class="section-body">
+    <p>「<span class="kw">除斥期間</span>」とは、法律が権利の存続期間を定めたもので、その期間の経過によって権利が消滅する点で消滅時効と似ています。ただし以下の点で異なります。</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th></th><th>消滅時効</th><th>除斥期間</th></tr>
+        <tr><td>援用</td><td class="td-ok">必要</td><td class="td-ng">不要</td></tr>
+        <tr><td>遡及効</td><td class="td-ok">あり</td><td class="td-ng">なし</td></tr>
+        <tr><td>起算点</td><td>権利行使できる時など</td><td class="td-ng">権利発生時で固定</td></tr>
+        <tr><td>完成猶予・更新</td><td class="td-ok">あり</td><td class="td-ng">なし</td></tr>
+      </table>
+    </div>
+
+    <!-- ミニテスト3 -->
+    <div class="mini-test" data-group="3">
+      <div class="mt-title">ミニテスト③</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(3)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(3)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(3)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb3">
+        <span class="word-chip" data-word="不要">不要</span>
+        <span class="word-chip" data-word="なし">なし</span>
+        <span class="word-chip" data-word="権利発生時">権利発生時</span>
+        <span class="word-chip" data-word="消滅時効">消滅時効</span>
+      </div>
+      <div class="mt-q">① 除斥期間は援用が<span class="mblank preview" data-ans="不要" data-group="3">不要</span>である。</div>
+      <div class="mt-q">② 除斥期間には遡及効が<span class="mblank preview" data-ans="なし" data-group="3">なし</span>。</div>
+      <div class="mt-q">③ 除斥期間の起算点は<span class="mblank preview" data-ans="権利発生時" data-group="3">権利発生時</span>で固定される。</div>
+      <div class="mt-q">④ 除斥期間には完成猶予・更新がなく、この点が<span class="mblank preview" data-ans="消滅時効" data-group="3">消滅時効</span>と異なる。</div>
+      <div class="result-msg" id="rm3"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== セクション4 総合比較 ===== -->
+<div class="section-card">
+  <div class="section-header"><span class="num">4</span>時効期間まとめ</div>
+  <div class="section-body">
+
+    <div class="table-wrap">
+      <table>
+        <tr><th>権利の種類</th><th>時効期間</th><th>起算点</th></tr>
+        <tr><td>所有権の取得時効（善意・無過失）</td><td class="td-ok">10年</td><td>占有開始時</td></tr>
+        <tr><td>所有権の取得時効（悪意または有過失）</td><td class="td-ok">20年</td><td>占有開始時</td></tr>
+        <tr><td>債権（主観的）</td><td class="td-ok">5年</td><td>知った時</td></tr>
+        <tr><td>債権（客観的）</td><td class="td-ok">10年</td><td>行使できる時</td></tr>
+        <tr><td>生命・身体侵害の債務不履行（客観的）</td><td class="td-ok">20年</td><td>行使できる時</td></tr>
+        <tr><td>不法行為（主観的）</td><td class="td-ok">3年</td><td>損害・加害者を知った時</td></tr>
+        <tr><td>生命・身体侵害の不法行為（主観的）</td><td class="td-ok">5年</td><td>損害・加害者を知った時</td></tr>
+        <tr><td>不法行為（客観的）</td><td class="td-ok">20年</td><td>不法行為の時</td></tr>
+        <tr><td>確定判決等で確定した権利</td><td class="td-ok">10年</td><td>確定時</td></tr>
+      </table>
+    </div>
+
+    <!-- ミニテスト4 -->
+    <div class="mini-test" data-group="4">
+      <div class="mt-title">ミニテスト④</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(4)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(4)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(4)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb4">
+        <span class="word-chip" data-word="10年">10年</span>
+        <span class="word-chip" data-word="10年">10年</span>
+        <span class="word-chip" data-word="20年">20年</span>
+        <span class="word-chip" data-word="5年">5年</span>
+        <span class="word-chip" data-word="3年">3年</span>
+        <span class="word-chip" data-word="占有開始時">占有開始時</span>
+      </div>
+      <div class="mt-q">① 善意・無過失の取得時効期間は<span class="mblank preview" data-ans="10年" data-group="4">10年</span>で、起算点は<span class="mblank preview" data-ans="占有開始時" data-group="4">占有開始時</span>。</div>
+      <div class="mt-q">② 債権の消滅時効は客観的起算点から<span class="mblank preview" data-ans="10年" data-group="4">10年</span>、生命・身体侵害の債務不履行は<span class="mblank preview" data-ans="20年" data-group="4">20年</span>。</div>
+      <div class="mt-q">③ 不法行為は知った時から<span class="mblank preview" data-ans="3年" data-group="4">3年</span>、生命・身体侵害の不法行為は知った時から<span class="mblank preview" data-ans="5年" data-group="4">5年</span>。</div>
+      <div class="result-msg" id="rm4"></div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /container -->
+<div style="text-align:center;font-size:11px;color:#aaa;padding:8px 0 30px;">音声：VOICEVOX / 四国めたん</div>
+
+<script>
+const state={};let activeBlank=null;
+window.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.mini-test').forEach(mt=>{
+    const g=mt.dataset.group; if(g){state[g]='preview';shuffleBank(g);}
+  });
+});
+function shuffleBank(g){
+  const wb=document.getElementById('wb'+g); if(!wb)return;
+  const chips=Array.from(wb.querySelectorAll('.word-chip'));
+  for(let i=chips.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));wb.insertBefore(chips[j],chips[i]);const t=chips[i];chips[i]=chips[j];chips[j]=t;}
+}
+function getBtn(g,cls){const mt=document.querySelector(`.mini-test[data-group="${g}"]`);return mt?mt.querySelector(cls):null;}
+function setBtns(g,mode){const isC=mode==='challenge';const bc=getBtn(g,'.btn-challenge');const bj=getBtn(g,'.btn-judge');if(bc)bc.disabled=isC;if(bj)bj.disabled=!isC;}
+function startChallenge(g){
+  state[g]='challenge';activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent='　　　';b.className='mblank';b.dataset.filled='';b.onclick=()=>selectBlank(b,g);});
+  resetChips(g);shuffleBank(g);
+  document.querySelectorAll(`#wb${g} .word-chip`).forEach(chip=>{chip.onclick=()=>selectChip(chip,g);});
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'challenge');
+}
+function resetChips(g){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{c.className='word-chip';c.onclick=null;});}
+function selectBlank(b,g){
+  if(state[g]!=='challenge')return;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(x=>{if(x!==b)x.classList.remove('active');});
+  if(b.classList.contains('active')){b.classList.remove('active');activeBlank=null;}
+  else{b.classList.add('active');activeBlank={el:b,group:g};}
+}
+function selectChip(chip,g){
+  if(state[g]!=='challenge')return;
+  if(!activeBlank||activeBlank.group!==g)return;
+  const b=activeBlank.el;const word=chip.dataset.word;
+  const prev=b.dataset.filled;
+  if(prev){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{if(c.dataset.word===prev)c.classList.remove('used');});}
+  b.textContent=word;b.dataset.filled=word;
+  b.classList.remove('active','correct','wrong');b.classList.add('filled');
+  chip.classList.add('used');activeBlank=null;
+}
+function judgeGroup(g){
+  if(state[g]!=='challenge')return;
+  const blanks=document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  let allFilled=true;blanks.forEach(b=>{if(!b.dataset.filled)allFilled=false;});
+  if(!allFilled){const rm=document.getElementById('rm'+g);if(rm){rm.textContent='⚠️ 全ての空欄を埋めてから判定してください。';rm.className='result-msg ng';}return;}
+  let correct=0;
+  blanks.forEach(b=>{b.classList.remove('active','filled');if(b.dataset.filled===b.dataset.ans){b.classList.add('correct');correct++;}else b.classList.add('wrong');});
+  const rm=document.getElementById('rm'+g);
+  if(correct===blanks.length){if(rm){rm.textContent='🎉 全問正解！';rm.className='result-msg ok';}launchConfetti();}
+  else{if(rm){rm.textContent=`${correct} / ${blanks.length} 正解。もう一度チャレンジしてみよう！`;rm.className='result-msg ng';}}
+}
+function showAnswer(g){
+  state[g]='preview';activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent=b.dataset.ans;b.className='mblank preview';b.dataset.filled=b.dataset.ans;b.onclick=null;});
+  resetChips(g);
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'preview');
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');if(!canvas)return;
+  canvas.style.display='block';const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const colors=['#C0392B','#D4A017','#00AEEF','#27ae60','#9b59b6','#e67e22','#1B2A4A'];
+  const pieces=Array.from({length:150},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*6+4,d:Math.random()*80+40,color:colors[Math.floor(Math.random()*colors.length)],tilt:0,tiltAngle:0,tiltSpeed:Math.random()*0.1+0.05}));
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{p.tiltAngle+=p.tiltSpeed;p.y+=(Math.cos(frame/20+p.d)+1+p.r/2)*1.2;p.x+=Math.sin(frame/20)*1.5;p.tilt=Math.sin(p.tiltAngle)*15;ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/3);ctx.stroke();});
+    frame++;
+    if(frame<200)requestAnimationFrame(draw);
+    else{ctx.clearRect(0,0,canvas.width,canvas.height);canvas.style.display='none';}
+  }
+  draw();
+}
+</script>
+</body>
+</html>
