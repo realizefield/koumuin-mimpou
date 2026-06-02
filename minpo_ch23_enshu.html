@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch23｜抵当権② 演習</title>
+<style>
+  :root{--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--light-bg:#F4F6FA;--white:#ffffff;--border:#d0d8ea;--accent:#EAF0FB;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'BIZ UDGothic','Meiryo',sans-serif;background:var(--light-bg);color:#1a1a2e;line-height:1.8;}
+  .page-header{background:var(--navy);color:var(--white);padding:24px 32px;}
+  .chapter-label{font-size:11px;letter-spacing:3px;color:#8fa8d0;margin-bottom:4px;}
+  .page-title{font-size:22px;font-weight:700;}
+  .page-title span{color:var(--crimson);}
+  .container{max-width:800px;margin:0 auto;padding:28px 20px;}
+  /* 問題カード */
+  .q-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px 24px;margin-bottom:20px;box-shadow:0 2px 6px rgba(27,42,74,0.06);}
+  .q-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .q-num{background:var(--navy);color:var(--white);font-size:13px;font-weight:700;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .q-type{font-size:11px;background:var(--accent);border:1px solid var(--border);color:var(--navy);padding:2px 10px;border-radius:10px;font-weight:700;}
+  .q-text{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:16px;line-height:1.7;}
+  /* ○×ボタン */
+  .ox-buttons{display:flex;gap:12px;margin-bottom:0;}
+  .btn-ox{flex:1;padding:13px;border:2px solid var(--border);background:var(--white);border-radius:8px;font-size:22px;cursor:pointer;transition:all 0.2s;font-family:inherit;}
+  .btn-ox:hover{transform:scale(1.04);}
+  .btn-ox.correct{background:#e8f5e9;border-color:#2e7d32;color:#2e7d32;}
+  .btn-ox.incorrect{background:#ffebee;border-color:var(--crimson);color:var(--crimson);}
+  .btn-ox.disabled{opacity:0.5;pointer-events:none;}
+  /* 択一問題 */
+  .choice-list{list-style:none;padding:0;margin-bottom:0;}
+  .choice-list li{margin-bottom:8px;}
+  .choice-btn{width:100%;text-align:left;padding:11px 16px;border:2px solid var(--border);background:var(--white);border-radius:8px;font-size:14px;cursor:pointer;transition:all 0.2s;font-family:inherit;color:#1a1a2e;line-height:1.6;}
+  .choice-btn:hover{border-color:var(--navy);background:var(--accent);}
+  .choice-btn.correct{background:#e8f5e9;border-color:#2e7d32;color:#1a5e20;}
+  .choice-btn.incorrect{background:#ffebee;border-color:var(--crimson);color:#7f0000;}
+  .choice-btn.disabled{opacity:0.55;pointer-events:none;}
+  /* 解説 */
+  .explanation{display:none;margin-top:14px;padding:14px 18px;border-radius:8px;font-size:14px;line-height:1.8;}
+  .explanation.show{display:block;}
+  .explanation.ok{background:#e8f5e9;border-left:4px solid #2e7d32;}
+  .explanation.ng{background:#ffebee;border-left:4px solid var(--crimson);}
+  .exp-label{font-weight:700;margin-bottom:6px;font-size:13px;}
+  .ok .exp-label{color:#1a5e20;}
+  .ng .exp-label{color:#7f0000;}
+  .kw{color:var(--crimson);font-weight:700;}
+  /* スコア */
+  .score-section{background:var(--navy);color:var(--white);border-radius:12px;padding:24px 28px;margin-top:30px;text-align:center;}
+  .score-section h2{font-size:18px;margin-bottom:16px;}
+  .score-num{font-size:48px;font-weight:700;color:var(--gold);}
+  .score-label{font-size:14px;color:#8fa8d0;margin-top:4px;}
+  .reset-btn{margin-top:18px;background:var(--crimson);color:var(--white);border:none;padding:12px 32px;border-radius:8px;font-size:15px;cursor:pointer;font-family:inherit;font-weight:700;}
+  .page-footer{background:var(--navy);color:#8fa8d0;text-align:center;padding:16px;font-size:12px;margin-top:30px;}
+  /* 正誤アイコン */
+  .result-icon{font-size:20px;margin-left:8px;vertical-align:middle;}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+
+<header class="page-header">
+  <div class="chapter-label">GAMBA 民法 ｜ Chapter 23 ｜ 演習</div>
+  <div class="page-title">抵当権<span>②</span> 確認問題</div>
+</header>
+
+<div class="container">
+
+<!-- Q1 ○× -->
+<div class="q-card" id="q1">
+  <div class="q-meta">
+    <div class="q-num">1</div>
+    <span class="q-type">○×問題</span>
+  </div>
+  <div class="q-text">抵当権者が物上代位権を行使するためには、目的債権の払渡し又は引渡しの前に差し押さえなければならない。</div>
+  <div class="ox-buttons">
+    <button class="btn-ox" onclick="checkOX(this,'q1',true)">○</button>
+    <button class="btn-ox" onclick="checkOX(this,'q1',false)">×</button>
+  </div>
+  <div class="explanation ok" id="exp-q1-ok">
+    <div class="exp-label">✅ 正解：○</div>
+    304条の規定通りです。目的債権が払い渡された後では差し押さえることができないため、払渡し前（引渡し前）に差し押さえて優先権を確保する必要があります。
+  </div>
+  <div class="explanation ng" id="exp-q1-ng">
+    <div class="exp-label">❌ 不正解（正解：○）</div>
+    304条により、物上代位権の行使には<span class="kw">払渡し又は引渡しの前に差し押さえること</span>が必要です。
+  </div>
+</div>
+
+<!-- Q2 ○× -->
+<div class="q-card" id="q2">
+  <div class="q-meta">
+    <div class="q-num">2</div>
+    <span class="q-type">○×問題</span>
+  </div>
+  <div class="q-text">抵当権者は、賃料債権が第三者に譲渡されその第三者が対抗要件を備えた後においても、自ら当該賃料債権を差し押さえることにより物上代位権を行使することができる。</div>
+  <div class="ox-buttons">
+    <button class="btn-ox" onclick="checkOX(this,'q2',true)">○</button>
+    <button class="btn-ox" onclick="checkOX(this,'q2',false)">×</button>
+  </div>
+  <div class="explanation ok" id="exp-q2-ok">
+    <div class="exp-label">✅ 正解：○</div>
+    最判平10・1・30の通りです。抵当権には登記という公示方法があり、第三者は抵当権の効力が及ぶことを予想できるため、債権譲渡後も物上代位権の行使が認められます。
+  </div>
+  <div class="explanation ng" id="exp-q2-ng">
+    <div class="exp-label">❌ 不正解（正解：○）</div>
+    <span class="kw">最判平10・1・30</span>により、債権譲渡後でも自ら差し押さえることで物上代位権を行使できます。なお、動産売買の先取特権者は対抗要件具備後には行使できない点と区別してください。
+  </div>
+</div>
+
+<!-- Q3 ○× -->
+<div class="q-card" id="q3">
+  <div class="q-meta">
+    <div class="q-num">3</div>
+    <span class="q-type">○×問題</span>
+  </div>
+  <div class="q-text">抵当権消滅請求は、主たる債務者・保証人及びこれらの者の承継人もすることができる。</div>
+  <div class="ox-buttons">
+    <button class="btn-ox" onclick="checkOX(this,'q3',true)">○</button>
+    <button class="btn-ox" onclick="checkOX(this,'q3',false)">×</button>
+  </div>
+  <div class="explanation ok" id="exp-q3-ok">
+    <div class="exp-label">❌ 実は×（正解：×）</div>
+    設問は誤りです。
+  </div>
+  <div class="explanation ng" id="exp-q3-ng">
+    <div class="exp-label">✅ 正解：×</div>
+    380条により、<span class="kw">主たる債務者・保証人及びこれらの者の承継人は抵当権消滅請求をすることができません</span>。これらの者はもともと全額弁済する義務を負っているため、このような請求を認める筋合いがないからです。
+  </div>
+</div>
+
+<!-- Q4 ○× -->
+<div class="q-card" id="q4">
+  <div class="q-meta">
+    <div class="q-num">4</div>
+    <span class="q-type">○×問題</span>
+  </div>
+  <div class="q-text">抵当権の設定後に抵当地に建物が築造されたときは、土地の抵当権者は土地と建物を一括して競売にかけることができ、その優先権は土地及び建物の代価の双方について行使することができる。</div>
+  <div class="ox-buttons">
+    <button class="btn-ox" onclick="checkOX(this,'q4',true)">○</button>
+    <button class="btn-ox" onclick="checkOX(this,'q4',false)">×</button>
+  </div>
+  <div class="explanation ok" id="exp-q4-ok">
+    <div class="exp-label">❌ 実は×（正解：×）</div>
+    設問は誤りです。
+  </div>
+  <div class="explanation ng" id="exp-q4-ng">
+    <div class="exp-label">✅ 正解：×</div>
+    389条により一括競売は認められますが、<span class="kw">優先権は土地の代価についてのみ</span>行使できます。建物の代価部分には優先弁済権は及びません。
+  </div>
+</div>
+
+<!-- Q5 択一（5択） -->
+<div class="q-card" id="q5">
+  <div class="q-meta">
+    <div class="q-num">5</div>
+    <span class="q-type">5択問題</span>
+  </div>
+  <div class="q-text">抵当権に関する次の記述のうち、妥当なものはどれか。</div>
+  <ul class="choice-list">
+    <li><button class="choice-btn" onclick="checkChoice(this,'q5',false)">1. 建物の明渡し猶予制度は土地・建物のいずれにも適用され、競売による買受けの時から6か月、明渡しが猶予される。</button></li>
+    <li><button class="choice-btn" onclick="checkChoice(this,'q5',false)">2. 抵当権者の同意を得た賃貸借は、賃貸借の登記がなくても抵当権者が同意していれば抵当権者に対抗することができる。</button></li>
+    <li><button class="choice-btn" onclick="checkChoice(this,'q5',true)">3. 抵当権は、債務者及び抵当権設定者（物上保証人）に対しては、被担保債権と同時でなければ時効によって消滅しない。</button></li>
+    <li><button class="choice-btn" onclick="checkChoice(this,'q5',false)">4. 第三者が抵当不動産を不法占拠している場合、抵当権者は妨害排除請求権を行使できるが、所有者の妨害排除請求権を代位行使することはできない。</button></li>
+    <li><button class="choice-btn" onclick="checkChoice(this,'q5',false)">5. 抵当権者は抵当権消滅請求書面の送付を受けた日から2か月以内に競売の申立てをしなければならず、これをしない場合でも承諾したとはみなされない。</button></li>
+  </ul>
+  <div class="explanation ok" id="exp-q5-ok">
+    <div class="exp-label">✅ 正解：3</div>
+    396条の規定通りです。債務者・抵当権設定者（物上保証人）に対しては、被担保債権と同時でなければ抵当権のみが単独で時効消滅することはありません。なお、第三取得者や後順位抵当権者との関係では被担保債権とは別個に20年で消滅します。
+    <br><br>【各選択肢の解説】<br>
+    1×：建物のみに適用。土地には猶予されない。<br>
+    2×：賃貸借の登記と全員の同意・同意の登記が必要。<br>
+    3○：正しい（396条）<br>
+    4×：代位行使も認められる（最大判平11・11・24）。<br>
+    5×：2か月以内に競売申立てをしないと<span class="kw">承諾したものとみなされる</span>（384条1号）。
+  </div>
+  <div class="explanation ng" id="exp-q5-ng">
+    <div class="exp-label">❌ 不正解（正解：3）</div>
+    正解は3です。396条により、債務者・抵当権設定者（物上保証人）に対しては、被担保債権と同時でなければ抵当権のみの時効消滅はありません。他の選択肢の誤りのポイントは上記解説を参照してください。
+  </div>
+</div>
+
+<!-- スコア -->
+<div class="score-section" id="score-section" style="display:none;">
+  <h2>📊 結果</h2>
+  <div class="score-num" id="score-num">0</div>
+  <div class="score-label">/ 5問 正解</div>
+  <div style="margin-top:12px;font-size:14px;color:#b8c8e0;" id="score-msg"></div>
+  <button class="reset-btn" onclick="resetAll()">もう一度挑戦</button>
+</div>
+
+</div><!-- /container -->
+
+<footer class="page-footer">
+  GAMBA 民法 ch23 抵当権② 演習 ｜ 江原予備校
+</footer>
+
+<script>
+let answered = {};
+let correctCount = 0;
+const total = 5;
+
+function checkOX(btn, qid, isTrue) {
+  if (answered[qid]) return;
+  answered[qid] = true;
+  const card = document.getElementById(qid);
+  card.querySelectorAll('.btn-ox').forEach(b => b.classList.add('disabled'));
+  const isCorrect = isTrue; // Q1,Q2はtrueが正解、Q3,Q4はfalseが正解
+  // 実際の正解判定
+  const correctAnswers = {q1:true, q2:true, q3:false, q4:false};
+  const correct = (isTrue === correctAnswers[qid]);
+  if (correct) {
+    btn.classList.add('correct');
+    document.getElementById('exp-'+qid+'-ok').classList.add('show');
+    correctCount++;
+  } else {
+    btn.classList.add('incorrect');
+    document.getElementById('exp-'+qid+'-ng').classList.add('show');
+  }
+  checkAllAnswered();
+}
+
+function checkChoice(btn, qid, isCorrect) {
+  if (answered[qid]) return;
+  answered[qid] = true;
+  const card = document.getElementById(qid);
+  card.querySelectorAll('.choice-btn').forEach(b => b.classList.add('disabled'));
+  if (isCorrect) {
+    btn.classList.add('correct');
+    document.getElementById('exp-'+qid+'-ok').classList.add('show');
+    correctCount++;
+  } else {
+    btn.classList.add('incorrect');
+    // 正解ボタンをハイライト
+    card.querySelectorAll('.choice-btn').forEach(b => {
+      if (b.onclick.toString().includes('true')) b.classList.add('correct');
+    });
+    document.getElementById('exp-'+qid+'-ng').classList.add('show');
+  }
+  checkAllAnswered();
+}
+
+function checkAllAnswered() {
+  if (Object.keys(answered).length === total) {
+    const section = document.getElementById('score-section');
+    section.style.display = 'block';
+    document.getElementById('score-num').textContent = correctCount;
+    const msgs = ['もう少し復習しよう！','基礎はOK！苦手部分を確認しよう','なかなか良い！','よくできました！','完璧！本試験も安心！'];
+    document.getElementById('score-msg').textContent = msgs[correctCount] || '';
+    section.scrollIntoView({behavior:'smooth'});
+    if (correctCount >= 4) {
+      setTimeout(launchConfetti, 400);
+    }
+  }
+}
+
+// ===== 花吹雪 =====
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  canvas.style.display = 'block';
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const colors = ['#C0392B','#1B2A4A','#D4A017','#2ecc71','#3498db','#e74c3c','#f39c12','#9b59b6'];
+  const pieces = Array.from({length: 160}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * -canvas.height,
+    w: Math.random() * 10 + 6,
+    h: Math.random() * 6 + 4,
+    color: colors[Math.floor(Math.random() * colors.length)],
+    rot: Math.random() * Math.PI * 2,
+    vx: (Math.random() - 0.5) * 3,
+    vy: Math.random() * 4 + 2,
+    vr: (Math.random() - 0.5) * 0.15,
+    opacity: 1
+  }));
+
+  let frame = 0;
+  const maxFrames = 200;
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vr;
+      if (frame > 120) p.opacity = Math.max(0, p.opacity - 0.015);
+      ctx.save();
+      ctx.globalAlpha = p.opacity;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    });
+    frame++;
+    if (frame < maxFrames) {
+      requestAnimationFrame(draw);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.style.display = 'none';
+    }
+  }
+  draw();
+}
+
+function resetAll() {
+  answered = {};
+  correctCount = 0;
+  document.getElementById('score-section').style.display = 'none';
+  document.querySelectorAll('.btn-ox,.choice-btn').forEach(b => {
+    b.classList.remove('correct','incorrect','disabled');
+  });
+  document.querySelectorAll('.explanation').forEach(e => e.classList.remove('show'));
+  const canvas = document.getElementById('confetti-canvas');
+  canvas.style.display = 'none';
+  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch23｜抵当権②</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4A017;
+    --light-bg: #F4F6FA;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --border: #d0d8ea;
+    --accent-light: #EAF0FB;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'BIZ UDGothic','Meiryo',sans-serif;background:var(--light-bg);color:var(--text);line-height:1.8;}
+  /* ヘッダー */
+  .page-header{background:var(--navy);color:var(--white);padding:28px 32px 20px;position:relative;overflow:hidden;}
+  .page-header::before{content:'';position:absolute;right:-40px;top:-40px;width:220px;height:220px;border-radius:50%;background:rgba(192,57,43,0.18);}
+  .chapter-label{font-size:11px;letter-spacing:3px;color:#8fa8d0;text-transform:uppercase;margin-bottom:6px;}
+  .page-title{font-size:26px;font-weight:700;letter-spacing:1px;}
+  .page-title span{color:var(--crimson);}
+  .level-badge{display:inline-block;margin-top:10px;background:var(--crimson);color:var(--white);font-size:11px;padding:3px 12px;border-radius:20px;letter-spacing:1px;}
+  /* ナビ */
+  .toc{background:var(--navy);border-top:1px solid rgba(255,255,255,0.1);padding:12px 32px;display:flex;flex-wrap:wrap;gap:8px;}
+  .toc a{color:#8fa8d0;font-size:12px;text-decoration:none;padding:3px 10px;border:1px solid rgba(143,168,208,0.3);border-radius:12px;transition:all 0.2s;}
+  .toc a:hover{color:var(--white);border-color:var(--white);}
+  /* コンテンツ */
+  .container{max-width:860px;margin:0 auto;padding:32px 20px;}
+  /* セクションヘッダー */
+  .section-header{display:flex;align-items:center;gap:12px;margin:40px 0 18px;padding-bottom:10px;border-bottom:2px solid var(--navy);}
+  .section-num{background:var(--navy);color:var(--white);font-size:13px;font-weight:700;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .section-header h2{font-size:20px;color:var(--navy);font-weight:700;}
+  /* article-box */
+  .article-box{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px 24px;margin-bottom:18px;box-shadow:0 2px 6px rgba(27,42,74,0.06);}
+  .article-box h3{font-size:15px;color:var(--navy);font-weight:700;margin-bottom:12px;padding-left:10px;border-left:3px solid var(--crimson);}
+  .article-box p{font-size:14px;margin-bottom:10px;}
+  .article-box p:last-child{margin-bottom:0;}
+  /* point-card */
+  .point-card{background:var(--accent-light);border-left:4px solid var(--navy);border-radius:6px;padding:14px 18px;margin:14px 0;font-size:14px;}
+  .point-card .point-title{font-weight:700;color:var(--navy);margin-bottom:6px;font-size:13px;letter-spacing:0.5px;}
+  /* 注意箱 */
+  .warn-box{background:#fff8f7;border:1px solid var(--crimson);border-left:4px solid var(--crimson);border-radius:6px;padding:14px 18px;margin:14px 0;font-size:14px;}
+  .warn-box .warn-title{font-weight:700;color:var(--crimson);margin-bottom:6px;font-size:13px;}
+  /* 情報箱 */
+  .info-box{background:#fffdf0;border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:6px;padding:14px 18px;margin:14px 0;font-size:14px;}
+  .info-box .info-title{font-weight:700;color:#a07800;margin-bottom:6px;font-size:13px;}
+  /* ゴロ箱 */
+  .goro-box{background:linear-gradient(135deg,#1B2A4A 0%,#2c4070 100%);color:var(--white);border-radius:10px;padding:18px 22px;margin:18px 0;text-align:center;}
+  .goro-box .goro-label{font-size:11px;letter-spacing:2px;color:#8fa8d0;margin-bottom:8px;}
+  .goro-box .goro-text{font-size:20px;font-weight:700;letter-spacing:3px;color:var(--white);}
+  .goro-box .goro-sub{font-size:12px;color:#b8c8e0;margin-top:8px;}
+  /* 比較表 */
+  .comp-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+  .comp-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:center;font-weight:700;}
+  .comp-table td{padding:9px 14px;border:1px solid var(--border);vertical-align:top;background:var(--white);}
+  .comp-table tr:nth-child(even) td{background:#f8f9fc;}
+  .comp-table td.label{font-weight:700;color:var(--navy);background:var(--accent-light);}
+  /* ミニテスト（江戸スタイル）*/
+  .mini-test{background:var(--white);border:2px solid var(--navy);border-radius:10px;padding:20px 22px;margin:22px 0;}
+  .mini-test-title{background:var(--navy);color:var(--white);font-size:12px;font-weight:700;letter-spacing:2px;padding:5px 14px;border-radius:4px;display:inline-block;margin-bottom:14px;}
+  .test-question{font-size:14px;margin-bottom:12px;font-weight:700;color:var(--navy);}
+  .blank-sentence{font-size:14px;line-height:2;margin-bottom:14px;}
+  .mblank{display:inline-block;background:var(--navy);color:var(--navy);border-radius:4px;padding:1px 6px;cursor:pointer;min-width:80px;text-align:center;font-weight:700;transition:all 0.2s;border:none;font-family:inherit;font-size:14px;position:relative;}
+  .mblank:hover,.mblank.revealed{background:var(--crimson);color:var(--white);}
+  .chip-area{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+  .chip{background:var(--accent-light);border:1px solid var(--navy);border-radius:20px;padding:5px 14px;font-size:13px;cursor:pointer;transition:all 0.2s;color:var(--navy);font-weight:700;}
+  .chip:hover{background:var(--navy);color:var(--white);}
+  .chip.used{opacity:0.35;pointer-events:none;}
+  .chip.wrong{background:#fee;border-color:var(--crimson);color:var(--crimson);animation:shake 0.3s;}
+  @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-4px);}75%{transform:translateX(4px);}}
+  /* まとめ箱 */
+  .summary-box{background:var(--navy);color:var(--white);border-radius:12px;padding:24px 28px;margin:30px 0;}
+  .summary-box h3{font-size:16px;font-weight:700;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.2);color:var(--white);}
+  .summary-box ul{list-style:none;padding:0;}
+  .summary-box li{font-size:14px;padding:5px 0;padding-left:18px;position:relative;color:#dce6f5;}
+  .summary-box li::before{content:'▶';position:absolute;left:0;color:var(--crimson);font-size:11px;}
+  /* キーワード強調 */
+  .kw{color:var(--crimson);font-weight:700;}
+  .kw2{color:var(--navy);font-weight:700;border-bottom:2px solid var(--gold);}
+  /* フッター */
+  .page-footer{background:var(--navy);color:#8fa8d0;text-align:center;padding:18px;font-size:12px;margin-top:40px;}
+  /* 判例バッジ */
+  .hanrei{display:inline-block;background:#e8ecf5;border:1px solid #b0bcda;border-radius:4px;font-size:11px;padding:1px 7px;color:var(--navy);font-weight:700;margin-left:4px;vertical-align:middle;}
+  /* フロー図 */
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:12px 0;font-size:13px;}
+  .flow-item{background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:6px 12px;font-weight:700;color:var(--navy);}
+  .flow-arrow{color:var(--crimson);font-size:16px;font-weight:700;}
+  .flow-result{background:var(--crimson);color:var(--white);border-radius:6px;padding:6px 12px;font-weight:700;}
+  .flow-result.ok{background:#1e7e34;}
+  .flow-result.ng{background:var(--crimson);}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="chapter-label">GAMBA 民法 ｜ Chapter 23</div>
+  <div class="page-title">抵当権<span>②</span></div>
+  <div class="level-badge">重要度★★★ 頻出度★★★</div>
+</header>
+<nav class="toc">
+  <a href="#s1">①物上代位</a>
+  <a href="#s2">②抵当権侵害</a>
+  <a href="#s3">③代価弁済・消滅請求</a>
+  <a href="#s4">④一括競売</a>
+  <a href="#s5">⑤明渡し猶予</a>
+  <a href="#s6">⑥同意賃貸借</a>
+  <a href="#s7">⑦抵当権の消滅</a>
+</nav>
+
+<div class="container">
+
+<!-- ===== §1 物上代位 ===== -->
+<div class="section-header" id="s1">
+  <div class="section-num">1</div>
+  <h2>物上代位</h2>
+</div>
+
+<div class="article-box">
+  <h3>物上代位とは</h3>
+  <p>抵当権は担保目的物の<span class="kw">交換価値</span>を把握する権利です。そのため、目的物に代わる価値（価値代替物）の上にも効力を及ぼすことができます。これを<span class="kw">「物上代位権」</span>といいます。</p>
+  <div class="point-card">
+    <div class="point-title">◎ 物上代位の典型例</div>
+    第三者の<span class="kw">不法行為（放火）</span>により建物が焼失した場合 → <span class="kw">損害賠償請求権</span>の上に行使できる（大判大6・1・22）<br>
+    保険に加入していた場合 → <span class="kw">火災保険金請求権</span>の上にも行使できる（大判明40・3・12）
+  </div>
+  <div class="warn-box">
+    <div class="warn-title">⚠ 差押えの要件</div>
+    物上代位権を行使するには、<span class="kw">「払渡し又は引渡しの前」に差し押さえなければならない</span>（304条）。払渡し前に差押えをして優先権を確保する必要あり。
+  </div>
+</div>
+
+<div class="article-box">
+  <h3>（1）債権譲渡と物上代位に基づく差押え</h3>
+  <p>賃料債権がDに譲渡され、対抗要件も備えた後であっても、抵当権者Aは当該賃料債権を<span class="kw2">自ら差し押さえることで物上代位権を行使できる</span>（最判平10・1・30）。</p>
+  <div class="info-box">
+    <div class="info-title">💡 理由</div>
+    もし行使できないとすると、抵当権が実行されそうになった際に債権を譲渡してしまえば抵当権者の執行を容易に害できてしまう。また、抵当権の登記によって第三者は公示されているため、物上代位権行使を認めても害されない。
+  </div>
+  <div class="warn-box">
+    <div class="warn-title">⚠ 比較：動産売買の先取特権者</div>
+    目的債権が譲渡され第三者が対抗要件を備えた後は、<span class="kw">物上代位権を行使することができない</span>（最判平17・2・22）。抵当権と違い公示方法（登記）がなく、第三者の利益を特に保護する必要があるため。
+  </div>
+</div>
+
+<div class="article-box">
+  <h3>（2）一般債権者の差押えとの優劣</h3>
+  <div class="flow">
+    <div class="flow-item">①抵当権登記</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">②一般債権者Cが差押え</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">③抵当権者Aが物上代位差押え</div>
+  </div>
+  <div class="point-card">
+    <div class="point-title">◎ 結論（最判平10・3・26）</div>
+    <span class="kw">抵当権設定登記の時期</span>と、一般債権者Cのなす差押えの時期（第三債務者への差押命令の到達時）の先後で決する。→ <span class="kw">Aの物上代位に基づく差押えが優先する</span>。
+  </div>
+  <div class="warn-box">
+    <div class="warn-title">⚠ 転付命令が到達したら抵当権者は負ける</div>
+    一般債権者の差押えの後、<span class="kw">転付命令</span>が第三債務者に送達される段階になると、抵当権者も物上代位に基づく差押えをすることができなくなる（最判平14・3・12）。
+  </div>
+</div>
+
+<div class="article-box">
+  <h3>（3）相殺と物上代位に基づく差押え</h3>
+  <p>第三債務者Cが、<span class="kw">抵当権設定登記の後</span>に賃貸人Bに対して取得した債権を自働債権として、賃料債権と相殺しても、<span class="kw">Aの物上代位に基づく差押えに対抗できない</span>（最判平13・3・13）。</p>
+  <div class="info-box">
+    <div class="info-title">💡 ポイント</div>
+    「抵当権設定登記の後」に取得した債権を使った相殺 → <span class="kw">対抗不可</span>（抵当権者の保護を優先）
+  </div>
+</div>
+
+<div class="article-box">
+  <h3>（4）敷金と物上代位に基づく差押え</h3>
+  <p>賃貸借が終了し土地が明け渡された場合、<span class="kw2">敷金の充当が物上代位に基づく差押えより優先</span>される（最判平14・3・28）。敷金50万円と賃料債権50万円が自動的に相殺されるイメージで、物上代位の対象債権は0円になる。</p>
+  <div class="point-card">
+    <div class="point-title">◎ 整理：抵当権者が物上代位で差し押さえても</div>
+    敷金の充当によって控除された残額の賃料債権についてのみ物上代位できる。敷金充当分は回収できない。
+  </div>
+</div>
+
+<!-- ミニテスト1 -->
+<div class="mini-test">
+  <div class="mini-test-title">📝 ミニテスト①</div>
+  <div class="test-question">語群から選んで空欄を埋めよう</div>
+  <div class="blank-sentence">
+    物上代位権を行使するためには、当該債権の<button class="mblank" data-ans="払渡し前">　　　　</button>に差し押さえなければならない。賃料債権が第三者に譲渡され対抗要件が備わった後でも、抵当権者は自ら差し押さえることで<button class="mblank" data-ans="物上代位権">　　　　</button>を行使できる。一方、抵当権者と一般債権者の差押えが競合した場合は<button class="mblank" data-ans="抵当権登記">　　　　</button>の時期と一般債権者の差押えの時期の先後で優劣が決まる。
+  </div>
+  <div class="chip-area" id="chips1">
+    <span class="chip" data-val="払渡し前">払渡し前</span>
+    <span class="chip" data-val="物上代位権">物上代位権</span>
+    <span class="chip" data-val="抵当権登記">抵当権登記</span>
+    <span class="chip" data-val="転付命令">転付命令</span>
+    <span class="chip" data-val="登記の日">登記の日</span>
+  </div>
+</div>
+
+<!-- ===== §2 抵当権侵害 ===== -->
+<div class="section-header" id="s2">
+  <div class="section-num">2</div>
+  <h2>抵当権侵害</h2>
+</div>
+
+<div class="article-box">
+  <h3>（1）不法占拠者に対して</h3>
+  <p>抵当不動産を<span class="kw">不法占拠者</span>である第三者が占有することにより交換価値の実現が妨げられ、抵当権者の優先弁済請求権の行使が困難となるような状態があるときは、抵当権者は<span class="kw">抵当権に基づく妨害排除請求権</span>を行使できる（最大判平11・11・24）。</p>
+  <div class="point-card">
+    <div class="point-title">◎ 2つの手段</div>
+    ①抵当権者が直接、妨害排除請求権を行使する<br>
+    ②所有者が有する妨害排除請求権を<span class="kw">民法423条の法意</span>（債権者代位権）に従い代位行使し、不法占拠者に対して<span class="kw">直接自己に明け渡すよう請求</span>できる（最大判平11・11・24）
+  </div>
+</div>
+
+<div class="article-box">
+  <h3>（2）賃借人（占有屋）に対して</h3>
+  <p>抵当権設定登記後に抵当不動産の所有者から占有権原の設定を受けて占有している賃借人について、①占有権原の設定に競売手続を妨害する目的が認められ、かつ②占有により<span class="kw">抵当不動産の交換価値の実現が妨げられ優先弁済請求権の行使が困難となるような状態があるとき</span>は、抵当権者は賃借人に対し妨害排除請求権を行使できる（最判17・3・10）。</p>
+  <div class="warn-box">
+    <div class="warn-title">⚠ 直接明渡し請求が認められる場合</div>
+    抵当不動産の所有者において抵当権に対する侵害が生じないように<span class="kw">適切に維持管理することが期待できない場合</span>、抵当権者は占有者に対して<span class="kw">直接自己へ当該抵当不動産を明け渡すよう請求</span>することができる。
+  </div>
+</div>
+
+<div class="article-box">
+  <h3>（3）不法行為に基づく損害賠償請求権</h3>
+  <p>抵当権者が損害賠償を請求するには、<span class="kw">被担保債権が十分に満足されなくなる必要がある</span>（つまり実損害の発生が必要）。抵当権実行<span class="kw">前</span>でも、弁済期<span class="kw">後</span>であれば損害賠償を請求できる（大判昭7・5・27）。</p>
+</div>
+
+<div class="article-box">
+  <h3>（4）期限の利益の喪失</h3>
+  <p>債務者が抵当目的物を<span class="kw">滅失・損傷・減少</span>させたときは<span class="kw">期限の利益を失う</span>（137条2号）。抵当権者は期限の到来を主張し、直ちに被担保債権の履行請求・<span class="kw">抵当権実行</span>が可能。</p>
+</div>
+
+<!-- ミニテスト2 -->
+<div class="mini-test">
+  <div class="mini-test-title">📝 ミニテスト②</div>
+  <div class="blank-sentence">
+    抵当権者は、不法占拠者に対して<button class="mblank" data-ans="妨害排除請求権">　　　　　</button>を行使できる。また、所有者の妨害排除請求権を<button class="mblank" data-ans="代位行使">　　　</button>して、直接自己への明渡しを請求できる。損害賠償請求には<button class="mblank" data-ans="実損害の発生">　　　　　</button>が必要だが、抵当権実行前でも弁済期後であれば請求できる。
+  </div>
+  <div class="chip-area" id="chips2">
+    <span class="chip" data-val="妨害排除請求権">妨害排除請求権</span>
+    <span class="chip" data-val="代位行使">代位行使</span>
+    <span class="chip" data-val="実損害の発生">実損害の発生</span>
+    <span class="chip" data-val="物上代位">物上代位</span>
+    <span class="chip" data-val="交換価値の減少">交換価値の減少</span>
+  </div>
+</div>
+
+<!-- ===== §3 代価弁済と抵当権消滅請求 ===== -->
+<div class="section-header" id="s3">
+  <div class="section-num">3</div>
+  <h2>代価弁済と抵当権消滅請求</h2>
+</div>
+
+<div class="article-box">
+  <h3>（1）代価弁済（378条）</h3>
+  <p>抵当不動産につき<span class="kw">所有権または地上権を買い受けた第三取得者</span>が、<span class="kw">抵当権者の請求</span>に応じて売却代金を抵当権者に支払ったとき、抵当権は第三取得者との関係で消滅する。</p>
+  <table class="comp-table">
+    <tr>
+      <th>項目</th><th>代価弁済</th><th>抵当権消滅請求</th>
+    </tr>
+    <tr>
+      <td class="label">イニシアチブ</td>
+      <td><span class="kw">抵当権者側</span>（請求が必要）</td>
+      <td><span class="kw">第三取得者側</span></td>
+    </tr>
+    <tr>
+      <td class="label">支払額</td>
+      <td>売却代金</td>
+      <td>第三取得者が評価した金額</td>
+    </tr>
+    <tr>
+      <td class="label">できない者</td>
+      <td>（特になし）</td>
+      <td>主たる債務者・保証人・これらの承継人（380条）</td>
+    </tr>
+  </table>
+</div>
+
+<div class="article-box">
+  <h3>（2）抵当権消滅請求（379条〜）</h3>
+  <p>抵当不動産につき<span class="kw">所有権を取得した第三取得者</span>が、抵当権者に<span class="kw">自ら不動産を評価した金額を提示</span>し、承諾を得た金額を支払って抵当権を消滅させる制度。</p>
+  <div class="warn-box">
+    <div class="warn-title">⚠ 抵当権者の対応（2択）</div>
+    ①請求を受け入れるか<br>
+    ②請求書面の送付を受けた後<span class="kw">2か月以内に抵当権を実行し競売の申立て</span>をするか<br>
+    → <span class="kw">2か月以内に競売申立てをしないと承諾したものとみなされる</span>（384条1号）
+  </div>
+</div>
+
+<!-- ミニテスト3 -->
+<div class="mini-test">
+  <div class="mini-test-title">📝 ミニテスト③</div>
+  <div class="blank-sentence">
+    代価弁済は<button class="mblank" data-ans="抵当権者">　　　　</button>の請求によって始まる制度であるのに対し、抵当権消滅請求は<button class="mblank" data-ans="第三取得者">　　　　</button>の側から行う制度である。主たる債務者・保証人は抵当権消滅請求を<button class="mblank" data-ans="できない">　　</button>。抵当権者が消滅請求書面を受けてから<button class="mblank" data-ans="2か月">　　</button>以内に競売申立てをしないと承諾したとみなされる。
+  </div>
+  <div class="chip-area" id="chips3">
+    <span class="chip" data-val="抵当権者">抵当権者</span>
+    <span class="chip" data-val="第三取得者">第三取得者</span>
+    <span class="chip" data-val="できない">できない</span>
+    <span class="chip" data-val="2か月">2か月</span>
+    <span class="chip" data-val="1か月">1か月</span>
+    <span class="chip" data-val="3か月">3か月</span>
+  </div>
+</div>
+
+<!-- ===== §4 一括競売 ===== -->
+<div class="section-header" id="s4">
+  <div class="section-num">4</div>
+  <h2>一括競売（389条）</h2>
+</div>
+
+<div class="article-box">
+  <h3>一括競売とは</h3>
+  <p>抵当権の設定<span class="kw">後</span>に抵当地に建物が築造されたときは、<span class="kw">土地の抵当権者</span>は土地と共にその<span class="kw">建物も一緒に競売にかけることができる</span>（389条1項）。</p>
+  <div class="point-card">
+    <div class="point-title">◎ 重要ポイント2つ</div>
+    ①優先権は<span class="kw">土地の代価についてのみ</span>行使できる（建物の代価には及ばない）<br>
+    ②一括競売される建物の所有者は<span class="kw">必ずしも債務者でなくてもよい</span>
+  </div>
+  <div class="goro-box">
+    <div class="goro-label">ゴロ合わせ</div>
+    <div class="goro-text">「土地だけ！あとは おまけ」</div>
+    <div class="goro-sub">一括競売しても優先権は土地の代価のみ → 建物分の代価は抵当権者に入らない</div>
+  </div>
+</div>
+
+<!-- ===== §5 建物の明渡し猶予制度 ===== -->
+<div class="section-header" id="s5">
+  <div class="section-num">5</div>
+  <h2>建物の明渡し猶予制度（395条）</h2>
+</div>
+
+<div class="article-box">
+  <h3>明渡し猶予制度とは</h3>
+  <p>抵当権に<span class="kw">劣後する賃借権</span>（抵当権登記後の賃貸借・対抗要件のない賃貸借）は、競売により消滅し賃借人は退去しなければならない。しかし、いきなり退去は困難なため猶予制度がある。</p>
+  <div class="point-card">
+    <div class="point-title">◎ 明渡し猶予の内容</div>
+    競売による<span class="kw">買受けの時から6か月</span>を経過するまでは建物の明渡しが猶予される（395条）<br>
+    ※注意：<span class="kw">建物の場合のみ</span>。土地には猶予されない
+  </div>
+  <div class="warn-box">
+    <div class="warn-title">⚠ 猶予期間中の義務</div>
+    明渡し猶予期間中、賃借人Cは買受人Dに対して<span class="kw">賃料相当額の対価を支払わなければならない</span>。
+  </div>
+</div>
+
+<!-- ===== §6 抵当権者の同意を得た賃貸借 ===== -->
+<div class="section-header" id="s6">
+  <div class="section-num">6</div>
+  <h2>抵当権者の同意を得た賃貸借（387条）</h2>
+</div>
+
+<div class="article-box">
+  <h3>制度の概要</h3>
+  <p><span class="kw">登記をした賃貸借</span>は、その登記前に登記をした抵当権を有するすべての者が同意し、かつその<span class="kw">同意の登記</span>があるときは、同意した抵当権者に対抗できる（387条1項）。</p>
+  <table class="comp-table">
+    <tr><th>要件</th><th>内容</th></tr>
+    <tr><td class="label">①賃貸借の登記</td><td>賃貸借自体が登記されていること（口頭では不可）</td></tr>
+    <tr><td class="label">②全員の同意</td><td>賃貸借に先行するすべての抵当権者の同意が必要</td></tr>
+    <tr><td class="label">③同意の登記</td><td>同意があったことが登記によって公示されること</td></tr>
+  </table>
+  <div class="info-box">
+    <div class="info-title">💡 効果</div>
+    同意した抵当権者に対抗でき、その後建物が競売されても賃借権は買受人に引き受けられ存続する。
+  </div>
+</div>
+
+<!-- ミニテスト4 -->
+<div class="mini-test">
+  <div class="mini-test-title">📝 ミニテスト④</div>
+  <div class="blank-sentence">
+    建物の明渡し猶予制度では、競売による買受けの時から<button class="mblank" data-ans="6か月">　　</button>を経過するまで明渡しが猶予される。この制度は<button class="mblank" data-ans="建物">　　</button>の場合のみ適用があり、猶予期間中は賃借人が<button class="mblank" data-ans="賃料相当額の対価">　　　　　　</button>を支払う義務がある。抵当権者の同意を得た賃貸借が効力を持つには、賃貸借の登記と全員の同意および<button class="mblank" data-ans="同意の登記">　　　　</button>が必要となる。
+  </div>
+  <div class="chip-area" id="chips4">
+    <span class="chip" data-val="6か月">6か月</span>
+    <span class="chip" data-val="建物">建物</span>
+    <span class="chip" data-val="賃料相当額の対価">賃料相当額の対価</span>
+    <span class="chip" data-val="同意の登記">同意の登記</span>
+    <span class="chip" data-val="土地">土地</span>
+    <span class="chip" data-val="3か月">3か月</span>
+  </div>
+</div>
+
+<!-- ===== §7 抵当権の消滅 ===== -->
+<div class="section-header" id="s7">
+  <div class="section-num">7</div>
+  <h2>抵当権の消滅</h2>
+</div>
+
+<div class="article-box">
+  <h3>（1）消滅時効（396条）</h3>
+  <table class="comp-table">
+    <tr><th>相手方</th><th>消滅時効の扱い</th></tr>
+    <tr>
+      <td class="label">債務者・抵当権設定者（物上保証人）</td>
+      <td>被担保債権と<span class="kw">同時でなければ時効消滅しない</span>（付従性の強化）</td>
+    </tr>
+    <tr>
+      <td class="label">第三取得者・後順位抵当権者</td>
+      <td>被担保債権とは別個に<span class="kw">20年（166条2項）で時効消滅</span>する</td>
+    </tr>
+  </table>
+</div>
+
+<div class="article-box">
+  <h3>（2）目的物の時効取得（397条）</h3>
+  <p><span class="kw">債務者または抵当権設定者（物上保証人）でない者</span>が抵当不動産について取得時効に必要な要件を具備する占有をしたときは、<span class="kw">抵当権は消滅する</span>。</p>
+  <div class="info-box">
+    <div class="info-title">💡 逆の場合</div>
+    債務者や物上保証人が占有しても、時効取得による抵当権の消滅は認められない。
+  </div>
+</div>
+
+<div class="article-box">
+  <h3>（3）抵当権の目的である地上権等の放棄（398条）</h3>
+  <p>地上権または永小作権を抵当権の目的とした地上権者・永小作人は、その権利を<span class="kw">放棄しても抵当権者に対抗できない</span>。勝手に抵当権者を害することはできない。</p>
+</div>
+
+<!-- まとめ箱 -->
+<div class="summary-box">
+  <h3>📌 ch23 抵当権② まとめ</h3>
+  <ul>
+    <li>物上代位：払渡し前に差押え必要。債権譲渡後でも行使可（抵当権）</li>
+    <li>一般債権者との優劣：抵当権設定登記 vs 差押命令到達の先後</li>
+    <li>相殺：抵当権登記後に取得した債権での相殺は対抗不可</li>
+    <li>敷金充当が物上代位差押えより優先</li>
+    <li>不法占拠者への対抗：妨害排除請求 or 代位行使</li>
+    <li>代価弁済：抵当権者の請求が必要。抵当権消滅請求：第三取得者の側から</li>
+    <li>消滅請求拒否は2か月以内に競売申立てが必要</li>
+    <li>一括競売：優先権は土地の代価のみ</li>
+    <li>明渡し猶予：買受けから6か月・建物のみ・賃料相当額の支払い義務あり</li>
+    <li>同意賃貸借：全員の同意＋同意の登記が必要</li>
+    <li>消滅時効：債務者・設定者には同時消滅。第三取得者等には20年で消滅</li>
+  </ul>
+</div>
+
+</div><!-- /container -->
+
+<footer class="page-footer">
+  GAMBA 民法 ch23 抵当権② ｜ 江原予備校
+</footer>
+
+<script>
+// 江戸スタイルミニテスト
+document.querySelectorAll('.mblank').forEach(btn => {
+  btn.addEventListener('click', function() {
+    this.classList.toggle('revealed');
+  });
+});
+
+// チップ選択：正解のblankにマッチング（順番不問）
+document.querySelectorAll('.chip-area').forEach(area => {
+  const blanks = area.closest('.mini-test').querySelectorAll('.mblank');
+  area.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', function() {
+      if (this.classList.contains('used')) return;
+      const val = this.dataset.val;
+      // val と data-ans が一致する未回答blankを探す
+      let matched = null;
+      for (let blank of blanks) {
+        if (!blank.classList.contains('revealed') && blank.dataset.ans === val) {
+          matched = blank;
+          break;
+        }
+      }
+      if (matched) {
+        matched.classList.add('revealed');
+        matched.textContent = val;
+        this.classList.add('used');
+      } else {
+        this.classList.add('wrong');
+        setTimeout(() => this.classList.remove('wrong'), 500);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

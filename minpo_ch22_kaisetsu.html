@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch22 抵当権①</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4A017;
+    --light-bg: #eef2f7;
+    --white: #ffffff;
+    --text: #2c3e50;
+    --text-light: #5a6a7e;
+    --border: #d0d9e8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'BIZ UDGothic', 'Meiryo', sans-serif;
+    background: var(--light-bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, #2d4a7a 100%);
+    color: white;
+    padding: 20px 20px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 120px; height: 120px;
+    background: rgba(192,57,43,0.15);
+    border-radius: 50%;
+    transform: translate(30px, 30px);
+  }
+  .header-badge {
+    display: inline-block;
+    background: var(--crimson);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  header h1 { font-size: 22px; font-weight: bold; letter-spacing: 1px; }
+  header .subtitle { font-size: 13px; color: rgba(255,255,255,0.75); margin-top: 4px; }
+  .importance {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 4px 12px;
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  .stars { color: var(--gold); letter-spacing: 2px; }
+  .container { max-width: 860px; margin: 0 auto; padding: 20px 16px 40px; }
+
+  .section-header {
+    display: flex; align-items: center; gap: 10px;
+    margin: 28px 0 14px;
+  }
+  .section-num {
+    display: flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px;
+    background: var(--crimson); color: white;
+    font-size: 16px; font-weight: bold;
+    border-radius: 50%; flex-shrink: 0;
+  }
+  .section-title {
+    font-size: 18px; font-weight: bold; color: var(--navy);
+    border-bottom: 2px solid var(--crimson);
+    padding-bottom: 4px; flex: 1;
+  }
+
+  .article-box {
+    background: white; border-radius: 10px;
+    padding: 16px 18px; margin-bottom: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--navy);
+  }
+  .article-box p { margin-bottom: 10px; }
+  .article-box p:last-child { margin-bottom: 0; }
+
+  .point-card {
+    background: #f0f4fa;
+    border: 1.5px solid var(--navy);
+    border-radius: 8px; margin-bottom: 14px; overflow: hidden;
+  }
+  .point-card-header {
+    background: var(--navy); color: white;
+    padding: 7px 14px; font-size: 13px; font-weight: bold; letter-spacing: 0.5px;
+  }
+  .point-card-body { padding: 12px 14px; font-size: 14px; }
+  .point-card-body li {
+    margin-bottom: 6px; list-style: none;
+    padding-left: 16px; position: relative;
+  }
+  .point-card-body li::before {
+    content: '▶'; color: var(--crimson);
+    font-size: 10px; position: absolute; left: 0; top: 3px;
+  }
+
+  .goro-box {
+    background: linear-gradient(135deg, #fff8e1, #fff3cd);
+    border: 2px solid var(--gold);
+    border-radius: 10px; padding: 12px 16px; margin-bottom: 14px;
+  }
+  .goro-box-label {
+    display: inline-block; background: var(--gold); color: white;
+    font-size: 11px; font-weight: bold;
+    padding: 2px 10px; border-radius: 3px; margin-bottom: 8px; letter-spacing: 1px;
+  }
+  .goro-text {
+    font-size: 17px; font-weight: bold; color: var(--navy);
+    text-align: center; letter-spacing: 2px; padding: 6px 0;
+  }
+  .goro-sub { font-size: 12px; color: var(--text-light); text-align: center; margin-top: 4px; }
+
+  .caution-box {
+    background: #fff5f5; border: 1.5px solid var(--crimson);
+    border-radius: 8px; padding: 12px 16px; margin-bottom: 14px; font-size: 14px;
+  }
+  .caution-box-label {
+    display: inline-flex; align-items: center; gap: 4px;
+    color: var(--crimson); font-weight: bold; font-size: 13px; margin-bottom: 6px;
+  }
+
+  .info-box {
+    background: #e8f4fd; border: 1.5px solid #2980b9;
+    border-radius: 8px; padding: 12px 16px; margin-bottom: 14px; font-size: 14px;
+  }
+  .info-box-label {
+    display: inline-flex; align-items: center; gap: 4px;
+    color: #2980b9; font-weight: bold; font-size: 13px; margin-bottom: 6px;
+  }
+
+  /* 事例箱 */
+  .case-box {
+    background: #f9f0ff;
+    border: 1.5px solid #8e44ad;
+    border-radius: 8px; padding: 12px 16px; margin-bottom: 14px; font-size: 14px;
+  }
+  .case-box-label {
+    display: inline-block; background: #8e44ad; color: white;
+    font-size: 11px; font-weight: bold;
+    padding: 2px 10px; border-radius: 3px; margin-bottom: 8px;
+  }
+
+  .compare-table {
+    width: 100%; border-collapse: collapse; margin-bottom: 14px;
+    font-size: 13px; background: white; border-radius: 8px;
+    overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  }
+  .compare-table th {
+    background: var(--navy); color: white;
+    padding: 9px 12px; text-align: center; font-weight: bold;
+  }
+  .compare-table td {
+    padding: 9px 12px; border-bottom: 1px solid var(--border);
+    vertical-align: top; text-align: center;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:nth-child(even) td { background: #f7f9fc; }
+  .compare-table td.label {
+    font-weight: bold; background: #f0f4fa; color: var(--navy); text-align: left;
+  }
+
+  .summary-box {
+    background: var(--navy); color: white;
+    border-radius: 10px; padding: 18px 20px; margin: 20px 0 14px;
+  }
+  .summary-box h3 {
+    font-size: 15px; font-weight: bold; margin-bottom: 12px;
+    padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.2); color: #aecbf0;
+  }
+  .summary-box li {
+    list-style: none; padding-left: 16px; position: relative;
+    margin-bottom: 7px; font-size: 14px; line-height: 1.7;
+  }
+  .summary-box li::before { content: '✓'; color: var(--gold); position: absolute; left: 0; }
+
+  /* ミニテスト */
+  .mini-test {
+    background: #f0f4fa; border: 2px solid var(--navy);
+    border-radius: 10px; margin-top: 20px; overflow: hidden;
+  }
+  .mini-test-header {
+    background: var(--navy); color: white;
+    padding: 8px 14px; font-size: 13px; font-weight: bold; letter-spacing: 1px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .mini-test-body { padding: 14px; }
+  .mq { margin-bottom: 14px; font-size: 14px; }
+  .mq-text { margin-bottom: 8px; line-height: 1.9; }
+  .mq-num { font-weight: bold; color: var(--navy); margin-right: 4px; }
+  .mblank {
+    display: inline-block; min-width: 80px;
+    border-bottom: 2px solid var(--navy);
+    color: transparent; background: #dde3ed;
+    border-radius: 3px; padding: 1px 8px;
+    cursor: pointer; transition: all 0.2s;
+    font-weight: bold; font-size: 14px;
+    vertical-align: middle; user-select: none;
+  }
+  .mblank.open { color: var(--crimson); background: #fff0ee; border-bottom-color: var(--crimson); }
+
+  .popup-overlay {
+    display: none; position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4); z-index: 1000;
+    align-items: center; justify-content: center;
+  }
+  .popup-overlay.active { display: flex; }
+  .popup-box {
+    background: white; border-radius: 12px; padding: 18px;
+    min-width: 260px; max-width: 340px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+  .popup-q { font-size: 13px; color: var(--text-light); margin-bottom: 10px; }
+  .popup-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    background: var(--light-bg); border: 1.5px solid var(--border);
+    border-radius: 20px; padding: 5px 14px; font-size: 13px;
+    cursor: pointer; transition: all 0.15s; font-family: inherit;
+  }
+  .chip:hover { background: var(--navy); color: white; border-color: var(--navy); }
+  .popup-cancel { margin-top: 10px; text-align: right; }
+  .popup-cancel button {
+    background: none; border: none; color: var(--text-light);
+    font-size: 12px; cursor: pointer; font-family: inherit;
+  }
+
+  .mini-judge-btn {
+    display: block; width: 100%;
+    background: var(--navy); color: white;
+    border: none; border-radius: 6px; padding: 9px;
+    font-size: 13px; font-weight: bold; cursor: pointer;
+    font-family: inherit; margin-top: 10px; transition: background 0.2s;
+  }
+  .mini-judge-btn:hover { background: #2d4a7a; }
+  .mini-result { font-size: 13px; font-weight: bold; margin-top: 8px; display: none; }
+
+  .nav-buttons { display: flex; gap: 10px; margin-top: 30px; justify-content: space-between; }
+  .nav-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--navy); color: white;
+    border: none; border-radius: 8px; padding: 10px 18px;
+    font-size: 13px; font-weight: bold; cursor: pointer;
+    font-family: inherit; text-decoration: none;
+  }
+  .nav-btn:hover { background: #2d4a7a; }
+  .nav-btn.enshu { background: var(--crimson); }
+  .nav-btn.enshu:hover { background: #a93226; }
+
+  strong { color: var(--crimson); }
+  em { color: var(--navy); font-style: normal; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-badge">GAMBA 民法 ch22</div>
+  <h1>抵当権①</h1>
+  <div class="subtitle">担保物権⑤ ｜ 抵当権の基本・特徴・及ぶ目的物・果実と転貸料</div>
+  <div class="importance">
+    <span>重要度</span><span class="stars">★★★</span>
+    <span style="color:rgba(255,255,255,0.5)">|</span>
+    <span>頻出度</span><span class="stars">★★★</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- セクション1 -->
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title">抵当権とは？</div>
+  </div>
+
+  <div class="article-box">
+    <p>「<strong>抵当権</strong>」とは、債務者または第三者が<em>占有を移さないで</em>担保に供した不動産等について、債権者が他の債権者に先立って被担保債権の優先弁済を受けることができる権利です。</p>
+    <p>例えば、住宅ローンを組んで家を購入する場合、銀行はその家を担保にとります。これが抵当権です。もしローンが返済できなくなると、銀行は抵当権を実行（競売）して優先弁済を受けます。</p>
+    <p>抵当権は<strong>約定担保物権</strong>（当事者の合意で成立）です。また、目的物を設定者のもとに置いたまま（<strong>非占有担保</strong>）なので、設定者はそのまま目的物を使い続けることができます。</p>
+  </div>
+
+  <div class="point-card">
+    <div class="point-card-header">⚙️ 抵当権の特徴まとめ</div>
+    <div class="point-card-body">
+      <ul>
+        <li><strong>約定担保物権</strong>：当事者間の<em>諾成契約</em>（合意のみで成立、物の引き渡し不要）</li>
+        <li><strong>非占有担保</strong>：設定者はそのまま目的物を使用・収益できる</li>
+        <li><strong>対抗要件は登記</strong>：抵当権の登記をしなければ第三者に対抗できない</li>
+        <li><strong>留置的効力なし</strong>：抵当権者は目的物を留置しない</li>
+        <li><strong>通有性</strong>：付従性・随伴性・不可分性・物上代位性をすべて備える</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <div class="info-box-label">ℹ️ 抵当権設定者について</div>
+    <p>通常は「抵当権設定者＝債務者」ですが、<strong>第三者（物上保証人）</strong>が自己の不動産に抵当権を設定する場合もあります。この第三者を「<em>物上保証人</em>」といいます。</p>
+  </div>
+
+  <div class="case-box">
+    <div class="case-box-label">📝 基本事例：抵当権の実行</div>
+    <p>AはBに1000万円を貸し付けた（被担保債権）。AB間でB所有の土地（1500万円相当）に抵当権を設定し登記した（Aは抵当権者、Bは抵当権設定者）。その後、弁済期が到来したにもかかわらずBが弁済しないので、Aは抵当権を実行（競売）してCに1500万円で売却した。</p>
+    <p style="margin-top:8px;">→ 配当：A：1000万円、余り500万円はBに返還。</p>
+    <p style="margin-top:8px; font-size:13px; color:var(--text-light);">抵当権の実行（競売）には、判決等の<strong>債務名義が不要</strong>です（登記があれば十分）。</p>
+  </div>
+
+  <!-- ミニテスト① -->
+  <div class="mini-test" id="mt1">
+    <div class="mini-test-header">✏️ ミニテスト①　抵当権の基本</div>
+    <div class="mini-test-body">
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q1.</span>抵当権は<span class="mblank" data-ans="約定担保物権" data-choices="約定担保物権,法定担保物権,約定占有担保,法定占有担保" onclick="openPopup(this)">　　</span>であり、当事者間の合意（諾成契約）で成立する。</div>
+      </div>
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q2.</span>抵当権設定者は抵当権設定後も目的物を使い続けることができる。これを抵当権が<span class="mblank" data-ans="非占有担保" data-choices="非占有担保,占有担保,留置担保,優先担保" onclick="openPopup(this)">　　</span>であるという。</div>
+      </div>
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q3.</span>抵当権の対抗要件は<span class="mblank" data-ans="登記" data-choices="登記,占有,引き渡し,公示" onclick="openPopup(this)">　　</span>である。</div>
+      </div>
+      <button class="mini-judge-btn" onclick="judgeTest('mt1')">判定する</button>
+      <div class="mini-result" id="mt1-result"></div>
+    </div>
+  </div>
+
+  <!-- セクション2 -->
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title">抵当権の特徴（目的・被担保債権の範囲）</div>
+  </div>
+
+  <div class="article-box">
+    <p>民法上、抵当権の目的となるのは<strong>不動産・地上権・永小作権</strong>の3つです（369条）。動産は原則として目的になりません（特別法がある場合を除く）。地上権・永小作権など<em>用益物権を目的</em>にできる点は試験でよく出ます。</p>
+    <p>抵当権には通有性（付従性・随伴性・不可分性・物上代位性）がすべて備わっています。また、被担保債権の「<strong>種類</strong>」には限定がなく、将来発生する債権のために抵当権を設定することも可能です（<em>付従性の緩和</em>）。</p>
+  </div>
+
+  <div class="point-card">
+    <div class="point-card-header">📋 民法上の抵当権の目的（369条）</div>
+    <div class="point-card-body">
+      <ul>
+        <li><strong>不動産</strong>（369条1項）：土地・建物</li>
+        <li><strong>地上権</strong>（369条2項）：他人の土地を使用する権利</li>
+        <li><strong>永小作権</strong>（369条2項）：小作料を支払って農耕・牧畜する権利</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="caution-box">
+    <div class="caution-box-label">⚠️ 被担保債権の「範囲」の制限（375条）</div>
+    <p>被担保債権に元本が含まれることは問題ありませんが、<strong>利息その他の定期金</strong>については、満期の来た<strong>「最後の2年分」のみ</strong>が含まれます（375条1項本文）。</p>
+    <p>何年分でも取れるとなると、後順位抵当権者など<strong>第三者が害されてしまう</strong>からです。ただし、後順位抵当権者などがいない場合（利害関係人が債務者または設定者しかいない場合）には、<strong>最後の2年分に限られない</strong>ことに注意。</p>
+  </div>
+
+  <!-- ミニテスト② -->
+  <div class="mini-test" id="mt2">
+    <div class="mini-test-header">✏️ ミニテスト②　抵当権の目的・被担保債権</div>
+    <div class="mini-test-body">
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q1.</span>民法上、抵当権の目的は不動産・<span class="mblank" data-ans="地上権" data-choices="地上権,賃借権,占有権,留置権" onclick="openPopup(this)">　　</span>・永小作権の3つである。</div>
+      </div>
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q2.</span>抵当権の被担保債権の範囲として、利息その他の定期金は満期の来た<span class="mblank" data-ans="最後の2年分" data-choices="最後の2年分,最後の5年分,最後の1年分,全期間分" onclick="openPopup(this)">　　</span>のみが含まれる。</div>
+      </div>
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q3.</span>抵当権は<span class="mblank" data-ans="将来発生する債権" data-choices="将来発生する債権,既発生の債権のみ,特定の種類の債権のみ,確定額の債権のみ" onclick="openPopup(this)">　　</span>のために設定することもできる（付従性の緩和）。</div>
+      </div>
+      <button class="mini-judge-btn" onclick="judgeTest('mt2')">判定する</button>
+      <div class="mini-result" id="mt2-result"></div>
+    </div>
+  </div>
+
+  <!-- セクション3 -->
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title">抵当権の及ぶ目的物（付加一体物）</div>
+  </div>
+
+  <div class="article-box">
+    <p>抵当権は、目的物である不動産（抵当不動産）に<strong>付加して一体となっている物</strong>（付加一体物）にも及びます（370条）。付加一体物は4種類に分けて考えます。</p>
+  </div>
+
+  <table class="compare-table">
+    <tr>
+      <th style="width:18%">種類</th>
+      <th style="width:35%">内容</th>
+      <th style="width:47%">ポイント</th>
+    </tr>
+    <tr>
+      <td class="label">①付合物</td>
+      <td>不動産の構成部分となって<strong>独立性を失った</strong>もの</td>
+      <td><strong>付合の時期を問わず</strong>原則として付加一体物に含まれる。例：庭石（取り外し困難）・増築部分・雨戸・ガラス戸・建具類</td>
+    </tr>
+    <tr>
+      <td class="label">②従物</td>
+      <td><strong>独立の物</strong>だが主物に常用供する物</td>
+      <td><strong>抵当権設定当時に既に存在</strong>した従物には抵当権の効力が及ぶ（87条2項）。例：畳・ガソリンスタンドの地下タンク・計量機・洗車機</td>
+    </tr>
+    <tr>
+      <td class="label">③従たる権利</td>
+      <td>主物に付随する権利</td>
+      <td>土地の抵当権は地役権にも及ぶ。<strong>建物の抵当権は敷地利用権（地上権や賃借権）にも及ぶ</strong>（最判昭40・5・4）</td>
+    </tr>
+    <tr>
+      <td class="label">④果実</td>
+      <td>目的物から生ずる収益</td>
+      <td><strong>債務不履行後</strong>に生じた果実に及ぶ（371条）。債務不履行前には及ばない</td>
+    </tr>
+  </table>
+
+  <div class="caution-box">
+    <div class="caution-box-label">⚠️ 従物のポイント：設定時に「既に存在」していたことが必要</div>
+    <p>従物への抵当権の効力は、<strong>抵当権設定当時に既に存在</strong>した従物に及びます（87条2項）。抵当権設定後に付加された従物には及びません（付合物は設定後でも及ぶ点と対比してください）。</p>
+  </div>
+
+  <div class="info-box">
+    <div class="info-box-label">ℹ️ 従たる権利（建物の敷地利用権）の重要判例</div>
+    <p>借地上の建物に抵当権が設定された場合、抵当権実行によって建物を買い受けた者は<strong>敷地利用権（地上権・賃借権）も取得</strong>できます。ただし、敷地利用権が土地賃借権の場合、建物の買受人は<strong>土地の賃貸人Cの「承諾」または「承諾に代わる裁判所の許可」</strong>を得なければなりません。</p>
+  </div>
+
+  <!-- ミニテスト③ -->
+  <div class="mini-test" id="mt3">
+    <div class="mini-test-header">✏️ ミニテスト③　付加一体物</div>
+    <div class="mini-test-body">
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q1.</span>付合物には、付合の時期を問わず抵当権の効力が及ぶが、従物については<span class="mblank" data-ans="抵当権設定当時に既に存在" data-choices="抵当権設定当時に既に存在,抵当権設定後に付加,競売時に存在,登記時に存在" onclick="openPopup(this)">　　</span>した従物にのみ及ぶ。</div>
+      </div>
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q2.</span>建物の抵当権は、従たる権利として<span class="mblank" data-ans="敷地利用権" data-choices="敷地利用権,土地所有権,建物利用権,抵当権設定権" onclick="openPopup(this)">　　</span>（地上権・賃借権）にも及ぶ。</div>
+      </div>
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q3.</span>抵当権は、被担保債権について<span class="mblank" data-ans="債務不履行後" data-choices="債務不履行後,抵当権設定後,登記後,競売申立後" onclick="openPopup(this)">　　</span>に生じた抵当不動産の果実に及ぶ（371条）。</div>
+      </div>
+      <button class="mini-judge-btn" onclick="judgeTest('mt3')">判定する</button>
+      <div class="mini-result" id="mt3-result"></div>
+    </div>
+  </div>
+
+  <!-- セクション4 -->
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title">果実・転貸料への抵当権の効力</div>
+  </div>
+
+  <div class="article-box">
+    <p>抵当権は、被担保債権について<strong>債務不履行後</strong>に生じた果実（賃料＝法定果実）に及びます（371条）。一方、<strong>債務不履行前には及びません</strong>。</p>
+    <p>では、賃借人がさらに転貸している場合（転貸料）にも抵当権の効力は及ぶのでしょうか？</p>
+  </div>
+
+  <div class="point-card">
+    <div class="point-card-header">📋 転貸料（転貸料債権）への抵当権の効力　【最大決平12・4・14】</div>
+    <div class="point-card-body">
+      <ul>
+        <li><strong>原則：転貸料（転貸料債権）には及ばない</strong>　→ Cは債務者ではないため</li>
+        <li><strong>例外：転貸料にも及ぶ場合</strong>　→ 抵当不動産の賃借人（C）を抵当不動産の所有者（B）と<em>同視できるような場合</em>（BとCがグルで抵当権の効力を潜脱しようとしているとき）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="case-box">
+    <div class="case-box-label">📝 転貸料の事例（最大決平12・4・14）</div>
+    <p>AはBに1億円を貸し付け、B所有のマンション（1億円相当）に抵当権設定・登記。BはCにこれを賃貸し（賃料1万円）、CはさらにDに転貸（転貸料49万円）。ただしBはDがCに支払った転貸料49万円を毎月あとでこっそりCから受け取っている（つまりCはダミーでBとグルになってAを害そうとしている）。その後Bが債務不履行。</p>
+    <p style="margin-top:8px;">→ CはBと同視できる → <strong>例外的に転貸料（転貸料債権）にも及ぶ</strong></p>
+  </div>
+
+  <!-- ミニテスト④ -->
+  <div class="mini-test" id="mt4">
+    <div class="mini-test-header">✏️ ミニテスト④　果実・転貸料</div>
+    <div class="mini-test-body">
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q1.</span>抵当権は原則として転貸料（転貸料債権）には<span class="mblank" data-ans="及ばない" data-choices="及ばない,常に及ぶ,登記があれば及ぶ,差押えがあれば常に及ぶ" onclick="openPopup(this)">　　</span>。</div>
+      </div>
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q2.</span>例外的に転貸料にも及ぶのは、抵当不動産の賃借人を抵当不動産の所有者と<span class="mblank" data-ans="同視できるような場合" data-choices="同視できるような場合,当事者が合意した場合,賃借権が登記された場合,転貸料が賃料より高い場合" onclick="openPopup(this)">　　</span>である（最大決平12・4・14）。</div>
+      </div>
+      <button class="mini-judge-btn" onclick="judgeTest('mt4')">判定する</button>
+      <div class="mini-result" id="mt4-result"></div>
+    </div>
+  </div>
+
+  <!-- セクション5 -->
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div class="section-title">後順位抵当権者と利息の2年制限</div>
+  </div>
+
+  <div class="article-box">
+    <p>抵当不動産には複数の抵当権が設定されることがあります。この場合、<strong>先に登記した抵当権が優先</strong>します（先順位・後順位）。</p>
+    <p>登記の先後によって優先順位が決まるため、1番抵当権者が全額回収した後、残額について2番抵当権者が回収するという形になります。</p>
+  </div>
+
+  <div class="case-box">
+    <div class="case-box-label">📝 後順位抵当権者がいる場合の配当</div>
+    <p>AはBに1000万円（被担保債権）を貸し付け、B所有の土地（1500万円相当）に<strong>1番抵当権</strong>を設定・登記。また、CもBに400万円（被担保債権）を貸し付け、同じ土地に<strong>2番抵当権</strong>を設定・登記。その後弁済期が到来したがBが弁済しないので、Aが抵当権を実行してDに1500万円で売却した。</p>
+    <p style="margin-top:8px;">→ 配当：A：1000万円（1番目に優先）、C：400万円（2番目に優先）、余り100万円はBに返還。</p>
+  </div>
+
+  <div class="caution-box">
+    <div class="caution-box-label">⚠️ 利息の2年制限は後順位者保護のため</div>
+    <p>利息の「最後の2年分」制限（375条）は、<strong>後順位抵当権者などの第三者を保護するため</strong>の規定です。後順位者などがいない場合（利害関係人が債務者または設定者のみ）には、この制限は適用されません。</p>
+  </div>
+
+  <!-- ミニテスト⑤ -->
+  <div class="mini-test" id="mt5">
+    <div class="mini-test-header">✏️ ミニテスト⑤　後順位抵当権者・利息制限</div>
+    <div class="mini-test-body">
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q1.</span>複数の抵当権が設定されている場合、優先順位は<span class="mblank" data-ans="登記の先後" data-choices="登記の先後,設定契約の先後,債権額の大小,弁済期の先後" onclick="openPopup(this)">　　</span>によって決まる。</div>
+      </div>
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q2.</span>利息の「最後の2年分」制限（375条）は、<span class="mblank" data-ans="後順位抵当権者など第三者" data-choices="後順位抵当権者など第三者,債務者,抵当権設定者,競売の買受人" onclick="openPopup(this)">　　</span>を保護するための規定である。</div>
+      </div>
+      <button class="mini-judge-btn" onclick="judgeTest('mt5')">判定する</button>
+      <div class="mini-result" id="mt5-result"></div>
+    </div>
+  </div>
+
+  <!-- まとめ箱 -->
+  <div class="summary-box">
+    <h3>📌 ch22 抵当権①　まとめ</h3>
+    <ul>
+      <li>抵当権は<strong>約定担保物権</strong>（諾成契約）・<strong>非占有担保</strong>・対抗要件は<strong>登記</strong>・留置的効力なし</li>
+      <li>民法上の目的は<strong>不動産・地上権・永小作権</strong>の3つ（動産は原則不可）</li>
+      <li>被担保債権の利息等は<strong>最後の2年分のみ</strong>。ただし後順位者がいない場合はこの限りでない</li>
+      <li>付加一体物：①付合物（時期問わず及ぶ）②従物（設定当時に既存のものに及ぶ）③従たる権利（建物→敷地利用権も）④果実（債務不履行後のみ）</li>
+      <li>果実（賃料）は<strong>債務不履行後</strong>に生じたものに限り及ぶ。債務不履行前には及ばない</li>
+      <li>転貸料には<strong>原則及ばない</strong>。例外は賃借人を所有者と<strong>同視できる場合</strong>（最大決平12・4・14）</li>
+      <li>後順位抵当権者がいる場合：先登記順に優先配当</li>
+    </ul>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="minpo_ch21_kaisetsu.html" class="nav-btn">← ch21 先取特権</a>
+    <a href="minpo_ch22_enshu.html" class="nav-btn enshu">演習問題へ →</a>
+  </div>
+
+</div>
+
+<!-- ポップアップ -->
+<div class="popup-overlay" id="popup-overlay" onclick="closePopupOutside(event)">
+  <div class="popup-box">
+    <div class="popup-q" id="popup-q">語群から選んでください</div>
+    <div class="popup-chips" id="popup-chips"></div>
+    <div class="popup-cancel"><button onclick="closePopup()">キャンセル</button></div>
+  </div>
+</div>
+
+<script>
+let currentBlank = null;
+
+function openPopup(el) {
+  currentBlank = el;
+  const choices = el.getAttribute('data-choices').split(',');
+  const overlay = document.getElementById('popup-overlay');
+  const chipsEl = document.getElementById('popup-chips');
+  chipsEl.innerHTML = '';
+  choices.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'chip';
+    btn.textContent = c;
+    btn.onclick = () => selectChoice(c);
+    chipsEl.appendChild(btn);
+  });
+  overlay.classList.add('active');
+}
+
+function selectChoice(val) {
+  if (!currentBlank) return;
+  currentBlank.textContent = val;
+  currentBlank.classList.add('open');
+  currentBlank.setAttribute('data-selected', val);
+  closePopup();
+}
+
+function closePopup() {
+  document.getElementById('popup-overlay').classList.remove('active');
+  currentBlank = null;
+}
+
+function closePopupOutside(e) {
+  if (e.target === document.getElementById('popup-overlay')) closePopup();
+}
+
+function judgeTest(testId) {
+  const testEl = document.getElementById(testId);
+  const blanks = testEl.querySelectorAll('.mblank');
+  let correct = 0;
+  blanks.forEach(b => {
+    const sel = b.getAttribute('data-selected') || '';
+    const ans = b.getAttribute('data-ans');
+    if (sel === ans) {
+      b.style.color = '#27ae60'; b.style.background = '#eafaf1'; correct++;
+    } else {
+      b.style.color = '#e74c3c'; b.style.background = '#fef9f9';
+    }
+  });
+  const resultEl = document.getElementById(testId + '-result');
+  resultEl.style.display = 'block';
+  if (correct === blanks.length) {
+    resultEl.textContent = `✓ 全問正解！ (${correct}/${blanks.length})`;
+    resultEl.style.color = '#27ae60';
+  } else {
+    resultEl.textContent = `${correct}/${blanks.length} 正解。赤字の箇所を確認しよう。`;
+    resultEl.style.color = '#e74c3c';
+  }
+}
+</script>
+</body>
+</html>

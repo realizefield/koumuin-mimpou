@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch21 先取特権</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4A017;
+    --light-bg: #eef2f7;
+    --white: #ffffff;
+    --text: #2c3e50;
+    --text-light: #5a6a7e;
+    --border: #d0d9e8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'BIZ UDGothic', 'Meiryo', sans-serif;
+    background: var(--light-bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, #2d4a7a 100%);
+    color: white;
+    padding: 20px 20px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 120px; height: 120px;
+    background: rgba(192,57,43,0.15);
+    border-radius: 50%;
+    transform: translate(30px, 30px);
+  }
+  .header-badge {
+    display: inline-block;
+    background: var(--crimson);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  header h1 { font-size: 22px; font-weight: bold; letter-spacing: 1px; }
+  header .subtitle { font-size: 13px; color: rgba(255,255,255,0.75); margin-top: 4px; }
+  .importance {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 4px 12px;
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  .stars { color: var(--gold); letter-spacing: 2px; }
+  .container { max-width: 860px; margin: 0 auto; padding: 20px 16px 40px; }
+
+  /* セクションヘッダー */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 28px 0 14px;
+  }
+  .section-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    background: var(--crimson);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--navy);
+    border-bottom: 2px solid var(--crimson);
+    padding-bottom: 4px;
+    flex: 1;
+  }
+
+  /* article-box */
+  .article-box {
+    background: white;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--navy);
+  }
+  .article-box p { margin-bottom: 10px; }
+  .article-box p:last-child { margin-bottom: 0; }
+
+  /* point-card */
+  .point-card {
+    background: #f0f4fa;
+    border: 1.5px solid var(--navy);
+    border-radius: 8px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .point-card-header {
+    background: var(--navy);
+    color: white;
+    padding: 7px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  .point-card-body { padding: 12px 14px; font-size: 14px; }
+  .point-card-body li { margin-bottom: 6px; list-style: none; padding-left: 16px; position: relative; }
+  .point-card-body li::before { content: '▶'; color: var(--crimson); font-size: 10px; position: absolute; left: 0; top: 3px; }
+
+  /* ゴロ箱 */
+  .goro-box {
+    background: linear-gradient(135deg, #fff8e1, #fff3cd);
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .goro-box-label {
+    display: inline-block;
+    background: var(--gold);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 10px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .goro-text {
+    font-size: 17px;
+    font-weight: bold;
+    color: var(--navy);
+    text-align: center;
+    letter-spacing: 2px;
+    padding: 6px 0;
+  }
+  .goro-sub { font-size: 12px; color: var(--text-light); text-align: center; margin-top: 4px; }
+
+  /* 注意箱 */
+  .caution-box {
+    background: #fff5f5;
+    border: 1.5px solid var(--crimson);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 14px;
+    font-size: 14px;
+  }
+  .caution-box-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--crimson);
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  /* 情報箱 */
+  .info-box {
+    background: #e8f4fd;
+    border: 1.5px solid #2980b9;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 14px;
+    font-size: 14px;
+  }
+  .info-box-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #2980b9;
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  /* 比較表 */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 14px;
+    font-size: 13px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  }
+  .compare-table th {
+    background: var(--navy);
+    color: white;
+    padding: 9px 12px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .compare-table th.sub { background: #2d4a7a; }
+  .compare-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    text-align: center;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:nth-child(even) td { background: #f7f9fc; }
+  .compare-table td.label {
+    font-weight: bold;
+    background: #f0f4fa;
+    color: var(--navy);
+    text-align: left;
+  }
+
+  /* まとめ箱 */
+  .summary-box {
+    background: var(--navy);
+    color: white;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 20px 0 14px;
+  }
+  .summary-box h3 {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    color: #aecbf0;
+  }
+  .summary-box li {
+    list-style: none;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 7px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .summary-box li::before {
+    content: '✓';
+    color: var(--gold);
+    position: absolute;
+    left: 0;
+  }
+
+  /* ミニテスト（江戸スタイル） */
+  .mini-test {
+    background: #f0f4fa;
+    border: 2px solid var(--navy);
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow: hidden;
+  }
+  .mini-test-header {
+    background: var(--navy);
+    color: white;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .mini-test-body { padding: 14px; }
+  .mq { margin-bottom: 14px; font-size: 14px; }
+  .mq-text { margin-bottom: 8px; line-height: 1.9; }
+  .mq-num { font-weight: bold; color: var(--navy); margin-right: 4px; }
+  .mblank {
+    display: inline-block;
+    min-width: 80px;
+    border-bottom: 2px solid var(--navy);
+    color: transparent;
+    background: #dde3ed;
+    border-radius: 3px;
+    padding: 1px 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+    font-size: 14px;
+    vertical-align: middle;
+    user-select: none;
+    position: relative;
+  }
+  .mblank.open { color: var(--crimson); background: #fff0ee; border-bottom-color: var(--crimson); }
+  /* ポップアップ */
+  .popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .popup-overlay.active { display: flex; }
+  .popup-box {
+    background: white;
+    border-radius: 12px;
+    padding: 18px;
+    min-width: 260px;
+    max-width: 320px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+  .popup-q { font-size: 13px; color: var(--text-light); margin-bottom: 10px; }
+  .popup-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    background: var(--light-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .chip:hover { background: var(--navy); color: white; border-color: var(--navy); }
+  .chip.correct { background: #27ae60; color: white; border-color: #27ae60; }
+  .chip.wrong { background: var(--crimson); color: white; border-color: var(--crimson); }
+  .popup-cancel { margin-top: 10px; text-align: right; }
+  .popup-cancel button {
+    background: none; border: none; color: var(--text-light);
+    font-size: 12px; cursor: pointer; font-family: inherit;
+  }
+
+  /* 判定ボタン */
+  .mini-judge-btn {
+    display: block;
+    width: 100%;
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 9px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: inherit;
+    margin-top: 10px;
+    transition: background 0.2s;
+  }
+  .mini-judge-btn:hover { background: #2d4a7a; }
+  .mini-result { font-size: 13px; color: var(--crimson); font-weight: bold; margin-top: 8px; display: none; }
+
+  /* ナビボタン */
+  .nav-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+    justify-content: space-between;
+  }
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: inherit;
+    text-decoration: none;
+  }
+  .nav-btn:hover { background: #2d4a7a; }
+  .nav-btn.enshu { background: var(--crimson); }
+  .nav-btn.enshu:hover { background: #a93226; }
+
+  strong { color: var(--crimson); }
+  em { color: var(--navy); font-style: normal; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-badge">GAMBA 民法 ch21</div>
+  <h1>先取特権</h1>
+  <div class="subtitle">担保物権④ ｜ 法定担保物権の種類と効力</div>
+  <div class="importance">
+    <span>重要度</span>
+    <span class="stars">★☆☆</span>
+    <span style="color:rgba(255,255,255,0.5)">|</span>
+    <span>頻出度</span>
+    <span class="stars">★☆☆</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- セクション1 -->
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title">先取特権とは？</div>
+  </div>
+
+  <div class="article-box">
+    <p>「<strong>先取特権</strong>」とは、法律によって当然に成立する<em>法定担保物権</em>であり、特殊な被担保債権を有する債権者が、債務者の財産から優先弁済を受けることができる権利です。</p>
+    <p>質権や抵当権は当事者間の<em>契約</em>によって設定しますが、先取特権は<strong>設定契約は不要</strong>です。法律が一定の債権を保護するために自動的に認める担保物権です。</p>
+    <p>優先弁済を受ける対象財産に応じて、「<strong>一般先取特権</strong>」と「<strong>特別の先取特権</strong>」に分かれ、特別の先取特権はさらに「<em>動産先取特権</em>」と「<em>不動産先取特権</em>」に分かれます。</p>
+  </div>
+
+  <div class="point-card">
+    <div class="point-card-header">📋 先取特権の分類（3種類）</div>
+    <div class="point-card-body">
+      <ul>
+        <li><strong>①一般先取特権</strong>：債務者の「<em>総財産</em>」から優先弁済を受ける先取特権（306条）</li>
+        <li><strong>②動産先取特権</strong>：債務者の「<em>特定の動産</em>」から優先弁済を受ける先取特権（311条）</li>
+        <li><strong>③不動産先取特権</strong>：債務者の「<em>特定の不動産</em>」から優先弁済を受ける先取特権（325条）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="point-card">
+    <div class="point-card-header">⚙️ 先取特権の通有性</div>
+    <div class="point-card-body">
+      <ul>
+        <li><strong>付従性</strong>：被担保債権が消滅すれば先取特権も消滅</li>
+        <li><strong>随伴性</strong>：被担保債権が移転すれば先取特権も移転</li>
+        <li><strong>不可分性</strong>：被担保債権全額の弁済があるまで目的物全部に行使できる</li>
+        <li><strong>物上代位性</strong>：売却・賃貸・滅失・損傷によって債務者が受けるべき金銭等に行使できる</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="caution-box">
+    <div class="caution-box-label">⚠️ 注意！　一般先取特権に物上代位性はない</div>
+    <p>一般先取特権は債務者の<strong>総財産</strong>全体にかかっているため、特定の代替財産に行使する「物上代位」は不要・適用なし、とされています（一般先取特権を除く）。</p>
+  </div>
+
+  <div class="info-box">
+    <div class="info-box-label">ℹ️ 効力について</div>
+    <p>先取特権には<strong>優先弁済的効力はある</strong>ものの、<strong>留置的効力はありません</strong>。留置権や質権のように「物を手元に留め置いて」プレッシャーをかける効力はなく、競売して配当を受けるという形で使います。</p>
+  </div>
+
+  <!-- ミニテスト①-->
+  <div class="mini-test" id="mt1">
+    <div class="mini-test-header">✏️ ミニテスト①　先取特権の基本</div>
+    <div class="mini-test-body">
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q1.</span>先取特権は<span class="mblank" data-ans="法定担保物権" data-choices="法定担保物権,約定担保物権,法定占有権,意定担保物権" onclick="openPopup(this)">　　</span>であり、設定契約は不要である。</div>
+      </div>
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q2.</span>一般先取特権は債務者の<span class="mblank" data-ans="総財産" data-choices="総財産,特定の動産,特定の不動産,特定の債権" onclick="openPopup(this)">　　</span>から優先弁済を受ける。</div>
+      </div>
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q3.</span>先取特権の通有性のうち、<span class="mblank" data-ans="一般先取特権" data-choices="一般先取特権,動産先取特権,不動産先取特権,すべての先取特権" onclick="openPopup(this)">　　</span>には物上代位性がない。</div>
+      </div>
+      <button class="mini-judge-btn" onclick="judgeTest('mt1')">判定する</button>
+      <div class="mini-result" id="mt1-result"></div>
+    </div>
+  </div>
+
+  <!-- セクション2 -->
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title">一般先取特権</div>
+  </div>
+
+  <div class="article-box">
+    <p>一般先取特権は、ある特殊な被担保債権を有する債権者が、債務者の「<strong>総財産</strong>」から優先弁済を受けられるものです（306条）。「ある特殊な被担保債権」として<strong>4つ</strong>が用意されています。</p>
+  </div>
+
+  <div class="point-card">
+    <div class="point-card-header">📋 一般先取特権の4種類（306条）</div>
+    <div class="point-card-body">
+      <ul>
+        <li><strong>①共益費用</strong>の先取特権：債権者の共同の利益のためにした行為にかかった費用</li>
+        <li><strong>②雇用関係</strong>の先取特権：給料・退職金・年末手当などの債権</li>
+        <li><strong>③葬式費用</strong>の先取特権：葬儀屋の有する債権</li>
+        <li><strong>④日用品供給</strong>の先取特権：飲食費（自然人○、法人×）・光熱費などの債権</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="goro-box">
+    <div class="goro-box-label">🎵 語呂合わせ</div>
+    <div class="goro-text">「今日（共）こ（雇）そ（葬）日曜（日用）」</div>
+    <div class="goro-sub">共益費用 → 雇用関係 → 葬式費用 → 日用品供給　の優先順位</div>
+  </div>
+
+  <div class="article-box">
+    <p>これら4つが競合する場合、優先順位は①→②→③→④の順（329条1項、306条各号）です。</p>
+    <p>また、一般先取特権と特別の先取特権が競合する場合は、<strong>特別の先取特権が一般先取特権に優先</strong>します。ただし例外として、<strong>①共益費用の先取特権だけは、その利益を受けたすべての債権者に対して優先</strong>する効力を有します（329条2項）。共益費用は「向かう所敵なし」です。</p>
+  </div>
+
+  <div class="info-box">
+    <div class="info-box-label">ℹ️ 不動産への対抗力（336条）</div>
+    <p>一般先取特権は、不動産について<strong>登記をしなくても</strong>、「特別担保を有しない債権者」（一般債権者）だけでなく、<strong>未登記の抵当権者など</strong>にも対抗することができます。</p>
+    <p>登記されることが少なく（登記を要求するのが困難）、債権額も少額であることが多いため、このような特別扱いが認められています。ただし、<strong>登記を備えた抵当権者（特別担保を有する第三者）には対抗できません</strong>。</p>
+  </div>
+
+  <div class="caution-box">
+    <div class="caution-box-label">⚠️ 日用品供給の先取特権の注意点</div>
+    <p>日用品供給の先取特権は、<strong>自然人のための飲食費・光熱費</strong>等が対象です。法人（会社など）のための日用品供給には認められません。</p>
+  </div>
+
+  <!-- ミニテスト② -->
+  <div class="mini-test" id="mt2">
+    <div class="mini-test-header">✏️ ミニテスト②　一般先取特権</div>
+    <div class="mini-test-body">
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q1.</span>一般先取特権のうち、他のすべての債権者に優先するのは<span class="mblank" data-ans="共益費用" data-choices="共益費用,雇用関係,葬式費用,日用品供給" onclick="openPopup(this)">　　</span>の先取特権である。</div>
+      </div>
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q2.</span>一般先取特権は、不動産について登記をしなくても<span class="mblank" data-ans="特別担保を有しない債権者" data-choices="特別担保を有しない債権者,登記した抵当権者,すべての第三者,留置権者" onclick="openPopup(this)">　　</span>に対抗できる。</div>
+      </div>
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q3.</span>一般先取特権と特別の先取特権が競合する場合、原則として<span class="mblank" data-ans="特別の先取特権" data-choices="特別の先取特権,一般先取特権,共益費用の先取特権,後に発生した先取特権" onclick="openPopup(this)">　　</span>が優先する。</div>
+      </div>
+      <button class="mini-judge-btn" onclick="judgeTest('mt2')">判定する</button>
+      <div class="mini-result" id="mt2-result"></div>
+    </div>
+  </div>
+
+  <!-- セクション3 -->
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title">動産先取特権</div>
+  </div>
+
+  <div class="article-box">
+    <p>動産先取特権は、ある特殊な被担保債権を有する債権者が、債務者の「<strong>特定の動産</strong>」から優先弁済を受けられるものです（311条）。種類は多数ありますが、試験で重要なのは以下の3つです。</p>
+  </div>
+
+  <div class="point-card">
+    <div class="point-card-header">📋 動産先取特権の主な種類（優先順位順）</div>
+    <div class="point-card-body">
+      <ul>
+        <li><strong>①不動産賃貸</strong>の先取特権（313条）：賃貸人が賃借人の動産に対してもつ</li>
+        <li><strong>②動産保存</strong>の先取特権：動産の保存のために要した費用</li>
+        <li><strong>③動産売買</strong>の先取特権：動産の売主が代金債権のために</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="goro-box">
+    <div class="goro-box-label">🎵 語呂合わせ</div>
+    <div class="goro-text">動産：「不（不動産賃貸）・保（動産保存）・売（動産売買）」</div>
+    <div class="goro-sub">①不動産賃貸 → ②動産保存 → ③動産売買　の優先順位（330条1項）</div>
+  </div>
+
+  <div class="info-box">
+    <div class="info-box-label">ℹ️ 不動産賃貸先取特権の目的物（313条）</div>
+    <p><strong>土地の賃貸人</strong>の先取特権は、①その土地・利用のための建物に備え付けられた動産、②その土地の利用に供された動産、③賃借人が占有するその土地の果実、に及びます（313条1項）。</p>
+    <p><strong>建物の賃貸人</strong>の先取特権は、賃借人が<strong>建物に備え付けた動産</strong>に及びます。常置される動産だけでなく、<strong>賃借人が建物内に持ち込んだ金銭・有価証券・宝石・商品・時計等も含まれます</strong>（大判大3・7・4）（313条2項）。また、賃借権の譲渡・転貸の場合には、<strong>譲受人・転借人の動産および譲受人・転借人が受けるべき金銭</strong>にも及びます（314条）。</p>
+  </div>
+
+  <div class="caution-box">
+    <div class="caution-box-label">⚠️ 動産先取特権の「追及効なし」（333条）</div>
+    <p>動産先取特権は、<strong>債務者がその目的動産を第三取得者に引き渡した後は、行使できません</strong>（333条）。これを「<em>追及効がない</em>」といいます。なお、ここでいう「引き渡し」には<strong>占有改定も含まれます</strong>（大判大6・7・26）。ゆえに、動産先取特権は非常に弱い権利です。</p>
+  </div>
+
+  <!-- ミニテスト③ -->
+  <div class="mini-test" id="mt3">
+    <div class="mini-test-header">✏️ ミニテスト③　動産先取特権</div>
+    <div class="mini-test-body">
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q1.</span>動産先取特権の優先順位は、①不動産賃貸、②動産保存、③<span class="mblank" data-ans="動産売買" data-choices="動産売買,不動産売買,動産保管,日用品売買" onclick="openPopup(this)">　　</span>の順である。</div>
+      </div>
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q2.</span>債務者がその目的動産を第三取得者に引き渡した後は、動産先取特権を行使することが<span class="mblank" data-ans="できない" data-choices="できない,できる,条件付きでできる,裁判所の許可があればできる" onclick="openPopup(this)">　　</span>（追及効がない）。</div>
+      </div>
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q3.</span>動産先取特権の「引き渡し」には<span class="mblank" data-ans="占有改定" data-choices="占有改定,簡易の引渡し,指図による占有移転,現実の引渡しのみ" onclick="openPopup(this)">　　</span>も含まれる。</div>
+      </div>
+      <button class="mini-judge-btn" onclick="judgeTest('mt3')">判定する</button>
+      <div class="mini-result" id="mt3-result"></div>
+    </div>
+  </div>
+
+  <!-- セクション4 -->
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title">不動産先取特権</div>
+  </div>
+
+  <div class="article-box">
+    <p>不動産先取特権は、ある特殊な被担保債権を有する債権者が、債務者の「<strong>特定の不動産</strong>」から優先弁済を受けられるものです（325条）。種類は3つです。</p>
+  </div>
+
+  <div class="point-card">
+    <div class="point-card-header">📋 不動産先取特権の3種類（優先順位順）</div>
+    <div class="point-card-body">
+      <ul>
+        <li><strong>①不動産の保存</strong>の先取特権（326条）：不動産保存のために要した費用・保存行為による債権</li>
+        <li><strong>②不動産の工事</strong>の先取特権（327条）：工事によって不動産の価格増加が現存する場合に限り、その増価額について</li>
+        <li><strong>③不動産の売買</strong>の先取特権（328条）：不動産の売主が代金・利息債権のために</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="goro-box">
+    <div class="goro-box-label">🎵 語呂合わせ</div>
+    <div class="goro-text">不動産：「保（保存）・工（工事）・売（売買）」</div>
+    <div class="goro-sub">①保存 → ②工事 → ③売買　の優先順位（順番どおり暗記）</div>
+  </div>
+
+  <div class="info-box">
+    <div class="info-box-label">ℹ️ 不動産工事の先取特権の要件</div>
+    <p>不動産工事の先取特権は、工事によって不動産の価格の増加が<strong>現存する場合に限り</strong>、その増価額についてのみ存在します（327条1項）。工事前にあらかじめ登記（工事費用・工事設計）をしておく必要があります（327条2項）。</p>
+  </div>
+
+  <!-- ミニテスト④ -->
+  <div class="mini-test" id="mt4">
+    <div class="mini-test-header">✏️ ミニテスト④　不動産先取特権</div>
+    <div class="mini-test-body">
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q1.</span>不動産先取特権の優先順位は、①<span class="mblank" data-ans="不動産の保存" data-choices="不動産の保存,不動産の工事,不動産の売買,不動産の賃貸" onclick="openPopup(this)">　　</span>、②不動産の工事、③不動産の売買の順である。</div>
+      </div>
+      <div class="mq">
+        <div class="mq-text"><span class="mq-num">Q2.</span>不動産工事の先取特権は、工事によって不動産の価格の増加が<span class="mblank" data-ans="現存する場合に限り" data-choices="現存する場合に限り,工事完了後は常に,工事着手時に,登記があれば" onclick="openPopup(this)">　　</span>、その増価額について存在する。</div>
+      </div>
+      <button class="mini-judge-btn" onclick="judgeTest('mt4')">判定する</button>
+      <div class="mini-result" id="mt4-result"></div>
+    </div>
+  </div>
+
+  <!-- まとめ箱 -->
+  <div class="summary-box">
+    <h3>📌 ch21 先取特権　まとめ</h3>
+    <ul>
+      <li>先取特権は<strong>法定担保物権</strong>（設定契約不要）。優先弁済的効力あり、<strong>留置的効力なし</strong></li>
+      <li>一般先取特権は物上代位性なし。動産・不動産先取特権には物上代位性あり</li>
+      <li>一般先取特権の4種類：共益費用・雇用関係・葬式費用・日用品供給（語呂：今日こそ日曜）</li>
+      <li>一般先取特権と特別の先取特権の競合：原則として特別が優先。ただし共益費用の先取特権はすべてに優先</li>
+      <li>一般先取特権は登記なしで未登記抵当権者にも対抗可。ただし<strong>登記した抵当権者等には対抗不可</strong></li>
+      <li>動産先取特権の優先順位：不動産賃貸→動産保存→動産売買（語呂：不保売）</li>
+      <li>動産先取特権は<strong>追及効なし</strong>（第三取得者への引き渡し・占有改定後は行使不可）</li>
+      <li>不動産先取特権の優先順位：保存→工事→売買（語呂：保工売）</li>
+    </ul>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="minpo_ch20_kaisetsu.html" class="nav-btn">← ch20 質権</a>
+    <a href="minpo_ch21_enshu.html" class="nav-btn enshu">演習問題へ →</a>
+  </div>
+
+</div>
+
+<!-- ポップアップオーバーレイ -->
+<div class="popup-overlay" id="popup-overlay" onclick="closePopupOutside(event)">
+  <div class="popup-box">
+    <div class="popup-q" id="popup-q">語群から選んでください</div>
+    <div class="popup-chips" id="popup-chips"></div>
+    <div class="popup-cancel"><button onclick="closePopup()">キャンセル</button></div>
+  </div>
+</div>
+
+<script>
+let currentBlank = null;
+
+function openPopup(el) {
+  currentBlank = el;
+  const choices = el.getAttribute('data-choices').split(',');
+  const overlay = document.getElementById('popup-overlay');
+  const chipsEl = document.getElementById('popup-chips');
+  chipsEl.innerHTML = '';
+  choices.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'chip';
+    btn.textContent = c;
+    btn.onclick = () => selectChoice(c);
+    chipsEl.appendChild(btn);
+  });
+  overlay.classList.add('active');
+}
+
+function selectChoice(val) {
+  if (!currentBlank) return;
+  const ans = currentBlank.getAttribute('data-ans');
+  currentBlank.textContent = val;
+  currentBlank.classList.add('open');
+  currentBlank.setAttribute('data-selected', val);
+  closePopup();
+}
+
+function closePopup() {
+  document.getElementById('popup-overlay').classList.remove('active');
+  currentBlank = null;
+}
+
+function closePopupOutside(e) {
+  if (e.target === document.getElementById('popup-overlay')) closePopup();
+}
+
+function judgeTest(testId) {
+  const testEl = document.getElementById(testId);
+  const blanks = testEl.querySelectorAll('.mblank');
+  let correct = 0;
+  blanks.forEach(b => {
+    const sel = b.getAttribute('data-selected') || '';
+    const ans = b.getAttribute('data-ans');
+    if (sel === ans) { b.style.color = '#27ae60'; b.style.background = '#eafaf1'; correct++; }
+    else { b.style.color = '#e74c3c'; b.style.background = '#fef9f9'; }
+  });
+  const resultEl = document.getElementById(testId + '-result');
+  resultEl.style.display = 'block';
+  if (correct === blanks.length) {
+    resultEl.textContent = `✓ 全問正解！ (${correct}/${blanks.length})`;
+    resultEl.style.color = '#27ae60';
+  } else {
+    resultEl.textContent = `${correct}/${blanks.length} 正解。赤字の箇所を確認しよう。`;
+    resultEl.style.color = '#e74c3c';
+  }
+}
+</script>
+</body>
+</html>

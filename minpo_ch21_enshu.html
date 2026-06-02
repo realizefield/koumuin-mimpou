@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch21 先取特権 演習</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4A017;
+    --light-bg: #eef2f7;
+    --white: #ffffff;
+    --text: #2c3e50;
+    --text-light: #5a6a7e;
+    --border: #d0d9e8;
+    --correct: #27ae60;
+    --wrong: #e74c3c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'BIZ UDGothic', 'Meiryo', sans-serif;
+    background: var(--light-bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, #2d4a7a 100%);
+    color: white;
+    padding: 20px 20px 16px;
+  }
+  .header-badge {
+    display: inline-block;
+    background: var(--crimson);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  header h1 { font-size: 20px; font-weight: bold; }
+  header .subtitle { font-size: 13px; color: rgba(255,255,255,0.75); margin-top: 4px; }
+  .container { max-width: 860px; margin: 0 auto; padding: 20px 16px 40px; }
+
+  /* パート見出し */
+  .part-header {
+    background: var(--navy);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px 8px 0 0;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+  .part-body {
+    background: white;
+    border-radius: 0 0 8px 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  /* 問題 */
+  .question { margin-bottom: 18px; }
+  .q-num {
+    display: inline-block;
+    background: var(--navy);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 10px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .q-text { font-size: 14px; line-height: 1.9; margin-bottom: 10px; }
+
+  /* ○×ボタン */
+  .ox-buttons { display: flex; gap: 10px; margin-bottom: 8px; }
+  .ox-btn {
+    padding: 8px 24px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    background: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+    min-width: 70px;
+    text-align: center;
+  }
+  .ox-btn:hover { border-color: var(--navy); }
+  .ox-btn.selected-maru { background: #e8f8f0; border-color: var(--correct); color: var(--correct); }
+  .ox-btn.selected-batsu { background: #fef0ee; border-color: var(--wrong); color: var(--wrong); }
+  .ox-btn.correct-answer { background: var(--correct); color: white; border-color: var(--correct); }
+  .ox-btn.wrong-answer { background: var(--wrong); color: white; border-color: var(--wrong); }
+
+  /* 解説 */
+  .explanation {
+    display: none;
+    background: #f8f9fc;
+    border-left: 4px solid var(--navy);
+    padding: 12px 14px;
+    font-size: 13px;
+    border-radius: 0 6px 6px 0;
+    margin-top: 8px;
+    line-height: 1.8;
+  }
+  .explanation.show { display: block; }
+  .explanation .correct-label { color: var(--correct); font-weight: bold; }
+  .explanation .wrong-label { color: var(--wrong); font-weight: bold; }
+
+  /* スコア */
+  .score-box {
+    display: none;
+    background: var(--navy);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .score-box.show { display: block; }
+
+  /* 5択 */
+  .choice-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    font-family: inherit;
+    line-height: 1.7;
+    transition: all 0.15s;
+  }
+  .choice-btn:hover { border-color: var(--navy); background: #f0f4fa; }
+  .choice-btn.selected { background: #f0f4fa; border-color: var(--navy); }
+  .choice-btn.correct-choice { background: #e8f8f0; border-color: var(--correct); color: var(--correct); font-weight: bold; }
+  .choice-btn.wrong-choice { background: #fef0ee; border-color: var(--wrong); color: var(--wrong); }
+
+  .judge-btn {
+    background: var(--crimson);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: inherit;
+    margin-top: 8px;
+  }
+  .judge-btn:hover { background: #a93226; }
+
+  /* ナビ */
+  .nav-buttons {
+    display: flex; gap: 10px;
+    margin-top: 30px;
+    justify-content: space-between;
+  }
+  .nav-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--navy); color: white;
+    border: none; border-radius: 8px;
+    padding: 10px 18px; font-size: 13px; font-weight: bold;
+    cursor: pointer; font-family: inherit; text-decoration: none;
+  }
+  .nav-btn:hover { background: #2d4a7a; }
+  .nav-btn.kaisetsu { background: var(--crimson); }
+
+  strong { color: var(--crimson); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-badge">GAMBA 民法 ch21 演習</div>
+  <h1>先取特権　演習問題</h1>
+  <div class="subtitle">PART1：○×問題（4問）　PART2：5択問題（1問）</div>
+</header>
+
+<div class="container">
+
+  <!-- PART1 -->
+  <div class="part-header">PART 1　○×問題</div>
+  <div class="part-body">
+
+    <!-- Q1 -->
+    <div class="question" id="p1q1">
+      <div class="q-num">Q1</div>
+      <div class="q-text">先取特権は、法律上当然に生ずる法定担保物権であり、当事者間の契約で発生させることはできない。また、先取特権は、担保物権の性質である付従性、随伴性、不可分性を有している。</div>
+      <div class="ox-buttons">
+        <button class="ox-btn" onclick="answerOX('p1q1', '○', true)">○</button>
+        <button class="ox-btn" onclick="answerOX('p1q1', '×', false)">×</button>
+      </div>
+      <div class="explanation" id="p1q1-exp">
+        <span class="correct-label">【正解：○】</span><br>
+        先取特権は法律上当然に生じる<strong>法定担保物権</strong>であり、設定契約は不要です。付従性・随伴性・不可分性はすべての先取特権に備わっています。なお、<strong>物上代位性は一般先取特権を除く</strong>特別の先取特権に備わっています（一般先取特権には物上代位性はない）。
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question" id="p1q2">
+      <div class="q-num">Q2</div>
+      <div class="q-text">動産の先取特権は、債務者の特定の動産を目的とする先取特権である。動産の先取特権は、その目的である動産が第三者に譲渡された後であっても、これを行使することができる。</div>
+      <div class="ox-buttons">
+        <button class="ox-btn" onclick="answerOX('p1q2', '○', false)">○</button>
+        <button class="ox-btn" onclick="answerOX('p1q2', '×', true)">×</button>
+      </div>
+      <div class="explanation" id="p1q2-exp">
+        <span class="wrong-label">【正解：×】</span><br>
+        前半は正しいですが、後半が誤りです。動産先取特権は<strong>追及効がない</strong>ため、債務者がその目的動産を第三取得者に<strong>引き渡した後</strong>は、行使することができません（333条）。なお「引き渡し」には占有改定も含まれます。
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question" id="p1q3">
+      <div class="q-num">Q3</div>
+      <div class="q-text">不動産の賃貸人は、建物の賃貸借において、その不動産の賃料その他の賃貸借関係から生じた債権について、賃借人が建物に備え付けた動産について先取特権を有する。賃借人が建物内に持ち込んだ金銭や有価証券など必ずしも常置されるものではない物は、この先取特権の目的とはならない。</div>
+      <div class="ox-buttons">
+        <button class="ox-btn" onclick="answerOX('p1q3', '○', false)">○</button>
+        <button class="ox-btn" onclick="answerOX('p1q3', '×', true)">×</button>
+      </div>
+      <div class="explanation" id="p1q3-exp">
+        <span class="wrong-label">【正解：×】</span><br>
+        建物賃貸人の先取特権は、賃借人がその<strong>建物に備え付けた動産</strong>に及びます（313条2項）。「建物内に常置されるものでなければならない」という限定はなく、判例（大判大3・7・4）によれば、賃借人が建物内に持ち込んだ<strong>金銭・有価証券・宝石・商品・時計等も目的に含まれます</strong>。
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question" id="p1q4">
+      <div class="q-num">Q4</div>
+      <div class="q-text">一般の先取特権は、不動産について登記をしなくても、特別担保を有しない一般債権者はもとより、抵当権者など登記を備えた特別担保を有する第三者にも対抗することができる。</div>
+      <div class="ox-buttons">
+        <button class="ox-btn" onclick="answerOX('p1q4', '○', false)">○</button>
+        <button class="ox-btn" onclick="answerOX('p1q4', '×', true)">×</button>
+      </div>
+      <div class="explanation" id="p1q4-exp">
+        <span class="wrong-label">【正解：×】</span><br>
+        一般先取特権は、不動産について登記をしなくても、<strong>特別担保を有しない債権者</strong>（一般債権者）や<strong>未登記の抵当権者</strong>等には対抗できます（336条）。しかし、<strong>登記を備えた抵当権者など特別担保を有する第三者には対抗できません</strong>。「すべての第三者」に対抗できるわけではない点がひっかけです。
+      </div>
+    </div>
+
+    <div id="p1-score" class="score-box"></div>
+  </div>
+
+  <!-- PART2 -->
+  <div class="part-header">PART 2　5択問題</div>
+  <div class="part-body">
+    <div class="question" id="p2q1">
+      <div class="q-num">Q1　【国家一般職 H28 改題】</div>
+      <div class="q-text">先取特権に関するア〜オの記述のうち、妥当なもののみをすべて挙げているのはどれか。</div>
+      <div style="background:#f8f9fc; padding:14px; border-radius:6px; margin-bottom:12px; font-size:13px; line-height:1.9;">
+        <p><strong>ア．</strong>先取特権は、法律上当然に生ずる法定担保物権であり、当事者間の契約で発生させることはできない。なお、一般先取特権を除いて、物上代位性も有する。</p>
+        <p><strong>イ．</strong>一般先取特権によって担保される債権として、民法は、共益費用、雇用関係、旅館の宿泊及び日用品供給の四種の債権について、一般の先取特権を付与している。</p>
+        <p><strong>ウ．</strong>動産の先取特権は、債務者の特定の動産を目的とする先取特権である。動産の先取特権は、その目的である動産が第三者に譲渡されても影響を受けることはなく、債務者がその目的である動産をその第三取得者に引き渡した後であっても、これを行使することができる。</p>
+        <p><strong>エ．</strong>不動産の賃貸人は、賃借人の特定の動産について先取特権を有する。建物の賃貸借の場合、賃借人が建物内に持ち込んだ金銭、有価証券、宝石類など必ずしも建物に常置されるものではない物も、目的となる。</p>
+        <p><strong>オ．</strong>一般の先取特権は、不動産について登記をしなくても、特別担保を有しない一般債権者はもとより、抵当権者など登記を備えた特別担保を有する第三者にも対抗することができる。</p>
+      </div>
+      <button class="choice-btn" id="p2c1" onclick="selectChoice('p2', 1)">1．ア</button>
+      <button class="choice-btn" id="p2c2" onclick="selectChoice('p2', 2)">2．オ</button>
+      <button class="choice-btn" id="p2c3" onclick="selectChoice('p2', 3)">3．ア、ウ</button>
+      <button class="choice-btn" id="p2c4" onclick="selectChoice('p2', 4)">4．イ、エ</button>
+      <button class="choice-btn" id="p2c5" onclick="selectChoice('p2', 5)">5．ウ、オ</button>
+      <button class="judge-btn" onclick="judgeP2()">答え合わせ</button>
+      <div class="explanation" id="p2-exp">
+        <span class="correct-label">【正解：1（ア）】</span><br>
+        <strong>ア：○</strong>　法定担保物権であり設定契約不要。物上代位性は一般先取特権を除く特別の先取特権に備わっている。<br>
+        <strong>イ：×</strong>　「旅館の宿泊」ではなく<strong>「葬式費用」</strong>が一般先取特権の4種類に含まれます（旅館の宿泊は動産先取特権の仲間）。<br>
+        <strong>ウ：×</strong>　動産先取特権は<strong>追及効がない</strong>。第三取得者への引き渡し後は行使できません（333条）。<br>
+        <strong>エ：×</strong>　建物賃貸人の先取特権の目的物について、持ち込んだ金銭・宝石等も含まれる点は正しいが、前半「賃借人の特定の動産について」という表現では土地の賃貸人の先取特権と混同のおそれがある。また建物の場合は「建物に備え付けた動産」が基本（判例で拡張）。本問は条文の正確な記述が問われており、不正確。<br>
+        <strong>オ：×</strong>　登記した抵当権者（登記を備えた特別担保を有する第三者）には対抗できません（336条の反対解釈）。
+      </div>
+    </div>
+    <div id="p2-score" class="score-box"></div>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="minpo_ch21_kaisetsu.html" class="nav-btn kaisetsu">← 解説に戻る</a>
+    <a href="minpo_ch22_kaisetsu.html" class="nav-btn">ch22 抵当権① →</a>
+  </div>
+
+</div>
+
+<script>
+  let p1answers = {};
+  let p1correct = 0;
+  let p1answered = {};
+  let p2answered = false;
+  let p2selected = null;
+
+  function answerOX(qid, choice, isCorrect) {
+    if (p1answered[qid]) return;
+    p1answered[qid] = true;
+
+    const btns = document.querySelectorAll('#' + qid + ' .ox-btn');
+    btns.forEach(b => {
+      b.disabled = true;
+      const bChoice = b.textContent.trim();
+      if (bChoice === choice) {
+        b.classList.add(isCorrect ? 'selected-maru' : 'selected-batsu');
+      }
+      if ((bChoice === '○' && /* correct is maru */ isCorrect && choice === '○') ||
+          (bChoice === '×' && !isCorrect && choice === '×') ) {
+        // user chose correctly
+      }
+    });
+
+    // show correct/wrong on clicked button
+    btns.forEach(b => {
+      b.disabled = true;
+      const bChoice = b.textContent.trim();
+      if (bChoice === choice) {
+        b.classList.add(isCorrect ? 'correct-answer' : 'wrong-answer');
+      }
+      // show correct answer if wrong
+      if (!isCorrect) {
+        if (bChoice !== choice) {
+          b.classList.add('correct-answer');
+        }
+      }
+    });
+
+    if (isCorrect) p1correct++;
+    document.getElementById(qid + '-exp').classList.add('show');
+
+    if (Object.keys(p1answered).length === 4) {
+      const scoreEl = document.getElementById('p1-score');
+      scoreEl.style.display = 'block';
+      scoreEl.classList.add('show');
+      scoreEl.textContent = `PART1 結果: ${p1correct} / 4 問正解`;
+    }
+  }
+
+  function selectChoice(part, num) {
+    if (p2answered) return;
+    p2selected = num;
+    for (let i = 1; i <= 5; i++) {
+      document.getElementById('p2c' + i).classList.remove('selected');
+    }
+    document.getElementById('p2c' + num).classList.add('selected');
+  }
+
+  function judgeP2() {
+    if (p2answered) return;
+    if (!p2selected) { alert('選択肢を選んでください。'); return; }
+    p2answered = true;
+    const correct = 1;
+    for (let i = 1; i <= 5; i++) {
+      const btn = document.getElementById('p2c' + i);
+      btn.disabled = true;
+      if (i === correct) btn.classList.add('correct-choice');
+      else if (i === p2selected && p2selected !== correct) btn.classList.add('wrong-choice');
+    }
+    document.getElementById('p2-exp').classList.add('show');
+    const scoreEl = document.getElementById('p2-score');
+    scoreEl.style.display = 'block';
+    scoreEl.classList.add('show');
+    scoreEl.textContent = p2selected === correct ? 'PART2：正解！' : `PART2：不正解。正解は 1 番です。`;
+  }
+</script>
+</body>
+</html>
