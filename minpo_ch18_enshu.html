@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch18 担保物権総論 演習</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#0f1923;color:#e8e0d0;font-family:'BIZ UDGothic','Meiryo',sans-serif;min-height:100vh;padding:20px;}
+  .wrapper{max-width:860px;margin:0 auto;}
+  .page-header{background:linear-gradient(135deg,#1B2A4A 0%,#243555 100%);border-left:6px solid #C0392B;border-radius:4px;padding:22px 28px;margin-bottom:28px;}
+  .page-header .chapter-label{font-size:11px;letter-spacing:3px;color:#C0392B;text-transform:uppercase;margin-bottom:6px;}
+  .page-header h1{font-size:22px;font-weight:700;color:#fff;margin-bottom:4px;}
+  .page-header .subtitle{font-size:13px;color:#94a3b8;}
+  .scoreboard{display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap;}
+  .score-card{background:#1B2A4A;border:1px solid #2a3f6b;border-radius:6px;padding:14px 20px;flex:1;min-width:130px;text-align:center;}
+  .score-card .label{font-size:11px;color:#94a3b8;margin-bottom:4px;}
+  .score-card .value{font-size:26px;font-weight:700;color:#fff;}
+  .score-card.correct .value{color:#4ade80;}
+  .score-card.wrong .value{color:#f87171;}
+  .section-title{font-size:13px;letter-spacing:2px;color:#C0392B;text-transform:uppercase;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid #2a3f6b;}
+  .q-block{background:#1a2535;border:1px solid #2a3f6b;border-radius:8px;padding:22px;margin-bottom:18px;transition:border-color .3s;}
+  .q-block.answered{border-color:#334;}
+  .q-num{display:inline-block;background:#C0392B;color:#fff;font-size:11px;font-weight:700;padding:2px 9px;border-radius:3px;margin-bottom:12px;letter-spacing:1px;}
+  .q-text{font-size:15px;line-height:1.8;color:#ddd;margin-bottom:18px;}
+  .ox-btns{display:flex;gap:12px;}
+  .ox-btn{flex:1;padding:14px;border:2px solid transparent;border-radius:8px;font-size:22px;font-weight:700;cursor:pointer;background:#0f1923;transition:all .2s;color:#aaa;}
+  .ox-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.4);}
+  .ox-btn.maru{border-color:#3b82f6;}
+  .ox-btn.maru:hover:not(:disabled){background:#1d3a6b;color:#60a5fa;}
+  .ox-btn.batu{border-color:#dc2626;}
+  .ox-btn.batu:hover:not(:disabled){background:#5a1a1a;color:#f87171;}
+  .ox-btn:disabled{cursor:default;opacity:.6;}
+  .ox-btn.selected-correct{background:#14532d;border-color:#4ade80;color:#4ade80;}
+  .ox-btn.selected-wrong{background:#450a0a;border-color:#f87171;color:#f87171;}
+  .ox-btn.show-answer{background:#1e3a5f;border-color:#60a5fa;color:#93c5fd;}
+  .explanation{margin-top:16px;background:#0f1923;border-left:3px solid #4ade80;border-radius:4px;padding:14px 16px;display:none;font-size:14px;line-height:1.8;color:#c8d8e8;}
+  .explanation.wrong-exp{border-color:#f87171;}
+  .explanation.show{display:block;}
+  .exp-verdict{font-size:13px;font-weight:700;margin-bottom:8px;}
+  .exp-verdict.ok{color:#4ade80;}
+  .exp-verdict.ng{color:#f87171;}
+  .key-point{color:#fbbf24;font-weight:700;}
+  .multi-block{background:#1a2535;border:1px solid #2a3f6b;border-radius:8px;padding:22px;margin-bottom:18px;}
+  .multi-lead{font-size:14px;color:#94a3b8;margin-bottom:10px;line-height:1.7;}
+  .choice-list{display:flex;flex-direction:column;gap:8px;margin-bottom:4px;}
+  .choice-btn{background:#0f1923;border:2px solid #2a3f6b;border-radius:6px;padding:12px 16px;font-size:14px;color:#ccc;cursor:pointer;text-align:left;transition:all .2s;line-height:1.6;}
+  .choice-btn:hover:not(:disabled){background:#1B2A4A;border-color:#4a6fa5;}
+  .choice-btn:disabled{cursor:default;}
+  .choice-btn.selected-correct{background:#14532d;border-color:#4ade80;color:#e0ffe0;}
+  .choice-btn.selected-wrong{background:#450a0a;border-color:#f87171;color:#ffe0e0;}
+  .choice-btn.show-answer{background:#1e3a5f;border-color:#60a5fa;color:#bde0ff;}
+  .result-banner{display:none;background:linear-gradient(135deg,#1B2A4A,#243555);border:1px solid #2a3f6b;border-radius:10px;padding:28px;text-align:center;margin-top:28px;}
+  .result-banner.show{display:block;}
+  .result-banner h2{font-size:22px;color:#fff;margin-bottom:8px;}
+  .result-msg{font-size:16px;color:#94a3b8;margin-bottom:20px;}
+  .retry-btn{background:#C0392B;color:#fff;border:none;border-radius:6px;padding:12px 32px;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s;}
+  .retry-btn:hover{background:#a93226;}
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="page-header">
+    <div class="chapter-label">民法 Chapter 18</div>
+    <h1>担保物権総論</h1>
+    <div class="subtitle">通有性（付従性・随伴性・不可分性・物上代位性）と効力をマスターしよう</div>
+  </div>
+  <div class="scoreboard">
+    <div class="score-card"><div class="label">問題数</div><div class="value" id="total">5</div></div>
+    <div class="score-card correct"><div class="label">正解</div><div class="value" id="correct-count">0</div></div>
+    <div class="score-card wrong"><div class="label">不正解</div><div class="value" id="wrong-count">0</div></div>
+    <div class="score-card"><div class="label">残り</div><div class="value" id="remaining">5</div></div>
+  </div>
+
+  <div class="section-title">■ ○×問題（4問）</div>
+
+  <!-- Q1 -->
+  <div class="q-block" id="qb1">
+    <span class="q-num">問1</span>
+    <div class="q-text">担保物権には、被担保債権が発生しなければ担保物権も発生せず、被担保債権が消滅すれば担保物権も消滅するという性質がある。この性質はすべての担保物権に当然に認められるものである。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(1,true)">○</button>
+      <button class="ox-btn batu" onclick="answerOX(1,false)">×</button>
+    </div>
+    <div class="explanation" id="exp1">
+      <div class="exp-verdict ng">× 誤り</div>
+      これは<span class="key-point">付従性</span>の説明として正しい記述ですが、「すべての担保物権に当然に認められる」という部分が誤りです。<span class="key-point">確定前の根抵当権には付従性がありません</span>。債権額が増減変動する不特定の債権を担保する目的のためです。（国家一般職R2参照）
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-block" id="qb2">
+    <span class="q-num">問2</span>
+    <div class="q-text">担保物権の優先弁済的効力とは、担保権者が被担保債権の弁済を受けることができないとき、担保の目的物の持つ価値から他の債権者に優先して弁済を受けることができる効力であり、留置権・先取特権・質権・抵当権のいずれにも認められる。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(2,true)">○</button>
+      <button class="ox-btn batu" onclick="answerOX(2,false)">×</button>
+    </div>
+    <div class="explanation" id="exp2">
+      <div class="exp-verdict ng">× 誤り</div>
+      優先弁済的効力は<span class="key-point">留置権には認められません</span>。留置権は目的物を「留置する」ことで間接的に弁済を促す留置的効力をもつのみで、競売して優先弁済を受ける効力はありません。（国家一般職H27・肢ア参照）
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-block" id="qb3">
+    <span class="q-num">問3</span>
+    <div class="q-text">担保物権の収益的効力とは、担保権者が担保の目的物を収益し、これを債務の弁済に充当できる効力であり、不動産質権については認められているが、動産質権には認められていない。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(3,true)">○</button>
+      <button class="ox-btn batu" onclick="answerOX(3,false)">×</button>
+    </div>
+    <div class="explanation" id="exp3">
+      <div class="exp-verdict ok">○ 正しい</div>
+      収益的効力は<span class="key-point">不動産質権のみ</span>に認められる効力です。動産質権には認められません。「質権は質権でも不動産質権のみ」という点がポイントです。（国家一般職H27・肢イ参照）
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-block" id="qb4">
+    <span class="q-num">問4</span>
+    <div class="q-text">留置権・先取特権・質権・抵当権のいずれにも不可分性があり、担保権者は、被担保債権の一部の弁済があっただけで債権全額の弁済がない場合には、債権全額の弁済を受けるまでは、担保目的物の全部についてその権利を行使することができる。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(4,true)">○</button>
+      <button class="ox-btn batu" onclick="answerOX(4,false)">×</button>
+    </div>
+    <div class="explanation" id="exp4">
+      <div class="exp-verdict ok">○ 正しい</div>
+      <span class="key-point">不可分性はすべての担保物権に備わっています</span>。被担保債権全額を弁済するまでは担保目的物の全部について権利を行使できます。（国家一般職H27・肢エ参照）
+    </div>
+  </div>
+
+  <!-- Q5：5択 -->
+  <div class="section-title" style="margin-top:28px;">■ 5択問題（1問）</div>
+  <div class="multi-block" id="qb5">
+    <span class="q-num">問5</span>
+    <div class="multi-lead">【国家一般職 R2改題】担保物権の効力及び性質に関する記述のうち、妥当なものはどれか。</div>
+    <div class="choice-list" id="choices5">
+      <button class="choice-btn" onclick="answerMulti(5,1,4)">1　担保物権には付従性があるから、被担保債権が消滅すれば担保物権も消滅する。この性質はすべての担保物権に当然に認められ、確定前の根抵当権にも付従性が認められる。</button>
+      <button class="choice-btn" onclick="answerMulti(5,2,4)">2　担保物権には不可分性があるが、抵当権については目的物の一部に対して実行することも可能であるから、抵当権には不可分性は認められない。</button>
+      <button class="choice-btn" onclick="answerMulti(5,3,4)">3　担保物権には物上代位性があるが、この性質は目的物を留置することで間接的に債務の弁済を促そうとする留置権には認められない。</button>
+      <button class="choice-btn" onclick="answerMulti(5,4,4)">4　担保物権には留置的効力があるが、この効力は留置権と質権に認められるものであり、先取特権や抵当権には認められない。</button>
+      <button class="choice-btn" onclick="answerMulti(5,5,4)">5　収益的効力は担保権者が目的物を使用収益できる効力であり、抵当権には収益的効力が認められていないが、動産質権及び不動産質権には収益的効力が認められる。</button>
+    </div>
+    <div class="explanation" id="exp5">
+      <div class="exp-verdict ok">正解：4</div>
+      <div style="margin-top:8px;">
+        <div style="margin-bottom:6px;"><span class="key-point">肢1×</span>　確定前の根抵当権には付従性がありません。</div>
+        <div style="margin-bottom:6px;"><span class="key-point">肢2×</span>　抵当権にも不可分性は認められます。被担保債権全額弁済まで目的物全体に効力が及びます。</div>
+        <div style="margin-bottom:6px;"><span class="key-point">肢3×</span>　物上代位性がないのは留置権のみ（正しい記述）ですが、「先取特権に物上代位性がない」は誤り。先取特権にはあります（一般先取特権は除く）。</div>
+        <div style="margin-bottom:6px;"><span class="key-point">肢4○</span>　留置的効力は<span class="key-point">留置権と質権</span>のみ。先取特権・抵当権には認められません。</div>
+        <div><span class="key-point">肢5×</span>　収益的効力は<span class="key-point">不動産質権のみ</span>。動産質権には認められません。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-banner" id="result-banner">
+    <h2 id="result-title"></h2>
+    <div class="result-msg" id="result-msg"></div>
+    <button class="retry-btn" onclick="retryAll()">もう一度チャレンジ</button>
+  </div>
+</div>
+
+<script>
+const TOTAL=5;
+const answers={1:false,2:false,3:true,4:true};
+let answered={};
+function updateScore(){
+  let c=0,w=0;
+  for(let k in answered){if(answered[k])c++;else w++;}
+  document.getElementById('correct-count').textContent=c;
+  document.getElementById('wrong-count').textContent=w;
+  document.getElementById('remaining').textContent=TOTAL-Object.keys(answered).length;
+  if(Object.keys(answered).length===TOTAL)showResult(c);
+}
+function answerOX(qn,choice){
+  if(answered[qn]!==undefined)return;
+  const correct=answers[qn];
+  const isCorrect=(choice===correct);
+  answered[qn]=isCorrect;
+  const btns=document.querySelectorAll(`#qb${qn} .ox-btn`);
+  btns.forEach(b=>b.disabled=true);
+  btns.forEach(b=>{
+    const bChoice=b.classList.contains('maru');
+    if(bChoice===choice){b.classList.add(isCorrect?'selected-correct':'selected-wrong');}
+    else if(bChoice===correct){b.classList.add('show-answer');}
+  });
+  const exp=document.getElementById(`exp${qn}`);
+  exp.classList.add('show');
+  if(!isCorrect)exp.classList.add('wrong-exp');
+  document.getElementById(`qb${qn}`).classList.add('answered');
+  updateScore();
+}
+function answerMulti(qn,choice,correct){
+  if(answered[qn]!==undefined)return;
+  const isCorrect=(choice===correct);
+  answered[qn]=isCorrect;
+  const btns=document.querySelectorAll(`#choices${qn} .choice-btn`);
+  btns.forEach((b,i)=>{
+    b.disabled=true;
+    if(i+1===choice){b.classList.add(isCorrect?'selected-correct':'selected-wrong');}
+    else if(i+1===correct&&!isCorrect){b.classList.add('show-answer');}
+  });
+  const exp=document.getElementById(`exp${qn}`);
+  exp.classList.add('show');
+  if(!isCorrect)exp.classList.add('wrong-exp');
+  document.getElementById(`qb${qn}`).classList.add('answered');
+  updateScore();
+}
+function showResult(correct){
+  const banner=document.getElementById('result-banner');
+  banner.classList.add('show');
+  const pct=Math.round(correct/TOTAL*100);
+  document.getElementById('result-title').textContent=`${correct} / ${TOTAL} 正解（${pct}%）`;
+  const msg=document.getElementById('result-msg');
+  if(pct===100)msg.textContent='完璧！担保物権総論をマスターしました！';
+  else if(pct>=80)msg.textContent='よくできました！苦手箇所を復習しましょう。';
+  else msg.textContent='通有性の整理表を見直して、もう一度挑戦してみましょう。';
+}
+function retryAll(){
+  answered={};
+  document.getElementById('correct-count').textContent='0';
+  document.getElementById('wrong-count').textContent='0';
+  document.getElementById('remaining').textContent=TOTAL;
+  document.getElementById('result-banner').classList.remove('show');
+  for(let qn=1;qn<=4;qn++){
+    document.getElementById(`qb${qn}`).classList.remove('answered');
+    document.querySelectorAll(`#qb${qn} .ox-btn`).forEach(b=>{b.disabled=false;b.classList.remove('selected-correct','selected-wrong','show-answer');});
+    const exp=document.getElementById(`exp${qn}`);exp.classList.remove('show','wrong-exp');
+  }
+  document.getElementById('qb5').classList.remove('answered');
+  document.querySelectorAll('#choices5 .choice-btn').forEach(b=>{b.disabled=false;b.classList.remove('selected-correct','selected-wrong','show-answer');});
+  document.getElementById('exp5').classList.remove('show','wrong-exp');
+}
+</script>
+</body>
+</html>

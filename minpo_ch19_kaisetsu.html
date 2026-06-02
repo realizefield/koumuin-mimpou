@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch19 留置権</title>
+<style>
+  :root{--bg:#eef2f7;--card:#fff;--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--cyan:#00AEEF;--text:#2c3e50;--border:#dde3ec;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);font-family:'Meiryo','メイリオ',sans-serif;color:var(--text);font-size:15px;line-height:1.8;}
+  header{background:var(--navy);color:#fff;padding:18px 24px 14px;}
+  header .chapter-num{font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:4px;}
+  header h1{font-size:22px;font-weight:bold;}
+  header .stars{font-size:13px;margin-top:4px;color:#aac;}
+  header .stars span{color:var(--gold);}
+  .container{max-width:800px;margin:0 auto;padding:20px 16px 60px;}
+  .section-card{background:var(--card);border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:24px;overflow:hidden;}
+  .section-header{background:var(--navy);color:#fff;padding:10px 18px;font-size:15px;font-weight:bold;display:flex;align-items:center;gap:10px;}
+  .section-header .num{background:var(--gold);color:var(--navy);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;flex-shrink:0;}
+  .section-body{padding:18px 20px;}
+  .sub-heading{font-size:14px;font-weight:bold;color:var(--navy);border-left:4px solid var(--cyan);padding-left:10px;margin:18px 0 10px;}
+  .sub-heading:first-child{margin-top:0;}
+  p{margin-bottom:10px;}
+  p:last-child{margin-bottom:0;}
+  .kw{color:var(--crimson);font-weight:bold;}
+  .kw-b{color:#1a6ea8;font-weight:bold;}
+  .kw-g{color:#27ae60;font-weight:bold;}
+  .formula-box{background:#e8f4fd;border:1px solid #a8d4f0;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:14px;color:var(--navy);}
+  .formula-box .eq{color:var(--crimson);font-weight:bold;}
+  .table-wrap{overflow-x:auto;margin:12px 0;}
+  table{width:100%;border-collapse:collapse;font-size:14px;}
+  th{background:var(--navy);color:#fff;padding:8px 12px;text-align:center;}
+  td{border:1px solid var(--border);padding:8px 12px;vertical-align:middle;}
+  tr:nth-child(even) td{background:#f5f8fc;}
+  .td-ok{color:#27ae60;font-weight:bold;text-align:center;}
+  .td-ng{color:var(--crimson);font-weight:bold;text-align:center;}
+  .td-c{text-align:center;}
+  .hanrei{background:#fff8e1;border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:14px;}
+  .hanrei .hanrei-title{font-weight:bold;color:#8a6000;margin-bottom:6px;font-size:13px;}
+  .point-box{background:#fef9ec;border:1px solid var(--gold);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .point-box::before{content:"📌 POINT";font-weight:bold;color:#8a6000;display:block;margin-bottom:4px;font-size:12px;}
+  .warn-box{background:#fdf0f0;border:1px solid var(--crimson);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .warn-box::before{content:"⚠️ 注意";font-weight:bold;color:var(--crimson);display:block;margin-bottom:4px;font-size:12px;}
+  .note-box{background:#f0f7ff;border:1px solid var(--cyan);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .note-box::before{content:"💡 補足";font-weight:bold;color:#1a6ea8;display:block;margin-bottom:4px;font-size:12px;}
+  .goro{background:#f0f9ff;border:2px dashed var(--cyan);border-radius:8px;padding:10px 16px;margin:12px 0;text-align:center;}
+  .goro .goro-text{font-size:17px;font-weight:bold;color:var(--navy);letter-spacing:1px;}
+  .goro .goro-note{font-size:12px;color:#777;margin-top:4px;}
+  ul.list{padding-left:20px;margin:8px 0;}
+  ul.list li{margin-bottom:6px;}
+  /* ミニテスト */
+  .mini-test{background:#f4f0fa;border:2px solid #9b59b6;border-radius:10px;padding:16px 18px;margin-top:24px;}
+  .mt-title{font-weight:bold;color:#6c3483;font-size:14px;display:flex;align-items:center;gap:6px;margin-bottom:10px;}
+  .mt-title::before{content:"✏️";}
+  .mt-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .btn{border:none;border-radius:6px;padding:6px 16px;font-size:13px;cursor:pointer;font-family:'Meiryo',sans-serif;font-weight:bold;transition:opacity .15s;}
+  .btn:hover{opacity:.85;}
+  .btn-challenge{background:#C0392B;color:#fff;}
+  .btn-judge{background:#27ae60;color:#fff;}
+  .btn-show{background:#D4A017;color:#1B2A4A;}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+  .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;padding:10px 12px;background:#ece8f5;border-radius:8px;min-height:42px;}
+  .word-chip{background:#1B2A4A;color:#fff;border-radius:20px;padding:4px 14px;font-size:13px;cursor:pointer;user-select:none;transition:all .15s;}
+  .word-chip:hover{opacity:.85;}
+  .word-chip.used{opacity:.3;pointer-events:none;}
+  .mblank{display:inline-block;border-radius:4px;padding:1px 8px;min-width:72px;text-align:center;font-weight:bold;font-size:14px;cursor:pointer;transition:all .2s;border:2px solid #bbb;vertical-align:middle;background:#ddd;color:#ddd;user-select:none;}
+  .mblank.preview{background:#d4edda;border-color:#27ae60;color:#155724;cursor:default;}
+  .mblank.active{background:#fff3cd;border-color:#D4A017;color:#1B2A4A;}
+  .mblank.filled{background:#eaf0fb;border-color:#6c8ebf;color:#1B2A4A;}
+  .mblank.correct{background:#d4edda;border-color:#27ae60;color:#155724;}
+  .mblank.wrong{background:#f8d7da;border-color:#e74c3c;color:#721c24;}
+  .mt-q{font-size:14px;margin-bottom:10px;line-height:2;}
+  .result-msg{font-size:14px;margin-top:10px;font-weight:bold;min-height:22px;}
+  .result-msg.ok{color:#27ae60;}
+  .result-msg.ng{color:#C0392B;}
+  #confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;display:none;}
+  .summary{background:var(--navy);color:#fff;border-radius:10px;padding:18px 22px;margin-top:8px;}
+  .summary h3{font-size:14px;font-weight:bold;color:var(--gold);margin-bottom:10px;}
+  .summary ul{list-style:none;padding:0;}
+  .summary li{padding:4px 0 4px 16px;position:relative;font-size:13px;line-height:1.7;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .summary li:last-child{border-bottom:none;}
+  .summary li::before{content:'▶';position:absolute;left:0;color:var(--crimson);font-size:10px;top:7px;}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<header>
+  <div class="chapter-num">CHAPTER 19 ／ 民法</div>
+  <h1>留置権</h1>
+  <div class="stars">重要度 <span>★★☆</span> ／ 頻出度 <span>★★☆</span></div>
+</header>
+<div class="container">
+
+<!-- セクション1：留置権とは -->
+<div class="section-card">
+  <div class="section-header"><span class="num">1</span>留置権とは</div>
+  <div class="section-body">
+    <p>「<span class="kw">留置権</span>」とは、他人の物を占有している者が、被担保債権の弁済を受けるまで当該他人の物を<span class="kw">留置することができる担保物権</span>です（民法295条1項）。<span class="kw-b">公平の観点</span>から認められた担保物権といわれています。</p>
+
+    <div class="hanrei">
+      <div class="hanrei-title">💡 基本例：修理屋の留置権</div>
+      <p>AはBに自動車の修理を依頼した。Bは修理後にAに修理代金を請求したが、Aが支払わない。</p>
+      <p>→ Bは<span class="kw-g">修理代金債権を被担保債権</span>として、AがBに代金を支払うまで自動車を<span class="kw">留置することができる</span>。</p>
+      <p>→ 目的物を留置することで、債務者に弁済を「間接的に」強制するのが留置権の目的。</p>
+    </div>
+
+    <div class="point-box">留置権は<strong>法定担保物権</strong>（法律上当然に発生）。契約不要。要件を満たせば自動的に成立する。ただし、<strong>優先弁済的効力がない</strong>点に注意。</div>
+
+    <div class="warn-box">留置権には<strong>物上代位性がない</strong>（ch18で学習済み）。また法的な意味での<strong>優先弁済的効力がない</strong>。留置的効力のみで間接的に弁済を促す。</div>
+
+    <!-- ミニテスト① -->
+    <div class="mini-test" data-group="1">
+      <div class="mt-title">ミニテスト①　留置権の基本</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(1)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(1)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(1)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb1">
+        <span class="word-chip" data-word="法定担保物権">法定担保物権</span>
+        <span class="word-chip" data-word="公平">公平</span>
+        <span class="word-chip" data-word="優先弁済的効力">優先弁済的効力</span>
+        <span class="word-chip" data-word="物上代位性">物上代位性</span>
+      </div>
+      <div class="mt-q">① 留置権は<span class="mblank preview" data-ans="公平" data-group="1">公平</span>の観点から認められ、契約不要で成立する<span class="mblank preview" data-ans="法定担保物権" data-group="1">法定担保物権</span>である。</div>
+      <div class="mt-q">② 留置権には、他の担保物権と異なり<span class="mblank preview" data-ans="優先弁済的効力" data-group="1">優先弁済的効力</span>がなく、<span class="mblank preview" data-ans="物上代位性" data-group="1">物上代位性</span>もない。</div>
+      <div class="result-msg" id="rm1"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション2：留置権の成立要件 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">2</span>留置権の成立要件</div>
+  <div class="section-body">
+    <p>留置権が成立するには次の<strong>4つの要件</strong>がすべて必要です。</p>
+
+    <div class="sub-heading">（1）牽連性（関連性）</div>
+    <p>「<span class="kw">その物に関して生じた債権</span>」を有することが必要です。これを「<span class="kw">牽連性（関連性）の要件</span>」といいます。</p>
+    <p>判例の傾向として、<span class="kw-b">被担保債権の発生時において、被担保債権の債務者と物の引渡請求権者が同一</span>であるときに牽連性が認められます。</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th>事案</th><th>牽連性</th><th>理由</th></tr>
+        <tr>
+          <td>売買における代金請求権と目的物の留置</td>
+          <td class="td-ok">○</td>
+          <td>代金と物が同一売買から発生</td>
+        </tr>
+        <tr>
+          <td>傘の取り違えにおける返還請求</td>
+          <td class="td-ok">○</td>
+          <td>同一の取引関係から発生</td>
+        </tr>
+        <tr>
+          <td>建物の費用償還請求権（必要費・有益費）と建物の留置</td>
+          <td class="td-ok">○</td>
+          <td>費用は建物に関して生じた債権（大判昭14・4・28）</td>
+        </tr>
+        <tr>
+          <td>順次譲渡のケース（B→A→C）でBがCに対し留置権主張</td>
+          <td class="td-ok">○</td>
+          <td>物権変動の矢印が1本でつながる（最判昭47・11・16）</td>
+        </tr>
+        <tr>
+          <td>建物買取請求権に基づく建物代金債権と土地の留置</td>
+          <td class="td-ok">○</td>
+          <td>建物は土地の上に存在するため土地まで留置可（大判昭18・2・18）</td>
+        </tr>
+        <tr>
+          <td>二重譲渡のケース（A→B・A→C、Cが先登記）でBがCに対し留置権主張</td>
+          <td class="td-ng">×</td>
+          <td>損害賠償債権発生時の債務者（A）と引渡請求権者（C）が異なる（最判昭43・11・21）</td>
+        </tr>
+        <tr>
+          <td>造作買取請求権に基づく造作代金債権と建物の留置</td>
+          <td class="td-ng">×</td>
+          <td>造作と建物の価格差が大きく不公平（最判昭29・1・14）</td>
+        </tr>
+        <tr>
+          <td>敷金返還請求権を被担保債権とした建物の留置</td>
+          <td class="td-ng">×</td>
+          <td>敷金返還請求権は明渡し後に初めて発生し、留置権主張時には未発生（最判昭49・9・2）</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="sub-heading">（2）被担保債権が弁済期にあること（295条1項ただし書）</div>
+    <p>被担保債権が<span class="kw">弁済期になければ留置権を行使できない</span>。弁済期がまだ来ていない段階で留置権を行使されても債務者にとってたまらないため。</p>
+
+    <div class="sub-heading">（3）「他人の物」の留置</div>
+    <p>留置する物は<span class="kw">留置権者以外の所有物であれば何でも構いません</span>。債務者本人の所有物でなくてもよい。</p>
+    <p>また、<span class="kw-b">占有が対抗要件</span>となるため、<span class="kw">登記がなくても第三者に対抗できます</span>。ただし、留置権者が目的物の占有を失えば、留置権は当然に消滅します。</p>
+
+    <div class="sub-heading">（4）占有が不法行為によって「始まった」場合でないこと（295条2項）</div>
+    <p><span class="kw">占有が不法行為によって始まった場合には留置権は成立しません</span>。</p>
+    <div class="hanrei">
+      <div class="hanrei-title">💡 例：途中から無権原となった場合（295条2項類推適用）</div>
+      <p>ABの建物賃貸借契約が解除され、賃借人Bは権原がないことを<strong>知りながら</strong>不法に建物を占有し続け、その間に有益費を支出した。</p>
+      <p>→ 295条2項を<span class="kw">類推適用</span>して、<span class="kw-g">留置権の主張を認めない</span>（大判大10・12・23、最判昭46・7・16）。</p>
+      <p>理由：権原がないと知りながら占有し費用を支出して留置権を主張するのは<span class="kw">信義則に反する</span>。</p>
+    </div>
+
+    <!-- ミニテスト② -->
+    <div class="mini-test" data-group="2">
+      <div class="mt-title">ミニテスト②　牽連性の判断</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(2)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(2)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(2)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb2">
+        <span class="word-chip" data-word="肯定される">肯定される</span>
+        <span class="word-chip" data-word="否定される">否定される</span>
+        <span class="word-chip" data-word="類推適用">類推適用</span>
+        <span class="word-chip" data-word="弁済期">弁済期</span>
+      </div>
+      <div class="mt-q">① 順次譲渡（B→A→C）でBがCに対して留置権を主張するケースでは、牽連性は<span class="mblank preview" data-ans="肯定される" data-group="2">肯定される</span>。</div>
+      <div class="mt-q">② 敷金返還請求権を被担保債権とした建物の留置権の牽連性は<span class="mblank preview" data-ans="否定される" data-group="2">否定される</span>。</div>
+      <div class="mt-q">③ 被担保債権が<span class="mblank preview" data-ans="弁済期" data-group="2">弁済期</span>になければ留置権は行使できない。</div>
+      <div class="mt-q">④ 権原がないと知りながら占有し有益費を支出した場合、295条2項の<span class="mblank preview" data-ans="類推適用" data-group="2">類推適用</span>により留置権の主張は認められない。</div>
+      <div class="result-msg" id="rm2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション3：留置権の効力 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">3</span>留置権の効力</div>
+  <div class="section-body">
+    <div class="sub-heading">（1）留置的効力</div>
+    <p>被担保債権の弁済を受けるまでは目的物を留置し、第三者に対しても主張できます（物権だから）。</p>
+    <div class="warn-box">留置している間の<strong>賃料相当額は不当利得として返還</strong>しなければならない（大判大10・5・13）。ただで留置できるわけではない。</div>
+    <p>また、<span class="kw">留置権者は善良な管理者の注意をもって留置物を占有</span>しなければなりません（善管注意義務・298条1項）。</p>
+    <p><span class="kw">留置権者は、債務者の承諾を得なければ、留置物を使用・賃貸・担保に供することができません</span>（298条2項）。ただし、保存に必要な使用はできます。これらに違反した場合、<span class="kw-b">債務者は留置権消滅請求</span>をすることができます（298条3項）。</p>
+
+    <div class="sub-heading">（2）果実収取権（弁済充当権）</div>
+    <p>留置権者は、留置物から生じる<span class="kw">果実（天然果実や法定果実）を収取</span>し、他の債権者に先立って、これを<span class="kw">自己の債権（被担保債権）の弁済に充当</span>することができます（297条1項）。果実はまず利息に充当し、残額を元本に充当します。</p>
+
+    <div class="sub-heading">（3）不可分性</div>
+    <p><span class="kw">留置権者は、被担保債権の全部の弁済を受けるまで、留置物の全部についてその権利を行使できます</span>（296条・不可分性）。</p>
+    <p>この不可分性があるため、<span class="kw-b">代担保供与による留置権消滅請求</span>が認められています。債務者は、相当の担保を供して留置権の消滅を請求することができます（301条）。</p>
+
+    <div class="sub-heading">（4）費用償還請求権</div>
+    <p>留置権者が留置物について<span class="kw">必要費を支出したときは、所有者にその償還をさせることができます</span>（299条1項）。</p>
+    <p>留置物について<span class="kw">有益費を支出したときは、価格の増加が現存する場合に限り</span>、所有者の選択に従い支出額または増価額を償還させることができます（299条2項）。ただし、裁判所は所有者の請求により相当の期限を許与することができ、この期限の許与は留置権者の<span class="kw">善意・悪意を問わず</span>できます。</p>
+
+    <div class="sub-heading">（5）消滅時効との関係</div>
+    <p><span class="kw">留置権の行使は、被担保債権の消滅時効の進行を妨げません</span>（300条）。留置権と被担保債権は別々の権利であるため、被担保債権については別途、裁判上の請求などの時効完成猶予・更新措置が必要です。</p>
+
+    <div class="sub-heading">（6）引換給付判決</div>
+    <p>留置権の主張が裁判上なされた場合、棄却判決ではなく<span class="kw">引換給付判決</span>が下されます（最判昭33・3・13）。「修理代金の支払いと引換えに自動車を返してあげなさい」という中途半端な判決です。</p>
+
+    <!-- ミニテスト③ -->
+    <div class="mini-test" data-group="3">
+      <div class="mt-title">ミニテスト③　留置権の効力</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(3)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(3)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(3)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb3">
+        <span class="word-chip" data-word="善管注意義務">善管注意義務</span>
+        <span class="word-chip" data-word="妨げない">妨げない</span>
+        <span class="word-chip" data-word="債務者の承諾">債務者の承諾</span>
+        <span class="word-chip" data-word="代担保供与">代担保供与</span>
+      </div>
+      <div class="mt-q">① 留置権者は<span class="mblank preview" data-ans="善管注意義務" data-group="3">善管注意義務</span>をもって留置物を占有しなければならない。</div>
+      <div class="mt-q">② 留置物の使用・賃貸・担保提供には<span class="mblank preview" data-ans="債務者の承諾" data-group="3">債務者の承諾</span>が必要である。</div>
+      <div class="mt-q">③ 債務者は相当の担保（<span class="mblank preview" data-ans="代担保供与" data-group="3">代担保供与</span>）により留置権の消滅を請求できる。</div>
+      <div class="mt-q">④ 留置権の行使は被担保債権の消滅時効の進行を<span class="mblank preview" data-ans="妨げない" data-group="3">妨げない</span>。</div>
+      <div class="result-msg" id="rm3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- まとめ -->
+<div class="summary">
+  <h3>📋 ch19 留置権まとめ</h3>
+  <ul>
+    <li><strong>留置権</strong>：法定担保物権。公平の観点から認められる。優先弁済的効力・物上代位性はなし。</li>
+    <li><strong>成立要件</strong>：①牽連性 ②弁済期 ③他人の物 ④占有が不法行為で始まっていないこと</li>
+    <li><strong>牽連性○</strong>：順次譲渡・建物費用償還・建物買取請求権（土地まで）</li>
+    <li><strong>牽連性×</strong>：二重譲渡・造作買取請求権（建物）・敷金返還請求権</li>
+    <li><strong>295条2項類推</strong>：権原なしと知りながら占有継続→信義則違反で留置権主張不可</li>
+    <li><strong>善管注意義務</strong>・使用等には債務者の承諾が必要</li>
+    <li><strong>消滅時効</strong>：留置権行使中も被担保債権の消滅時効は進行する</li>
+    <li><strong>引換給付判決</strong>：裁判上の留置権主張には棄却でなく引換給付判決</li>
+    <li><strong>代担保供与</strong>：債務者は相当の担保を提供して留置権消滅を請求できる</li>
+  </ul>
+</div>
+
+</div><!-- /container -->
+
+<script>
+const STATE = {};
+
+function initGroup(g) {
+  const blanks = document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  const wb = document.getElementById(`wb${g}`);
+  blanks.forEach(b => {
+    b.className = 'mblank';
+    b.textContent = '　　　';
+    b.dataset.filled = '';
+  });
+  wb.querySelectorAll('.word-chip').forEach(c => c.classList.remove('used'));
+  document.getElementById(`rm${g}`).textContent = '';
+  document.getElementById(`rm${g}`).className = 'result-msg';
+  STATE[g] = { selected: null };
+  document.querySelectorAll(`[onclick="judgeGroup(${g})"]`).forEach(b => b.disabled = true);
+}
+
+function startChallenge(g) {
+  initGroup(g);
+  const blanks = document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  blanks.forEach(b => {
+    b.className = 'mblank';
+    b.textContent = '？？？';
+    b.addEventListener('click', () => selectBlank(g, b), { once: false });
+  });
+  document.querySelectorAll(`[onclick="judgeGroup(${g})"]`).forEach(b => b.disabled = false);
+  const wb = document.getElementById(`wb${g}`);
+  wb.querySelectorAll('.word-chip').forEach(chip => {
+    chip.onclick = () => selectChip(g, chip);
+  });
+  STATE[g] = { selected: null };
+}
+
+function selectChip(g, chip) {
+  if (chip.classList.contains('used')) return;
+  document.querySelectorAll(`#wb${g} .word-chip`).forEach(c => c.style.outline = '');
+  chip.style.outline = '3px solid #C0392B';
+  STATE[g].selected = chip.dataset.word;
+  STATE[g].chip = chip;
+}
+
+function selectBlank(g, blank) {
+  if (!STATE[g] || !STATE[g].selected) {
+    document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b => b.classList.remove('active'));
+    blank.classList.add('active');
+    return;
+  }
+  const prev = blank.dataset.filled;
+  if (prev) {
+    document.querySelectorAll(`#wb${g} .word-chip[data-word="${prev}"]`).forEach(c => {
+      c.classList.remove('used');
+      c.style.outline = '';
+    });
+  }
+  blank.textContent = STATE[g].selected;
+  blank.dataset.filled = STATE[g].selected;
+  blank.className = 'mblank filled';
+  STATE[g].chip.classList.add('used');
+  STATE[g].chip.style.outline = '';
+  STATE[g].selected = null;
+  STATE[g].chip = null;
+}
+
+function judgeGroup(g) {
+  const blanks = document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  let all = true;
+  blanks.forEach(b => {
+    if (b.dataset.filled === b.dataset.ans) {
+      b.className = 'mblank correct';
+    } else {
+      b.className = 'mblank wrong';
+      all = false;
+    }
+  });
+  const rm = document.getElementById(`rm${g}`);
+  if (all) {
+    rm.textContent = '✅ 全問正解！すばらしい！';
+    rm.className = 'result-msg ok';
+    launchConfetti();
+  } else {
+    rm.textContent = '❌ 不正解があります。もう一度挑戦してみましょう。';
+    rm.className = 'result-msg ng';
+  }
+}
+
+function showAnswer(g) {
+  const blanks = document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  blanks.forEach(b => {
+    b.textContent = b.dataset.ans;
+    b.className = 'mblank preview';
+    b.dataset.filled = b.dataset.ans;
+  });
+  document.getElementById(`wb${g}`).querySelectorAll('.word-chip').forEach(c => {
+    c.classList.add('used');
+    c.style.outline = '';
+  });
+  document.getElementById(`rm${g}`).textContent = '';
+  document.querySelectorAll(`[onclick="judgeGroup(${g})"]`).forEach(b => b.disabled = true);
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  canvas.style.display = 'block';
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const pieces = Array.from({length:120},()=>({
+    x: Math.random()*canvas.width, y: Math.random()*canvas.height-canvas.height,
+    r: Math.random()*6+4, d: Math.random()*3+1,
+    color:`hsl(${Math.random()*360},80%,60%)`,
+    tilt: Math.random()*10-10, tiltAngle:0, tiltSpeed:Math.random()*.1+.05
+  }));
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{
+      p.tiltAngle+=p.tiltSpeed;
+      p.y+=p.d+Math.sin(p.tiltAngle)*2;
+      p.tilt=Math.sin(p.tiltAngle)*12;
+      if(p.y>canvas.height){p.y=-10;p.x=Math.random()*canvas.width;}
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,2*Math.PI);
+      ctx.fillStyle=p.color;ctx.fill();
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else{ctx.clearRect(0,0,canvas.width,canvas.height);canvas.style.display='none';}
+  }
+  draw();
+}
+</script>
+</body>
+</html>

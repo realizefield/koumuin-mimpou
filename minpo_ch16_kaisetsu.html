@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch16｜共有</title>
+<style>
+  :root {
+    --navy:#1B2A4A; --navy-light:#243660;
+    --crimson:#C0392B; --crimson-light:#E74C3C;
+    --gold:#D4A017; --bg:#F4F6FA; --white:#FFFFFF;
+    --text:#1a1a2e; --gray:#6c757d; --border:#dee2e6;
+    --green:#1a7a4a; --green-bg:#e8f5ee;
+    --red-bg:#fdecea; --blue-bg:#EBF0FA;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'BIZ UDGothic','Meiryo','メイリオ',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; font-size:15px; }
+
+  .page-header { background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%); color:var(--white); padding:36px 24px 28px; position:relative; overflow:hidden; }
+  .page-header::before { content:''; position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(192,57,43,0.15); border-radius:50%; }
+  .header-badge { display:inline-block; background:var(--crimson); color:#fff; font-size:11px; font-weight:bold; padding:3px 10px; border-radius:20px; letter-spacing:0.08em; margin-bottom:10px; }
+  .page-header h1 { font-size:24px; font-weight:bold; letter-spacing:0.04em; line-height:1.4; }
+  .page-header .chapter-no { font-size:13px; opacity:0.75; margin-top:6px; }
+  .importance-row { display:flex; gap:20px; margin-top:14px; flex-wrap:wrap; }
+  .importance-item { display:flex; flex-direction:column; gap:2px; }
+  .importance-label { font-size:10px; opacity:0.7; letter-spacing:0.05em; }
+  .stars { color:#F4D03F; font-size:14px; }
+
+  .content { max-width:780px; margin:0 auto; padding:24px 16px 60px; }
+
+  .section-header { display:flex; align-items:center; gap:12px; margin:36px 0 18px; padding-bottom:10px; border-bottom:2px solid var(--navy); }
+  .section-no { background:var(--navy); color:#fff; font-size:13px; font-weight:bold; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .section-header h2 { font-size:18px; font-weight:bold; color:var(--navy); }
+  .sub-section { font-size:15px; font-weight:bold; color:var(--navy); margin:22px 0 10px; padding-left:10px; border-left:3px solid var(--crimson); }
+
+  .article-box { background:var(--white); border:1px solid var(--border); border-radius:8px; padding:18px 20px; margin:14px 0; line-height:1.9; }
+  .article-box p { margin-bottom:8px; }
+  .article-box p:last-child { margin-bottom:0; }
+
+  .point-card { background:var(--blue-bg); border-left:4px solid var(--navy); border-radius:0 8px 8px 0; padding:14px 18px; margin:14px 0; }
+  .point-card .point-title { font-size:13px; font-weight:bold; color:var(--navy); margin-bottom:6px; }
+
+  .goro-box { background:linear-gradient(135deg,#fff8e1,#fff3cd); border:2px solid var(--gold); border-radius:10px; padding:16px 20px; margin:16px 0; }
+  .goro-box::before { content:'🎯 ゴロ合わせ'; font-size:11px; font-weight:bold; color:var(--gold); display:block; margin-bottom:8px; }
+  .goro-main { font-size:17px; font-weight:bold; color:#7b5e00; text-align:center; margin-bottom:6px; }
+  .goro-sub { font-size:12px; color:#856404; text-align:center; }
+
+  .caution-box { background:var(--red-bg); border:1.5px solid var(--crimson); border-radius:8px; padding:14px 18px; margin:14px 0; }
+  .caution-box::before { content:'⚠️ 注意'; font-size:12px; font-weight:bold; color:var(--crimson); display:block; margin-bottom:6px; }
+
+  .info-box { background:#f0faf4; border:1.5px solid var(--green); border-radius:8px; padding:14px 18px; margin:14px 0; }
+  .info-box::before { content:'📌 ポイント'; font-size:12px; font-weight:bold; color:var(--green); display:block; margin-bottom:6px; }
+
+  .hanrei-box { background:#f9f4ff; border:1.5px solid #7b2fbe; border-radius:8px; padding:14px 18px; margin:14px 0; font-size:13.5px; }
+  .hanrei-box::before { content:'⚖️ 判例'; font-size:12px; font-weight:bold; color:#7b2fbe; display:block; margin-bottom:6px; }
+
+  .compare-table { width:100%; border-collapse:collapse; margin:16px 0; font-size:13px; background:var(--white); border-radius:8px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.08); }
+  .compare-table th { background:var(--navy); color:var(--white); padding:10px; text-align:center; font-weight:bold; }
+  .compare-table td { padding:9px 10px; border:1px solid var(--border); vertical-align:middle; text-align:center; line-height:1.6; }
+  .compare-table tr:nth-child(even) td { background:var(--blue-bg); }
+  .td-left { text-align:left !important; }
+  .ok { color:var(--green); font-weight:bold; }
+  .ng { color:var(--crimson); font-weight:bold; }
+
+  /* 行為類型カード */
+  .koi-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:14px 0; }
+  @media(max-width:580px){ .koi-grid{ grid-template-columns:1fr; } }
+  .koi-card { background:var(--white); border:1.5px solid var(--border); border-radius:8px; padding:14px; }
+  .koi-card.henko { border-top:3px solid var(--crimson); }
+  .koi-card.kanri { border-top:3px solid var(--gold); }
+  .koi-card.hozon { border-top:3px solid var(--green); }
+  .koi-card-title { font-size:13px; font-weight:bold; margin-bottom:6px; }
+  .koi-card.henko .koi-card-title { color:var(--crimson); }
+  .koi-card.kanri .koi-card-title { color:#856404; }
+  .koi-card.hozon .koi-card-title { color:var(--green); }
+  .koi-card-req { font-size:12px; font-weight:bold; padding:3px 8px; border-radius:4px; display:inline-block; margin-bottom:8px; }
+  .koi-card.henko .koi-card-req { background:#fdecea; color:var(--crimson); }
+  .koi-card.kanri .koi-card-req { background:#fff8e1; color:#856404; }
+  .koi-card.hozon .koi-card-req { background:var(--green-bg); color:var(--green); }
+  .koi-card-body { font-size:12.5px; line-height:1.7; color:#333; }
+
+  /* ミニテスト */
+  .mini-test { background:#FAFBFF; border:2px solid var(--navy); border-radius:10px; padding:20px; margin:24px 0; }
+  .mini-test-title { font-size:14px; font-weight:bold; color:var(--navy); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .mini-test-title::before { content:'✏️'; }
+  .test-q { margin-bottom:14px; }
+  .test-q-text { font-size:14px; margin-bottom:8px; line-height:1.8; }
+  .blank-word { display:inline-block; background:var(--navy); color:var(--navy); border-radius:4px; padding:0 4px; min-width:60px; cursor:pointer; transition:background 0.25s,color 0.25s; font-weight:bold; user-select:none; }
+  .blank-word.revealed { background:#FFF3CD; color:#7b5e00; }
+  .chips-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+  .chip { background:var(--white); border:1.5px solid var(--navy); border-radius:20px; padding:4px 14px; font-size:13px; cursor:pointer; transition:background 0.2s,color 0.2s; user-select:none; }
+  .chip:hover { background:var(--navy); color:#fff; }
+  .chip.correct { background:var(--green); color:#fff; border-color:var(--green); }
+  .chip.wrong { background:var(--crimson); color:#fff; border-color:var(--crimson); animation:shake 0.3s; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+
+  .summary-box { background:var(--navy); color:var(--white); border-radius:10px; padding:20px 22px; margin:28px 0 8px; }
+  .summary-box h3 { font-size:15px; font-weight:bold; margin-bottom:12px; color:#F4D03F; }
+  .summary-box ul { list-style:none; padding:0; }
+  .summary-box li { padding:5px 0 5px 18px; position:relative; font-size:14px; line-height:1.7; border-bottom:1px solid rgba(255,255,255,0.1); }
+  .summary-box li:last-child { border-bottom:none; }
+  .summary-box li::before { content:'▶'; position:absolute; left:0; color:var(--crimson-light); font-size:10px; top:8px; }
+
+  em { font-style:normal; color:var(--crimson); font-weight:bold; }
+  .navy { color:var(--navy); font-weight:bold; }
+  .green { color:var(--green); font-weight:bold; }
+  hr.section-divider { border:none; border-top:1px dashed var(--border); margin:28px 0; }
+  .back-top { text-align:center; margin-top:40px; }
+  .back-top a { display:inline-block; background:var(--navy); color:#fff; text-decoration:none; padding:10px 28px; border-radius:24px; font-size:13px; font-weight:bold; }
+</style>
+</head>
+<body>
+
+<header class="page-header" id="top">
+  <div class="header-badge">民法 ｜ 物権</div>
+  <h1>共有</h1>
+  <div class="chapter-no">Chapter 16　民法 249〜262条</div>
+  <div class="importance-row">
+    <div class="importance-item"><span class="importance-label">重要度</span><span class="stars">★★★</span></div>
+    <div class="importance-item"><span class="importance-label">頻出度</span><span class="stars">★★☆</span></div>
+  </div>
+</header>
+
+<div class="content">
+
+<!-- ========== SECTION 1 ========== -->
+<div class="section-header">
+  <div class="section-no">1</div>
+  <h2>共有（共同所有）</h2>
+</div>
+
+<div class="article-box">
+  <p>「<em>共有</em>」とは、物を共同で所有する形態の1つです。共同所有には共有のほかにも「合有」や「総有」があります。</p>
+  <p>共有の特徴は、<em>各人が具体的な持分を持っていて、それを自由に処分</em>したり、あるいは目的物を<em>分割して共有関係を終了</em>させたりすることができる点にあります。</p>
+  <p>なお、持分は共有者間の特約がない限り、<em>相等しいものと推定</em>されます（250条）。</p>
+</div>
+
+<table class="compare-table">
+  <thead>
+    <tr><th>共同所有形態</th><th>例</th><th>持分の処分</th><th>分割請求</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong class="ok">共有</strong></td>
+      <td class="td-left">みんなで1つの物を購入した場合、相続した財産（判例）</td>
+      <td><span class="ok">○</span>（各人の具体的持分あり）</td>
+      <td><span class="ok">○</span></td>
+    </tr>
+    <tr>
+      <td><strong>合有</strong></td>
+      <td class="td-left">組合財産（条文上は「共有」）</td>
+      <td><span class="ng">×</span>（各人には潜在的持分しかない）</td>
+      <td><span class="ng">×</span>（脱退時に出資を払い戻してもらえるだけ）</td>
+    </tr>
+    <tr>
+      <td><strong>総有</strong></td>
+      <td class="td-left">権利能力なき社団</td>
+      <td><span class="ng">×</span></td>
+      <td><span class="ng">×</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="point-card">
+  <div class="point-title">💡 各共有者の使用権（249条）</div>
+  各共有者は、共有物につき、<em>持分に応じて全部を使用</em>することができます（249条）。持分は物理的な区画割りではなく、持分3分の1ならその3分の1部分だけを使えるのではなく、<em>持分に応じて「全部」</em>使えるということです。
+</div>
+
+<!-- ========== SECTION 2 ========== -->
+<div class="section-header">
+  <div class="section-no">2</div>
+  <h2>共有で問題となる行為</h2>
+</div>
+
+<div class="article-box">
+  <p>共有に関する行為は、他の共有者への影響の大きさに応じて3つに分類されます。</p>
+</div>
+
+<div class="koi-grid">
+  <div class="koi-card henko">
+    <div class="koi-card-title">① 変更行為（251条）</div>
+    <div class="koi-card-req">共有者全員の同意</div>
+    <div class="koi-card-body">
+      共有物の性質や形状を変えてしまう行為。<br>
+      例：山林の伐採、共有物全体の売却、共有物全体に抵当権を設定する行為、農地を宅地に変える など<br><br>
+      ⚠️ 自己の持分だけを売却・担保設定するのは単なる持分の処分なので<em>単独でできる</em>
+    </div>
+  </div>
+  <div class="koi-card kanri">
+    <div class="koi-card-title">② 管理行為（252条本文）</div>
+    <div class="koi-card-req">持分価格の過半数</div>
+    <div class="koi-card-body">
+      共有物の利用・改良行為。<br>
+      例：共有物の賃貸借契約の締結・解除・取消し、使用貸借契約の締結・解除・取消し、目的物の独占的使用 など<br><br>
+      ⚠️「頭数の過半数」ではなく<em>「持分価格の過半数」</em>で決する<br>
+      💡「貸す行為がらみは管理行為」と覚えよう
+    </div>
+  </div>
+  <div class="koi-card hozon">
+    <div class="koi-card-title">③ 保存行為（252条ただし書）</div>
+    <div class="koi-card-req">各共有者が単独で可</div>
+    <div class="koi-card-body">
+      共有物の現状を維持する行為（マイナスをゼロに戻すだけの行為）。<br>
+      例：不法占拠者に対する妨害排除請求・返還請求（明渡請求）、第三者がした不法（無効）な登記の抹消請求、修繕行為、公租公課の負担 など
+    </div>
+  </div>
+</div>
+
+<div class="caution-box">
+  <strong>保存行為における重要な判例上の制限</strong><br>
+  ①共有者の1人が他の共有者の持分を侵害するような形で<em>目的物を独占的に使用</em>している場合、他の共有者からその共有者に対する<em>明渡請求はできません</em>（最判昭41・5・19）。その共有者も一応正当な権利者だからです。損害賠償請求で対応するしかありません。<br><br>
+  ②共有者の一部から共有物の<em>占有を承認された第三者（賃借人等）</em>に対しても、<em>明渡請求はできません</em>（最判昭63・5・20）。この場合も損害賠償請求で対応します。
+</div>
+
+<div class="hanrei-box">
+  <strong>損害賠償の範囲（最判昭51・9・7）</strong><br>
+  第三者によって共有者の1人の持分が侵害された場合、その者は<em>自己の持分権が侵害された限度</em>においてのみ損害賠償を請求することができます。他の共有者の損害額も含めて共有物全部の損害賠償を請求することはできません。
+</div>
+
+<!-- ミニテスト① -->
+<div class="mini-test">
+  <div class="mini-test-title">ミニテスト①　共有で問題となる行為</div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q1. 共有物全体の売却は（　<span class="mblank blank-word" data-ans="変更行為" onclick="revealBlank(this)">変更行為</span>　）にあたり、（　<span class="mblank blank-word" data-ans="共有者全員の同意" onclick="revealBlank(this)">共有者全員の同意</span>　）が必要である。
+    </div>
+  </div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q2. 共有物の管理に関する事項は何によって決するか。
+    </div>
+    <div class="chips-row" id="chips-q2">
+      <span class="chip" onclick="checkChip(this,'chips-q2','持分価格の過半数')">持分価格の過半数</span>
+      <span class="chip" onclick="checkChip(this,'chips-q2','持分価格の過半数')">頭数の過半数</span>
+      <span class="chip" onclick="checkChip(this,'chips-q2','持分価格の過半数')">共有者全員の同意</span>
+    </div>
+  </div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q3. 共有物の不法占拠者に対する妨害排除請求は（　<span class="mblank blank-word" data-ans="保存行為" onclick="revealBlank(this)">保存行為</span>　）にあたり、各共有者が（　<span class="mblank blank-word" data-ans="単独" onclick="revealBlank(this)">単独</span>　）でできる。
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECTION 3 ========== -->
+<div class="section-header">
+  <div class="section-no">3</div>
+  <h2>共有に関するその他の規定</h2>
+</div>
+
+<div class="sub-section">（1）共有物に関する負担（253条）</div>
+
+<div class="article-box">
+  <p>各共有者は、その<em>持分に応じ、管理の費用を支払い</em>、その他共有物に関する負担を負います（253条1項）。</p>
+  <p>共有者の1人が<em>1年以内</em>にこの負担義務を履行しないときは、他の共有者は<em>相当の償金を支払ってその者が有する持分を取得</em>することができます（253条2項）。いわば「払わないなら出て行け」という制度です。</p>
+</div>
+
+<hr class="section-divider">
+
+<div class="sub-section">（2）共有物についての債権（254条）</div>
+
+<div class="article-box">
+  <p>共有者の1人が共有物について他の共有者に対して有する<em>債権は、その特定承継人（共有持分を譲り受けた者など）に対しても主張することができます</em>（254条）。これは「<em>債権の相対性の例外</em>」です。</p>
+  <p>ここで言う「債権」には、<em>分割に関する特約も含まれます</em>（最判昭34・11・26）。</p>
+</div>
+
+<hr class="section-divider">
+
+<div class="sub-section">（3）持分の放棄及び共有者の死亡（255条）</div>
+
+<div class="article-box">
+  <p>共有者の1人が、その<em>持分を放棄したとき</em>、又は<em>死亡して相続人がいないとき</em>は、その持分は<em>他の共有者に帰属</em>します（255条）。</p>
+  <p><em>国庫に帰属するのではありません</em>。これは超頻出です。ただし、相続人なしで死亡した場合には、まず①<em>特別縁故者（内縁の妻など）</em>がいるかどうか探索し、②それでも誰もいない場合に初めて他の共有者に帰属します（最判平元・11・24）。</p>
+</div>
+
+<div class="goro-box">
+  <div class="goro-main">「持分放棄・相続人なし → 他の共有者へ（国庫ではない！）」</div>
+  <div class="goro-sub">国庫帰属という肢は典型的な×パターン</div>
+</div>
+
+<hr class="section-divider">
+
+<div class="sub-section">（4）共有物の分割（256〜261条）</div>
+
+<div class="article-box">
+  <p>各共有者は、<em>いつでも</em>共有物の分割を請求することができます（256条1項）。もっとも、<em>不分割の特約</em>も<em>5年を超えない期間内</em>であれば可能です。ただし、この不分割の特約は<em>登記をしておかないと第三者（特定承継人など）に対抗できません</em>。</p>
+  <p>共有物の分割について共有者間に<em>協議が調わないとき</em>は、その分割を<em>裁判所に請求</em>することができます（258条1項）。この場合、①共有物の<em>現物を分割することができないとき</em>、又は②分割によって<em>その価格を著しく減少させるおそれがあるとき</em>は、裁判所はその<em>競売を命ずることができます</em>（258条2項）。</p>
+  <p>また、裁判上の分割では、<em>完全（全面的）価格賠償</em>（共有者の1人又は数人の共有とし、これらの者から他の共有者に対して持分価格を賠償させる方法）によることも可能です（最判平8・10・31）。</p>
+</div>
+
+<div class="point-card">
+  <div class="point-title">💡 裁判所が競売を命じる事由は2つ</div>
+  ①共有物の<em>現物を分割することができないとき</em><br>
+  ②分割によって<em>その価格を著しく減少させるおそれがあるとき</em>
+</div>
+
+<hr class="section-divider">
+
+<div class="sub-section">（5）共有に関する債権の弁済・分割への参加</div>
+
+<div class="article-box">
+  <p>共有者の1人が他の共有者に対して共有に関する債権を有するときは、分割に際し、<em>債務者に帰属すべき共有物の部分をもって、その弁済に充てることができます</em>（259条）。「お金を払えないなら共有物の持分で弁済してよい」ということです。</p>
+  <p>共有物について権利を有している者及び各共有者の<em>債権者</em>は、<em>自己の費用</em>で、共有物の分割に参加することができます（260条1項）。参加請求があったにもかかわらず参加させないで行った分割は、<em>その者に対抗できない</em>ことになります（260条2項）。</p>
+</div>
+
+<hr class="section-divider">
+
+<div class="sub-section">（6）分割における共有者の担保責任（261条）</div>
+
+<div class="article-box">
+  <p>各共有者は、他の共有者が分割によって取得した物について、<em>売主と同じく</em>、その持分に応じて<em>担保の責任</em>を負います（261条）。瑕疵のある物を分割によって渡してしまったときは責任を問われることがある、ということです。</p>
+</div>
+
+<!-- ミニテスト② -->
+<div class="mini-test">
+  <div class="mini-test-title">ミニテスト②　共有のその他規定</div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q4. 共有者の1人が持分を放棄したとき、その持分は（　<span class="mblank blank-word" data-ans="他の共有者" onclick="revealBlank(this)">他の共有者</span>　）に帰属する。
+    </div>
+  </div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q5. 不分割の特約は（　<span class="mblank blank-word" data-ans="5年" onclick="revealBlank(this)">5年</span>　）を超えない期間内であれば可能である。
+    </div>
+  </div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q6. 共有物の分割について裁判所が競売を命じることができる事由はいくつあるか。
+    </div>
+    <div class="chips-row" id="chips-q6">
+      <span class="chip" onclick="checkChip(this,'chips-q6','2つ')">2つ</span>
+      <span class="chip" onclick="checkChip(this,'chips-q6','2つ')">1つ</span>
+      <span class="chip" onclick="checkChip(this,'chips-q6','2つ')">3つ</span>
+    </div>
+  </div>
+  <div class="test-q">
+    <div class="test-q-text">
+      Q7. 共有者の1人が共有物について他の共有者に対して有する債権は、その特定承継人に対しても主張することができる。これは何の例外と呼ばれるか。
+    </div>
+    <div class="chips-row" id="chips-q7">
+      <span class="chip" onclick="checkChip(this,'chips-q7','債権の相対性の例外')">債権の相対性の例外</span>
+      <span class="chip" onclick="checkChip(this,'chips-q7','債権の相対性の例外')">物権の排他性の例外</span>
+      <span class="chip" onclick="checkChip(this,'chips-q7','債権の相対性の例外')">時効の遡及効の例外</span>
+    </div>
+  </div>
+</div>
+
+<!-- まとめ -->
+<div class="summary-box">
+  <h3>📝 ch16 まとめ</h3>
+  <ul>
+    <li>共有の特徴：各人が具体的持分を持ち、自由に処分・分割請求できる。持分は特約なければ相等しいと推定（250条）。</li>
+    <li>各共有者は持分に応じて共有物全部を使用できる（249条）。</li>
+    <li>変更行為（全体の売却・伐採等）→共有者全員の同意（251条）。</li>
+    <li>管理行為（賃貸借等・「貸す行為がらみ」）→持分価格の過半数（頭数の過半数ではない）（252条本文）。</li>
+    <li>保存行為（妨害排除・不法登記抹消等）→各共有者単独で可（252条ただし書）。</li>
+    <li>明渡請求不可：①共有者が独占的使用の場合、②占有を承認された第三者（賃借人等）への場合。損害賠償は自己持分の限度のみ。</li>
+    <li>管理費を1年以内に払わない共有者の持分は、他の共有者が相当の償金を払って取得できる（253条2項）。</li>
+    <li>共有物についての債権→特定承継人にも主張可（254条）。分割に関する特約も含まれる。</li>
+    <li>持分放棄・相続人なし→他の共有者へ帰属（国庫ではない）（255条）。</li>
+    <li>分割請求はいつでも可。不分割特約は5年以内。協議不調なら裁判所に請求（258条）。競売命令事由は「現物分割不可」と「価格著しく減少のおそれ」の2つ。</li>
+  </ul>
+</div>
+
+<div class="back-top"><a href="#top">▲ ページトップに戻る</a></div>
+
+</div>
+
+<script>
+function revealBlank(el) { el.classList.add('revealed'); }
+function checkChip(el, groupId, correctAnswer) {
+  const group = document.getElementById(groupId);
+  const chips = group.querySelectorAll('.chip');
+  chips.forEach(c => { c.onclick = null; c.style.pointerEvents = 'none'; });
+  if (el.textContent.trim() === correctAnswer) {
+    el.classList.add('correct');
+  } else {
+    el.classList.add('wrong');
+    setTimeout(() => { chips.forEach(c => { if (c.textContent.trim() === correctAnswer) c.classList.add('correct'); }); }, 400);
+  }
+}
+</script>
+</body>
+</html>

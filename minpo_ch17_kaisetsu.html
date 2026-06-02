@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch17 用益物権</title>
+<style>
+  :root{--bg:#eef2f7;--card:#fff;--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--cyan:#00AEEF;--text:#2c3e50;--border:#dde3ec;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);font-family:'Meiryo','メイリオ',sans-serif;color:var(--text);font-size:15px;line-height:1.8;}
+  header{background:var(--navy);color:#fff;padding:18px 24px 14px;}
+  header .chapter-num{font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:4px;}
+  header h1{font-size:22px;font-weight:bold;}
+  header .stars{font-size:13px;margin-top:4px;color:#aac;}
+  header .stars span{color:var(--gold);}
+  .container{max-width:800px;margin:0 auto;padding:20px 16px 60px;}
+  .section-card{background:var(--card);border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:24px;overflow:hidden;}
+  .section-header{background:var(--navy);color:#fff;padding:10px 18px;font-size:15px;font-weight:bold;display:flex;align-items:center;gap:10px;}
+  .section-header .num{background:var(--gold);color:var(--navy);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;flex-shrink:0;}
+  .section-body{padding:18px 20px;}
+  .sub-heading{font-size:14px;font-weight:bold;color:var(--navy);border-left:4px solid var(--cyan);padding-left:10px;margin:18px 0 10px;}
+  .sub-heading:first-child{margin-top:0;}
+  p{margin-bottom:10px;}
+  p:last-child{margin-bottom:0;}
+  .kw{color:var(--crimson);font-weight:bold;}
+  .kw-b{color:#1a6ea8;font-weight:bold;}
+  .kw-g{color:#27ae60;font-weight:bold;}
+  .formula-box{background:#e8f4fd;border:1px solid #a8d4f0;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:15px;text-align:center;font-weight:bold;color:var(--navy);}
+  .formula-box .eq{color:var(--crimson);}
+  .table-wrap{overflow-x:auto;margin:12px 0;}
+  table{width:100%;border-collapse:collapse;font-size:14px;}
+  th{background:var(--navy);color:#fff;padding:8px 12px;text-align:center;}
+  td{border:1px solid var(--border);padding:8px 12px;vertical-align:top;}
+  tr:nth-child(even) td{background:#f5f8fc;}
+  .td-ok{color:#27ae60;font-weight:bold;text-align:center;}
+  .td-ng{color:var(--crimson);font-weight:bold;text-align:center;}
+  .td-c{text-align:center;}
+  .hanrei{background:#fff8e1;border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:14px;}
+  .hanrei .hanrei-title{font-weight:bold;color:#8a6000;margin-bottom:6px;font-size:13px;}
+  .point-box{background:#fef9ec;border:1px solid var(--gold);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .point-box::before{content:"📌 POINT";font-weight:bold;color:#8a6000;display:block;margin-bottom:4px;font-size:12px;}
+  .warn-box{background:#fdf0f0;border:1px solid var(--crimson);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .warn-box::before{content:"⚠️ 注意";font-weight:bold;color:var(--crimson);display:block;margin-bottom:4px;font-size:12px;}
+  .note-box{background:#f0f7ff;border:1px solid var(--cyan);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .note-box::before{content:"💡 補足";font-weight:bold;color:#1a6ea8;display:block;margin-bottom:4px;font-size:12px;}
+  .goro{background:#f0f9ff;border:2px dashed var(--cyan);border-radius:8px;padding:10px 16px;margin:12px 0;text-align:center;}
+  .goro .goro-text{font-size:17px;font-weight:bold;color:var(--navy);letter-spacing:1px;}
+  .goro .goro-note{font-size:12px;color:#777;margin-top:4px;}
+  ul.list{padding-left:20px;margin:8px 0;}
+  ul.list li{margin-bottom:6px;}
+  /* ミニテスト */
+  .mini-test{background:#f4f0fa;border:2px solid #9b59b6;border-radius:10px;padding:16px 18px;margin-top:24px;}
+  .mt-title{font-weight:bold;color:#6c3483;font-size:14px;display:flex;align-items:center;gap:6px;margin-bottom:10px;}
+  .mt-title::before{content:"✏️";}
+  .mt-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .btn{border:none;border-radius:6px;padding:6px 16px;font-size:13px;cursor:pointer;font-family:'Meiryo',sans-serif;font-weight:bold;transition:opacity .15s;}
+  .btn:hover{opacity:.85;}
+  .btn-challenge{background:#C0392B;color:#fff;}
+  .btn-judge{background:#27ae60;color:#fff;}
+  .btn-show{background:#D4A017;color:#1B2A4A;}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+  .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;padding:10px 12px;background:#ece8f5;border-radius:8px;min-height:42px;}
+  .word-chip{background:#1B2A4A;color:#fff;border-radius:20px;padding:4px 14px;font-size:13px;cursor:pointer;user-select:none;transition:all .15s;}
+  .word-chip:hover{opacity:.85;}
+  .word-chip.used{opacity:.3;pointer-events:none;}
+  .mblank{display:inline-block;border-radius:4px;padding:1px 8px;min-width:72px;text-align:center;font-weight:bold;font-size:14px;cursor:pointer;transition:all .2s;border:2px solid #bbb;vertical-align:middle;background:#ddd;color:#ddd;user-select:none;}
+  .mblank.preview{background:#d4edda;border-color:#27ae60;color:#155724;cursor:default;}
+  .mblank.active{background:#fff3cd;border-color:#D4A017;color:#1B2A4A;}
+  .mblank.filled{background:#eaf0fb;border-color:#6c8ebf;color:#1B2A4A;}
+  .mblank.correct{background:#d4edda;border-color:#27ae60;color:#155724;}
+  .mblank.wrong{background:#f8d7da;border-color:#e74c3c;color:#721c24;}
+  .mt-q{font-size:14px;margin-bottom:10px;line-height:2;}
+  .result-msg{font-size:14px;margin-top:10px;font-weight:bold;min-height:22px;}
+  .result-msg.ok{color:#27ae60;}
+  .result-msg.ng{color:#C0392B;}
+  #confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;display:none;}
+  .summary{background:var(--navy);color:#fff;border-radius:10px;padding:18px 22px;margin-top:8px;}
+  .summary h3{font-size:14px;font-weight:bold;color:var(--gold);margin-bottom:10px;}
+  .summary ul{list-style:none;padding:0;}
+  .summary li{padding:4px 0 4px 16px;position:relative;font-size:13px;line-height:1.7;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .summary li:last-child{border-bottom:none;}
+  .summary li::before{content:'▶';position:absolute;left:0;color:var(--crimson);font-size:10px;top:7px;}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<header>
+  <div class="chapter-num">CHAPTER 17 ／ 民法</div>
+  <h1>用益物権</h1>
+  <div class="stars">重要度 <span>★☆☆</span> ／ 頻出度 <span>★☆☆</span></div>
+</header>
+<div class="container">
+
+<!-- セクション1：地上権 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">1</span>地上権（265条）</div>
+  <div class="section-body">
+
+    <div class="sub-heading">（1）地上権とは</div>
+    <p>「<span class="kw">地上権</span>」とは、<span class="kw">工作物又は竹木を所有するために</span>他人の土地を利用する物権です（265条）。</p>
+    <p>近時は、他人の土地の空中や地下に地上権を設定する<span class="kw">地下地上権</span>や<span class="kw">空中地上権</span>なども広く利用されています。条文上も、地下又は空間は、工作物を所有するため、<span class="kw">上下の範囲を定めて</span>地上権の目的とすることができ、設定行為で地上権の行使のためにその土地の使用に制限を加えることができます（269条の2第1項）。</p>
+
+    <div class="sub-heading">（2）地上権の3大ポイント</div>
+
+    <div class="formula-box">
+      ① 地代は<span class="eq">要素でない</span>（無償可・永久地上権も可）<br>
+      ② 地上権者の<span class="eq">収去権</span>（権利消滅時に工作物・竹木を取り去れる）<br>
+      ③ <span class="eq">地主の買取権</span>（土地所有者→地上権者へ通知して買い取る）
+    </div>
+
+    <div class="warn-box">
+      地主の買取権は「<span class="kw">土地所有者 → 地上権者への通知</span>」という方向。地上権者の側から「時価相当額で買い取れ」と請求することは<span class="kw">できません</span>（方向に注意！）
+    </div>
+
+    <div class="note-box">
+      <strong>地上権の処分は自由（土地所有者の承諾不要）</strong><br>
+      地上権者は、土地所有者の承諾なく、地上権を<span class="kw-b">譲渡・賃貸・抵当権設定</span>することができます。賃借権とは異なる重要なポイントです。
+    </div>
+
+    <!-- ミニテスト① -->
+    <div class="mini-test" data-group="1">
+      <div class="mt-title">ミニテスト①　地上権</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(1)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(1)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(1)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb1">
+        <span class="word-chip" data-word="要素ではない">要素ではない</span>
+        <span class="word-chip" data-word="無償">無償</span>
+        <span class="word-chip" data-word="永久地上権">永久地上権</span>
+        <span class="word-chip" data-word="土地所有者から地上権者">土地所有者から地上権者</span>
+        <span class="word-chip" data-word="不要">不要</span>
+      </div>
+      <div class="mt-q">① 地上権は地代の支払いが<span class="mblank preview" data-ans="要素ではない" data-group="1">要素ではない</span>ので、<span class="mblank preview" data-ans="無償" data-group="1">無償</span>で設定でき、<span class="mblank preview" data-ans="永久地上権" data-group="1">永久地上権</span>とすることも認められる。</div>
+      <div class="mt-q">② 地主の買取権は「<span class="mblank preview" data-ans="土地所有者から地上権者" data-group="1">土地所有者から地上権者</span>」への方向で通知して買い取る。</div>
+      <div class="mt-q">③ 地上権の譲渡・賃貸は土地所有者の承諾が<span class="mblank preview" data-ans="不要" data-group="1">不要</span>である。</div>
+      <div class="result-msg" id="rm1"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション2：永小作権 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">2</span>永小作権（270条）</div>
+  <div class="section-body">
+
+    <div class="sub-heading">（1）永小作権とは</div>
+    <p>「<span class="kw">永小作権</span>」とは、<span class="kw">小作料を支払って耕作又は牧蓄をするために</span>他人の土地を利用する物権です（270条）。</p>
+
+    <div class="sub-heading">（2）地上権との違い</div>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>項目</th><th>地上権</th><th>永小作権</th>
+        </tr>
+        <tr>
+          <td>地代・小作料</td>
+          <td class="td-ok">要素でない（無償可）</td>
+          <td class="td-ng">小作料は要素（無償不可）</td>
+        </tr>
+        <tr>
+          <td>存続期間</td>
+          <td class="td-ok">制限なし（永久も可）</td>
+          <td class="td-ng">20〜50年（永代は不可）</td>
+        </tr>
+        <tr>
+          <td>処分（譲渡等）</td>
+          <td class="td-c">土地所有者の承諾不要→自由</td>
+          <td class="td-c">土地所有者の承諾不要→自由</td>
+        </tr>
+        <tr>
+          <td>収去権・買取権</td>
+          <td class="td-c">あり（269条）</td>
+          <td class="td-c">あり（279条準用）</td>
+        </tr>
+        <tr>
+          <td>対抗要件</td>
+          <td class="td-c">登記</td>
+          <td class="td-c">登記</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="goro">
+      <div class="goro-text">「地上権：無償・永久 OK　永小作権：小作料要素・永代 NG」</div>
+      <div class="goro-note">地上権は無償・永久が可　／　永小作権は小作料が必須・永代は不可</div>
+    </div>
+
+    <div class="point-box">
+      永小作人が引き続き<span class="kw">2年以上小作料を怠った</span>場合、土地所有者は永小作権の<span class="kw">消滅請求</span>ができます（276条）。
+    </div>
+
+    <!-- ミニテスト② -->
+    <div class="mini-test" data-group="2">
+      <div class="mt-title">ミニテスト②　永小作権</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(2)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(2)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(2)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb2">
+        <span class="word-chip" data-word="小作料">小作料</span>
+        <span class="word-chip" data-word="できない">できない</span>
+        <span class="word-chip" data-word="20〜50年">20〜50年</span>
+        <span class="word-chip" data-word="永代永小作権">永代永小作権</span>
+        <span class="word-chip" data-word="消滅請求">消滅請求</span>
+      </div>
+      <div class="mt-q">① 永小作権は<span class="mblank preview" data-ans="小作料" data-group="2">小作料</span>が要素であるため、無償で設定することは<span class="mblank preview" data-ans="できない" data-group="2">できない</span>。</div>
+      <div class="mt-q">② 永小作権の存続期間は<span class="mblank preview" data-ans="20〜50年" data-group="2">20〜50年</span>であり、<span class="mblank preview" data-ans="永代永小作権" data-group="2">永代永小作権</span>は認められない。</div>
+      <div class="mt-q">③ 永小作人が2年以上小作料を怠った場合、土地所有者は<span class="mblank preview" data-ans="消滅請求" data-group="2">消滅請求</span>ができる。</div>
+      <div class="result-msg" id="rm2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション3：地役権 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">3</span>地役権（280条）</div>
+  <div class="section-body">
+
+    <div class="sub-heading">（1）地役権とは</div>
+    <p>「<span class="kw">地役権</span>」とは、<span class="kw">自己の土地（要役地）の便益のために他人の土地（承役地）</span>を利用する物権です（280条）。</p>
+    <p>便益のために利用を必要とする自己の土地を「<span class="kw">要役地</span>」、利用を承諾する他人の土地を「<span class="kw">承役地</span>」と呼びます。地役権は地上権と同様に、<span class="kw-g">無償でも可</span>・<span class="kw-g">存続期間の制限なし</span>（永久地役権も可）。</p>
+
+    <div class="sub-heading">（2）地役権の特徴</div>
+
+    <ul class="list">
+      <li><span class="kw">便益の目的に制限なし</span>：通行・眺望・日照・用水など設定契約で自由に定めることができる</li>
+      <li><span class="kw">要役地の所有権に従たる権利</span>（281条1項）：要役地の所有権が移転すると地役権も一緒に移転し、地役権だけを要役地から<span class="kw">分離して譲渡することはできない</span>（281条2項）</li>
+      <li><span class="kw">要役地と承役地は隣接不要</span></li>
+    </ul>
+
+    <div class="warn-box">
+      囲繞地通行権（法定通行権）は所有権の内容として<span class="kw">法律上当然</span>に認められますが、地役権は<span class="kw">当事者の設定契約</span>によって初めて認められます。似ているが性質は全く異なります！
+    </div>
+
+    <div class="sub-heading">（3）共有と地役権の時効</div>
+    <p>要役地あるいは承役地が共有の場合、共有者の1人は、<span class="kw">自己の持分だけ地役権を消滅させることはできません</span>（282条1項）。</p>
+    <p>地役権の<span class="kw">時効取得</span>は、「<span class="kw">継続的に行使され、かつ、外形上認識できる</span>ものに限り」認められます（283条）。通路の開設は<span class="kw">要役地の所有者によってなされた</span>ものでなければなりません（最判昭33・2・14）。</p>
+
+    <div class="note-box">
+      <strong>共有と時効の更新・完成猶予（284条）</strong><br>
+      ・時効の<span class="kw-b">更新</span>→ 地役権を行使する<span class="kw">各共有者全員に対してしなければ</span>効力が生じない<br>
+      ・時効の<span class="kw-b">完成猶予</span>→ 共有者の1人について事由があっても<span class="kw">時効は各共有者のために進行する</span>（1人の事由で全員に有利）
+    </div>
+
+    <div class="sub-heading">（4）地役権と第三者の関係</div>
+    <p><strong>要役地がAからCに譲渡された場合</strong>：Cは要役地の所有権移転登記さえ備えれば、地役権の登記なしでBに対抗できます。</p>
+    <p><strong>承役地がBからDに譲渡された場合</strong>：Aは要役地の所有権移転登記だけでなく、<span class="kw">地役権の登記を備えなければ</span>Dに対抗できません（177条）。</p>
+
+    <div class="hanrei">
+      <div class="hanrei-title">⚖️ 判例（最判平10・2・13）</div>
+      <p>Aが通路として使用していることが物理的形状などから<span class="kw-g">客観的に明らか</span>で、Dがそれを認識していたか認識可能であったときは、Dは177条の「第三者」に該当しない。よって<span class="kw-g">Aは登記なくして地役権をDに対抗できる</span>。</p>
+    </div>
+
+    <!-- ミニテスト③ -->
+    <div class="mini-test" data-group="3">
+      <div class="mt-title">ミニテスト③　地役権</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(3)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(3)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(3)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb3">
+        <span class="word-chip" data-word="要役地">要役地</span>
+        <span class="word-chip" data-word="承役地">承役地</span>
+        <span class="word-chip" data-word="できない">できない</span>
+        <span class="word-chip" data-word="外形上認識できる">外形上認識できる</span>
+        <span class="word-chip" data-word="要役地の所有者">要役地の所有者</span>
+        <span class="word-chip" data-word="地役権の登記">地役権の登記</span>
+      </div>
+      <div class="mt-q">① 地役権において、便益のために利用を必要とする自己の土地を<span class="mblank preview" data-ans="要役地" data-group="3">要役地</span>、利用を承諾する他人の土地を<span class="mblank preview" data-ans="承役地" data-group="3">承役地</span>という。</div>
+      <div class="mt-q">② 共有者の1人は自己の持分だけ地役権を消滅させることは<span class="mblank preview" data-ans="できない" data-group="3">できない</span>（282条1項）。</div>
+      <div class="mt-q">③ 地役権の時効取得は、継続的に行使され、かつ<span class="mblank preview" data-ans="外形上認識できる" data-group="3">外形上認識できる</span>ものに限り認められる。通路の開設は<span class="mblank preview" data-ans="要役地の所有者" data-group="3">要役地の所有者</span>によるものが必要。</div>
+      <div class="mt-q">④ 承役地が第三者に譲渡された場合、原則として<span class="mblank preview" data-ans="地役権の登記" data-group="3">地役権の登記</span>を備えなければ対抗できない。</div>
+      <div class="result-msg" id="rm3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション4：比較総合 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">4</span>用益物権の比較総合</div>
+  <div class="section-body">
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>項目</th><th>地上権</th><th>永小作権</th><th>地役権</th>
+        </tr>
+        <tr>
+          <td>目的</td>
+          <td class="td-c">工作物・竹木の所有</td>
+          <td class="td-c">耕作・牧蓄</td>
+          <td class="td-c">要役地の便益</td>
+        </tr>
+        <tr>
+          <td>地代・小作料</td>
+          <td class="td-ok">要素でない（無償可）</td>
+          <td class="td-ng">小作料は要素（無償不可）</td>
+          <td class="td-ok">要素でない（無償可）</td>
+        </tr>
+        <tr>
+          <td>存続期間</td>
+          <td class="td-ok">制限なし（永久も可）</td>
+          <td class="td-ng">20〜50年（永代は不可）</td>
+          <td class="td-ok">制限なし（永久も可）</td>
+        </tr>
+        <tr>
+          <td>処分（譲渡等）</td>
+          <td class="td-c">土地所有者の承諾不要→自由</td>
+          <td class="td-c">土地所有者の承諾不要→自由</td>
+          <td class="td-c">要役地から分離して譲渡不可</td>
+        </tr>
+        <tr>
+          <td>対抗要件</td>
+          <td class="td-c">登記</td>
+          <td class="td-c">登記</td>
+          <td class="td-c">登記</td>
+        </tr>
+        <tr>
+          <td>収去権・買取権</td>
+          <td class="td-c">あり（269条）</td>
+          <td class="td-c">あり（279条準用）</td>
+          <td class="td-c">規定なし</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- ミニテスト④ -->
+    <div class="mini-test" data-group="4">
+      <div class="mt-title">ミニテスト④　比較総合</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(4)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(4)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(4)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb4">
+        <span class="word-chip" data-word="永小作権">永小作権</span>
+        <span class="word-chip" data-word="地上権">地上権</span>
+        <span class="word-chip" data-word="地役権">地役権</span>
+        <span class="word-chip" data-word="無償不可">無償不可</span>
+        <span class="word-chip" data-word="分離して譲渡不可">分離して譲渡不可</span>
+      </div>
+      <div class="mt-q">① 小作料が要素で無償設定できないのは<span class="mblank preview" data-ans="永小作権" data-group="4">永小作権</span>のみ。地代が要素でない（無償可）なのは<span class="mblank preview" data-ans="地上権" data-group="4">地上権</span>と<span class="mblank preview" data-ans="地役権" data-group="4">地役権</span>。</div>
+      <div class="mt-q">② 存続期間20〜50年の制限があるのは<span class="mblank preview" data-ans="永小作権" data-group="4">永小作権</span>のみ。</div>
+      <div class="mt-q">③ 地役権は要役地から<span class="mblank preview" data-ans="分離して譲渡不可" data-group="4">分離して譲渡不可</span>という点が地上権・永小作権と異なる。</div>
+      <div class="result-msg" id="rm4"></div>
+    </div>
+
+    <div class="summary">
+      <h3>📝 ch17 まとめ</h3>
+      <ul>
+        <li>地上権（265条）：工作物・竹木の所有が目的。地代は要素でない→無償・永久可。処分は土地所有者の承諾不要。</li>
+        <li>地主の買取権：土地所有者→地上権者への方向。地上権者からの請求はできない。</li>
+        <li>永小作権（270条）：耕作・牧蓄が目的。小作料は要素→無償不可。存続期間20〜50年、永代は不可。</li>
+        <li>地役権（280条）：要役地の便益が目的。便益に制限なし。無償・永久可。要役地に従たる権利→分離して譲渡不可。</li>
+        <li>共有者の1人は持分だけ地役権を消滅させることはできない（282条1項）。</li>
+        <li>地役権の時効取得：継続的行使＋外形上認識可能なものに限る。通路の開設は要役地所有者によるものが必要（最判昭33・2・14）。</li>
+        <li>時効の更新→各共有者全員に必要。完成猶予→1人の事由で全員に有利（284条）。</li>
+        <li>承役地が第三者に譲渡→地役権の登記が必要（177条）。客観的に明らかで予想できた場合は登記不要（最判平10・2・13）。</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div>
+<div style="text-align:center;font-size:11px;color:#aaa;padding:8px 0 30px;">音声：VOICEVOX / 四国めたん</div>
+
+<script>
+const state={};let activeBlank=null;
+window.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.mini-test').forEach(mt=>{
+    const g=mt.dataset.group;if(g){state[g]='preview';shuffleBank(g);}
+  });
+});
+function shuffleBank(g){
+  const wb=document.getElementById('wb'+g);if(!wb)return;
+  const chips=Array.from(wb.querySelectorAll('.word-chip'));
+  for(let i=chips.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));wb.insertBefore(chips[j],chips[i]);const t=chips[i];chips[i]=chips[j];chips[j]=t;}
+}
+function getBtn(g,cls){const mt=document.querySelector(`.mini-test[data-group="${g}"]`);return mt?mt.querySelector(cls):null;}
+function setBtns(g,mode){const isC=mode==='challenge';const bc=getBtn(g,'.btn-challenge');const bj=getBtn(g,'.btn-judge');if(bc)bc.disabled=isC;if(bj)bj.disabled=!isC;}
+function startChallenge(g){
+  state[g]='challenge';activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent='　　　';b.className='mblank';b.dataset.filled='';b.onclick=()=>selectBlank(b,g);});
+  resetChips(g);shuffleBank(g);
+  document.querySelectorAll(`#wb${g} .word-chip`).forEach(chip=>{chip.onclick=()=>selectChip(chip,g);});
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'challenge');
+}
+function resetChips(g){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{c.className='word-chip';c.onclick=null;});}
+function selectBlank(b,g){
+  if(state[g]!=='challenge')return;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(x=>{if(x!==b)x.classList.remove('active');});
+  if(b.classList.contains('active')){b.classList.remove('active');activeBlank=null;}
+  else{b.classList.add('active');activeBlank={el:b,group:g};}
+}
+function selectChip(chip,g){
+  if(state[g]!=='challenge')return;
+  if(!activeBlank||activeBlank.group!==g)return;
+  const b=activeBlank.el;const word=chip.dataset.word;
+  const prev=b.dataset.filled;
+  if(prev){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{if(c.dataset.word===prev)c.classList.remove('used');});}
+  b.textContent=word;b.dataset.filled=word;
+  b.classList.remove('active','correct','wrong');b.classList.add('filled');
+  chip.classList.add('used');activeBlank=null;
+}
+function judgeGroup(g){
+  if(state[g]!=='challenge')return;
+  const blanks=document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  let allFilled=true;blanks.forEach(b=>{if(!b.dataset.filled)allFilled=false;});
+  if(!allFilled){const rm=document.getElementById('rm'+g);if(rm){rm.textContent='⚠️ 全ての空欄を埋めてから判定してください。';rm.className='result-msg ng';}return;}
+  let correct=0;
+  blanks.forEach(b=>{b.classList.remove('active','filled');if(b.dataset.filled===b.dataset.ans){b.classList.add('correct');correct++;}else b.classList.add('wrong');});
+  const rm=document.getElementById('rm'+g);
+  if(correct===blanks.length){if(rm){rm.textContent='🎉 全問正解！';rm.className='result-msg ok';}launchConfetti();}
+  else{if(rm){rm.textContent=`${correct} / ${blanks.length} 正解。もう一度チャレンジしてみよう！`;rm.className='result-msg ng';}}
+}
+function showAnswer(g){
+  state[g]='preview';activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent=b.dataset.ans;b.className='mblank preview';b.dataset.filled=b.dataset.ans;b.onclick=null;});
+  resetChips(g);
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'preview');
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');if(!canvas)return;
+  canvas.style.display='block';const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const colors=['#C0392B','#D4A017','#00AEEF','#27ae60','#9b59b6','#e67e22','#1B2A4A'];
+  const pieces=Array.from({length:150},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*6+4,d:Math.random()*80+40,color:colors[Math.floor(Math.random()*colors.length)],tilt:0,tiltAngle:0,tiltSpeed:Math.random()*0.1+0.05}));
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{p.tiltAngle+=p.tiltSpeed;p.y+=(Math.cos(frame/20+p.d)+1+p.r/2)*1.2;p.x+=Math.sin(frame/20)*1.5;p.tilt=Math.sin(p.tiltAngle)*15;ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/3);ctx.stroke();});
+    frame++;
+    if(frame<200)requestAnimationFrame(draw);
+    else{ctx.clearRect(0,0,canvas.width,canvas.height);canvas.style.display='none';}
+  }
+  draw();
+}
+</script>
+</body>
+</html>

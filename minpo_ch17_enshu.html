@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch17 用益物権 演習</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#0f1923;color:#e8e0d0;font-family:'BIZ UDGothic','Meiryo',sans-serif;min-height:100vh;padding:20px;}
+  .wrapper{max-width:860px;margin:0 auto;}
+
+  /* ヘッダー */
+  .page-header{background:linear-gradient(135deg,#1B2A4A 0%,#243555 100%);border-left:6px solid #C0392B;border-radius:4px;padding:22px 28px;margin-bottom:28px;}
+  .page-header .chapter-label{font-size:11px;letter-spacing:3px;color:#C0392B;text-transform:uppercase;margin-bottom:6px;}
+  .page-header h1{font-size:22px;font-weight:700;color:#fff;margin-bottom:4px;}
+  .page-header .subtitle{font-size:13px;color:#94a3b8;}
+
+  /* スコアボード */
+  .scoreboard{display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap;}
+  .score-card{background:#1B2A4A;border:1px solid #2a3f6b;border-radius:6px;padding:14px 20px;flex:1;min-width:130px;text-align:center;}
+  .score-card .label{font-size:11px;color:#94a3b8;margin-bottom:4px;}
+  .score-card .value{font-size:26px;font-weight:700;color:#fff;}
+  .score-card.correct .value{color:#4ade80;}
+  .score-card.wrong .value{color:#f87171;}
+
+  /* 問題ブロック共通 */
+  .section-title{font-size:13px;letter-spacing:2px;color:#C0392B;text-transform:uppercase;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid #2a3f6b;}
+  .q-block{background:#1a2535;border:1px solid #2a3f6b;border-radius:8px;padding:22px;margin-bottom:18px;transition:border-color .3s;}
+  .q-block.answered{border-color:#334;}
+  .q-num{display:inline-block;background:#C0392B;color:#fff;font-size:11px;font-weight:700;padding:2px 9px;border-radius:3px;margin-bottom:12px;letter-spacing:1px;}
+  .q-text{font-size:15px;line-height:1.8;color:#ddd;margin-bottom:18px;}
+
+  /* ○× ボタン */
+  .ox-btns{display:flex;gap:12px;}
+  .ox-btn{flex:1;padding:14px;border:2px solid transparent;border-radius:8px;font-size:22px;font-weight:700;cursor:pointer;background:#0f1923;transition:all .2s;color:#aaa;}
+  .ox-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.4);}
+  .ox-btn.maru{border-color:#3b82f6;}
+  .ox-btn.maru:hover:not(:disabled){background:#1d3a6b;color:#60a5fa;}
+  .ox-btn.batu{border-color:#dc2626;}
+  .ox-btn.batu:hover:not(:disabled){background:#5a1a1a;color:#f87171;}
+  .ox-btn:disabled{cursor:default;opacity:.6;}
+  .ox-btn.selected-correct{background:#14532d;border-color:#4ade80;color:#4ade80;}
+  .ox-btn.selected-wrong{background:#450a0a;border-color:#f87171;color:#f87171;}
+  .ox-btn.show-answer{background:#1e3a5f;border-color:#60a5fa;color:#93c5fd;}
+
+  /* 解説 */
+  .explanation{margin-top:16px;background:#0f1923;border-left:3px solid #4ade80;border-radius:4px;padding:14px 16px;display:none;font-size:14px;line-height:1.8;color:#c8d8e8;}
+  .explanation.wrong-exp{border-color:#f87171;}
+  .explanation.show{display:block;}
+  .exp-verdict{font-size:13px;font-weight:700;margin-bottom:8px;}
+  .exp-verdict.ok{color:#4ade80;}
+  .exp-verdict.ng{color:#f87171;}
+  .key-point{color:#fbbf24;font-weight:700;}
+
+  /* 5択問題 */
+  .multi-block{background:#1a2535;border:1px solid #2a3f6b;border-radius:8px;padding:22px;margin-bottom:18px;}
+  .multi-lead{font-size:14px;color:#94a3b8;margin-bottom:10px;line-height:1.7;}
+  .multi-q{font-size:15px;line-height:1.8;color:#ddd;margin-bottom:18px;}
+  .choice-list{display:flex;flex-direction:column;gap:8px;margin-bottom:4px;}
+  .choice-btn{background:#0f1923;border:2px solid #2a3f6b;border-radius:6px;padding:12px 16px;font-size:14px;color:#ccc;cursor:pointer;text-align:left;transition:all .2s;line-height:1.6;}
+  .choice-btn:hover:not(:disabled){background:#1B2A4A;border-color:#4a6fa5;}
+  .choice-btn:disabled{cursor:default;}
+  .choice-btn.selected-correct{background:#14532d;border-color:#4ade80;color:#e0ffe0;}
+  .choice-btn.selected-wrong{background:#450a0a;border-color:#f87171;color:#ffe0e0;}
+  .choice-btn.show-answer{background:#1e3a5f;border-color:#60a5fa;color:#bde0ff;}
+
+  /* 結果バナー */
+  .result-banner{display:none;background:linear-gradient(135deg,#1B2A4A,#243555);border:1px solid #2a3f6b;border-radius:10px;padding:28px;text-align:center;margin-top:28px;}
+  .result-banner.show{display:block;}
+  .result-banner h2{font-size:22px;color:#fff;margin-bottom:8px;}
+  .result-msg{font-size:16px;color:#94a3b8;margin-bottom:20px;}
+  .retry-btn{background:#C0392B;color:#fff;border:none;border-radius:6px;padding:12px 32px;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s;}
+  .retry-btn:hover{background:#a93226;}
+
+  /* 比較表 */
+  .comp-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:18px;}
+  .comp-table th,.comp-table td{border:1px solid #2a3f6b;padding:8px 12px;text-align:center;}
+  .comp-table thead th{background:#1B2A4A;color:#fff;font-weight:700;}
+  .comp-table tbody tr:nth-child(even){background:#1a2535;}
+  .comp-table tbody tr:nth-child(odd){background:#151e2d;}
+  .comp-table td:first-child{font-weight:700;color:#94a3b8;text-align:left;}
+  .hl{color:#fbbf24;font-weight:700;}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ヘッダー -->
+  <div class="page-header">
+    <div class="chapter-label">民法 Chapter 17</div>
+    <h1>用益物権</h1>
+    <div class="subtitle">地上権・永小作権・地役権の違いをマスターしよう</div>
+  </div>
+
+  <!-- スコアボード -->
+  <div class="scoreboard">
+    <div class="score-card"><div class="label">問題数</div><div class="value" id="total">5</div></div>
+    <div class="score-card correct"><div class="label">正解</div><div class="value" id="correct-count">0</div></div>
+    <div class="score-card wrong"><div class="label">不正解</div><div class="value" id="wrong-count">0</div></div>
+    <div class="score-card"><div class="label">残り</div><div class="value" id="remaining">5</div></div>
+  </div>
+
+  <!-- 参考：比較表 -->
+  <div class="q-block" style="margin-bottom:28px;">
+    <div class="section-title">📊 用益物権 比較早見表</div>
+    <table class="comp-table">
+      <thead><tr><th>項目</th><th>地上権</th><th>永小作権</th><th>地役権</th></tr></thead>
+      <tbody>
+        <tr><td>目的</td><td>工作物・竹木の所有</td><td>耕作・牧蓄</td><td>自己の土地の便益</td></tr>
+        <tr><td>地代・小作料</td><td class="hl">要素でない（無償可）</td><td class="hl">小作料は要素</td><td>要素でない（無償可）</td></tr>
+        <tr><td>存続期間</td><td>制限なし（永久も可）</td><td class="hl">20〜50年（永代不可）</td><td>制限なし（永久も可）</td></tr>
+        <tr><td>処分（譲渡等）</td><td>土地所有者の承諾不要</td><td>土地所有者の承諾不要</td><td>要役地と分離して譲渡不可</td></tr>
+        <tr><td>対抗要件</td><td>登記</td><td>登記</td><td>登記</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ○×問題エリア -->
+  <div class="section-title" style="margin-bottom:16px;">■ ○×問題（4問）</div>
+
+  <!-- Q1 -->
+  <div class="q-block" id="qb1">
+    <span class="q-num">問1</span>
+    <div class="q-text">地上権は、他人の土地において工作物又は竹木を所有するため、その土地を使用する権利であり、工作物又は竹木が現存しないときに、地上権を設定することはできない。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(1,true,'○')">○</button>
+      <button class="ox-btn batu" onclick="answerOX(1,false,'×')">×</button>
+    </div>
+    <div class="explanation" id="exp1">
+      <div class="exp-verdict ng">× 誤り</div>
+      地上権は<span class="key-point">工作物又は竹木を所有することが目的</span>になっていればよく、設定時に現存していなくても構いません。将来建てる予定の建物のために地上権を設定することも有効です。（特別区H28肢1参照）
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-block" id="qb2">
+    <span class="q-num">問2</span>
+    <div class="q-text">地上権者が地上権に基づき土地上に植栽した竹木は地上権者の所有に属するため、地上権者は、その権利が消滅した場合に、土地の所有者に時価相当額でこれを買い取るよう請求することができる。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(2,true,'○')">○</button>
+      <button class="ox-btn batu" onclick="answerOX(2,false,'×')">×</button>
+    </div>
+    <div class="explanation" id="exp2">
+      <div class="exp-verdict ng">× 誤り</div>
+      地上権者には<span class="key-point">収去権（工作物・竹木を取り去る権利）</span>があります。逆に土地所有者側から時価相当額を提供して買い取る旨を通知することができます（地主の買取権）。地上権者の側から土地所有者に買い取れと請求する権利はありません。（特別区H28肢3参照）
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-block" id="qb3">
+    <span class="q-num">問3</span>
+    <div class="q-text">地役権は、設定行為に別段の定めがない限り、要役地の所有権に従たるものとしてその所有権とともに移転し、所有権の移転を承役地の所有者に対抗し得るときは、地役権の移転も登記なく対抗できる。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(3,true,'○')">○</button>
+      <button class="ox-btn batu" onclick="answerOX(3,false,'×')">×</button>
+    </div>
+    <div class="explanation" id="exp3">
+      <div class="exp-verdict ok">○ 正しい</div>
+      地役権は<span class="key-point">要役地の所有権に従たる権利</span>であり（281条1項）、要役地を離れて独立して存在できません。そのため、要役地の所有権移転登記さえ備えておけば、地役権の登記がなくても対抗することができます。（特別区H25肢1参照）
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-block" id="qb4">
+    <span class="q-num">問4</span>
+    <div class="q-text">要役地あるいは承役地が共有の場合、共有者の1人は、自己の持分の部分だけ地役権を消滅させることができる。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(4,true,'○')">○</button>
+      <button class="ox-btn batu" onclick="answerOX(4,false,'×')">×</button>
+    </div>
+    <div class="explanation" id="exp4">
+      <div class="exp-verdict ng">× 誤り</div>
+      共有者の1人は、<span class="key-point">自己の持分の部分だけ地役権を消滅させることはできません</span>（282条1項）。地役権全体を消滅させることは共有物の変更にあたるため単独では不可。かつ、持分だけを分離して消滅させることもできません。（特別区H25肢4参照）
+    </div>
+  </div>
+
+  <!-- 5択問題 -->
+  <div class="section-title" style="margin-bottom:16px;margin-top:28px;">■ 5択問題（1問）</div>
+  <div class="multi-block" id="qb5">
+    <span class="q-num">問5</span>
+    <div class="multi-lead">【特別区 H28改題】民法に規定する地上権に関する記述として、妥当なのはどれか。</div>
+    <div class="choice-list" id="choices5">
+      <button class="choice-btn" onclick="answerMulti(5,1,5)">1　地上権は、他人の土地において工作物又は竹木を所有するため、その土地を使用する権利であり、工作物又は竹木が現存しないときに、地上権を設定することはできない。</button>
+      <button class="choice-btn" onclick="answerMulti(5,2,5)">2　地上権者は、地上権に抵当権を設定し、地上権を譲渡し、又は賃貸することができるが、いずれの場合にも、土地の所有者の承諾を必要とし、自由に処分することはできない。</button>
+      <button class="choice-btn" onclick="answerMulti(5,3,5)">3　地上権者が地上権に基づき土地上に植栽した竹木は、地上権者の所有に属するため、地上権者は、その権利が消滅した場合に、別段の慣習がないときは、土地の所有者に時価相当額でこれを買い取るよう請求することができる。</button>
+      <button class="choice-btn" onclick="answerMulti(5,4,5)">4　地代の支払いは、地上権の成立要件であり、地上権者は土地の所有者に定期の地代を支払わなければならないが、不可抗力により収益について損失を受けたときは、地代の免除又は減額を請求することができる。</button>
+      <button class="choice-btn" onclick="answerMulti(5,5,5)">5　地下又は空間は、工作物を所有するため、上下の範囲を定めて地上権の目的とすることができ、この場合においては、設定行為で、地上権の行使のためにその土地の使用に制限を加えることができる。</button>
+    </div>
+    <div class="explanation" id="exp5">
+      <div class="exp-verdict ok">正解：5</div>
+      <div style="margin-top:8px;">
+        <div style="margin-bottom:6px;"><span class="key-point">肢1×</span>　工作物・竹木が現存しなくても地上権を設定できます。</div>
+        <div style="margin-bottom:6px;"><span class="key-point">肢2×</span>　地上権の処分（抵当権設定・譲渡・賃貸）は、土地所有者の承諾なしに自由にできます（266条・268条準用）。</div>
+        <div style="margin-bottom:6px;"><span class="key-point">肢3×</span>　地上権者に「買い取れ」と請求する権利はなく、<span class="key-point">地主の買取権</span>として土地所有者側からの買取通知があります。</div>
+        <div style="margin-bottom:6px;"><span class="key-point">肢4×</span>　<span class="key-point">地代は地上権の成立要件ではありません</span>。無償設定も可能です。</div>
+        <div><span class="key-point">肢5○</span>　地下地上権・空中地上権の条文（269条の2第1項）通りの正しい記述です。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 結果バナー -->
+  <div class="result-banner" id="result-banner">
+    <h2 id="result-title">演習完了！</h2>
+    <div class="result-msg" id="result-msg"></div>
+    <button class="retry-btn" onclick="retryAll()">もう一度チャレンジ</button>
+  </div>
+
+</div>
+
+<script>
+const TOTAL = 5;
+const answers = {1:false, 2:false, 3:true, 4:false}; // true=○, false=×
+let answered = {};
+
+function updateScore(){
+  let c = 0, w = 0;
+  for(let k in answered){ if(answered[k]) c++; else w++; }
+  document.getElementById('correct-count').textContent = c;
+  document.getElementById('wrong-count').textContent = w;
+  document.getElementById('remaining').textContent = TOTAL - Object.keys(answered).length;
+  if(Object.keys(answered).length === TOTAL) showResult(c);
+}
+
+function answerOX(qn, choice, label){
+  if(answered[qn] !== undefined) return;
+  const correct = answers[qn];
+  const isCorrect = (choice === correct);
+  answered[qn] = isCorrect;
+
+  const btns = document.querySelectorAll(`#qb${qn} .ox-btn`);
+  btns.forEach(b => b.disabled = true);
+
+  // 選択ボタンのスタイル
+  btns.forEach(b => {
+    const bLabel = b.textContent.trim();
+    const bChoice = (bLabel === '○');
+    if(bChoice === choice){
+      b.classList.add(isCorrect ? 'selected-correct' : 'selected-wrong');
+    } else if(bChoice === correct){
+      b.classList.add('show-answer');
+    }
+  });
+
+  const exp = document.getElementById(`exp${qn}`);
+  exp.classList.add('show');
+  if(!isCorrect) exp.classList.add('wrong-exp');
+  document.getElementById(`qb${qn}`).classList.add('answered');
+  updateScore();
+}
+
+function answerMulti(qn, choice, correct){
+  if(answered[qn] !== undefined) return;
+  const isCorrect = (choice === correct);
+  answered[qn] = isCorrect;
+
+  const btns = document.querySelectorAll(`#choices${qn} .choice-btn`);
+  btns.forEach((b,i) => {
+    b.disabled = true;
+    if(i+1 === choice){
+      b.classList.add(isCorrect ? 'selected-correct' : 'selected-wrong');
+    } else if(i+1 === correct && !isCorrect){
+      b.classList.add('show-answer');
+    }
+  });
+
+  const exp = document.getElementById(`exp${qn}`);
+  exp.classList.add('show');
+  if(!isCorrect) exp.classList.add('wrong-exp');
+  document.getElementById(`qb${qn}`).classList.add('answered');
+  updateScore();
+}
+
+function showResult(correct){
+  const banner = document.getElementById('result-banner');
+  banner.classList.add('show');
+  const title = document.getElementById('result-title');
+  const msg = document.getElementById('result-msg');
+  const pct = Math.round(correct / TOTAL * 100);
+  title.textContent = `${correct} / ${TOTAL} 正解（${pct}%）`;
+  if(pct === 100) msg.textContent = '完璧！用益物権をマスターしました！';
+  else if(pct >= 80) msg.textContent = 'よくできました！苦手箇所を復習しましょう。';
+  else if(pct >= 60) msg.textContent = '比較表を見直して、もう一度挑戦してみましょう。';
+  else msg.textContent = '地上権・永小作権・地役権の違いを比較表で整理してください。';
+}
+
+function retryAll(){
+  answered = {};
+  document.getElementById('correct-count').textContent = '0';
+  document.getElementById('wrong-count').textContent = '0';
+  document.getElementById('remaining').textContent = TOTAL;
+  document.getElementById('result-banner').classList.remove('show');
+
+  // ○× 問題リセット
+  for(let qn=1; qn<=4; qn++){
+    document.getElementById(`qb${qn}`).classList.remove('answered');
+    document.querySelectorAll(`#qb${qn} .ox-btn`).forEach(b=>{
+      b.disabled=false;
+      b.classList.remove('selected-correct','selected-wrong','show-answer');
+    });
+    const exp = document.getElementById(`exp${qn}`);
+    exp.classList.remove('show','wrong-exp');
+  }
+  // 5択リセット
+  document.getElementById('qb5').classList.remove('answered');
+  document.querySelectorAll('#choices5 .choice-btn').forEach(b=>{
+    b.disabled=false;
+    b.classList.remove('selected-correct','selected-wrong','show-answer');
+  });
+  document.getElementById('exp5').classList.remove('show','wrong-exp');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch20 質権</title>
+<style>
+  :root{--bg:#eef2f7;--card:#fff;--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--cyan:#00AEEF;--text:#2c3e50;--border:#dde3ec;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);font-family:'Meiryo','メイリオ',sans-serif;color:var(--text);font-size:15px;line-height:1.8;}
+  header{background:var(--navy);color:#fff;padding:18px 24px 14px;}
+  header .chapter-num{font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:4px;}
+  header h1{font-size:22px;font-weight:bold;}
+  header .stars{font-size:13px;margin-top:4px;color:#aac;}
+  header .stars span{color:var(--gold);}
+  .container{max-width:800px;margin:0 auto;padding:20px 16px 60px;}
+  .section-card{background:var(--card);border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:24px;overflow:hidden;}
+  .section-header{background:var(--navy);color:#fff;padding:10px 18px;font-size:15px;font-weight:bold;display:flex;align-items:center;gap:10px;}
+  .section-header .num{background:var(--gold);color:var(--navy);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;flex-shrink:0;}
+  .section-body{padding:18px 20px;}
+  .sub-heading{font-size:14px;font-weight:bold;color:var(--navy);border-left:4px solid var(--cyan);padding-left:10px;margin:18px 0 10px;}
+  .sub-heading:first-child{margin-top:0;}
+  p{margin-bottom:10px;}
+  p:last-child{margin-bottom:0;}
+  .kw{color:var(--crimson);font-weight:bold;}
+  .kw-b{color:#1a6ea8;font-weight:bold;}
+  .kw-g{color:#27ae60;font-weight:bold;}
+  .formula-box{background:#e8f4fd;border:1px solid #a8d4f0;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:14px;color:var(--navy);}
+  .formula-box .eq{color:var(--crimson);font-weight:bold;}
+  .table-wrap{overflow-x:auto;margin:12px 0;}
+  table{width:100%;border-collapse:collapse;font-size:14px;}
+  th{background:var(--navy);color:#fff;padding:8px 12px;text-align:center;}
+  td{border:1px solid var(--border);padding:8px 12px;vertical-align:middle;}
+  tr:nth-child(even) td{background:#f5f8fc;}
+  .td-ok{color:#27ae60;font-weight:bold;text-align:center;}
+  .td-ng{color:var(--crimson);font-weight:bold;text-align:center;}
+  .td-c{text-align:center;}
+  .hanrei{background:#fff8e1;border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:14px;}
+  .hanrei .hanrei-title{font-weight:bold;color:#8a6000;margin-bottom:6px;font-size:13px;}
+  .point-box{background:#fef9ec;border:1px solid var(--gold);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .point-box::before{content:"📌 POINT";font-weight:bold;color:#8a6000;display:block;margin-bottom:4px;font-size:12px;}
+  .warn-box{background:#fdf0f0;border:1px solid var(--crimson);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .warn-box::before{content:"⚠️ 注意";font-weight:bold;color:var(--crimson);display:block;margin-bottom:4px;font-size:12px;}
+  .note-box{background:#f0f7ff;border:1px solid var(--cyan);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .note-box::before{content:"💡 補足";font-weight:bold;color:#1a6ea8;display:block;margin-bottom:4px;font-size:12px;}
+  .goro{background:#f0f9ff;border:2px dashed var(--cyan);border-radius:8px;padding:10px 16px;margin:12px 0;text-align:center;}
+  .goro .goro-text{font-size:17px;font-weight:bold;color:var(--navy);letter-spacing:1px;}
+  .goro .goro-note{font-size:12px;color:#777;margin-top:4px;}
+  ul.list{padding-left:20px;margin:8px 0;}
+  ul.list li{margin-bottom:6px;}
+  .mini-test{background:#f4f0fa;border:2px solid #9b59b6;border-radius:10px;padding:16px 18px;margin-top:24px;}
+  .mt-title{font-weight:bold;color:#6c3483;font-size:14px;display:flex;align-items:center;gap:6px;margin-bottom:10px;}
+  .mt-title::before{content:"✏️";}
+  .mt-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .btn{border:none;border-radius:6px;padding:6px 16px;font-size:13px;cursor:pointer;font-family:'Meiryo',sans-serif;font-weight:bold;transition:opacity .15s;}
+  .btn:hover{opacity:.85;}
+  .btn-challenge{background:#C0392B;color:#fff;}
+  .btn-judge{background:#27ae60;color:#fff;}
+  .btn-show{background:#D4A017;color:#1B2A4A;}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+  .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;padding:10px 12px;background:#ece8f5;border-radius:8px;min-height:42px;}
+  .word-chip{background:#1B2A4A;color:#fff;border-radius:20px;padding:4px 14px;font-size:13px;cursor:pointer;user-select:none;transition:all .15s;}
+  .word-chip:hover{opacity:.85;}
+  .word-chip.used{opacity:.3;pointer-events:none;}
+  .mblank{display:inline-block;border-radius:4px;padding:1px 8px;min-width:72px;text-align:center;font-weight:bold;font-size:14px;cursor:pointer;transition:all .2s;border:2px solid #bbb;vertical-align:middle;background:#ddd;color:#ddd;user-select:none;}
+  .mblank.preview{background:#d4edda;border-color:#27ae60;color:#155724;cursor:default;}
+  .mblank.active{background:#fff3cd;border-color:#D4A017;color:#1B2A4A;}
+  .mblank.filled{background:#eaf0fb;border-color:#6c8ebf;color:#1B2A4A;}
+  .mblank.correct{background:#d4edda;border-color:#27ae60;color:#155724;}
+  .mblank.wrong{background:#f8d7da;border-color:#e74c3c;color:#721c24;}
+  .mt-q{font-size:14px;margin-bottom:10px;line-height:2;}
+  .result-msg{font-size:14px;margin-top:10px;font-weight:bold;min-height:22px;}
+  .result-msg.ok{color:#27ae60;}
+  .result-msg.ng{color:#C0392B;}
+  #confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;display:none;}
+  .summary{background:var(--navy);color:#fff;border-radius:10px;padding:18px 22px;margin-top:8px;}
+  .summary h3{font-size:14px;font-weight:bold;color:var(--gold);margin-bottom:10px;}
+  .summary ul{list-style:none;padding:0;}
+  .summary li{padding:4px 0 4px 16px;position:relative;font-size:13px;line-height:1.7;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .summary li:last-child{border-bottom:none;}
+  .summary li::before{content:'▶';position:absolute;left:0;color:var(--crimson);font-size:10px;top:7px;}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<header>
+  <div class="chapter-num">CHAPTER 20 ／ 民法</div>
+  <h1>質権</h1>
+  <div class="stars">重要度 <span>★★☆</span> ／ 頻出度 <span>★★☆</span></div>
+</header>
+<div class="container">
+
+<!-- セクション1：質権とは -->
+<div class="section-card">
+  <div class="section-header"><span class="num">1</span>質権とは</div>
+  <div class="section-body">
+    <p>「<span class="kw">質権</span>」とは、担保目的物（質物）の<span class="kw">占有を債権者に移転</span>し、債権者が被担保債権の弁済を受けるまで当該担保目的物を留置することを内容とする<span class="kw">約定担保物権</span>です。趣旨は間接的な弁済の強制です。</p>
+
+    <div class="hanrei">
+      <div class="hanrei-title">💡 基本例：質権の設定</div>
+      <p>AはBに100万円を貸し付けた（被担保債権）。AB間で質権設定契約を締結し、B所有の腕時計（100万円相当）を担保目的物（質物）としてAに引き渡した。</p>
+      <p>→ AはBが被担保債権につき弁済するまでこれを<span class="kw">留置</span>しておく。もし弁済しないときは質物を<span class="kw">競売</span>にかけて<span class="kw">優先弁済</span>を受ける。</p>
+    </div>
+
+    <p>質権には<span class="kw">留置的効力</span>と<span class="kw">優先弁済的効力</span>の2つの効力があります。留置権と異なり、<span class="kw-b">優先弁済的効力がある</span>点が大きな特徴です。</p>
+
+    <div class="point-box">質権は<strong>約定担保物権</strong>（当事者の契約で設定）。通有性（付従性・随伴性・不可分性・物上代位性）はすべて備わる。</div>
+
+    <div class="sub-heading">物上保証人</div>
+    <p>債権者（A）と質権設定者（B）の間で設定されますが、<span class="kw">債務者と質権設定者は必ずしも一致しない</span>ことに注意が必要です。第三者Cが自己の所有物を質物として差し出す場合、Cを「<span class="kw">物上保証人</span>」といいます。</p>
+    <p>物上保証人は、被担保債権を弁済したり質権の実行によって質物の所有権を失ったりした場合、債務者に対して<span class="kw">求償権</span>を行使できます（351条）。ただし、<span class="kw">事前求償権は認められない</span>というのが判例です。</p>
+
+    <div class="sub-heading">付従性の緩和</div>
+    <p>本来、付従性の観点からは被担保債権が発生しないと担保物権も発生しないはずです。しかし、<span class="kw-b">先に質権設定契約を締結しておいて、その後に被担保債権を発生させることも可能</span>と解されています。これを「<span class="kw">付従性の緩和</span>」といいます。</p>
+
+    <!-- ミニテスト① -->
+    <div class="mini-test" data-group="1">
+      <div class="mt-title">ミニテスト①　質権の基本</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(1)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(1)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(1)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb1">
+        <span class="word-chip" data-word="約定担保物権">約定担保物権</span>
+        <span class="word-chip" data-word="物上保証人">物上保証人</span>
+        <span class="word-chip" data-word="付従性の緩和">付従性の緩和</span>
+        <span class="word-chip" data-word="事前求償権">事前求償権</span>
+      </div>
+      <div class="mt-q">① 質権は当事者の契約で設定される<span class="mblank preview" data-ans="約定担保物権" data-group="1">約定担保物権</span>であり、留置権と異なり優先弁済的効力がある。</div>
+      <div class="mt-q">② 債務者以外の第三者が自己の財産を質物として差し出す者を<span class="mblank preview" data-ans="物上保証人" data-group="1">物上保証人</span>という。</div>
+      <div class="mt-q">③ 物上保証人には<span class="mblank preview" data-ans="事前求償権" data-group="1">事前求償権</span>は認められない（判例）。</div>
+      <div class="mt-q">④ 先に質権設定契約を締結し、その後に被担保債権を発生させることも可能とする考え方を<span class="mblank preview" data-ans="付従性の緩和" data-group="1">付従性の緩和</span>という。</div>
+      <div class="result-msg" id="rm1"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション2：質権の通則 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">2</span>質権の通則</div>
+  <div class="section-body">
+
+    <div class="sub-heading">（1）要物契約</div>
+    <p>質権設定契約は、債権者にその目的物を<span class="kw">引き渡すことによって効力を生じます</span>（344条）。引渡しがあって初めて効力が生じる契約を「<span class="kw">要物契約</span>」といいます。</p>
+    <p>この引渡しには、<span class="kw">現実の引渡し・簡易の引渡し・指図による占有移転</span>が含まれます。しかし、<span class="kw">占有改定は含まれません</span>。占有改定では担保にならないからです（質権設定者の元に質物を留めておくのでは担保にならない）。</p>
+    <div class="warn-box">質権設定者は、自己に代わって質物の占有をさせることができません（345条・<strong>強行規定</strong>）。これに反する合意は無効です。</div>
+
+    <div class="sub-heading">（2）被担保債権の範囲</div>
+    <p>質権の被担保債権の範囲は<span class="kw">非常に広く</span>、元本・利息・違約金・質権の実行費用・質物の保存費用・債務不履行または質物の隠れた瑕疵により生じた損害賠償を担保します（346条）。</p>
+    <div class="note-box">抵当権では利息・定期金の担保は最後の2年分に制限されますが（375条）、<strong>質権にはこの制限がありません</strong>。</div>
+
+    <div class="sub-heading">（3）転質</div>
+    <p>質権者は、質物をさらに誰かに担保として入れることができます。これを「<span class="kw">転質</span>」といいます。転質には2種類あります。</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>種類</th><th>方法</th><th>損害の責任</th></tr>
+        <tr>
+          <td class="kw">承諾転質</td>
+          <td>原質権設定者の<span class="kw-b">承諾を得て</span>行う</td>
+          <td class="td-c">通常の責任</td>
+        </tr>
+        <tr>
+          <td class="kw">責任転質</td>
+          <td>原質権設定者の<span class="kw-b">承諾を得ないで</span>行う</td>
+          <td class="td-c"><span class="kw">不可抗力でも責任を負う</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="sub-heading">（4）流質契約の禁止</div>
+    <p>質権設定者は、<span class="kw">設定行為または債務の弁済期前の契約</span>において、質権者に弁済として質物の所有権を取得させ、その他法律に定める方法によらずに質物を処分させることを約束できません（349条・<span class="kw">流質契約の禁止</span>）。</p>
+    <p>これは債務者の窮境に乗じた暴利を防ぐためです。ただし、<span class="kw-b">弁済期後の流質契約</span>や<span class="kw-b">質権設定者が自ら欲する場合</span>は認められます。</p>
+
+    <!-- ミニテスト② -->
+    <div class="mini-test" data-group="2">
+      <div class="mt-title">ミニテスト②　質権の通則</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(2)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(2)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(2)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb2">
+        <span class="word-chip" data-word="要物契約">要物契約</span>
+        <span class="word-chip" data-word="占有改定">占有改定</span>
+        <span class="word-chip" data-word="責任転質">責任転質</span>
+        <span class="word-chip" data-word="流質契約の禁止">流質契約の禁止</span>
+      </div>
+      <div class="mt-q">① 質権設定契約は引渡しがあって初めて効力を生じる<span class="mblank preview" data-ans="要物契約" data-group="2">要物契約</span>であり、引渡し方法のうち<span class="mblank preview" data-ans="占有改定" data-group="2">占有改定</span>は含まれない。</div>
+      <div class="mt-q">② 原質権設定者の承諾を得ないで転質を行う場合を<span class="mblank preview" data-ans="責任転質" data-group="2">責任転質</span>といい、不可抗力による損害も転質者が負う。</div>
+      <div class="mt-q">③ 弁済期前に質物を弁済として取得させる契約を<span class="mblank preview" data-ans="流質契約の禁止" data-group="2">流質契約の禁止</span>という（349条）。</div>
+      <div class="result-msg" id="rm2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション3：動産質権・不動産質権・権利質 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">3</span>動産質権・不動産質権・権利質</div>
+  <div class="section-body">
+
+    <div class="sub-heading">（1）動産質権</div>
+    <p>質物が<span class="kw">動産</span>であるケースです。動産質権の対抗要件は<span class="kw">占有の継続</span>です（352条）。よって、動産質権者が質物の占有を奪われたときは、<span class="kw">質権に基づく返還請求はできず、占有回収の訴えによってのみ</span>その質物を回復することができます（353条）。</p>
+
+    <div class="hanrei">
+      <div class="hanrei-title">💡 動産質権者が占有を奪われた場合</div>
+      <p>動産質権者AがCに質物の占有を奪われた場合</p>
+      <p>→ 債務者Bや質権設定者に奪われた場合：<span class="kw-g">質権に基づく返還請求ができる</span>（Bらは「第三者」でないため対抗要件不要）</p>
+      <p>→ 第三者C（盗人等）に奪われた場合：<span class="kw-g">占有回収の訴えのみ</span>（質権に基づく返還請求はできない）</p>
+    </div>
+
+    <p>動産質権者は、債権の弁済を受けないときは、正当な理由がある場合に限り、鑑定人の評価に従い<span class="kw">質物をもって直ちに弁済に充てることを裁判所に請求</span>できます（354条前段・<span class="kw">簡易の充当</span>）。</p>
+    <p>同一の動産について数個の質権が設定されたときは、その質権の順位は<span class="kw">設定の前後</span>によります（355条）。</p>
+    <p>動産質権者が質物を任意に質権設定者に返還した場合、判例は「<span class="kw">対抗力を喪失するのみであり、質権自体は消滅しない</span>」としています（大判大5・12・25）。</p>
+
+    <div class="sub-heading">（2）不動産質権</div>
+    <p>質物が<span class="kw">不動産</span>であるケースです。不動産質権も要物契約であり、目的不動産を引き渡さなければなりません。対抗要件は<span class="kw">登記</span>です。登記をしておけば質物を第三者に奪われても質権に基づく返還請求ができます。</p>
+    <p>不動産質権の最大の特徴は、質権者が不動産の用法に従いその<span class="kw">使用及び収益をすることができる</span>点です（356条・<span class="kw">収益型担保物権</span>）。収益金を自由に自分のポケットに入れてよく、原則として利息は請求できません。</p>
+    <div class="note-box">ただし、質権設定契約で別段の定め（特約）をすれば利息を請求することができます。</div>
+    <p>不動産質権の存続期間は<span class="kw">10年を超えることができません</span>（360条1項）。更新もできますが、更新時から10年を超えられません。</p>
+
+    <div class="sub-heading">（3）権利質（債権質が典型）</div>
+    <p>質権は財産権をその目的とすることができます（362条1項・<span class="kw">権利質</span>）。試験的には「<span class="kw">債権</span>」を質に取るケース（債権質）を覚えれば大丈夫です。</p>
+    <p>債権質設定契約は、<span class="kw">要物性が緩和</span>されており、合意のみで効力が生じます。ただし、記名式所持人払証券・無記名証券を目的とする場合は証券の交付が必要です（要物契約）。</p>
+    <p>対抗要件は第三債務者に対する「<span class="kw">通知</span>」、あるいは第三債務者の「<span class="kw">承諾</span>」のどちらかです（364条・467条）。</p>
+    <p>質権者は、質権の目的である債権を<span class="kw">直接取り立てることができます</span>（366条1項）。債権の目的物が金銭であるときは、<span class="kw">自己の債権額に対応する部分に限り</span>これを取り立てることができます（366条2項）。</p>
+
+    <!-- ミニテスト③ -->
+    <div class="mini-test" data-group="3">
+      <div class="mt-title">ミニテスト③　三種の質権の比較</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(3)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(3)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(3)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb3">
+        <span class="word-chip" data-word="占有の継続">占有の継続</span>
+        <span class="word-chip" data-word="収益型担保物権">収益型担保物権</span>
+        <span class="word-chip" data-word="直接取り立て">直接取り立て</span>
+        <span class="word-chip" data-word="登記">登記</span>
+      </div>
+      <div class="mt-q">① 動産質権の対抗要件は<span class="mblank preview" data-ans="占有の継続" data-group="3">占有の継続</span>であり、不動産質権の対抗要件は<span class="mblank preview" data-ans="登記" data-group="3">登記</span>である。</div>
+      <div class="mt-q">② 不動産質権者は目的物の使用・収益ができる<span class="mblank preview" data-ans="収益型担保物権" data-group="3">収益型担保物権</span>であり、存続期間は10年を超えられない。</div>
+      <div class="mt-q">③ 債権質において、質権者は質権の目的である債権を<span class="mblank preview" data-ans="直接取り立て" data-group="3">直接取り立て</span>ることができる。</div>
+      <div class="result-msg" id="rm3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- まとめ -->
+<div class="summary">
+  <h3>📋 ch20 質権まとめ</h3>
+  <ul>
+    <li><strong>質権</strong>：約定担保物権。占有移転が必要。留置的効力＋優先弁済的効力の両方あり。</li>
+    <li><strong>要物契約</strong>：引渡しで効力発生。現実の引渡し・簡易・指図による占有移転○、占有改定×</li>
+    <li><strong>物上保証人</strong>：債務者≠質権設定者の場合。求償権あり・事前求償権なし。</li>
+    <li><strong>転質</strong>：承諾転質（原設定者の承諾あり）／責任転質（承諾なし・不可抗力でも責任あり）</li>
+    <li><strong>流質契約の禁止</strong>：弁済期前の質物取得約束は禁止（349条）。弁済期後や設定者が欲する場合は可。</li>
+    <li><strong>動産質権</strong>：対抗要件＝占有継続。奪われたら占有回収の訴えのみ（第三者の場合）。</li>
+    <li><strong>不動産質権</strong>：対抗要件＝登記。使用収益可（収益型）。存続期間最大10年。利息原則不可。</li>
+    <li><strong>権利質（債権質）</strong>：合意のみで成立（要物性緩和）。対抗要件＝第三債務者への通知or承諾。直接取立て可。</li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+const STATE = {};
+
+function initGroup(g) {
+  const blanks = document.querySelectorAll('.mblank[data-group="' + g + '"]');
+  const wb = document.getElementById('wb' + g);
+  blanks.forEach(function(b) {
+    b.className = 'mblank';
+    b.textContent = '\u3000\u3000\u3000';
+    b.dataset.filled = '';
+  });
+  wb.querySelectorAll('.word-chip').forEach(function(c) { c.classList.remove('used'); });
+  document.getElementById('rm' + g).textContent = '';
+  document.getElementById('rm' + g).className = 'result-msg';
+  STATE[g] = { selected: null };
+  document.querySelectorAll('[onclick="judgeGroup(' + g + ')"]').forEach(function(b) { b.disabled = true; });
+}
+
+function startChallenge(g) {
+  initGroup(g);
+  const blanks = document.querySelectorAll('.mblank[data-group="' + g + '"]');
+  blanks.forEach(function(b) {
+    b.className = 'mblank';
+    b.textContent = '？？？';
+    b.onclick = function() { selectBlank(g, b); };
+  });
+  document.querySelectorAll('[onclick="judgeGroup(' + g + ')"]').forEach(function(b) { b.disabled = false; });
+  const wb = document.getElementById('wb' + g);
+  wb.querySelectorAll('.word-chip').forEach(function(chip) {
+    chip.onclick = function() { selectChip(g, chip); };
+  });
+  STATE[g] = { selected: null };
+}
+
+function selectChip(g, chip) {
+  if (chip.classList.contains('used')) return;
+  document.querySelectorAll('#wb' + g + ' .word-chip').forEach(function(c) { c.style.outline = ''; });
+  chip.style.outline = '3px solid #C0392B';
+  STATE[g].selected = chip.dataset.word;
+  STATE[g].chip = chip;
+}
+
+function selectBlank(g, blank) {
+  if (!STATE[g] || !STATE[g].selected) {
+    document.querySelectorAll('.mblank[data-group="' + g + '"]').forEach(function(b) { b.classList.remove('active'); });
+    blank.classList.add('active');
+    return;
+  }
+  var prev = blank.dataset.filled;
+  if (prev) {
+    document.querySelectorAll('#wb' + g + ' .word-chip[data-word="' + prev + '"]').forEach(function(c) {
+      c.classList.remove('used');
+      c.style.outline = '';
+    });
+  }
+  blank.textContent = STATE[g].selected;
+  blank.dataset.filled = STATE[g].selected;
+  blank.className = 'mblank filled';
+  STATE[g].chip.classList.add('used');
+  STATE[g].chip.style.outline = '';
+  STATE[g].selected = null;
+  STATE[g].chip = null;
+}
+
+function judgeGroup(g) {
+  const blanks = document.querySelectorAll('.mblank[data-group="' + g + '"]');
+  var all = true;
+  blanks.forEach(function(b) {
+    if (b.dataset.filled === b.dataset.ans) {
+      b.className = 'mblank correct';
+    } else {
+      b.className = 'mblank wrong';
+      all = false;
+    }
+  });
+  var rm = document.getElementById('rm' + g);
+  if (all) {
+    rm.textContent = '✅ 全問正解！すばらしい！';
+    rm.className = 'result-msg ok';
+    launchConfetti();
+  } else {
+    rm.textContent = '❌ 不正解があります。もう一度挑戦してみましょう。';
+    rm.className = 'result-msg ng';
+  }
+}
+
+function showAnswer(g) {
+  const blanks = document.querySelectorAll('.mblank[data-group="' + g + '"]');
+  blanks.forEach(function(b) {
+    b.textContent = b.dataset.ans;
+    b.className = 'mblank preview';
+    b.dataset.filled = b.dataset.ans;
+  });
+  document.getElementById('wb' + g).querySelectorAll('.word-chip').forEach(function(c) {
+    c.classList.add('used');
+    c.style.outline = '';
+  });
+  document.getElementById('rm' + g).textContent = '';
+  document.querySelectorAll('[onclick="judgeGroup(' + g + ')"]').forEach(function(b) { b.disabled = true; });
+}
+
+function launchConfetti() {
+  var canvas = document.getElementById('confetti-canvas');
+  canvas.style.display = 'block';
+  var ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  var pieces = [];
+  for (var i = 0; i < 120; i++) {
+    pieces.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      r: Math.random() * 6 + 4,
+      d: Math.random() * 3 + 1,
+      color: 'hsl(' + Math.floor(Math.random() * 360) + ',80%,60%)',
+      tiltAngle: 0,
+      tiltSpeed: Math.random() * 0.1 + 0.05
+    });
+  }
+  var frame = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(function(p) {
+      p.tiltAngle += p.tiltSpeed;
+      p.y += p.d + Math.sin(p.tiltAngle) * 2;
+      if (p.y > canvas.height) { p.y = -10; p.x = Math.random() * canvas.width; }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+    });
+    frame++;
+    if (frame < 200) requestAnimationFrame(draw);
+    else { ctx.clearRect(0, 0, canvas.width, canvas.height); canvas.style.display = 'none'; }
+  }
+  draw();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch18 担保物権総論</title>
+<style>
+  :root{--bg:#eef2f7;--card:#fff;--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--cyan:#00AEEF;--text:#2c3e50;--border:#dde3ec;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);font-family:'Meiryo','メイリオ',sans-serif;color:var(--text);font-size:15px;line-height:1.8;}
+  header{background:var(--navy);color:#fff;padding:18px 24px 14px;}
+  header .chapter-num{font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:4px;}
+  header h1{font-size:22px;font-weight:bold;}
+  header .stars{font-size:13px;margin-top:4px;color:#aac;}
+  header .stars span{color:var(--gold);}
+  .container{max-width:800px;margin:0 auto;padding:20px 16px 60px;}
+  .section-card{background:var(--card);border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:24px;overflow:hidden;}
+  .section-header{background:var(--navy);color:#fff;padding:10px 18px;font-size:15px;font-weight:bold;display:flex;align-items:center;gap:10px;}
+  .section-header .num{background:var(--gold);color:var(--navy);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;flex-shrink:0;}
+  .section-body{padding:18px 20px;}
+  .sub-heading{font-size:14px;font-weight:bold;color:var(--navy);border-left:4px solid var(--cyan);padding-left:10px;margin:18px 0 10px;}
+  .sub-heading:first-child{margin-top:0;}
+  p{margin-bottom:10px;}
+  p:last-child{margin-bottom:0;}
+  .kw{color:var(--crimson);font-weight:bold;}
+  .kw-b{color:#1a6ea8;font-weight:bold;}
+  .kw-g{color:#27ae60;font-weight:bold;}
+  .formula-box{background:#e8f4fd;border:1px solid #a8d4f0;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:14px;color:var(--navy);}
+  .formula-box .eq{color:var(--crimson);font-weight:bold;}
+  .table-wrap{overflow-x:auto;margin:12px 0;}
+  table{width:100%;border-collapse:collapse;font-size:14px;}
+  th{background:var(--navy);color:#fff;padding:8px 12px;text-align:center;}
+  td{border:1px solid var(--border);padding:8px 12px;vertical-align:middle;}
+  tr:nth-child(even) td{background:#f5f8fc;}
+  .td-ok{color:#27ae60;font-weight:bold;text-align:center;}
+  .td-ng{color:var(--crimson);font-weight:bold;text-align:center;}
+  .td-c{text-align:center;}
+  .hanrei{background:#fff8e1;border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:14px;}
+  .hanrei .hanrei-title{font-weight:bold;color:#8a6000;margin-bottom:6px;font-size:13px;}
+  .point-box{background:#fef9ec;border:1px solid var(--gold);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .point-box::before{content:"📌 POINT";font-weight:bold;color:#8a6000;display:block;margin-bottom:4px;font-size:12px;}
+  .warn-box{background:#fdf0f0;border:1px solid var(--crimson);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .warn-box::before{content:"⚠️ 注意";font-weight:bold;color:var(--crimson);display:block;margin-bottom:4px;font-size:12px;}
+  .note-box{background:#f0f7ff;border:1px solid var(--cyan);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px;}
+  .note-box::before{content:"💡 補足";font-weight:bold;color:#1a6ea8;display:block;margin-bottom:4px;font-size:12px;}
+  .goro{background:#f0f9ff;border:2px dashed var(--cyan);border-radius:8px;padding:10px 16px;margin:12px 0;text-align:center;}
+  .goro .goro-text{font-size:17px;font-weight:bold;color:var(--navy);letter-spacing:1px;}
+  .goro .goro-note{font-size:12px;color:#777;margin-top:4px;}
+  ul.list{padding-left:20px;margin:8px 0;}
+  ul.list li{margin-bottom:6px;}
+  /* ミニテスト */
+  .mini-test{background:#f4f0fa;border:2px solid #9b59b6;border-radius:10px;padding:16px 18px;margin-top:24px;}
+  .mt-title{font-weight:bold;color:#6c3483;font-size:14px;display:flex;align-items:center;gap:6px;margin-bottom:10px;}
+  .mt-title::before{content:"✏️";}
+  .mt-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .btn{border:none;border-radius:6px;padding:6px 16px;font-size:13px;cursor:pointer;font-family:'Meiryo',sans-serif;font-weight:bold;transition:opacity .15s;}
+  .btn:hover{opacity:.85;}
+  .btn-challenge{background:#C0392B;color:#fff;}
+  .btn-judge{background:#27ae60;color:#fff;}
+  .btn-show{background:#D4A017;color:#1B2A4A;}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+  .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;padding:10px 12px;background:#ece8f5;border-radius:8px;min-height:42px;}
+  .word-chip{background:#1B2A4A;color:#fff;border-radius:20px;padding:4px 14px;font-size:13px;cursor:pointer;user-select:none;transition:all .15s;}
+  .word-chip:hover{opacity:.85;}
+  .word-chip.used{opacity:.3;pointer-events:none;}
+  .mblank{display:inline-block;border-radius:4px;padding:1px 8px;min-width:72px;text-align:center;font-weight:bold;font-size:14px;cursor:pointer;transition:all .2s;border:2px solid #bbb;vertical-align:middle;background:#ddd;color:#ddd;user-select:none;}
+  .mblank.preview{background:#d4edda;border-color:#27ae60;color:#155724;cursor:default;}
+  .mblank.active{background:#fff3cd;border-color:#D4A017;color:#1B2A4A;}
+  .mblank.filled{background:#eaf0fb;border-color:#6c8ebf;color:#1B2A4A;}
+  .mblank.correct{background:#d4edda;border-color:#27ae60;color:#155724;}
+  .mblank.wrong{background:#f8d7da;border-color:#e74c3c;color:#721c24;}
+  .mt-q{font-size:14px;margin-bottom:10px;line-height:2;}
+  .result-msg{font-size:14px;margin-top:10px;font-weight:bold;min-height:22px;}
+  .result-msg.ok{color:#27ae60;}
+  .result-msg.ng{color:#C0392B;}
+  #confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;display:none;}
+  .summary{background:var(--navy);color:#fff;border-radius:10px;padding:18px 22px;margin-top:8px;}
+  .summary h3{font-size:14px;font-weight:bold;color:var(--gold);margin-bottom:10px;}
+  .summary ul{list-style:none;padding:0;}
+  .summary li{padding:4px 0 4px 16px;position:relative;font-size:13px;line-height:1.7;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .summary li:last-child{border-bottom:none;}
+  .summary li::before{content:'▶';position:absolute;left:0;color:var(--crimson);font-size:10px;top:7px;}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<header>
+  <div class="chapter-num">CHAPTER 18 ／ 民法</div>
+  <h1>担保物権総論</h1>
+  <div class="stars">重要度 <span>★★★</span> ／ 頻出度 <span>★☆☆</span></div>
+</header>
+<div class="container">
+
+<!-- セクション1：担保物権とは -->
+<div class="section-card">
+  <div class="section-header"><span class="num">1</span>担保物権とは</div>
+  <div class="section-body">
+
+    <div class="sub-heading">（1）担保物権の意義</div>
+    <p>「<span class="kw">担保物権</span>」とは、債権者が被担保債権の弁済を確保するためにつける物権で、<span class="kw">被担保債権の弁済を確保するため</span>につける特別の物権です。</p>
+    <p>例えば、AがBに1000万円を貸し付ける際、B所有の土地に<span class="kw">抵当権</span>を設定してもらえば、Bが弁済を怠ったときにその土地を<span class="kw">競売</span>し、一般債権者に<span class="kw">優先</span>して債権の回収に充てることができます。</p>
+
+    <div class="formula-box">
+      <span class="eq">典型担保</span>（民法に明文規定あり）：<strong>留置権・先取特権・質権・抵当権</strong><br>
+      <span class="eq">非典型担保</span>（民法に明文規定なし）：<strong>譲渡担保</strong>（判例上確立・物権法定主義の例外）
+    </div>
+
+    <div class="sub-heading">（2）担保物権の分類（発生原因）</div>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th>種類</th><th>内容</th><th>例</th></tr>
+        <tr>
+          <td class="kw"><strong>法定担保物権</strong></td>
+          <td>法律によって当然に発生する</td>
+          <td class="td-c">留置権・先取特権</td>
+        </tr>
+        <tr>
+          <td class="kw"><strong>約定担保物権</strong></td>
+          <td>当事者の契約によって設定される</td>
+          <td class="td-c">質権・抵当権</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- ミニテスト① -->
+    <div class="mini-test" data-group="1">
+      <div class="mt-title">ミニテスト①　担保物権の種類</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(1)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(1)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(1)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb1">
+        <span class="word-chip" data-word="留置権・先取特権">留置権・先取特権</span>
+        <span class="word-chip" data-word="質権・抵当権">質権・抵当権</span>
+        <span class="word-chip" data-word="譲渡担保">譲渡担保</span>
+        <span class="word-chip" data-word="法定担保物権">法定担保物権</span>
+      </div>
+      <div class="mt-q">① 法律によって当然に発生する担保物権を<span class="mblank preview" data-ans="法定担保物権" data-group="1">法定担保物権</span>といい、その例は<span class="mblank preview" data-ans="留置権・先取特権" data-group="1">留置権・先取特権</span>である。</div>
+      <div class="mt-q">② 当事者の契約によって設定される約定担保物権の例は<span class="mblank preview" data-ans="質権・抵当権" data-group="1">質権・抵当権</span>である。</div>
+      <div class="mt-q">③ 民法上の明文規定がない非典型担保として判例上確立してきたのは<span class="mblank preview" data-ans="譲渡担保" data-group="1">譲渡担保</span>である。</div>
+      <div class="result-msg" id="rm1"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション2：担保物権の通有性 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">2</span>担保物権の通有性</div>
+  <div class="section-body">
+
+    <p>「<span class="kw">通有性</span>」とは、原則としてすべての担保物権に共通して見られる性質のことです。</p>
+
+    <div class="sub-heading">（1）付従性</div>
+    <p>担保物権は被担保債権を確保するためにある以上、<span class="kw">被担保債権がなければ成立しない</span>し、<span class="kw">被担保債権が消滅すれば担保物権も消滅する</span>性質です。</p>
+    <div class="hanrei">
+      <div class="hanrei-title">💡 例：付従性</div>
+      <p>AがBに1000万円を貸し付け、B所有の建物に抵当権設定。その後Bが1000万円を弁済した。</p>
+      <p>→ 被担保債権が弁済で消滅した以上、<span class="kw-g">抵当権も消滅する</span>。</p>
+    </div>
+    <div class="warn-box">確定前の根抵当権は付従性・随伴性がない（例外）。</div>
+
+    <div class="sub-heading">（2）随伴性</div>
+    <p>被担保債権が移転すると、<span class="kw">担保物権も一緒に移転する</span>性質です（債権と運命を共にする）。</p>
+    <div class="hanrei">
+      <div class="hanrei-title">💡 例：随伴性</div>
+      <p>AがBに1000万円を貸し付け、B所有の建物に抵当権設定。その後AがBに対する債権をCに譲渡（債権譲渡）した。</p>
+      <p>→ 被担保債権がAからCに移転した以上、<span class="kw-g">抵当権もAからCに移転する</span>。</p>
+    </div>
+
+    <div class="sub-heading">（3）不可分性</div>
+    <p>担保権者は、<span class="kw">被担保債権全額の弁済を受けるまでは、担保目的物の全部</span>についてその権利を行使することができます。</p>
+    <div class="hanrei">
+      <div class="hanrei-title">💡 例：不可分性</div>
+      <p>AがBに1000万円を貸し付け、B所有の建物に抵当権設定。その後Bが500万円だけ弁済した。</p>
+      <p>→ 1000万円全額を弁済するまで<span class="kw-g">建物全体に抵当権の効力が及ぶ</span>。「半分返したので半分は抵当権を抹消してくれ」とは言えない。</p>
+    </div>
+
+    <div class="sub-heading">（4）物上代位性</div>
+    <p>担保権者は、目的物の<span class="kw">売却・賃貸・滅失・損傷</span>などによって債務者が受けるべき<span class="kw">金銭その他の物</span>の上に権利を行使することができます。</p>
+    <div class="hanrei">
+      <div class="hanrei-title">💡 例：物上代位性</div>
+      <p>AがBに1000万円を貸し付け、B所有の建物に抵当権設定。その後第三者Cの放火により建物が滅失した。</p>
+      <p>→ BがCに対して有する<span class="kw-g">損害賠償請求権（お金）の上に物上代位</span>して優先弁済権を及ぼすことができる。</p>
+      <p>不動産の賃借人が供託した<span class="kw">賃料の還付請求権</span>の上に物上代位することもできる（最判平元・10・27）。</p>
+    </div>
+    <div class="warn-box">
+      <strong>留置権には物上代位性がない</strong>（目的物を「留置する」ことで間接的に弁済を促す性質のため）。
+    </div>
+
+    <!-- ミニテスト② -->
+    <div class="mini-test" data-group="2">
+      <div class="mt-title">ミニテスト②　通有性の4つ</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(2)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(2)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(2)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb2">
+        <span class="word-chip" data-word="付従性">付従性</span>
+        <span class="word-chip" data-word="随伴性">随伴性</span>
+        <span class="word-chip" data-word="不可分性">不可分性</span>
+        <span class="word-chip" data-word="物上代位性">物上代位性</span>
+        <span class="word-chip" data-word="消滅する">消滅する</span>
+        <span class="word-chip" data-word="一緒に移転する">一緒に移転する</span>
+      </div>
+      <div class="mt-q">① 被担保債権が消滅すれば担保物権も消滅する性質を<span class="mblank preview" data-ans="付従性" data-group="2">付従性</span>という。被担保債権が弁済で消滅すれば抵当権も<span class="mblank preview" data-ans="消滅する" data-group="2">消滅する</span>。</div>
+      <div class="mt-q">② 被担保債権が移転すると担保物権も<span class="mblank preview" data-ans="一緒に移転する" data-group="2">一緒に移転する</span>性質を<span class="mblank preview" data-ans="随伴性" data-group="2">随伴性</span>という。</div>
+      <div class="mt-q">③ 被担保債権全額の弁済を受けるまで目的物の全部について権利を行使できる性質を<span class="mblank preview" data-ans="不可分性" data-group="2">不可分性</span>という。</div>
+      <div class="mt-q">④ 目的物の売却・賃貸・滅失・損傷等によって債務者が受けるべき金銭等の上に権利を行使できる性質を<span class="mblank preview" data-ans="物上代位性" data-group="2">物上代位性</span>という。</div>
+      <div class="result-msg" id="rm2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション3：担保物権の効力 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">3</span>担保物権の効力</div>
+  <div class="section-body">
+
+    <div class="sub-heading">（1）3つの効力</div>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th>効力</th><th>内容</th></tr>
+        <tr>
+          <td><span class="kw">優先弁済的効力</span></td>
+          <td>担保権者が被担保債権の弁済を受けられないとき、目的物を競売して<span class="kw-b">他の債権者に優先</span>して売却代金から弁済を受けることができる効力。担保物権の最大のうまみ。</td>
+        </tr>
+        <tr>
+          <td><span class="kw">留置的効力</span></td>
+          <td>担保権者が<span class="kw-b">手元に担保目的物を留置</span>し、被担保債権の弁済を促す効力。「担保目的物を返してもらいたければ早く弁済しろ」という間接的弁済促進効果。</td>
+        </tr>
+        <tr>
+          <td><span class="kw">収益的効力</span></td>
+          <td>担保権者が目的物を使用収益することができる効力。<span class="kw-b">不動産質権にのみ</span>認められる。</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="sub-heading">（2）通有性と効力の整理表</div>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th></th>
+          <th colspan="2">法定担保物権</th>
+          <th colspan="2">約定担保物権</th>
+        </tr>
+        <tr>
+          <th>性質・効力</th>
+          <th>留置権</th>
+          <th>先取特権</th>
+          <th>質権</th>
+          <th>抵当権</th>
+        </tr>
+        <tr>
+          <td><strong>付従性</strong></td>
+          <td class="td-ok">○</td>
+          <td class="td-ok">○</td>
+          <td class="td-ok">○</td>
+          <td class="td-ok">○</td>
+        </tr>
+        <tr>
+          <td><strong>随伴性</strong></td>
+          <td class="td-ok">○</td>
+          <td class="td-ok">○</td>
+          <td class="td-ok">○</td>
+          <td class="td-ok">○</td>
+        </tr>
+        <tr>
+          <td><strong>不可分性</strong></td>
+          <td class="td-ok">○</td>
+          <td class="td-ok">○</td>
+          <td class="td-ok">○</td>
+          <td class="td-ok">○</td>
+        </tr>
+        <tr>
+          <td><strong>物上代位性</strong></td>
+          <td class="td-ng">×</td>
+          <td class="td-ok">○（一般先取特権は×）</td>
+          <td class="td-ok">○</td>
+          <td class="td-ok">○</td>
+        </tr>
+        <tr>
+          <td><strong>留置的効力</strong></td>
+          <td class="td-ok">○</td>
+          <td class="td-ng">×</td>
+          <td class="td-ok">○</td>
+          <td class="td-ng">×</td>
+        </tr>
+        <tr>
+          <td><strong>優先弁済的効力</strong></td>
+          <td class="td-ng">×</td>
+          <td class="td-ok">○</td>
+          <td class="td-ok">○</td>
+          <td class="td-ok">○</td>
+        </tr>
+        <tr>
+          <td><strong>収益的効力</strong></td>
+          <td class="td-ng">×</td>
+          <td class="td-ng">×</td>
+          <td class="td-ok">不動産質権のみ○</td>
+          <td class="td-ng">×</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="goro">
+      <div class="goro-text">「留置権は優先弁済×・物上代位×」</div>
+      <div class="goro-note">留置権は目的物を「留置する」だけ。競売して優先弁済を受けたり物上代位はできない。</div>
+    </div>
+
+    <div class="point-box">
+      <strong>留置的効力がある担保物権：留置権・質権（2つ）</strong><br>
+      <strong>優先弁済的効力がない担保物権：留置権（1つのみ）</strong><br>
+      <strong>収益的効力がある担保物権：不動産質権（1つのみ）</strong>
+    </div>
+
+    <!-- ミニテスト③ -->
+    <div class="mini-test" data-group="3">
+      <div class="mt-title">ミニテスト③　効力の整理</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(3)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(3)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(3)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb3">
+        <span class="word-chip" data-word="留置権">留置権</span>
+        <span class="word-chip" data-word="不動産質権">不動産質権</span>
+        <span class="word-chip" data-word="留置権・質権">留置権・質権</span>
+        <span class="word-chip" data-word="ない">ない</span>
+        <span class="word-chip" data-word="留置的効力">留置的効力</span>
+        <span class="word-chip" data-word="優先弁済的効力">優先弁済的効力</span>
+      </div>
+      <div class="mt-q">① 4つの典型担保物権の中で<span class="mblank preview" data-ans="優先弁済的効力" data-group="3">優先弁済的効力</span>がないのは<span class="mblank preview" data-ans="留置権" data-group="3">留置権</span>のみである。</div>
+      <div class="mt-q">② 4つの典型担保物権の中で物上代位性が<span class="mblank preview" data-ans="ない" data-group="3">ない</span>のは<span class="mblank preview" data-ans="留置権" data-group="3">留置権</span>のみである。</div>
+      <div class="mt-q">③ <span class="mblank preview" data-ans="留置的効力" data-group="3">留置的効力</span>が認められる担保物権は<span class="mblank preview" data-ans="留置権・質権" data-group="3">留置権・質権</span>の2つである。</div>
+      <div class="mt-q">④ 収益的効力が認められる担保物権は<span class="mblank preview" data-ans="不動産質権" data-group="3">不動産質権</span>のみである。</div>
+      <div class="result-msg" id="rm3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- セクション4：比較総合 -->
+<div class="section-card">
+  <div class="section-header"><span class="num">4</span>通有性と効力の総合問題</div>
+  <div class="section-body">
+
+    <div class="note-box">
+      <strong>根抵当権（確定前）の特例</strong><br>
+      確定前の根抵当権には<span class="kw">付従性・随伴性がない</span>。債権額が増減変動する不特定の債権を担保する目的のため。ただし<span class="kw-b">不可分性はある</span>（全担保物権に共通）。
+    </div>
+
+    <!-- ミニテスト④ -->
+    <div class="mini-test" data-group="4">
+      <div class="mt-title">ミニテスト④　総合確認</div>
+      <div class="mt-btns">
+        <button class="btn btn-challenge" onclick="startChallenge(4)">チャレンジ</button>
+        <button class="btn btn-judge" onclick="judgeGroup(4)" disabled>判定する</button>
+        <button class="btn btn-show" onclick="showAnswer(4)">手本を見る</button>
+      </div>
+      <div class="word-bank" id="wb4">
+        <span class="word-chip" data-word="不可分性">不可分性</span>
+        <span class="word-chip" data-word="付従性・随伴性">付従性・随伴性</span>
+        <span class="word-chip" data-word="留置権">留置権</span>
+        <span class="word-chip" data-word="法定担保物権">法定担保物権</span>
+        <span class="word-chip" data-word="譲渡担保">譲渡担保</span>
+      </div>
+      <div class="mt-q">① すべての担保物権に共通して認められる通有性の一つで、被担保債権全額弁済まで目的物全部に権利行使できるのは<span class="mblank preview" data-ans="不可分性" data-group="4">不可分性</span>である。</div>
+      <div class="mt-q">② 確定前の根抵当権にはない通有性は<span class="mblank preview" data-ans="付従性・随伴性" data-group="4">付従性・随伴性</span>である。</div>
+      <div class="mt-q">③ 法律によって当然に発生する担保物権を<span class="mblank preview" data-ans="法定担保物権" data-group="4">法定担保物権</span>といい、留置権と先取特権がこれにあたる。</div>
+      <div class="mt-q">④ 民法上の明文規定がない非典型担保として判例上確立したのは<span class="mblank preview" data-ans="譲渡担保" data-group="4">譲渡担保</span>であり、物権法定主義の例外とされる。</div>
+      <div class="result-msg" id="rm4"></div>
+    </div>
+
+    <div class="summary">
+      <h3>📝 ch18 まとめ</h3>
+      <ul>
+        <li>典型担保：留置権・先取特権・質権・抵当権。非典型担保：譲渡担保（判例上確立・物権法定主義の例外）。</li>
+        <li>法定担保物権（留置権・先取特権）：法律上当然に発生。約定担保物権（質権・抵当権）：当事者の契約で設定。</li>
+        <li>通有性①付従性：被担保債権消滅→担保物権も消滅（例外：確定前の根抵当権）。</li>
+        <li>通有性②随伴性：被担保債権が移転→担保物権も一緒に移転（例外：確定前の根抵当権）。</li>
+        <li>通有性③不可分性：被担保債権全額弁済まで目的物全部に権利行使可（全担保物権に共通）。</li>
+        <li>通有性④物上代位性：目的物の売却・賃貸・滅失・損傷で債務者が受けるべき金銭等に権利行使可（留置権のみなし）。</li>
+        <li>優先弁済的効力：留置権のみなし。留置的効力：留置権・質権のみあり。収益的効力：不動産質権のみあり。</li>
+        <li>賃借人が供託した賃料の還付請求権にも物上代位できる（最判平元・10・27）。</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div>
+<div style="text-align:center;font-size:11px;color:#aaa;padding:8px 0 30px;">音声：VOICEVOX / 四国めたん</div>
+
+<script>
+const state={};let activeBlank=null;
+window.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.mini-test').forEach(mt=>{
+    const g=mt.dataset.group;if(g){state[g]='preview';shuffleBank(g);}
+  });
+});
+function shuffleBank(g){
+  const wb=document.getElementById('wb'+g);if(!wb)return;
+  const chips=Array.from(wb.querySelectorAll('.word-chip'));
+  for(let i=chips.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));wb.insertBefore(chips[j],chips[i]);const t=chips[i];chips[i]=chips[j];chips[j]=t;}
+}
+function getBtn(g,cls){const mt=document.querySelector(`.mini-test[data-group="${g}"]`);return mt?mt.querySelector(cls):null;}
+function setBtns(g,mode){const isC=mode==='challenge';const bc=getBtn(g,'.btn-challenge');const bj=getBtn(g,'.btn-judge');if(bc)bc.disabled=isC;if(bj)bj.disabled=!isC;}
+function startChallenge(g){
+  state[g]='challenge';activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent='　　　';b.className='mblank';b.dataset.filled='';b.onclick=()=>selectBlank(b,g);});
+  resetChips(g);shuffleBank(g);
+  document.querySelectorAll(`#wb${g} .word-chip`).forEach(chip=>{chip.onclick=()=>selectChip(chip,g);});
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'challenge');
+}
+function resetChips(g){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{c.className='word-chip';c.onclick=null;});}
+function selectBlank(b,g){
+  if(state[g]!=='challenge')return;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(x=>{if(x!==b)x.classList.remove('active');});
+  if(b.classList.contains('active')){b.classList.remove('active');activeBlank=null;}
+  else{b.classList.add('active');activeBlank={el:b,group:g};}
+}
+function selectChip(chip,g){
+  if(state[g]!=='challenge')return;
+  if(!activeBlank||activeBlank.group!==g)return;
+  const b=activeBlank.el;const word=chip.dataset.word;
+  const prev=b.dataset.filled;
+  if(prev){document.querySelectorAll(`#wb${g} .word-chip`).forEach(c=>{if(c.dataset.word===prev)c.classList.remove('used');});}
+  b.textContent=word;b.dataset.filled=word;
+  b.classList.remove('active','correct','wrong');b.classList.add('filled');
+  chip.classList.add('used');activeBlank=null;
+}
+function judgeGroup(g){
+  if(state[g]!=='challenge')return;
+  const blanks=document.querySelectorAll(`.mblank[data-group="${g}"]`);
+  let allFilled=true;blanks.forEach(b=>{if(!b.dataset.filled)allFilled=false;});
+  if(!allFilled){const rm=document.getElementById('rm'+g);if(rm){rm.textContent='⚠️ 全ての空欄を埋めてから判定してください。';rm.className='result-msg ng';}return;}
+  let correct=0;
+  blanks.forEach(b=>{b.classList.remove('active','filled');if(b.dataset.filled===b.dataset.ans){b.classList.add('correct');correct++;}else b.classList.add('wrong');});
+  const rm=document.getElementById('rm'+g);
+  if(correct===blanks.length){if(rm){rm.textContent='🎉 全問正解！';rm.className='result-msg ok';}launchConfetti();}
+  else{if(rm){rm.textContent=`${correct} / ${blanks.length} 正解。もう一度チャレンジしてみよう！`;rm.className='result-msg ng';}}
+}
+function showAnswer(g){
+  state[g]='preview';activeBlank=null;
+  document.querySelectorAll(`.mblank[data-group="${g}"]`).forEach(b=>{b.textContent=b.dataset.ans;b.className='mblank preview';b.dataset.filled=b.dataset.ans;b.onclick=null;});
+  resetChips(g);
+  const rm=document.getElementById('rm'+g);if(rm){rm.textContent='';rm.className='result-msg';}
+  setBtns(g,'preview');
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');if(!canvas)return;
+  canvas.style.display='block';const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const colors=['#C0392B','#D4A017','#00AEEF','#27ae60','#9b59b6','#e67e22','#1B2A4A'];
+  const pieces=Array.from({length:150},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*6+4,d:Math.random()*80+40,color:colors[Math.floor(Math.random()*colors.length)],tilt:0,tiltAngle:0,tiltSpeed:Math.random()*0.1+0.05}));
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{p.tiltAngle+=p.tiltSpeed;p.y+=(Math.cos(frame/20+p.d)+1+p.r/2)*1.2;p.x+=Math.sin(frame/20)*1.5;p.tilt=Math.sin(p.tiltAngle)*15;ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/3);ctx.stroke();});
+    frame++;
+    if(frame<200)requestAnimationFrame(draw);
+    else{ctx.clearRect(0,0,canvas.width,canvas.height);canvas.style.display='none';}
+  }
+  draw();
+}
+</script>
+</body>
+</html>

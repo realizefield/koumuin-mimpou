@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch20 質権 演習</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#0f1923;color:#e8e0d0;font-family:'BIZ UDGothic','Meiryo',sans-serif;min-height:100vh;padding:20px;}
+  .wrapper{max-width:860px;margin:0 auto;}
+  .page-header{background:linear-gradient(135deg,#1B2A4A 0%,#243555 100%);border-left:6px solid #C0392B;border-radius:4px;padding:22px 28px;margin-bottom:28px;}
+  .page-header .chapter-label{font-size:11px;letter-spacing:3px;color:#C0392B;text-transform:uppercase;margin-bottom:6px;}
+  .page-header h1{font-size:22px;font-weight:700;color:#fff;margin-bottom:4px;}
+  .page-header .subtitle{font-size:13px;color:#94a3b8;}
+  .scoreboard{display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap;}
+  .score-card{background:#1B2A4A;border:1px solid #2a3f6b;border-radius:6px;padding:14px 20px;flex:1;min-width:130px;text-align:center;}
+  .score-card .label{font-size:11px;color:#94a3b8;margin-bottom:4px;}
+  .score-card .value{font-size:26px;font-weight:700;color:#fff;}
+  .score-card.correct .value{color:#4ade80;}
+  .score-card.wrong .value{color:#f87171;}
+  .section-title{font-size:13px;letter-spacing:2px;color:#C0392B;text-transform:uppercase;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid #2a3f6b;}
+  .q-block{background:#1a2535;border:1px solid #2a3f6b;border-radius:8px;padding:22px;margin-bottom:18px;transition:border-color .3s;}
+  .q-block.answered{border-color:#334;}
+  .q-num{display:inline-block;background:#C0392B;color:#fff;font-size:11px;font-weight:700;padding:2px 9px;border-radius:3px;margin-bottom:12px;letter-spacing:1px;}
+  .q-text{font-size:15px;line-height:1.8;color:#ddd;margin-bottom:18px;}
+  .ox-btns{display:flex;gap:12px;}
+  .ox-btn{flex:1;padding:14px;border:2px solid transparent;border-radius:8px;font-size:22px;font-weight:700;cursor:pointer;background:#0f1923;transition:all .2s;color:#aaa;}
+  .ox-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.4);}
+  .ox-btn.maru{border-color:#3b82f6;}
+  .ox-btn.maru:hover:not(:disabled){background:#1d3a6b;color:#60a5fa;}
+  .ox-btn.batu{border-color:#dc2626;}
+  .ox-btn.batu:hover:not(:disabled){background:#5a1a1a;color:#f87171;}
+  .ox-btn:disabled{cursor:default;opacity:.6;}
+  .ox-btn.selected-correct{background:#14532d;border-color:#4ade80;color:#4ade80;}
+  .ox-btn.selected-wrong{background:#450a0a;border-color:#f87171;color:#f87171;}
+  .ox-btn.show-answer{background:#1e3a5f;border-color:#60a5fa;color:#93c5fd;}
+  .explanation{margin-top:16px;background:#0f1923;border-left:3px solid #4ade80;border-radius:4px;padding:14px 16px;display:none;font-size:14px;line-height:1.8;color:#c8d8e8;}
+  .explanation.wrong-exp{border-color:#f87171;}
+  .explanation.show{display:block;}
+  .exp-verdict{font-size:13px;font-weight:700;margin-bottom:8px;}
+  .exp-verdict.ok{color:#4ade80;}
+  .exp-verdict.ng{color:#f87171;}
+  .key-point{color:#fbbf24;font-weight:700;}
+  .multi-block{background:#1a2535;border:1px solid #2a3f6b;border-radius:8px;padding:22px;margin-bottom:18px;}
+  .multi-source{font-size:12px;color:#64748b;margin-bottom:8px;}
+  .multi-lead{font-size:14px;color:#94a3b8;margin-bottom:10px;line-height:1.7;}
+  .choice-list{display:flex;flex-direction:column;gap:8px;margin-bottom:4px;}
+  .choice-btn{background:#0f1923;border:2px solid #2a3f6b;border-radius:6px;padding:12px 16px;font-size:14px;color:#ccc;cursor:pointer;text-align:left;transition:all .2s;line-height:1.6;}
+  .choice-btn:hover:not(:disabled){background:#1B2A4A;border-color:#4a6fa5;}
+  .choice-btn:disabled{cursor:default;}
+  .choice-btn.selected-correct{background:#14532d;border-color:#4ade80;color:#e0ffe0;}
+  .choice-btn.selected-wrong{background:#450a0a;border-color:#f87171;color:#ffe0e0;}
+  .choice-btn.show-answer{background:#1e3a5f;border-color:#60a5fa;color:#bde0ff;}
+  .result-banner{display:none;background:linear-gradient(135deg,#1B2A4A,#243555);border:1px solid #2a3f6b;border-radius:10px;padding:28px;text-align:center;margin-top:28px;}
+  .result-banner.show{display:block;}
+  .result-banner h2{font-size:22px;color:#fff;margin-bottom:8px;}
+  .result-msg{font-size:16px;color:#94a3b8;margin-bottom:20px;}
+  .retry-btn{background:#C0392B;color:#fff;border:none;border-radius:6px;padding:12px 32px;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s;}
+  .retry-btn:hover{background:#a93226;}
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="page-header">
+    <div class="chapter-label">民法 Chapter 20</div>
+    <h1>質権</h1>
+    <div class="subtitle">要物契約・転質・動産質権・不動産質権・権利質をマスターしよう</div>
+  </div>
+  <div class="scoreboard">
+    <div class="score-card"><div class="label">問題数</div><div class="value" id="total">6</div></div>
+    <div class="score-card correct"><div class="label">正解</div><div class="value" id="correct-count">0</div></div>
+    <div class="score-card wrong"><div class="label">不正解</div><div class="value" id="wrong-count">0</div></div>
+    <div class="score-card"><div class="label">残り</div><div class="value" id="remaining">6</div></div>
+  </div>
+
+  <div class="section-title">■ ○×問題（4問）</div>
+
+  <!-- Q1 -->
+  <div class="q-block" id="qb1">
+    <span class="q-num">問1</span>
+    <div class="q-text">質権設定契約における目的物の引渡しには、現実の引渡しのほか、簡易の引渡しや指図による占有移転も含まれるが、占有改定は含まれない。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(1,true)">○</button>
+      <button class="ox-btn batu" onclick="answerOX(1,false)">×</button>
+    </div>
+    <div class="explanation" id="exp1">
+      <div class="exp-verdict ok">○ 正しい</div>
+      質権設定契約は<span class="key-point">要物契約</span>であり、引渡しが必要です。引渡し方法のうち現実の引渡し・簡易の引渡し・指図による占有移転は認められますが、<span class="key-point">占有改定は含まれません</span>（344条）。占有改定では質権設定者の元に質物が留まるため担保として機能しないからです。また、質権設定者に自己に代わって質物を占有させることも強行規定により禁止されています（345条）。
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-block" id="qb2">
+    <span class="q-num">問2</span>
+    <div class="q-text">質権者は、原質権設定者の承諾を得ずに転質をすることができるが、この場合（責任転質）、質権者は転質によって生じた損害について不可抗力であることを理由に免責されない。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(2,true)">○</button>
+      <button class="ox-btn batu" onclick="answerOX(2,false)">×</button>
+    </div>
+    <div class="explanation" id="exp2">
+      <div class="exp-verdict ok">○ 正しい</div>
+      <span class="key-point">責任転質</span>（原質権設定者の承諾なしの転質）の場合、質権者は転質によって生じた損害について<span class="key-point">不可抗力でもすべて責任を負います</span>。勝手に転質しても構わないが、責任はすべて自分で負うというわけです。一方、承諾転質（原設定者の承諾あり）の場合は通常の責任のみです。
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-block" id="qb3">
+    <span class="q-num">問3</span>
+    <div class="q-text">動産質権者が第三者に質物の占有を奪われたときは、質権に基づく返還請求により、その質物を回復することができる。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(3,true)">○</button>
+      <button class="ox-btn batu" onclick="answerOX(3,false)">×</button>
+    </div>
+    <div class="explanation" id="exp3">
+      <div class="exp-verdict ng">× 誤り</div>
+      動産質権の対抗要件は<span class="key-point">占有の継続</span>です（352条）。第三者に質物の占有を奪われた場合、<span class="key-point">質権に基づく返還請求はできず、占有回収の訴えによってのみ</span>回復できます（353条）。ただし、占有を奪ったのが債務者や質権設定者である場合は「第三者」ではないので質権に基づく返還請求ができます。
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-block" id="qb4">
+    <span class="q-num">問4</span>
+    <div class="q-text">不動産質権者は、目的不動産の用法に従い、その使用及び収益をすることができるため、原則として質権設定者に対して利息を請求することができない。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(4,true)">○</button>
+      <button class="ox-btn batu" onclick="answerOX(4,false)">×</button>
+    </div>
+    <div class="explanation" id="exp4">
+      <div class="exp-verdict ok">○ 正しい</div>
+      不動産質権は<span class="key-point">収益型担保物権</span>であり、質権者は目的不動産を使用収益することができます（356条）。収益で事実上の利息代わりになるため、<span class="key-point">原則として利息は請求できません</span>。ただし、質権設定契約で別段の定め（特約）をすれば利息請求は可能です。また、不動産質権の存続期間は最長10年です（360条）。
+    </div>
+  </div>
+
+  <div class="section-title">■ 5択問題（2問）</div>
+
+  <!-- Q5：No.76（基礎編・2011年東京特別区Ⅰ類）-->
+  <div class="multi-block" id="qb5">
+    <div class="multi-source">2011年 東京特別区Ⅰ類（No.76）</div>
+    <span class="q-num">問5</span>
+    <div class="q-text">民法に規定する質権に関する記述として、妥当なのはどれか。</div>
+    <div class="choice-list" id="cl5">
+      <button class="choice-btn" onclick="answerMC(5,1)">1　質権の設定は、債権者にその目的物を引き渡すことによってその効力を生ずるため、同一の動産について数個の質権を設定することはできない。</button>
+      <button class="choice-btn" onclick="answerMC(5,2)">2　質権者は、自己の責任で質物について転質をすることができ、この場合において、転質をしたことによって生じる不可抗力による損失については、責任を負わない。</button>
+      <button class="choice-btn" onclick="answerMC(5,3)">3　動産質権者が、第三者に質物の占有を奪われたときは、占有回収の訴えによってのみ、その質物を回復することができ、質権に基づく回復請求により、その質物を回復することはできない。</button>
+      <button class="choice-btn" onclick="answerMC(5,4)">4　質権設定における目的物の引渡しには、簡易の引渡しはもとより、占有改定や指図による占有移転も含まれる。</button>
+      <button class="choice-btn" onclick="answerMC(5,5)">5　質権者がいったん有効に質権を設定した後、質権設定者に質物を占有させても質権は消滅することはなく、動産質にあってはその質権をもって第三者に対抗することができる。</button>
+    </div>
+    <div class="explanation" id="exp5">
+      <div class="exp-verdict ok">正解：3</div>
+      <p><span class="key-point">肢1×</span>：要物契約のため数個の質権設定は難しいですが、指図による占有移転等を用いれば複数設定は可能です。「できない」は誤り（355条参照）。</p>
+      <p><span class="key-point">肢2×</span>：責任転質の場合、質権者は<span class="key-point">不可抗力による損失についても責任を負います</span>。「責任を負わない」は誤り。</p>
+      <p><span class="key-point">肢3○</span>：動産質権の対抗要件は占有継続のため、第三者に奪われた場合は<span class="key-point">占有回収の訴えによってのみ</span>回復できます（353条）。正解。</p>
+      <p><span class="key-point">肢4×</span>：引渡し方法に<span class="key-point">占有改定は含まれません</span>（344条）。占有改定を含むとした点が誤り。</p>
+      <p><span class="key-point">肢5×</span>：質権設定後に質権設定者に質物を占有させた場合、動産質権では<span class="key-point">対抗力を喪失します</span>（大判大5・12・25）。「対抗することができる」は誤り。</p>
+    </div>
+  </div>
+
+  <!-- Q6：No.78（基礎編・2014年市役所B日程）-->
+  <div class="multi-block" id="qb6">
+    <div class="multi-source">2014年 市役所B日程（No.78）</div>
+    <span class="q-num">問6</span>
+    <div class="q-text">質権に関する次の記述のうち、妥当なのはどれか。</div>
+    <div class="choice-list" id="cl6">
+      <button class="choice-btn" onclick="answerMC(6,1)">1　動産質及び不動産質における目的物の引渡しは、占有改定による方法でもよい。</button>
+      <button class="choice-btn" onclick="answerMC(6,2)">2　動産質及び不動産質の存続期間は、いずれも10年を超えることはできない。</button>
+      <button class="choice-btn" onclick="answerMC(6,3)">3　不動産質権者に目的不動産に対する使用収益を認めない旨の特約は有効である。</button>
+      <button class="choice-btn" onclick="answerMC(6,4)">4　権利質は、所有権をその目的とすることができる。</button>
+      <button class="choice-btn" onclick="answerMC(6,5)">5　質権者が弁済として質物を処分する旨の流質契約は、被担保債権の弁済期到来前でも締結することができる。</button>
+    </div>
+    <div class="explanation" id="exp6">
+      <div class="exp-verdict ok">正解：3</div>
+      <p><span class="key-point">肢1×</span>：動産質・不動産質ともに<span class="key-point">占有改定は引渡し方法に含まれません</span>（344条）。</p>
+      <p><span class="key-point">肢2×</span>：存続期間の10年制限は<span class="key-point">不動産質権のみ</span>（360条）。動産質権に存続期間の制限はありません。</p>
+      <p><span class="key-point">肢3○</span>：不動産質権者の使用収益権（356条）は当事者間の<span class="key-point">特約で排除することができます</span>（任意規定）。特約で認めないとすることも有効です。正解。</p>
+      <p><span class="key-point">肢4×</span>：権利質の目的は<span class="key-point">譲渡可能な財産権</span>（362条1項）ですが、<span class="key-point">所有権に質権を設定することはできません</span>。所有権はそれ自体が物の支配権であり質権の性質と相容れないためです。</p>
+      <p><span class="key-point">肢5×</span>：流質契約は<span class="key-point">設定行為または弁済期前の契約では禁止</span>されています（349条）。弁済期前の締結は無効です。</p>
+    </div>
+  </div>
+
+  <!-- 結果バナー -->
+  <div class="result-banner" id="result-banner">
+    <h2 id="result-title">🎉</h2>
+    <div class="result-msg" id="result-detail"></div>
+    <button class="retry-btn" onclick="retryAll()">もう一度挑戦する</button>
+  </div>
+</div>
+
+<script>
+const TOTAL = 6;
+const answers = {1:true, 2:true, 3:false, 4:true, 5:3, 6:3};
+var correct = 0, wrong = 0, answered = {};
+
+function updateScore() {
+  document.getElementById('correct-count').textContent = correct;
+  document.getElementById('wrong-count').textContent = wrong;
+  var cnt = 0;
+  for (var k in answered) cnt++;
+  document.getElementById('remaining').textContent = TOTAL - cnt;
+  if (cnt === TOTAL) showResult();
+}
+
+function answerOX(q, val) {
+  if (answered[q]) return;
+  answered[q] = true;
+  var isCorrect = (val === answers[q]);
+  if (isCorrect) correct++; else wrong++;
+  var btns = document.querySelectorAll('#qb' + q + ' .ox-btn');
+  btns.forEach(function(b) { b.disabled = true; });
+  var clicked = val ? btns[0] : btns[1];
+  clicked.className += isCorrect ? ' selected-correct' : ' selected-wrong';
+  var exp = document.getElementById('exp' + q);
+  exp.classList.add('show');
+  if (!isCorrect) exp.classList.add('wrong-exp');
+  document.getElementById('qb' + q).classList.add('answered');
+  updateScore();
+}
+
+function answerMC(q, val) {
+  if (answered[q]) return;
+  answered[q] = true;
+  var isCorrect = (val === answers[q]);
+  if (isCorrect) correct++; else wrong++;
+  var btns = document.querySelectorAll('#cl' + q + ' .choice-btn');
+  btns.forEach(function(b) {
+    b.disabled = true;
+    var m = b.getAttribute('onclick').match(/,(\d+)\)/);
+    var n = m ? parseInt(m[1]) : -1;
+    if (n === answers[q]) b.className += ' show-answer';
+    if (n === val && !isCorrect) b.className += ' selected-wrong';
+    if (n === val && isCorrect) b.className += ' selected-correct';
+  });
+  var exp = document.getElementById('exp' + q);
+  exp.classList.add('show');
+  if (!isCorrect) exp.classList.add('wrong-exp');
+  updateScore();
+}
+
+function showResult() {
+  var banner = document.getElementById('result-banner');
+  banner.classList.add('show');
+  var pct = Math.round(correct / TOTAL * 100);
+  document.getElementById('result-title').textContent =
+    pct === 100 ? '🎉 全問正解！' : pct >= 70 ? '👍 よくできました！' : '📖 復習しましょう';
+  document.getElementById('result-detail').textContent =
+    TOTAL + '問中 ' + correct + '問正解（' + pct + '%）';
+}
+
+function retryAll() {
+  correct = 0; wrong = 0; answered = {};
+  for (var q = 1; q <= 4; q++) {
+    var btns = document.querySelectorAll('#qb' + q + ' .ox-btn');
+    btns.forEach(function(b) {
+      b.disabled = false;
+      b.className = b.className.replace(/ ?(selected-correct|selected-wrong|show-answer)/g, '');
+    });
+    document.getElementById('exp' + q).className = 'explanation';
+    document.getElementById('qb' + q).classList.remove('answered');
+  }
+  for (var q2 = 5; q2 <= 6; q2++) {
+    var btns2 = document.querySelectorAll('#cl' + q2 + ' .choice-btn');
+    btns2.forEach(function(b) { b.disabled = false; b.className = 'choice-btn'; });
+    document.getElementById('exp' + q2).className = 'explanation';
+  }
+  document.getElementById('result-banner').classList.remove('show');
+  updateScore();
+}
+</script>
+</body>
+</html>

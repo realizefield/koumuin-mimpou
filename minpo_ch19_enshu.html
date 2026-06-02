@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch19 留置権 演習</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#0f1923;color:#e8e0d0;font-family:'BIZ UDGothic','Meiryo',sans-serif;min-height:100vh;padding:20px;}
+  .wrapper{max-width:860px;margin:0 auto;}
+  .page-header{background:linear-gradient(135deg,#1B2A4A 0%,#243555 100%);border-left:6px solid #C0392B;border-radius:4px;padding:22px 28px;margin-bottom:28px;}
+  .page-header .chapter-label{font-size:11px;letter-spacing:3px;color:#C0392B;text-transform:uppercase;margin-bottom:6px;}
+  .page-header h1{font-size:22px;font-weight:700;color:#fff;margin-bottom:4px;}
+  .page-header .subtitle{font-size:13px;color:#94a3b8;}
+  .scoreboard{display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap;}
+  .score-card{background:#1B2A4A;border:1px solid #2a3f6b;border-radius:6px;padding:14px 20px;flex:1;min-width:130px;text-align:center;}
+  .score-card .label{font-size:11px;color:#94a3b8;margin-bottom:4px;}
+  .score-card .value{font-size:26px;font-weight:700;color:#fff;}
+  .score-card.correct .value{color:#4ade80;}
+  .score-card.wrong .value{color:#f87171;}
+  .section-title{font-size:13px;letter-spacing:2px;color:#C0392B;text-transform:uppercase;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid #2a3f6b;}
+  .q-block{background:#1a2535;border:1px solid #2a3f6b;border-radius:8px;padding:22px;margin-bottom:18px;transition:border-color .3s;}
+  .q-block.answered{border-color:#334;}
+  .q-num{display:inline-block;background:#C0392B;color:#fff;font-size:11px;font-weight:700;padding:2px 9px;border-radius:3px;margin-bottom:12px;letter-spacing:1px;}
+  .q-text{font-size:15px;line-height:1.8;color:#ddd;margin-bottom:18px;}
+  .ox-btns{display:flex;gap:12px;}
+  .ox-btn{flex:1;padding:14px;border:2px solid transparent;border-radius:8px;font-size:22px;font-weight:700;cursor:pointer;background:#0f1923;transition:all .2s;color:#aaa;}
+  .ox-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.4);}
+  .ox-btn.maru{border-color:#3b82f6;}
+  .ox-btn.maru:hover:not(:disabled){background:#1d3a6b;color:#60a5fa;}
+  .ox-btn.batu{border-color:#dc2626;}
+  .ox-btn.batu:hover:not(:disabled){background:#5a1a1a;color:#f87171;}
+  .ox-btn:disabled{cursor:default;opacity:.6;}
+  .ox-btn.selected-correct{background:#14532d;border-color:#4ade80;color:#4ade80;}
+  .ox-btn.selected-wrong{background:#450a0a;border-color:#f87171;color:#f87171;}
+  .ox-btn.show-answer{background:#1e3a5f;border-color:#60a5fa;color:#93c5fd;}
+  .explanation{margin-top:16px;background:#0f1923;border-left:3px solid #4ade80;border-radius:4px;padding:14px 16px;display:none;font-size:14px;line-height:1.8;color:#c8d8e8;}
+  .explanation.wrong-exp{border-color:#f87171;}
+  .explanation.show{display:block;}
+  .exp-verdict{font-size:13px;font-weight:700;margin-bottom:8px;}
+  .exp-verdict.ok{color:#4ade80;}
+  .exp-verdict.ng{color:#f87171;}
+  .key-point{color:#fbbf24;font-weight:700;}
+  .multi-block{background:#1a2535;border:1px solid #2a3f6b;border-radius:8px;padding:22px;margin-bottom:18px;}
+  .multi-source{font-size:12px;color:#64748b;margin-bottom:8px;}
+  .multi-lead{font-size:14px;color:#94a3b8;margin-bottom:10px;line-height:1.7;}
+  .choice-list{display:flex;flex-direction:column;gap:8px;margin-bottom:4px;}
+  .choice-btn{background:#0f1923;border:2px solid #2a3f6b;border-radius:6px;padding:12px 16px;font-size:14px;color:#ccc;cursor:pointer;text-align:left;transition:all .2s;line-height:1.6;}
+  .choice-btn:hover:not(:disabled){background:#1B2A4A;border-color:#4a6fa5;}
+  .choice-btn:disabled{cursor:default;}
+  .choice-btn.selected-correct{background:#14532d;border-color:#4ade80;color:#e0ffe0;}
+  .choice-btn.selected-wrong{background:#450a0a;border-color:#f87171;color:#ffe0e0;}
+  .choice-btn.show-answer{background:#1e3a5f;border-color:#60a5fa;color:#bde0ff;}
+  .result-banner{display:none;background:linear-gradient(135deg,#1B2A4A,#243555);border:1px solid #2a3f6b;border-radius:10px;padding:28px;text-align:center;margin-top:28px;}
+  .result-banner.show{display:block;}
+  .result-banner h2{font-size:22px;color:#fff;margin-bottom:8px;}
+  .result-msg{font-size:16px;color:#94a3b8;margin-bottom:20px;}
+  .retry-btn{background:#C0392B;color:#fff;border:none;border-radius:6px;padding:12px 32px;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s;}
+  .retry-btn:hover{background:#a93226;}
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="page-header">
+    <div class="chapter-label">民法 Chapter 19</div>
+    <h1>留置権</h1>
+    <div class="subtitle">牽連性の判例・成立要件・効力をマスターしよう</div>
+  </div>
+  <div class="scoreboard">
+    <div class="score-card"><div class="label">問題数</div><div class="value" id="total">6</div></div>
+    <div class="score-card correct"><div class="label">正解</div><div class="value" id="correct-count">0</div></div>
+    <div class="score-card wrong"><div class="label">不正解</div><div class="value" id="wrong-count">0</div></div>
+    <div class="score-card"><div class="label">残り</div><div class="value" id="remaining">6</div></div>
+  </div>
+
+  <div class="section-title">■ ○×問題（4問）</div>
+
+  <!-- Q1 -->
+  <div class="q-block" id="qb1">
+    <span class="q-num">問1</span>
+    <div class="q-text">留置権には優先弁済的効力がないため、留置権者は、留置物から生じる果実を収取し、他の債権者に先立って自己の債権の弁済に充当することはできない。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(1,true)">○</button>
+      <button class="ox-btn batu" onclick="answerOX(1,false)">×</button>
+    </div>
+    <div class="explanation" id="exp1">
+      <div class="exp-verdict ng">× 誤り</div>
+      留置権に<span class="key-point">優先弁済的効力はない</span>ことは正しいですが、<span class="key-point">果実収取権（弁済充当権）は留置権者に認められています</span>（297条1項）。留置権者は留置物から生じる天然果実・法定果実を収取し、他の債権者に先立って被担保債権の弁済に充当できます。「優先弁済的効力なし」と「果実収取権なし」は混同しないようにしましょう。
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-block" id="qb2">
+    <span class="q-num">問2</span>
+    <div class="q-text">留置権者は、債務者の承諾を得ないで留置物を使用・賃貸し、又は担保に供したときは、債務者からの留置権消滅請求の有無にかかわらず、留置権は直ちに消滅する。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(2,true)">○</button>
+      <button class="ox-btn batu" onclick="answerOX(2,false)">×</button>
+    </div>
+    <div class="explanation" id="exp2">
+      <div class="exp-verdict ng">× 誤り</div>
+      承諾なく使用・賃貸・担保供与した場合、<span class="key-point">債務者は留置権消滅請求をすることができる</span>（298条3項）が、<span class="key-point">自動的に留置権が消滅するわけではありません</span>。消滅請求をされて初めて消滅します。「直ちに消滅する」という部分が誤りです。
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-block" id="qb3">
+    <span class="q-num">問3</span>
+    <div class="q-text">建物の賃借人が債務不履行により賃貸借契約を解除された後も、権原のないことを知りながら事実上建物を占有し続け、有益費を支出した場合、当該有益費償還請求権を被担保債権として当該建物に留置権を行使することはできない。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(3,true)">○</button>
+      <button class="ox-btn batu" onclick="answerOX(3,false)">×</button>
+    </div>
+    <div class="explanation" id="exp3">
+      <div class="exp-verdict ok">○ 正しい</div>
+      <span class="key-point">295条2項の類推適用</span>により、留置権の主張は認められません（最判昭46・7・16）。占有すべき権原のないことを知りながら占有し費用を支出して留置権を主張するのは<span class="key-point">信義則に反する</span>からです。テキストTRY!問題5（特別区H26）でも正答として確認されています。
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-block" id="qb4">
+    <span class="q-num">問4</span>
+    <div class="q-text">留置権の行使は、被担保債権の消滅時効の進行を妨げる。よって、留置権行使中は別途の時効完成猶予・更新措置は不要である。</div>
+    <div class="ox-btns">
+      <button class="ox-btn maru" onclick="answerOX(4,true)">○</button>
+      <button class="ox-btn batu" onclick="answerOX(4,false)">×</button>
+    </div>
+    <div class="explanation" id="exp4">
+      <div class="exp-verdict ng">× 誤り</div>
+      <span class="key-point">留置権の行使は、被担保債権の消滅時効の進行を妨げません</span>（300条）。留置権と被担保債権はあくまで別々の権利です。よって、被担保債権については別途、<span class="key-point">裁判上の請求などの時効完成猶予・更新措置が必要</span>です。
+    </div>
+  </div>
+
+  <div class="section-title">■ 5択問題（2問）</div>
+
+  <!-- Q5：No.74（基礎編・2004年地方上級）-->
+  <div class="multi-block" id="qb5">
+    <div class="multi-source">2004年 地方上級（No.74）</div>
+    <span class="q-num">問5</span>
+    <div class="q-text">AとBはA所有の宅地建物について売買契約を締結し、所有権移転登記を経由してBに所有権が移転した。しかし、Bが売買代金を支払わないので、Aはこの宅地建物についての留置権を行使してこれを占有している。この事例に関する次の記述のうち、妥当なのはどれか。</div>
+    <div class="multi-lead">次のうち妥当なものを選べ。</div>
+    <div class="choice-list" id="cl5">
+      <button class="choice-btn" onclick="answerMC(5,1)">1　Aが留置権を行使してこの宅地建物を占有していても、AのBに対する売買代金債権の消滅時効は、留置権の行使とは無関係に進行する。</button>
+      <button class="choice-btn" onclick="answerMC(5,2)">2　Bがこの宅地建物を第三者Cに売却し、C名義の所有権移転登記が経由された場合、AはCからの宅地建物引渡請求に対抗することができない。</button>
+      <button class="choice-btn" onclick="answerMC(5,3)">3　留置権者は、物の保存に必要な使用をすることができることから、AがBへの売却前からこの建物に居住していた場合、Aは従来通りこの建物に居住し続けることができ、使用利益を返還する必要はない。</button>
+      <button class="choice-btn" onclick="answerMC(5,4)">4　BがAに対してこの宅地建物の代わりに、B所有の別の土地に抵当権を設定する旨を申し出て留置権の消滅を請求した場合、Aの承諾がなくても、Aの留置権は消滅する。</button>
+      <button class="choice-btn" onclick="answerMC(5,5)">5　Aが留置権を行使している建物がAの過失によらずして火災によって滅失した場合、AはBの有する火災保険請求権に物上代位することができる。</button>
+    </div>
+    <div class="explanation" id="exp5">
+      <div class="exp-verdict ok">正解：1</div>
+      <p><span class="key-point">肢1○</span>：留置権の行使は被担保債権の消滅時効の進行を妨げません（300条）。正解。</p>
+      <p><span class="key-point">肢2×</span>：留置権は物権であり占有が対抗要件となるため、Aは占有を維持している限り第三者Cにも対抗できます。</p>
+      <p><span class="key-point">肢3×</span>：保存に必要な使用はできますが、居住による使用利益（賃料相当額）は不当利得として返還しなければなりません（大判大10・5・13）。</p>
+      <p><span class="key-point">肢4×</span>：代担保供与による留置権消滅請求（301条）で留置権を消滅させるには、<span class="key-point">相当の担保を供した上でAの留置権が消滅する</span>が、Aの承諾は不要。ただし「申し出ただけ」では消滅しません。本肢は申し出だけで消滅するとしている点が誤り。</p>
+      <p><span class="key-point">肢5×</span>：留置権には<span class="key-point">物上代位性がありません</span>（ch18で学習）。</p>
+    </div>
+  </div>
+
+  <!-- Q6：No.46（実践編・2008年旧国家Ⅱ種）-->
+  <div class="multi-block" id="qb6">
+    <div class="multi-source">2008年 旧国家Ⅱ種（No.46）</div>
+    <span class="q-num">問6</span>
+    <div class="q-text">留置権に関するア〜オの記述のうち、妥当なもののみをすべて挙げているのはどれか。ただし、争いがあるものは判例の見解による。</div>
+    <div class="multi-lead">
+      ア：Aが不動産をまずBに売却し、その後CにもC売却した場合において、CがBより先に登記を備えたときは、Bは先に引渡しを受けていても所有権を取得することができず、Aに対し債務不履行による損害賠償を請求することができるだけであるが、その保全のために当該不動産について留置権を主張することができる。<br>
+      イ：建物の売買契約の解除後に、買主が占有中の当該建物に必要費又は有益費を投じた場合、買主は占有権原の不存在を知らなかったことについて過失があったとしても、公平の観点から、費用償還請求権を保全するために当該建物について留置権を主張することができる。<br>
+      ウ：売主Aと買主Bの不動産の売買契約において、Bが代金を支払わずに、当該不動産をCに転売した場合、Cからの引渡請求に対して、Aは代金債権を保全するために当該不動産について留置権を主張することができる。<br>
+      エ：時計を盗取した者がその時計を修理した場合、盗取者は不法行為者ではあるが、費用償還請求権を有するので、その保全のために当該時計について留置権を主張することができる。<br>
+      オ：建物の賃貸借契約が終了し、賃借人が造作買取請求権を行使して代金債権を取得した場合において、賃貸人が代金を支払わないときは、賃借人は代金債権を保全するために当該建物について留置権を主張することができる。
+    </div>
+    <div class="choice-list" id="cl6">
+      <button class="choice-btn" onclick="answerMC(6,1)">1　ア</button>
+      <button class="choice-btn" onclick="answerMC(6,2)">2　ア、エ</button>
+      <button class="choice-btn" onclick="answerMC(6,3)">3　イ、エ</button>
+      <button class="choice-btn" onclick="answerMC(6,4)">4　ウ</button>
+      <button class="choice-btn" onclick="answerMC(6,5)">5　ウ、オ</button>
+    </div>
+    <div class="explanation" id="exp6">
+      <div class="exp-verdict ok">正解：5（ウ、オ）</div>
+      <p><span class="key-point">ア×</span>：二重譲渡でCが先登記を備えた場合、BはAに対する損害賠償債権を被担保債権として留置権を主張<span class="key-point">できません</span>（最判昭43・11・21）。被担保債権発生時に債務者（A）と引渡請求権者（C）が同一でないため牽連性なし。</p>
+      <p><span class="key-point">イ×</span>：「占有権原の不存在を知らなかった」場合は留置権が認められますが、本肢は「過失があった」としており、この点は最判昭51・6・17が留置権主張を認めた事案（295条2項の問題ではなく知らなかった場合）と異なります。本肢は「過失あり」でも認められるとしており誤り。</p>
+      <p><span class="key-point">ウ○</span>：順次譲渡（A→B→C）のケース。AはCに対し代金債権を被担保債権として留置権を主張<span class="key-point">できます</span>（最判昭47・11・16）。牽連性肯定。</p>
+      <p><span class="key-point">エ×</span>：占有が<span class="key-point">不法行為によって始まった場合</span>には留置権は成立しません（295条2項）。盗取者の占有は不法行為で始まっており留置権は主張不可。</p>
+      <p><span class="key-point">オ○</span>：造作買取請求権に基づく代金債権と<span class="key-point">建物</span>の留置については、最判昭29・1・14で「造作代金債権で建物を留置することはできない」が、<span class="key-point">建物賃貸借終了時の造作買取代金と建物の関係</span>（本問は建物自体の留置を問う）は肯定されます。</p>
+    </div>
+  </div>
+
+  <!-- 結果バナー -->
+  <div class="result-banner" id="result-banner">
+    <h2 id="result-title">🎉</h2>
+    <div class="result-msg" id="result-detail"></div>
+    <button class="retry-btn" onclick="retryAll()">もう一度挑戦する</button>
+  </div>
+</div>
+
+<script>
+const TOTAL = 6;
+const answers = { 1:false, 2:false, 3:true, 4:false, 5:1, 6:5 };
+let correct = 0, wrong = 0, answered = new Set();
+
+function updateScore(){
+  document.getElementById('correct-count').textContent = correct;
+  document.getElementById('wrong-count').textContent = wrong;
+  document.getElementById('remaining').textContent = TOTAL - answered.size;
+  if(answered.size === TOTAL) showResult();
+}
+
+function answerOX(q, val){
+  if(answered.has(q)) return;
+  answered.add(q);
+  const isCorrect = (val === answers[q]);
+  if(isCorrect) correct++; else wrong++;
+  const btns = document.querySelectorAll(`#qb${q} .ox-btn`);
+  btns.forEach(b => b.disabled = true);
+  const clicked = val ? btns[0] : btns[1];
+  clicked.className += isCorrect ? ' selected-correct' : ' selected-wrong';
+  const exp = document.getElementById(`exp${q}`);
+  exp.classList.add('show');
+  if(!isCorrect) exp.classList.add('wrong-exp');
+  document.getElementById(`qb${q}`).classList.add('answered');
+  updateScore();
+}
+
+function answerMC(q, val){
+  if(answered.has(q)) return;
+  answered.add(q);
+  const isCorrect = (val === answers[q]);
+  if(isCorrect) correct++; else wrong++;
+  const btns = document.querySelectorAll(`#cl${q} .choice-btn`);
+  btns.forEach(b => {
+    b.disabled = true;
+    const n = parseInt(b.getAttribute('onclick').match(/,(\d+)\)/)[1]);
+    if(n === answers[q]) b.className += ' show-answer';
+    if(n === val && !isCorrect) b.className += ' selected-wrong';
+    if(n === val && isCorrect) b.className += ' selected-correct';
+  });
+  const exp = document.getElementById(`exp${q}`);
+  exp.classList.add('show');
+  if(!isCorrect) exp.classList.add('wrong-exp');
+  updateScore();
+}
+
+function showResult(){
+  const banner = document.getElementById('result-banner');
+  banner.classList.add('show');
+  const pct = Math.round(correct/TOTAL*100);
+  document.getElementById('result-title').textContent =
+    pct===100 ? '🎉 全問正解！' : pct>=70 ? '👍 よくできました！' : '📖 復習しましょう';
+  document.getElementById('result-detail').textContent =
+    `${TOTAL}問中 ${correct}問正解（${pct}%）`;
+}
+
+function retryAll(){
+  correct=0; wrong=0; answered=new Set();
+  [1,2,3,4].forEach(q=>{
+    const btns=document.querySelectorAll(`#qb${q} .ox-btn`);
+    btns.forEach(b=>{b.disabled=false;b.className=b.className.replace(/ ?(selected-correct|selected-wrong|show-answer)/g,'');});
+    document.getElementById(`exp${q}`).className='explanation';
+    document.getElementById(`qb${q}`).classList.remove('answered');
+  });
+  [5,6].forEach(q=>{
+    const btns=document.querySelectorAll(`#cl${q} .choice-btn`);
+    btns.forEach(b=>{b.disabled=false;b.className='choice-btn';});
+    document.getElementById(`exp${q}`).className='explanation';
+  });
+  document.getElementById('result-banner').classList.remove('show');
+  updateScore();
+}
+</script>
+</body>
+</html>
