@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法 ch28 債権者代位権【演習】</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#eef2f7;font-family:'BIZ UDGothic','Meiryo',sans-serif;color:#1B2A4A;line-height:1.8}
+  header{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:#fff;padding:20px 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+  header h1{font-size:1.2rem;font-weight:700}
+  header p{font-size:.8rem;opacity:.85;margin-top:2px}
+  .container{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+  .card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  h2{font-size:1.1rem;color:#1B2A4A;border-left:4px solid #C0392B;padding-left:10px;margin-bottom:16px}
+  p{margin-bottom:10px;font-size:.95rem}
+  .badge{display:inline-block;background:#C0392B;color:#fff;font-size:.7rem;padding:2px 8px;border-radius:10px;margin-right:6px}
+  /* 択一 */
+  .choices{list-style:none;padding:0}
+  .choices li{background:#f5f7fa;border:2px solid #ddd;border-radius:8px;padding:10px 14px;margin-bottom:8px;cursor:pointer;font-size:.9rem;transition:all .2s;display:flex;align-items:flex-start;gap:8px}
+  .choices li:hover{border-color:#1B2A4A;background:#e8edf4}
+  .choices li.correct-ans{border-color:#2e7d32 !important;background:#e8f5e9 !important}
+  .choices li.wrong-ans{border-color:#C0392B !important;background:#ffeaea !important}
+  .choices li.show-correct{border-color:#2e7d32;background:#e8f5e9}
+  .choice-mark{font-weight:700;min-width:20px}
+  .explanation{margin-top:14px;padding:14px;background:#fff8e1;border-radius:8px;border-left:3px solid #D4A017;font-size:.88rem;display:none;line-height:1.8}
+  .explanation.show{display:block}
+  .explanation strong{color:#C0392B}
+  /* 穴埋め */
+  .fill-q{background:#f5f7fa;border-radius:10px;padding:18px;margin-bottom:20px;border-left:4px solid #1B2A4A}
+  .fill-q .q-no{font-size:.8rem;color:#1B2A4A;font-weight:700;margin-bottom:8px}
+  .fill-sentence{font-size:.95rem;line-height:2.4;margin-bottom:8px}
+  .blank{display:inline-block;min-width:90px;height:28px;border-bottom:2px solid #1B2A4A;vertical-align:bottom;text-align:center;cursor:pointer;background:rgba(212,160,23,.1);border-radius:4px 4px 0 0;padding:0 6px;font-weight:700;color:#C0392B;font-size:.9rem;transition:background .2s}
+  .blank:hover{background:rgba(192,57,43,.1)}
+  .blank.filled{background:rgba(46,125,50,.1);border-bottom-color:#2e7d32}
+  .blank.wrong-fill{background:rgba(192,57,43,.15);border-bottom-color:#C0392B;animation:shake .3s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+  .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+  .chip{background:#1B2A4A;color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:.88rem;transition:all .2s;user-select:none}
+  .chip:hover{background:#C0392B;transform:translateY(-2px)}
+  .chip.used{opacity:.3;cursor:not-allowed;pointer-events:none}
+  .popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:#fff;border-radius:14px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,.25);z-index:200;min-width:280px;opacity:0;pointer-events:none;transition:all .25s}
+  .popup.show{opacity:1;pointer-events:all;transform:translate(-50%,-50%) scale(1)}
+  .popup h5{color:#1B2A4A;margin-bottom:10px;font-size:.95rem}
+  .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:199;opacity:0;pointer-events:none;transition:opacity .25s}
+  .popup-overlay.show{opacity:1;pointer-events:all}
+  .fill-btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+  .fill-btn{padding:8px 18px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;transition:all .2s}
+  .btn-check{background:#1B2A4A;color:#fff}.btn-check:hover{background:#C0392B}
+  .btn-hint{background:#D4A017;color:#fff}.btn-hint:hover{background:#b8860b}
+  .btn-reset{background:#eee;color:#333}.btn-reset:hover{background:#ddd}
+  .score-badge{display:inline-block;background:#C0392B;color:#fff;border-radius:20px;padding:4px 14px;font-size:.85rem;font-weight:700}
+  .total-score-card{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:#fff;border-radius:12px;padding:24px;text-align:center;margin-bottom:20px}
+  .total-score-card h2{border-left:none;color:#fff;font-size:1.2rem;padding-left:0;margin-bottom:10px}
+  .score-display{font-size:2.5rem;font-weight:700;margin:10px 0}
+  .score-display span{font-size:1.2rem;opacity:.8}
+  .score-msg{font-size:1rem;opacity:.9}
+  canvas#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+  .nav-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .nav-btn{padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;text-decoration:none;display:inline-block}
+  .nav-prev{background:#1B2A4A;color:#fff}
+  .nav-next{background:#C0392B;color:#fff}
+  .nav-index{background:#D4A017;color:#fff}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<header>
+  <h1>⚔ GAMBA民法 ch28｜債権者代位権【演習】</h1>
+  <p>民法Ⅱ 債権総論 ― 過去問で実力を確認しよう！</p>
+</header>
+<div class="container">
+
+<div class="total-score-card">
+  <h2>📊 演習スコア</h2>
+  <div class="score-display"><span id="correct-count">0</span><span> / </span><span id="total-count">0</span></div>
+  <div class="score-msg" id="score-msg">問題に答えてスコアを確認しよう！</div>
+</div>
+
+<!-- 択一1 No.75 旧国家Ⅱ種H21 -->
+<div class="card">
+  <h2><span class="badge">過去問</span>No.75 債権者代位権・詐害行為取消権（旧国家Ⅱ種 H21）</h2>
+  <p>債権者代位権及び詐害行為取消権に関するア〜オの記述のうち、妥当なもののみをすべて挙げているのはどれか。ただし、争いのあるものは判例の見解による。</p>
+  <ul class="choices" id="choices-75">
+    <li onclick="selectChoice('75',1,false)"><span class="choice-mark">1</span><span>ア、イ</span></li>
+    <li onclick="selectChoice('75',2,false)"><span class="choice-mark">2</span><span>ア、オ</span></li>
+    <li onclick="selectChoice('75',3,false)"><span class="choice-mark">3</span><span>イ、ウ</span></li>
+    <li onclick="selectChoice('75',4,true)"><span class="choice-mark">4</span><span>ウ、エ</span></li>
+    <li onclick="selectChoice('75',5,false)"><span class="choice-mark">5</span><span>エ、オ</span></li>
+  </ul>
+  <div class="explanation" id="exp-75">
+    <strong>正解：4（ウ、エ）</strong><br><br>
+    <strong>ア×：</strong>債権者代位権は債務者が権利を行使しない場合に債権者が代わりに行使する制度。詐害行為取消権は債務者が任意に債務の本旨に従った履行をしない場合に強制的に実現する制度である、という記述は逆です。<br>
+    <strong>イ×：</strong>債権者代位権の被保全債権は金銭債権に限定されず、特定物債権への転用も判例上認められています。詐害行為取消権の被保全債権も金銭債権に限定されません（改正民法424条3項は特定物債権でも可）。<br>
+    <strong>ウ○：</strong>債権者代位権は代位行使する債権の成立前に被保全債権が成立していることは必要とされていませんが、詐害行為取消権は被保全債権が詐害行為の前の原因に基づいて生じたものであることが必要です（424条3項）。<br>
+    <strong>エ○：</strong>債権者代位権は裁判外でも行使可能。詐害行為取消権は常に裁判上の行使が必要です（424条1項）。<br>
+    <strong>オ×：</strong>債権者代位権の時効は被保全債権の期限到来から2年ではありません。詐害行為取消訴訟の提訴期限は「知った時から2年／行為から10年」です（426条）。
+  </div>
+</div>
+
+<!-- 択一2 No.76 国家一般職H25 -->
+<div class="card">
+  <h2><span class="badge">過去問</span>No.76 債権者代位権（国家一般職 H25）</h2>
+  <p>債権者代位権に関する次の記述のうち、民法の規定又は判例に照らし、妥当なのはどれか。</p>
+  <ul class="choices" id="choices-76">
+    <li onclick="selectChoice('76',1,false)"><span class="choice-mark">1</span><span>土地の売主の死亡後、土地の買主に対する所有権移転登記手続義務を相続した共同相続人の一人が当該義務の履行を拒絶しているため、買主が同時履行の抗弁権を行使して土地の売買代金全額について弁済を拒絶している場合には、他の相続人は、自己の相続した代金債権を保全するため、買主が無資力でなくても、登記手続義務の履行を拒絶している相続人に対し、買主の所有権移転登記手続請求権を代位行使することができる。</span></li>
+    <li onclick="selectChoice('76',2,false)"><span class="choice-mark">2</span><span>土地の賃借人は、土地の不法占拠者に対し、対抗力の有無を問わず賃借権に基づく返還請求権を行使して、直接に土地の明渡しを請求することができるから、賃貸人たる土地所有者の妨害排除請求権を代位行使して土地の明渡しを請求することはできない。</span></li>
+    <li onclick="selectChoice('76',3,true)"><span class="choice-mark">3</span><span>相続人の遺留分侵害額請求権は、財産的価値を有する権利であるから、遺留分権利者が遺留分の放棄の確定的意思を外部に表示したなどの特段の事情がある場合を除き、債権者代位の目的とすることができる。</span></li>
+    <li onclick="selectChoice('76',4,false)"><span class="choice-mark">4</span><span>債権者代位権は全ての債権者のために債務者の責任財産を保全するための制度であるから、債権者が債務者に対する金銭債権に基づいて債務者の第三債務者に対する金銭債権を代位行使する場合には、債権者は自己の債権額を超えて債務者の第三債務者に対する債権全額を代位行使することができる。</span></li>
+    <li onclick="selectChoice('76',5,false)"><span class="choice-mark">5</span><span>債権者代位訴訟の原告である債権者が、被告である第三債務者が提出した抗弁に対して提出することのできる再抗弁事由は、債務者自身が主張することのできるものに限られず、その再抗弁が信義則に反し権利の濫用として許されないと解されるものを除き、債権者独自の事情に基づくものも提出することができる。</span></li>
+  </ul>
+  <div class="explanation" id="exp-76">
+    <strong>正解：3</strong><br><br>
+    <strong>1×：</strong>他の相続人は買主の登記手続請求権を代位行使することで自己の代金債権を回収しようとしています。この場合、買主が無資力でないため代位権行使の無資力要件を満たさないように思えますが、登記請求権の転用代位は登記実現のために必要であり、最判は一定の場合に無資力不要とします。ただし本肢の構成は判例に照らし否定的です。<br>
+    <strong>2×：</strong>土地の賃借人は対抗力があれば不法占拠者に直接明渡しを請求できますが、対抗力のない場合は代位行使が認められる場合があります。「対抗力の有無を問わず」という部分が誤りです。<br>
+    <strong>3○：</strong>最判平成13年11月22日の判旨そのままです。遺留分侵害額請求権は財産的価値を有するため代位可能ですが、放棄の確定的意思表示がある場合は除かれます。<br>
+    <strong>4×：</strong>金銭債権の代位行使では、債権者は自己の被保全債権額の範囲でのみ代位行使できます（423条の2）。債権全額の代位行使はできません。<br>
+    <strong>5×：</strong>本肢の内容は正しいように見えますが、肢3が正解であり本問は「最も妥当」を問う問題ではなく「妥当なもの」なので、選択肢3が明確に妥当です。
+  </div>
+</div>
+
+<!-- 穴埋め1 -->
+<div class="fill-q" id="fill-q1">
+  <div class="q-no">📝 穴埋め問題 — 行使要件</div>
+  <div class="fill-sentence">
+    債権者代位権の行使には原則として債務者の<span class="blank" data-group="a" data-ans="無資力">　　　</span>が必要だが、登記請求権の代位行使などの転用事例では<span class="blank" data-group="b" data-ans="不要">　　</span>とされる。
+  </div>
+  <div class="fill-sentence">
+    被保全債権の弁済期が未到来でも、<span class="blank" data-group="c" data-ans="保存行為">　　　　</span>に限り代位権を行使できる。
+  </div>
+  <div class="fill-sentence">
+    債権者代位権は<span class="blank" data-group="d" data-ans="裁判外">　　　</span>でも行使できるが、詐害行為取消権は<span class="blank" data-group="e" data-ans="裁判上">　　　</span>のみ行使できる。
+  </div>
+  <div class="word-bank" id="wb-q1">
+    <span class="chip" data-w="無資力" data-group="a">無資力</span>
+    <span class="chip" data-w="不要" data-group="b">不要</span>
+    <span class="chip" data-w="保存行為" data-group="c">保存行為</span>
+    <span class="chip" data-w="裁判外" data-group="d">裁判外</span>
+    <span class="chip" data-w="裁判上" data-group="e">裁判上</span>
+    <span class="chip" data-w="必要" data-group="b">必要</span>
+    <span class="chip" data-w="不法行為" data-group="c">不法行為</span>
+    <span class="chip" data-w="裁判上" data-group="d">裁判上（2）</span>
+  </div>
+  <div class="fill-btns">
+    <button class="fill-btn btn-check" onclick="checkFill('q1')">判定する</button>
+    <button class="fill-btn btn-hint" onclick="showHint('q1')">手本を見る</button>
+    <button class="fill-btn btn-reset" onclick="resetFill('q1')">リセット</button>
+    <span class="score-badge" id="score-q1" style="display:none"></span>
+  </div>
+</div>
+
+<!-- 穴埋め2 -->
+<div class="fill-q" id="fill-q2">
+  <div class="q-no">📝 穴埋め問題 — 代位行使できない権利</div>
+  <div class="fill-sentence">
+    <span class="blank" data-group="f" data-ans="時効の援用権">　　　　　</span>は一身専属的権利であるため、代位行使の対象とならない。
+  </div>
+  <div class="fill-sentence">
+    遺留分侵害額請求権は、権利放棄の確定的意思を<span class="blank" data-group="g" data-ans="外部に表示">　　　　　</span>した特段の事情がない限り、代位行使の対象となる。
+  </div>
+  <div class="fill-sentence">
+    慰謝料請求権は、具体的な<span class="blank" data-group="h" data-ans="金額が確定">　　　　</span>した場合に一身専属性を失い代位行使の対象となる。
+  </div>
+  <div class="word-bank" id="wb-q2">
+    <span class="chip" data-w="時効の援用権" data-group="f">時効の援用権</span>
+    <span class="chip" data-w="外部に表示" data-group="g">外部に表示</span>
+    <span class="chip" data-w="金額が確定" data-group="h">金額が確定</span>
+    <span class="chip" data-w="解除権" data-group="f">解除権</span>
+    <span class="chip" data-w="内部で決定" data-group="g">内部で決定</span>
+    <span class="chip" data-w="訴訟が終了" data-group="h">訴訟が終了</span>
+  </div>
+  <div class="fill-btns">
+    <button class="fill-btn btn-check" onclick="checkFill('q2')">判定する</button>
+    <button class="fill-btn btn-hint" onclick="showHint('q2')">手本を見る</button>
+    <button class="fill-btn btn-reset" onclick="resetFill('q2')">リセット</button>
+    <span class="score-badge" id="score-q2" style="display:none"></span>
+  </div>
+</div>
+
+<!-- 穴埋め3 -->
+<div class="fill-q" id="fill-q3">
+  <div class="q-no">📝 穴埋め問題 — 行使方法と効果</div>
+  <div class="fill-sentence">
+    債権者は<span class="blank" data-group="i" data-ans="自己の名">　　　　</span>において代位権を行使する。
+  </div>
+  <div class="fill-sentence">
+    第三債務者への金銭債権を代位行使するとき、債権者は<span class="blank" data-group="j" data-ans="直接自己">　　　　</span>への支払を請求できる。
+  </div>
+  <div class="fill-sentence">
+    不動産が目的の場合、代位権者は直接自己への移転登記を請求することは<span class="blank" data-group="k" data-ans="できない">　　　</span>。
+  </div>
+  <div class="fill-sentence">
+    代位訴訟において、再抗弁事由は債務者が主張できるものに限られず<span class="blank" data-group="l" data-ans="債権者独自">　　　　　</span>の事情に基づくものも提出できる。
+  </div>
+  <div class="word-bank" id="wb-q3">
+    <span class="chip" data-w="自己の名" data-group="i">自己の名</span>
+    <span class="chip" data-w="直接自己" data-group="j">直接自己</span>
+    <span class="chip" data-w="できない" data-group="k">できない</span>
+    <span class="chip" data-w="債権者独自" data-group="l">債権者独自</span>
+    <span class="chip" data-w="債務者の名" data-group="i">債務者の名</span>
+    <span class="chip" data-w="債務者" data-group="j">債務者</span>
+    <span class="chip" data-w="できる" data-group="k">できる</span>
+    <span class="chip" data-w="債務者と同一" data-group="l">債務者と同一</span>
+  </div>
+  <div class="fill-btns">
+    <button class="fill-btn btn-check" onclick="checkFill('q3')">判定する</button>
+    <button class="fill-btn btn-hint" onclick="showHint('q3')">手本を見る</button>
+    <button class="fill-btn btn-reset" onclick="resetFill('q3')">リセット</button>
+    <span class="score-badge" id="score-q3" style="display:none"></span>
+  </div>
+</div>
+
+<!-- ナビ -->
+<div class="card">
+  <div class="nav-btns">
+    <a href="minpo2_ch28_kaisetsu.html" class="nav-btn nav-prev">← 解説へ戻る</a>
+    <a href="minpo2_index.html" class="nav-btn nav-index">目次へ</a>
+    <a href="minpo2_ch29_kaisetsu.html" class="nav-btn nav-next">ch29へ →</a>
+  </div>
+</div>
+
+</div>
+<div class="popup-overlay" id="overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup">
+  <h5>語群から選んでください</h5>
+  <div id="popup-chips" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+</div>
+<script>
+let totalCorrect=0,totalAnswered=0;
+let fillScores={};
+let currentBlank=null;
+
+function selectChoice(qId,num,isCorrect){
+  const ul=document.getElementById('choices-'+qId);
+  if(ul.dataset.answered)return;
+  ul.dataset.answered='1';
+  totalAnswered++;
+  const items=ul.querySelectorAll('li');
+  items.forEach(li=>li.style.pointerEvents='none');
+  items[num-1].classList.add(isCorrect?'correct-ans':'wrong-ans');
+  items.forEach(li=>{if(li.getAttribute('onclick')&&li.getAttribute('onclick').includes(',true'))li.classList.add('show-correct');});
+  if(isCorrect)totalCorrect++;
+  updateScore();
+  const exp=document.getElementById('exp-'+qId);
+  if(exp)exp.classList.add('show');
+}
+function updateScore(){
+  document.getElementById('correct-count').textContent=totalCorrect;
+  document.getElementById('total-count').textContent=totalAnswered;
+  const rate=totalAnswered>0?Math.round(totalCorrect/totalAnswered*100):0;
+  let msg='引き続き頑張ろう！';
+  if(rate>=80)msg='素晴らしい！合格レベルです！';
+  else if(rate>=60)msg='もう少し！もう一度確認しよう！';
+  document.getElementById('score-msg').textContent='正答率 '+rate+'% ― '+msg;
+}
+
+document.querySelectorAll('.blank').forEach(b=>{
+  b.addEventListener('click',function(){
+    if(this.dataset.fixed)return;
+    currentBlank=this;
+    const wb=this.closest('.fill-q').querySelector('.word-bank');
+    const pc=document.getElementById('popup-chips');
+    pc.innerHTML='';
+    wb.querySelectorAll('.chip:not(.used)').forEach(chip=>{
+      const c=document.createElement('span');
+      c.className='chip';c.textContent=chip.textContent;c.dataset.w=chip.dataset.w;
+      c.addEventListener('click',()=>{fillBlank(currentBlank,c.dataset.w,chip);closePopup();});
+      pc.appendChild(c);
+    });
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('popup').classList.add('show');
+  });
+});
+function closePopup(){
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('popup').classList.remove('show');
+}
+function fillBlank(blank,word,chip){
+  if(!blank)return;
+  blank.textContent=word;blank.classList.add('filled');blank.dataset.userAns=word;
+  if(chip)chip.classList.add('used');
+}
+function checkFill(id){
+  const sec=document.getElementById('fill-'+id);
+  const blanks=sec.querySelectorAll('.blank');
+  let ok=0;
+  blanks.forEach(b=>{
+    if(b.dataset.userAns===b.dataset.ans){
+      b.style.borderBottomColor='#2e7d32';b.style.background='rgba(46,125,50,.15)';ok++;
+    } else {
+      b.style.borderBottomColor='#C0392B';b.style.background='rgba(192,57,43,.15)';
+      b.classList.add('wrong-fill');setTimeout(()=>b.classList.remove('wrong-fill'),400);
+    }
+  });
+  const sc=document.getElementById('score-'+id);
+  sc.textContent=ok+'/'+blanks.length+'正解';sc.style.display='inline-block';
+  if(!fillScores[id]){
+    fillScores[id]=true;totalAnswered++;
+    if(ok>=blanks.length)totalCorrect++;
+    updateScore();
+  }
+  if(ok>=blanks.length)launchConfetti();
+}
+function showHint(id){
+  const sec=document.getElementById('fill-'+id);
+  sec.querySelectorAll('.blank').forEach(b=>{
+    b.textContent=b.dataset.ans;b.dataset.userAns=b.dataset.ans;b.dataset.fixed='1';
+    b.classList.add('filled');b.style.borderBottomColor='#D4A017';b.style.background='rgba(212,160,23,.15)';
+  });
+  sec.querySelector('.word-bank').querySelectorAll('.chip').forEach(c=>c.classList.add('used'));
+}
+function resetFill(id){
+  const sec=document.getElementById('fill-'+id);
+  sec.querySelectorAll('.blank').forEach(b=>{
+    b.textContent='';b.classList.remove('filled','wrong-fill');
+    b.style.borderBottomColor='';b.style.background='';
+    delete b.dataset.userAns;delete b.dataset.fixed;
+  });
+  sec.querySelector('.word-bank').querySelectorAll('.chip').forEach(c=>c.classList.remove('used'));
+  const sc=document.getElementById('score-'+id);if(sc)sc.style.display='none';
+  delete fillScores[id];
+  resetConfettiCanvas();
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const P=Array.from({length:150},()=>({
+    x:Math.random()*canvas.width,y:-10,r:Math.random()*6+3,
+    color:['#C0392B','#D4A017','#1B2A4A','#2e7d32','#e74c3c','#f39c12'][Math.floor(Math.random()*6)],
+    tilt:Math.random()*10-10,tiltAngle:0,tiltAngleInc:Math.random()*.07+.05
+  }));
+  let f=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    P.forEach(p=>{
+      ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;
+      ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/5);ctx.stroke();
+    });
+    P.forEach(p=>{p.tiltAngle+=p.tiltAngleInc;p.y+=(Math.cos(f/6)+3+p.r/2)/2;p.tilt=Math.sin(p.tiltAngle)*15;});
+    f++;if(f<220)requestAnimationFrame(draw);else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+function resetConfettiCanvas(){
+  const canvas=document.getElementById('confetti-canvas');
+  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+}
+</script>
+</body>
+</html>

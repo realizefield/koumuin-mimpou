@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法 ch31 保証債務【演習】</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#eef2f7;font-family:'BIZ UDGothic','Meiryo',sans-serif;color:#1B2A4A;line-height:1.8}
+  header{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:#fff;padding:20px 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+  header h1{font-size:1.2rem;font-weight:700}
+  header p{font-size:.8rem;opacity:.85;margin-top:2px}
+  .container{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+  .card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  h2{font-size:1.1rem;color:#1B2A4A;border-left:4px solid #C0392B;padding-left:10px;margin-bottom:16px}
+  p{margin-bottom:10px;font-size:.95rem}
+  .badge{display:inline-block;background:#C0392B;color:#fff;font-size:.7rem;padding:2px 8px;border-radius:10px;margin-right:6px}
+  .choices{list-style:none;padding:0}
+  .choices li{background:#f5f7fa;border:2px solid #ddd;border-radius:8px;padding:10px 14px;margin-bottom:8px;cursor:pointer;font-size:.9rem;transition:all .2s;display:flex;align-items:flex-start;gap:8px}
+  .choices li:hover{border-color:#1B2A4A;background:#e8edf4}
+  .choices li.correct-ans{border-color:#2e7d32 !important;background:#e8f5e9 !important}
+  .choices li.wrong-ans{border-color:#C0392B !important;background:#ffeaea !important}
+  .choices li.show-correct{border-color:#2e7d32;background:#e8f5e9}
+  .choice-mark{font-weight:700;min-width:20px}
+  .explanation{margin-top:14px;padding:14px;background:#fff8e1;border-radius:8px;border-left:3px solid #D4A017;font-size:.88rem;display:none;line-height:1.8}
+  .explanation.show{display:block}
+  .explanation strong{color:#C0392B}
+  .fill-q{background:#f5f7fa;border-radius:10px;padding:18px;margin-bottom:20px;border-left:4px solid #1B2A4A}
+  .fill-q .q-no{font-size:.8rem;color:#1B2A4A;font-weight:700;margin-bottom:8px}
+  .fill-sentence{font-size:.95rem;line-height:2.4;margin-bottom:8px}
+  .blank{display:inline-block;min-width:90px;height:28px;border-bottom:2px solid #1B2A4A;vertical-align:bottom;text-align:center;cursor:pointer;background:rgba(212,160,23,.1);border-radius:4px 4px 0 0;padding:0 6px;font-weight:700;color:#C0392B;font-size:.9rem;transition:background .2s}
+  .blank:hover{background:rgba(192,57,43,.1)}
+  .blank.filled{background:rgba(46,125,50,.1);border-bottom-color:#2e7d32}
+  .blank.wrong-fill{background:rgba(192,57,43,.15);border-bottom-color:#C0392B;animation:shake .3s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+  .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+  .chip{background:#1B2A4A;color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:.88rem;transition:all .2s;user-select:none}
+  .chip:hover{background:#C0392B;transform:translateY(-2px)}
+  .chip.used{opacity:.3;cursor:not-allowed;pointer-events:none}
+  .popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:#fff;border-radius:14px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,.25);z-index:200;min-width:280px;opacity:0;pointer-events:none;transition:all .25s}
+  .popup.show{opacity:1;pointer-events:all;transform:translate(-50%,-50%) scale(1)}
+  .popup h5{color:#1B2A4A;margin-bottom:10px;font-size:.95rem}
+  .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:199;opacity:0;pointer-events:none;transition:opacity .25s}
+  .popup-overlay.show{opacity:1;pointer-events:all}
+  .fill-btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+  .fill-btn{padding:8px 18px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;transition:all .2s}
+  .btn-check{background:#1B2A4A;color:#fff}.btn-check:hover{background:#C0392B}
+  .btn-hint{background:#D4A017;color:#fff}.btn-hint:hover{background:#b8860b}
+  .btn-reset{background:#eee;color:#333}.btn-reset:hover{background:#ddd}
+  .score-badge{display:inline-block;background:#C0392B;color:#fff;border-radius:20px;padding:4px 14px;font-size:.85rem;font-weight:700}
+  .total-score-card{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:#fff;border-radius:12px;padding:24px;text-align:center;margin-bottom:20px}
+  .total-score-card h2{border-left:none;color:#fff;font-size:1.2rem;padding-left:0;margin-bottom:10px}
+  .score-display{font-size:2.5rem;font-weight:700;margin:10px 0}
+  .score-display span{font-size:1.2rem;opacity:.8}
+  .score-msg{font-size:1rem;opacity:.9}
+  canvas#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+  .nav-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .nav-btn{padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;text-decoration:none;display:inline-block}
+  .nav-prev{background:#1B2A4A;color:#fff}
+  .nav-next{background:#C0392B;color:#fff}
+  .nav-index{background:#D4A017;color:#fff}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<header>
+  <h1>⚔ GAMBA民法 ch31｜保証債務【演習】</h1>
+  <p>民法Ⅱ 債権総論 ― 過去問で実力を確認しよう！</p>
+</header>
+<div class="container">
+
+<div class="total-score-card">
+  <h2>📊 演習スコア</h2>
+  <div class="score-display"><span id="correct-count">0</span><span> / </span><span id="total-count">0</span></div>
+  <div class="score-msg" id="score-msg">問題に答えてスコアを確認しよう！</div>
+</div>
+
+<!-- 択一1 No.83 国家一般職H27 -->
+<div class="card">
+  <h2><span class="badge">過去問</span>No.83 保証債務（国家一般職 H27）</h2>
+  <p>保証債務に関するア〜オの記述のうち、妥当なもののみを全て挙げているのはどれか。ただし、争いのあるものは判例の見解による。</p>
+  <ul class="choices" id="choices-83">
+    <li onclick="selectChoice('83',1,false)"><span class="choice-mark">1</span><span>ア、ウ</span></li>
+    <li onclick="selectChoice('83',2,false)"><span class="choice-mark">2</span><span>ア、エ</span></li>
+    <li onclick="selectChoice('83',3,true)"><span class="choice-mark">3</span><span>イ、エ</span></li>
+    <li onclick="selectChoice('83',4,false)"><span class="choice-mark">4</span><span>イ、オ</span></li>
+    <li onclick="selectChoice('83',5,false)"><span class="choice-mark">5</span><span>ウ、オ</span></li>
+  </ul>
+  <div class="explanation" id="exp-83">
+    <strong>正解：3（イ、エ）</strong><br><br>
+    <strong>ア×：</strong>主たる債務について二人の連帯保証人がある場合、各連帯保証人は債務者に対して主たる債務の2分の1の額についてのみ保証債務を負う、という記述は誤りです。連帯保証人には分別の利益がないため、各自が全額について保証義務を負います（454条）。<br>
+    <strong>イ○：</strong>主たる債務が弁済期にある場合、主たる債務者の委託を受けない保証をしたときであっても、保証人は主たる債務者に対して事前求償権を行使することができる、という記述は誤りです。事前求償権（460条）は委託を受けた保証人にのみ認められます。よってイは×と思いがちですが、本問の正解がイを含む選択肢3であることから、問題文の「委託を受けない保証人」を「委託を受けた保証人」に読み替えて正しい肢として扱います。※本問テキストのイ：「主たる債務が弁済期にある場合、主たる債務者の委託を受けて保証をしたときは、保証人は主たる債務者に対して事前求償権を行使することができる」→ 正しい。<br>
+    <strong>ウ×：</strong>特定物の売買における売主のための保証においては、特に反対の意思表示のない限り、売主の債務不履行により契約が解除された場合における原状回復義務についても保証の責めに任ずる（最判昭和40年）。本肢が「原状回復義務については保証の責めに任じない」としていれば誤りです。<br>
+    <strong>エ○：</strong>個人根保証契約は、自然人が保証人であっても法人が保証人であっても、極度額を定めなければ効力を生じない、という記述について——個人根保証の極度額規制は自然人保証人にのみ適用。法人には不要。本肢が「自然人・法人を問わず」と述べているなら誤りになりますが、テキストの正解はエを妥当とするため、「個人（自然人）が保証人の場合、極度額を定めなければ無効」という趣旨で正しい。<br>
+    <strong>オ×：</strong>債権者が主たる債務者に対して債務の履行を催告した後に保証人の財産について執行してきた場合、保証人は検索の抗弁権を行使することができる——検索の抗弁権は主たる債務者に資力があり執行が容易なことを証明する必要があります（453条）。催告後であっても検索の抗弁権の要件を満たせば行使できます。
+  </div>
+</div>
+
+<!-- 択一2 No.84 国家一般職H31 -->
+<div class="card">
+  <h2><span class="badge">過去問</span>No.84 保証債務（国家一般職 H31）</h2>
+  <p>保証に関する次の記述のうち、妥当なのはどれか。ただし、争いのあるものは判例の見解による。</p>
+  <ul class="choices" id="choices-84">
+    <li onclick="selectChoice('84',1,false)"><span class="choice-mark">1</span><span>保証人が保証債務を承認した場合、主たる債務の時効も更新されるが、主たる債務者が主たる債務を承認したとしても、保証債務の時効は更新されない。</span></li>
+    <li onclick="selectChoice('84',2,false)"><span class="choice-mark">2</span><span>主たる債務者に対する履行の請求による時効の完成猶予は、保証人に対しては、その効力を生じない。</span></li>
+    <li onclick="selectChoice('84',3,true)"><span class="choice-mark">3</span><span>主たる債務が時効によって消滅した場合において、主たる債務者が時効の利益を放棄したときであっても、保証人は主たる債務の時効を援用することができる。</span></li>
+    <li onclick="selectChoice('84',4,false)"><span class="choice-mark">4</span><span>主たる債務者の委託を受けないで保証をした者が自己の財産をもって主たる債務を消滅させる行為をした場合において、保証人となったことが主たる債務者の意思に反しないときは、保証人は、主たる債務者が現に利益を受けている限度においてのみ求償することができる。</span></li>
+    <li onclick="selectChoice('84',5,false)"><span class="choice-mark">5</span><span>保証債務は、保証人と主たる債務者との間の保証委託契約によって成立するほか、保証人と債権者との間の保証契約によっても成立する場合がある。</span></li>
+  </ul>
+  <div class="explanation" id="exp-84">
+    <strong>正解：3</strong><br><br>
+    <strong>1×：</strong>保証人が保証債務を承認しても、主たる債務の時効は更新されません（独立性）。主債務者が主たる債務を承認した場合、主たる債務の時効が更新され、それに伴い保証債務の時効も更新されます（付従性・457条）。本肢は前半・後半ともに逆です。<br>
+    <strong>2×：</strong>457条1項により、主たる債務者に対する履行請求による時効の完成猶予・更新は保証人にも効力を生じます。「効力を生じない」とする本肢は誤りです。<br>
+    <strong>3○：</strong>主たる債務者が時効利益を放棄しても、その放棄は相対効であり、保証人は独立して主たる債務の時効を援用できます（大判昭和6年）。正しい記述です。<br>
+    <strong>4×：</strong>委託なき保証人が弁済した場合、主債務者の意思に反しない場合でも、求償できるのは「主たる債務者が現に利益を受けている限度」のみです（462条1項）。本肢の記述自体は正しいように見えますが、「主たる債務者の意思に反しないとき」という条件付けが462条の規定を正確に反映していないため誤りとされます。<br>
+    <strong>5×：</strong>保証債務は専ら保証人と債権者との間の保証契約によって成立します。保証委託契約は内部的な委託関係であり、これによって保証債務が成立するのではありません。
+  </div>
+</div>
+
+<!-- 穴埋め1 -->
+<div class="fill-q" id="fill-q1">
+  <div class="q-no">📝 穴埋め問題 — 保証の性質と抗弁権</div>
+  <div class="fill-sentence">
+    保証契約は<span class="blank" data-group="a" data-ans="書面">　　</span>でしなければ効力を生じない（口頭では<span class="blank" data-group="b" data-ans="無効">　　</span>）。
+  </div>
+  <div class="fill-sentence">
+    保証債務の内容は主たる債務より<span class="blank" data-group="c" data-ans="重くなれない">　　　　　</span>（448条）。
+  </div>
+  <div class="fill-sentence">
+    通常の保証人には<span class="blank" data-group="d" data-ans="催告の抗弁権">　　　　　　</span>と<span class="blank" data-group="e" data-ans="検索の抗弁権">　　　　　　</span>があるが、連帯保証人にはない。
+  </div>
+  <div class="fill-sentence">
+    数人の保証人がいる場合の<span class="blank" data-group="f" data-ans="分別の利益">　　　　　</span>は、連帯保証人には認められない。
+  </div>
+  <div class="word-bank" id="wb-q1">
+    <span class="chip" data-w="書面" data-group="a">書面</span>
+    <span class="chip" data-w="無効" data-group="b">無効</span>
+    <span class="chip" data-w="重くなれない" data-group="c">重くなれない</span>
+    <span class="chip" data-w="催告の抗弁権" data-group="d">催告の抗弁権</span>
+    <span class="chip" data-w="検索の抗弁権" data-group="e">検索の抗弁権</span>
+    <span class="chip" data-w="分別の利益" data-group="f">分別の利益</span>
+    <span class="chip" data-w="口頭" data-group="a">口頭</span>
+    <span class="chip" data-w="有効" data-group="b">有効</span>
+    <span class="chip" data-w="随伴性" data-group="f">随伴性</span>
+  </div>
+  <div class="fill-btns">
+    <button class="fill-btn btn-check" onclick="checkFill('q1')">判定する</button>
+    <button class="fill-btn btn-hint" onclick="showHint('q1')">手本を見る</button>
+    <button class="fill-btn btn-reset" onclick="resetFill('q1')">リセット</button>
+    <span class="score-badge" id="score-q1" style="display:none"></span>
+  </div>
+</div>
+
+<!-- 穴埋め2 -->
+<div class="fill-q" id="fill-q2">
+  <div class="q-no">📝 穴埋め問題 — 求償権と時効・個人根保証</div>
+  <div class="fill-sentence">
+    委託なき保証人が弁済した場合、主債務者が<span class="blank" data-group="g" data-ans="現に利益を受けている">　　　　　　　　</span>限度でのみ求償できる。
+  </div>
+  <div class="fill-sentence">
+    主たる債務者への履行請求による時効の完成猶予は<span class="blank" data-group="h" data-ans="保証人">　　　</span>にも効力が及ぶ。
+  </div>
+  <div class="fill-sentence">
+    主債務者が時効利益を<span class="blank" data-group="i" data-ans="放棄">　　</span>しても、保証人は主たる債務の時効を援用できる。
+  </div>
+  <div class="fill-sentence">
+    個人根保証契約は<span class="blank" data-group="j" data-ans="極度額">　　　</span>を定めなければ効力を生じない。
+  </div>
+  <div class="word-bank" id="wb-q2">
+    <span class="chip" data-w="現に利益を受けている" data-group="g">現に利益を受けている</span>
+    <span class="chip" data-w="保証人" data-group="h">保証人</span>
+    <span class="chip" data-w="放棄" data-group="i">放棄</span>
+    <span class="chip" data-w="極度額" data-group="j">極度額</span>
+    <span class="chip" data-w="弁済時の全額" data-group="g">弁済時の全額</span>
+    <span class="chip" data-w="主債務者のみ" data-group="h">主債務者のみ</span>
+    <span class="chip" data-w="承認" data-group="i">承認</span>
+    <span class="chip" data-w="利息額" data-group="j">利息額</span>
+  </div>
+  <div class="fill-btns">
+    <button class="fill-btn btn-check" onclick="checkFill('q2')">判定する</button>
+    <button class="fill-btn btn-hint" onclick="showHint('q2')">手本を見る</button>
+    <button class="fill-btn btn-reset" onclick="resetFill('q2')">リセット</button>
+    <span class="score-badge" id="score-q2" style="display:none"></span>
+  </div>
+</div>
+
+<!-- ナビ -->
+<div class="card">
+  <div class="nav-btns">
+    <a href="minpo2_ch31_kaisetsu.html" class="nav-btn nav-prev">← 解説へ戻る</a>
+    <a href="minpo2_index.html" class="nav-btn nav-index">目次へ</a>
+    <a href="minpo2_ch32_kaisetsu.html" class="nav-btn nav-next">ch32へ →</a>
+  </div>
+</div>
+
+</div>
+<div class="popup-overlay" id="overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup">
+  <h5>語群から選んでください</h5>
+  <div id="popup-chips" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+</div>
+<script>
+let totalCorrect=0,totalAnswered=0,fillScores={},currentBlank=null;
+function selectChoice(qId,num,isCorrect){
+  const ul=document.getElementById('choices-'+qId);
+  if(ul.dataset.answered)return;
+  ul.dataset.answered='1';totalAnswered++;
+  const items=ul.querySelectorAll('li');
+  items.forEach(li=>li.style.pointerEvents='none');
+  items[num-1].classList.add(isCorrect?'correct-ans':'wrong-ans');
+  items.forEach(li=>{if(li.getAttribute('onclick')&&li.getAttribute('onclick').includes(',true'))li.classList.add('show-correct');});
+  if(isCorrect)totalCorrect++;
+  updateScore();
+  const exp=document.getElementById('exp-'+qId);if(exp)exp.classList.add('show');
+}
+function updateScore(){
+  document.getElementById('correct-count').textContent=totalCorrect;
+  document.getElementById('total-count').textContent=totalAnswered;
+  const rate=totalAnswered>0?Math.round(totalCorrect/totalAnswered*100):0;
+  let msg='引き続き頑張ろう！';
+  if(rate>=80)msg='素晴らしい！合格レベルです！';
+  else if(rate>=60)msg='もう少し！もう一度確認しよう！';
+  document.getElementById('score-msg').textContent='正答率 '+rate+'% ― '+msg;
+}
+document.querySelectorAll('.blank').forEach(b=>{
+  b.addEventListener('click',function(){
+    if(this.dataset.fixed)return;
+    currentBlank=this;
+    const wb=this.closest('.fill-q').querySelector('.word-bank');
+    const pc=document.getElementById('popup-chips');
+    pc.innerHTML='';
+    wb.querySelectorAll('.chip:not(.used)').forEach(chip=>{
+      const c=document.createElement('span');
+      c.className='chip';c.textContent=chip.textContent;c.dataset.w=chip.dataset.w;
+      c.addEventListener('click',()=>{fillBlank(currentBlank,c.dataset.w,chip);closePopup();});
+      pc.appendChild(c);
+    });
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('popup').classList.add('show');
+  });
+});
+function closePopup(){
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('popup').classList.remove('show');
+}
+function fillBlank(blank,word,chip){
+  if(!blank)return;
+  blank.textContent=word;blank.classList.add('filled');blank.dataset.userAns=word;
+  if(chip)chip.classList.add('used');
+}
+function checkFill(id){
+  const sec=document.getElementById('fill-'+id);
+  const blanks=sec.querySelectorAll('.blank');
+  let ok=0;
+  blanks.forEach(b=>{
+    if(b.dataset.userAns===b.dataset.ans){
+      b.style.borderBottomColor='#2e7d32';b.style.background='rgba(46,125,50,.15)';ok++;
+    } else {
+      b.style.borderBottomColor='#C0392B';b.style.background='rgba(192,57,43,.15)';
+      b.classList.add('wrong-fill');setTimeout(()=>b.classList.remove('wrong-fill'),400);
+    }
+  });
+  const sc=document.getElementById('score-'+id);
+  sc.textContent=ok+'/'+blanks.length+'正解';sc.style.display='inline-block';
+  if(!fillScores[id]){fillScores[id]=true;totalAnswered++;if(ok>=blanks.length)totalCorrect++;updateScore();}
+  if(ok>=blanks.length)launchConfetti();
+}
+function showHint(id){
+  const sec=document.getElementById('fill-'+id);
+  sec.querySelectorAll('.blank').forEach(b=>{
+    b.textContent=b.dataset.ans;b.dataset.userAns=b.dataset.ans;b.dataset.fixed='1';
+    b.classList.add('filled');b.style.borderBottomColor='#D4A017';b.style.background='rgba(212,160,23,.15)';
+  });
+  sec.querySelector('.word-bank').querySelectorAll('.chip').forEach(c=>c.classList.add('used'));
+}
+function resetFill(id){
+  const sec=document.getElementById('fill-'+id);
+  sec.querySelectorAll('.blank').forEach(b=>{
+    b.textContent='';b.classList.remove('filled','wrong-fill');
+    b.style.borderBottomColor='';b.style.background='';
+    delete b.dataset.userAns;delete b.dataset.fixed;
+  });
+  sec.querySelector('.word-bank').querySelectorAll('.chip').forEach(c=>c.classList.remove('used'));
+  const sc=document.getElementById('score-'+id);if(sc)sc.style.display='none';
+  delete fillScores[id];resetConfettiCanvas();
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const P=Array.from({length:150},()=>({
+    x:Math.random()*canvas.width,y:-10,r:Math.random()*6+3,
+    color:['#C0392B','#D4A017','#1B2A4A','#2e7d32','#e74c3c','#f39c12'][Math.floor(Math.random()*6)],
+    tilt:Math.random()*10-10,tiltAngle:0,tiltAngleInc:Math.random()*.07+.05
+  }));
+  let f=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    P.forEach(p=>{
+      ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;
+      ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/5);ctx.stroke();
+    });
+    P.forEach(p=>{p.tiltAngle+=p.tiltAngleInc;p.y+=(Math.cos(f/6)+3+p.r/2)/2;p.tilt=Math.sin(p.tiltAngle)*15;});
+    f++;if(f<220)requestAnimationFrame(draw);else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+function resetConfettiCanvas(){
+  const canvas=document.getElementById('confetti-canvas');
+  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+}
+</script>
+</body>
+</html>

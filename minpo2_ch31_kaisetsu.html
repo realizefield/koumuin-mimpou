@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法 ch31 保証債務</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#eef2f7;font-family:'BIZ UDGothic','Meiryo',sans-serif;color:#1B2A4A;line-height:1.8}
+  header{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:#fff;padding:20px 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+  header h1{font-size:1.2rem;font-weight:700}
+  header p{font-size:.8rem;opacity:.85;margin-top:2px}
+  .container{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+  .card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  h2{font-size:1.15rem;color:#1B2A4A;border-left:4px solid #C0392B;padding-left:10px;margin-bottom:16px}
+  h3{font-size:1rem;color:#C0392B;margin:16px 0 8px;font-weight:700}
+  p{margin-bottom:10px;font-size:.95rem}
+  ul,ol{padding-left:20px;margin-bottom:10px;font-size:.95rem}
+  li{margin-bottom:4px}
+  .point-box{background:#fff8e1;border-left:4px solid #D4A017;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+  .point-box strong{color:#C0392B}
+  .ng-box{background:#ffeaea;border-left:4px solid #C0392B;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+  .ok-box{background:#e8f5e9;border-left:4px solid #2e7d32;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+  th{background:#1B2A4A;color:#fff;padding:8px 10px;text-align:center}
+  td{border:1px solid #ccc;padding:8px 10px;vertical-align:top}
+  tr:nth-child(even) td{background:#f5f7fa}
+  .mini-quiz{background:#f0f4f8;border-radius:10px;padding:18px;margin-top:18px}
+  .mini-quiz h4{font-size:.95rem;color:#1B2A4A;margin-bottom:12px;font-weight:700}
+  .q-item{margin-bottom:14px}
+  .q-item p{font-size:.9rem;margin-bottom:6px}
+  .ox-btn{display:inline-block;padding:6px 18px;margin-right:8px;border-radius:6px;border:2px solid #1B2A4A;background:#fff;cursor:pointer;font-size:.9rem;font-weight:700;transition:all .2s}
+  .ox-btn:hover{background:#1B2A4A;color:#fff}
+  .ox-btn.correct{background:#2e7d32;border-color:#2e7d32;color:#fff}
+  .ox-btn.wrong{background:#C0392B;border-color:#C0392B;color:#fff}
+  .exp{font-size:.85rem;margin-top:6px;padding:8px 12px;border-radius:6px;display:none}
+  .exp-ok{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
+  .exp-ng{background:#ffeaea;color:#C0392B;border:1px solid #ef9a9a}
+  .fill-section{margin-top:18px}
+  .fill-sentence{font-size:.95rem;line-height:2.4;margin-bottom:8px}
+  .blank{display:inline-block;min-width:90px;height:28px;border-bottom:2px solid #1B2A4A;vertical-align:bottom;text-align:center;cursor:pointer;background:rgba(212,160,23,.1);border-radius:4px 4px 0 0;padding:0 4px;font-weight:700;color:#C0392B;transition:background .2s}
+  .blank:hover{background:rgba(192,57,43,.1)}
+  .blank.filled{background:rgba(46,125,50,.1);border-bottom-color:#2e7d32}
+  .blank.wrong-fill{background:rgba(192,57,43,.15);border-bottom-color:#C0392B;animation:shake .3s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+  .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+  .chip{background:#1B2A4A;color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:.88rem;transition:all .2s;user-select:none}
+  .chip:hover{background:#C0392B;transform:translateY(-2px)}
+  .chip.used{opacity:.3;cursor:not-allowed;pointer-events:none}
+  .popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:#fff;border-radius:14px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,.25);z-index:200;min-width:280px;opacity:0;pointer-events:none;transition:all .25s}
+  .popup.show{opacity:1;pointer-events:all;transform:translate(-50%,-50%) scale(1)}
+  .popup h5{color:#1B2A4A;margin-bottom:10px;font-size:.95rem}
+  .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:199;opacity:0;pointer-events:none;transition:opacity .25s}
+  .popup-overlay.show{opacity:1;pointer-events:all}
+  .fill-btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+  .fill-btn{padding:8px 18px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;transition:all .2s}
+  .btn-check{background:#1B2A4A;color:#fff}.btn-check:hover{background:#C0392B}
+  .btn-hint{background:#D4A017;color:#fff}.btn-hint:hover{background:#b8860b}
+  .btn-reset{background:#eee;color:#333}.btn-reset:hover{background:#ddd}
+  .score-badge{display:inline-block;background:#C0392B;color:#fff;border-radius:20px;padding:4px 14px;font-size:.85rem;font-weight:700}
+  canvas#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+  .nav-btns{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+  .nav-btn{padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;text-decoration:none;display:inline-block}
+  .nav-prev{background:#1B2A4A;color:#fff}
+  .nav-next{background:#C0392B;color:#fff}
+  .nav-index{background:#D4A017;color:#fff}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<header>
+  <h1>🏛 GAMBA民法 ch31｜保証債務</h1>
+  <p>民法Ⅱ 債権総論 ― 成立・付従性・補充性・抗弁権・求償・個人根保証</p>
+</header>
+<div class="container">
+
+<!-- §1 保証債務の意義と成立 -->
+<div class="card">
+  <h2>§1 保証債務の意義と成立</h2>
+  <p>保証債務とは、主たる債務者が債務を履行しない場合に、<strong>保証人が代わりに履行する義務</strong>を負う制度です（446条）。</p>
+
+  <h3>成立要件</h3>
+  <ul>
+    <li>保証契約は<strong>債権者と保証人</strong>との間の契約（主債務者は当事者ではない）</li>
+    <li>保証契約は<strong>書面</strong>（または電磁的記録）でしなければ効力を生じない（446条2項）</li>
+    <li>主たる債務が存在すること（付従性）</li>
+  </ul>
+  <div class="ng-box">
+    <strong>注意：</strong>保証は主債務者の委託がなくても成立します。ただし、委託の有無は求償権の範囲に影響します。
+  </div>
+  <div class="point-box">
+    <strong>保証債務の成立：</strong>保証債務は保証人と債権者との間の<strong>保証契約</strong>によって成立します。保証人と主たる債務者との間の保証委託契約によって成立するのではありません。
+  </div>
+
+  <!-- ミニテスト1 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ①</h4>
+    <div class="q-item" id="q1">
+      <p>Q1. 保証契約は、口頭でも有効に成立する。</p>
+      <button class="ox-btn" onclick="checkOX('q1',false,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q1',false,this)">×</button>
+      <div class="exp exp-ok" id="exp-q1-ok">正解です！446条2項により、保証契約は書面（または電磁的記録）でしなければ効力を生じません。</div>
+      <div class="exp exp-ng" id="exp-q1-ng">不正解です。446条2項により保証契約は書面が必要です。口頭の保証契約は無効です。</div>
+    </div>
+    <div class="q-item" id="q2">
+      <p>Q2. 保証債務は、保証人と主たる債務者との間の保証委託契約によって成立する。</p>
+      <button class="ox-btn" onclick="checkOX('q2',false,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q2',false,this)">×</button>
+      <div class="exp exp-ok" id="exp-q2-ok">正解です！保証債務は保証人と債権者との間の保証契約によって成立します。保証委託契約は内部的な委託関係にすぎません。</div>
+      <div class="exp exp-ng" id="exp-q2-ng">不正解です。保証債務は保証人と債権者との間の保証契約によって成立します（446条1項）。</div>
+    </div>
+  </div>
+</div>
+
+<!-- §2 保証債務の性質 -->
+<div class="card">
+  <h2>§2 保証債務の性質（付従性・随伴性・補充性）</h2>
+
+  <h3>① 付従性</h3>
+  <p>保証債務は主たる債務に従属します。</p>
+  <ul>
+    <li>主たる債務が成立しなければ保証債務も成立しない</li>
+    <li>主たる債務が消滅すれば保証債務も消滅する</li>
+    <li>保証債務の内容は主たる債務より<strong>重くなれない</strong>（448条）</li>
+  </ul>
+  <div class="ok-box">
+    <strong>448条：</strong>保証人の負担が主たる債務より重い場合は、主たる債務の限度に縮減されます。利息・損害賠償などを含む場合も主たる債務の範囲を超えてはなりません。
+  </div>
+
+  <h3>② 随伴性</h3>
+  <p>主たる債権が移転（譲渡）されると、保証債務も<strong>当然に新債権者に移転</strong>します。</p>
+
+  <h3>③ 補充性</h3>
+  <p>保証人は、まず主たる債務者に請求・執行するよう求める権利（<strong>催告の抗弁権・検索の抗弁権</strong>）を持ちます。</p>
+  <table>
+    <tr><th>抗弁権</th><th>内容</th><th>連帯保証</th></tr>
+    <tr><td>催告の抗弁権（452条）</td><td>まず主債務者に請求せよと主張できる</td><td>なし</td></tr>
+    <tr><td>検索の抗弁権（453条）</td><td>主債務者に資力・執行の容易さを証明して先に執行せよと主張できる</td><td>なし</td></tr>
+  </table>
+  <div class="point-box">
+    <strong>重要：</strong>催告の抗弁権は「先に主債務者に催告せよ」、検索の抗弁権は「主債務者の財産から先に執行せよ（資力があり執行容易なことを証明）」です。
+  </div>
+
+  <!-- 穴埋め §2 -->
+  <div class="mini-quiz fill-section">
+    <h4>✍ 穴埋めテスト — 保証の性質</h4>
+    <div class="fill-sentence">
+      保証債務の内容は主たる債務より<span class="blank" data-group="A" data-ans="重くなれない">　　　　　</span>（448条）。
+    </div>
+    <div class="fill-sentence">
+      保証人が主たる債務者に先に請求するよう求める権利を<span class="blank" data-group="B" data-ans="催告の抗弁権">　　　　　　</span>という。
+    </div>
+    <div class="fill-sentence">
+      主たる債務者に資力があり執行容易なことを証明して先に執行を求める権利を<span class="blank" data-group="C" data-ans="検索の抗弁権">　　　　　　</span>という。
+    </div>
+    <div class="word-bank" id="wb-s2">
+      <span class="chip" data-w="重くなれない" data-group="A">重くなれない</span>
+      <span class="chip" data-w="催告の抗弁権" data-group="B">催告の抗弁権</span>
+      <span class="chip" data-w="検索の抗弁権" data-group="C">検索の抗弁権</span>
+      <span class="chip" data-w="軽くなれない" data-group="A">軽くなれない</span>
+      <span class="chip" data-w="求償権" data-group="B">求償権</span>
+      <span class="chip" data-w="付従性" data-group="C">付従性</span>
+    </div>
+    <div class="fill-btns">
+      <button class="fill-btn btn-check" onclick="checkFill('s2')">判定する</button>
+      <button class="fill-btn btn-hint" onclick="showHint('s2')">手本を見る</button>
+      <button class="fill-btn btn-reset" onclick="resetFill('s2')">リセット</button>
+      <span class="score-badge" id="score-s2" style="display:none"></span>
+    </div>
+  </div>
+</div>
+
+<!-- §3 保証債務の範囲と分別の利益 -->
+<div class="card">
+  <h2>§3 保証債務の範囲・分別の利益</h2>
+
+  <h3>保証債務の範囲（447条）</h3>
+  <p>保証債務は、主たる債務の元本・利息・違約金・損害賠償その他一切の従たる債務を含みます。</p>
+  <ul>
+    <li>特定物の売買における売主のための保証では、<strong>契約解除による原状回復義務</strong>（返還債務）も保証の対象となります（最判昭和40年）。</li>
+  </ul>
+
+  <h3>分別の利益（456条）</h3>
+  <p>主たる債務について<strong>数人の保証人</strong>がいる場合、各保証人は<strong>頭割り</strong>（保証人の数で等分した額）の範囲でのみ保証債務を負います。</p>
+  <div class="ng-box">
+    <strong>例外：</strong>連帯保証人には分別の利益がありません。また、主債務者の委託により数人が保証した場合でも分別の利益が認められます（通説）。
+  </div>
+
+  <!-- ミニテスト2 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ②</h4>
+    <div class="q-item" id="q3">
+      <p>Q3. 主たる債務について二人の連帯保証人がある場合、各連帯保証人は主たる債務の2分の1の額についてのみ保証債務を負う。</p>
+      <button class="ox-btn" onclick="checkOX('q3',false,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q3',false,this)">×</button>
+      <div class="exp exp-ok" id="exp-q3-ok">正解です！連帯保証人には分別の利益がありません（454条）。各連帯保証人は主たる債務の全額について保証義務を負います。</div>
+      <div class="exp exp-ng" id="exp-q3-ng">不正解です。分別の利益は通常の保証人にはありますが、連帯保証人にはありません（454条）。各連帯保証人は全額について責任を負います。</div>
+    </div>
+    <div class="q-item" id="q4">
+      <p>Q4. 特定物の売買における売主のための保証においては、売主の債務不履行により契約が解除された場合における原状回復義務についても保証の責めに任ずる。</p>
+      <button class="ox-btn" onclick="checkOX('q4',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q4',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q4-ok">正解です！最判昭和40年により、特定物売買の売主のための保証では、解除による原状回復義務も保証の対象となります（特に反対の意思表示のない限り）。</div>
+      <div class="exp exp-ng" id="exp-q4-ng">不正解です。最判昭和40年により、特定物売買の売主のための保証では原状回復義務も保証対象となります。</div>
+    </div>
+  </div>
+</div>
+
+<!-- §4 保証人の求償権 -->
+<div class="card">
+  <h2>§4 保証人の求償権</h2>
+  <p>保証人が主たる債務者に代わって弁済した場合、主たる債務者に対して<strong>求償</strong>できます。求償権の範囲は委託の有無によって異なります。</p>
+
+  <h3>委託を受けた保証人の求償（459条）</h3>
+  <ul>
+    <li>弁済その他の出捐額・弁済後の法定利息・費用・損害の賠償を求償できる</li>
+    <li><strong>事前求償権</strong>（460条）：一定の場合（主債務者が破産した場合など）には弁済前でも求償できる</li>
+  </ul>
+
+  <h3>委託なき保証人の求償（462条）</h3>
+  <table>
+    <tr><th>種別</th><th>求償範囲</th></tr>
+    <tr><td>主債務者の意思に反しない保証</td><td>弁済時の現利益の限度（現に利益を受けている限度）</td></tr>
+    <tr><td>主債務者の意思に反する保証</td><td>弁済時の現利益の限度（さらに制限される）</td></tr>
+  </table>
+  <div class="point-box">
+    <strong>重要：</strong>委託なき保証人（主債務者の委託を受けないで保証をした者）が弁済した場合、主債務者が現に利益を受けている限度でのみ求償できます（462条）。
+  </div>
+
+  <h3>主たる債務の時効と保証人（457条）</h3>
+  <ul>
+    <li>主たる債務者に対する<strong>履行請求</strong>による時効の完成猶予・更新は、<strong>保証人に対しても効力を生じる</strong>（457条1項）</li>
+    <li>主たる債務が<strong>時効消滅</strong>した場合、保証人は主たる債務の時効を<strong>援用できる</strong>（457条2項）</li>
+    <li>保証人が保証債務を<strong>承認</strong>しても、主たる債務の時効は更新されない</li>
+  </ul>
+
+  <!-- 穴埋め §4 -->
+  <div class="mini-quiz fill-section">
+    <h4>✍ 穴埋めテスト — 保証人の求償権と時効</h4>
+    <div class="fill-sentence">
+      委託なき保証人が弁済した場合、主債務者が<span class="blank" data-group="D" data-ans="現に利益を受けている">　　　　　　　　</span>限度でのみ求償できる。
+    </div>
+    <div class="fill-sentence">
+      主たる債務者への履行請求による時効の完成猶予は、<span class="blank" data-group="E" data-ans="保証人">　　　</span>にも効力を生じる。
+    </div>
+    <div class="fill-sentence">
+      主たる債務が時効消滅した場合、保証人は主たる債務の時効を<span class="blank" data-group="F" data-ans="援用できる">　　　　　</span>。
+    </div>
+    <div class="word-bank" id="wb-s4">
+      <span class="chip" data-w="現に利益を受けている" data-group="D">現に利益を受けている</span>
+      <span class="chip" data-w="保証人" data-group="E">保証人</span>
+      <span class="chip" data-w="援用できる" data-group="F">援用できる</span>
+      <span class="chip" data-w="弁済時の全額" data-group="D">弁済時の全額</span>
+      <span class="chip" data-w="主債務者のみ" data-group="E">主債務者のみ</span>
+      <span class="chip" data-w="援用できない" data-group="F">援用できない</span>
+    </div>
+    <div class="fill-btns">
+      <button class="fill-btn btn-check" onclick="checkFill('s4')">判定する</button>
+      <button class="fill-btn btn-hint" onclick="showHint('s4')">手本を見る</button>
+      <button class="fill-btn btn-reset" onclick="resetFill('s4')">リセット</button>
+      <span class="score-badge" id="score-s4" style="display:none"></span>
+    </div>
+  </div>
+</div>
+
+<!-- §5 個人根保証契約 -->
+<div class="card">
+  <h2>§5 個人根保証契約（465条の2）</h2>
+  <p>一定の範囲に属する不特定の債務を主たる債務とする保証契約（根保証契約）のうち、保証人が<strong>個人</strong>であるものを<strong>個人根保証契約</strong>といいます。</p>
+
+  <h3>極度額の定め（必須）</h3>
+  <p>個人根保証契約は、<strong>極度額</strong>（保証の上限額）を定めなければ<strong>効力を生じません</strong>（465条の2第2項）。</p>
+  <div class="ng-box">
+    <strong>重要：</strong>極度額の定めは、自然人が保証人であれば（法人保証は不要）、どのような種類の根保証でも必要です。極度額を定めない個人根保証契約は<strong>無効</strong>です。
+  </div>
+
+  <h3>元本確定事由（465条の4）</h3>
+  <p>次の事由が生じると、それ以降の債務は根保証の対象から外れます（元本が確定する）。</p>
+  <ul>
+    <li>債権者が主たる債務者・保証人の財産について<strong>強制執行・担保権実行</strong>を申し立てたとき</li>
+    <li>主たる債務者・保証人が<strong>破産手続開始の決定</strong>を受けたとき</li>
+    <li>主たる債務者・保証人が<strong>死亡</strong>したとき</li>
+  </ul>
+
+  <!-- ミニテスト3 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ③</h4>
+    <div class="q-item" id="q5">
+      <p>Q5. 個人根保証契約は、自然人が保証人であっても法人が保証人であっても、極度額を定めなければ効力を生じない。</p>
+      <button class="ox-btn" onclick="checkOX('q5',false,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q5',false,this)">×</button>
+      <div class="exp exp-ok" id="exp-q5-ok">正解です！個人根保証契約の極度額必須ルールは「個人（自然人）」が保証人の場合に適用されます。法人が保証人の場合には適用されません。</div>
+      <div class="exp exp-ng" id="exp-q5-ng">不正解です。個人根保証の極度額規制は自然人が保証人の場合のみです。法人保証には適用されません。</div>
+    </div>
+    <div class="q-item" id="q6">
+      <p>Q6. 個人根保証契約において極度額を定めなかった場合、その契約は無効となる。</p>
+      <button class="ox-btn" onclick="checkOX('q6',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q6',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q6-ok">正解です！465条の2第2項により、極度額を定めない個人根保証契約は効力を生じません（無効です）。</div>
+      <div class="exp exp-ng" id="exp-q6-ng">不正解です。465条の2第2項により、極度額を定めない個人根保証契約は無効です。</div>
+    </div>
+  </div>
+</div>
+
+<!-- §6 事前求償権・保証と時効の整理 -->
+<div class="card">
+  <h2>§6 事前求償権・保証と時効の総整理</h2>
+
+  <h3>事前求償権（460条）</h3>
+  <p>委託を受けた保証人は、弁済前であっても次の場合に主たる債務者に求償（免責請求）できます。</p>
+  <ul>
+    <li>主たる債務者が<strong>破産手続開始の決定</strong>を受け、かつ債権者がその破産財団の配当に加入しないとき</li>
+    <li>債務が弁済期にある場合（ただし保証人が期限前に弁済した場合は期限到来後でないと求償不可）</li>
+    <li>過失なく債権者に弁済すべき旨の裁判の言渡しがあったとき</li>
+  </ul>
+
+  <h3>保証と時効の整理表</h3>
+  <table>
+    <tr><th>場面</th><th>効果</th></tr>
+    <tr><td>主債務者への履行請求</td><td>保証人にも時効の完成猶予・更新の効力（457条1項）</td></tr>
+    <tr><td>保証人への履行請求</td><td>主債務者には効力が及ばない（相対効）</td></tr>
+    <tr><td>主たる債務の時効消滅</td><td>保証人は主たる債務の時効を援用できる（457条2項）</td></tr>
+    <tr><td>主債務者が時効利益を放棄</td><td>保証人はなお時効を援用できる（付従性から独立）</td></tr>
+    <tr><td>保証人が保証債務を承認</td><td>主たる債務の時効は更新されない（独立性）</td></tr>
+  </table>
+
+  <!-- ミニテスト4 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ④</h4>
+    <div class="q-item" id="q7">
+      <p>Q7. 主たる債務者が主たる債務の時効利益を放棄した場合、保証人はなお主たる債務の時効を援用することができる。</p>
+      <button class="ox-btn" onclick="checkOX('q7',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q7',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q7-ok">正解です！主債務者の時効利益の放棄は相対効であり、保証人は独立して時効を援用できます（大判昭和6年）。</div>
+      <div class="exp exp-ng" id="exp-q7-ng">不正解です。主債務者の時効利益放棄は相対効のため、保証人は独立して主たる債務の時効を援用できます。</div>
+    </div>
+    <div class="q-item" id="q8">
+      <p>Q8. 主たる債務が弁済期にある場合、委託を受けた保証人は、弁済前であっても主たる債務者に対して事前求償権を行使できる。</p>
+      <button class="ox-btn" onclick="checkOX('q8',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q8',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q8-ok">正解です！460条2号により、委託を受けた保証人は主たる債務が弁済期にある場合、弁済前でも事前求償権を行使できます（主たる債務者の委託を受けた場合に限る）。</div>
+      <div class="exp exp-ng" id="exp-q8-ng">不正解です。460条2号により、主たる債務が弁済期にある場合、委託を受けた保証人は弁済前でも事前求償権を行使できます。</div>
+    </div>
+  </div>
+</div>
+
+<!-- まとめ -->
+<div class="card">
+  <h2>📌 ch31 重要ポイントまとめ</h2>
+  <ul>
+    <li><strong>保証契約：</strong>債権者と保証人の間の書面による契約（口頭無効）</li>
+    <li><strong>付従性：</strong>保証債務は主たる債務より重くなれない（448条）</li>
+    <li><strong>随伴性：</strong>主たる債権の移転に伴い保証債務も移転</li>
+    <li><strong>催告の抗弁権：</strong>まず主債務者に請求せよと言える（連帯保証人はなし）</li>
+    <li><strong>検索の抗弁権：</strong>主債務者の資力・執行容易を証明して先に執行せよと言える（連帯保証人はなし）</li>
+    <li><strong>分別の利益：</strong>複数の通常保証人は頭割りで負担（連帯保証人はなし）</li>
+    <li><strong>委託なき保証人の求償：</strong>現に利益を受けている限度のみ（462条）</li>
+    <li><strong>主債務者への請求：</strong>保証人にも時効の完成猶予・更新の効力あり（457条1項）</li>
+    <li><strong>主債務の時効消滅：</strong>保証人は主たる債務の時効を援用できる（457条2項）</li>
+    <li><strong>個人根保証：</strong>極度額の定めが必須（なければ無効・465条の2）</li>
+    <li><strong>事前求償権：</strong>委託を受けた保証人が弁済前に求償できる場合（460条）</li>
+  </ul>
+  <div class="nav-btns">
+    <a href="minpo2_ch30_kaisetsu.html" class="nav-btn nav-prev">← ch30</a>
+    <a href="minpo2_index.html" class="nav-btn nav-index">目次へ</a>
+    <a href="minpo2_ch31_enshu.html" class="nav-btn nav-next">演習へ →</a>
+  </div>
+</div>
+
+</div>
+<div class="popup-overlay" id="overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup">
+  <h5>語群から選んでください</h5>
+  <div id="popup-chips" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+</div>
+<script>
+function checkOX(qId,correct,btn){
+  const item=document.getElementById(qId);
+  if(item.dataset.answered)return;
+  item.dataset.answered='1';
+  const btns=item.querySelectorAll('.ox-btn');
+  const isO=btn.textContent==='○';
+  const userCorrect=(isO===correct);
+  btns.forEach(b=>{
+    if(b.textContent==='○') b.classList.add(correct?'correct':'wrong');
+    else b.classList.add(!correct?'correct':'wrong');
+  });
+  document.getElementById('exp-'+qId+(userCorrect?'-ok':'-ng')).style.display='block';
+}
+let currentBlank=null;
+document.querySelectorAll('.blank').forEach(b=>{
+  b.addEventListener('click',function(){
+    if(this.dataset.fixed)return;
+    currentBlank=this;
+    const wb=this.closest('.mini-quiz').querySelector('.word-bank');
+    const pc=document.getElementById('popup-chips');
+    pc.innerHTML='';
+    wb.querySelectorAll('.chip:not(.used)').forEach(chip=>{
+      const c=document.createElement('span');
+      c.className='chip';c.textContent=chip.textContent;c.dataset.w=chip.dataset.w;
+      c.addEventListener('click',()=>{fillBlank(currentBlank,c.dataset.w,chip);closePopup();});
+      pc.appendChild(c);
+    });
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('popup').classList.add('show');
+  });
+});
+function closePopup(){
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('popup').classList.remove('show');
+}
+function fillBlank(blank,word,chip){
+  if(!blank)return;
+  blank.textContent=word;blank.classList.add('filled');blank.dataset.userAns=word;
+  if(chip)chip.classList.add('used');
+}
+function checkFill(id){
+  const sec=document.getElementById('wb-'+id).closest('.mini-quiz');
+  const blanks=sec.querySelectorAll('.blank');
+  let ok=0;
+  blanks.forEach(b=>{
+    if(b.dataset.userAns===b.dataset.ans){
+      b.style.borderBottomColor='#2e7d32';b.style.background='rgba(46,125,50,.15)';ok++;
+    } else {
+      b.style.borderBottomColor='#C0392B';b.style.background='rgba(192,57,43,.15)';
+      b.classList.add('wrong-fill');setTimeout(()=>b.classList.remove('wrong-fill'),400);
+    }
+  });
+  const sc=document.getElementById('score-'+id);
+  sc.textContent=ok+'/'+blanks.length+'正解';sc.style.display='inline-block';
+  if(ok>=blanks.length)launchConfetti();
+}
+function showHint(id){
+  const sec=document.getElementById('wb-'+id).closest('.mini-quiz');
+  sec.querySelectorAll('.blank').forEach(b=>{
+    b.textContent=b.dataset.ans;b.dataset.userAns=b.dataset.ans;b.dataset.fixed='1';
+    b.classList.add('filled');b.style.borderBottomColor='#D4A017';b.style.background='rgba(212,160,23,.15)';
+  });
+  document.getElementById('wb-'+id).querySelectorAll('.chip').forEach(c=>c.classList.add('used'));
+}
+function resetFill(id){
+  const sec=document.getElementById('wb-'+id).closest('.mini-quiz');
+  sec.querySelectorAll('.blank').forEach(b=>{
+    b.textContent='';b.classList.remove('filled','wrong-fill');
+    b.style.borderBottomColor='';b.style.background='';
+    delete b.dataset.userAns;delete b.dataset.fixed;
+  });
+  document.getElementById('wb-'+id).querySelectorAll('.chip').forEach(c=>c.classList.remove('used'));
+  const sc=document.getElementById('score-'+id);if(sc)sc.style.display='none';
+  resetConfettiCanvas();
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const P=Array.from({length:120},()=>({
+    x:Math.random()*canvas.width,y:-10,r:Math.random()*6+3,
+    color:['#C0392B','#D4A017','#1B2A4A','#2e7d32','#e74c3c','#f39c12'][Math.floor(Math.random()*6)],
+    tilt:Math.random()*10-10,tiltAngle:0,tiltAngleInc:Math.random()*.07+.05
+  }));
+  let f=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    P.forEach(p=>{
+      ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;
+      ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/5);ctx.stroke();
+    });
+    P.forEach(p=>{p.tiltAngle+=p.tiltAngleInc;p.y+=(Math.cos(f/6)+3+p.r/2)/2;p.tilt=Math.sin(p.tiltAngle)*15;});
+    f++;if(f<200)requestAnimationFrame(draw);else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+function resetConfettiCanvas(){
+  const canvas=document.getElementById('confetti-canvas');
+  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+}
+</script>
+</body>
+</html>

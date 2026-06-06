@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法 ch27 債務不履行</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#eef2f7;font-family:'BIZ UDGothic','Meiryo',sans-serif;color:#1B2A4A;line-height:1.8}
+  header{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:#fff;padding:20px 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+  header h1{font-size:1.2rem;font-weight:700}
+  header p{font-size:.8rem;opacity:.85;margin-top:2px}
+  .container{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+  .card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  h2{font-size:1.15rem;color:#1B2A4A;border-left:4px solid #C0392B;padding-left:10px;margin-bottom:16px}
+  h3{font-size:1rem;color:#C0392B;margin:16px 0 8px;font-weight:700}
+  p{margin-bottom:10px;font-size:.95rem}
+  ul,ol{padding-left:20px;margin-bottom:10px;font-size:.95rem}
+  li{margin-bottom:4px}
+  .point-box{background:#fff8e1;border-left:4px solid #D4A017;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+  .point-box strong{color:#C0392B}
+  .ng-box{background:#ffeaea;border-left:4px solid #C0392B;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+  .ok-box{background:#e8f5e9;border-left:4px solid #2e7d32;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+  th{background:#1B2A4A;color:#fff;padding:8px 10px;text-align:center}
+  td{border:1px solid #ccc;padding:8px 10px;vertical-align:top}
+  tr:nth-child(even) td{background:#f5f7fa}
+  .badge{display:inline-block;background:#C0392B;color:#fff;font-size:.7rem;padding:2px 8px;border-radius:10px;margin-right:6px;vertical-align:middle}
+  .badge-gold{background:#D4A017}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+  .flow-item{background:#1B2A4A;color:#fff;padding:6px 14px;border-radius:6px;font-size:.85rem;text-align:center}
+  .flow-arrow{color:#C0392B;font-size:1.2rem;font-weight:700}
+  /* ミニテスト */
+  .mini-quiz{background:#f0f4f8;border-radius:10px;padding:18px;margin-top:18px}
+  .mini-quiz h4{font-size:.95rem;color:#1B2A4A;margin-bottom:12px;font-weight:700}
+  .q-item{margin-bottom:14px}
+  .q-item p{font-size:.9rem;margin-bottom:6px}
+  .ox-btn{display:inline-block;padding:6px 18px;margin-right:8px;border-radius:6px;border:2px solid #1B2A4A;background:#fff;cursor:pointer;font-size:.9rem;font-weight:700;transition:all .2s}
+  .ox-btn:hover{background:#1B2A4A;color:#fff}
+  .ox-btn.correct{background:#2e7d32;border-color:#2e7d32;color:#fff}
+  .ox-btn.wrong{background:#C0392B;border-color:#C0392B;color:#fff}
+  .exp{font-size:.85rem;margin-top:6px;padding:8px 12px;border-radius:6px;display:none}
+  .exp-ok{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
+  .exp-ng{background:#ffeaea;color:#C0392B;border:1px solid #ef9a9a}
+  /* 語群ミニテスト */
+  .fill-section{margin-top:18px}
+  .fill-sentence{font-size:.95rem;line-height:2.2;margin-bottom:10px}
+  .blank{display:inline-block;min-width:80px;height:28px;border-bottom:2px solid #1B2A4A;vertical-align:bottom;text-align:center;cursor:pointer;position:relative;background:rgba(212,160,23,.1);border-radius:4px 4px 0 0;padding:0 4px;font-weight:700;color:#C0392B;transition:background .2s}
+  .blank:hover{background:rgba(192,57,43,.1)}
+  .blank.filled{background:rgba(46,125,50,.1);border-bottom-color:#2e7d32}
+  .blank.wrong-fill{background:rgba(192,57,43,.15);border-bottom-color:#C0392B;animation:shake .3s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+  .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
+  .chip{background:#1B2A4A;color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:.88rem;transition:all .2s;user-select:none}
+  .chip:hover{background:#C0392B;transform:translateY(-2px)}
+  .chip.used{opacity:.3;cursor:not-allowed;pointer-events:none}
+  .popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:#fff;border-radius:14px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,.25);z-index:200;min-width:260px;opacity:0;pointer-events:none;transition:all .25s}
+  .popup.show{opacity:1;pointer-events:all;transform:translate(-50%,-50%) scale(1)}
+  .popup h5{color:#1B2A4A;margin-bottom:10px;font-size:.95rem}
+  .popup .chip-list{display:flex;flex-wrap:wrap;gap:8px}
+  .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:199;opacity:0;pointer-events:none;transition:opacity .25s}
+  .popup-overlay.show{opacity:1;pointer-events:all}
+  .fill-btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+  .fill-btn{padding:8px 18px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;transition:all .2s}
+  .btn-check{background:#1B2A4A;color:#fff}
+  .btn-check:hover{background:#C0392B}
+  .btn-hint{background:#D4A017;color:#fff}
+  .btn-hint:hover{background:#b8860b}
+  .btn-reset{background:#eee;color:#333}
+  .btn-reset:hover{background:#ddd}
+  .score-badge{display:inline-block;background:#C0392B;color:#fff;border-radius:20px;padding:4px 14px;font-size:.85rem;font-weight:700;margin-left:10px}
+  canvas#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+  .nav-btns{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+  .nav-btn{padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;text-decoration:none;display:inline-block}
+  .nav-prev{background:#1B2A4A;color:#fff}
+  .nav-next{background:#C0392B;color:#fff}
+  .nav-index{background:#D4A017;color:#fff}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<header>
+  <h1>🏛 GAMBA民法 ch27｜債務不履行</h1>
+  <p>民法Ⅱ 債権総論 ― 履行遅滞・履行不能・損害賠償</p>
+</header>
+<div class="container">
+
+<!-- §1 債務不履行とは -->
+<div class="card">
+  <h2>§1 債務不履行とは</h2>
+  <p>債務者が正当な理由なく<strong>債務の本旨</strong>に従った履行をしない場合を<strong>債務不履行</strong>といいます。民法は債務不履行を次の3類型に整理しています。</p>
+
+  <h3>① 履行遅滞</h3>
+  <p>履行が可能であるのに、<strong>弁済期</strong>を過ぎても債務者が履行しない状態です。</p>
+  <div class="point-box">
+    <strong>ポイント：</strong>「履行できるのにしない」が履行遅滞。履行できない状態は履行不能。
+  </div>
+
+  <h3>② 履行不能</h3>
+  <p>契約成立後に<strong>債務者の責めに帰すべき事由</strong>によって履行が不可能になった場合です。</p>
+  <div class="ng-box">
+    <strong>注意：</strong>契約成立前から不能な場合（原始的不能）は、原則として<strong>契約は無効</strong>にはなりません（改正民法）。債権者は損害賠償を請求できます。
+  </div>
+
+  <h3>③ 不完全履行（契約不適合）</h3>
+  <p>履行はしたが、<strong>内容が債務の本旨に適合しない</strong>場合です（品質・数量・種類の不適合など）。</p>
+  <div class="ok-box">
+    <strong>例：</strong>頼んだスピーカーに音質不良の欠陥があった場合。売主は追完義務を負い、買主は追完請求・代金減額請求・損害賠償・解除ができます（562条以下）。
+  </div>
+
+  <!-- ミニテスト1 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ①</h4>
+    <div class="q-item" id="q1">
+      <p>Q1. 債務者が弁済期を過ぎても履行しない場合、これは「履行不能」に当たる。</p>
+      <button class="ox-btn" onclick="checkOX('q1',false,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q1',false,this)">×</button>
+      <div class="exp exp-ok" id="exp-q1-ok">正解です！弁済期を過ぎても履行できるのにしない場合は「履行遅滞」です。</div>
+      <div class="exp exp-ng" id="exp-q1-ng">不正解です。履行が可能なのに遅れている状態は「履行遅滞」であり、履行不能ではありません。</div>
+    </div>
+    <div class="q-item" id="q2">
+      <p>Q2. 改正民法では、原始的不能の契約であっても、債権者は債務者に損害賠償を請求できる場合がある。</p>
+      <button class="ox-btn" onclick="checkOX('q2',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q2',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q2-ok">正解です！改正民法412条の2は原始的不能でも損害賠償請求を認めています。</div>
+      <div class="exp exp-ng" id="exp-q2-ng">不正解です。改正民法412条の2により、原始的不能でも損害賠償請求が可能です。</div>
+    </div>
+  </div>
+</div>
+
+<!-- §2 債務不履行の効果 -->
+<div class="card">
+  <h2>§2 債務不履行の効果</h2>
+  <p>債務不履行があると、債権者は次の救済手段をとることができます。</p>
+
+  <div class="flow">
+    <div class="flow-item">債務不履行</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">① 強制履行</div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-item">② 損害賠償</div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-item">③ 契約解除</div>
+  </div>
+
+  <h3>帰責事由（415条）</h3>
+  <p>損害賠償請求には原則として<strong>債務者の責めに帰すべき事由（帰責事由）</strong>が必要です。ただし債務者は帰責事由がないことを証明して免責されます（挙証責任の転換）。</p>
+  <div class="point-box">
+    <strong>改正民法のポイント：</strong>「過失」だけでなく「契約の趣旨・取引の性質・社会通念」に照らして判断します（415条1項ただし書）。
+  </div>
+
+  <h3>解除と帰責事由</h3>
+  <p>解除については、<strong>帰責事由は不要</strong>（541条〜543条）。ただし債権者側に帰責事由があるときは解除できません（543条）。</p>
+
+  <div class="ok-box">
+    <strong>整理：</strong>損害賠償 → 帰責事由【必要】／解除 → 帰責事由【不要（債権者側になければよい）】
+  </div>
+
+  <!-- ミニテスト2 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ②</h4>
+    <div class="q-item" id="q3">
+      <p>Q3. 改正民法では、解除をするためには債務者の帰責事由が必要である。</p>
+      <button class="ox-btn" onclick="checkOX('q3',false,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q3',false,this)">×</button>
+      <div class="exp exp-ok" id="exp-q3-ok">正解です！改正民法では解除に帰責事由は不要です（541条〜543条）。</div>
+      <div class="exp exp-ng" id="exp-q3-ng">不正解です。改正民法では解除に債務者の帰責事由は不要とされました。</div>
+    </div>
+    <div class="q-item" id="q4">
+      <p>Q4. 債務者が損害賠償責任を免れるには、帰責事由がないことを債務者自身が証明しなければならない。</p>
+      <button class="ox-btn" onclick="checkOX('q4',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q4',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q4-ok">正解です！415条は挙証責任を債務者に転換し、債務者が帰責事由の不存在を証明します。</div>
+      <div class="exp exp-ng" id="exp-q4-ng">不正解です。415条の構造では、债務者が帰責事由のないことを証明して免責されます。</div>
+    </div>
+  </div>
+</div>
+
+<!-- §3 履行遅滞の要件 -->
+<div class="card">
+  <h2>§3 履行遅滞の要件と遅滞起算点</h2>
+  <p>履行遅滞が成立するには、次の3要件が必要です。</p>
+  <ol>
+    <li>履行が可能であること</li>
+    <li>履行期（弁済期）を過ぎていること</li>
+    <li>帰責事由があること</li>
+  </ol>
+
+  <h3>遅滞起算点（重要！）</h3>
+  <table>
+    <tr><th>債務の種類</th><th>遅滞起算点</th></tr>
+    <tr><td>確定期限のある債務</td><td>期限の到来した時</td></tr>
+    <tr><td>不確定期限のある債務</td><td>期限到来後に履行の請求を受けた時、または期限到来を知った時の<strong>いずれか早い方</strong></td></tr>
+    <tr><td>期限の定めのない債務</td><td>履行の請求（催告）を受けた時</td></tr>
+    <tr><td>不法行為による損害賠償債務</td><td>損害発生と同時（催告不要）</td></tr>
+  </table>
+  <div class="point-box">
+    <strong>不法行為の特則：</strong>不法行為に基づく損害賠償債務は、損害の発生と同時に遅滞に陥ります（催告なし）。確定期限のある債務と同様に扱われます。
+  </div>
+
+  <!-- 語群ミニテスト（穴埋め） -->
+  <div class="mini-quiz fill-section">
+    <h4>✍ 穴埋めテスト — 遅滞起算点</h4>
+    <div class="fill-sentence">
+      確定期限のある債務は、期限が<span class="blank" data-group="A" data-ans="到来した時">　　　　</span>から遅滞に陥る。
+    </div>
+    <div class="fill-sentence">
+      期限の定めのない債務は、<span class="blank" data-group="B" data-ans="履行の請求">　　　　</span>を受けた時から遅滞に陥る。
+    </div>
+    <div class="fill-sentence">
+      不法行為に基づく損害賠償債務は、<span class="blank" data-group="C" data-ans="損害発生">　　　　</span>と同時に遅滞となる。
+    </div>
+    <div class="word-bank" id="wb-sec3">
+      <span class="chip" data-w="到来した時" data-group="A">到来した時</span>
+      <span class="chip" data-w="履行の請求" data-group="B">履行の請求</span>
+      <span class="chip" data-w="損害発生" data-group="C">損害発生</span>
+      <span class="chip" data-w="知った時" data-group="A">知った時</span>
+      <span class="chip" data-w="催告後30日" data-group="B">催告後30日</span>
+    </div>
+    <div class="fill-btns">
+      <button class="fill-btn btn-check" onclick="checkFill('sec3')">判定する</button>
+      <button class="fill-btn btn-hint" onclick="showHint('sec3')">手本を見る</button>
+      <button class="fill-btn btn-reset" onclick="resetFill('sec3')">リセット</button>
+      <span class="score-badge" id="score-sec3" style="display:none"></span>
+    </div>
+  </div>
+</div>
+
+<!-- §4 履行不能の要件 -->
+<div class="card">
+  <h2>§4 履行不能の要件</h2>
+  <p>履行不能とは、<strong>社会通念上</strong>、履行が不可能な状態をいいます（経済的不能・法律的不能を含む）。</p>
+
+  <h3>原始的不能と後発的不能</h3>
+  <table>
+    <tr><th>区分</th><th>時期</th><th>効果</th></tr>
+    <tr><td><strong>原始的不能</strong></td><td>契約成立時から不能</td><td>旧法：契約無効 → 改正法：<strong>契約は有効</strong>、損害賠償可</td></tr>
+    <tr><td><strong>後発的不能</strong></td><td>契約成立後に不能</td><td>帰責事由あり：損害賠償責任 帰責事由なし：危険負担</td></tr>
+  </table>
+
+  <h3>遅滞中の履行不能</h3>
+  <p>履行遅滞中に、<strong>債務者の責めに帰すことができない事由</strong>（天変地異など）により履行不能となった場合でも、遅滞がなければ不能にならなかったとき（因果関係あり）は、<strong>債務者が責任を負います</strong>（413条の2第1項）。</p>
+  <div class="ng-box">
+    <strong>試験注意！</strong>遅滞中の不能は「不可抗力」でも責任が生じます（遅滞に陥った帰責事由があるため）。
+  </div>
+
+  <!-- ミニテスト3 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ③</h4>
+    <div class="q-item" id="q5">
+      <p>Q5. 改正民法では、契約成立時から不能な原始的不能の場合、その契約は無効となる。</p>
+      <button class="ox-btn" onclick="checkOX('q5',false,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q5',false,this)">×</button>
+      <div class="exp exp-ok" id="exp-q5-ok">正解です！改正民法では原始的不能でも契約は有効とされ、債権者は損害賠償を請求できます。</div>
+      <div class="exp exp-ng" id="exp-q5-ng">不正解です。改正民法412条の2では、原始的不能の場合でも契約は有効であり、損害賠償請求が可能です。</div>
+    </div>
+    <div class="q-item" id="q6">
+      <p>Q6. 履行遅滞中に不可抗力で履行不能になった場合、遅滞がなければ不能にならなかったときは債務者が責任を負う。</p>
+      <button class="ox-btn" onclick="checkOX('q6',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q6',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q6-ok">正解です！413条の2第1項により、遅滞中の不可抗力による不能でも因果関係がある場合は責任を負います。</div>
+      <div class="exp exp-ng" id="exp-q6-ng">不正解です。413条の2第1項により、遅滞と不能に因果関係があれば債務者は責任を免れません。</div>
+    </div>
+  </div>
+</div>
+
+<!-- §5 損害賠償の範囲 -->
+<div class="card">
+  <h2>§5 損害賠償の範囲（416条）</h2>
+
+  <h3>通常損害と特別損害</h3>
+  <table>
+    <tr><th>種類</th><th>内容</th><th>賠償の可否</th></tr>
+    <tr><td><strong>通常損害</strong></td><td>同種の債務不履行から通常生じる損害</td><td>常に賠償対象</td></tr>
+    <tr><td><strong>特別損害</strong></td><td>特別の事情から生じる損害</td><td>債務者が<strong>予見すべきであった</strong>場合に賠償対象</td></tr>
+  </table>
+  <div class="point-box">
+    <strong>予見の時期：</strong>判例は「<strong>債務不履行の時</strong>」に予見すべきであったかどうかで判断します（契約時説・判例）。
+  </div>
+
+  <h3>過失相殺（418条）</h3>
+  <p>債権者に過失（寄与）があった場合、裁判所は損害賠償額を<strong>減額</strong>します。不法行為の過失相殺（民法722条2項）が「裁量」なのに対し、債務不履行の過失相殺は<strong>必要的減額</strong>です。</p>
+  <div class="ok-box">
+    <strong>整理：</strong>
+    債務不履行の過失相殺（418条）→ 必要的減額（必ず考慮）<br>
+    不法行為の過失相殺（722条2項）→ 任意的減額（裁量）
+  </div>
+
+  <h3>損害賠償額の予定（420条）</h3>
+  <p>当事者があらかじめ<strong>損害賠償額を合意</strong>で定めることができます。</p>
+  <ul>
+    <li>予定額を超える実損害は請求<strong>できない</strong></li>
+    <li>予定額より実損害が少なくても<strong>予定額を請求できる</strong></li>
+    <li>裁判所は予定額を<strong>増減できない</strong>（原則）</li>
+    <li>履行の請求・解除は妨げられない（損害賠償額の予定は解除を排除しない）</li>
+  </ul>
+  <div class="ng-box">
+    <strong>違約金：</strong>「違約金」は原則として<strong>損害賠償額の予定</strong>と推定されます（420条3項）。
+  </div>
+
+  <!-- 語群ミニテスト2 -->
+  <div class="mini-quiz fill-section">
+    <h4>✍ 穴埋めテスト — 損害賠償の範囲</h4>
+    <div class="fill-sentence">
+      債務不履行による損害賠償の範囲は、<span class="blank" data-group="D" data-ans="通常損害">　　　　</span>と、債務者が予見すべきであった<span class="blank" data-group="E" data-ans="特別損害">　　　　</span>である。
+    </div>
+    <div class="fill-sentence">
+      債務不履行の過失相殺は、裁判所に<span class="blank" data-group="F" data-ans="必要的">　　　　</span>減額が求められる。
+    </div>
+    <div class="fill-sentence">
+      損害賠償額の予定がある場合、実損害が予定額を超えても超過分を請求する事は<span class="blank" data-group="G" data-ans="できない">　　　　</span>。
+    </div>
+    <div class="word-bank" id="wb-sec5">
+      <span class="chip" data-w="通常損害" data-group="D">通常損害</span>
+      <span class="chip" data-w="特別損害" data-group="E">特別損害</span>
+      <span class="chip" data-w="必要的" data-group="F">必要的</span>
+      <span class="chip" data-w="できない" data-group="G">できない</span>
+      <span class="chip" data-w="任意的" data-group="F">任意的</span>
+      <span class="chip" data-w="できる" data-group="G">できる</span>
+    </div>
+    <div class="fill-btns">
+      <button class="fill-btn btn-check" onclick="checkFill('sec5')">判定する</button>
+      <button class="fill-btn btn-hint" onclick="showHint('sec5')">手本を見る</button>
+      <button class="fill-btn btn-reset" onclick="resetFill('sec5')">リセット</button>
+      <span class="score-badge" id="score-sec5" style="display:none"></span>
+    </div>
+  </div>
+</div>
+
+<!-- §6 損害賠償による代位・代償請求権 -->
+<div class="card">
+  <h2>§6 損害賠償による代位・代償請求権</h2>
+
+  <h3>損害賠償による代位（422条）</h3>
+  <p>履行不能による損害賠償として<strong>物の価額全額</strong>を支払った債権者は、その物に関する債務者の権利を<strong>当然に取得</strong>します（法定移転）。</p>
+  <div class="point-box">
+    <strong>例：</strong>売主Aが目的物を滅失させたため買主Bが価額全額の賠償を受けた → Bは目的物の所有権を当然に取得する。
+  </div>
+
+  <h3>代償請求権（422条の2）</h3>
+  <p>債務者が<strong>債務の履行不能と同一原因</strong>で第三者に対する権利（保険金請求権・損害賠償請求権など）を取得した場合、債権者はその権利の<strong>移転を請求</strong>できます（改正民法で明文化）。</p>
+  <div class="ok-box">
+    <strong>要件まとめ：</strong>
+    ①債務が履行不能になった、②同一原因で債務者が利益を得た、③その利益の移転を債権者が請求する
+  </div>
+
+  <!-- ミニテスト4 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ④</h4>
+    <div class="q-item" id="q7">
+      <p>Q7. 損害賠償による代位（422条）は、損害賠償として物の価額全額を受けた債権者に物に関する権利が移転するもので、当事者の合意が必要である。</p>
+      <button class="ox-btn" onclick="checkOX('q7',false,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q7',false,this)">×</button>
+      <div class="exp exp-ok" id="exp-q7-ok">正解です！422条の代位は法律上当然に権利が移転するものであり、合意は不要です。</div>
+      <div class="exp exp-ng" id="exp-q7-ng">不正解です。422条は法定代位であり、当事者の合意がなくても当然に権利が移転します。</div>
+    </div>
+    <div class="q-item" id="q8">
+      <p>Q8. 代償請求権（422条の2）は改正民法で初めて明文化された規定である。</p>
+      <button class="ox-btn" onclick="checkOX('q8',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q8',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q8-ok">正解です！代償請求権は判例法理として認められていましたが、2017年改正で422条の2として明文化されました。</div>
+      <div class="exp exp-ng" id="exp-q8-ng">不正解です。代償請求権は2017年改正民法422条の2で初めて明文化されました。</div>
+    </div>
+  </div>
+</div>
+
+<!-- まとめカード -->
+<div class="card">
+  <h2>📌 ch27 重要ポイントまとめ</h2>
+  <ul>
+    <li><strong>債務不履行3類型：</strong>履行遅滞・履行不能・不完全履行（契約不適合）</li>
+    <li><strong>損害賠償：</strong>帰責事由が必要（債務者が不存在を証明して免責）</li>
+    <li><strong>解除：</strong>帰責事由不要（ただし債権者側に帰責事由があれば不可）</li>
+    <li><strong>遅滞起算点：</strong>確定期限→期限到来時、無期限→催告時、不法行為→損害発生時</li>
+    <li><strong>原始的不能：</strong>改正法では契約有効・損害賠償可</li>
+    <li><strong>過失相殺：</strong>债務不履行→必要的減額、不法行為→任意的減額</li>
+    <li><strong>損害賠償額の予定：</strong>裁判所は増減不可、違約金は損害賠償額の予定と推定</li>
+    <li><strong>代償請求権（422条の2）：</strong>2017年改正で明文化</li>
+  </ul>
+  <div class="nav-btns">
+    <a href="minpo2_ch26_kaisetsu.html" class="nav-btn nav-prev">← ch26</a>
+    <a href="minpo2_index.html" class="nav-btn nav-index">目次へ</a>
+    <a href="minpo2_ch27_enshu.html" class="nav-btn nav-next">演習へ →</a>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ポップアップ -->
+<div class="popup-overlay" id="overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup">
+  <h5>語群から選んでください</h5>
+  <div class="popup .chip-list" id="popup-chips"></div>
+</div>
+
+<script>
+// ○×テスト
+function checkOX(qId, correct, btn){
+  const item = document.getElementById(qId);
+  if(item.dataset.answered) return;
+  item.dataset.answered = '1';
+  const btns = item.querySelectorAll('.ox-btn');
+  const isO = btn.textContent === '○';
+  const userCorrect = (isO === correct);
+  btns.forEach(b => {
+    if(b.textContent === '○'){
+      b.classList.add(correct ? 'correct' : 'wrong');
+    } else {
+      b.classList.add(!correct ? 'correct' : 'wrong');
+    }
+  });
+  const okExp = document.getElementById('exp-' + qId + '-ok');
+  const ngExp = document.getElementById('exp-' + qId + '-ng');
+  if(userCorrect){
+    okExp.style.display = 'block';
+  } else {
+    ngExp.style.display = 'block';
+  }
+}
+
+// 穴埋めテスト
+let currentBlank = null;
+
+document.querySelectorAll('.blank').forEach(blank => {
+  blank.addEventListener('click', function(){
+    if(this.dataset.fixed) return;
+    currentBlank = this;
+    showPopup(this);
+  });
+});
+
+function showPopup(blank){
+  const group = blank.dataset.group;
+  const secId = blank.closest('.fill-section').id || blank.closest('.mini-quiz').getAttribute('data-sec');
+  // find word bank by closest mini-quiz
+  const wb = blank.closest('.mini-quiz').querySelector('.word-bank');
+  const chips = wb ? wb.querySelectorAll('.chip:not(.used)') : [];
+  const popupChips = document.getElementById('popup-chips');
+  popupChips.innerHTML = '';
+  chips.forEach(chip => {
+    const c = chip.cloneNode(true);
+    c.classList.remove('used');
+    c.addEventListener('click', function(){
+      fillBlank(currentBlank, this.dataset.w, chip);
+      closePopup();
+    });
+    popupChips.appendChild(c);
+  });
+  document.getElementById('overlay').classList.add('show');
+  document.getElementById('popup').classList.add('show');
+}
+
+function closePopup(){
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('popup').classList.remove('show');
+}
+
+function fillBlank(blank, word, originalChip){
+  if(!blank) return;
+  blank.textContent = word;
+  blank.classList.add('filled');
+  blank.dataset.userAns = word;
+  if(originalChip) originalChip.classList.add('used');
+}
+
+function checkFill(secId){
+  const section = document.querySelector('[id="wb-' + secId + '"]').closest('.mini-quiz');
+  const blanks = section.querySelectorAll('.blank');
+  let correct = 0;
+  blanks.forEach(b => {
+    const ans = b.dataset.ans;
+    const user = b.dataset.userAns || '';
+    if(user === ans){
+      b.style.borderBottomColor = '#2e7d32';
+      b.style.background = 'rgba(46,125,50,.15)';
+      correct++;
+    } else {
+      b.style.borderBottomColor = '#C0392B';
+      b.style.background = 'rgba(192,57,43,.15)';
+      b.classList.add('wrong-fill');
+      setTimeout(() => b.classList.remove('wrong-fill'), 400);
+    }
+  });
+  const score = document.getElementById('score-' + secId);
+  score.textContent = correct + '/' + blanks.length + '正解';
+  score.style.display = 'inline-block';
+  if(correct >= blanks.length) launchConfetti();
+}
+
+function showHint(secId){
+  const section = document.querySelector('[id="wb-' + secId + '"]').closest('.mini-quiz');
+  const blanks = section.querySelectorAll('.blank');
+  const wb = document.getElementById('wb-' + secId);
+  blanks.forEach(b => {
+    b.textContent = b.dataset.ans;
+    b.dataset.userAns = b.dataset.ans;
+    b.dataset.fixed = '1';
+    b.classList.add('filled');
+    b.style.borderBottomColor = '#D4A017';
+    b.style.background = 'rgba(212,160,23,.15)';
+  });
+  if(wb) wb.querySelectorAll('.chip').forEach(c => c.classList.add('used'));
+}
+
+function resetFill(secId){
+  const section = document.querySelector('[id="wb-' + secId + '"]').closest('.mini-quiz');
+  const blanks = section.querySelectorAll('.blank');
+  const wb = document.getElementById('wb-' + secId);
+  blanks.forEach(b => {
+    b.textContent = '';
+    b.classList.remove('filled','wrong-fill');
+    b.style.borderBottomColor = '';
+    b.style.background = '';
+    delete b.dataset.userAns;
+    delete b.dataset.fixed;
+  });
+  if(wb) wb.querySelectorAll('.chip').forEach(c => c.classList.remove('used'));
+  const score = document.getElementById('score-' + secId);
+  if(score) score.style.display = 'none';
+  resetConfettiCanvas();
+}
+
+// 花吹雪
+function launchConfetti(){
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const particles = Array.from({length:120}, () => ({
+    x: Math.random()*canvas.width, y: -10,
+    r: Math.random()*6+3,
+    d: Math.random()*80+20,
+    color: ['#C0392B','#D4A017','#1B2A4A','#2e7d32','#e74c3c','#f39c12'][Math.floor(Math.random()*6)],
+    tilt: Math.random()*10-10,
+    tiltAngle: 0, tiltAngleInc: Math.random()*.07+.05
+  }));
+  let frame = 0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.lineWidth = p.r;
+      ctx.strokeStyle = p.color;
+      ctx.moveTo(p.x+p.tilt+p.r/3, p.y);
+      ctx.lineTo(p.x+p.tilt, p.y+p.tilt+p.r/5);
+      ctx.stroke();
+    });
+    particles.forEach(p => {
+      p.tiltAngle += p.tiltAngleInc;
+      p.y += (Math.cos(frame/6)+3+p.r/2)/2;
+      p.tilt = Math.sin(p.tiltAngle)*15;
+    });
+    frame++;
+    if(frame < 200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+function resetConfettiCanvas(){
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+}
+</script>
+</body>
+</html>
