@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>GAMBA 民法Ⅱ 債権 目次</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'BIZ UDGothic','Hiragino Kaku Gothic Pro','Meiryo',sans-serif;background:#eef2f7;color:#1a1a2e;min-height:100vh;font-size:15px}
+.top-header{background:linear-gradient(135deg,#1B2A4A 0%,#C0392B 100%);color:#fff;padding:16px 16px 0;text-align:center}
+.top-header h1{font-size:18px;font-weight:700;letter-spacing:.05em}
+.top-header p{font-size:12px;margin-top:3px;opacity:.85}
+.summary-bar{background:rgba(0,0,0,.25);margin-top:12px;padding:9px 14px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:12px;color:#fff}
+.sum-item{display:flex;align-items:center;gap:5px;white-space:nowrap}
+.sum-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.sum-dot-a{background:#4caf50}
+.sum-dot-b{background:#f9a825}
+.sum-dot-c{background:#e53935}
+.sum-dot-n{background:#aaa}
+.sum-count{font-weight:700;font-size:15px;min-width:18px;text-align:center}
+.wrap{max-width:920px;margin:0 auto;padding:16px 12px 48px}
+.unit{background:#fff;border-radius:14px;border:1px solid #dde3ee;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden}
+.unit-hd{background:linear-gradient(90deg,#1B2A4A,#2c447a);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:10px}
+.unit-num{background:rgba(255,255,255,.2);border-radius:8px;padding:3px 10px;font-size:13px;font-weight:700;white-space:nowrap}
+.unit-title{font-size:16px;font-weight:700;flex:1}
+.unit-badge{font-size:11px;background:rgba(255,255,255,.3);border-radius:10px;padding:2px 8px;white-space:nowrap;font-weight:700}
+.unit-body{padding:14px 16px}
+.sec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:4px}
+.sec-card{border-radius:10px;border:1.5px solid #dde3ee;overflow:hidden;transition:.2s;background:#fff}
+.sec-card:hover{box-shadow:0 3px 12px rgba(0,0,0,.1);transform:translateY(-1px)}
+.sec-card a{text-decoration:none;color:inherit;display:block}
+.sc-hd{background:#f0f4ff;border-bottom:2px solid #C0392B;padding:9px 12px;display:flex;align-items:center;gap:8px}
+.sc-num{width:30px;height:24px;background:#1B2A4A;color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.sc-title{font-size:13px;font-weight:700;color:#1B2A4A;flex:1;line-height:1.3}
+.sc-stars{font-size:11px;color:#f9a825;letter-spacing:-1px;flex-shrink:0}
+.sc-body{padding:9px 12px;background:#fff}
+.sc-topics{list-style:none;margin:0;padding:0}
+.sc-topics li{font-size:12px;color:#555;padding:2px 0;border-bottom:1px solid #f0f0f5;line-height:1.5}
+.sc-topics li:last-child{border-bottom:none}
+.sc-topics li::before{content:"・";color:#C0392B}
+.sc-mini-badge{display:inline-block;background:#fff5f0;color:#C0392B;border:1px solid #fbc8b5;border-radius:8px;padding:1px 7px;font-size:10px;font-weight:700;margin-left:5px}
+.sc-btn-row{display:flex;gap:6px;margin-top:8px}
+.sc-btn{flex:1;text-align:center;padding:7px 4px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;transition:.15s;font-family:inherit;border:none;cursor:pointer;display:block}
+.sc-btn-learn{background:#1B2A4A;color:#fff}
+.sc-btn-learn:hover{background:#0f1a30}
+.sc-btn-practice{background:#C0392B;color:#fff;border:1.5px solid #8a2820}
+.sc-btn-practice:hover{background:#8a2820;color:#fff}
+.sc-btn-soon{background:#bbb;color:#fff;cursor:not-allowed}
+.abc-row{display:flex;gap:6px;padding:8px 12px 10px}
+.abc-btn{flex:1;padding:7px 2px;border-radius:20px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;transition:.15s;border:2px solid;text-align:center;background:#fff}
+.abc-btn-a{border-color:#2e7d32;color:#fff;background:#43a047}
+.abc-btn-b{border-color:#f9a825;color:#fff;background:#f9a825}
+.abc-btn-c{border-color:#e53935;color:#fff;background:#e53935}
+.abc-btn:hover{opacity:.85}
+.abc-btn-a.sel{background:#1b5e20;border-color:#1b5e20}
+.abc-btn-b.sel{background:#bf360c;color:#fff;border-color:#bf360c}
+.abc-btn-c.sel{background:#b71c1c;color:#fff;border-color:#b71c1c}
+.sec-card.status-a{border-color:#2e7d32}
+.sec-card.status-a .sc-hd{background:#e8f5e9;border-bottom-color:#2e7d32}
+.sec-card.status-b{border-color:#f9a825}
+.sec-card.status-b .sc-hd{background:#fff9e6;border-bottom-color:#f9a825}
+.sec-card.status-c{border-color:#e53935}
+.sec-card.status-c .sc-hd{background:#fce8e8;border-bottom-color:#e53935}
+.sec-card.coming-soon{opacity:.65}
+.sec-card.coming-soon .sc-hd{background:#f5f5f5;border-bottom-color:#bbb}
+.flow{background:#fff;border-radius:14px;border:1px solid #dde3ee;padding:14px 16px;margin-bottom:20px}
+.flow-title{font-size:14px;font-weight:700;color:#1B2A4A;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #C0392B}
+.flow-steps{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.flow-step{background:#f0f4ff;border:1px solid #b3c6ee;border-radius:8px;padding:7px 12px;font-size:12px;color:#1B2A4A;font-weight:700;white-space:nowrap}
+.flow-arrow{color:#C0392B;font-size:16px;font-weight:700}
+.review-link{display:block;text-align:center;background:#fff9ed;border:1.5px solid #f4a62a;border-radius:10px;padding:12px;margin-bottom:20px;text-decoration:none;color:#8a5a00;font-weight:700;font-size:14px;transition:.2s}
+.review-link:hover{background:#ffe9b8;transform:translateY(-1px)}
+.minpo1-link{display:block;text-align:center;background:#eef2f7;border:1.5px solid #1B2A4A;border-radius:10px;padding:12px;margin-bottom:20px;text-decoration:none;color:#1B2A4A;font-weight:700;font-size:14px;transition:.2s}
+.minpo1-link:hover{background:#dde3ee;transform:translateY(-1px)}
+canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;display:none}
+</style>
+</head>
+<body>
+<canvas id="cc"></canvas>
+<div class="top-header">
+  <h1>📚 GAMBA 民法Ⅱ 債権 目次</h1>
+  <p>国家公務員(大卒程度)・地方上級公務員 試験対策 ― 章をタップして学習を始めよう ―</p>
+  <div class="summary-bar">
+    <div class="sum-item"><span class="sum-dot sum-dot-a"></span>A OK <span class="sum-count" id="cnt-a">0</span> 章</div>
+    <div class="sum-item"><span class="sum-dot sum-dot-b"></span>B 要復習 <span class="sum-count" id="cnt-b">0</span> 章</div>
+    <div class="sum-item"><span class="sum-dot sum-dot-c"></span>C 何度も復習 <span class="sum-count" id="cnt-c">0</span> 章</div>
+    <div class="sum-item"><span class="sum-dot sum-dot-n"></span>未実施 <span class="sum-count" id="cnt-n">0</span> 章</div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="flow">
+    <div class="flow-title">📖 学習の流れ</div>
+    <div class="flow-steps">
+      <div class="flow-step">① 解説を読む</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">② ✏️ ミニテスト</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">③ 演習問題</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">④ A/B/C で自己評価</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">⑤ 復習リストへ</div>
+    </div>
+  </div>
+
+  <a href="minpo_index.html" class="minpo1-link">← 民法Ⅰ（総則・物権）目次へ戻る</a>
+  <a href="review.html" class="review-link">📌 復習リストを開く ― ブックマーク・間違えた問題を確認</a>
+
+  <!-- Unit 5: 債権総論① -->
+  <div class="unit">
+    <div class="unit-hd"><span class="unit-num">Unit 5</span><span class="unit-title">債権総論① 債務不履行・損害賠償・解除</span><span class="unit-badge">★ 基礎・頻出</span></div>
+    <div class="unit-body">
+      <div class="sec-grid">
+
+        <div class="sec-card" data-id="ch27">
+          <a href="minpo2_ch27_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第27章</span><span class="sc-title">債務不履行・損害賠償</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>履行遅滞・履行不能・不完全履行の要件</li><li>損害賠償の範囲（416条）・過失相殺</li><li>金銭債務の特則・損害賠償額の予定</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo2_ch27_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo2_ch27_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch27','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch27','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch27','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch28">
+          <a href="minpo2_ch28_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第28章</span><span class="sc-title">受領遅滞・債権者代位権</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>受領遅滞の効果・危険の移転</li><li>債権者代位権の要件・行使方法・転用</li><li>代位権行使の効果と債務者への通知</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo2_ch28_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo2_ch28_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch28','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch28','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch28','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch29">
+          <a href="minpo2_ch29_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第29章</span><span class="sc-title">詐害行為取消権</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>取消しの要件・詐害意思・被保全債権</li><li>取消しの範囲・転得者への対抗</li><li>現物返還・価額償還・効果（425条）</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo2_ch29_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo2_ch29_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch29','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch29','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch29','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch30">
+          <a href="minpo2_ch30_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第30章</span><span class="sc-title">多数当事者の債権関係</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>分割債権・不可分債権・連帯債務</li><li>連帯債務の絶対効・相対効（434〜440条）</li><li>保証債務の要件・付従性・補充性</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo2_ch30_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo2_ch30_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch30','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch30','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch30','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch31">
+          <a href="minpo2_ch31_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第31章</span><span class="sc-title">債権譲渡・債務引受・相殺</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>債権譲渡の対抗要件（467条）・譲渡制限特約</li><li>免責的債務引受・併存的債務引受</li><li>相殺の要件・相殺禁止・相殺の効果</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo2_ch31_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo2_ch31_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch31','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch31','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch31','c',this)">C 何度も</button></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 6: 債権各論① 契約総論・売買・贈与 -->
+  <div class="unit">
+    <div class="unit-hd"><span class="unit-num">Unit 6</span><span class="unit-title">債権各論① 契約総論・売買・贈与</span><span class="unit-badge">⭐ 重要・頻出</span></div>
+    <div class="unit-body">
+      <div class="sec-grid">
+
+        <div class="sec-card" data-id="ch32">
+          <a href="minpo2_ch32_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第32章</span><span class="sc-title">契約総論（同時履行・危険負担・解除）</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>同時履行の抗弁権（533条）・拡張適用</li><li>危険負担——債務者主義・債権者主義</li><li>契約解除の要件・解除の効果・原状回復</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo2_ch32_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo2_ch32_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch32','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch32','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch32','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card" data-id="ch33">
+          <a href="minpo2_ch33_kaisetsu.html"><div class="sc-hd"><span class="sc-num">第33章</span><span class="sc-title">売買・贈与</span><span class="sc-stars">★★★</span></div><div class="sc-body"><ul class="sc-topics"><li>手付（解約手付・違約手付）・履行の着手</li><li>担保責任（契約不適合責任）・期間制限</li><li>贈与の解除・負担付贈与・死因贈与</li></ul></div></a>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><a class="sc-btn sc-btn-learn" href="minpo2_ch33_kaisetsu.html">解説<span class="sc-mini-badge">ミニテスト</span></a><a class="sc-btn sc-btn-practice" href="minpo2_ch33_enshu.html">演習</a></div></div>
+          <div class="abc-row"><button class="abc-btn abc-btn-a" onclick="setABC('ch33','a',this)">A OK</button><button class="abc-btn abc-btn-b" onclick="setABC('ch33','b',this)">B 要復習</button><button class="abc-btn abc-btn-c" onclick="setABC('ch33','c',this)">C 何度も</button></div>
+        </div>
+
+        <div class="sec-card coming-soon" data-id="ch34">
+          <div class="sc-hd"><span class="sc-num">第34章</span><span class="sc-title">消費貸借・使用貸借</span><span class="sc-stars">★★☆</span></div>
+          <div class="sc-body"><ul class="sc-topics"><li>消費貸借の要件・要物契約と諾成的消費貸借</li><li>利息・返還の時期・準消費貸借</li><li>使用貸借の特徴・対抗要件なし・相続なし</li></ul></div>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><span class="sc-btn sc-btn-soon">解説（準備中）</span><span class="sc-btn sc-btn-soon">演習（準備中）</span></div></div>
+        </div>
+
+        <div class="sec-card coming-soon" data-id="ch35">
+          <div class="sc-hd"><span class="sc-num">第35章</span><span class="sc-title">賃貸借</span><span class="sc-stars">★★★</span></div>
+          <div class="sc-body"><ul class="sc-topics"><li>賃貸借の対抗要件・賃料・修繕義務</li><li>賃借権の譲渡・転貸・無断転貸の効果</li><li>賃貸借の終了・原状回復・敷金</li></ul></div>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><span class="sc-btn sc-btn-soon">解説（準備中）</span><span class="sc-btn sc-btn-soon">演習（準備中）</span></div></div>
+        </div>
+
+        <div class="sec-card coming-soon" data-id="ch36">
+          <div class="sc-hd"><span class="sc-num">第36章</span><span class="sc-title">請負・委任・その他の契約</span><span class="sc-stars">★★☆</span></div>
+          <div class="sc-body"><ul class="sc-topics"><li>請負の担保責任・仕事完成前の解除</li><li>委任の善管注意義務・報告義務・解除</li><li>寄託・組合・終身定期金の概要</li></ul></div>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><span class="sc-btn sc-btn-soon">解説（準備中）</span><span class="sc-btn sc-btn-soon">演習（準備中）</span></div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 7: 債権各論② 不法行為・事務管理・不当利得 -->
+  <div class="unit">
+    <div class="unit-hd"><span class="unit-num">Unit 7</span><span class="unit-title">債権各論② 不法行為・事務管理・不当利得</span><span class="unit-badge">⭐ 重要</span></div>
+    <div class="unit-body">
+      <div class="sec-grid">
+
+        <div class="sec-card coming-soon" data-id="ch37">
+          <div class="sc-hd"><span class="sc-num">第37章</span><span class="sc-title">不法行為①（一般不法行為）</span><span class="sc-stars">★★★</span></div>
+          <div class="sc-body"><ul class="sc-topics"><li>709条の要件——故意・過失・損害・因果関係</li><li>過失相殺・損益相殺・消滅時効</li><li>共同不法行為・不真正連帯債務</li></ul></div>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><span class="sc-btn sc-btn-soon">解説（準備中）</span><span class="sc-btn sc-btn-soon">演習（準備中）</span></div></div>
+        </div>
+
+        <div class="sec-card coming-soon" data-id="ch38">
+          <div class="sc-hd"><span class="sc-num">第38章</span><span class="sc-title">不法行為②（特殊の不法行為）</span><span class="sc-stars">★★★</span></div>
+          <div class="sc-body"><ul class="sc-topics"><li>使用者責任（715条）・事業の執行</li><li>土地工作物責任・動物占有者責任</li><li>監督義務者責任・製造物責任</li></ul></div>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><span class="sc-btn sc-btn-soon">解説（準備中）</span><span class="sc-btn sc-btn-soon">演習（準備中）</span></div></div>
+        </div>
+
+        <div class="sec-card coming-soon" data-id="ch39">
+          <div class="sc-hd"><span class="sc-num">第39章</span><span class="sc-title">事務管理・不当利得</span><span class="sc-stars">★★☆</span></div>
+          <div class="sc-body"><ul class="sc-topics"><li>事務管理の要件・本人の意思との関係</li><li>不当利得の要件・善意・悪意の返還範囲</li><li>非債弁済・不法原因給付（708条）</li></ul></div>
+          <div class="sc-body" style="padding-top:0"><div class="sc-btn-row"><span class="sc-btn sc-btn-soon">解説（準備中）</span><span class="sc-btn sc-btn-soon">演習（準備中）</span></div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+var STORAGE_KEY = 'gamba_minpo2_status';
+var status = {};
+var activeIds = ['ch27','ch28','ch29','ch30','ch31','ch32','ch33'];
+
+try {
+  var saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) status = JSON.parse(saved);
+} catch(e) { status = {}; }
+
+function applyStoredStatus() {
+  Object.keys(status).forEach(function(id) {
+    var grade = status[id];
+    if (!grade) return;
+    var card = document.querySelector('[data-id="'+id+'"]');
+    if (!card) return;
+    card.classList.add('status-' + grade);
+    var btnClass = 'abc-btn-' + grade;
+    var btn = card.querySelector('.' + btnClass);
+    if (btn) btn.classList.add('sel');
+  });
+}
+
+function saveStatus() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(status)); } catch(e) {}
+}
+
+function setABC(id, grade, btn) {
+  var card = document.querySelector('[data-id="'+id+'"]');
+  if (!card) return;
+  if (status[id] === grade) {
+    delete status[id];
+    card.className = card.className.replace(/ ?status-[abc]/g,'');
+    card.querySelectorAll('.abc-btn').forEach(function(b){b.classList.remove('sel');});
+    saveStatus();
+    updateSummary();
+    return;
+  }
+  status[id] = grade;
+  card.className = card.className.replace(/ ?status-[abc]/g,'');
+  card.classList.add('status-' + grade);
+  card.querySelectorAll('.abc-btn').forEach(function(b){b.classList.remove('sel');});
+  btn.classList.add('sel');
+  saveStatus();
+  if (grade === 'a') confetti();
+  updateSummary();
+}
+
+function updateSummary() {
+  var ca=0, cb=0, cc=0, cn=0;
+  activeIds.forEach(function(id) {
+    var s = status[id];
+    if (s === 'a') ca++;
+    else if (s === 'b') cb++;
+    else if (s === 'c') cc++;
+    else cn++;
+  });
+  document.getElementById('cnt-a').textContent = ca;
+  document.getElementById('cnt-b').textContent = cb;
+  document.getElementById('cnt-c').textContent = cc;
+  document.getElementById('cnt-n').textContent = cn;
+}
+
+function confetti() {
+  var cv = document.getElementById('cc');
+  cv.width = window.innerWidth;
+  cv.height = window.innerHeight;
+  cv.style.display = 'block';
+  var ctx = cv.getContext('2d');
+  var cols = ['#f9a825','#0097A7','#1B2A4A','#e53935','#2e7d32','#ff6f00','#7b1fa2','#ff4081','#C0392B'];
+  var ps = [];
+  for (var k=0; k<130; k++) {
+    ps.push({
+      x: Math.random() * cv.width,
+      y: -20 - Math.random() * 180,
+      w: 7 + Math.random() * 9,
+      h: 3 + Math.random() * 5,
+      c: cols[Math.floor(Math.random() * cols.length)],
+      s: 2 + Math.random() * 4,
+      a: Math.random() * 360,
+      sp: 3 - Math.random() * 6,
+      d: (Math.random() - 0.5) * 2.5
+    });
+  }
+  var fr = 0;
+  function draw() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    ps.forEach(function(p) {
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.a * Math.PI / 180);
+      ctx.fillStyle = p.c;
+      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+      p.y += p.s;
+      p.x += p.d;
+      p.a += p.sp;
+    });
+    fr++;
+    if (fr < 100) requestAnimationFrame(draw);
+    else {
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      cv.style.display = 'none';
+    }
+  }
+  draw();
+}
+
+applyStoredStatus();
+updateSummary();
+</script>
+</body>
+</html>
