@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch26｜譲渡担保 演習</title>
+<style>
+  :root{--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--light-bg:#F4F6FA;--white:#ffffff;--border:#d0d8ea;--accent:#EAF0FB;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'BIZ UDGothic','Meiryo',sans-serif;background:var(--light-bg);color:#1a1a2e;line-height:1.8;}
+  .page-header{background:var(--navy);color:var(--white);padding:24px 32px;}
+  .chapter-label{font-size:11px;letter-spacing:3px;color:#8fa8d0;margin-bottom:4px;}
+  .page-title{font-size:22px;font-weight:700;}
+  .page-title span{color:var(--crimson);}
+  .container{max-width:800px;margin:0 auto;padding:28px 20px;}
+  .q-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px 24px;margin-bottom:20px;box-shadow:0 2px 6px rgba(27,42,74,0.06);}
+  .q-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .q-num{background:var(--navy);color:var(--white);font-size:13px;font-weight:700;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .q-type{font-size:11px;background:var(--accent);border:1px solid var(--border);color:var(--navy);padding:2px 10px;border-radius:10px;font-weight:700;}
+  .q-text{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:16px;line-height:1.7;}
+  .ox-buttons{display:flex;gap:12px;}
+  .btn-ox{flex:1;padding:13px;border:2px solid var(--border);background:var(--white);border-radius:8px;font-size:22px;cursor:pointer;transition:all 0.2s;font-family:inherit;}
+  .btn-ox:hover{transform:scale(1.04);}
+  .btn-ox.correct{background:#e8f5e9;border-color:#2e7d32;color:#2e7d32;}
+  .btn-ox.incorrect{background:#ffebee;border-color:var(--crimson);color:var(--crimson);}
+  .btn-ox.disabled{opacity:0.5;pointer-events:none;}
+  .choice-list{list-style:none;padding:0;}
+  .choice-list li{margin-bottom:8px;}
+  .choice-btn{width:100%;text-align:left;padding:11px 16px;border:2px solid var(--border);background:var(--white);border-radius:8px;font-size:14px;cursor:pointer;transition:all 0.2s;font-family:inherit;color:#1a1a2e;line-height:1.6;}
+  .choice-btn:hover{border-color:var(--navy);background:var(--accent);}
+  .choice-btn.correct{background:#e8f5e9;border-color:#2e7d32;color:#1a5e20;}
+  .choice-btn.incorrect{background:#ffebee;border-color:var(--crimson);color:#7f0000;}
+  .choice-btn.disabled{opacity:0.55;pointer-events:none;}
+  .explanation{display:none;margin-top:14px;padding:14px 18px;border-radius:8px;font-size:14px;line-height:1.8;}
+  .explanation.show{display:block;}
+  .explanation.ok{background:#e8f5e9;border-left:4px solid #2e7d32;}
+  .explanation.ng{background:#ffebee;border-left:4px solid var(--crimson);}
+  .exp-label{font-weight:700;margin-bottom:6px;font-size:13px;}
+  .ok .exp-label{color:#1a5e20;}
+  .ng .exp-label{color:#7f0000;}
+  .kw{color:var(--crimson);font-weight:700;}
+  .score-section{background:var(--navy);color:var(--white);border-radius:12px;padding:24px 28px;margin-top:30px;text-align:center;}
+  .score-section h2{font-size:18px;margin-bottom:16px;}
+  .score-num{font-size:48px;font-weight:700;color:var(--gold);}
+  .score-label{font-size:14px;color:#8fa8d0;margin-top:4px;}
+  .reset-btn{margin-top:18px;background:var(--crimson);color:var(--white);border:none;padding:12px 32px;border-radius:8px;font-size:15px;cursor:pointer;font-family:inherit;font-weight:700;}
+  .complete-banner{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:var(--white);border-radius:12px;padding:20px 28px;margin-top:24px;text-align:center;}
+  .complete-banner .cb-title{font-size:18px;font-weight:700;margin-bottom:6px;}
+  .complete-banner .cb-sub{font-size:13px;color:#dce6f5;}
+  .page-footer{background:var(--navy);color:#8fa8d0;text-align:center;padding:16px;font-size:12px;margin-top:30px;}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+
+<header class="page-header">
+  <div class="chapter-label">GAMBA 民法 ｜ Chapter 26 ｜ 最終章 ｜ 演習</div>
+  <div class="page-title"><span>譲渡担保</span> 確認問題</div>
+</header>
+
+<div class="container">
+
+<!-- Q1 -->
+<div class="q-card" id="q1">
+  <div class="q-meta"><div class="q-num">1</div><span class="q-type">○×問題</span></div>
+  <div class="q-text">譲渡担保権者は、抵当権と同様に物上代位権の行使が認められる。</div>
+  <div class="ox-buttons">
+    <button class="btn-ox" onclick="checkOX(this,'q1',true)">○</button>
+    <button class="btn-ox" onclick="checkOX(this,'q1',false)">×</button>
+  </div>
+  <div class="explanation ok" id="exp-q1-ok">
+    <div class="exp-label">✅ 正解：○</div>
+    譲渡担保は非典型担保ですが、抵当権と同様に<span class="kw">物上代位性</span>が認められます（最決平11・5・17）。また、不法占拠者に対する物権的請求権（返還請求権）も認められます（最判昭57・9・28）。
+  </div>
+  <div class="explanation ng" id="exp-q1-ng">
+    <div class="exp-label">❌ 不正解（正解：○）</div>
+    譲渡担保権者には<span class="kw">物上代位性</span>が認められています（最決平11・5・17）。物上代位は法定担保にのみ認められるものではありません。
+  </div>
+</div>
+
+<!-- Q2 -->
+<div class="q-card" id="q2">
+  <div class="q-meta"><div class="q-num">2</div><span class="q-type">○×問題</span></div>
+  <div class="q-text">譲渡担保を実行した場合において、目的物の価値が債務の額を上回るときは、譲渡担保権者には差額の清算義務があり、清算金の支払いと目的物の引渡しは同時履行の関係に立つ。</div>
+  <div class="ox-buttons">
+    <button class="btn-ox" onclick="checkOX(this,'q2',true)">○</button>
+    <button class="btn-ox" onclick="checkOX(this,'q2',false)">×</button>
+  </div>
+  <div class="explanation ok" id="exp-q2-ok">
+    <div class="exp-label">✅ 正解：○</div>
+    目的物の価値が被担保債権額を上回る場合、譲渡担保権者は差額を<span class="kw">清算金として支払う義務</span>があります。そして<span class="kw">清算金の支払いと目的物の引渡しは同時履行の関係</span>に立ちます（最判昭46・3・25）。設定者は清算金が支払われるまで目的物の引渡しを拒絶できます。
+  </div>
+  <div class="explanation ng" id="exp-q2-ng">
+    <div class="exp-label">❌ 不正解（正解：○）</div>
+    清算義務があり、清算金の支払いと目的物の引渡しは<span class="kw">同時履行</span>の関係です（最判昭46・3・25）。
+  </div>
+</div>
+
+<!-- Q3 -->
+<div class="q-card" id="q3">
+  <div class="q-meta"><div class="q-num">3</div><span class="q-type">○×問題</span></div>
+  <div class="q-text">設定者（債務者）が弁済期後に自ら受戻権を放棄して、清算金の支払いを請求していくことができる。</div>
+  <div class="ox-buttons">
+    <button class="btn-ox" onclick="checkOX(this,'q3',true)">○</button>
+    <button class="btn-ox" onclick="checkOX(this,'q3',false)">×</button>
+  </div>
+  <div class="explanation ok" id="exp-q3-ok">
+    <div class="exp-label">✅ 正解：×</div>
+    設定者が弁済期後に自ら受戻権を放棄して清算金を請求することは<span class="kw">できません</span>（最判平8・11・22）。被担保債権を弁済しないでおきながら清算金を請求するのは不合理であり、また設定者が自由に譲渡担保の実行時期を決められることになり譲渡担保権者に不利益だからです。
+  </div>
+  <div class="explanation ng" id="exp-q3-ng">
+    <div class="exp-label">❌ 不正解（正解：×）</div>
+    受戻権を放棄して清算金請求することは<span class="kw">できません</span>（最判平8・11・22）。弁済を怠ったまま清算金を請求するのは認められません。
+  </div>
+</div>
+
+<!-- Q4 -->
+<div class="q-card" id="q4">
+  <div class="q-meta"><div class="q-num">4</div><span class="q-type">○×問題</span></div>
+  <div class="q-text">弁済期後に譲渡担保権者が目的物を第三者に処分した場合、担保目的物の譲受人が背信的悪意者であれば、設定者は受戻権を行使してその第三者から目的物を取り戻すことができる。</div>
+  <div class="ox-buttons">
+    <button class="btn-ox" onclick="checkOX(this,'q4',true)">○</button>
+    <button class="btn-ox" onclick="checkOX(this,'q4',false)">×</button>
+  </div>
+  <div class="explanation ok" id="exp-q4-ok">
+    <div class="exp-label">✅ 正解：×</div>
+    弁済期後に譲渡担保権者が目的物を第三者に処分した場合、<span class="kw">受戻権は消滅します</span>（最判平6・2・22）。そして<span class="kw">担保目的物の譲受人が背信的悪意者である場合も同様</span>に消滅します。弁済期に弁済しなかった設定者よりも取引の安全が優先されるからです。
+  </div>
+  <div class="explanation ng" id="exp-q4-ng">
+    <div class="exp-label">❌ 不正解（正解：×）</div>
+    弁済期後の処分によって受戻権は消滅します。<span class="kw">譲受人が背信的悪意者でも同じ</span>です（最判平6・2・22）。取引の安全が優先されます。
+  </div>
+</div>
+
+<!-- Q5 択一 -->
+<div class="q-card" id="q5">
+  <div class="q-meta"><div class="q-num">5</div><span class="q-type">5択問題</span></div>
+  <div class="q-text">譲渡担保に関するア〜オの記述のうち、妥当なものをすべて挙げているのはどれか。（争いのあるものは判例による）</div>
+  <ul class="choice-list">
+    <li><button class="choice-btn" onclick="checkChoice(this,'q5',false)">1. ア、イ</button></li>
+    <li><button class="choice-btn" onclick="checkChoice(this,'q5',true)">2. ア、オ</button></li>
+    <li><button class="choice-btn" onclick="checkChoice(this,'q5',false)">3. イ、エ</button></li>
+    <li><button class="choice-btn" onclick="checkChoice(this,'q5',false)">4. ウ、エ</button></li>
+    <li><button class="choice-btn" onclick="checkChoice(this,'q5',false)">5. ウ、オ</button></li>
+  </ul>
+  <div style="background:#f8f9fc;border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-top:2px;margin-bottom:8px;font-size:13px;line-height:1.9;">
+    <b>ア．</b>譲渡担保権を実行した場合において、目的物の価値が債務の額を上回るときは、債務者の利益が害されるため、譲渡担保権者には差額の清算義務があり、特段の事情がある場合を除き、清算金の支払いと目的物の引渡しは同時履行の関係に立つ。<br>
+    <b>イ．</b>受戻権とは、譲渡担保権者において譲渡担保権の実行を完結するまでの間に、譲渡担保権設定者が弁済等によって被担保債権を消滅させることにより譲渡担保の目的物の所有権等を回復する権利である。譲渡担保権設定者は、この受戻権を放棄することによって清算金の支払いを請求することができる。<br>
+    <b>ウ．</b>物上代位は法定担保にのみ認められるものであるから、譲渡担保権に基づく物上代位権の行使が認められることはない。<br>
+    <b>エ．</b>譲渡担保権設定者が、目的物（動産）を引き続き占有し、これを弁済期前に第三者に譲渡した場合、譲渡担保の目的物の所有権が譲渡担保権者に移るとの所有権的構成を貫くと、第三者は善意悪意を問わず有効に所有権を取得することができる。<br>
+    <b>オ．</b>構成部分の変動する集合動産を目的とする集合物譲渡担保権の設定者がその構成部分である動産の占有を取得したときは譲渡担保権者が占有改定の方法によって占有権を取得する旨の合意があり、その合意に基づいて設定者がその構成部分として現に存在する動産の占有を取得した場合には、譲渡担保権者による対抗要件具備の効力は、新たにその構成部分となった動産を包含する集合物に及ぶ。
+  </div>
+  <div class="explanation ok" id="exp-q5-ok">
+    <div class="exp-label">✅ 正解：2（ア・オ）</div>
+    <b>ア○</b>：清算義務あり、清算金の支払いと目的物の引渡しは同時履行（最判昭46・3・25）。正しい。<br>
+    <b>イ×</b>：受戻権の説明前半は正しいが、<span class="kw">受戻権を放棄して清算金請求はできません</span>（最判平8・11・22）。<br>
+    <b>ウ×</b>：譲渡担保権にも<span class="kw">物上代位性が認められます</span>（最決平11・5・17）。<br>
+    <b>エ×</b>：所有権的構成を貫くと第三者は無権利者（設定者）からの譲渡と同じ扱いになる。即時取得（192条）の余地はあるが、そのためには第三者が<span class="kw">善意・無過失</span>でなければならない。「善意悪意を問わず」は誤り。<br>
+    <b>オ○</b>：集合物譲渡担保の対抗要件具備の効力は新たに構成部分となった動産にも及ぶ（最判昭62・11・10）。正しい。
+  </div>
+  <div class="explanation ng" id="exp-q5-ng">
+    <div class="exp-label">❌ 不正解（正解：2）</div>
+    ア○・オ○が妥当な記述です。イは受戻権放棄による清算金請求が不可、ウは物上代位が認められる点、エは即時取得のため善意・無過失が必要な点がそれぞれ誤りです。
+  </div>
+</div>
+
+<!-- スコア -->
+<div class="score-section" id="score-section" style="display:none;">
+  <h2>📊 結果</h2>
+  <div class="score-num" id="score-num">0</div>
+  <div class="score-label">/ 5問 正解</div>
+  <div style="margin-top:12px;font-size:14px;color:#b8c8e0;" id="score-msg"></div>
+  <button class="reset-btn" onclick="resetAll()">もう一度挑戦</button>
+</div>
+
+<div class="complete-banner">
+  <div class="cb-title">🎉 GAMBA 民法 全26章 完走！</div>
+  <div class="cb-sub">ch01〜ch26 すべての演習を終えました。本試験まで何度も繰り返して、合格をつかもう！</div>
+</div>
+
+</div>
+
+<footer class="page-footer">
+  GAMBA 民法 ch26 譲渡担保 演習 ｜ 江原予備校
+</footer>
+
+<script>
+let answered = {}, correctCount = 0;
+const total = 5;
+const correctAnswers = {q1:true, q2:true, q3:false, q4:false};
+
+function checkOX(btn, qid, isTrue) {
+  if (answered[qid]) return;
+  answered[qid] = true;
+  document.getElementById(qid).querySelectorAll('.btn-ox').forEach(b => b.classList.add('disabled'));
+  const correct = (isTrue === correctAnswers[qid]);
+  if (correct) {
+    btn.classList.add('correct');
+    document.getElementById('exp-'+qid+'-ok').classList.add('show');
+    correctCount++;
+  } else {
+    btn.classList.add('incorrect');
+    document.getElementById('exp-'+qid+'-ng').classList.add('show');
+  }
+  checkAllAnswered();
+}
+
+function checkChoice(btn, qid, isCorrect) {
+  if (answered[qid]) return;
+  answered[qid] = true;
+  document.getElementById(qid).querySelectorAll('.choice-btn').forEach(b => b.classList.add('disabled'));
+  if (isCorrect) {
+    btn.classList.add('correct');
+    document.getElementById('exp-'+qid+'-ok').classList.add('show');
+    correctCount++;
+  } else {
+    btn.classList.add('incorrect');
+    document.getElementById(qid).querySelectorAll('.choice-btn').forEach(b => {
+      if (b.onclick.toString().includes('true')) b.classList.add('correct');
+    });
+    document.getElementById('exp-'+qid+'-ng').classList.add('show');
+  }
+  checkAllAnswered();
+}
+
+function checkAllAnswered() {
+  if (Object.keys(answered).length === total) {
+    const section = document.getElementById('score-section');
+    section.style.display = 'block';
+    document.getElementById('score-num').textContent = correctCount;
+    const msgs = ['もう少し復習しよう！','基礎はOK！苦手部分を確認しよう','なかなか良い！','よくできました！','完璧！本試験も安心！'];
+    document.getElementById('score-msg').textContent = msgs[correctCount] || '';
+    section.scrollIntoView({behavior:'smooth'});
+    if (correctCount >= 4) setTimeout(launchConfetti, 400);
+  }
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  canvas.style.display = 'block';
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const colors = ['#C0392B','#1B2A4A','#D4A017','#2ecc71','#3498db','#e74c3c','#f39c12','#9b59b6'];
+  const pieces = Array.from({length:160}, () => ({
+    x: Math.random()*canvas.width, y: Math.random()*-canvas.height,
+    w: Math.random()*10+6, h: Math.random()*6+4,
+    color: colors[Math.floor(Math.random()*colors.length)],
+    rot: Math.random()*Math.PI*2,
+    vx: (Math.random()-0.5)*3, vy: Math.random()*4+2,
+    vr: (Math.random()-0.5)*0.15, opacity: 1
+  }));
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr;
+      if (frame>120) p.opacity=Math.max(0,p.opacity-0.015);
+      ctx.save(); ctx.globalAlpha=p.opacity;
+      ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+    });
+    frame++;
+    if (frame<200) requestAnimationFrame(draw);
+    else { ctx.clearRect(0,0,canvas.width,canvas.height); canvas.style.display='none'; }
+  }
+  draw();
+}
+
+function resetAll() {
+  answered = {}; correctCount = 0;
+  document.getElementById('score-section').style.display = 'none';
+  document.querySelectorAll('.btn-ox,.choice-btn').forEach(b => b.classList.remove('correct','incorrect','disabled'));
+  document.querySelectorAll('.explanation').forEach(e => e.classList.remove('show'));
+  const canvas = document.getElementById('confetti-canvas');
+  canvas.style.display = 'none';
+  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+}
+</script>
+</body>
+</html>

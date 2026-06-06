@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch25｜根抵当権</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4A017;
+    --light-bg: #F4F6FA;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --border: #d0d8ea;
+    --accent-light: #EAF0FB;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'BIZ UDGothic','Meiryo',sans-serif;background:var(--light-bg);color:var(--text);line-height:1.8;}
+  .page-header{background:var(--navy);color:var(--white);padding:28px 32px 20px;position:relative;overflow:hidden;}
+  .page-header::before{content:'';position:absolute;right:-40px;top:-40px;width:220px;height:220px;border-radius:50%;background:rgba(192,57,43,0.18);}
+  .chapter-label{font-size:11px;letter-spacing:3px;color:#8fa8d0;margin-bottom:6px;}
+  .page-title{font-size:26px;font-weight:700;letter-spacing:1px;}
+  .page-title span{color:var(--crimson);}
+  .level-badge{display:inline-block;margin-top:10px;background:var(--crimson);color:var(--white);font-size:11px;padding:3px 12px;border-radius:20px;letter-spacing:1px;}
+  .toc{background:var(--navy);border-top:1px solid rgba(255,255,255,0.1);padding:12px 32px;display:flex;flex-wrap:wrap;gap:8px;}
+  .toc a{color:#8fa8d0;font-size:12px;text-decoration:none;padding:3px 10px;border:1px solid rgba(143,168,208,0.3);border-radius:12px;transition:all 0.2s;}
+  .toc a:hover{color:var(--white);border-color:var(--white);}
+  .container{max-width:860px;margin:0 auto;padding:32px 20px;}
+  .section-header{display:flex;align-items:center;gap:12px;margin:40px 0 18px;padding-bottom:10px;border-bottom:2px solid var(--navy);}
+  .section-num{background:var(--navy);color:var(--white);font-size:13px;font-weight:700;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .section-header h2{font-size:20px;color:var(--navy);font-weight:700;}
+  .article-box{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px 24px;margin-bottom:18px;box-shadow:0 2px 6px rgba(27,42,74,0.06);}
+  .article-box h3{font-size:15px;color:var(--navy);font-weight:700;margin-bottom:12px;padding-left:10px;border-left:3px solid var(--crimson);}
+  .article-box p{font-size:14px;margin-bottom:10px;}
+  .article-box p:last-child{margin-bottom:0;}
+  .point-card{background:var(--accent-light);border-left:4px solid var(--navy);border-radius:6px;padding:14px 18px;margin:14px 0;font-size:14px;}
+  .point-card .point-title{font-weight:700;color:var(--navy);margin-bottom:6px;font-size:13px;}
+  .warn-box{background:#fff8f7;border:1px solid var(--crimson);border-left:4px solid var(--crimson);border-radius:6px;padding:14px 18px;margin:14px 0;font-size:14px;}
+  .warn-box .warn-title{font-weight:700;color:var(--crimson);margin-bottom:6px;font-size:13px;}
+  .info-box{background:#fffdf0;border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:6px;padding:14px 18px;margin:14px 0;font-size:14px;}
+  .info-box .info-title{font-weight:700;color:#a07800;margin-bottom:6px;font-size:13px;}
+  .goro-box{background:linear-gradient(135deg,#1B2A4A 0%,#2c4070 100%);color:var(--white);border-radius:10px;padding:18px 22px;margin:18px 0;text-align:center;}
+  .goro-box .goro-label{font-size:11px;letter-spacing:2px;color:#8fa8d0;margin-bottom:8px;}
+  .goro-box .goro-text{font-size:20px;font-weight:700;letter-spacing:3px;}
+  .goro-box .goro-sub{font-size:12px;color:#b8c8e0;margin-top:8px;}
+  /* 比較表 */
+  .comp-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+  .comp-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:center;font-weight:700;}
+  .comp-table td{padding:9px 14px;border:1px solid var(--border);vertical-align:top;}
+  .comp-table tr:nth-child(even) td{background:#f8f9fc;}
+  .comp-table td.label{font-weight:700;color:var(--navy);background:var(--accent-light);text-align:left;}
+  .ok{color:#1e7e34;font-weight:700;}
+  .ng{color:var(--crimson);font-weight:700;}
+  /* イメージ図（コップ） */
+  .cup-figure{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px;margin:14px 0;display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;}
+  .cup-wrap{flex:1;min-width:180px;text-align:center;}
+  .cup-label{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:10px;}
+  .cup-svg{margin:0 auto;}
+  .cup-desc{flex:2;min-width:200px;font-size:13px;padding-top:4px;}
+  .cup-desc p{margin-bottom:8px;}
+  /* ミニテスト */
+  .mini-test{background:var(--white);border:2px solid var(--navy);border-radius:10px;padding:20px 22px;margin:22px 0;}
+  .mini-test-title{background:var(--navy);color:var(--white);font-size:12px;font-weight:700;letter-spacing:2px;padding:5px 14px;border-radius:4px;display:inline-block;margin-bottom:14px;}
+  .blank-sentence{font-size:14px;line-height:2.2;margin-bottom:14px;}
+  .mblank{display:inline-block;background:var(--navy);color:var(--navy);border-radius:4px;padding:1px 6px;cursor:pointer;min-width:80px;text-align:center;font-weight:700;transition:all 0.2s;border:none;font-family:inherit;font-size:14px;}
+  .mblank:hover,.mblank.revealed{background:var(--crimson);color:var(--white);}
+  .chip-area{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+  .chip{background:var(--accent-light);border:1px solid var(--navy);border-radius:20px;padding:5px 14px;font-size:13px;cursor:pointer;transition:all 0.2s;color:var(--navy);font-weight:700;}
+  .chip:hover{background:var(--navy);color:var(--white);}
+  .chip.used{opacity:0.35;pointer-events:none;}
+  .chip.wrong{background:#fee;border-color:var(--crimson);color:var(--crimson);animation:shake 0.3s;}
+  @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-4px);}75%{transform:translateX(4px);}}
+  /* まとめ箱 */
+  .summary-box{background:var(--navy);color:var(--white);border-radius:12px;padding:24px 28px;margin:30px 0;}
+  .summary-box h3{font-size:16px;font-weight:700;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.2);}
+  .summary-box ul{list-style:none;padding:0;}
+  .summary-box li{font-size:14px;padding:5px 0;padding-left:18px;position:relative;color:#dce6f5;}
+  .summary-box li::before{content:'▶';position:absolute;left:0;color:var(--crimson);font-size:11px;}
+  .kw{color:var(--crimson);font-weight:700;}
+  .kw2{color:var(--navy);font-weight:700;border-bottom:2px solid var(--gold);}
+  .page-footer{background:var(--navy);color:#8fa8d0;text-align:center;padding:18px;font-size:12px;margin-top:40px;}
+  /* 確定前後バッジ */
+  .badge-before{display:inline-block;background:#e8f0fe;border:1px solid #4a6fa5;color:#1B2A4A;font-size:11px;font-weight:700;padding:2px 10px;border-radius:10px;margin-right:4px;}
+  .badge-after{display:inline-block;background:#fce4ec;border:1px solid var(--crimson);color:var(--crimson);font-size:11px;font-weight:700;padding:2px 10px;border-radius:10px;margin-right:4px;}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="chapter-label">GAMBA 民法 ｜ Chapter 25</div>
+  <div class="page-title"><span>根抵当権</span></div>
+  <div class="level-badge">重要度★★☆ 頻出度★☆☆</div>
+</header>
+<nav class="toc">
+  <a href="#s1">①根抵当権とは</a>
+  <a href="#s2">②根抵当権の内容</a>
+  <a href="#s3">③内容の変更</a>
+  <a href="#s4">④元本確定後の諸制度</a>
+</nav>
+
+<div class="container">
+
+<!-- ===== §1 根抵当権とは ===== -->
+<div class="section-header" id="s1">
+  <div class="section-num">1</div>
+  <h2>根抵当権とは</h2>
+</div>
+
+<div class="article-box">
+  <h3>根抵当権の基本イメージ</h3>
+  <p>「<span class="kw">根抵当権</span>」とは、<span class="kw2">一定の範囲に属する不特定の債権</span>を<span class="kw">極度額</span>の限度まで担保する抵当権です。</p>
+  <p>銀行との継続的な融資取引のように、複数の債権が発生・消滅を繰り返す場面で使われます。普通抵当権だと債権ごとに設定・解除を繰り返す手間がかかりますが、根抵当権なら<span class="kw">1つの抵当権で極度額の枠内をすべて担保</span>できます。</p>
+
+  <!-- コップのイメージ図（SVGで表現） -->
+  <div class="cup-figure">
+    <div class="cup-wrap">
+      <div class="cup-label">🥤 元本確定前（コップが開いている）</div>
+      <svg class="cup-svg" width="120" height="140" viewBox="0 0 120 140">
+        <!-- コップ本体 -->
+        <path d="M20,20 L10,130 L110,130 L100,20 Z" fill="#EAF0FB" stroke="#1B2A4A" stroke-width="2.5"/>
+        <!-- 極度額ライン -->
+        <line x1="12" y1="20" x2="108" y2="20" stroke="#C0392B" stroke-width="2" stroke-dasharray="5,3"/>
+        <text x="60" y="14" text-anchor="middle" font-size="10" fill="#C0392B" font-weight="bold">極度額（枠）</text>
+        <!-- 中のジュース（被担保債権） -->
+        <path d="M33,90 L20,130 L100,130 L87,90 Z" fill="#4a90d9" opacity="0.5"/>
+        <text x="60" y="115" text-anchor="middle" font-size="10" fill="#1B2A4A" font-weight="bold">被担保債権</text>
+        <text x="60" y="128" text-anchor="middle" font-size="9" fill="#1B2A4A">（増減する）</text>
+        <!-- 口が開いている表現 -->
+        <text x="60" y="38" text-anchor="middle" font-size="22">↕</text>
+        <text x="60" y="58" text-anchor="middle" font-size="9" fill="#555">債権が出入り</text>
+      </svg>
+    </div>
+    <div class="cup-desc">
+      <p><span class="badge-before">元本確定前</span></p>
+      <p>コップ（極度額）の口が開いており、中のジュース（被担保債権）が増減します。</p>
+      <p>被担保債権と根抵当権は<span class="kw">一対一対応せず</span>、<span class="kw">付従性・随伴性がありません</span>。</p>
+      <p>→ 債権が消滅しても根抵当権は消滅しない（付従性なし）<br>
+         → 債権が譲渡されても根抵当権は移転しない（随伴性なし）</p>
+      <p>ただし、根抵当権者は<span class="kw">根抵当権設定者の承諾</span>を得て根抵当権自体を譲渡できる（398条の12・13）。</p>
+    </div>
+  </div>
+
+  <div class="cup-figure">
+    <div class="cup-wrap">
+      <div class="cup-label">🔒 元本確定後（コップが閉じた）</div>
+      <svg class="cup-svg" width="120" height="140" viewBox="0 0 120 140">
+        <path d="M20,40 L10,130 L110,130 L100,40 Z" fill="#EAF0FB" stroke="#1B2A4A" stroke-width="2.5"/>
+        <!-- 蓋 -->
+        <rect x="15" y="32" width="90" height="12" rx="4" fill="#1B2A4A"/>
+        <text x="60" y="43" text-anchor="middle" font-size="9" fill="white" font-weight="bold">確定（蓋が閉まった）</text>
+        <!-- 極度額ライン -->
+        <line x1="12" y1="40" x2="108" y2="40" stroke="#C0392B" stroke-width="2" stroke-dasharray="5,3"/>
+        <text x="60" y="25" text-anchor="middle" font-size="10" fill="#C0392B" font-weight="bold">極度額</text>
+        <!-- 中のジュース固定 -->
+        <path d="M33,90 L20,130 L100,130 L87,90 Z" fill="#C0392B" opacity="0.4"/>
+        <text x="60" y="115" text-anchor="middle" font-size="10" fill="#1B2A4A" font-weight="bold">被担保債権</text>
+        <text x="60" y="128" text-anchor="middle" font-size="9" fill="#1B2A4A">（固定）</text>
+      </svg>
+    </div>
+    <div class="cup-desc">
+      <p><span class="badge-after">元本確定後</span></p>
+      <p>コップの口が閉まり、中の債権が固定されます。これ以降、新しい被担保債権は入ってきません。</p>
+      <p>確定後は被担保債権と根抵当権が<span class="kw">一対一対応</span>し、<span class="kw">付従性・随伴性が復活</span>します。</p>
+      <p>普通の抵当権と同じように扱われますが、<span class="kw">利息などは極度額まで</span>担保されます（普通抵当権の「最後の2年分」制限なし）。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== §2 根抵当権の内容 ===== -->
+<div class="section-header" id="s2">
+  <div class="section-num">2</div>
+  <h2>根抵当権の内容</h2>
+</div>
+
+<div class="article-box">
+  <h3>①被担保債権の範囲</h3>
+  <p>根抵当権の被担保債権は「<span class="kw">一定の範囲</span>」に属する<span class="kw">不特定の債権</span>でなければなりません。</p>
+  <div class="warn-box">
+    <div class="warn-title">⚠ 包括根抵当の禁止</div>
+    当事者間に生じる<span class="kw">一切の債権</span>を担保するために根抵当権を設定することはできません。これを「<span class="kw">包括根抵当の禁止</span>」といいます（398条の2第2項）。<br>
+    「一定の範囲」の例：債務者との特定の継続的取引契約によって生じるもの、一定の種類の取引によって生じるものなど。
+  </div>
+  <div class="point-card">
+    <div class="point-title">◎ 担保される範囲</div>
+    確定した<span class="kw">元本</span>並びに<span class="kw">利息その他の定期金</span>及び<span class="kw">債務の不履行によって生じた損害賠償の全部</span>が、極度額を限度として担保されます（398条の3第1項）。<br>
+    → 普通抵当権のような「最後の2年分」という制限は<span class="kw">ありません</span>。
+  </div>
+</div>
+
+<div class="article-box">
+  <h3>②極度額（必須）</h3>
+  <p>根抵当権は多数の被担保債権を担保するため、いくらまで担保するのかを明らかにするため、<span class="kw">極度額を設定しなければなりません</span>（398条の2第1項）。</p>
+  <p>後順位抵当権者等は極度額を差し引いた不動産の価値の余りを把握することができます。</p>
+</div>
+
+<div class="article-box">
+  <h3>③元本確定期日</h3>
+  <p>元本確定期日を定める場合は、根抵当権を設定した時から<span class="kw">5年以内の日</span>を定めなければなりません。ただし、確定期日を定めなくても根抵当権設定契約は有効です。</p>
+  <div class="point-card">
+    <div class="point-title">◎ 確定期日を定めなかった場合の元本確定請求</div>
+    <span class="kw">根抵当権設定者</span>：設定時から<span class="kw">3年を経過</span>したときに元本の確定請求ができる（398条の19第1項）<br>
+    <span class="kw">根抵当権者の側</span>：<span class="kw">いつでも</span>元本の確定請求ができる（398条の19第2項）
+  </div>
+  <div class="goro-box">
+    <div class="goro-label">ゴロ合わせ</div>
+    <div class="goro-text">「確定期日は 五年以内」</div>
+    <div class="goro-sub">設定者からの確定請求は3年経過後・根抵当権者はいつでも</div>
+  </div>
+</div>
+
+<!-- ミニテスト1 -->
+<div class="mini-test">
+  <div class="mini-test-title">📝 ミニテスト①　基本事項</div>
+  <div class="blank-sentence">
+    根抵当権とは、一定の範囲に属する<button class="mblank" data-ans="不特定の債権">　　　　　</button>を極度額の限度まで担保する抵当権である。当事者間の一切の債権を担保するための設定は<button class="mblank" data-ans="包括根抵当の禁止">　　　　　　</button>により認められない。元本確定期日を定める場合は設定時から<button class="mblank" data-ans="5年以内">　　　</button>の日でなければならない。元本確定前は<button class="mblank" data-ans="付従性・随伴性">　　　　　　</button>がなく、確定後は復活する。
+  </div>
+  <div class="chip-area" id="chips1">
+    <span class="chip" data-val="不特定の債権">不特定の債権</span>
+    <span class="chip" data-val="包括根抵当の禁止">包括根抵当の禁止</span>
+    <span class="chip" data-val="5年以内">5年以内</span>
+    <span class="chip" data-val="付従性・随伴性">付従性・随伴性</span>
+    <span class="chip" data-val="3年以内">3年以内</span>
+    <span class="chip" data-val="特定の債権">特定の債権</span>
+  </div>
+</div>
+
+<!-- ===== §3 内容の変更 ===== -->
+<div class="section-header" id="s3">
+  <div class="section-num">3</div>
+  <h2>根抵当権の内容の変更</h2>
+</div>
+
+<div class="article-box">
+  <h3>変更の可否と承諾の要否</h3>
+  <table class="comp-table">
+    <tr>
+      <th>変更内容</th>
+      <th>後順位抵当権者等の承諾</th>
+      <th>登記</th>
+    </tr>
+    <tr>
+      <td class="label">被担保債権の範囲の変更</td>
+      <td class="ok">不要（398条の4）</td>
+      <td>元本確定前に登記が必要（効力要件）</td>
+    </tr>
+    <tr>
+      <td class="label">債務者の変更</td>
+      <td class="ok">不要（398条の4）</td>
+      <td>元本確定前に登記が必要（効力要件）</td>
+    </tr>
+    <tr>
+      <td class="label">元本確定期日の変更</td>
+      <td class="ok">不要（398条の6）</td>
+      <td>変更前の期日より前に登記が必要</td>
+    </tr>
+    <tr>
+      <td class="label"><span class="kw">極度額の変更</span></td>
+      <td class="ng">必要（利害関係人の承諾）（398条の5）</td>
+      <td>承諾＋登記が必要</td>
+    </tr>
+  </table>
+  <div class="warn-box">
+    <div class="warn-title">⚠ 極度額の変更だけは利害関係人の承諾が必要！</div>
+    極度額は根抵当権者の優先枠を意味するため、勝手に変えられると<span class="kw">後順位抵当権者や転抵当権者</span>などの取り分が減ってしまいます。そのため利害関係人（後順位抵当権者・転抵当権者等）の承諾が必要です（398条の5）。
+  </div>
+  <div class="info-box">
+    <div class="info-title">💡 登記の効力</div>
+    被担保債権の範囲・債務者・元本確定期日の変更は、<span class="kw">元本確定前に登記をしないと変更しなかったものとみなされます</span>。登記が効力要件となっている点に注意。
+  </div>
+</div>
+
+<!-- ミニテスト2 -->
+<div class="mini-test">
+  <div class="mini-test-title">📝 ミニテスト②　内容の変更</div>
+  <div class="blank-sentence">
+    被担保債権の範囲や債務者の変更は、後順位抵当権者などの承諾を<button class="mblank" data-ans="得ないでできる">　　　　　　</button>。ただし元本確定前に<button class="mblank" data-ans="登記">　　</button>をしないと変更しなかったものとみなされる。一方、<button class="mblank" data-ans="極度額">　　　</button>の変更は利害関係人の承諾がなければすることができない。
+  </div>
+  <div class="chip-area" id="chips2">
+    <span class="chip" data-val="得ないでできる">得ないでできる</span>
+    <span class="chip" data-val="登記">登記</span>
+    <span class="chip" data-val="極度額">極度額</span>
+    <span class="chip" data-val="得なければできない">得なければできない</span>
+    <span class="chip" data-val="元本確定期日">元本確定期日</span>
+  </div>
+</div>
+
+<!-- ===== §4 元本確定後の諸制度 ===== -->
+<div class="section-header" id="s4">
+  <div class="section-num">4</div>
+  <h2>元本確定後の諸制度</h2>
+</div>
+
+<div class="article-box">
+  <h3>（1）極度額減額請求（398条の21）</h3>
+  <p>元本が確定した後は被担保債権が特定されます。そこで、<span class="kw">根抵当権設定者</span>は根抵当権の極度額を、<span class="kw">現に存する債務の額</span>と<span class="kw">以後2年間に生ずる利息などを加えた額</span>に減額するよう請求できます。</p>
+  <div class="point-card">
+    <div class="point-title">◎ 極度額減額請求のイメージ</div>
+    極度額 ＞ 現存債務 となっている場合に、「現存債務 ＋ 2年分の利息など」まで<span class="kw">コップを小さくして</span>ほしいと頼める制度です。
+  </div>
+</div>
+
+<div class="article-box">
+  <h3>（2）根抵当権消滅請求（398条の22）</h3>
+  <p>元本確定後において現に存する債務の額が根抵当権の<span class="kw">極度額を超えるとき</span>は、<span class="kw">物上保証人や第三取得者</span>は極度額に相当する金額を払い渡して根抵当権の消滅を請求できます。</p>
+  <div class="warn-box">
+    <div class="warn-title">⚠ 主たる債務者・保証人はできない</div>
+    根抵当権消滅請求は<span class="kw">物上保証人・第三取得者</span>だけができます。<span class="kw">根抵当権の主たる債務者・保証人はできません</span>（398条の22第2項）。全額弁済義務を負っている者が極度額だけ払えばよいとするのは不合理だからです。
+  </div>
+  <table class="comp-table" style="margin-top:10px;">
+    <tr>
+      <th>制度</th>
+      <th>発動条件</th>
+      <th>できる人</th>
+    </tr>
+    <tr>
+      <td class="label">極度額減額請求</td>
+      <td>極度額 ＞ 現存債務</td>
+      <td><span class="kw">根抵当権設定者</span></td>
+    </tr>
+    <tr>
+      <td class="label">根抵当権消滅請求</td>
+      <td>現存債務 ＞ 極度額</td>
+      <td><span class="kw">物上保証人・第三取得者</span>（主たる債務者・保証人は×）</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ミニテスト3 -->
+<div class="mini-test">
+  <div class="mini-test-title">📝 ミニテスト③　確定後の諸制度</div>
+  <div class="blank-sentence">
+    元本確定後、根抵当権設定者は極度額を<button class="mblank" data-ans="現存債務＋2年分利息">　　　　　　　　</button>の額に減額するよう請求できる。一方、現存債務が極度額を超えるときは<button class="mblank" data-ans="物上保証人・第三取得者">　　　　　　　　</button>が根抵当権消滅請求をすることができる。なお、根抵当権の<button class="mblank" data-ans="主たる債務者・保証人">　　　　　　　</button>は根抵当権消滅請求をすることができない。
+  </div>
+  <div class="chip-area" id="chips3">
+    <span class="chip" data-val="現存債務＋2年分利息">現存債務＋2年分利息</span>
+    <span class="chip" data-val="物上保証人・第三取得者">物上保証人・第三取得者</span>
+    <span class="chip" data-val="主たる債務者・保証人">主たる債務者・保証人</span>
+    <span class="chip" data-val="現存債務のみ">現存債務のみ</span>
+    <span class="chip" data-val="第三取得者のみ">第三取得者のみ</span>
+  </div>
+</div>
+
+<!-- まとめ箱 -->
+<div class="summary-box">
+  <h3>📌 ch25 根抵当権 まとめ</h3>
+  <ul>
+    <li>根抵当権：一定範囲の不特定債権を極度額の限度で担保。包括根抵当は禁止</li>
+    <li>元本確定前：付従性・随伴性なし。確定後：付従性・随伴性が復活</li>
+    <li>利息等は極度額まで全部担保（普通抵当権の「最後の2年分」制限なし）</li>
+    <li>極度額の設定は必須。元本確定期日は5年以内の日</li>
+    <li>設定者からの確定請求は3年経過後、根抵当権者はいつでも可</li>
+    <li>変更：範囲・債務者・確定期日 → 後順位者の承諾不要・登記が効力要件</li>
+    <li>変更：極度額のみ → 利害関係人（後順位抵当権者等）の承諾が必要</li>
+    <li>極度額減額請求：確定後・極度額＞現存債務→設定者が請求できる</li>
+    <li>根抵当権消滅請求：確定後・現存債務＞極度額→物上保証人・第三取得者のみ</li>
+    <li>主たる債務者・保証人は根抵当権消滅請求できない</li>
+  </ul>
+</div>
+
+</div><!-- /container -->
+
+<footer class="page-footer">
+  GAMBA 民法 ch25 根抵当権 ｜ 江原予備校
+</footer>
+
+<script>
+document.querySelectorAll('.mblank').forEach(btn => {
+  btn.addEventListener('click', function() {
+    this.classList.toggle('revealed');
+  });
+});
+
+document.querySelectorAll('.chip-area').forEach(area => {
+  const blanks = area.closest('.mini-test').querySelectorAll('.mblank');
+  area.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', function() {
+      if (this.classList.contains('used')) return;
+      const val = this.dataset.val;
+      let matched = null;
+      for (let blank of blanks) {
+        if (!blank.classList.contains('revealed') && blank.dataset.ans === val) {
+          matched = blank;
+          break;
+        }
+      }
+      if (matched) {
+        matched.classList.add('revealed');
+        matched.textContent = val;
+        this.classList.add('used');
+      } else {
+        this.classList.add('wrong');
+        setTimeout(() => this.classList.remove('wrong'), 500);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

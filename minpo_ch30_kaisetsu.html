@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法 ch30 多数当事者の債権関係・連帯債務</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#eef2f7;font-family:'BIZ UDGothic','Meiryo',sans-serif;color:#1B2A4A;line-height:1.8}
+  header{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:#fff;padding:20px 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+  header h1{font-size:1.2rem;font-weight:700}
+  header p{font-size:.8rem;opacity:.85;margin-top:2px}
+  .container{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+  .card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  h2{font-size:1.15rem;color:#1B2A4A;border-left:4px solid #C0392B;padding-left:10px;margin-bottom:16px}
+  h3{font-size:1rem;color:#C0392B;margin:16px 0 8px;font-weight:700}
+  p{margin-bottom:10px;font-size:.95rem}
+  ul,ol{padding-left:20px;margin-bottom:10px;font-size:.95rem}
+  li{margin-bottom:4px}
+  .point-box{background:#fff8e1;border-left:4px solid #D4A017;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+  .point-box strong{color:#C0392B}
+  .ng-box{background:#ffeaea;border-left:4px solid #C0392B;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+  .ok-box{background:#e8f5e9;border-left:4px solid #2e7d32;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+  th{background:#1B2A4A;color:#fff;padding:8px 10px;text-align:center}
+  td{border:1px solid #ccc;padding:8px 10px;vertical-align:top}
+  tr:nth-child(even) td{background:#f5f7fa}
+  /* ミニテスト */
+  .mini-quiz{background:#f0f4f8;border-radius:10px;padding:18px;margin-top:18px}
+  .mini-quiz h4{font-size:.95rem;color:#1B2A4A;margin-bottom:12px;font-weight:700}
+  .q-item{margin-bottom:14px}
+  .q-item p{font-size:.9rem;margin-bottom:6px}
+  .ox-btn{display:inline-block;padding:6px 18px;margin-right:8px;border-radius:6px;border:2px solid #1B2A4A;background:#fff;cursor:pointer;font-size:.9rem;font-weight:700;transition:all .2s}
+  .ox-btn:hover{background:#1B2A4A;color:#fff}
+  .ox-btn.correct{background:#2e7d32;border-color:#2e7d32;color:#fff}
+  .ox-btn.wrong{background:#C0392B;border-color:#C0392B;color:#fff}
+  .exp{font-size:.85rem;margin-top:6px;padding:8px 12px;border-radius:6px;display:none}
+  .exp-ok{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
+  .exp-ng{background:#ffeaea;color:#C0392B;border:1px solid #ef9a9a}
+  /* 穴埋め */
+  .fill-section{margin-top:18px}
+  .fill-sentence{font-size:.95rem;line-height:2.4;margin-bottom:8px}
+  .blank{display:inline-block;min-width:90px;height:28px;border-bottom:2px solid #1B2A4A;vertical-align:bottom;text-align:center;cursor:pointer;background:rgba(212,160,23,.1);border-radius:4px 4px 0 0;padding:0 4px;font-weight:700;color:#C0392B;transition:background .2s}
+  .blank:hover{background:rgba(192,57,43,.1)}
+  .blank.filled{background:rgba(46,125,50,.1);border-bottom-color:#2e7d32}
+  .blank.wrong-fill{background:rgba(192,57,43,.15);border-bottom-color:#C0392B;animation:shake .3s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+  .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+  .chip{background:#1B2A4A;color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:.88rem;transition:all .2s;user-select:none}
+  .chip:hover{background:#C0392B;transform:translateY(-2px)}
+  .chip.used{opacity:.3;cursor:not-allowed;pointer-events:none}
+  .popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:#fff;border-radius:14px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,.25);z-index:200;min-width:280px;opacity:0;pointer-events:none;transition:all .25s}
+  .popup.show{opacity:1;pointer-events:all;transform:translate(-50%,-50%) scale(1)}
+  .popup h5{color:#1B2A4A;margin-bottom:10px;font-size:.95rem}
+  .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:199;opacity:0;pointer-events:none;transition:opacity .25s}
+  .popup-overlay.show{opacity:1;pointer-events:all}
+  .fill-btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+  .fill-btn{padding:8px 18px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;transition:all .2s}
+  .btn-check{background:#1B2A4A;color:#fff}.btn-check:hover{background:#C0392B}
+  .btn-hint{background:#D4A017;color:#fff}.btn-hint:hover{background:#b8860b}
+  .btn-reset{background:#eee;color:#333}.btn-reset:hover{background:#ddd}
+  .score-badge{display:inline-block;background:#C0392B;color:#fff;border-radius:20px;padding:4px 14px;font-size:.85rem;font-weight:700}
+  canvas#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+  .nav-btns{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+  .nav-btn{padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;text-decoration:none;display:inline-block}
+  .nav-prev{background:#1B2A4A;color:#fff}
+  .nav-next{background:#C0392B;color:#fff}
+  .nav-index{background:#D4A017;color:#fff}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<header>
+  <h1>🏛 GAMBA民法 ch30｜多数当事者の債権関係・連帯債務</h1>
+  <p>民法Ⅱ 債権総論 ― 分割債務・不可分債務・連帯債務・負担部分・求償</p>
+</header>
+<div class="container">
+
+<!-- §1 多数当事者の債権関係 概観 -->
+<div class="card">
+  <h2>§1 多数当事者の債権関係 概観</h2>
+  <p>一つの債権・債務に複数の当事者がいる場合、その関係は次の4類型に整理されます。</p>
+  <table>
+    <tr><th>類型</th><th>内容</th><th>特徴</th></tr>
+    <tr><td><strong>分割債権・分割債務</strong></td><td>各自が独立して平等割合で権利・義務を持つ</td><td>原則形態（427条）</td></tr>
+    <tr><td><strong>不可分債権・不可分債務</strong></td><td>給付が性質上不可分な場合</td><td>連帯債務の規定を準用</td></tr>
+    <tr><td><strong>連帯債務</strong></td><td>各債務者が独立して全額の履行義務を負う</td><td>債権者保護が強い</td></tr>
+    <tr><td><strong>保証債務</strong></td><td>主債務者が履行しない場合に保証人が履行する</td><td>付従性・補充性あり</td></tr>
+  </table>
+
+  <h3>分割債務の原則（427条）</h3>
+  <p>数人が同一の給付について債務を負担する場合、原則として<strong>各自が平等の割合で分割した義務</strong>を負います。意思表示がない限り平等割合です。</p>
+  <div class="ng-box">
+    <strong>注意：</strong>分割債務では、一人について時効が完成しても、その効力は<strong>他の債務者に及びません</strong>（相対効）。
+  </div>
+
+  <!-- ミニテスト1 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ①</h4>
+    <div class="q-item" id="q1">
+      <p>Q1. 数人が同一の給付について債務を負担する場合、別段の意思表示がない限り、原則として各自は平等の割合で分割した義務を負う。</p>
+      <button class="ox-btn" onclick="checkOX('q1',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q1',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q1-ok">正解です！427条の規定通りで、分割債務が原則形態です。</div>
+      <div class="exp exp-ng" id="exp-q1-ng">不正解です。427条により、別段の意思表示がない限り平等の割合で分割した義務を負うのが原則です。</div>
+    </div>
+    <div class="q-item" id="q2">
+      <p>Q2. 不可分債務については、連帯債務の規定が準用される。</p>
+      <button class="ox-btn" onclick="checkOX('q2',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q2',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q2-ok">正解です！430条により、不可分債務には連帯債務の規定が準用されます。</div>
+      <div class="exp exp-ng" id="exp-q2-ng">不正解です。430条により不可分債務には連帯債務の規定が準用されます。</div>
+    </div>
+  </div>
+</div>
+
+<!-- §2 連帯債務の基本 -->
+<div class="card">
+  <h2>§2 連帯債務の基本</h2>
+  <p>連帯債務とは、数人の債務者が同一の給付について<strong>各自独立して全部の履行義務</strong>を負い、一人が弁済すると全員の債務が消滅する関係です（436条）。</p>
+
+  <h3>連帯債務の成立</h3>
+  <ul>
+    <li>当事者の<strong>合意</strong>による場合</li>
+    <li>法律の規定による場合（夫婦の日常家事債務・商法上の連帯債務など）</li>
+  </ul>
+
+  <h3>債権者の権利</h3>
+  <p>債権者は連帯債務者の<strong>一人に対し・一部または全部について・同時にまたは順次に</strong>履行を請求できます（436条）。</p>
+  <div class="point-box">
+    <strong>重要：</strong>連帯債務者の一人に対して<strong>全額</strong>請求できます。催告の抗弁権・検索の抗弁権はありません（保証との大きな違い）。
+  </div>
+
+  <h3>負担部分</h3>
+  <p>連帯債務者の内部関係での負担割合を<strong>負担部分</strong>といいます。特約がなければ平等です。負担部分が<strong>ゼロ</strong>の連帯債務者や、<strong>全部</strong>を負担する連帯債務者も存在し得ます（441条）。</p>
+
+  <!-- 穴埋め §2 -->
+  <div class="mini-quiz fill-section">
+    <h4>✍ 穴埋めテスト — 連帯債務の基本</h4>
+    <div class="fill-sentence">
+      連帯債務者の各自は、債権者から独立して<span class="blank" data-group="A" data-ans="全部">　　</span>の履行を請求される。
+    </div>
+    <div class="fill-sentence">
+      連帯債務者には、催告の抗弁権・検索の抗弁権が<span class="blank" data-group="B" data-ans="ない">　　</span>。
+    </div>
+    <div class="fill-sentence">
+      連帯債務者間の内部負担割合を<span class="blank" data-group="C" data-ans="負担部分">　　　　</span>といい、特約がなければ<span class="blank" data-group="D" data-ans="平等">　　</span>である。
+    </div>
+    <div class="word-bank" id="wb-s2">
+      <span class="chip" data-w="全部" data-group="A">全部</span>
+      <span class="chip" data-w="ない" data-group="B">ない</span>
+      <span class="chip" data-w="負担部分" data-group="C">負担部分</span>
+      <span class="chip" data-w="平等" data-group="D">平等</span>
+      <span class="chip" data-w="一部" data-group="A">一部</span>
+      <span class="chip" data-w="ある" data-group="B">ある</span>
+      <span class="chip" data-w="求償権" data-group="C">求償権</span>
+    </div>
+    <div class="fill-btns">
+      <button class="fill-btn btn-check" onclick="checkFill('s2')">判定する</button>
+      <button class="fill-btn btn-hint" onclick="showHint('s2')">手本を見る</button>
+      <button class="fill-btn btn-reset" onclick="resetFill('s2')">リセット</button>
+      <span class="score-badge" id="score-s2" style="display:none"></span>
+    </div>
+  </div>
+</div>
+
+<!-- §3 絶対効・相対効 -->
+<div class="card">
+  <h2>§3 連帯債務の絶対効と相対効</h2>
+  <p>連帯債務者の一人について生じた事由が、他の連帯債務者にも影響するか（<strong>絶対効</strong>）、影響しないか（<strong>相対効</strong>）が重要です。</p>
+
+  <h3>絶対効（他の連帯債務者にも効力が及ぶもの）</h3>
+  <table>
+    <tr><th>事由</th><th>根拠</th></tr>
+    <tr><td><strong>弁済・代物弁済・供託</strong>（債務消滅行為）</td><td>438条</td></tr>
+    <tr><td><strong>相殺</strong>（相殺を援用した場合）</td><td>439条1項</td></tr>
+    <tr><td><strong>更改</strong></td><td>438条</td></tr>
+    <tr><td><strong>混同</strong></td><td>440条</td></tr>
+  </table>
+
+  <h3>相対効（原則）</h3>
+  <p>上記以外の事由は原則として<strong>相対効</strong>（他の連帯債務者には効力が及ばない）です。</p>
+  <div class="point-box">
+    <strong>改正民法（2017年）の重要変更点：</strong><br>
+    旧法では「請求」「免除」「時効の完成」が絶対効でしたが、<strong>改正後はすべて相対効</strong>になりました。<br>
+    ・一人への<strong>請求</strong> → 相対効（他に時効中断効なし）<br>
+    ・一人への<strong>免除</strong> → 相対効（他の債務者は全額負担）<br>
+    ・一人の<strong>時効完成</strong> → 相対効（他の債務者は時効援用不可）
+  </div>
+  <div class="ng-box">
+    <strong>試験注意！</strong>旧法と改正法で絶対効・相対効の扱いが大きく変わっています。改正後の現行法では、<strong>絶対効は弁済・相殺・更改・混同の4つ</strong>が基本です。
+  </div>
+
+  <h3>相殺の特則（439条）</h3>
+  <p>連帯債務者の一人が債権者に対して<strong>反対債権</strong>を有する場合、その連帯債務者が相殺を援用すれば全員の債務が消滅します（絶対効）。ただし、相殺を援用しない間は、他の連帯債務者は<strong>相殺を援用できる連帯債務者の負担部分の限度</strong>で、履行を拒絶できます（439条2項）。</p>
+
+  <!-- ミニテスト2 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ②</h4>
+    <div class="q-item" id="q3">
+      <p>Q3. 改正民法では、連帯債務者の一人に対する請求は、他の連帯債務者に対しても時効の完成猶予の効力を生じる（絶対効）。</p>
+      <button class="ox-btn" onclick="checkOX('q3',false,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q3',false,this)">×</button>
+      <div class="exp exp-ok" id="exp-q3-ok">正解です！改正民法では「請求」は相対効となり、他の連帯債務者には時効の完成猶予効力は及びません（441条）。</div>
+      <div class="exp exp-ng" id="exp-q3-ng">不正解です。改正民法では請求は相対効です。旧法では絶対効でしたが、改正後は他の連帯債務者に効力は及びません。</div>
+    </div>
+    <div class="q-item" id="q4">
+      <p>Q4. 連帯債務者の一人について無効または取消しの原因があっても、他の連帯債務者の債務はその効力を妨げられない。</p>
+      <button class="ox-btn" onclick="checkOX('q4',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q4',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q4-ok">正解です！433条により、一人の無効・取消原因は他の連帯債務者の債務に影響しません（独立性）。</div>
+      <div class="exp exp-ng" id="exp-q4-ng">不正解です。433条により連帯債務は各自独立した債務であるため、一人の無効・取消原因は他に影響しません。</div>
+    </div>
+  </div>
+</div>
+
+<!-- §4 求償権 -->
+<div class="card">
+  <h2>§4 連帯債務者間の求償権</h2>
+  <p>連帯債務者の一人が<strong>自己の負担部分を超えて</strong>弁済した場合、他の連帯債務者に対して<strong>求償</strong>できます（442条）。</p>
+
+  <h3>求償の範囲</h3>
+  <ul>
+    <li>弁済した額のうち<strong>各自の負担部分</strong>の割合に応じた額</li>
+    <li>弁済日以後の<strong>法定利息</strong>および費用も含む</li>
+  </ul>
+
+  <div class="point-box">
+    <strong>例：</strong>A・B・Cが90万円の連帯債務（負担割合平等＝各30万円）。Aが全額90万円を弁済 → BとCにそれぞれ30万円ずつ求償できる。
+  </div>
+
+  <h3>事前通知・事後通知義務（443条）</h3>
+  <p>弁済する連帯債務者は<strong>他の連帯債務者に事前・事後に通知</strong>する義務があります。通知を怠ると、他の連帯債務者は対抗事由（相殺など）をもって求償に対抗できます。</p>
+
+  <h3>無資力者がいる場合の求償（444条）</h3>
+  <p>求償を受けた連帯債務者の中に<strong>無資力者</strong>がいる場合、その無資力者の負担部分は<strong>求償者と他の資力ある連帯債務者</strong>が負担割合に応じて分担します。</p>
+
+  <!-- 穴埋め §4 -->
+  <div class="mini-quiz fill-section">
+    <h4>✍ 穴埋めテスト — 求償権</h4>
+    <div class="fill-sentence">
+      連帯債務者の一人が自己の<span class="blank" data-group="E" data-ans="負担部分">　　　　</span>を超えて弁済した場合、他の連帯債務者に求償できる。
+    </div>
+    <div class="fill-sentence">
+      連帯債務者間の求償には<span class="blank" data-group="F" data-ans="事前通知">　　　　</span>と<span class="blank" data-group="G" data-ans="事後通知">　　　　</span>の義務がある。
+    </div>
+    <div class="fill-sentence">
+      求償を受けた連帯債務者に無資力者がいる場合、その負担部分は<span class="blank" data-group="H" data-ans="求償者と他の資力ある連帯債務者">　　　　　　　　　　</span>が分担する。
+    </div>
+    <div class="word-bank" id="wb-s4">
+      <span class="chip" data-w="負担部分" data-group="E">負担部分</span>
+      <span class="chip" data-w="事前通知" data-group="F">事前通知</span>
+      <span class="chip" data-w="事後通知" data-group="G">事後通知</span>
+      <span class="chip" data-w="求償者と他の資力ある連帯債務者" data-group="H">求償者と他の資力ある連帯債務者</span>
+      <span class="chip" data-w="全額" data-group="E">全額</span>
+      <span class="chip" data-w="債権者のみ" data-group="H">債権者のみ</span>
+    </div>
+    <div class="fill-btns">
+      <button class="fill-btn btn-check" onclick="checkFill('s4')">判定する</button>
+      <button class="fill-btn btn-hint" onclick="showHint('s4')">手本を見る</button>
+      <button class="fill-btn btn-reset" onclick="resetFill('s4')">リセット</button>
+      <span class="score-badge" id="score-s4" style="display:none"></span>
+    </div>
+  </div>
+</div>
+
+<!-- §5 連帯保証 -->
+<div class="card">
+  <h2>§5 連帯保証</h2>
+  <p>連帯保証とは、保証人が主債務者と<strong>連帯して</strong>保証債務を負うものです。通常の保証と異なり、<strong>催告の抗弁権・検索の抗弁権がありません</strong>（454条）。</p>
+
+  <h3>連帯保証が成立する場合（454条・商法511条2項）</h3>
+  <ul>
+    <li>保証人が<strong>連帯保証の意思表示</strong>をした場合</li>
+    <li>主たる債務が<strong>商行為</strong>によって生じた場合（商事保証）</li>
+    <li>保証契約が<strong>商行為</strong>に当たる場合</li>
+  </ul>
+
+  <div class="point-box">
+    <strong>通常保証 vs 連帯保証の整理：</strong><br>
+    通常保証：催告の抗弁権あり・検索の抗弁権あり・分別の利益あり<br>
+    連帯保証：催告の抗弁権<strong>なし</strong>・検索の抗弁権<strong>なし</strong>・分別の利益<strong>なし</strong>
+  </div>
+
+  <!-- ミニテスト3 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ③</h4>
+    <div class="q-item" id="q5">
+      <p>Q5. 連帯保証人は、催告の抗弁権を有しない。</p>
+      <button class="ox-btn" onclick="checkOX('q5',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q5',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q5-ok">正解です！454条により、連帯保証人には催告の抗弁権も検索の抗弁権もありません。</div>
+      <div class="exp exp-ng" id="exp-q5-ng">不正解です。454条により連帯保証人には催告の抗弁権がありません（通常の保証人にはあります）。</div>
+    </div>
+    <div class="q-item" id="q6">
+      <p>Q6. 主たる債務が商行為によって生じた場合、保証は法律上当然に連帯保証となる。</p>
+      <button class="ox-btn" onclick="checkOX('q6',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q6',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q6-ok">正解です！商法511条2項により、主たる債務が商行為によって生じた場合は法律上当然に連帯保証となります。</div>
+      <div class="exp exp-ng" id="exp-q6-ng">不正解です。商法511条2項により、主たる債務が商行為によって生じた場合は法律上当然に連帯保証となります。</div>
+    </div>
+  </div>
+</div>
+
+<!-- §6 絶対効・相対効まとめ表 -->
+<div class="card">
+  <h2>§6 絶対効・相対効 完全整理表</h2>
+  <table>
+    <tr><th>事由</th><th>改正後（現行法）</th><th>旧法</th></tr>
+    <tr><td>弁済・代物弁済・供託・更改・混同</td><td>絶対効</td><td>絶対効</td></tr>
+    <tr><td>相殺（援用した場合）</td><td>絶対効</td><td>絶対効</td></tr>
+    <tr><td><strong>請求（履行請求）</strong></td><td><strong>相対効</strong></td><td>絶対効</td></tr>
+    <tr><td><strong>免除</strong></td><td><strong>相対効</strong></td><td>絶対効</td></tr>
+    <tr><td><strong>時効の完成</strong></td><td><strong>相対効</strong></td><td>絶対効</td></tr>
+    <tr><td>無効・取消し</td><td>相対効（433条）</td><td>相対効</td></tr>
+    <tr><td>時効の完成猶予・更新</td><td>相対効</td><td>絶対効（一部）</td></tr>
+  </table>
+  <div class="ng-box">
+    <strong>試験頻出！</strong>改正により「請求・免除・時効完成」が<strong>絶対効→相対効</strong>に変わった点を押さえてください。
+  </div>
+
+  <!-- ミニテスト4 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ④</h4>
+    <div class="q-item" id="q7">
+      <p>Q7. 改正民法では、連帯債務者の一人に対する免除は、他の連帯債務者の債務額を減少させる（絶対効）。</p>
+      <button class="ox-btn" onclick="checkOX('q7',false,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q7',false,this)">×</button>
+      <div class="exp exp-ok" id="exp-q7-ok">正解です！改正民法では免除は相対効となり、他の連帯債務者の債務額には影響しません（441条）。</div>
+      <div class="exp exp-ng" id="exp-q7-ng">不正解です。改正民法では免除は相対効です。一人への免除は他の連帯債務者には効力が及びません。</div>
+    </div>
+    <div class="q-item" id="q8">
+      <p>Q8. 連帯債務者の一人と債権者との間に更改があったときは、債権は全ての連帯債務者のために消滅する（絶対効）。</p>
+      <button class="ox-btn" onclick="checkOX('q8',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q8',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q8-ok">正解です！更改は改正後も絶対効のままです（438条）。弁済・代物弁済・供託・更改・混同・相殺が絶対効です。</div>
+      <div class="exp exp-ng" id="exp-q8-ng">不正解です。更改は改正後も絶対効です（438条）。旧法・改正法ともに更改は絶対効として維持されています。</div>
+    </div>
+  </div>
+</div>
+
+<!-- まとめ -->
+<div class="card">
+  <h2>📌 ch30 重要ポイントまとめ</h2>
+  <ul>
+    <li><strong>分割債務：</strong>原則形態（427条）、平等割合、一人の時効完成は相対効</li>
+    <li><strong>不可分債務：</strong>連帯債務の規定を準用（430条）</li>
+    <li><strong>連帯債務：</strong>各自独立して全額の履行義務、催告・検索の抗弁権なし</li>
+    <li><strong>絶対効（改正後）：</strong>弁済・代物弁済・供託・更改・混同・相殺</li>
+    <li><strong>相対効に変更（改正）：</strong>請求・免除・時効完成（旧法では絶対効）</li>
+    <li><strong>負担部分：</strong>特約なければ平等、ゼロや全部の設定も可能</li>
+    <li><strong>求償：</strong>自己の負担部分超過分を他の連帯債務者に求償可（事前・事後通知義務）</li>
+    <li><strong>連帯保証：</strong>催告・検索の抗弁権なし、主債務が商行為なら法律上当然に連帯保証</li>
+  </ul>
+  <div class="nav-btns">
+    <a href="minpo_ch29_kaisetsu.html" class="nav-btn nav-prev">← ch29</a>
+    <a href="minpo_index.html" class="nav-btn nav-index">目次へ</a>
+    <a href="minpo_ch30_enshu.html" class="nav-btn nav-next">演習へ →</a>
+  </div>
+</div>
+
+</div>
+<div class="popup-overlay" id="overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup">
+  <h5>語群から選んでください</h5>
+  <div id="popup-chips" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+</div>
+<script>
+function checkOX(qId,correct,btn){
+  const item=document.getElementById(qId);
+  if(item.dataset.answered)return;
+  item.dataset.answered='1';
+  const btns=item.querySelectorAll('.ox-btn');
+  const isO=btn.textContent==='○';
+  const userCorrect=(isO===correct);
+  btns.forEach(b=>{
+    if(b.textContent==='○') b.classList.add(correct?'correct':'wrong');
+    else b.classList.add(!correct?'correct':'wrong');
+  });
+  document.getElementById('exp-'+qId+(userCorrect?'-ok':'-ng')).style.display='block';
+}
+let currentBlank=null;
+document.querySelectorAll('.blank').forEach(b=>{
+  b.addEventListener('click',function(){
+    if(this.dataset.fixed)return;
+    currentBlank=this;
+    const wb=this.closest('.mini-quiz').querySelector('.word-bank');
+    const pc=document.getElementById('popup-chips');
+    pc.innerHTML='';
+    wb.querySelectorAll('.chip:not(.used)').forEach(chip=>{
+      const c=document.createElement('span');
+      c.className='chip';c.textContent=chip.textContent;c.dataset.w=chip.dataset.w;
+      c.addEventListener('click',()=>{fillBlank(currentBlank,c.dataset.w,chip);closePopup();});
+      pc.appendChild(c);
+    });
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('popup').classList.add('show');
+  });
+});
+function closePopup(){
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('popup').classList.remove('show');
+}
+function fillBlank(blank,word,chip){
+  if(!blank)return;
+  blank.textContent=word;blank.classList.add('filled');blank.dataset.userAns=word;
+  if(chip)chip.classList.add('used');
+}
+function checkFill(id){
+  const sec=document.getElementById('wb-'+id).closest('.mini-quiz');
+  const blanks=sec.querySelectorAll('.blank');
+  let ok=0;
+  blanks.forEach(b=>{
+    if(b.dataset.userAns===b.dataset.ans){
+      b.style.borderBottomColor='#2e7d32';b.style.background='rgba(46,125,50,.15)';ok++;
+    } else {
+      b.style.borderBottomColor='#C0392B';b.style.background='rgba(192,57,43,.15)';
+      b.classList.add('wrong-fill');setTimeout(()=>b.classList.remove('wrong-fill'),400);
+    }
+  });
+  const sc=document.getElementById('score-'+id);
+  sc.textContent=ok+'/'+blanks.length+'正解';sc.style.display='inline-block';
+  if(ok>=blanks.length)launchConfetti();
+}
+function showHint(id){
+  const sec=document.getElementById('wb-'+id).closest('.mini-quiz');
+  sec.querySelectorAll('.blank').forEach(b=>{
+    b.textContent=b.dataset.ans;b.dataset.userAns=b.dataset.ans;b.dataset.fixed='1';
+    b.classList.add('filled');b.style.borderBottomColor='#D4A017';b.style.background='rgba(212,160,23,.15)';
+  });
+  document.getElementById('wb-'+id).querySelectorAll('.chip').forEach(c=>c.classList.add('used'));
+}
+function resetFill(id){
+  const sec=document.getElementById('wb-'+id).closest('.mini-quiz');
+  sec.querySelectorAll('.blank').forEach(b=>{
+    b.textContent='';b.classList.remove('filled','wrong-fill');
+    b.style.borderBottomColor='';b.style.background='';
+    delete b.dataset.userAns;delete b.dataset.fixed;
+  });
+  document.getElementById('wb-'+id).querySelectorAll('.chip').forEach(c=>c.classList.remove('used'));
+  const sc=document.getElementById('score-'+id);if(sc)sc.style.display='none';
+  resetConfettiCanvas();
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const P=Array.from({length:120},()=>({
+    x:Math.random()*canvas.width,y:-10,r:Math.random()*6+3,
+    color:['#C0392B','#D4A017','#1B2A4A','#2e7d32','#e74c3c','#f39c12'][Math.floor(Math.random()*6)],
+    tilt:Math.random()*10-10,tiltAngle:0,tiltAngleInc:Math.random()*.07+.05
+  }));
+  let f=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    P.forEach(p=>{
+      ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;
+      ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/5);ctx.stroke();
+    });
+    P.forEach(p=>{p.tiltAngle+=p.tiltAngleInc;p.y+=(Math.cos(f/6)+3+p.r/2)/2;p.tilt=Math.sin(p.tiltAngle)*15;});
+    f++;if(f<200)requestAnimationFrame(draw);else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+function resetConfettiCanvas(){
+  const canvas=document.getElementById('confetti-canvas');
+  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+}
+</script>
+</body>
+</html>

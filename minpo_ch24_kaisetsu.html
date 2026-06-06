@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch24｜法定地上権</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4A017;
+    --light-bg: #F4F6FA;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --border: #d0d8ea;
+    --accent-light: #EAF0FB;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'BIZ UDGothic','Meiryo',sans-serif;background:var(--light-bg);color:var(--text);line-height:1.8;}
+  .page-header{background:var(--navy);color:var(--white);padding:28px 32px 20px;position:relative;overflow:hidden;}
+  .page-header::before{content:'';position:absolute;right:-40px;top:-40px;width:220px;height:220px;border-radius:50%;background:rgba(192,57,43,0.18);}
+  .chapter-label{font-size:11px;letter-spacing:3px;color:#8fa8d0;margin-bottom:6px;}
+  .page-title{font-size:26px;font-weight:700;letter-spacing:1px;}
+  .page-title span{color:var(--crimson);}
+  .level-badge{display:inline-block;margin-top:10px;background:var(--crimson);color:var(--white);font-size:11px;padding:3px 12px;border-radius:20px;letter-spacing:1px;}
+  .toc{background:var(--navy);border-top:1px solid rgba(255,255,255,0.1);padding:12px 32px;display:flex;flex-wrap:wrap;gap:8px;}
+  .toc a{color:#8fa8d0;font-size:12px;text-decoration:none;padding:3px 10px;border:1px solid rgba(143,168,208,0.3);border-radius:12px;transition:all 0.2s;}
+  .toc a:hover{color:var(--white);border-color:var(--white);}
+  .container{max-width:860px;margin:0 auto;padding:32px 20px;}
+  .section-header{display:flex;align-items:center;gap:12px;margin:40px 0 18px;padding-bottom:10px;border-bottom:2px solid var(--navy);}
+  .section-num{background:var(--navy);color:var(--white);font-size:13px;font-weight:700;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .section-header h2{font-size:20px;color:var(--navy);font-weight:700;}
+  .article-box{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px 24px;margin-bottom:18px;box-shadow:0 2px 6px rgba(27,42,74,0.06);}
+  .article-box h3{font-size:15px;color:var(--navy);font-weight:700;margin-bottom:12px;padding-left:10px;border-left:3px solid var(--crimson);}
+  .article-box p{font-size:14px;margin-bottom:10px;}
+  .article-box p:last-child{margin-bottom:0;}
+  .point-card{background:var(--accent-light);border-left:4px solid var(--navy);border-radius:6px;padding:14px 18px;margin:14px 0;font-size:14px;}
+  .point-card .point-title{font-weight:700;color:var(--navy);margin-bottom:6px;font-size:13px;}
+  .warn-box{background:#fff8f7;border:1px solid var(--crimson);border-left:4px solid var(--crimson);border-radius:6px;padding:14px 18px;margin:14px 0;font-size:14px;}
+  .warn-box .warn-title{font-weight:700;color:var(--crimson);margin-bottom:6px;font-size:13px;}
+  .info-box{background:#fffdf0;border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:6px;padding:14px 18px;margin:14px 0;font-size:14px;}
+  .info-box .info-title{font-weight:700;color:#a07800;margin-bottom:6px;font-size:13px;}
+  .goro-box{background:linear-gradient(135deg,#1B2A4A 0%,#2c4070 100%);color:var(--white);border-radius:10px;padding:18px 22px;margin:18px 0;text-align:center;}
+  .goro-box .goro-label{font-size:11px;letter-spacing:2px;color:#8fa8d0;margin-bottom:8px;}
+  .goro-box .goro-text{font-size:20px;font-weight:700;letter-spacing:3px;}
+  .goro-box .goro-sub{font-size:12px;color:#b8c8e0;margin-top:8px;}
+  /* 判定表（○×マトリクス） */
+  .matrix-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+  .matrix-table th{background:var(--navy);color:var(--white);padding:10px 12px;text-align:center;font-weight:700;}
+  .matrix-table td{padding:9px 12px;border:1px solid var(--border);text-align:center;font-size:13px;}
+  .matrix-table td.label{font-weight:700;color:var(--navy);background:var(--accent-light);text-align:left;}
+  .mark-ok{color:#1e7e34;font-size:18px;font-weight:700;}
+  .mark-ng{color:var(--crimson);font-size:18px;font-weight:700;}
+  /* ミニテスト */
+  .mini-test{background:var(--white);border:2px solid var(--navy);border-radius:10px;padding:20px 22px;margin:22px 0;}
+  .mini-test-title{background:var(--navy);color:var(--white);font-size:12px;font-weight:700;letter-spacing:2px;padding:5px 14px;border-radius:4px;display:inline-block;margin-bottom:14px;}
+  .blank-sentence{font-size:14px;line-height:2.2;margin-bottom:14px;}
+  .mblank{display:inline-block;background:var(--navy);color:var(--navy);border-radius:4px;padding:1px 6px;cursor:pointer;min-width:80px;text-align:center;font-weight:700;transition:all 0.2s;border:none;font-family:inherit;font-size:14px;}
+  .mblank:hover,.mblank.revealed{background:var(--crimson);color:var(--white);}
+  .chip-area{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+  .chip{background:var(--accent-light);border:1px solid var(--navy);border-radius:20px;padding:5px 14px;font-size:13px;cursor:pointer;transition:all 0.2s;color:var(--navy);font-weight:700;}
+  .chip:hover{background:var(--navy);color:var(--white);}
+  .chip.used{opacity:0.35;pointer-events:none;}
+  .chip.wrong{background:#fee;border-color:var(--crimson);color:var(--crimson);animation:shake 0.3s;}
+  @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-4px);}75%{transform:translateX(4px);}}
+  /* まとめ箱 */
+  .summary-box{background:var(--navy);color:var(--white);border-radius:12px;padding:24px 28px;margin:30px 0;}
+  .summary-box h3{font-size:16px;font-weight:700;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.2);}
+  .summary-box ul{list-style:none;padding:0;}
+  .summary-box li{font-size:14px;padding:5px 0;padding-left:18px;position:relative;color:#dce6f5;}
+  .summary-box li::before{content:'▶';position:absolute;left:0;color:var(--crimson);font-size:11px;}
+  .kw{color:var(--crimson);font-weight:700;}
+  .kw2{color:var(--navy);font-weight:700;border-bottom:2px solid var(--gold);}
+  .page-footer{background:var(--navy);color:#8fa8d0;text-align:center;padding:18px;font-size:12px;margin-top:40px;}
+  .hanrei{display:inline-block;background:#e8ecf5;border:1px solid #b0bcda;border-radius:4px;font-size:11px;padding:1px 7px;color:var(--navy);font-weight:700;margin-left:4px;vertical-align:middle;}
+  /* シナリオカード */
+  .scenario{background:#f8f9fc;border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin:10px 0;font-size:13px;}
+  .scenario-title{font-weight:700;color:var(--navy);margin-bottom:6px;font-size:12px;letter-spacing:0.5px;}
+  .ok-result{color:#1e7e34;font-weight:700;}
+  .ng-result{color:var(--crimson);font-weight:700;}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="chapter-label">GAMBA 民法 ｜ Chapter 24</div>
+  <div class="page-title"><span>法定地上権</span></div>
+  <div class="level-badge">重要度★★☆ 頻出度★★☆</div>
+</header>
+<nav class="toc">
+  <a href="#s1">①法定地上権とは</a>
+  <a href="#s2">②成立要件</a>
+  <a href="#s3">③判例の場合分け</a>
+  <a href="#s4">④まとめ表</a>
+</nav>
+
+<div class="container">
+
+<!-- ===== §1 法定地上権とは ===== -->
+<div class="section-header" id="s1">
+  <div class="section-num">1</div>
+  <h2>法定地上権とは（388条）</h2>
+</div>
+
+<div class="article-box">
+  <h3>制度の目的</h3>
+  <p>民法では、建物と土地は<span class="kw">別個の不動産</span>として扱われます。また、自分の建物のために自分の土地に借地権（地上権）を設定することは原則できません（自己借地権の禁止）。</p>
+  <p>そこで問題が生じます。土地と建物が同一人の所有のもとで抵当権が設定され、その後の競売により土地と建物の所有者が<span class="kw">異なる</span>事態になると、建物は土地利用権がなくなり取り壊しが必要になります。<span class="kw">建物を壊すのは社会経済上不利益</span>です。</p>
+  <div class="point-card">
+    <div class="point-title">◎ 解決策：法定地上権</div>
+    この不合理を回避するため、民法388条は、競売によって土地と建物の所有者が異なることになった場合、<span class="kw">建物のために法律上当然に地上権が発生する</span>と定めています。これを「法定地上権」といいます。<br><br>
+    なお、法定地上権の地代は<span class="kw">当事者の請求により裁判所が定める</span>（388条後段）。
+  </div>
+</div>
+
+<!-- ===== §2 成立要件 ===== -->
+<div class="section-header" id="s2">
+  <div class="section-num">2</div>
+  <h2>法定地上権の成立要件</h2>
+</div>
+
+<div class="article-box">
+  <h3>4つの要件</h3>
+  <div class="point-card">
+    <div class="point-title">◎ 要件①　抵当権設定時に土地上に建物が存在すること</div>
+    建物が現実に建っていればよく、<span class="kw">登記をしていなくても構いません</span>。例えば、土地に抵当権を設定した当時、建物に保存登記がなかった場合、あるいは前主の名義のままで移転登記がなされていなかった場合でも<span class="kw">法定地上権は成立します</span>（大判昭14・12・19、最判昭48・9・18）。
+  </div>
+  <div class="point-card">
+    <div class="point-title">◎ 要件②　抵当権設定時に土地と建物が同一の所有者に帰属していること</div>
+    設定時に土地と建物が<span class="kw">別人所有</span>であれば、もともと何らかの利用権（賃借権・地上権等）が設定されているのが通常なので、法定地上権を成立させる必要がありません。
+  </div>
+  <div class="point-card">
+    <div class="point-title">◎ 要件③　土地と建物の一方又は両方に抵当権が設定されたこと</div>
+    土地のみ・建物のみ・土地建物両方のいずれかへの抵当権設定でよい。
+  </div>
+  <div class="point-card">
+    <div class="point-title">◎ 要件④　抵当権が実行されて土地と建物の所有者が異なったこと</div>
+    競売によって所有者が分かれることが必要です。
+  </div>
+  <div class="warn-box">
+    <div class="warn-title">⚠ 登記は成立要件ではない</div>
+    法定地上権は法律上当然に発生しますが、<span class="kw">発生後に登記をしなければ第三者に対抗できません</span>。登記は対抗要件にすぎず成立要件ではないことに注意。
+  </div>
+</div>
+
+<!-- ===== §3 判例の場合分け ===== -->
+<div class="section-header" id="s3">
+  <div class="section-num">3</div>
+  <h2>判例の場合分け（6パターン）</h2>
+</div>
+
+<div class="article-box">
+  <h3>①更地に抵当権が設定されたケース</h3>
+  <div class="scenario">
+    <div class="scenario-title">事案</div>
+    更地（建物なし）に抵当権が設定された後、建物が築造された場合
+  </div>
+  <p class="ng-result">→ 法定地上権は成立しない（大判大4・7・1）</p>
+  <div class="info-box">
+    <div class="info-title">💡 理由</div>
+    要件①を満たさないため。また、抵当権者は更地として土地を高く評価しているので、法定地上権が成立すると抵当権者の担保価値評価が害される。<br>
+    <span class="kw">承諾があっても同じ</span>——仮に土地の抵当権者が抵当権設定後に建物が築造されることを承諾していた場合でも、法定地上権は成立しない（最判昭36・2・10）。
+  </div>
+  <div class="goro-box">
+    <div class="goro-label">ゴロ合わせ</div>
+    <div class="goro-text">「更地＝×」</div>
+    <div class="goro-sub">更地はバツ。これだけ覚えればOK！</div>
+  </div>
+</div>
+
+<div class="article-box">
+  <h3>②最初別人所有だったケース</h3>
+  <div class="scenario">
+    <div class="scenario-title">パターンA：別人所有 → その後同一人所有 → 競売</div>
+    抵当権設定時は土地と建物が別人所有だったが、競売までに同一人所有となった場合
+  </div>
+  <p class="ng-result">→ 法定地上権は成立しない（最判昭44・2・14）</p>
+  <p style="font-size:14px;margin-top:8px;">そもそも抵当権設定時に要件②を満たしていないためです。</p>
+
+  <div class="scenario" style="margin-top:14px;">
+    <div class="scenario-title">パターンB：同一人所有 → その後別人所有 → 競売</div>
+    最初同一人所有で後になって所有者が異なるという事態に至った場合
+  </div>
+  <p class="ok-result">→ 法定地上権が成立する（大連判大12・12・14）</p>
+</div>
+
+<div class="article-box">
+  <h3>③最初別人所有で後順位抵当権者が現れるケース（土地の抵当権）</h3>
+  <div class="scenario">
+    <div class="scenario-title">事案</div>
+    一番抵当権が「土地」に設定。一番抵当権設定時は土地と建物が別人所有。その後の二番抵当権設定時には同一人所有となっている。
+  </div>
+  <p class="ng-result">→ 法定地上権は成立しない（最判平2・1・22）</p>
+  <div class="info-box">
+    <div class="info-title">💡 理由：土地の抵当権は「一番抵当権設定時」を基準にする</div>
+    土地の抵当権については、<span class="kw">一番抵当権設定時を基準</span>にして法定地上権の成否を考えます。一番抵当権者は法定地上権が成立しないことを前提に土地の価値を把握しているため、その期待を裏切れない。<br><br>
+    ただし、<span class="kw">一番抵当権が弁済や解除などで消滅した場合</span>は、二番抵当権設定時を基準にして法定地上権の成立を認めていく（最判平19・7・6）。
+  </div>
+</div>
+
+<div class="article-box">
+  <h3>④最初別人所有で後順位抵当権者が現れるケース（建物の抵当権）</h3>
+  <div class="scenario">
+    <div class="scenario-title">事案</div>
+    一番抵当権が「建物」に設定。一番抵当権設定時は土地と建物が別人所有。その後の二番抵当権設定時には同一人所有となっている。
+  </div>
+  <p class="ok-result">→ 法定地上権が成立する（大判大14・7・26）</p>
+  <div class="info-box">
+    <div class="info-title">💡 理由：建物の抵当権は「二番抵当権設定時」を基準にする</div>
+    建物の抵当権については、<span class="kw">二番抵当権設定時を基準</span>にします。建物の場合は法定地上権が成立した方が建物の競売価格が上がるので、一番抵当権者にとっても有利になるからです。
+  </div>
+  <div class="warn-box">
+    <div class="warn-title">⚠ ③④の対比がポイント！</div>
+    <table class="matrix-table" style="margin-top:6px;">
+      <tr><th>抵当権の目的</th><th>基準時</th><th>結論</th></tr>
+      <tr><td class="label">土地の抵当権</td><td>一番抵当権設定時</td><td><span class="ng-result">成立しない</span></td></tr>
+      <tr><td class="label">建物の抵当権</td><td>二番抵当権設定時</td><td><span class="ok-result">成立する</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="article-box">
+  <h3>⑤共同抵当設定後に新建物を再築するケース</h3>
+  <div class="scenario">
+    <div class="scenario-title">事案</div>
+    同一人所有の土地と建物に共同抵当権が設定された後、抵当権者の承諾を得た上で設定者によって建物が取り壊され、新建物が再築された場合
+  </div>
+  <p class="ng-result">→ 原則として、新建物のために法定地上権は成立しない（最判平9・2・14）</p>
+  <div class="info-box">
+    <div class="info-title">💡 例外：法定地上権が成立する場合</div>
+    ①新建物の所有者（B）が土地の所有者（B）と同一であり、かつ<br>
+    ②新建物が建築された時点での土地の抵当権者（A）が新建物について<span class="kw">土地の抵当権と同順位の共同抵当権の設定を受けた</span>ときなど、<span class="kw">抵当権者の利益を害さない特段の事情がある場合</span>には成立する。
+  </div>
+</div>
+
+<div class="article-box">
+  <h3>⑥共有のケース</h3>
+  <div class="scenario">
+    <div class="scenario-title">建物が共有・土地が単独所有</div>
+  </div>
+  <p class="ok-result">→ 法定地上権が成立する（最判昭46・12・21）</p>
+
+  <div class="scenario" style="margin-top:10px;">
+    <div class="scenario-title">土地が共有・建物が単独所有</div>
+  </div>
+  <p class="ng-result">→ 法定地上権は成立しない（最判昭29・12・23）</p>
+
+  <div class="scenario" style="margin-top:10px;">
+    <div class="scenario-title">土地・建物ともに共有</div>
+  </div>
+  <p class="ng-result">→ 法定地上権は成立しない（最判平6・12・20）</p>
+
+  <div class="goro-box">
+    <div class="goro-label">ゴロ合わせ</div>
+    <div class="goro-text">「建物共有＝○　土地共有＝×」</div>
+    <div class="goro-sub">土地共有の要素が入ると成立しない。土地共有＋建物共有も×</div>
+  </div>
+</div>
+
+<!-- ミニテスト1 -->
+<div class="mini-test">
+  <div class="mini-test-title">📝 ミニテスト①　成立要件</div>
+  <div class="blank-sentence">
+    法定地上権が成立するには、①抵当権設定時に土地上に<button class="mblank" data-ans="建物が存在">　　　　</button>すること、②設定時に土地と建物が<button class="mblank" data-ans="同一の所有者">　　　　</button>に帰属すること、③<button class="mblank" data-ans="一方又は両方">　　　　</button>に抵当権が設定されたこと、④競売により所有者が<button class="mblank" data-ans="異なった">　　　</button>ことの4要件を満たす必要がある。建物の登記は<button class="mblank" data-ans="成立要件ではない">　　　　　</button>。
+  </div>
+  <div class="chip-area" id="chips1">
+    <span class="chip" data-val="建物が存在">建物が存在</span>
+    <span class="chip" data-val="同一の所有者">同一の所有者</span>
+    <span class="chip" data-val="一方又は両方">一方又は両方</span>
+    <span class="chip" data-val="異なった">異なった</span>
+    <span class="chip" data-val="成立要件ではない">成立要件ではない</span>
+    <span class="chip" data-val="対抗要件ではない">対抗要件ではない</span>
+  </div>
+</div>
+
+<!-- ===== §4 まとめ表 ===== -->
+<div class="section-header" id="s4">
+  <div class="section-num">4</div>
+  <h2>まとめ表</h2>
+</div>
+
+<div class="article-box">
+  <h3>判例の場合分け一覧</h3>
+  <table class="matrix-table">
+    <tr>
+      <th style="width:42%">ケース</th>
+      <th style="width:30%">条件</th>
+      <th style="width:28%">法定地上権</th>
+    </tr>
+    <tr>
+      <td class="label">①更地に抵当権設定後に建物築造</td>
+      <td>承諾があっても同じ</td>
+      <td><span class="ng-result">成立しない ×</span></td>
+    </tr>
+    <tr>
+      <td class="label">②当初別人所有→その後同一人所有</td>
+      <td>—</td>
+      <td><span class="ng-result">成立しない ×</span></td>
+    </tr>
+    <tr>
+      <td class="label">②当初同一人所有→その後別人所有</td>
+      <td>—</td>
+      <td><span class="ok-result">成立する ○</span></td>
+    </tr>
+    <tr>
+      <td class="label">③別人所有→後順位抵当権者（土地の抵当権）</td>
+      <td>一番抵当権設定時基準</td>
+      <td><span class="ng-result">成立しない ×</span></td>
+    </tr>
+    <tr>
+      <td class="label">④別人所有→後順位抵当権者（建物の抵当権）</td>
+      <td>二番抵当権設定時基準</td>
+      <td><span class="ok-result">成立する ○</span></td>
+    </tr>
+    <tr>
+      <td class="label">⑤共同抵当後に新建物再築</td>
+      <td>特段の事情なし</td>
+      <td><span class="ng-result">原則成立しない ×</span></td>
+    </tr>
+    <tr>
+      <td class="label">⑥建物共有・土地単独所有</td>
+      <td>—</td>
+      <td><span class="ok-result">成立する ○</span></td>
+    </tr>
+    <tr>
+      <td class="label">⑥土地共有・建物単独所有</td>
+      <td>—</td>
+      <td><span class="ng-result">成立しない ×</span></td>
+    </tr>
+    <tr>
+      <td class="label">⑥土地・建物ともに共有</td>
+      <td>—</td>
+      <td><span class="ng-result">成立しない ×</span></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ミニテスト2 -->
+<div class="mini-test">
+  <div class="mini-test-title">📝 ミニテスト②　場合分け</div>
+  <div class="blank-sentence">
+    更地に抵当権設定後に建物が築造されても法定地上権は<button class="mblank" data-ans="成立しない">　　　　</button>。土地の抵当権がある場合、法定地上権の成否は<button class="mblank" data-ans="一番抵当権設定時">　　　　　　</button>を基準にする。これに対し建物の抵当権がある場合は<button class="mblank" data-ans="二番抵当権設定時">　　　　　　</button>を基準にする。「建物が共有」で土地が単独所有の場合は法定地上権が<button class="mblank" data-ans="成立する">　　　</button>が、「土地が共有」で建物が単独所有の場合は<button class="mblank" data-ans="成立しない">　　　　</button>。
+  </div>
+  <div class="chip-area" id="chips2">
+    <span class="chip" data-val="成立しない">成立しない</span>
+    <span class="chip" data-val="一番抵当権設定時">一番抵当権設定時</span>
+    <span class="chip" data-val="二番抵当権設定時">二番抵当権設定時</span>
+    <span class="chip" data-val="成立する">成立する</span>
+    <span class="chip" data-val="成立しない">成立しない</span>
+    <span class="chip" data-val="抵当権実行時">抵当権実行時</span>
+  </div>
+</div>
+
+<!-- まとめ箱 -->
+<div class="summary-box">
+  <h3>📌 ch24 法定地上権 まとめ</h3>
+  <ul>
+    <li>社会経済上の不利益（建物取壊し防止）のため法律上当然に発生する地上権</li>
+    <li>成立要件4つ：①建物存在②同一所有者③一方/両方に抵当権④競売で所有者分離</li>
+    <li>建物の登記は成立要件ではない（未登記・前主名義でもOK）</li>
+    <li>更地ケース・更地への承諾ケース → 成立しない（×）</li>
+    <li>当初同一所有→その後別人 → 成立する（○）</li>
+    <li>後順位抵当権者：土地の抵当権＝一番基準（×）、建物の抵当権＝二番基準（○）</li>
+    <li>ただし一番抵当権が消滅したら二番基準で成立を認める</li>
+    <li>共同抵当後の新建物再築 → 原則×、特段の事情あり→例外○</li>
+    <li>建物共有＝○、土地共有＝×、土地建物両方共有＝×</li>
+    <li>地代は当事者の請求により裁判所が定める</li>
+  </ul>
+</div>
+
+</div><!-- /container -->
+
+<footer class="page-footer">
+  GAMBA 民法 ch24 法定地上権 ｜ 江原予備校
+</footer>
+
+<script>
+document.querySelectorAll('.mblank').forEach(btn => {
+  btn.addEventListener('click', function() {
+    this.classList.toggle('revealed');
+  });
+});
+
+document.querySelectorAll('.chip-area').forEach(area => {
+  const blanks = area.closest('.mini-test').querySelectorAll('.mblank');
+  area.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', function() {
+      if (this.classList.contains('used')) return;
+      const val = this.dataset.val;
+      let matched = null;
+      for (let blank of blanks) {
+        if (!blank.classList.contains('revealed') && blank.dataset.ans === val) {
+          matched = blank;
+          break;
+        }
+      }
+      if (matched) {
+        matched.classList.add('revealed');
+        matched.textContent = val;
+        this.classList.add('used');
+      } else {
+        this.classList.add('wrong');
+        setTimeout(() => this.classList.remove('wrong'), 500);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

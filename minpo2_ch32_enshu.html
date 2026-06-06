@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法Ⅱ ch32 演習｜契約総論（同時履行・危険負担・解除）</title>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4A017;
+    --light-bg: #F5F7FA;
+    --white: #FFFFFF;
+    --text: #1a1a2e;
+    --border: #dce3ef;
+    --correct: #27ae60;
+    --wrong: #c0392b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'BIZ UDGothic', Meiryo, sans-serif;
+    background: var(--light-bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .page-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 24px 20px 18px;
+    text-align: center;
+  }
+  .page-header .series { font-size: 12px; letter-spacing: 3px; color: var(--gold); margin-bottom: 5px; }
+  .page-header h1 { font-size: 20px; font-weight: 700; }
+
+  .container { max-width: 800px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  /* スコアバー */
+  .score-bar {
+    background: var(--white);
+    border: 2px solid var(--navy);
+    border-radius: 8px;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .score-bar .label { font-size: 13px; color: #666; }
+  .score-bar .score { font-size: 24px; font-weight: 700; color: var(--navy); }
+  .score-bar .max { font-size: 14px; color: #999; }
+
+  /* 問題カード */
+  .q-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .q-card:hover { box-shadow: 0 4px 12px rgba(27,42,74,0.08); }
+  .q-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 10px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+  }
+  .q-header .q-num { font-weight: 700; color: var(--gold); }
+  .q-header .q-type { font-size: 11px; background: rgba(255,255,255,0.15); padding: 2px 8px; border-radius: 10px; }
+  .q-body { padding: 18px 20px; }
+  .q-text { font-size: 15px; margin-bottom: 16px; line-height: 1.8; }
+
+  /* ○×ボタン */
+  .ox-area { display: flex; gap: 12px; margin-bottom: 10px; }
+  .ox-btn {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    font-size: 28px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'BIZ UDGothic', Meiryo, sans-serif;
+  }
+  .ox-btn:hover { border-color: var(--navy); background: var(--light-bg); }
+  .ox-btn.selected-o { border-color: var(--correct); background: #eafaf0; }
+  .ox-btn.selected-x { border-color: var(--wrong); background: #fdf0ef; }
+  .ox-btn:disabled { cursor: default; }
+
+  /* 解説 */
+  .explanation {
+    display: none;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .explanation.correct-exp { background: #eafaf0; border-left: 4px solid var(--correct); }
+  .explanation.wrong-exp { background: #fdf0ef; border-left: 4px solid var(--wrong); }
+  .explanation .exp-label { font-weight: 700; margin-right: 6px; }
+  .explanation.show { display: block; }
+
+  /* 5択 */
+  .choices { list-style: none; margin-bottom: 10px; }
+  .choices li {
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .choices li:hover { border-color: var(--navy); background: var(--light-bg); }
+  .choices li.selected { border-color: var(--navy); background: #EEF1F8; }
+  .choices li.correct-ans { border-color: var(--correct); background: #eafaf0; }
+  .choices li.wrong-ans { border-color: var(--wrong); background: #fdf0ef; }
+  .choices li.show-ans { border-color: var(--correct); background: #eafaf0; }
+  .choices li:disabled, .choices li.disabled { pointer-events: none; }
+
+  /* 判定アイコン */
+  .result-icon { font-size: 18px; margin-right: 6px; }
+
+  /* 採点ボタン */
+  .submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'BIZ UDGothic', Meiryo, sans-serif;
+    transition: opacity 0.2s;
+    margin-top: 20px;
+  }
+  .submit-btn:hover { opacity: 0.85; }
+  .submit-btn:disabled { opacity: 0.5; cursor: default; }
+
+  /* 結果表示 */
+  .result-panel {
+    display: none;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 10px;
+    padding: 28px 20px;
+    text-align: center;
+    margin-top: 24px;
+  }
+  .result-panel.show { display: block; }
+  .result-panel .r-score { font-size: 48px; font-weight: 700; color: var(--gold); }
+  .result-panel .r-max { font-size: 18px; color: #aab4cc; margin-bottom: 12px; }
+  .result-panel .r-msg { font-size: 16px; margin-bottom: 20px; }
+  .retry-btn {
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    border-radius: 6px;
+    padding: 12px 32px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'BIZ UDGothic', Meiryo, sans-serif;
+  }
+
+  /* 花吹雪 */
+  #confetti-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .page-footer {
+    background: var(--navy);
+    color: #aab4cc;
+    text-align: center;
+    padding: 14px;
+    font-size: 12px;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="page-header">
+  <div class="series">GAMBA 民法Ⅱ ― CHAPTER 32 演習</div>
+  <h1>契約総論（同時履行・危険負担・解除）</h1>
+</div>
+
+<div class="container">
+
+  <div class="score-bar">
+    <div><div class="label">現在のスコア</div><span class="score" id="current-score">0</span><span class="max"> / 5点</span></div>
+    <div><div class="label">解答済み</div><span class="score" id="answered-count">0</span><span class="max"> / 5問</span></div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="card-q1">
+    <div class="q-header">
+      <span class="q-num">Q1</span>
+      <span class="q-type">○×問題</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">同時履行の抗弁権は、契約の相手方に対してのみならず、第三者に対しても主張することができる。</div>
+      <div class="ox-area">
+        <button class="ox-btn" data-q="q1" data-val="o" onclick="selectOX(this,'q1','o')">○</button>
+        <button class="ox-btn" data-q="q1" data-val="x" onclick="selectOX(this,'q1','x')">×</button>
+      </div>
+      <div class="explanation" id="exp-q1-ok">
+        <span class="exp-label result-icon">✅</span><span class="exp-label">正解！</span>同時履行の抗弁権は<strong>双務契約の効力（債権）</strong>であるため、第三者には主張できません。これは留置権（担保物権＝物権）が第三者にも主張できるのと対照的です。
+      </div>
+      <div class="explanation" id="exp-q1-ng">
+        <span class="exp-label result-icon">❌</span><span class="exp-label">不正解。</span>同時履行の抗弁権は<strong>双務契約の効力（債権）</strong>であるため、<strong>契約の相手方に対してしか主張できません</strong>。第三者には主張できない点が留置権との大きな違いです。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="card-q2">
+    <div class="q-header">
+      <span class="q-num">Q2</span>
+      <span class="q-type">○×問題</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">当事者双方の責めに帰することができない事由によって債務の履行ができなくなったとき（危険負担）、債権者は反対給付の履行を拒むことができるが、契約を解除することはできない。</div>
+      <div class="ox-area">
+        <button class="ox-btn" data-q="q2" data-val="o" onclick="selectOX(this,'q2','o')">○</button>
+        <button class="ox-btn" data-q="q2" data-val="x" onclick="selectOX(this,'q2','x')">×</button>
+      </div>
+      <div class="explanation" id="exp-q2-ok">
+        <span class="exp-label result-icon">✅</span><span class="exp-label">正解！</span>危険負担では、債権者は反対給付（代金支払い）の履行を拒むことができます（536条1項）。さらに、<strong>解除も可能</strong>です（債務者の帰責事由は解除には不要）。よって「解除できない」という部分が誤りです。
+      </div>
+      <div class="explanation" id="exp-q2-ng">
+        <span class="exp-label result-icon">❌</span><span class="exp-label">不正解。</span>危険負担の場面では、債権者は反対給付の履行を拒むことができます（536条1項）。さらに<strong>解除も可能</strong>です。解除に債務者の帰責事由は不要なので、双方に帰責事由がない場合でも解除できます。「解除できない」という部分が誤りです。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="card-q3">
+    <div class="q-header">
+      <span class="q-num">Q3</span>
+      <span class="q-type">○×問題</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">催告による解除において、不相当な期間を定めた催告は無効であり、解除権は発生しない。</div>
+      <div class="ox-area">
+        <button class="ox-btn" data-q="q3" data-val="o" onclick="selectOX(this,'q3','o')">○</button>
+        <button class="ox-btn" data-q="q3" data-val="x" onclick="selectOX(this,'q3','x')">×</button>
+      </div>
+      <div class="explanation" id="exp-q3-ok">
+        <span class="exp-label result-icon">✅</span><span class="exp-label">正解！</span>不相当な期間を定めた催告や、期間の定めのない催告であっても<strong>有効</strong>です。催告後、客観的に見て相当な期間が経過すれば解除権が発生します（最判昭31・12・6）。催告すること自体が重要であり、期間自体にはあまり意味がないとされています。
+      </div>
+      <div class="explanation" id="exp-q3-ng">
+        <span class="exp-label result-icon">❌</span><span class="exp-label">不正解。</span>不相当な期間を定めた催告でも、また期間の定めのない催告でも<strong>有効</strong>です。催告の後、客観的に見て相当な期間が経過すれば解除権が発生します（最判昭31・12・6）。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="card-q4">
+    <div class="q-header">
+      <span class="q-num">Q4</span>
+      <span class="q-type">○×問題</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">契約が解除された場合、解除前に当該目的物について利害関係を持つに至った第三者（解除前の第三者）は、善意・悪意を問わず、登記を具備していれば保護される。</div>
+      <div class="ox-area">
+        <button class="ox-btn" data-q="q4" data-val="o" onclick="selectOX(this,'q4','o')">○</button>
+        <button class="ox-btn" data-q="q4" data-val="x" onclick="selectOX(this,'q4','x')">×</button>
+      </div>
+      <div class="explanation" id="exp-q4-ok">
+        <span class="exp-label result-icon">✅</span><span class="exp-label">正解！</span>解除前の第三者は545条1項ただし書の「第三者」に当たります。判例（最判昭33・6・14）は、<strong>登記を具備していれば保護され、善意・悪意は問わない</strong>としています。
+      </div>
+      <div class="explanation" id="exp-q4-ng">
+        <span class="exp-label result-icon">❌</span><span class="exp-label">不正解。</span>解除前の第三者は545条1項ただし書の「第三者」に当たり、<strong>登記を具備していれば保護されます</strong>。善意・悪意は問われません（最判昭33・6・14）。これは正しい記述です。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5（5択） -->
+  <div class="q-card" id="card-q5">
+    <div class="q-header">
+      <span class="q-num">Q5</span>
+      <span class="q-type">5択問題</span>
+    </div>
+    <div class="q-body">
+      <div class="q-text">民法に規定する契約の解除及び危険負担に関する記述として、妥当なものはどれか。</div>
+      <ul class="choices" id="choices-q5">
+        <li onclick="selectChoice(this,'q5',1)">1. 催告による解除において、不履行が債務者の帰責事由によらない場合であっても、解除することができる。ただし、不履行が軽微であるときは解除できない。</li>
+        <li onclick="selectChoice(this,'q5',2)">2. 解除権が行使されると遡及的に契約の効力が失われるため、解除をした場合には損害賠償を請求することができない。</li>
+        <li onclick="selectChoice(this,'q5',3)">3. 当事者双方の責めに帰することができない事由によって債務の履行が不能となったときは、債権者は反対給付の履行を拒むことができないが、契約を解除することはできる。</li>
+        <li onclick="selectChoice(this,'q5',4)">4. 解除前の第三者は、解除権者に対して登記を具備していなくても保護されるが、解除後の第三者は善意の場合にのみ保護される。</li>
+        <li onclick="selectChoice(this,'q5',5)">5. 当事者の一方が数人ある場合において、解除権が当事者のうちの1人について消滅したときは、他の者についても消滅する。</li>
+      </ul>
+      <div class="explanation" id="exp-q5-ok">
+        <span class="exp-label result-icon">✅</span><span class="exp-label">正解！　肢5</span><br>
+        解除権不可分の原則（544条2項）により、解除権が当事者のうちの1人について消滅したときは、他の者についても消滅します。<br><br>
+        【各肢の解説】<br>
+        ①○　解除に帰責事由は不要（543条は債権者の帰責事由のみ不可）。軽微な不履行は解除不可（541条ただし書）。<br>
+        ②×　解除しても損害賠償の請求を妨げない（545条4項）。<br>
+        ③×　反対給付の履行を「拒むことができる」（536条1項）が正しい。<br>
+        ④×　解除前の第三者は「登記を具備すれば保護」。解除後の第三者は善意悪意問わず対抗問題で処理（先に登記した方が勝つ）。<br>
+        ⑤○　正しい（544条2項）。
+      </div>
+      <div class="explanation" id="exp-q5-ng">
+        <span class="exp-label result-icon">❌</span><span class="exp-label">不正解。　正答は肢5</span><br>
+        解除権不可分の原則（544条2項）により、解除権が当事者のうちの1人について消滅したときは、他の者についても消滅します。<br><br>
+        【各肢の解説】<br>
+        ①○　解除に帰責事由は不要。軽微な不履行は解除不可。<br>
+        ②×　解除しても損害賠償の請求を妨げない（545条4項）。<br>
+        ③×　危険負担では反対給付の履行を「拒むことができる」が正しい（536条1項）。<br>
+        ④×　解除前の第三者は登記具備で保護（善悪不問）。解除後の第三者は対抗問題として処理。<br>
+        ⑤○　正しい（544条2項）。
+      </div>
+    </div>
+  </div>
+
+  <button class="submit-btn" id="submit-btn" onclick="submitAll()">採点する</button>
+
+  <div class="result-panel" id="result-panel">
+    <div>最終スコア</div>
+    <div class="r-score" id="final-score">0</div>
+    <div class="r-max">/ 5点</div>
+    <div class="r-msg" id="result-msg"></div>
+    <button class="retry-btn" onclick="resetAll()">もう一度挑戦</button>
+  </div>
+
+</div>
+
+<div class="page-footer">GAMBA 民法Ⅱ ch32 演習｜江原予備校 © realizefield.github.io</div>
+
+<script>
+// ○×問題の正答
+const oxAnswers = { q1:'x', q2:'x', q3:'x', q4:'o' };
+const userAnswers = {};
+let score = 0;
+
+function selectOX(btn, qid, val) {
+  if (userAnswers[qid]) return;
+  userAnswers[qid] = val;
+  const card = document.getElementById('card-' + qid);
+  const btns = card.querySelectorAll('.ox-btn');
+  btns.forEach(b => { b.disabled = true; b.classList.remove('selected-o','selected-x'); });
+  btn.classList.add(val === 'o' ? 'selected-o' : 'selected-x');
+  updateAnsweredCount();
+}
+
+function selectChoice(li, qid, num) {
+  if (userAnswers[qid]) return;
+  userAnswers[qid] = num;
+  const items = document.querySelectorAll('#choices-' + qid + ' li');
+  items.forEach(item => { item.classList.remove('selected'); item.classList.add('disabled'); });
+  li.classList.add('selected');
+  updateAnsweredCount();
+}
+
+function updateAnsweredCount() {
+  document.getElementById('answered-count').textContent = Object.keys(userAnswers).length;
+}
+
+function submitAll() {
+  // 未回答チェック
+  const total = 5;
+  if (Object.keys(userAnswers).length < total) {
+    if (!confirm('未回答の問題があります。このまま採点しますか？')) return;
+  }
+  score = 0;
+  // Q1-Q4 ○×採点
+  ['q1','q2','q3','q4'].forEach(qid => {
+    const correct = oxAnswers[qid];
+    const user = userAnswers[qid];
+    const okExp = document.getElementById('exp-' + qid + '-ok');
+    const ngExp = document.getElementById('exp-' + qid + '-ng');
+    const card = document.getElementById('card-' + qid);
+    const btns = card.querySelectorAll('.ox-btn');
+    btns.forEach(b => b.disabled = true);
+    if (user === correct) {
+      score++;
+      okExp.classList.add('show', 'correct-exp');
+    } else {
+      ngExp.classList.add('show', 'wrong-exp');
+      // 正答ボタンを強調
+      btns.forEach(b => {
+        if (b.dataset.val === correct) b.classList.add(correct === 'o' ? 'selected-o' : 'selected-x');
+      });
+    }
+  });
+  // Q5 5択採点
+  const q5user = userAnswers['q5'];
+  const q5correct = 5;
+  const items = document.querySelectorAll('#choices-q5 li');
+  items.forEach((li, i) => {
+    li.classList.add('disabled');
+    if (i + 1 === q5correct) li.classList.add('show-ans');
+  });
+  if (q5user === q5correct) {
+    score++;
+    document.getElementById('exp-q5-ok').classList.add('show','correct-exp');
+  } else {
+    document.getElementById('exp-q5-ng').classList.add('show','wrong-exp');
+    if (q5user) {
+      items[q5user - 1].classList.add('wrong-ans');
+    }
+  }
+  document.getElementById('current-score').textContent = score;
+  document.getElementById('submit-btn').disabled = true;
+  // 結果パネル
+  const panel = document.getElementById('result-panel');
+  panel.classList.add('show');
+  document.getElementById('final-score').textContent = score;
+  const msgs = ['もう一息！解説を確認しよう。','復習あるのみ！','なかなか良い！','あと一歩！','合格ライン突破！完璧です！'];
+  document.getElementById('result-msg').textContent = msgs[score - 1] || '頑張ろう！';
+  if (score >= 4) launchConfetti();
+  panel.scrollIntoView({ behavior: 'smooth' });
+}
+
+// 花吹雪
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const pieces = [];
+  const colors = ['#D4A017','#1B2A4A','#C0392B','#2ecc71','#3498db','#e74c3c','#f39c12'];
+  for (let i = 0; i < 160; i++) {
+    pieces.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      w: Math.random() * 12 + 4,
+      h: Math.random() * 6 + 2,
+      r: Math.random() * Math.PI * 2,
+      vx: (Math.random() - 0.5) * 3,
+      vy: Math.random() * 4 + 2,
+      vr: (Math.random() - 0.5) * 0.2,
+      color: colors[Math.floor(Math.random() * colors.length)]
+    });
+  }
+  let frame = 0;
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(p => {
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.r);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+      p.x += p.vx;
+      p.y += p.vy;
+      p.r += p.vr;
+      if (p.y > canvas.height + 20) p.y = -20;
+    });
+    frame++;
+    if (frame < 180) requestAnimationFrame(animate);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  animate();
+}
+
+function resetAll() {
+  location.reload();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民法 ch26｜譲渡担保</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4A017;
+    --light-bg: #F4F6FA;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --border: #d0d8ea;
+    --accent-light: #EAF0FB;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'BIZ UDGothic','Meiryo',sans-serif;background:var(--light-bg);color:var(--text);line-height:1.8;}
+  .page-header{background:var(--navy);color:var(--white);padding:28px 32px 20px;position:relative;overflow:hidden;}
+  .page-header::before{content:'';position:absolute;right:-40px;top:-40px;width:220px;height:220px;border-radius:50%;background:rgba(192,57,43,0.18);}
+  .chapter-label{font-size:11px;letter-spacing:3px;color:#8fa8d0;margin-bottom:6px;}
+  .page-title{font-size:26px;font-weight:700;letter-spacing:1px;}
+  .page-title span{color:var(--crimson);}
+  .level-badge{display:inline-block;margin-top:10px;background:var(--crimson);color:var(--white);font-size:11px;padding:3px 12px;border-radius:20px;letter-spacing:1px;}
+  .toc{background:var(--navy);border-top:1px solid rgba(255,255,255,0.1);padding:12px 32px;display:flex;flex-wrap:wrap;gap:8px;}
+  .toc a{color:#8fa8d0;font-size:12px;text-decoration:none;padding:3px 10px;border:1px solid rgba(143,168,208,0.3);border-radius:12px;transition:all 0.2s;}
+  .toc a:hover{color:var(--white);border-color:var(--white);}
+  .container{max-width:860px;margin:0 auto;padding:32px 20px;}
+  .section-header{display:flex;align-items:center;gap:12px;margin:40px 0 18px;padding-bottom:10px;border-bottom:2px solid var(--navy);}
+  .section-num{background:var(--navy);color:var(--white);font-size:13px;font-weight:700;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .section-header h2{font-size:20px;color:var(--navy);font-weight:700;}
+  .article-box{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px 24px;margin-bottom:18px;box-shadow:0 2px 6px rgba(27,42,74,0.06);}
+  .article-box h3{font-size:15px;color:var(--navy);font-weight:700;margin-bottom:12px;padding-left:10px;border-left:3px solid var(--crimson);}
+  .article-box p{font-size:14px;margin-bottom:10px;}
+  .article-box p:last-child{margin-bottom:0;}
+  .point-card{background:var(--accent-light);border-left:4px solid var(--navy);border-radius:6px;padding:14px 18px;margin:14px 0;font-size:14px;}
+  .point-card .point-title{font-weight:700;color:var(--navy);margin-bottom:6px;font-size:13px;}
+  .warn-box{background:#fff8f7;border:1px solid var(--crimson);border-left:4px solid var(--crimson);border-radius:6px;padding:14px 18px;margin:14px 0;font-size:14px;}
+  .warn-box .warn-title{font-weight:700;color:var(--crimson);margin-bottom:6px;font-size:13px;}
+  .info-box{background:#fffdf0;border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:6px;padding:14px 18px;margin:14px 0;font-size:14px;}
+  .info-box .info-title{font-weight:700;color:#a07800;margin-bottom:6px;font-size:13px;}
+  .goro-box{background:linear-gradient(135deg,#1B2A4A 0%,#2c4070 100%);color:var(--white);border-radius:10px;padding:18px 22px;margin:18px 0;text-align:center;}
+  .goro-box .goro-label{font-size:11px;letter-spacing:2px;color:#8fa8d0;margin-bottom:8px;}
+  .goro-box .goro-text{font-size:20px;font-weight:700;letter-spacing:3px;}
+  .goro-box .goro-sub{font-size:12px;color:#b8c8e0;margin-top:8px;}
+  .comp-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+  .comp-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:center;font-weight:700;}
+  .comp-table td{padding:9px 14px;border:1px solid var(--border);vertical-align:top;}
+  .comp-table tr:nth-child(even) td{background:#f8f9fc;}
+  .comp-table td.label{font-weight:700;color:var(--navy);background:var(--accent-light);text-align:left;}
+  /* フロー図 */
+  .flow-wrap{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:12px 0;font-size:13px;}
+  .flow-box{background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:6px 14px;font-weight:700;color:var(--navy);}
+  .flow-arrow{color:var(--crimson);font-size:18px;font-weight:700;line-height:1;}
+  .flow-result-ok{background:#e8f5e9;border:1px solid #2e7d32;border-radius:6px;padding:6px 14px;font-weight:700;color:#1a5e20;}
+  .flow-result-ng{background:#ffebee;border:1px solid var(--crimson);border-radius:6px;padding:6px 14px;font-weight:700;color:#7f0000;}
+  /* ミニテスト */
+  .mini-test{background:var(--white);border:2px solid var(--navy);border-radius:10px;padding:20px 22px;margin:22px 0;}
+  .mini-test-title{background:var(--navy);color:var(--white);font-size:12px;font-weight:700;letter-spacing:2px;padding:5px 14px;border-radius:4px;display:inline-block;margin-bottom:14px;}
+  .blank-sentence{font-size:14px;line-height:2.2;margin-bottom:14px;}
+  .mblank{display:inline-block;background:var(--navy);color:var(--navy);border-radius:4px;padding:1px 6px;cursor:pointer;min-width:80px;text-align:center;font-weight:700;transition:all 0.2s;border:none;font-family:inherit;font-size:14px;}
+  .mblank:hover,.mblank.revealed{background:var(--crimson);color:var(--white);}
+  .chip-area{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+  .chip{background:var(--accent-light);border:1px solid var(--navy);border-radius:20px;padding:5px 14px;font-size:13px;cursor:pointer;transition:all 0.2s;color:var(--navy);font-weight:700;}
+  .chip:hover{background:var(--navy);color:var(--white);}
+  .chip.used{opacity:0.35;pointer-events:none;}
+  .chip.wrong{background:#fee;border-color:var(--crimson);color:var(--crimson);animation:shake 0.3s;}
+  @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-4px);}75%{transform:translateX(4px);}}
+  .summary-box{background:var(--navy);color:var(--white);border-radius:12px;padding:24px 28px;margin:30px 0;}
+  .summary-box h3{font-size:16px;font-weight:700;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.2);}
+  .summary-box ul{list-style:none;padding:0;}
+  .summary-box li{font-size:14px;padding:5px 0;padding-left:18px;position:relative;color:#dce6f5;}
+  .summary-box li::before{content:'▶';position:absolute;left:0;color:var(--crimson);font-size:11px;}
+  .kw{color:var(--crimson);font-weight:700;}
+  .kw2{color:var(--navy);font-weight:700;border-bottom:2px solid var(--gold);}
+  .page-footer{background:var(--navy);color:#8fa8d0;text-align:center;padding:18px;font-size:12px;margin-top:40px;}
+  .ok-text{color:#1e7e34;font-weight:700;}
+  .ng-text{color:var(--crimson);font-weight:700;}
+  /* 完了バナー */
+  .complete-banner{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:var(--white);border-radius:12px;padding:20px 28px;margin:30px 0;text-align:center;}
+  .complete-banner .cb-title{font-size:18px;font-weight:700;margin-bottom:6px;}
+  .complete-banner .cb-sub{font-size:13px;color:#dce6f5;}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="chapter-label">GAMBA 民法 ｜ Chapter 26 ｜ 最終章</div>
+  <div class="page-title"><span>譲渡担保</span></div>
+  <div class="level-badge">重要度★★☆ 頻出度★☆☆</div>
+</header>
+<nav class="toc">
+  <a href="#s1">①譲渡担保とは</a>
+  <a href="#s2">②対抗要件</a>
+  <a href="#s3">③実行の方法</a>
+  <a href="#s4">④受戻権</a>
+  <a href="#s5">⑤その他の判例</a>
+</nav>
+
+<div class="container">
+
+<!-- ===== §1 譲渡担保とは ===== -->
+<div class="section-header" id="s1">
+  <div class="section-num">1</div>
+  <h2>譲渡担保とは</h2>
+</div>
+
+<div class="article-box">
+  <h3>非典型担保・所有権的構成</h3>
+  <p>「<span class="kw">譲渡担保</span>」は判例上認められてきた<span class="kw">非典型担保</span>であり、民法のどこにも条文がありません。<span class="kw">物権法定主義の例外</span>として認められています。</p>
+  <p>仕組みとしては、担保であるものの、設定者が形の上で目的物の<span class="kw">所有権を担保権者に移転</span>するというものです（<span class="kw2">所有権的構成</span>）。形式的に所有権を移しますが、設定者はそのまま目的物を使用して構いません（<span class="kw">留置的効力がない</span>）。</p>
+  <div class="point-card">
+    <div class="point-title">◎ 譲渡担保の基本イメージ</div>
+    AがBに1000万円を貸し付けた（被担保債権）。AB間でB所有の不動産に譲渡担保を設定した。<br><br>
+    <div class="flow-wrap">
+      <div class="flow-box">形の上で所有権をAに移転</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">その後もBは不動産を使用してよい</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Bが弁済すれば所有権がBに戻る</div>
+    </div>
+  </div>
+  <div class="info-box">
+    <div class="info-title">💡 目的物の範囲は広い</div>
+    譲渡担保は非典型担保なので民法の縛りを受けません。そのため目的物は抵当権のように不動産などに限られず、<span class="kw">動産や債権でもOK</span>です。また、抵当権と同様に<span class="kw">物上代位性</span>が認められ、<span class="kw">不法占拠者への返還請求（物権的請求権）</span>も認められます（最判昭57・9・28、最決平11・5・17）。
+  </div>
+</div>
+
+<div class="article-box">
+  <h3>集合物譲渡担保</h3>
+  <p>1個の集合物（例：倉庫の1000袋の米）それ自体の上に1個の譲渡担保を成立させることもできます。これを「<span class="kw">集合物譲渡担保</span>」といいます（集合物論）。</p>
+  <div class="warn-box">
+    <div class="warn-title">⚠ 集合物譲渡担保の要件</div>
+    <span class="kw">種類・所在場所・量的範囲</span>を指定するなど何らかの方法で<span class="kw">目的物の範囲を特定</span>することが必要（最判昭54・2・15）。特定しないとどの部分に担保権が及んでいるのか不明確になるためです。
+  </div>
+  <div class="point-card">
+    <div class="point-title">◎ 集合物譲渡担保の対抗要件</div>
+    動産なので対抗要件は<span class="kw">引渡し</span>（通常は<span class="kw">占有改定</span>）。<br>
+    いったん占有改定により引き渡しておけば、その後に新たに流入して構成部分となった動産についても<span class="kw">当然に対抗要件が具備</span>されたことになります（最判昭62・11・10）。
+  </div>
+  <div class="warn-box">
+    <div class="warn-title">⚠ 集合物譲渡担保と物上代位</div>
+    設定者が<span class="kw">通常の営業を継続</span>しているときは、同意などの特段の事情がない限り、譲渡担保権者は損害保険金に対して<span class="kw">物上代位権を行使することができない</span>（最決平22・12・2）。
+  </div>
+</div>
+
+<!-- ===== §2 対抗要件 ===== -->
+<div class="section-header" id="s2">
+  <div class="section-num">2</div>
+  <h2>対抗要件</h2>
+</div>
+
+<div class="article-box">
+  <h3>目的物の種類による対抗要件の違い</h3>
+  <table class="comp-table">
+    <tr>
+      <th>目的物の種類</th>
+      <th>対抗要件</th>
+      <th>備考</th>
+    </tr>
+    <tr>
+      <td class="label">不動産譲渡担保</td>
+      <td><span class="kw">登記</span>（「譲渡担保」を登記原因とする登記）</td>
+      <td>昔は所有権移転登記が用いられたが、現在の実務では「譲渡担保」を登記原因とする登記が認められている</td>
+    </tr>
+    <tr>
+      <td class="label">動産譲渡担保</td>
+      <td><span class="kw">引渡し</span>（通常は占有改定）</td>
+      <td>占有改定とは、設定者がそのまま物を使い続けながら観念的に引き渡す方法</td>
+    </tr>
+    <tr>
+      <td class="label">債権譲渡担保</td>
+      <td><span class="kw">通知又は承諾</span></td>
+      <td>集合債権譲渡担保を第三者に対抗するには債権譲渡の対抗要件で足りる（最判平13・11・22）</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ===== §3 実行の方法 ===== -->
+<div class="section-header" id="s3">
+  <div class="section-num">3</div>
+  <h2>実行の方法と清算義務</h2>
+</div>
+
+<div class="article-box">
+  <h3>2つの実行方法</h3>
+  <p>抵当権の実行方法は「競売」ですが、譲渡担保は非典型担保なので実行方法が法律上決まっていません。判例上、次の2つがあるとされています。</p>
+  <table class="comp-table">
+    <tr>
+      <th>実行方法</th>
+      <th>内容</th>
+    </tr>
+    <tr>
+      <td class="label">①処分清算型</td>
+      <td>譲渡担保権者が担保目的物を<span class="kw">第三者に売却</span>し、その売却代金から弁済を受ける方法</td>
+    </tr>
+    <tr>
+      <td class="label">②帰属清算型</td>
+      <td>譲渡担保権者が担保目的物の<span class="kw">所有権を自己に帰属させる</span>ことによって満足を得る方法</td>
+    </tr>
+  </table>
+  <div class="warn-box">
+    <div class="warn-title">⚠ 清算義務（必須！）</div>
+    いずれの方法によっても、不動産の売却代金や適正評価額が被担保債権額を<span class="kw">上回る場合</span>は、譲渡担保権者は設定者にその<span class="kw">差額を清算金として支払わなければなりません</span>。
+  </div>
+  <div class="point-card">
+    <div class="point-title">◎ 清算金の支払いと目的物の引渡しの関係</div>
+    清算金の支払いと担保目的物の引渡しは<span class="kw">同時履行の関係</span>に立ちます（最判昭46・3・25）。<br>
+    → Bは「清算金を支払うまで土地を引き渡さない」と主張できる。<br><br>
+    ただし、<span class="kw">債務の弁済と譲渡担保の目的物の返還は同時履行の関係に立ちません</span>（最判平6・9・8）。弁済が先履行となります。
+  </div>
+  <div class="goro-box">
+    <div class="goro-label">ゴロ合わせ</div>
+    <div class="goro-text">「清算金⇔引渡し　は同時」</div>
+    <div class="goro-sub">弁済⇔目的物返還　は同時履行ではない（弁済が先）</div>
+  </div>
+</div>
+
+<!-- ミニテスト1 -->
+<div class="mini-test">
+  <div class="mini-test-title">📝 ミニテスト①　基本・対抗要件・実行</div>
+  <div class="blank-sentence">
+    譲渡担保は判例上認められた<button class="mblank" data-ans="非典型担保">　　　　</button>であり、物権法定主義の例外である。設定者はそのまま目的物を使用してよく、<button class="mblank" data-ans="留置的効力">　　　　</button>はない。不動産譲渡担保の対抗要件は<button class="mblank" data-ans="登記">　　</button>、動産の場合は<button class="mblank" data-ans="引渡し（占有改定）">　　　　　　</button>である。清算金の支払いと目的物の引渡しは<button class="mblank" data-ans="同時履行">　　　　</button>の関係に立つ。
+  </div>
+  <div class="chip-area" id="chips1">
+    <span class="chip" data-val="非典型担保">非典型担保</span>
+    <span class="chip" data-val="留置的効力">留置的効力</span>
+    <span class="chip" data-val="登記">登記</span>
+    <span class="chip" data-val="引渡し（占有改定）">引渡し（占有改定）</span>
+    <span class="chip" data-val="同時履行">同時履行</span>
+    <span class="chip" data-val="先履行">先履行</span>
+  </div>
+</div>
+
+<!-- ===== §4 受戻権 ===== -->
+<div class="section-header" id="s4">
+  <div class="section-num">4</div>
+  <h2>受戻権（うけもどしけん）</h2>
+</div>
+
+<div class="article-box">
+  <h3>受戻権とは</h3>
+  <p><span class="kw">設定者（債務者）</span>は、たとえ弁済期<span class="kw">後</span>であっても、被担保債権全額を弁済することで譲渡担保を消滅させ、担保目的物の所有権を回復することができます。これを「<span class="kw">受戻権</span>」といいます。</p>
+  <div class="warn-box">
+    <div class="warn-title">⚠ 受戻権が消滅する場合</div>
+    処分清算型・帰属清算型いずれの場合も、弁済期後に譲渡担保権者が目的物を<span class="kw">第三者に処分</span>した場合は、<span class="kw">受戻権が消滅します</span>。<br>
+    そして、<span class="kw">担保目的物の譲受人が背信的悪意者である場合も同様</span>に消滅します（最判平6・2・22）。<br><br>
+    理由：弁済期に弁済しなかったBが悪いので、取引の安全を重視してCの保護を優先する。
+  </div>
+  <div class="warn-box">
+    <div class="warn-title">⚠ 受戻権の放棄と清算金請求</div>
+    設定者（債務者）が弁済期後に自ら受戻権を放棄して、清算金の支払いを請求していくことは<span class="kw">できません</span>（最判平8・11・22）。<br>
+    理由：被担保債権の弁済を怠っておきながら「清算金をよこせ」というのは図々しい。また、設定者が自由に実行時期を決められることになり、譲渡担保権者にとって不利益だから。
+  </div>
+</div>
+
+<!-- ===== §5 その他の判例 ===== -->
+<div class="section-header" id="s5">
+  <div class="section-num">5</div>
+  <h2>その他の重要判例</h2>
+</div>
+
+<div class="article-box">
+  <h3>弁済後に譲渡した場合（不当処分）</h3>
+  <p>債務者Bが被担保債権を弁済した（この時点で譲渡担保は消滅）。それにもかかわらず、その後に譲渡担保権者AがBの不動産をCに売却処分した（不当処分）。BはCに対して土地の返還を請求できるか？</p>
+  <div class="point-card">
+    <div class="point-title">◎ 結論（最判昭62・11・12）</div>
+    <span class="kw">BとCは対抗問題として処理</span>する（先に登記を備えた方が勝つ）。<br><br>
+    弁済した時点で所有権はAからBに戻る。一方、AからCにも売却処分している。→ これはA→B・A→Cの<span class="kw">二重譲渡と同じ構成</span>になる（CはAからの177条の「第三者」に該当）。<br><br>
+    → <span class="kw">Bは登記がなければCに自己の所有権を対抗できず</span>、土地の返還を請求できない。<br>
+    → ただし、<span class="kw">CがAの背信的悪意者</span>である場合は、Bは登記なくして所有権を対抗でき、返還請求できる（背信的悪意者は177条の「第三者」に該当しない）。
+  </div>
+</div>
+
+<!-- ミニテスト2 -->
+<div class="mini-test">
+  <div class="mini-test-title">📝 ミニテスト②　受戻権・その他</div>
+  <div class="blank-sentence">
+    設定者は弁済期後でも被担保債権全額を弁済することで目的物の所有権を回復できる。これを<button class="mblank" data-ans="受戻権">　　　</button>という。弁済期後に譲渡担保権者が目的物を第三者に処分すると受戻権は<button class="mblank" data-ans="消滅する">　　　　</button>。なお、設定者が受戻権を放棄して清算金を請求することは<button class="mblank" data-ans="できない">　　　</button>。弁済後に譲渡担保権者が目的物を不当処分した場合、設定者と第三者の関係は<button class="mblank" data-ans="対抗問題">　　　　</button>として処理される。
+  </div>
+  <div class="chip-area" id="chips2">
+    <span class="chip" data-val="受戻権">受戻権</span>
+    <span class="chip" data-val="消滅する">消滅する</span>
+    <span class="chip" data-val="できない">できない</span>
+    <span class="chip" data-val="対抗問題">対抗問題</span>
+    <span class="chip" data-val="できる">できる</span>
+    <span class="chip" data-val="存続する">存続する</span>
+  </div>
+</div>
+
+<!-- まとめ箱 -->
+<div class="summary-box">
+  <h3>📌 ch26 譲渡担保 まとめ</h3>
+  <ul>
+    <li>譲渡担保は非典型担保・物権法定主義の例外。民法に条文なし</li>
+    <li>所有権的構成：形の上で所有権を担保権者に移転。留置的効力はなし</li>
+    <li>目的物は不動産・動産・債権と幅広く対応</li>
+    <li>物上代位性・不法占拠者への物権的請求権あり</li>
+    <li>集合物譲渡担保：種類・所在場所・量的範囲の特定が必要</li>
+    <li>対抗要件：不動産→登記、動産→引渡し（占有改定）、債権→通知又は承諾</li>
+    <li>実行：①処分清算型（第三者に売却）②帰属清算型（自己帰属）</li>
+    <li>清算義務：売却代金や評価額が債権額を上回れば差額を清算金として支払う</li>
+    <li>清算金の支払い⇔目的物の引渡し → 同時履行</li>
+    <li>債務の弁済⇔目的物の返還 → 同時履行ではない（弁済が先履行）</li>
+    <li>受戻権：弁済期後でも全額弁済で所有権回復可</li>
+    <li>受戻権の消滅：第三者への処分（譲受人が背信的悪意者でも同じ）</li>
+    <li>受戻権の放棄＋清算金請求 → できない</li>
+    <li>弁済後の不当処分 → 設定者vs第三者は対抗問題（先に登記した方が勝つ）</li>
+  </ul>
+</div>
+
+<!-- 完了バナー -->
+<div class="complete-banner">
+  <div class="cb-title">🎉 GAMBA 民法 全26章 完走！</div>
+  <div class="cb-sub">ch01〜ch26 解説・演習・音声台本 完成。本試験まで何度も繰り返して、合格をつかもう！</div>
+</div>
+
+</div><!-- /container -->
+
+<footer class="page-footer">
+  GAMBA 民法 ch26 譲渡担保 ｜ 江原予備校
+</footer>
+
+<script>
+document.querySelectorAll('.mblank').forEach(btn => {
+  btn.addEventListener('click', function() {
+    this.classList.toggle('revealed');
+  });
+});
+
+document.querySelectorAll('.chip-area').forEach(area => {
+  const blanks = area.closest('.mini-test').querySelectorAll('.mblank');
+  area.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', function() {
+      if (this.classList.contains('used')) return;
+      const val = this.dataset.val;
+      let matched = null;
+      for (let blank of blanks) {
+        if (!blank.classList.contains('revealed') && blank.dataset.ans === val) {
+          matched = blank;
+          break;
+        }
+      }
+      if (matched) {
+        matched.classList.add('revealed');
+        matched.textContent = val;
+        this.classList.add('used');
+      } else {
+        this.classList.add('wrong');
+        setTimeout(() => this.classList.remove('wrong'), 500);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

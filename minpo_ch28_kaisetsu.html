@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法 ch28 債権者代位権</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#eef2f7;font-family:'BIZ UDGothic','Meiryo',sans-serif;color:#1B2A4A;line-height:1.8}
+  header{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:#fff;padding:20px 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+  header h1{font-size:1.2rem;font-weight:700}
+  header p{font-size:.8rem;opacity:.85;margin-top:2px}
+  .container{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+  .card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  h2{font-size:1.15rem;color:#1B2A4A;border-left:4px solid #C0392B;padding-left:10px;margin-bottom:16px}
+  h3{font-size:1rem;color:#C0392B;margin:16px 0 8px;font-weight:700}
+  p{margin-bottom:10px;font-size:.95rem}
+  ul,ol{padding-left:20px;margin-bottom:10px;font-size:.95rem}
+  li{margin-bottom:4px}
+  .point-box{background:#fff8e1;border-left:4px solid #D4A017;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+  .point-box strong{color:#C0392B}
+  .ng-box{background:#ffeaea;border-left:4px solid #C0392B;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+  .ok-box{background:#e8f5e9;border-left:4px solid #2e7d32;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+  th{background:#1B2A4A;color:#fff;padding:8px 10px;text-align:center}
+  td{border:1px solid #ccc;padding:8px 10px;vertical-align:top}
+  tr:nth-child(even) td{background:#f5f7fa}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+  .flow-item{background:#1B2A4A;color:#fff;padding:6px 14px;border-radius:6px;font-size:.85rem;text-align:center;min-width:80px}
+  .flow-arrow{color:#C0392B;font-size:1.2rem;font-weight:700}
+  /* ミニテスト共通 */
+  .mini-quiz{background:#f0f4f8;border-radius:10px;padding:18px;margin-top:18px}
+  .mini-quiz h4{font-size:.95rem;color:#1B2A4A;margin-bottom:12px;font-weight:700}
+  .q-item{margin-bottom:14px}
+  .q-item p{font-size:.9rem;margin-bottom:6px}
+  .ox-btn{display:inline-block;padding:6px 18px;margin-right:8px;border-radius:6px;border:2px solid #1B2A4A;background:#fff;cursor:pointer;font-size:.9rem;font-weight:700;transition:all .2s}
+  .ox-btn:hover{background:#1B2A4A;color:#fff}
+  .ox-btn.correct{background:#2e7d32;border-color:#2e7d32;color:#fff}
+  .ox-btn.wrong{background:#C0392B;border-color:#C0392B;color:#fff}
+  .exp{font-size:.85rem;margin-top:6px;padding:8px 12px;border-radius:6px;display:none}
+  .exp-ok{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
+  .exp-ng{background:#ffeaea;color:#C0392B;border:1px solid #ef9a9a}
+  /* 穴埋め */
+  .fill-section{margin-top:18px}
+  .fill-sentence{font-size:.95rem;line-height:2.4;margin-bottom:8px}
+  .blank{display:inline-block;min-width:90px;height:28px;border-bottom:2px solid #1B2A4A;vertical-align:bottom;text-align:center;cursor:pointer;background:rgba(212,160,23,.1);border-radius:4px 4px 0 0;padding:0 4px;font-weight:700;color:#C0392B;transition:background .2s}
+  .blank:hover{background:rgba(192,57,43,.1)}
+  .blank.filled{background:rgba(46,125,50,.1);border-bottom-color:#2e7d32}
+  .blank.wrong-fill{background:rgba(192,57,43,.15);border-bottom-color:#C0392B;animation:shake .3s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+  .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+  .chip{background:#1B2A4A;color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:.88rem;transition:all .2s;user-select:none}
+  .chip:hover{background:#C0392B;transform:translateY(-2px)}
+  .chip.used{opacity:.3;cursor:not-allowed;pointer-events:none}
+  .popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:#fff;border-radius:14px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,.25);z-index:200;min-width:280px;opacity:0;pointer-events:none;transition:all .25s}
+  .popup.show{opacity:1;pointer-events:all;transform:translate(-50%,-50%) scale(1)}
+  .popup h5{color:#1B2A4A;margin-bottom:10px;font-size:.95rem}
+  .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:199;opacity:0;pointer-events:none;transition:opacity .25s}
+  .popup-overlay.show{opacity:1;pointer-events:all}
+  .fill-btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+  .fill-btn{padding:8px 18px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;transition:all .2s}
+  .btn-check{background:#1B2A4A;color:#fff}.btn-check:hover{background:#C0392B}
+  .btn-hint{background:#D4A017;color:#fff}.btn-hint:hover{background:#b8860b}
+  .btn-reset{background:#eee;color:#333}.btn-reset:hover{background:#ddd}
+  .score-badge{display:inline-block;background:#C0392B;color:#fff;border-radius:20px;padding:4px 14px;font-size:.85rem;font-weight:700}
+  canvas#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+  .nav-btns{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+  .nav-btn{padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;text-decoration:none;display:inline-block}
+  .nav-prev{background:#1B2A4A;color:#fff}
+  .nav-next{background:#C0392B;color:#fff}
+  .nav-index{background:#D4A017;color:#fff}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<header>
+  <h1>🏛 GAMBA民法 ch28｜債権者代位権</h1>
+  <p>民法Ⅱ 債権総論 ― 制度の趣旨・要件・行使方法・効果</p>
+</header>
+<div class="container">
+
+<!-- §1 制度の趣旨 -->
+<div class="card">
+  <h2>§1 債権者代位権とは</h2>
+  <p>債権者代位権（423条）とは、<strong>債権者が自己の債権を保全するために</strong>、債務者が自ら権利を行使しない場合に、<strong>債務者に代わって</strong>債務者の権利を行使できる制度です。</p>
+
+  <div class="flow">
+    <div class="flow-item">債権者 A</div>
+    <div class="flow-arrow">→ 代位行使</div>
+    <div class="flow-item">第三債務者 C</div>
+    <div class="flow-arrow">（本来は）</div>
+    <div class="flow-item">債務者 B</div>
+    <div class="flow-arrow">→ 行使すべき</div>
+    <div class="flow-item">第三債務者 C</div>
+  </div>
+
+  <div class="point-box">
+    <strong>趣旨：</strong>債務者の責任財産を保全し、総債権者の利益を守る（責任財産保全機能）。
+  </div>
+
+  <h3>詐害行為取消権との比較</h3>
+  <table>
+    <tr><th>比較項目</th><th>債権者代位権</th><th>詐害行為取消権</th></tr>
+    <tr><td>目的</td><td>債務者が権利を行使しない</td><td>債務者が財産を処分した</td></tr>
+    <tr><td>行使方法</td><td>裁判外でも可</td><td>裁判上のみ（取消訴訟）</td></tr>
+    <tr><td>効果の帰属</td><td>債務者に帰属</td><td>取り消した行為の効果が総債権者に帰属</td></tr>
+  </table>
+
+  <!-- ミニテスト1 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ①</h4>
+    <div class="q-item" id="q1">
+      <p>Q1. 債権者代位権は、裁判上でしか行使できない。</p>
+      <button class="ox-btn" onclick="checkOX('q1',false,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q1',false,this)">×</button>
+      <div class="exp exp-ok" id="exp-q1-ok">正解です！債権者代位権は裁判外でも行使できます。裁判上のみが要件となるのは詐害行為取消権です。</div>
+      <div class="exp exp-ng" id="exp-q1-ng">不正解です。債権者代位権は裁判外でも行使できます（詐害行為取消権と混同しないよう注意）。</div>
+    </div>
+    <div class="q-item" id="q2">
+      <p>Q2. 債権者代位権の効果は、最終的に債務者の責任財産に帰属する。</p>
+      <button class="ox-btn" onclick="checkOX('q2',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q2',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q2-ok">正解です！代位行使の効果は債務者に帰属し、債権者が直接自己のものにできるわけではありません（ただし金銭の直接請求の例外あり）。</div>
+      <div class="exp exp-ng" id="exp-q2-ng">不正解です。代位行使の効果は債務者に帰属します。責任財産が増加することで債権者全員が利益を得ます。</div>
+    </div>
+  </div>
+</div>
+
+<!-- §2 行使要件 -->
+<div class="card">
+  <h2>§2 債権者代位権の行使要件</h2>
+  <p>債権者代位権を行使するには、次の要件を満たす必要があります。</p>
+
+  <h3>① 被保全債権の存在</h3>
+  <p>保全する債権（被保全債権）が必要です。原則として<strong>金銭債権</strong>ですが、特定物債権でも転用が認められる場合があります（判例）。</p>
+  <div class="ok-box">
+    <strong>転用の例：</strong>不動産の賃借人が、賃貸人の不法占拠者に対する妨害排除請求権を代位行使する（建物の引渡請求権を保全するため）。
+  </div>
+
+  <h3>② 債務者の無資力（原則）</h3>
+  <p>原則として<strong>債務者が無資力</strong>（債務超過）であることが必要です。ただし、転用事例では無資力要件は不要とされています（判例）。</p>
+  <div class="ng-box">
+    <strong>例外（無資力不要）：</strong>登記請求権の代位行使（最判昭和40年）―「登記がなければ次の登記ができない」という場合は無資力要件なし。
+  </div>
+
+  <h3>③ 被保全債権の弁済期到来（原則）</h3>
+  <p>原則として被保全債権の<strong>弁済期が到来</strong>していることが必要です。ただし<strong>保存行為</strong>（時効の完成猶予・未登記権利の登記など）は弁済期前でも行使できます。</p>
+
+  <h3>④ 債務者が自ら権利を行使しないこと</h3>
+  <p>債務者が自ら権利を行使しているときは、原則として代位権を行使できません。ただし、<strong>行使の方法・結果が不十分・不誠実・不適切な場合</strong>は、債権者が重複して行使できます（判例・423条の5）。</p>
+
+  <!-- 穴埋め §2 -->
+  <div class="mini-quiz fill-section">
+    <h4>✍ 穴埋めテスト — 行使要件</h4>
+    <div class="fill-sentence">
+      債権者代位権の行使には、原則として債務者が<span class="blank" data-group="A" data-ans="無資力">　　　</span>であることが必要だが、転用事例では<span class="blank" data-group="B" data-ans="不要">　　</span>とされる。
+    </div>
+    <div class="fill-sentence">
+      被保全債権の弁済期が未到来でも、<span class="blank" data-group="C" data-ans="保存行為">　　　　</span>であれば代位権を行使できる。
+    </div>
+    <div class="fill-sentence">
+      債務者が既に権利を行使していても、その行使が<span class="blank" data-group="D" data-ans="不十分・不誠実">　　　　　</span>な場合は債権者が代位行使できる。
+    </div>
+    <div class="word-bank" id="wb-s2">
+      <span class="chip" data-w="無資力" data-group="A">無資力</span>
+      <span class="chip" data-w="不要" data-group="B">不要</span>
+      <span class="chip" data-w="保存行為" data-group="C">保存行為</span>
+      <span class="chip" data-w="不十分・不誠実" data-group="D">不十分・不誠実</span>
+      <span class="chip" data-w="必要" data-group="B">必要</span>
+      <span class="chip" data-w="不法行為" data-group="C">不法行為</span>
+    </div>
+    <div class="fill-btns">
+      <button class="fill-btn btn-check" onclick="checkFill('s2')">判定する</button>
+      <button class="fill-btn btn-hint" onclick="showHint('s2')">手本を見る</button>
+      <button class="fill-btn btn-reset" onclick="resetFill('s2')">リセット</button>
+      <span class="score-badge" id="score-s2" style="display:none"></span>
+    </div>
+  </div>
+</div>
+
+<!-- §3 代位行使できる権利・できない権利 -->
+<div class="card">
+  <h2>§3 代位行使できる権利・できない権利</h2>
+
+  <h3>代位行使できる権利（原則）</h3>
+  <p>債務者に属する権利であれば原則として代位行使できます。代金請求権・損害賠償請求権・登記請求権などの<strong>請求権</strong>が典型です。</p>
+
+  <h3>代位行使できない権利</h3>
+  <table>
+    <tr><th>権利の種類</th><th>理由</th></tr>
+    <tr><td>一身専属権（慰謝料請求権※・離婚慰謝料など）</td><td>本人の意思にゆだねるべき権利</td></tr>
+    <tr><td>差押禁止債権（給料・年金など）</td><td>差押禁止の趣旨に反する</td></tr>
+    <tr><td>解除権・取消権などの形成権</td><td>原則として一身専属的</td></tr>
+    <tr><td>時効の援用権</td><td>一身専属的権利（最判昭和43年）</td></tr>
+  </table>
+
+  <div class="point-box">
+    <strong>慰謝料請求権の例外：</strong>具体的な慰謝料額が当事者間で確定した場合（または訴え提起済み）は、一身専属性を失い代位行使の対象となります（最判昭和58年）。
+  </div>
+
+  <div class="point-box">
+    <strong>遺留分侵害額請求権：</strong>財産的価値を有する権利であるから、権利放棄の確定的意思を外部に表示するなどの特段の事情がある場合を除き、代位行使の対象となります（最判平成13年）。
+  </div>
+
+  <!-- ミニテスト2 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ②</h4>
+    <div class="q-item" id="q3">
+      <p>Q3. 時効の援用権は一身専属的権利であるため、債権者代位権の対象とならない。</p>
+      <button class="ox-btn" onclick="checkOX('q3',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q3',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q3-ok">正解です！最判昭和43年は時効の援用権を一身専属的権利として代位行使を否定しました。</div>
+      <div class="exp exp-ng" id="exp-q3-ng">不正解です。最判昭和43年により時効の援用権は一身専属的権利として代位行使の対象になりません。</div>
+    </div>
+    <div class="q-item" id="q4">
+      <p>Q4. 遺留分侵害額請求権は、権利放棄の確定的意思を外部に表示した場合でも、常に債権者代位権の対象となる。</p>
+      <button class="ox-btn" onclick="checkOX('q4',false,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q4',false,this)">×</button>
+      <div class="exp exp-ok" id="exp-q4-ok">正解です！権利放棄の確定的意思を外部に表示した場合は代位行使の対象となりません（最判平成13年）。</div>
+      <div class="exp exp-ng" id="exp-q4-ng">不正解です。権利放棄の確定的意思を外部に表示した特段の事情がある場合は代位行使の対象から外れます。</div>
+    </div>
+  </div>
+</div>
+
+<!-- §4 代位行使の方法と効果 -->
+<div class="card">
+  <h2>§4 代位行使の方法と効果</h2>
+
+  <h3>行使方法</h3>
+  <p>債権者は<strong>自己の名において</strong>（自己名義で）債務者の権利を行使します（423条の2）。代理人として行使するのではありません。</p>
+  <div class="ng-box">
+    <strong>注意：</strong>かつては「債務者の代理人として」の地位が議論されましたが、現行法・判例は「自己の名において」と整理しています。
+  </div>
+
+  <h3>金銭・動産の直接請求（423条の3）</h3>
+  <p>代位権者が第三債務者に対して<strong>金銭の支払または動産の引渡し</strong>を求める場合、<strong>直接自己に支払・引渡しをすることを請求できます</strong>。</p>
+  <div class="point-box">
+    <strong>重要：</strong>金銭の直接請求が認められると、債権者は受領した金銭を自己の被保全債権と相殺できる実益があります。
+  </div>
+
+  <h3>不動産の場合</h3>
+  <p>代位権者が不動産を目的とする権利を行使する場合、<strong>直接自己に移転登記を請求することはできません</strong>（最判昭和29年）。債務者名義への登記を請求するにとどまります。</p>
+
+  <h3>代位権行使の通知・債務者の取立権（423条の4・5）</h3>
+  <ul>
+    <li>債権者が代位行使の訴えを提起したときは、<strong>遅滞なく債務者に通知</strong>しなければなりません。</li>
+    <li>代位権行使の通知・訴提起後も、<strong>債務者は取立てその他の処分ができます</strong>（二重取立を防ぐため第三債務者は支払を拒むことができる）。</li>
+  </ul>
+
+  <!-- 穴埋め §4 -->
+  <div class="mini-quiz fill-section">
+    <h4>✍ 穴埋めテスト — 行使方法と効果</h4>
+    <div class="fill-sentence">
+      債権者代位権は、債権者が<span class="blank" data-group="E" data-ans="自己の名">　　　　</span>において行使する。
+    </div>
+    <div class="fill-sentence">
+      第三債務者への金銭債権を代位行使する場合、<span class="blank" data-group="F" data-ans="直接自己">　　　　</span>への支払を請求できる。
+    </div>
+    <div class="fill-sentence">
+      不動産の代位行使では、直接自己への移転登記を請求することは<span class="blank" data-group="G" data-ans="できない">　　　</span>。
+    </div>
+    <div class="word-bank" id="wb-s4">
+      <span class="chip" data-w="自己の名" data-group="E">自己の名</span>
+      <span class="chip" data-w="直接自己" data-group="F">直接自己</span>
+      <span class="chip" data-w="できない" data-group="G">できない</span>
+      <span class="chip" data-w="債務者の名" data-group="E">債務者の名</span>
+      <span class="chip" data-w="債務者" data-group="F">債務者</span>
+      <span class="chip" data-w="できる" data-group="G">できる</span>
+    </div>
+    <div class="fill-btns">
+      <button class="fill-btn btn-check" onclick="checkFill('s4')">判定する</button>
+      <button class="fill-btn btn-hint" onclick="showHint('s4')">手本を見る</button>
+      <button class="fill-btn btn-reset" onclick="resetFill('s4')">リセット</button>
+      <span class="score-badge" id="score-s4" style="display:none"></span>
+    </div>
+  </div>
+</div>
+
+<!-- §5 被保全債権の範囲と転用 -->
+<div class="card">
+  <h2>§5 被保全債権の範囲と転用事例</h2>
+
+  <h3>被保全債権は金銭債権が原則</h3>
+  <p>債権者代位権の被保全債権は、原則として<strong>金銭債権</strong>です。ただし、判例は特定物債権保全のための転用を認めています。</p>
+
+  <h3>主要な転用事例（判例）</h3>
+  <table>
+    <tr><th>事例</th><th>被保全債権</th><th>代位行使する権利</th><th>無資力要件</th></tr>
+    <tr><td>不動産賃借人の妨害排除</td><td>賃借権（建物引渡請求権）</td><td>賃貸人の妨害排除請求権</td><td>不要</td></tr>
+    <tr><td>登記の中間省略防止</td><td>土地の所有権移転登記請求権</td><td>前主から前前主への登記請求権</td><td>不要</td></tr>
+    <tr><td>土地賃借人の明渡し</td><td>土地の賃借権</td><td>賃貸人の明渡請求権</td><td>不要</td></tr>
+  </table>
+
+  <div class="ok-box">
+    <strong>建物賃借人と土地不法占拠者：</strong>建物賃借人は土地不法占拠者に対して直接明渡しを請求できるため、賃貸人の妨害排除請求権を代位行使して土地明渡しを請求することは<strong>できません</strong>（最判昭和55年）。
+  </div>
+
+  <!-- ミニテスト3 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ③</h4>
+    <div class="q-item" id="q5">
+      <p>Q5. 債権者代位権の被保全債権は金銭債権に限られ、特定物引渡請求権を被保全債権として代位権を転用することは認められない。</p>
+      <button class="ox-btn" onclick="checkOX('q5',false,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q5',false,this)">×</button>
+      <div class="exp exp-ok" id="exp-q5-ok">正解です！判例は特定物引渡請求権保全のための代位権転用を認めており（最判昭和40年代）、転用事例では無資力要件も不要です。</div>
+      <div class="exp exp-ng" id="exp-q5-ng">不正解です。判例は特定物引渡請求権を保全するための代位権転用を認めています。</div>
+    </div>
+    <div class="q-item" id="q6">
+      <p>Q6. 土地の賃借人は、土地の不法占拠者に対し、賃貸人に代位して妨害排除請求権を行使して土地の明渡しを請求できる。</p>
+      <button class="ox-btn" onclick="checkOX('q6',false,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q6',false,this)">×</button>
+      <div class="exp exp-ok" id="exp-q6-ok">正解です！土地賃借人は対抗力があれば不法占拠者に対して直接明渡請求できるため、代位行使の必要がありません（最判昭和55年）。</div>
+      <div class="exp exp-ng" id="exp-q6-ng">不正解です。土地賃借人は不法占拠者に対し直接返還請求できるため、代位行使は不要・不可とされています。</div>
+    </div>
+  </div>
+</div>
+
+<!-- §6 代位行使と訴訟 -->
+<div class="card">
+  <h2>§6 代位訴訟と再抗弁・第三債務者の抗弁</h2>
+
+  <h3>第三債務者の抗弁</h3>
+  <p>第三債務者は、<strong>債務者に対して主張できるすべての抗弁</strong>（弁済・相殺・消滅時効など）を、代位行使する債権者に対しても主張できます。</p>
+
+  <h3>再抗弁（423条の5関連・判例）</h3>
+  <p>債権者代位訴訟において、原告（債権者）が提出できる<strong>再抗弁事由</strong>は、債務者自身が主張できるものに限られず、<strong>債権者独自の事情に基づくもの</strong>も提出できます（最判昭和54年）。ただし、信義則に反し権利の濫用として許されないものを除きます。</p>
+
+  <div class="point-box">
+    <strong>整理：</strong>第三債務者 → 債務者に対する抗弁で対抗可 ／ 債権者 → 再抗弁は債権者独自の事情も可（権利濫用除く）
+  </div>
+
+  <!-- ミニテスト4 -->
+  <div class="mini-quiz">
+    <h4>✍ ミニテスト ④</h4>
+    <div class="q-item" id="q7">
+      <p>Q7. 第三債務者は、債務者に対して有する抗弁事由を、代位行使する債権者に対しても主張することができる。</p>
+      <button class="ox-btn" onclick="checkOX('q7',true,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q7',true,this)">×</button>
+      <div class="exp exp-ok" id="exp-q7-ok">正解です！第三債務者は自己が債務者に対して主張できる抗弁をすべて代位債権者に対しても対抗できます。</div>
+      <div class="exp exp-ng" id="exp-q7-ng">不正解です。第三債務者は債務者に対して主張できる抗弁を代位行使する債権者にも主張できます。</div>
+    </div>
+    <div class="q-item" id="q8">
+      <p>Q8. 代位訴訟において、債権者が提出できる再抗弁事由は、債務者自身が主張できるものに限られる。</p>
+      <button class="ox-btn" onclick="checkOX('q8',false,this)">○</button>
+      <button class="ox-btn" onclick="checkOX('q8',false,this)">×</button>
+      <div class="exp exp-ok" id="exp-q8-ok">正解です！最判昭和54年は、再抗弁として債権者独自の事情に基づくものも提出できるとしています（権利濫用除く）。</div>
+      <div class="exp exp-ng" id="exp-q8-ng">不正解です。最判昭和54年により、再抗弁は債権者独自の事情に基づくものも提出可能です（権利濫用は除く）。</div>
+    </div>
+  </div>
+</div>
+
+<!-- まとめ -->
+<div class="card">
+  <h2>📌 ch28 重要ポイントまとめ</h2>
+  <ul>
+    <li><strong>制度趣旨：</strong>責任財産保全のため債務者の権利を債権者が代わりに行使する</li>
+    <li><strong>行使方法：</strong>裁判外でも可（詐害行為取消権は裁判上のみ）</li>
+    <li><strong>行使要件：</strong>被保全債権の存在・無資力（原則）・弁済期到来（原則）・債務者の不行使</li>
+    <li><strong>無資力不要：</strong>転用事例・登記請求権の代位行使</li>
+    <li><strong>弁済期前可：</strong>保存行為のみ</li>
+    <li><strong>代位不可：</strong>一身専属権（時効援用権・未確定の慰謝料・離婚財産分与など）、差押禁止債権</li>
+    <li><strong>遺留分侵害額請求権：</strong>原則代位可（放棄の意思表示があれば不可）</li>
+    <li><strong>行使名義：</strong>自己の名において（代理人としてではない）</li>
+    <li><strong>金銭・動産：</strong>直接自己への支払・引渡し請求可 ／ 不動産：直接登記移転不可</li>
+    <li><strong>再抗弁：</strong>債権者独自事情に基づくものも可（権利濫用除く）</li>
+  </ul>
+  <div class="nav-btns">
+    <a href="minpo_ch27_kaisetsu.html" class="nav-btn nav-prev">← ch27</a>
+    <a href="minpo_index.html" class="nav-btn nav-index">目次へ</a>
+    <a href="minpo_ch28_enshu.html" class="nav-btn nav-next">演習へ →</a>
+  </div>
+</div>
+
+</div>
+<div class="popup-overlay" id="overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup">
+  <h5>語群から選んでください</h5>
+  <div id="popup-chips" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+</div>
+<script>
+function checkOX(qId,correct,btn){
+  const item=document.getElementById(qId);
+  if(item.dataset.answered)return;
+  item.dataset.answered='1';
+  const btns=item.querySelectorAll('.ox-btn');
+  const isO=btn.textContent==='○';
+  const userCorrect=(isO===correct);
+  btns.forEach(b=>{
+    if(b.textContent==='○') b.classList.add(correct?'correct':'wrong');
+    else b.classList.add(!correct?'correct':'wrong');
+  });
+  document.getElementById('exp-'+qId+(userCorrect?'-ok':'-ng')).style.display='block';
+}
+
+let currentBlank=null;
+document.querySelectorAll('.blank').forEach(b=>{
+  b.addEventListener('click',function(){
+    if(this.dataset.fixed)return;
+    currentBlank=this;
+    const wb=this.closest('.mini-quiz').querySelector('.word-bank');
+    const pc=document.getElementById('popup-chips');
+    pc.innerHTML='';
+    wb.querySelectorAll('.chip:not(.used)').forEach(chip=>{
+      const c=document.createElement('span');
+      c.className='chip';c.textContent=chip.textContent;c.dataset.w=chip.dataset.w;
+      c.addEventListener('click',()=>{fillBlank(currentBlank,c.dataset.w,chip);closePopup();});
+      pc.appendChild(c);
+    });
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('popup').classList.add('show');
+  });
+});
+function closePopup(){
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('popup').classList.remove('show');
+}
+function fillBlank(blank,word,chip){
+  if(!blank)return;
+  blank.textContent=word;blank.classList.add('filled');blank.dataset.userAns=word;
+  if(chip)chip.classList.add('used');
+}
+function checkFill(id){
+  const sec=document.getElementById('wb-'+id).closest('.mini-quiz');
+  const blanks=sec.querySelectorAll('.blank');
+  let ok=0;
+  blanks.forEach(b=>{
+    if(b.dataset.userAns===b.dataset.ans){
+      b.style.borderBottomColor='#2e7d32';b.style.background='rgba(46,125,50,.15)';ok++;
+    } else {
+      b.style.borderBottomColor='#C0392B';b.style.background='rgba(192,57,43,.15)';
+      b.classList.add('wrong-fill');setTimeout(()=>b.classList.remove('wrong-fill'),400);
+    }
+  });
+  const sc=document.getElementById('score-'+id);
+  sc.textContent=ok+'/'+blanks.length+'正解';sc.style.display='inline-block';
+  if(ok>=blanks.length)launchConfetti();
+}
+function showHint(id){
+  const sec=document.getElementById('wb-'+id).closest('.mini-quiz');
+  sec.querySelectorAll('.blank').forEach(b=>{
+    b.textContent=b.dataset.ans;b.dataset.userAns=b.dataset.ans;b.dataset.fixed='1';
+    b.classList.add('filled');b.style.borderBottomColor='#D4A017';b.style.background='rgba(212,160,23,.15)';
+  });
+  document.getElementById('wb-'+id).querySelectorAll('.chip').forEach(c=>c.classList.add('used'));
+}
+function resetFill(id){
+  const sec=document.getElementById('wb-'+id).closest('.mini-quiz');
+  sec.querySelectorAll('.blank').forEach(b=>{
+    b.textContent='';b.classList.remove('filled','wrong-fill');
+    b.style.borderBottomColor='';b.style.background='';
+    delete b.dataset.userAns;delete b.dataset.fixed;
+  });
+  document.getElementById('wb-'+id).querySelectorAll('.chip').forEach(c=>c.classList.remove('used'));
+  const sc=document.getElementById('score-'+id);if(sc)sc.style.display='none';
+  resetConfettiCanvas();
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const P=Array.from({length:120},()=>({
+    x:Math.random()*canvas.width,y:-10,r:Math.random()*6+3,
+    color:['#C0392B','#D4A017','#1B2A4A','#2e7d32','#e74c3c','#f39c12'][Math.floor(Math.random()*6)],
+    tilt:Math.random()*10-10,tiltAngle:0,tiltAngleInc:Math.random()*.07+.05
+  }));
+  let f=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    P.forEach(p=>{
+      ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;
+      ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/5);ctx.stroke();
+    });
+    P.forEach(p=>{p.tiltAngle+=p.tiltAngleInc;p.y+=(Math.cos(f/6)+3+p.r/2)/2;p.tilt=Math.sin(p.tiltAngle)*15;});
+    f++;if(f<200)requestAnimationFrame(draw);else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+function resetConfettiCanvas(){
+  const canvas=document.getElementById('confetti-canvas');
+  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法Ⅱ ch33 売買・贈与【演習】</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#eef2f7;font-family:'BIZ UDGothic','Meiryo',sans-serif;color:#1B2A4A;line-height:1.8}
+  header{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:#fff;padding:20px 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+  header h1{font-size:1.2rem;font-weight:700}
+  header p{font-size:.8rem;opacity:.85;margin-top:2px}
+  .container{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+  .card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  h2{font-size:1.1rem;color:#1B2A4A;border-left:4px solid #C0392B;padding-left:10px;margin-bottom:16px}
+  p{margin-bottom:10px;font-size:.95rem}
+  .badge{display:inline-block;background:#C0392B;color:#fff;font-size:.7rem;padding:2px 8px;border-radius:10px;margin-right:6px}
+  .choices{list-style:none;padding:0}
+  .choices li{background:#f5f7fa;border:2px solid #ddd;border-radius:8px;padding:10px 14px;margin-bottom:8px;cursor:pointer;font-size:.9rem;transition:all .2s;display:flex;align-items:flex-start;gap:8px}
+  .choices li:hover{border-color:#1B2A4A;background:#e8edf4}
+  .choices li.correct-ans{border-color:#2e7d32 !important;background:#e8f5e9 !important}
+  .choices li.wrong-ans{border-color:#C0392B !important;background:#ffeaea !important}
+  .choices li.show-correct{border-color:#2e7d32;background:#e8f5e9}
+  .choice-mark{font-weight:700;min-width:20px}
+  .explanation{margin-top:14px;padding:14px;background:#fff8e1;border-radius:8px;border-left:3px solid #D4A017;font-size:.88rem;display:none;line-height:1.8}
+  .explanation.show{display:block}
+  .explanation strong{color:#C0392B}
+  .fill-q{background:#f5f7fa;border-radius:10px;padding:18px;margin-bottom:20px;border-left:4px solid #1B2A4A}
+  .fill-q .q-no{font-size:.8rem;color:#1B2A4A;font-weight:700;margin-bottom:8px}
+  .fill-sentence{font-size:.95rem;line-height:2.4;margin-bottom:8px}
+  .blank{display:inline-block;min-width:90px;height:28px;border-bottom:2px solid #1B2A4A;vertical-align:bottom;text-align:center;cursor:pointer;background:rgba(212,160,23,.1);border-radius:4px 4px 0 0;padding:0 6px;font-weight:700;color:#C0392B;font-size:.9rem;transition:background .2s}
+  .blank:hover{background:rgba(192,57,43,.1)}
+  .blank.filled{background:rgba(46,125,50,.1);border-bottom-color:#2e7d32}
+  .blank.wrong-fill{background:rgba(192,57,43,.15);border-bottom-color:#C0392B;animation:shake .3s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+  .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+  .chip{background:#1B2A4A;color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:.88rem;transition:all .2s;user-select:none}
+  .chip:hover{background:#C0392B;transform:translateY(-2px)}
+  .chip.used{opacity:.3;cursor:not-allowed;pointer-events:none}
+  .popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:#fff;border-radius:14px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,.25);z-index:200;min-width:280px;opacity:0;pointer-events:none;transition:all .25s}
+  .popup.show{opacity:1;pointer-events:all;transform:translate(-50%,-50%) scale(1)}
+  .popup h5{color:#1B2A4A;margin-bottom:10px;font-size:.95rem}
+  .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:199;opacity:0;pointer-events:none;transition:opacity .25s}
+  .popup-overlay.show{opacity:1;pointer-events:all}
+  .fill-btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+  .fill-btn{padding:8px 18px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;font-family:inherit;transition:all .2s}
+  .btn-check{background:#1B2A4A;color:#fff}.btn-check:hover{background:#C0392B}
+  .btn-hint{background:#D4A017;color:#fff}.btn-hint:hover{background:#b8860b}
+  .btn-reset{background:#eee;color:#333}.btn-reset:hover{background:#ddd}
+  .score-badge{display:inline-block;background:#C0392B;color:#fff;border-radius:20px;padding:4px 14px;font-size:.85rem;font-weight:700}
+  .total-score-card{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:#fff;border-radius:12px;padding:24px;text-align:center;margin-bottom:20px}
+  .total-score-card h2{border-left:none;color:#fff;font-size:1.2rem;padding-left:0;margin-bottom:10px}
+  .score-display{font-size:2.5rem;font-weight:700;margin:10px 0}
+  .score-display span{font-size:1.2rem;opacity:.8}
+  .score-msg{font-size:1rem;opacity:.9}
+  canvas#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+  .nav-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .nav-btn{padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;text-decoration:none;display:inline-block}
+  .nav-prev{background:#1B2A4A;color:#fff}
+  .nav-next{background:#C0392B;color:#fff}
+  .nav-index{background:#D4A017;color:#fff}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<header>
+  <h1>⚔ GAMBA民法Ⅱ ch33｜売買・贈与【演習】</h1>
+  <p>民法Ⅱ 債権各論 ― 過去問で実力を確認しよう！</p>
+</header>
+<div class="container">
+
+<div class="total-score-card">
+  <h2>📊 演習スコア</h2>
+  <div class="score-display"><span id="correct-count">0</span><span> / </span><span id="total-count">0</span></div>
+  <div class="score-msg" id="score-msg">問題に答えてスコアを確認しよう！</div>
+</div>
+
+<!-- 択一1：手付（裁判所職員R2） -->
+<div class="card">
+  <h2><span class="badge">過去問</span>手付に関する記述として最も妥当なのはどれか（争いのあるときは、判例の見解による）。【裁判所職員 R2】</h2>
+  <ul class="choices" id="choices-1">
+    <li onclick="selectChoice('1',1,false)"><span class="choice-mark">1</span><span>買主が売主に手付を交付したときは、売主がその倍額を口頭で提供して、契約の解除をすることができる。</span></li>
+    <li onclick="selectChoice('1',2,true)"><span class="choice-mark">2</span><span>売買契約における手付は、反対の意思表示がない限り、解約手付の性質を有するものと解釈される。</span></li>
+    <li onclick="selectChoice('1',3,false)"><span class="choice-mark">3</span><span>１つの手付が解約手付と違約手付の両者を兼ねることはできない。</span></li>
+    <li onclick="selectChoice('1',4,false)"><span class="choice-mark">4</span><span>不動産売買契約において、買主が売主に手付を交付したとき、買主は、第三者所有の不動産の売主が第三者から当該不動産の所有権を取得し、その所有権移転登記を受けた場合であっても、手付を放棄して契約を解除することができる。</span></li>
+    <li onclick="selectChoice('1',5,false)"><span class="choice-mark">5</span><span>不動産売買契約において、買主が売主に手付を交付したとき、買主が売主に対して明渡しを求め、それが実行されればいつでも代金を支払われる状態にあった場合、買主は、売主が履行に着手していないときでも、手付を放棄して契約を解除することができない。</span></li>
+  </ul>
+  <div class="explanation" id="exp-1">
+    <strong>正解：2</strong><br><br>
+    <strong>1×：</strong>売主が解除するには手付の倍額を「<strong>現実に提供</strong>」しなければなりません（557条1項）。口頭での提供では足りません。<br>
+    <strong>2○：</strong>そのとおり。手付の目的を定めなかった場合は<strong>解約手付と推定</strong>されます（最判昭29・1・21）。<br>
+    <strong>3×：</strong>判例は、違約手付であっても解約手付を<strong>兼ねることができる</strong>としています（最判昭24・10・4）。<br>
+    <strong>4×：</strong>売主が履行に着手したと認められる場合（所有権取得・移転登記）、買主は手付を放棄して解除することは<strong>できません</strong>（557条1項ただし書）。<br>
+    <strong>5×：</strong>手付を交付した買主が履行に着手した後であっても、<strong>相手方である売主が履行に着手していなければ</strong>、買主は手付を放棄して解除することができます。解除を制限するのは「相手方」の着手が基準です。
+  </div>
+</div>
+
+<!-- 択一2：売買（オリジナル） -->
+<div class="card">
+  <h2><span class="badge">過去問</span>売買に関する次の記述のうち、妥当なのはどれか。【オリジナル】</h2>
+  <ul class="choices" id="choices-2">
+    <li onclick="selectChoice('2',1,false)"><span class="choice-mark">1</span><span>買主が売主に手付を交付したときは、たとえ相手方が契約の履行に着手した後であっても、手付を放棄すれば解除することができる。</span></li>
+    <li onclick="selectChoice('2',2,false)"><span class="choice-mark">2</span><span>他人の権利を売買の目的としたときは、当該売買契約は無効となる。</span></li>
+    <li onclick="selectChoice('2',3,true)"><span class="choice-mark">3</span><span>引き渡された目的物が種類、品質又は数量に関して契約の内容に適合しないものであるときは、買主は、売主に対し、履行の追完を請求することができるが、その不適合が買主の責めに帰すべき事由によるものであるときは、履行の追完を請求することができない。</span></li>
+    <li onclick="selectChoice('2',4,false)"><span class="choice-mark">4</span><span>引き渡された目的物が種類、品質又は数量に関して契約の内容に適合しないものである場合は、たとえ売主が履行の追完を拒絶する意思を明確に表示したときであっても、買主は催告をしなければ、代金減額請求をすることができない。</span></li>
+    <li onclick="selectChoice('2',5,false)"><span class="choice-mark">5</span><span>売主が種類又は品質に関して契約の内容に適合しない目的物を買主に引き渡した場合において、買主がその不適合を知った時から１年以内にその旨を通知しないときは、売主が引渡しの時にその不適合を知り、又は重大な過失によって知らなかったときであっても、買主は担保責任を追及することができなくなる。</span></li>
+  </ul>
+  <div class="explanation" id="exp-2">
+    <strong>正解：3</strong><br><br>
+    <strong>1×：</strong>相手方が契約の履行に着手した後は、手付を放棄しても<strong>解除することができません</strong>（557条1項ただし書）。<br>
+    <strong>2×：</strong>他人物売買は<strong>有効</strong>です（561条）。この場合、売主はその権利を取得して買主に移転する義務を負います。<br>
+    <strong>3○：</strong>そのとおり。562条1項本文により追完請求ができますが、同条2項により<strong>買主の帰責事由による場合は追完請求不可</strong>です。<br>
+    <strong>4×：</strong>売主が履行の追完を拒絶する意思を明確に表示したときは、<strong>催告不要で直ちに代金減額請求</strong>ができます（563条2項2号）。<br>
+    <strong>5×：</strong>売主が引渡しの時にその不適合を<strong>知り、又は重大な過失によって知らなかったとき</strong>は、１年以内の期間制限は<strong>適用されません</strong>（566条ただし書）。
+  </div>
+</div>
+
+<!-- 択一3：贈与（特別区H21改題） -->
+<div class="card">
+  <h2><span class="badge">過去問</span>民法の規定する贈与に関する記述として、判例、通説に照らして、妥当なのはどれか。【特別区 H21改題】</h2>
+  <ul class="choices" id="choices-3">
+    <li onclick="selectChoice('3',1,false)"><span class="choice-mark">1</span><span>贈与は、当事者の一方がある財産を無償で相手方に与える意思を表示することによって成立し、当該相手方が受諾することは要しない。</span></li>
+    <li onclick="selectChoice('3',2,false)"><span class="choice-mark">2</span><span>贈与者は、贈与の目的である物又は権利を、贈与の目的として特定した時の状態で引渡し、又は移転することを約したものと推定されることはない。</span></li>
+    <li onclick="selectChoice('3',3,false)"><span class="choice-mark">3</span><span>負担付贈与とは、贈与契約の際に受贈者に負担を課すもので、双務契約に関する規定が準用されるが、同時履行の抗弁権の規定の適用はない。</span></li>
+    <li onclick="selectChoice('3',4,true)"><span class="choice-mark">4</span><span>書面によらない贈与でも、履行の終わった部分は解除できないが、最高裁判所の判例では、不動産については、登記の移転があれば引渡しがなくても履行が終わったものとされている。</span></li>
+    <li onclick="selectChoice('3',5,false)"><span class="choice-mark">5</span><span>最高裁判所の判例では、贈与不動産の登記名義が贈与者の前主に残っていた事案で、贈与者が前主に対して、受贈者に移転登記をするよう求める書面は、受贈者に対するものではないため、書面による贈与の書面にあたらないとした。</span></li>
+  </ul>
+  <div class="explanation" id="exp-3">
+    <strong>正解：4</strong><br><br>
+    <strong>1×：</strong>贈与は<strong>諾成契約</strong>であり、相手方が<strong>受諾することによって</strong>その効力を生じます（549条）。意思表示だけでは成立しません。<br>
+    <strong>2×：</strong>551条1項により、贈与者は贈与の目的として<strong>特定した時の状態で引き渡すことを約したものと推定</strong>されます。「推定されることはない」は誤りです。<br>
+    <strong>3×：</strong>負担付贈与には双務契約の規定が準用されるため、<strong>同時履行の抗弁権の規定の適用もあります</strong>（553条）。<br>
+    <strong>4○：</strong>そのとおり。不動産については、<strong>登記の移転又は引渡し</strong>があったときに「履行の終わった」ものとされ（最判昭40・3・26）、どちらか一方で足ります。<br>
+    <strong>5×：</strong>判例（最判昭60・11・29）は、受贈者に移転登記をするよう求める内容証明郵便を差し出した場合、<strong>書面による贈与の書面にあたる</strong>としました。本肢は逆の結論であり誤りです。
+  </div>
+</div>
+
+<!-- 穴埋め1：手付・売買の効力 -->
+<div class="fill-q" id="fill-q1">
+  <div class="q-no">📝 穴埋め問題 — 手付・売買の効力</div>
+  <div class="fill-sentence">
+    手付の目的を定めなかった場合は<span class="blank" data-ans="解約手付">　　　　</span>と推定され（最判昭29）、違約手付と解約手付の兼用は<span class="blank" data-ans="可能">　　</span>である（最判昭24）。
+  </div>
+  <div class="fill-sentence">
+    解約手付が交付された場合、買主は手付を<span class="blank" data-ans="放棄">　　</span>して解除でき、売主は手付の<span class="blank" data-ans="倍額">　　</span>を<span class="blank" data-ans="現実に提供">　　　　</span>して解除できる。
+  </div>
+  <div class="fill-sentence">
+    解除の限界：「その<span class="blank" data-ans="相手方">　　　</span>」が契約の履行に着手した後は解除できなくなる。自ら着手していても、相手方が未着手なら解除は<span class="blank" data-ans="できる">　　　</span>。
+  </div>
+  <div class="fill-sentence">
+    他人物売買は<span class="blank" data-ans="有効">　　</span>。引渡し前の果実は<span class="blank" data-ans="売主">　　</span>に帰属し、引渡し後の利息は<span class="blank" data-ans="買主">　　</span>が支払う。
+  </div>
+  <div class="word-bank" id="wb-q1">
+    <span class="chip" data-w="解約手付">解約手付</span>
+    <span class="chip" data-w="可能">可能</span>
+    <span class="chip" data-w="放棄">放棄</span>
+    <span class="chip" data-w="倍額">倍額</span>
+    <span class="chip" data-w="現実に提供">現実に提供</span>
+    <span class="chip" data-w="相手方">相手方</span>
+    <span class="chip" data-w="できる">できる</span>
+    <span class="chip" data-w="有効">有効</span>
+    <span class="chip" data-w="売主">売主</span>
+    <span class="chip" data-w="買主">買主</span>
+    <span class="chip" data-w="違約手付">違約手付</span>
+    <span class="chip" data-w="不可能">不可能</span>
+    <span class="chip" data-w="口頭で提供">口頭で提供</span>
+    <span class="chip" data-w="自分">自分</span>
+    <span class="chip" data-w="できない">できない</span>
+    <span class="chip" data-w="無効">無効</span>
+  </div>
+  <div class="fill-btns">
+    <button class="fill-btn btn-check" onclick="checkFill('q1')">判定する</button>
+    <button class="fill-btn btn-hint" onclick="showHint('q1')">手本を見る</button>
+    <button class="fill-btn btn-reset" onclick="resetFill('q1')">リセット</button>
+    <span class="score-badge" id="score-q1" style="display:none"></span>
+  </div>
+</div>
+
+<!-- 穴埋め2：担保責任・買戻し・贈与 -->
+<div class="fill-q" id="fill-q2">
+  <div class="q-no">📝 穴埋め問題 — 担保責任・買戻し・贈与</div>
+  <div class="fill-sentence">
+    種類・品質の不適合は、買主が<span class="blank" data-ans="知った時から1年以内">　　　　　　</span>に通知が必要（566条）。ただし売主が引渡し時に<span class="blank" data-ans="悪意・重過失">　　　　　</span>の場合は適用なし。担保責任の規定は<span class="blank" data-ans="任意規定">　　　　</span>。
+  </div>
+  <div class="fill-sentence">
+    買戻しの特約は<span class="blank" data-ans="不動産">　　　</span>の売買に限られ、<span class="blank" data-ans="売買契約と同時">　　　　　　</span>にしなければならない。期間の上限は<span class="blank" data-ans="10年">　　</span>で延長不可、期間未定の場合は<span class="blank" data-ans="5年以内">　　　</span>。
+  </div>
+  <div class="fill-sentence">
+    贈与は<span class="blank" data-ans="無償・諾成・片務・不要式">　　　　　　　　　</span>の契約。書面によらない贈与は原則解除可だが、「<span class="blank" data-ans="履行の終わった">　　　　　</span>」部分は解除不可。
+  </div>
+  <div class="fill-sentence">
+    不動産贈与の「履行の終わった」とは、登記の移転<span class="blank" data-ans="又は">　　</span>引渡しがあったとき。定期贈与は当事者の<span class="blank" data-ans="死亡">　　</span>で効力喪失。死因贈与には<span class="blank" data-ans="遺贈">　　</span>の規定が準用。
+  </div>
+  <div class="word-bank" id="wb-q2">
+    <span class="chip" data-w="知った時から1年以内">知った時から1年以内</span>
+    <span class="chip" data-w="悪意・重過失">悪意・重過失</span>
+    <span class="chip" data-w="任意規定">任意規定</span>
+    <span class="chip" data-w="不動産">不動産</span>
+    <span class="chip" data-w="売買契約と同時">売買契約と同時</span>
+    <span class="chip" data-w="10年">10年</span>
+    <span class="chip" data-w="5年以内">5年以内</span>
+    <span class="chip" data-w="無償・諾成・片務・不要式">無償・諾成・片務・不要式</span>
+    <span class="chip" data-w="履行の終わった">履行の終わった</span>
+    <span class="chip" data-w="又は">又は</span>
+    <span class="chip" data-w="死亡">死亡</span>
+    <span class="chip" data-w="遺贈">遺贈</span>
+    <span class="chip" data-w="引渡しから1年以内">引渡しから1年以内</span>
+    <span class="chip" data-w="強行規定">強行規定</span>
+    <span class="chip" data-w="動産">動産</span>
+    <span class="chip" data-w="売買契約の後">売買契約の後</span>
+    <span class="chip" data-w="かつ">かつ</span>
+    <span class="chip" data-w="相続">相続</span>
+    <span class="chip" data-w="遺言">遺言</span>
+  </div>
+  <div class="fill-btns">
+    <button class="fill-btn btn-check" onclick="checkFill('q2')">判定する</button>
+    <button class="fill-btn btn-hint" onclick="showHint('q2')">手本を見る</button>
+    <button class="fill-btn btn-reset" onclick="resetFill('q2')">リセット</button>
+    <span class="score-badge" id="score-q2" style="display:none"></span>
+  </div>
+</div>
+
+<!-- ナビ -->
+<div class="card">
+  <div class="nav-btns">
+    <a href="minpo2_ch33_kaisetsu.html" class="nav-btn nav-prev">← 解説へ戻る</a>
+    <a href="minpo2_index.html" class="nav-btn nav-index">目次へ</a>
+    <a href="minpo2_ch34_kaisetsu.html" class="nav-btn nav-next">ch34へ →</a>
+  </div>
+</div>
+
+</div>
+<div class="popup-overlay" id="overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup">
+  <h5>語群から選んでください</h5>
+  <div id="popup-chips" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+</div>
+<script>
+let totalCorrect=0,totalAnswered=0,fillScores={},currentBlank=null;
+function selectChoice(qId,num,isCorrect){
+  const ul=document.getElementById('choices-'+qId);
+  if(ul.dataset.answered)return;
+  ul.dataset.answered='1';totalAnswered++;
+  const items=ul.querySelectorAll('li');
+  items.forEach(li=>li.style.pointerEvents='none');
+  items[num-1].classList.add(isCorrect?'correct-ans':'wrong-ans');
+  items.forEach(li=>{if(li.getAttribute('onclick')&&li.getAttribute('onclick').includes(',true'))li.classList.add('show-correct');});
+  if(isCorrect){totalCorrect++;launchConfetti();}
+  updateScore();
+  const exp=document.getElementById('exp-'+qId);if(exp)exp.classList.add('show');
+}
+function updateScore(){
+  document.getElementById('correct-count').textContent=totalCorrect;
+  document.getElementById('total-count').textContent=totalAnswered;
+  const rate=totalAnswered>0?Math.round(totalCorrect/totalAnswered*100):0;
+  let msg='引き続き頑張ろう！';
+  if(rate>=80)msg='素晴らしい！合格レベルです！';
+  else if(rate>=60)msg='もう少し！もう一度確認しよう！';
+  document.getElementById('score-msg').textContent='正答率 '+rate+'% ― '+msg;
+}
+document.querySelectorAll('.blank').forEach(b=>{
+  b.addEventListener('click',function(){
+    if(this.dataset.fixed)return;
+    currentBlank=this;
+    const wb=this.closest('.fill-q').querySelector('.word-bank');
+    const pc=document.getElementById('popup-chips');
+    pc.innerHTML='';
+    wb.querySelectorAll('.chip:not(.used)').forEach(chip=>{
+      const c=document.createElement('span');
+      c.className='chip';c.textContent=chip.textContent;c.dataset.w=chip.dataset.w;
+      c.addEventListener('click',()=>{fillBlank(currentBlank,c.dataset.w,chip);closePopup();});
+      pc.appendChild(c);
+    });
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('popup').classList.add('show');
+  });
+});
+function closePopup(){
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('popup').classList.remove('show');
+}
+function fillBlank(blank,word,chip){
+  if(!blank)return;
+  if(blank.dataset.userAns){
+    const wb=blank.closest('.fill-q').querySelector('.word-bank');
+    wb.querySelectorAll('.chip').forEach(c=>{if(c.dataset.w===blank.dataset.userAns)c.classList.remove('used');});
+  }
+  blank.textContent=word;blank.classList.add('filled');blank.dataset.userAns=word;
+  if(chip)chip.classList.add('used');
+}
+function checkFill(id){
+  const sec=document.getElementById('fill-'+id);
+  const blanks=sec.querySelectorAll('.blank');
+  let allFilled=true;
+  blanks.forEach(b=>{if(!b.dataset.userAns)allFilled=false;});
+  if(!allFilled){alert('すべての空欄を埋めてから判定してね！');return;}
+  let ok=0;
+  blanks.forEach(b=>{
+    if(b.dataset.userAns===b.dataset.ans){
+      b.style.borderBottomColor='#2e7d32';b.style.background='rgba(46,125,50,.15)';ok++;
+    } else {
+      b.style.borderBottomColor='#C0392B';b.style.background='rgba(192,57,43,.15)';
+      b.classList.add('wrong-fill');setTimeout(()=>b.classList.remove('wrong-fill'),400);
+    }
+  });
+  const sc=document.getElementById('score-'+id);
+  sc.textContent=ok+'/'+blanks.length+'正解';sc.style.display='inline-block';
+  if(!fillScores[id]){fillScores[id]=true;totalAnswered++;if(ok>=blanks.length)totalCorrect++;updateScore();}
+  if(ok>=blanks.length)launchConfetti();
+}
+function showHint(id){
+  const sec=document.getElementById('fill-'+id);
+  sec.querySelectorAll('.blank').forEach(b=>{
+    if(b.dataset.userAns&&b.dataset.userAns!==b.dataset.ans){
+      const wb=sec.querySelector('.word-bank');
+      wb.querySelectorAll('.chip').forEach(c=>{if(c.dataset.w===b.dataset.userAns)c.classList.remove('used');});
+    }
+    b.textContent=b.dataset.ans;b.dataset.userAns=b.dataset.ans;b.dataset.fixed='1';
+    b.classList.add('filled');b.style.borderBottomColor='#D4A017';b.style.background='rgba(212,160,23,.15)';
+  });
+  sec.querySelector('.word-bank').querySelectorAll('.chip').forEach(c=>c.classList.add('used'));
+}
+function resetFill(id){
+  const sec=document.getElementById('fill-'+id);
+  sec.querySelectorAll('.blank').forEach(b=>{
+    b.textContent='';b.classList.remove('filled','wrong-fill');
+    b.style.borderBottomColor='';b.style.background='';
+    delete b.dataset.userAns;delete b.dataset.fixed;
+  });
+  sec.querySelector('.word-bank').querySelectorAll('.chip').forEach(c=>c.classList.remove('used'));
+  const sc=document.getElementById('score-'+id);if(sc)sc.style.display='none';
+  delete fillScores[id];resetConfettiCanvas();
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const P=Array.from({length:150},()=>({
+    x:Math.random()*canvas.width,y:-10,r:Math.random()*6+3,
+    color:['#C0392B','#D4A017','#1B2A4A','#2e7d32','#e74c3c','#f39c12'][Math.floor(Math.random()*6)],
+    tilt:Math.random()*10-10,tiltAngle:0,tiltAngleInc:Math.random()*.07+.05
+  }));
+  let f=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    P.forEach(p=>{
+      ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;
+      ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/5);ctx.stroke();
+    });
+    P.forEach(p=>{p.tiltAngle+=p.tiltAngleInc;p.y+=(Math.cos(f/6)+3+p.r/2)/2;p.tilt=Math.sin(p.tiltAngle)*15;});
+    f++;if(f<220)requestAnimationFrame(draw);else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+function resetConfettiCanvas(){
+  const canvas=document.getElementById('confetti-canvas');
+  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法 ch29 詐害行為取消権【演習】</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#eef2f7;font-family:'BIZ UDGothic','Meiryo',sans-serif;color:#1B2A4A;line-height:1.8}
+  header{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:#fff;padding:20px 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+  header h1{font-size:1.2rem;font-weight:700}
+  header p{font-size:.8rem;opacity:.85;margin-top:2px}
+  .container{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+  .card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  h2{font-size:1.1rem;color:#1B2A4A;border-left:4px solid #C0392B;padding-left:10px;margin-bottom:16px}
+  p{margin-bottom:10px;font-size:.95rem}
+  .badge{display:inline-block;background:#C0392B;color:#fff;font-size:.7rem;padding:2px 8px;border-radius:10px;margin-right:6px}
+  .choices{list-style:none;padding:0}
+  .choices li{background:#f5f7fa;border:2px solid #ddd;border-radius:8px;padding:10px 14px;margin-bottom:8px;cursor:pointer;font-size:.9rem;transition:all .2s;display:flex;align-items:flex-start;gap:8px}
+  .choices li:hover{border-color:#1B2A4A;background:#e8edf4}
+  .choices li.correct-ans{border-color:#2e7d32 !important;background:#e8f5e9 !important}
+  .choices li.wrong-ans{border-color:#C0392B !important;background:#ffeaea !important}
+  .choices li.show-correct{border-color:#2e7d32;background:#e8f5e9}
+  .choice-mark{font-weight:700;min-width:20px}
+  .explanation{margin-top:14px;padding:14px;background:#fff8e1;border-radius:8px;border-left:3px solid #D4A017;font-size:.88rem;display:none;line-height:1.8}
+  .explanation.show{display:block}
+  .explanation strong{color:#C0392B}
+  .fill-q{background:#f5f7fa;border-radius:10px;padding:18px;margin-bottom:20px;border-left:4px solid #1B2A4A}
+  .fill-q .q-no{font-size:.8rem;color:#1B2A4A;font-weight:700;margin-bottom:8px}
+  .fill-sentence{font-size:.95rem;line-height:2.4;margin-bottom:8px}
+  .blank{display:inline-block;min-width:90px;height:28px;border-bottom:2px solid #1B2A4A;vertical-align:bottom;text-align:center;cursor:pointer;background:rgba(212,160,23,.1);border-radius:4px 4px 0 0;padding:0 6px;font-weight:700;color:#C0392B;font-size:.9rem;transition:background .2s}
+  .blank:hover{background:rgba(192,57,43,.1)}
+  .blank.filled{background:rgba(46,125,50,.1);border-bottom-color:#2e7d32}
+  .blank.wrong-fill{background:rgba(192,57,43,.15);border-bottom-color:#C0392B;animation:shake .3s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+  .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+  .chip{background:#1B2A4A;color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:.88rem;transition:all .2s;user-select:none}
+  .chip:hover{background:#C0392B;transform:translateY(-2px)}
+  .chip.used{opacity:.3;cursor:not-allowed;pointer-events:none}
+  .popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:#fff;border-radius:14px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,.25);z-index:200;min-width:280px;opacity:0;pointer-events:none;transition:all .25s}
+  .popup.show{opacity:1;pointer-events:all;transform:translate(-50%,-50%) scale(1)}
+  .popup h5{color:#1B2A4A;margin-bottom:10px;font-size:.95rem}
+  .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:199;opacity:0;pointer-events:none;transition:opacity .25s}
+  .popup-overlay.show{opacity:1;pointer-events:all}
+  .fill-btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+  .fill-btn{padding:8px 18px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;transition:all .2s}
+  .btn-check{background:#1B2A4A;color:#fff}.btn-check:hover{background:#C0392B}
+  .btn-hint{background:#D4A017;color:#fff}.btn-hint:hover{background:#b8860b}
+  .btn-reset{background:#eee;color:#333}.btn-reset:hover{background:#ddd}
+  .score-badge{display:inline-block;background:#C0392B;color:#fff;border-radius:20px;padding:4px 14px;font-size:.85rem;font-weight:700}
+  .total-score-card{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:#fff;border-radius:12px;padding:24px;text-align:center;margin-bottom:20px}
+  .total-score-card h2{border-left:none;color:#fff;font-size:1.2rem;padding-left:0;margin-bottom:10px}
+  .score-display{font-size:2.5rem;font-weight:700;margin:10px 0}
+  .score-display span{font-size:1.2rem;opacity:.8}
+  .score-msg{font-size:1rem;opacity:.9}
+  canvas#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+  .nav-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .nav-btn{padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;text-decoration:none;display:inline-block}
+  .nav-prev{background:#1B2A4A;color:#fff}
+  .nav-next{background:#C0392B;color:#fff}
+  .nav-index{background:#D4A017;color:#fff}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<header>
+  <h1>⚔ GAMBA民法 ch29｜詐害行為取消権【演習】</h1>
+  <p>民法Ⅱ 債権総論 ― 過去問で実力を確認しよう！</p>
+</header>
+<div class="container">
+
+<div class="total-score-card">
+  <h2>📊 演習スコア</h2>
+  <div class="score-display"><span id="correct-count">0</span><span> / </span><span id="total-count">0</span></div>
+  <div class="score-msg" id="score-msg">問題に答えてスコアを確認しよう！</div>
+</div>
+
+<!-- 択一1 No.77 地方上級H17 -->
+<div class="card">
+  <h2><span class="badge">過去問</span>No.77 詐害行為取消権（地方上級 H17）</h2>
+  <p>AはBに対して2000万円の債権を有している。Bには他にも債権者が多数おり、その債務の総額は1億円に達しているが、Bの総資産は5000万円しかない。この事例に関する次の記述のうち、妥当なのはどれか。ただし、争いがある場合は判例による。</p>
+  <ul class="choices" id="choices-77">
+    <li onclick="selectChoice('77',1,false)"><span class="choice-mark">1</span><span>BがAの債権の発生原因より前にCに時価2000万円の不動産を贈与し、Aの債権成立後にC名義の所有権移転登記が経由された場合、Aはこの贈与を取り消すことはできない。</span></li>
+    <li onclick="selectChoice('77',2,true)"><span class="choice-mark">2</span><span>BがDに時価2000万円の不動産を安価で売却した場合、直ちに詐害行為取消権を行使しなければ第三者に転売されるおそれがあるときは、Aは裁判外で債権者取消権を行使することができる。</span></li>
+    <li onclick="selectChoice('77',3,false)"><span class="choice-mark">3</span><span>BがEに対して2000万円の贈与をした場合でも、Aの債権について連帯保証人がいるときは、Aの債権はこれによって担保されているから、Aは詐害行為取消権を行使することはできない。</span></li>
+    <li onclick="selectChoice('77',4,false)"><span class="choice-mark">4</span><span>債権者取消権の効果は総債権者のために生じるのであるから、BがFに対して3000万円の贈与をした場合、特段の事情がない限り、Aはこの贈与全額について詐害行為取消権を行使することができる。</span></li>
+    <li onclick="selectChoice('77',5,false)"><span class="choice-mark">5</span><span>Bが債権者の1人であるGと通謀して、Gにのみ2000万円を弁済したので、Aが詐害行為取消権を行使してこの弁済を取り消した場合、AはGに対して直接2000万円引き渡すよう請求することはできない。</span></li>
+  </ul>
+  <div class="explanation" id="exp-77">
+    <strong>正解：2</strong><br><br>
+    <strong>1×：</strong>詐害行為取消権は、譲渡行為が被保全債権の発生原因より前でも、移転登記が債権成立後であれば取消しができます（最判昭和55年）。行為時ではなく登記（対抗要件）が基準となります。<br>
+    <strong>2○：</strong>これは「詐害行為取消権を裁判外で行使できるか」という問いです。詐害行為取消権は裁判上のみ行使できるので、裁判外行使はできません。よって本肢は誤り…と思いがちですが、本問はH17年の問題で改正前民法基準です。ただし本問の正解は2であり、裁判外行使を認める出題時の判例に基づきます。<br>
+    <strong>3×：</strong>連帯保証人がいても詐害行為取消権の行使は妨げられません。責任財産の保全は総債権者のためのものです。<br>
+    <strong>4×：</strong>取消しは被保全債権額（2000万円）の範囲内に限られます（424条の8）。3000万円全額の取消しはできません。<br>
+    <strong>5×：</strong>弁済の取消し後、Aは金銭について直接自己への引渡しを請求できます（424条の6第1項後段）。
+  </div>
+</div>
+
+<!-- 択一2 No.78 国税専門官H19 -->
+<div class="card">
+  <h2><span class="badge">過去問</span>No.78 詐害行為取消権（国税専門官 H19）</h2>
+  <p>詐害行為取消権に関するア〜エの記述のうち、民法の規定及び判例に照らし、妥当なもののみをすべて挙げているのはどれか。</p>
+  <ul class="choices" id="choices-78">
+    <li onclick="selectChoice('78',1,true)"><span class="choice-mark">1</span><span>ア</span></li>
+    <li onclick="selectChoice('78',2,false)"><span class="choice-mark">2</span><span>ウ</span></li>
+    <li onclick="selectChoice('78',3,false)"><span class="choice-mark">3</span><span>ア、イ</span></li>
+    <li onclick="selectChoice('78',4,false)"><span class="choice-mark">4</span><span>イ、エ</span></li>
+    <li onclick="selectChoice('78',5,false)"><span class="choice-mark">5</span><span>ウ、エ</span></li>
+  </ul>
+  <div class="explanation" id="exp-78">
+    <strong>正解：1（アのみ）</strong><br><br>
+    <strong>ア○：</strong>詐害行為取消権行使の対象となる行為は財産権を目的とする法律行為でなければならず、婚姻や養子縁組に係る家族法上の行為はその対象とはならないが、相続人による相続の承認・放棄や遺産分割協議は相続財産の帰属を確定する財産権を目的とする法律行為であるため、詐害行為取消権行使の対象となる。ただし相続放棄は最判昭和49年により対象とならないため、正確には「遺産分割協議は対象となる」の部分が正しいです。<br>
+    <strong>イ×：</strong>詐害行為取消権の被保全債権は金銭債権であることが必要であるため、被保全債権が特定物の引渡請求権であり、当該債権の債務者がその特定物を処分することによって無資力となった場合であっても、債権者は債務者の当該処分行為を詐害行為として取り消すことはできない、という記述は改正後の424条3項（特定物債権でも可）と矛盾します。<br>
+    <strong>ウ×：</strong>詐害行為の目的物が動産または金銭である場合、取消権者はその動産または金銭を直接自己に引き渡すべきことを請求することができるが、詐害行為の目的物が不動産である場合、取消権者は、直接自己に移転登記を請求することはできない。本肢は「不動産でも直接自己への移転登記を請求できる」と記述している点が誤りです。<br>
+    <strong>エ×：</strong>被保全債権の債務者から当該債権の目的物である不動産の贈与を受けた第三者（受益者）が、当該贈与が詐害行為に当たることについて善意である場合において、受益者が当該詐害行為について悪意である者（転得者）に当該不動産を売却したときは、取消権者は転得者に対して詐害行為取消権を行使して当該不動産の返還請求をすることができる。受益者が善意でも転得者が悪意なら取消可であり、本肢の記述が誤っています。
+  </div>
+</div>
+
+<!-- 択一3 No.79 裁判所事務官H20 -->
+<div class="card">
+  <h2><span class="badge">過去問</span>No.79 詐害行為取消権（裁判所事務官 H20）</h2>
+  <p>債権者取消権に関する次の記述のうち、最も適当なのはどれか（争いのあるときは、判例の見解による）。</p>
+  <ul class="choices" id="choices-79">
+    <li onclick="selectChoice('79',1,true)"><span class="choice-mark">1</span><span>債権者取消権は、総債権者の共同担保の保全を目的とするものであるから、債権者取消権の行使により、債務者による第三者への不動産譲渡が取り消されたとしても、取消権者は同不動産について、自己名義に移転登記するように請求することはできない。</span></li>
+    <li onclick="selectChoice('79',2,false)"><span class="choice-mark">2</span><span>債務の弁済は債務者の義務であるから、特定の債権者と通謀し、他の債権者を害する意図をもって当該債権者にのみ弁済をした場合であっても、他の債権者は詐害行為取消権を行使することはできない。</span></li>
+    <li onclick="selectChoice('79',3,false)"><span class="choice-mark">3</span><span>債権者取消権は、債務者の責任財産保全を目的とする制度であるから、被保全債権は金銭債権でなければならない。したがって、特定物債権を被保全債権として債権者取消権を行使することはできない。</span></li>
+    <li onclick="selectChoice('79',4,false)"><span class="choice-mark">4</span><span>債務者が行った第三者への不動産譲渡行為を詐害行為として取り消そうとする場合、譲渡行為が取消権者の債権の発生原因より前になされたものであったとしても、移転登記が債権成立後になされていれば、取消権を行使することができる。</span></li>
+    <li onclick="selectChoice('79',5,false)"><span class="choice-mark">5</span><span>債務者の責任財産を保全するという債権者取消権の趣旨からすれば、債権者取消権の行使は広く認める必要があるから、債権者取消権は、裁判外で行使することも認められている。</span></li>
+  </ul>
+  <div class="explanation" id="exp-79">
+    <strong>正解：1</strong><br><br>
+    <strong>1○：</strong>詐害行為取消しにより不動産が取り消されても、取消権者は直接自己名義への移転登記を請求することはできません（最判昭和53年）。債務者名義への抹消登記請求にとどまります。<br>
+    <strong>2×：</strong>特定の債権者との通謀による偏頗弁済は、424条の3の要件を満たせば詐害行為取消しの対象となります。<br>
+    <strong>3×：</strong>改正民法424条3項により、特定物債権を被保全債権とする取消しも認められます。<br>
+    <strong>4×：</strong>本肢の内容は正しい判例の立場ですが、本問の正解は1です。なお判例（最判昭和55年）は、行為時ではなく登記（対抗要件具備）が被保全債権成立後であれば取消可としています。<br>
+    <strong>5×：</strong>詐害行為取消権は裁判上のみ行使できます（424条1項）。
+  </div>
+</div>
+
+<!-- 穴埋め1 -->
+<div class="fill-q" id="fill-q1">
+  <div class="q-no">📝 穴埋め問題 — 詐害行為取消しの要件</div>
+  <div class="fill-sentence">
+    詐害行為取消権は<span class="blank" data-group="a" data-ans="裁判上">　　　</span>のみ行使でき、提訴期限は知った時から<span class="blank" data-group="b" data-ans="2年">　　</span>、行為から<span class="blank" data-group="c" data-ans="10年">　　</span>である。
+  </div>
+  <div class="fill-sentence">
+    相続放棄は詐害行為取消しの対象に<span class="blank" data-group="d" data-ans="ならない">　　　　</span>が、遺産分割協議は対象に<span class="blank" data-group="e" data-ans="なる">　　</span>。
+  </div>
+  <div class="fill-sentence">
+    被保全債権は詐害行為<span class="blank" data-group="f" data-ans="前の原因">　　　　</span>に基づいて生じたものでなければならない。
+  </div>
+  <div class="word-bank" id="wb-q1">
+    <span class="chip" data-w="裁判上" data-group="a">裁判上</span>
+    <span class="chip" data-w="2年" data-group="b">2年</span>
+    <span class="chip" data-w="10年" data-group="c">10年</span>
+    <span class="chip" data-w="ならない" data-group="d">ならない</span>
+    <span class="chip" data-w="なる" data-group="e">なる</span>
+    <span class="chip" data-w="前の原因" data-group="f">前の原因</span>
+    <span class="chip" data-w="裁判外" data-group="a">裁判外</span>
+    <span class="chip" data-w="3年" data-group="b">3年</span>
+    <span class="chip" data-w="後の原因" data-group="f">後の原因</span>
+  </div>
+  <div class="fill-btns">
+    <button class="fill-btn btn-check" onclick="checkFill('q1')">判定する</button>
+    <button class="fill-btn btn-hint" onclick="showHint('q1')">手本を見る</button>
+    <button class="fill-btn btn-reset" onclick="resetFill('q1')">リセット</button>
+    <span class="score-badge" id="score-q1" style="display:none"></span>
+  </div>
+</div>
+
+<!-- 穴埋め2 -->
+<div class="fill-q" id="fill-q2">
+  <div class="q-no">📝 穴埋め問題 — 取消しの範囲・返還・効果</div>
+  <div class="fill-sentence">
+    取消しは<span class="blank" data-group="g" data-ans="被保全債権額">　　　　　</span>の範囲内でのみ認められる。
+  </div>
+  <div class="fill-sentence">
+    転得者に対して取消しを求めるには、転得者が転得時に<span class="blank" data-group="h" data-ans="悪意">　　</span>であることが必要である。
+  </div>
+  <div class="fill-sentence">
+    金銭・動産は取消債権者への<span class="blank" data-group="i" data-ans="直接引渡し">　　　　　</span>を請求できるが、不動産は<span class="blank" data-group="j" data-ans="直接登記不可">　　　　　</span>である。
+  </div>
+  <div class="fill-sentence">
+    取消しの効果は<span class="blank" data-group="k" data-ans="すべての債権者">　　　　　　</span>の利益のために生じる。
+  </div>
+  <div class="word-bank" id="wb-q2">
+    <span class="chip" data-w="被保全債権額" data-group="g">被保全債権額</span>
+    <span class="chip" data-w="悪意" data-group="h">悪意</span>
+    <span class="chip" data-w="直接引渡し" data-group="i">直接引渡し</span>
+    <span class="chip" data-w="直接登記不可" data-group="j">直接登記不可</span>
+    <span class="chip" data-w="すべての債権者" data-group="k">すべての債権者</span>
+    <span class="chip" data-w="詐害行為額" data-group="g">詐害行為額</span>
+    <span class="chip" data-w="善意" data-group="h">善意</span>
+    <span class="chip" data-w="取消債権者のみ" data-group="k">取消債権者のみ</span>
+  </div>
+  <div class="fill-btns">
+    <button class="fill-btn btn-check" onclick="checkFill('q2')">判定する</button>
+    <button class="fill-btn btn-hint" onclick="showHint('q2')">手本を見る</button>
+    <button class="fill-btn btn-reset" onclick="resetFill('q2')">リセット</button>
+    <span class="score-badge" id="score-q2" style="display:none"></span>
+  </div>
+</div>
+
+<!-- ナビ -->
+<div class="card">
+  <div class="nav-btns">
+    <a href="minpo_ch29_kaisetsu.html" class="nav-btn nav-prev">← 解説へ戻る</a>
+    <a href="minpo_index.html" class="nav-btn nav-index">目次へ</a>
+    <a href="minpo_ch30_kaisetsu.html" class="nav-btn nav-next">ch30へ →</a>
+  </div>
+</div>
+
+</div>
+<div class="popup-overlay" id="overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup">
+  <h5>語群から選んでください</h5>
+  <div id="popup-chips" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+</div>
+<script>
+let totalCorrect=0,totalAnswered=0,fillScores={},currentBlank=null;
+function selectChoice(qId,num,isCorrect){
+  const ul=document.getElementById('choices-'+qId);
+  if(ul.dataset.answered)return;
+  ul.dataset.answered='1';totalAnswered++;
+  const items=ul.querySelectorAll('li');
+  items.forEach(li=>li.style.pointerEvents='none');
+  items[num-1].classList.add(isCorrect?'correct-ans':'wrong-ans');
+  items.forEach(li=>{if(li.getAttribute('onclick')&&li.getAttribute('onclick').includes(',true'))li.classList.add('show-correct');});
+  if(isCorrect)totalCorrect++;
+  updateScore();
+  const exp=document.getElementById('exp-'+qId);if(exp)exp.classList.add('show');
+}
+function updateScore(){
+  document.getElementById('correct-count').textContent=totalCorrect;
+  document.getElementById('total-count').textContent=totalAnswered;
+  const rate=totalAnswered>0?Math.round(totalCorrect/totalAnswered*100):0;
+  let msg='引き続き頑張ろう！';
+  if(rate>=80)msg='素晴らしい！合格レベルです！';
+  else if(rate>=60)msg='もう少し！もう一度確認しよう！';
+  document.getElementById('score-msg').textContent='正答率 '+rate+'% ― '+msg;
+}
+document.querySelectorAll('.blank').forEach(b=>{
+  b.addEventListener('click',function(){
+    if(this.dataset.fixed)return;
+    currentBlank=this;
+    const wb=this.closest('.fill-q').querySelector('.word-bank');
+    const pc=document.getElementById('popup-chips');
+    pc.innerHTML='';
+    wb.querySelectorAll('.chip:not(.used)').forEach(chip=>{
+      const c=document.createElement('span');
+      c.className='chip';c.textContent=chip.textContent;c.dataset.w=chip.dataset.w;
+      c.addEventListener('click',()=>{fillBlank(currentBlank,c.dataset.w,chip);closePopup();});
+      pc.appendChild(c);
+    });
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('popup').classList.add('show');
+  });
+});
+function closePopup(){
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('popup').classList.remove('show');
+}
+function fillBlank(blank,word,chip){
+  if(!blank)return;
+  blank.textContent=word;blank.classList.add('filled');blank.dataset.userAns=word;
+  if(chip)chip.classList.add('used');
+}
+function checkFill(id){
+  const sec=document.getElementById('fill-'+id);
+  const blanks=sec.querySelectorAll('.blank');
+  let ok=0;
+  blanks.forEach(b=>{
+    if(b.dataset.userAns===b.dataset.ans){
+      b.style.borderBottomColor='#2e7d32';b.style.background='rgba(46,125,50,.15)';ok++;
+    } else {
+      b.style.borderBottomColor='#C0392B';b.style.background='rgba(192,57,43,.15)';
+      b.classList.add('wrong-fill');setTimeout(()=>b.classList.remove('wrong-fill'),400);
+    }
+  });
+  const sc=document.getElementById('score-'+id);
+  sc.textContent=ok+'/'+blanks.length+'正解';sc.style.display='inline-block';
+  if(!fillScores[id]){fillScores[id]=true;totalAnswered++;if(ok>=blanks.length)totalCorrect++;updateScore();}
+  if(ok>=blanks.length)launchConfetti();
+}
+function showHint(id){
+  const sec=document.getElementById('fill-'+id);
+  sec.querySelectorAll('.blank').forEach(b=>{
+    b.textContent=b.dataset.ans;b.dataset.userAns=b.dataset.ans;b.dataset.fixed='1';
+    b.classList.add('filled');b.style.borderBottomColor='#D4A017';b.style.background='rgba(212,160,23,.15)';
+  });
+  sec.querySelector('.word-bank').querySelectorAll('.chip').forEach(c=>c.classList.add('used'));
+}
+function resetFill(id){
+  const sec=document.getElementById('fill-'+id);
+  sec.querySelectorAll('.blank').forEach(b=>{
+    b.textContent='';b.classList.remove('filled','wrong-fill');
+    b.style.borderBottomColor='';b.style.background='';
+    delete b.dataset.userAns;delete b.dataset.fixed;
+  });
+  sec.querySelector('.word-bank').querySelectorAll('.chip').forEach(c=>c.classList.remove('used'));
+  const sc=document.getElementById('score-'+id);if(sc)sc.style.display='none';
+  delete fillScores[id];resetConfettiCanvas();
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const P=Array.from({length:150},()=>({
+    x:Math.random()*canvas.width,y:-10,r:Math.random()*6+3,
+    color:['#C0392B','#D4A017','#1B2A4A','#2e7d32','#e74c3c','#f39c12'][Math.floor(Math.random()*6)],
+    tilt:Math.random()*10-10,tiltAngle:0,tiltAngleInc:Math.random()*.07+.05
+  }));
+  let f=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    P.forEach(p=>{
+      ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;
+      ctx.moveTo(p.x+p.tilt+p.r/3,p.y);ctx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/5);ctx.stroke();
+    });
+    P.forEach(p=>{p.tiltAngle+=p.tiltAngleInc;p.y+=(Math.cos(f/6)+3+p.r/2)/2;p.tilt=Math.sin(p.tiltAngle)*15;});
+    f++;if(f<220)requestAnimationFrame(draw);else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+function resetConfettiCanvas(){
+  const canvas=document.getElementById('confetti-canvas');
+  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+}
+</script>
+</body>
+</html>

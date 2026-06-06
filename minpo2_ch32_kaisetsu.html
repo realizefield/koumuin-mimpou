@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法Ⅱ ch32｜契約総論（同時履行・危険負担・解除）</title>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --crimson: #C0392B;
+    --gold: #D4A017;
+    --light-bg: #F5F7FA;
+    --white: #FFFFFF;
+    --text: #1a1a2e;
+    --border: #dce3ef;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'BIZ UDGothic', Meiryo, sans-serif;
+    background: var(--light-bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  /* ヘッダー */
+  .page-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 28px 20px 22px;
+    text-align: center;
+  }
+  .page-header .series { font-size: 12px; letter-spacing: 3px; color: var(--gold); margin-bottom: 6px; }
+  .page-header h1 { font-size: 22px; font-weight: 700; line-height: 1.4; }
+  .page-header .sub { font-size: 13px; color: #aab4cc; margin-top: 6px; }
+
+  /* コンテナ */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 16px 60px; }
+
+  /* セクションヘッダー */
+  .section-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 14px 20px;
+    margin: 32px 0 0;
+    border-left: 6px solid var(--gold);
+    font-size: 17px;
+    font-weight: 700;
+  }
+  .section-header .num { color: var(--gold); margin-right: 8px; }
+
+  /* カード */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 0 0 6px 6px;
+    padding: 20px 22px;
+    margin-bottom: 4px;
+  }
+
+  /* サブ見出し */
+  .sub-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 4px;
+    margin: 18px 0 10px;
+  }
+  .sub-title:first-child { margin-top: 0; }
+
+  /* ポイントボックス */
+  .point-box {
+    background: #EEF1F8;
+    border-left: 4px solid var(--navy);
+    border-radius: 0 4px 4px 0;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .point-box .label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* 重要ボックス */
+  .important-box {
+    background: #FEF9EC;
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .important-box .label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* 注意ボックス */
+  .caution-box {
+    background: #FDF0EF;
+    border-left: 4px solid var(--crimson);
+    border-radius: 0 4px 4px 0;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .caution-box .label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--crimson);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* テーブル */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 14px 0;
+  }
+  th {
+    background: var(--navy);
+    color: var(--white);
+    padding: 8px 10px;
+    text-align: center;
+    font-weight: 700;
+  }
+  td {
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    vertical-align: top;
+    background: var(--white);
+  }
+  tr:nth-child(even) td { background: #F8FAFC; }
+
+  /* 判例ボックス */
+  .hanrei-box {
+    background: #F0F4FF;
+    border: 1px solid #B0BCDD;
+    border-radius: 4px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  .hanrei-box .hanrei-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  /* マーカー */
+  .mark-gold { background: linear-gradient(transparent 55%, #FFE87A 55%); font-weight: 700; }
+  .mark-red { background: linear-gradient(transparent 55%, #FFBDBD 55%); font-weight: 700; }
+  .text-red { color: var(--crimson); font-weight: 700; }
+  .text-navy { color: var(--navy); font-weight: 700; }
+
+  /* リスト */
+  ul.list, ol.list { padding-left: 20px; margin: 8px 0; }
+  ul.list li, ol.list li { margin: 4px 0; font-size: 14px; }
+
+  /* 図解エリア */
+  .diagram {
+    background: var(--white);
+    border: 2px solid var(--navy);
+    border-radius: 6px;
+    padding: 18px;
+    margin: 14px 0;
+    text-align: center;
+    font-size: 13px;
+  }
+  .diagram .d-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 6px 0; flex-wrap: wrap; }
+  .diagram .d-box {
+    background: var(--navy);
+    color: var(--white);
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .diagram .d-box.gold { background: var(--gold); color: var(--navy); }
+  .diagram .d-box.red { background: var(--crimson); color: var(--white); }
+  .diagram .d-box.light { background: #EEF1F8; color: var(--navy); }
+  .diagram .arrow { font-size: 18px; color: var(--navy); }
+  .diagram .d-label { font-size: 12px; color: #666; margin-top: 4px; }
+
+  /* ミニテスト */
+  .mini-test {
+    background: var(--navy);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 24px 0 0;
+  }
+  .mini-test .mt-title {
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .mt-question {
+    background: rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .mt-question .q-text { color: var(--white); font-size: 14px; margin-bottom: 10px; }
+  .blank-area { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; align-items: center; }
+  .blank-slot {
+    display: inline-block;
+    min-width: 80px;
+    height: 32px;
+    border-bottom: 2px solid var(--gold);
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+    text-align: center;
+    line-height: 32px;
+    color: var(--gold);
+    font-size: 13px;
+    padding: 0 8px;
+    transition: background 0.2s;
+    vertical-align: middle;
+  }
+  .blank-slot:hover { background: rgba(255,255,255,0.12); }
+  .blank-slot.correct { background: rgba(46,204,113,0.25); border-color: #2ecc71; color: #2ecc71; }
+  .blank-slot.incorrect { background: rgba(231,76,60,0.25); border-color: #e74c3c; color: #e74c3c; }
+  .chip-bank { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .chip {
+    background: rgba(212,160,23,0.2);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .chip:hover { background: rgba(212,160,23,0.4); }
+  .chip.used { opacity: 0.3; pointer-events: none; }
+  .mt-btn {
+    display: block;
+    width: 100%;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: 'BIZ UDGothic', Meiryo, sans-serif;
+    transition: opacity 0.2s;
+  }
+  .mt-btn:hover { opacity: 0.85; }
+  .mt-result { color: #2ecc71; font-size: 13px; margin-top: 8px; text-align: center; display: none; }
+  .mt-result.show { display: block; }
+
+  /* フッター */
+  .page-footer {
+    background: var(--navy);
+    color: #aab4cc;
+    text-align: center;
+    padding: 16px;
+    font-size: 12px;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="series">GAMBA 民法Ⅱ ― CHAPTER 32</div>
+  <h1>契約総論<br>（同時履行・危険負担・解除）</h1>
+  <div class="sub">双務契約における三大テーマを一気に制覇する</div>
+</div>
+
+<div class="container">
+
+<!-- ========== セクション1: 同時履行の抗弁権 ========== -->
+<div class="section-header"><span class="num">①</span>同時履行の抗弁権</div>
+<div class="card">
+
+  <div class="point-box">
+    <span class="label">POINT</span>
+    「同時履行の抗弁権」とは、<span class="mark-gold">相手方が履行を提供するまで、自己の債務の履行を拒絶できる権利</span>。双務契約における当事者間の<span class="mark-gold">公平</span>を図るために認められる。
+  </div>
+
+  <div class="sub-title">⑴ 意義と性質</div>
+  <p>例えば、売買契約で買主が代金を払おうとしないのに、売主だけが商品を引き渡さなければならないのは不公平ですね。そこで売主は「代金支払いと引換えでなければ商品を渡さないぞ」と主張できる──これが同時履行の抗弁権です。</p>
+  <p style="margin-top:10px;">同時履行の抗弁権は<span class="text-navy">双務契約の効力（債権）</span>として発生する点が重要です。</p>
+
+  <div class="sub-title">⑵ 留置権との比較</div>
+  <table>
+    <thead>
+      <tr><th>比較項目</th><th>同時履行の抗弁権</th><th>留置権</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>性質</td><td>双務契約の効力（債権）</td><td>担保物権（物権）</td></tr>
+      <tr><td>主張できる相手</td><td>契約の相手方のみ</td><td>誰に対しても主張可</td></tr>
+      <tr><td>不可分性</td><td>なし（割合的）</td><td>あり（全体を留置可）</td></tr>
+      <tr><td>代担保による消滅</td><td>なし</td><td>あり（301条）</td></tr>
+      <tr><td>競売申立権</td><td>なし</td><td>あり</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">⑶ 成立要件</div>
+  <ul class="list">
+    <li>同一の双務契約から発生した<span class="mark-gold">相対立する債務が存在</span>すること</li>
+    <li>両債務が<span class="mark-gold">弁済期</span>にあること（533条ただし書）</li>
+    <li>相手方が自己の債務につき<span class="mark-gold">弁済の提供をしないで履行を請求</span>したこと（単純請求）</li>
+  </ul>
+
+  <div class="caution-box">
+    <span class="label">CAUTION</span>
+    自己の債務につき<span class="text-red">弁済の提供をすれば、相手方の同時履行の抗弁権を消すことができる</span>。ただし、相手方が粘り強く履行を求めてくる場合は、<span class="text-red">弁済の提供を継続しない限り</span>、相手の同時履行の抗弁権は「ゾンビのように復活」する（大判明44・12・11）。
+  </div>
+
+  <div class="sub-title">⑷ 効果</div>
+  <ul class="list">
+    <li>弁済期を徒過しても<span class="mark-gold">履行遅滞にならない</span>→債務不履行責任の免除</li>
+    <li>同時履行の抗弁権の付着する債権は<span class="mark-gold">自動債権として相殺できない</span></li>
+    <li>裁判所が正当と認めた場合→<span class="mark-gold">引換給付判決</span></li>
+  </ul>
+
+  <div class="sub-title">⑸ 同時履行が認められる主な場面（肯定例）</div>
+  <ul class="list">
+    <li>①債務の履行に代わる損害賠償義務と<span class="text-navy">対価の履行義務</span>（533条カッコ書）</li>
+    <li>②解除・無効による<span class="text-navy">相互の原状回復義務</span>（546条・121条の2）</li>
+    <li>③債務の弁済と<span class="text-navy">受取証書の交付義務</span>（486条）</li>
+    <li>④借地人の建物買取請求権行使の場合の<span class="text-navy">建物代金支払義務と建物及び土地の明渡義務</span></li>
+  </ul>
+
+  <div class="sub-title">⑹ 同時履行が認められない主な場面（否定例）</div>
+  <ul class="list">
+    <li>①債務の弁済と<span class="text-red">債権証書（487条）の交付義務</span>→弁済が先履行</li>
+    <li>②造作買取請求権行使の場合の<span class="text-red">造作代金支払義務と家屋明渡義務</span>（最判昭29・7・22）→造作の引渡しを拒めるだけ</li>
+    <li>③賃借人の<span class="text-red">家屋明渡義務と賃貸人の敷金返還義務</span>（最判昭49・9・2）→家屋明渡しが先履行</li>
+  </ul>
+
+</div>
+
+<!-- ミニテスト① -->
+<div class="mini-test" id="mt1">
+  <div class="mt-title">📝 ミニテスト①　同時履行の抗弁権</div>
+  <div class="mt-question">
+    <div class="q-text">Q1. 同時履行の抗弁権は、双務契約の効力として認められる（　　　　　）である。留置権のように第三者には主張できない。</div>
+    <div class="blank-area">
+      <span class="blank-slot mblank" data-qid="mt1" data-idx="0" data-ans="債権">　　　　</span>
+    </div>
+    <div class="chip-bank" id="mt1-bank0">
+      <span class="chip" data-qid="mt1" data-idx="0" data-value="債権">債権</span>
+      <span class="chip" data-qid="mt1" data-idx="0" data-value="物権">物権</span>
+      <span class="chip" data-qid="mt1" data-idx="0" data-value="担保権">担保権</span>
+    </div>
+  </div>
+  <div class="mt-question">
+    <div class="q-text">Q2. 解除による相互の原状回復義務は、同時履行の関係に（　　　　）。一方、家屋の賃貸借終了に伴う賃借人の家屋明渡義務と賃貸人の敷金返還義務は同時履行の関係に（　　　　）。</div>
+    <div class="blank-area">
+      <span class="blank-slot mblank" data-qid="mt1" data-idx="1" data-ans="立つ">　　</span>
+      <span>。一方、敷金返還義務は</span>
+      <span class="blank-slot mblank" data-qid="mt1" data-idx="2" data-ans="立たない">　　　　</span>
+      <span>。</span>
+    </div>
+    <div class="chip-bank" id="mt1-bank1">
+      <span class="chip" data-qid="mt1" data-idx="1" data-value="立つ">立つ</span>
+      <span class="chip" data-qid="mt1" data-idx="1" data-value="立たない">立たない</span>
+      <span class="chip" data-qid="mt1" data-idx="2" data-value="立つ">立つ</span>
+      <span class="chip" data-qid="mt1" data-idx="2" data-value="立たない">立たない</span>
+    </div>
+  </div>
+  <button class="mt-btn" onclick="checkMT('mt1',3)">答え合わせ</button>
+  <div class="mt-result" id="mt1-result"></div>
+</div>
+
+
+<!-- ========== セクション2: 危険負担 ========== -->
+<div class="section-header"><span class="num">②</span>危険負担</div>
+<div class="card">
+
+  <div class="point-box">
+    <span class="label">POINT</span>
+    双務契約において、一方の債務が<span class="mark-gold">債務者の帰責事由なく</span>履行不能となったとき、<span class="mark-gold">他方の債務はどうなるか</span>という問題。債務者の帰責事由がある場合は「債務不履行」であり危険負担の問題とはならない。
+  </div>
+
+  <div class="sub-title">⑴ 危険負担と債務不履行の区別</div>
+
+  <div class="diagram">
+    <div class="d-row">
+      <div class="d-box gold">履行不能の原因</div>
+    </div>
+    <div class="d-row" style="gap:30px; margin-top:10px;">
+      <div style="text-align:center;">
+        <div class="d-box">債務者の帰責事由あり</div>
+        <div class="d-label">↓</div>
+        <div class="d-box red" style="font-size:12px;">債務不履行<br>（損害賠償・解除）</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="d-box light">債務者の帰責事由なし</div>
+        <div class="d-label">↓</div>
+        <div class="d-box gold" style="font-size:12px; color:#1B2A4A;">危険負担の問題<br>（損害賠償❌）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title">⑵ 処理のルール</div>
+
+  <table>
+    <thead>
+      <tr><th>ケース</th><th>他方の債務（代金支払義務）</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="text-navy">①双方に帰責事由なし</span><br>（地震・第三者による放火など）</td>
+        <td>債権者は<span class="text-navy">反対給付の履行を拒むことができる</span>（536条1項）<br>→代金支払いを拒絶できる。解除も可。</td>
+      </tr>
+      <tr>
+        <td><span class="text-red">②債権者の帰責事由あり</span><br>（受領遅滞中に滅失など）</td>
+        <td>債権者は<span class="text-red">反対給付の履行を拒むことができない</span>（536条2項前段）<br>→代金を支払わなければならない。解除も不可（543条）。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="important-box">
+    <span class="label">重要：②のケースで債務者が利益を得たとき</span>
+    債務者（売主）が、自己の債務（引渡義務）を免れたことによって<span class="mark-gold">利益を得たとき</span>は、これを<span class="mark-gold">債権者（買主）に償還しなければならない</span>（536条2項後段）。例えば、引渡しに要する諸経費がかからなかった場合、その分は買主に返す必要がある。
+  </div>
+
+  <div class="sub-title">⑶ 目的物の危険の移転（567条1項）</div>
+  <div class="point-box">
+    <span class="label">POINT</span>
+    売主が買主に<span class="mark-gold">目的物（特定物・種類物が特定した物）を引き渡し</span>、その<span class="mark-gold">引渡しがあった時以後</span>に目的物が当事者の責めに帰することができない事由で滅失・損傷したときは、買主は代金の支払いを拒むことができない。<br>→引渡し後のリスクは買主が負担する。
+  </div>
+
+</div>
+
+<!-- ミニテスト② -->
+<div class="mini-test" id="mt2">
+  <div class="mt-title">📝 ミニテスト②　危険負担</div>
+  <div class="mt-question">
+    <div class="q-text">Q1. 危険負担の問題となるのは、債務者に（　　　　　　　）がない場合に履行不能となったときである。</div>
+    <div class="blank-area">
+      <span class="blank-slot mblank" data-qid="mt2" data-idx="0" data-ans="帰責事由">　　　　　</span>
+    </div>
+    <div class="chip-bank" id="mt2-bank0">
+      <span class="chip" data-qid="mt2" data-idx="0" data-value="帰責事由">帰責事由</span>
+      <span class="chip" data-qid="mt2" data-idx="0" data-value="過失">過失</span>
+      <span class="chip" data-qid="mt2" data-idx="0" data-value="故意">故意</span>
+    </div>
+  </div>
+  <div class="mt-question">
+    <div class="q-text">Q2. 当事者双方の責めに帰することができない事由によって債務の履行ができなくなったとき、債権者は反対給付の履行を（　　　　　　　）ことができる。</div>
+    <div class="blank-area">
+      <span class="blank-slot mblank" data-qid="mt2" data-idx="1" data-ans="拒む">　　</span>
+    </div>
+    <div class="chip-bank" id="mt2-bank1">
+      <span class="chip" data-qid="mt2" data-idx="1" data-value="拒む">拒む</span>
+      <span class="chip" data-qid="mt2" data-idx="1" data-value="しなければならない">しなければならない</span>
+    </div>
+  </div>
+  <div class="mt-question">
+    <div class="q-text">Q3. 債権者の帰責事由によって債務の履行ができなくなったとき、債権者は反対給付の履行を拒むことが（　　　　　　　）。また、この場合、債務者は自己の債務を免れたことで得た利益を（　　　　　　　）に償還しなければならない。</div>
+    <div class="blank-area">
+      <span class="blank-slot mblank" data-qid="mt2" data-idx="2" data-ans="できない">　　　　</span>
+      <span>。利益は</span>
+      <span class="blank-slot mblank" data-qid="mt2" data-idx="3" data-ans="債権者">　　　</span>
+      <span>に償還。</span>
+    </div>
+    <div class="chip-bank" id="mt2-bank2">
+      <span class="chip" data-qid="mt2" data-idx="2" data-value="できない">できない</span>
+      <span class="chip" data-qid="mt2" data-idx="2" data-value="できる">できる</span>
+      <span class="chip" data-qid="mt2" data-idx="3" data-value="債権者">債権者</span>
+      <span class="chip" data-qid="mt2" data-idx="3" data-value="債務者">債務者</span>
+    </div>
+  </div>
+  <button class="mt-btn" onclick="checkMT('mt2',4)">答え合わせ</button>
+  <div class="mt-result" id="mt2-result"></div>
+</div>
+
+
+<!-- ========== セクション3: 解除 ========== -->
+<div class="section-header"><span class="num">③</span>解除</div>
+<div class="card">
+
+  <div class="point-box">
+    <span class="label">POINT</span>
+    「解除」とは、契約を締結した後、<span class="mark-gold">一方当事者の意思表示</span>により、契約が<span class="mark-gold">はじめからなかったのと同様の状態に戻す</span>こと。解除は<span class="mark-gold">形成権</span>の代表例。
+  </div>
+
+  <div class="sub-title">⑴ 解除権の種類</div>
+  <ul class="list">
+    <li><span class="text-navy">法定解除権</span>：法律の規定によって与えられる（債務不履行解除など）</li>
+    <li><span class="text-navy">約定解除権</span>：契約によって留保される（手付・買戻しなど）。約定解除は要件・効果を法定解除から修正できる。</li>
+  </ul>
+
+  <div class="sub-title">⑵ 催告による解除（催告解除）</div>
+
+  <div class="important-box">
+    <span class="label">要件（541条）</span>
+    ①当事者の一方がその債務を<span class="mark-gold">履行しない場合</span>（履行遅滞）に、<br>
+    ②相手方が<span class="mark-gold">相当の期間を定めてその履行の催告</span>をし、<br>
+    ③その<span class="mark-gold">期間内に履行がないとき</span>→契約の解除ができる
+  </div>
+
+  <div class="caution-box">
+    <span class="label">CAUTION</span>
+    ・不相当な期間を定めた催告や期間の定めのない催告でも<span class="text-red">有効</span>。催告後、客観的に相当な期間を経過すれば解除権発生（最判昭31・12・6）。<br>
+    ・<span class="text-red">軽微な不履行</span>の場合は解除不可（541条ただし書）。<br>
+    ・<span class="text-red">債務者の帰責事由は不要</span>。ただし、不履行が<span class="text-red">債権者の帰責事由</span>によるときは解除不可（543条）。<br>
+    ・期限の定めのない債務の場合、「履行請求」と「解除のための催告」は同一視され、<span class="text-red">別途催告不要</span>。
+  </div>
+
+  <div class="sub-title">⑶ 催告によらない解除（無催告解除）</div>
+
+  <p style="margin-bottom:10px;">催告しても意味がない場合は、直ちに解除できる（542条）。</p>
+
+  <table>
+    <thead>
+      <tr><th>全部解除事由（542条1項）</th><th>一部解除事由（542条2項）</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          ①債務の<span class="text-navy">全部の履行が不能</span><br>
+          ②債務者が全部の履行を<span class="text-navy">拒絶する意思を明確に表示</span><br>
+          ③一部不能等で<span class="text-navy">残存部分のみでは契約目的達成不可</span><br>
+          ④<span class="text-navy">定期行為</span>の履行遅滞<br>
+          ⑤その他催告しても目的達成の見込みが明らかにない場合（受け皿規定）
+        </td>
+        <td>
+          ①債務の<span class="text-navy">一部の履行が不能</span><br>
+          ②債務者が一部の履行を<span class="text-navy">拒絶する意思を明確に表示</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">⑷ 解除権不可分の原則</div>
+  <div class="point-box">
+    <span class="label">POINT</span>
+    当事者の一方が数人ある場合、契約の解除は<span class="mark-gold">その全員から又はその全員に対して</span>のみすることができる（544条1項）。また、<span class="mark-gold">解除権が当事者のうち1人について消滅したとき</span>は、他の者についても消滅する（544条2項）。
+  </div>
+
+  <div class="sub-title">⑸ 解除の効果</div>
+  <ul class="list">
+    <li>各当事者は<span class="mark-gold">原状回復義務</span>を負う（545条1項本文）→直接効果説（判例・通説）</li>
+    <li>両当事者の原状回復義務は<span class="mark-gold">同時履行の関係</span>（546条）</li>
+    <li>金銭を返還するときは<span class="mark-gold">受領の時からの利息</span>を付すこと（545条2項）</li>
+    <li>買主が目的物を受領した時以後に生じた果実を売主に返還（545条3項）</li>
+    <li>買主は解除までの間、目的物を使用収益して得た利益（<span class="mark-gold">使用利益＝賃料相当額</span>）を売主に返還（最判昭34・9・22）</li>
+    <li>解除しても<span class="mark-gold">損害賠償請求は妨げない</span>（545条4項）</li>
+  </ul>
+
+  <div class="sub-title">⑹ 第三者との関係</div>
+
+  <div class="diagram">
+    <div style="font-weight:700; margin-bottom:10px; color: var(--navy);">解除前の第三者 vs 解除後の第三者</div>
+    <div style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
+      <div style="text-align:center; flex:1; min-width:200px;">
+        <div class="d-box gold" style="margin-bottom:6px;">解除前の第三者</div>
+        <div style="font-size:13px; padding:8px; background:#EEF1F8; border-radius:4px;">
+          545条1項ただし書の「第三者」<br>
+          <span class="text-navy" style="font-weight:700;">登記を具備すれば保護</span><br>
+          善意・悪意は問わない（最判昭33・6・14）
+        </div>
+      </div>
+      <div style="text-align:center; flex:1; min-width:200px;">
+        <div class="d-box red" style="margin-bottom:6px;">解除後の第三者</div>
+        <div style="font-size:13px; padding:8px; background:#FDF0EF; border-radius:4px;">
+          177条の「第三者」に該当<br>
+          <span class="text-red" style="font-weight:700;">対抗問題として処理</span><br>
+          先に登記を備えた方が勝つ（最判昭35・11・29）
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title">⑺ 解除権の消滅</div>
+  <ul class="list">
+    <li>解除権者が故意・過失によって目的物を<span class="text-red">著しく損傷・返還不可にした場合</span>→解除権消滅（548条）</li>
+    <li>ただし、<span class="text-navy">解除権を有することを知らなかった場合</span>は消滅しない（548条ただし書）</li>
+    <li><span class="text-navy">催告による消滅</span>：相手方が相当の期間を定めて解除の確答を催告し、その期間内に解除の通知を受けないとき→解除権消滅（547条）</li>
+    <li>履行遅滞に基づく解除権は、債務者が<span class="text-navy">本来の債務を弁済するとともに遅延賠償を添えて給付</span>すれば消滅</li>
+  </ul>
+
+</div>
+
+<!-- ミニテスト③ -->
+<div class="mini-test" id="mt3">
+  <div class="mt-title">📝 ミニテスト③　解除</div>
+  <div class="mt-question">
+    <div class="q-text">Q1. 催告による解除では、債務者の（　　　　　　　）は不要である。ただし、不履行が（　　　　　　　）の帰責事由によるときは解除することができない。</div>
+    <div class="blank-area">
+      <span class="blank-slot mblank" data-qid="mt3" data-idx="0" data-ans="帰責事由">　　　　　</span>
+      <span>は不要。不履行が</span>
+      <span class="blank-slot mblank" data-qid="mt3" data-idx="1" data-ans="債権者">　　　</span>
+      <span>の帰責事由なら解除不可。</span>
+    </div>
+    <div class="chip-bank" id="mt3-bank0">
+      <span class="chip" data-qid="mt3" data-idx="0" data-value="帰責事由">帰責事由</span>
+      <span class="chip" data-qid="mt3" data-idx="0" data-value="過失">過失</span>
+      <span class="chip" data-qid="mt3" data-idx="1" data-value="債権者">債権者</span>
+      <span class="chip" data-qid="mt3" data-idx="1" data-value="債務者">債務者</span>
+    </div>
+  </div>
+  <div class="mt-question">
+    <div class="q-text">Q2. 解除をした場合、各当事者は（　　　　　　　）義務を負う。この義務相互は（　　　　　　　）の関係に立つ。また、解除しても（　　　　　　　）の請求を妨げない。</div>
+    <div class="blank-area">
+      <span class="blank-slot mblank" data-qid="mt3" data-idx="2" data-ans="原状回復">　　　　</span>
+      <span>義務。</span>
+      <span class="blank-slot mblank" data-qid="mt3" data-idx="3" data-ans="同時履行">　　　　</span>
+      <span>関係。</span>
+      <span class="blank-slot mblank" data-qid="mt3" data-idx="4" data-ans="損害賠償">　　　　</span>
+      <span>も請求可。</span>
+    </div>
+    <div class="chip-bank" id="mt3-bank1">
+      <span class="chip" data-qid="mt3" data-idx="2" data-value="原状回復">原状回復</span>
+      <span class="chip" data-qid="mt3" data-idx="2" data-value="損害賠償">損害賠償</span>
+      <span class="chip" data-qid="mt3" data-idx="3" data-value="同時履行">同時履行</span>
+      <span class="chip" data-qid="mt3" data-idx="3" data-value="連帯債務">連帯債務</span>
+      <span class="chip" data-qid="mt3" data-idx="4" data-value="損害賠償">損害賠償</span>
+      <span class="chip" data-qid="mt3" data-idx="4" data-value="不当利得返還">不当利得返還</span>
+    </div>
+  </div>
+  <div class="mt-question">
+    <div class="q-text">Q3. 解除前の第三者が保護されるための要件は（　　　　　　　）を具備していることである。善意・悪意は問わない。</div>
+    <div class="blank-area">
+      <span class="blank-slot mblank" data-qid="mt3" data-idx="5" data-ans="登記">　　</span>
+    </div>
+    <div class="chip-bank" id="mt3-bank2">
+      <span class="chip" data-qid="mt3" data-idx="5" data-value="登記">登記</span>
+      <span class="chip" data-qid="mt3" data-idx="5" data-value="善意">善意</span>
+      <span class="chip" data-qid="mt3" data-idx="5" data-value="占有">占有</span>
+    </div>
+  </div>
+  <button class="mt-btn" onclick="checkMT('mt3',6)">答え合わせ</button>
+  <div class="mt-result" id="mt3-result"></div>
+</div>
+
+</div><!-- /container -->
+
+<div class="page-footer">GAMBA 民法Ⅱ ch32｜江原予備校 © realizefield.github.io</div>
+
+<script>
+// チップを空欄にセット
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', function() {
+    if (this.classList.contains('used')) return;
+    const qid = this.dataset.qid;
+    const idx = parseInt(this.dataset.idx);
+    const val = this.dataset.value;
+    // 同じqid・idxのslotを探す
+    const slots = document.querySelectorAll(`.blank-slot[data-qid="${qid}"][data-idx="${idx}"]`);
+    slots.forEach(slot => {
+      if (slot.textContent.trim() === '' || slot.textContent === '　　' || slot.textContent === '　　　　' || slot.textContent === '　　　　　' || slot.textContent === '　　　') {
+        slot.textContent = val;
+        slot.dataset.filled = val;
+        this.classList.add('used');
+      }
+    });
+    // 空のslotに入れる
+    for (let slot of slots) {
+      const filled = slot.dataset.filled;
+      if (!filled) {
+        slot.textContent = val;
+        slot.dataset.filled = val;
+        this.classList.add('used');
+        break;
+      }
+    }
+  });
+});
+
+// slot クリックでリセット
+document.querySelectorAll('.blank-slot').forEach(slot => {
+  slot.addEventListener('click', function() {
+    const val = this.dataset.filled;
+    if (!val) return;
+    // 対応するチップを復活
+    const qid = this.dataset.qid;
+    const idx = this.dataset.idx;
+    document.querySelectorAll(`.chip[data-qid="${qid}"][data-idx="${idx}"][data-value="${val}"]`).forEach(c => {
+      c.classList.remove('used');
+    });
+    this.textContent = '　　　　';
+    delete this.dataset.filled;
+    this.classList.remove('correct','incorrect');
+  });
+});
+
+function checkMT(mtId, total) {
+  const slots = document.querySelectorAll(`.blank-slot[data-qid="${mtId}"]`);
+  let correct = 0;
+  slots.forEach(slot => {
+    const ans = slot.dataset.ans;
+    const filled = slot.dataset.filled || '';
+    if (filled === ans) {
+      slot.classList.add('correct');
+      slot.classList.remove('incorrect');
+      correct++;
+    } else {
+      slot.classList.add('incorrect');
+      slot.classList.remove('correct');
+      if (!filled) slot.textContent = '【' + ans + '】';
+    }
+  });
+  const result = document.getElementById(mtId + '-result');
+  result.classList.add('show');
+  if (correct === total) {
+    result.textContent = '✅ 全問正解！完璧です！';
+  } else {
+    result.textContent = `${correct} / ${total} 正解。赤い箇所を確認しよう。`;
+    result.style.color = '#e67e22';
+  }
+}
+</script>
+</body>
+</html>
