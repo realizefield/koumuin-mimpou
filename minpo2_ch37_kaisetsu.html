@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法Ⅱ ch37｜不法行為①（一般不法行為・過失相殺）</title>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--bg:#F5F3EE;--white:#FFFFFF;--text:#1a1a1a;--gray:#666;--light:#EAE8E0;--border:#ddd8ce;}
+body{font-family:'BIZ UDGothic',Meiryo,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:15px;}
+.site-header{background:var(--navy);color:var(--white);padding:10px 20px;display:flex;align-items:center;gap:12px;}
+.site-header .logo{font-size:20px;font-weight:700;color:var(--gold);letter-spacing:2px;}
+.site-header .subtitle{font-size:12px;color:#aab4c8;}
+.chapter-hero{background:linear-gradient(135deg,var(--navy) 0%,#2d4270 100%);color:var(--white);padding:32px 20px 28px;position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;border:3px solid rgba(212,160,23,0.2);border-radius:50%;}
+.chapter-hero::after{content:'';position:absolute;right:-10px;top:-10px;width:100px;height:100px;border:2px solid rgba(212,160,23,0.15);border-radius:50%;}
+.ch-badge{display:inline-block;background:var(--gold);color:var(--navy);font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1px;margin-bottom:10px;}
+.chapter-hero h1{font-size:24px;font-weight:700;letter-spacing:1px;margin-bottom:8px;}
+.chapter-hero .lead{font-size:13px;color:#c8d4e8;line-height:1.7;max-width:560px;}
+.star-row{display:flex;gap:16px;margin-top:12px;}
+.star-item{font-size:12px;color:#aab4c8;}
+.star-item span{color:var(--gold);}
+.main-wrap{max-width:780px;margin:0 auto;padding:24px 16px 60px;}
+.section{margin-bottom:32px;}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--navy);}
+.sec-num{width:32px;height:32px;background:var(--navy);color:var(--gold);font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;}
+.sec-title{font-size:18px;font-weight:700;color:var(--navy);}
+.body-text{margin-bottom:12px;line-height:1.85;}
+.kw{color:var(--crimson);font-weight:700;}
+.kw-b{color:var(--navy);font-weight:700;}
+.point-box{background:var(--white);border:2px solid var(--navy);border-radius:6px;padding:16px 18px;margin:14px 0;}
+.point-box .box-title{font-weight:700;color:var(--navy);font-size:13px;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--light);}
+.point-box ul{padding-left:18px;}
+.point-box ul li{margin-bottom:6px;line-height:1.75;}
+.imp-box{background:#fff8e6;border-left:4px solid var(--gold);padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;}
+.imp-box .imp-label{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:4px;letter-spacing:1px;}
+.hanrei-box{background:#f0f4ff;border-left:4px solid var(--navy);padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;}
+.hanrei-box .h-label{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:4px;letter-spacing:1px;}
+.data-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+.data-table th{background:var(--navy);color:var(--white);padding:8px 10px;text-align:center;font-weight:700;}
+.data-table td{border:1px solid var(--border);padding:8px 10px;text-align:center;background:var(--white);}
+.data-table tr:nth-child(even) td{background:#f8f7f4;}
+.data-table .td-l{text-align:left;}
+.mini-test{background:var(--white);border:2px solid var(--navy);border-radius:8px;padding:18px;margin:24px 0;}
+.mini-test-title{font-weight:700;font-size:14px;color:var(--navy);margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--light);display:flex;align-items:center;gap:8px;}
+.mini-test-title::before{content:'📝';font-size:16px;}
+.mt-q{margin-bottom:16px;}
+.mt-q .q-text{font-size:14px;margin-bottom:10px;line-height:1.7;}
+.mblank{display:inline-block;min-width:80px;background:var(--light);border:2px solid var(--border);border-radius:4px;padding:2px 8px;text-align:center;color:var(--gray);font-size:13px;cursor:pointer;vertical-align:middle;transition:all .2s;}
+.mblank.filled{background:var(--navy);color:var(--white);border-color:var(--navy);}
+.mblank.correct{background:#1a6e3c;color:var(--white);border-color:#1a6e3c;}
+.mblank.wrong{background:var(--crimson);color:var(--white);border-color:var(--crimson);}
+.chip-bank{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;padding:10px;background:#f8f7f4;border-radius:6px;border:1px dashed var(--border);}
+.chip{display:inline-block;background:var(--navy);color:var(--white);padding:4px 12px;border-radius:20px;font-size:13px;cursor:pointer;transition:all .2s;user-select:none;}
+.chip:hover{background:var(--crimson);transform:translateY(-1px);}
+.chip.used{background:var(--border);color:var(--gray);cursor:default;transform:none;}
+.mt-check-btn{background:var(--crimson);color:var(--white);border:none;padding:8px 24px;border-radius:4px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;}
+.mt-check-btn:hover{background:#a93226;}
+.mt-result{margin-top:8px;font-weight:700;font-size:14px;padding:6px 12px;border-radius:4px;display:none;}
+.mt-result.ok{background:#e8f5e9;color:#1a6e3c;display:block;}
+.mt-result.ng{background:#fdecea;color:var(--crimson);display:block;}
+.mt-reset-btn{background:var(--navy);color:var(--white);border:none;padding:6px 16px;border-radius:4px;font-family:inherit;font-size:12px;cursor:pointer;margin-top:6px;}
+.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-top:2px solid var(--border);margin-top:40px;flex-wrap:wrap;gap:8px;}
+.nav-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:13px;font-weight:700;}
+.nav-prev{background:var(--light);color:var(--navy);}
+.nav-next{background:var(--navy);color:var(--white);}
+.nav-index{background:var(--gold);color:var(--navy);}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <span class="logo">GAMBA</span>
+  <span class="subtitle">民法Ⅱ ｜ 公務員試験対策</span>
+</header>
+<div class="chapter-hero">
+  <div class="ch-badge">CHAPTER 37</div>
+  <h1>不法行為①　一般不法行為・過失相殺</h1>
+  <p class="lead">毎年どこかの試験種で必ず出題される超頻出テーマ。量が多いが確実に押さえよう。今回は一般不法行為の要件・効果・過失相殺を中心に学ぶ。</p>
+  <div class="star-row">
+    <span class="star-item">重要度 <span>★★★</span></span>
+    <span class="star-item">頻出度 <span>★★★</span></span>
+  </div>
+</div>
+<div class="main-wrap">
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">1</div><div class="sec-title">不法行為とは？</div></div>
+  <p class="body-text">「<span class="kw">不法行為</span>」とは、<span class="kw">故意又は過失</span>によって他人の権利・利益を侵害する行為です（709条）。不注意で自動車の運転を誤り、歩行者にケガをさせた場合などが典型です。</p>
+  <p class="body-text">当事者間に契約関係があった場合には、<span class="kw">債務不履行責任と不法行為責任の両方が成立</span>し、被害者はどちらに基づいて請求してもよい（<span class="kw">請求権競合</span>）。ただし当事者間に契約関係がある場合は、<span class="kw">債務不履行に基づく損害賠償請求の方がBにとって有利</span>です（帰責事由の立証負担が違うため）。</p>
+
+  <div class="point-box">
+    <div class="box-title">📌 債務不履行責任 vs 不法行為責任の比較</div>
+    <table class="data-table">
+      <tr><th></th><th>債務不履行責任</th><th>不法行為責任</th></tr>
+      <tr><td class="td-l">帰責事由の立証</td><td><span class="kw">債務者</span>が自己に帰責事由がなかったことを<span class="kw">免責事由として立証</span></td><td><span class="kw">債権者（被害者）</span>が相手方の故意・過失を<span class="kw">積極的に立証</span></td></tr>
+      <tr><td class="td-l">損害賠償の範囲</td><td>416条による<span class="kw">相当因果関係</span>の範囲</td><td>416条類推適用で<span class="kw">相当因果関係</span>の範囲</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">2</div><div class="sec-title">一般不法行為の要件</div></div>
+  <p class="body-text">一般不法行為（709条）の成立要件は次の<span class="kw">6つ</span>です。</p>
+
+  <div class="point-box">
+    <div class="box-title">📌 ①故意又は過失</div>
+    <ul>
+      <li>「故意又は過失があること」は<span class="kw">債権者（被害者）が立証</span>しなければならない</li>
+      <li>「<span class="kw">失火</span>」の場合には、失火責任法という特別法により、<span class="kw">故意又は重過失</span>がなければ損害賠償責任は負わないと修正されている（最判昭30・3・25：債務不履行責任には適用なし）</li>
+    </ul>
+  </div>
+
+  <div class="point-box">
+    <div class="box-title">📌 ②権利又は法律上保護される利益の侵害</div>
+    <ul>
+      <li>他人の身体・自由・名誉を侵害した場合、または他人の財産権を侵害した場合のいずれであるかを問わず、709条により損害賠償の責任を負う</li>
+    </ul>
+  </div>
+
+  <div class="point-box">
+    <div class="box-title">📌 ③損害の発生</div>
+    <ul>
+      <li>民法416条を類推適用し、<span class="kw">相当因果関係の範囲内の損害</span>のみ賠償してもらえる</li>
+      <li>損害には<span class="kw">財産的損害（治療費など）だけでなく精神的損害（慰謝料など）も含まれる</span></li>
+      <li>慰謝料請求権は<span class="kw">単なる金銭債権</span>なので<span class="kw">当然に相続の対象になる</span>（最判昭42・11・1）。「相続させよう」という被害者の意思表示は不要</li>
+    </ul>
+  </div>
+
+  <div class="point-box">
+    <div class="box-title">📌 ④因果関係</div>
+    <ul>
+      <li>企業損害の問題：交通事故で会社の代表者が損傷を受け、就労できなくなり会社の売上が減少した場合、会社は加害者に損害賠償を請求できるか？</li>
+      <li>判例は、<span class="kw">会社が個人会社でその実権が代表者に集中して会社の機関に代替性がなく、経済的に会社と代表者が一体をなす関係にあるとき</span>は賠償請求できるとする（最判昭43・11・15）</li>
+    </ul>
+  </div>
+
+  <div class="point-box">
+    <div class="box-title">📌 ⑤責任能力があること（712条・713条）</div>
+    <ul>
+      <li>「<span class="kw">責任能力</span>」とは自己の行為が違法として非難されること、つまり<span class="kw">自己の行為の責任を弁識しうる能力</span>。年齢的には大体11〜12歳で備わる</li>
+      <li><span class="kw">責任無能力者に対しては損害賠償を請求できない</span></li>
+      <li>ただし、<span class="kw">故意又は過失によって一時的に責任無能力状態を招いた場合</span>（酒を飲みすぎて泥酔など）には不法行為責任を負う（713条ただし書）</li>
+    </ul>
+  </div>
+
+  <div class="point-box">
+    <div class="box-title">📌 ⑥違法性阻却事由がないこと（正当防衛・緊急避難）</div>
+    <ul>
+      <li><span class="kw">正当防衛</span>（720条1項）：他人の不法行為に対し、自己又は第三者の権利・利益を防衛するためやむを得ず加害行為をした者は損害賠償の責任を負わない。防衛行為により第三者に損害を与えた場合、<span class="kw">第三者は不法行為をなした者に損害賠償を請求できる</span></li>
+      <li><span class="kw">緊急避難</span>（720条2項）：他人の物から生じた急迫の危難を避けるためその物を損傷した場合も損害賠償の責任を負わない</li>
+    </ul>
+  </div>
+</div>
+
+<div class="mini-test" id="mt1">
+  <div class="mini-test-title">ミニテスト①　一般不法行為の要件</div>
+  <div class="chip-bank" id="bank1">
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">被害者</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">重過失</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">当然に相続</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">責任無能力者</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">一時的に責任無能力状態</span>
+  </div>
+  <div class="mt-q">
+    <p class="q-text">Q1. 不法行為では「故意又は過失」は<span class="mblank" data-ans="被害者" onclick="selectBlank(this,'mt1')">　　</span>が立証しなければならない。失火の場合は、故意又は<span class="mblank" data-ans="重過失" onclick="selectBlank(this,'mt1')">　　</span>がなければ損害賠償責任を負わない。</p>
+    <p class="q-text">Q2. 慰謝料請求権は単なる金銭債権なので、被害者の意思表示なく<span class="mblank" data-ans="当然に相続" onclick="selectBlank(this,'mt1')">　　</span>の対象になる。<span class="mblank" data-ans="責任無能力者" onclick="selectBlank(this,'mt1')">　　</span>に対しては損害賠償を請求できないが、故意・過失により<span class="mblank" data-ans="一時的に責任無能力状態" onclick="selectBlank(this,'mt1')">　　</span>を招いた場合は責任を負う。</p>
+  </div>
+  <button class="mt-check-btn" onclick="checkQ('mt1',5)">答え合わせ</button>
+  <button class="mt-reset-btn" onclick="resetQ('mt1','bank1')">リセット</button>
+  <div class="mt-result" id="res-mt1"></div>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">3</div><div class="sec-title">不法行為の効果</div></div>
+  <p class="body-text">損害賠償は<span class="kw">金銭で行うのが原則</span>です（722条1項・417条、<span class="kw">金銭賠償の原則</span>）。</p>
+  <div class="point-box">
+    <div class="box-title">📌 名誉毀損の特則（723条）</div>
+    <ul>
+      <li>例外的に、名誉毀損のような場合には、裁判所は、被害者の請求により、<span class="kw">損害賠償に代え、又は損害賠償とともに、名誉回復処分</span>（謝罪広告の掲載など）を命ずることができる（723条）</li>
+      <li>723条の原状回復処分に適するのは、<span class="kw">社会的名誉</span>（社会から受ける客観的な評価）を侵害された場合に限られ、<span class="kw">名誉感情</span>（自分の人格的価値についての主観的評価）を毀損された場合には適しない（最判昭45・12・18）</li>
+    </ul>
+  </div>
+  <div class="point-box">
+    <div class="box-title">📌 固有の慰謝料請求権</div>
+    <table class="data-table">
+      <tr><th></th><th>生命侵害</th><th>傷害</th></tr>
+      <tr><td class="td-l">近親者（父母・配偶者・子）</td><td><span class="kw">711条</span>で慰謝料請求可</td><td>709条・710条で請求可</td></tr>
+      <tr><td class="td-l">父母・配偶者・子以外</td><td><span class="kw">711条類推適用</span></td><td>709条・710条で請求可</td></tr>
+    </table>
+    <p style="font-size:13px;margin-top:6px;">※被害者が<span class="kw">傷害を受けるにとどまる場合</span>においても、近親者が<span class="kw">生命を侵害された場合にも比肩すべき程度の精神的損害を受けたとき</span>は、709条・710条に基づき慰謝料請求可（最判昭33・8・5）</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">4</div><div class="sec-title">過失相殺・損益相殺</div></div>
+  <p class="body-text">被害者に過失があったときは、裁判所は、これを考慮して、<span class="kw">損害賠償の額を定めることができます</span>（722条2項）。いわゆる「<span class="kw">過失相殺</span>」です。</p>
+
+  <div class="point-box">
+    <div class="box-title">📌 過失相殺の特徴</div>
+    <ul>
+      <li>債務不履行の場合と異なり、<span class="kw">責任自体を否定することはできない</span>（裁判所は任意で過失を考慮すれば足りる）</li>
+      <li>過失相殺における「過失」が認められるためには、<span class="kw">責任能力まで備えていることは必要なく</span>、<span class="kw">事理弁識能力（4〜5歳）</span>があれば足りる（最大判昭39・6・24）</li>
+    </ul>
+  </div>
+
+  <div class="imp-box">
+    <div class="imp-label">POINT ― 損益相殺</div>
+    <p>不法行為の被害者が損害を受けると同時に利益を得たときは、その利益額を損害賠償額から控除する（<span class="kw">損益相殺</span>）。判例は、<span class="kw">生命保険金・火災保険金</span>は損益相殺の対象と<span class="kw">ならない</span>（最判昭39・9・25、最判昭50・1・31）。<span class="kw">損益相殺の順番は過失相殺を先にする</span>（最大判平5・3・24）。</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><div class="sec-num">5</div><div class="sec-title">被害者側の過失・被害者の素因</div></div>
+    <p class="body-text">被害者自身に過失はないものの、<span class="kw">被害者と身分上・生活関係上一体をなすと認められる者の過失</span>（例：夫婦間での夫の過失）は<span class="kw">被害者側の過失</span>として過失相殺の対象となります（最判昭51・3・25）。ただし、<span class="kw">夫婦関係が事実上破綻しているようなとき</span>は財布の共通も認めず、被害者側の過失として過失相殺できません（最判昭51・3・25）。また、<span class="kw">保育士の過失</span>は保育士がBにとって他人であり財布が共通と言えないため、<span class="kw">被害者側の過失として過失相殺できません</span>（最判昭42・6・27）。</p>
+
+    <div class="point-box">
+      <div class="box-title">📌 被害者の素因</div>
+      <ul>
+        <li><span class="kw">心因的素因・病的素因（疾患）</span>：722条2項を類推適用して賠償額の減額が認められる</li>
+        <li><span class="kw">加齢的素因・身体的特徴</span>（平均的な体格等と異なるとしても疾患にあたらない場合）：<span class="kw">特段の事情がない限り、考慮することができない</span>（最判平8・10・29）</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">6</div><div class="sec-title">不法行為による損害賠償請求権の消滅時効</div></div>
+  <div class="point-box">
+    <div class="box-title">📌 消滅時効まとめ（724条・724条の2）</div>
+    <table class="data-table">
+      <tr><th></th><th>不法行為</th><th>債務不履行</th></tr>
+      <tr><td class="td-l">一般の損害賠償請求権</td><td>主観的：<span class="kw">3年</span>（起算点から）<br>客観的：<span class="kw">20年</span>（客観的起算点から）</td><td>主観的：5年（主観的起算点から）<br>客観的：10年（客観的起算点から）</td></tr>
+      <tr><td class="td-l">生命・身体侵害の損害賠償請求権</td><td>主観的：<span class="kw">5年</span>（主観的起算点から）<br>客観的：<span class="kw">20年</span>（客観的起算点から）</td><td>主観的：5年（主観的起算点から）<br>客観的：20年（客観的起算点から）</td></tr>
+    </table>
+    <p style="font-size:13px;margin-top:6px;">※主観的起算点：被害者又はその法定代理人が損害及び加害者を知った時。客観的起算点：不法行為の時。<br>※「<span class="kw">不法行為の時</span>」とは、不法行為によって発生する損害の性質上、加害行為が終了してから相当の期間が経過した後に損害が発生する場合（蓄積型・潜在性損害）は、<span class="kw">当該損害の全部又は一部が発生した時から進行する</span>（最判平16・4・27）。</p>
+    <p style="font-size:13px;margin-top:6px;">※不法行為を知ったときでなく<span class="kw">被害及び加害者を知った時</span>から3年行使しないと消滅時効にかかる（724条1号）。加害者を知った時とは、加害者に対する損害賠償請求が事実上可能な状況のもと、<span class="kw">その可能な程度にこれを知った時</span>を意味する（最判昭48・11・16）。</p>
+  </div>
+  <p class="body-text">なお、<span class="kw">不法行為による損害賠償債務は、催告を待たずに損害発生と同時に遅滞に陥ります</span>（最判昭37・9・4）。「請求を受けた日の翌日から」ではありません。</p>
+</div>
+
+<div class="mini-test" id="mt2">
+  <div class="mini-test-title">ミニテスト②　過失相殺・消滅時効</div>
+  <div class="chip-bank" id="bank2">
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">事理弁識能力</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">含まれない</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">3年</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">20年</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">損害発生と同時</span>
+  </div>
+  <div class="mt-q">
+    <p class="q-text">Q1. 過失相殺の「過失」が認められるには責任能力は不要で、<span class="mblank" data-ans="事理弁識能力" onclick="selectBlank(this,'mt2')">　　</span>があれば足りる。生命保険金・火災保険金は損益相殺の対象に<span class="mblank" data-ans="含まれない" onclick="selectBlank(this,'mt2')">　　</span>。</p>
+    <p class="q-text">Q2. 不法行為の損害賠償請求権は、損害及び加害者を知った時から<span class="mblank" data-ans="3年" onclick="selectBlank(this,'mt2')">　　</span>、または不法行為の時から<span class="mblank" data-ans="20年" onclick="selectBlank(this,'mt2')">　　</span>で消滅時効。不法行為による賠償債務は<span class="mblank" data-ans="損害発生と同時" onclick="selectBlank(this,'mt2')">　　</span>に遅滞に陥る。</p>
+  </div>
+  <button class="mt-check-btn" onclick="checkQ('mt2',5)">答え合わせ</button>
+  <button class="mt-reset-btn" onclick="resetQ('mt2','bank2')">リセット</button>
+  <div class="mt-result" id="res-mt2"></div>
+</div>
+
+<div class="chapter-nav">
+  <a href="minpo2_ch36_kaisetsu.html" class="nav-btn nav-prev">← ch36 事務管理・不当利得</a>
+  <a href="minpo2_index.html" class="nav-btn nav-index">目次</a>
+  <a href="minpo2_ch38_kaisetsu.html" class="nav-btn nav-next">ch38 不法行為② →</a>
+</div>
+</div>
+
+<script>
+let selectedBlank=null;
+function selectBlank(el,testId){document.querySelectorAll(`#${testId} .mblank`).forEach(b=>b.style.outline='');selectedBlank=el;el.style.outline='2px solid var(--crimson)';}
+function useChip(chip,bankId,testId){if(chip.classList.contains('used'))return;if(!selectedBlank){alert('先に埋める空欄をクリックしてください。');return;}if(selectedBlank.closest(`#${testId}`)===null){alert('同じテストの空欄を選んでください。');return;}selectedBlank.textContent=chip.textContent;selectedBlank.classList.add('filled');selectedBlank.style.outline='';chip.classList.add('used');selectedBlank=null;}
+function checkQ(testId,total){const blanks=document.querySelectorAll(`#${testId} .mblank`);let correct=0;blanks.forEach(b=>{if(b.textContent.trim()===b.getAttribute('data-ans')){b.classList.remove('wrong');b.classList.add('correct');correct++;}else{b.classList.remove('correct');b.classList.add('wrong');}});const res=document.getElementById(`res-${testId}`);if(correct===total){res.textContent=`✅ 全問正解！完璧です（${correct}/${total}）`;res.className='mt-result ok';}else{res.textContent=`❌ ${correct}/${total} 正解。赤くなった箇所を確認しよう。`;res.className='mt-result ng';}}
+function resetQ(testId,bankId){document.querySelectorAll(`#${testId} .mblank`).forEach(b=>{b.textContent='　　';b.className='mblank';b.style.outline='';});document.querySelectorAll(`#${bankId} .chip`).forEach(c=>c.classList.remove('used'));const res=document.getElementById(`res-${testId}`);res.className='mt-result';res.textContent='';selectedBlank=null;}
+</script>
+</body>
+</html>

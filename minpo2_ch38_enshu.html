@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法Ⅱ ch38 演習｜不法行為②</title>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--bg:#F5F3EE;--white:#fff;--light:#EAE8E0;--border:#ddd8ce;--text:#1a1a1a;}
+body{font-family:'BIZ UDGothic',Meiryo,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.8;}
+.site-header{background:var(--navy);color:#fff;padding:10px 20px;display:flex;align-items:center;gap:12px;}
+.logo{font-size:20px;font-weight:700;color:var(--gold);letter-spacing:2px;}
+.subtitle{font-size:12px;color:#aab4c8;}
+.ex-hero{background:linear-gradient(135deg,#2d1b4e 0%,var(--navy) 100%);color:#fff;padding:28px 20px;position:relative;overflow:hidden;}
+.ex-hero::before{content:'';position:absolute;right:-30px;top:-30px;width:160px;height:160px;border:3px solid rgba(212,160,23,0.2);border-radius:50%;}
+.ex-badge{display:inline-block;background:var(--crimson);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1px;margin-bottom:8px;}
+.ex-hero h1{font-size:20px;font-weight:700;letter-spacing:1px;}
+.ex-hero .ex-sub{font-size:13px;color:#c8d4e8;margin-top:6px;}
+.main-wrap{max-width:780px;margin:0 auto;padding:24px 16px 60px;}
+.score-board{background:var(--navy);color:#fff;border-radius:8px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.score-label{font-size:13px;color:#aab4c8;}
+.score-val{font-size:28px;font-weight:700;color:var(--gold);}
+.q-card{background:var(--white);border-radius:8px;border:1px solid var(--border);padding:20px;margin-bottom:20px;position:relative;}
+.q-num{position:absolute;top:-1px;left:-1px;background:var(--navy);color:var(--gold);font-size:12px;font-weight:700;padding:4px 12px;border-radius:8px 0 8px 0;}
+.q-type{display:inline-block;font-size:11px;color:#666;border:1px solid var(--border);padding:1px 8px;border-radius:10px;margin:28px 0 10px;}
+.q-text{font-size:15px;line-height:1.85;margin-bottom:14px;}
+.choices{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+.choice-btn{padding:8px 20px;border-radius:4px;border:2px solid var(--border);background:var(--white);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;}
+.choice-btn:hover:not(:disabled){border-color:var(--navy);background:var(--light);}
+.choice-btn.selected-o{border-color:var(--navy);background:var(--navy);color:#fff;}
+.choice-btn.selected-x{border-color:var(--crimson);background:var(--crimson);color:#fff;}
+.choice-btn:disabled{cursor:default;opacity:.7;}
+.mc-choices{display:flex;flex-direction:column;gap:8px;margin-bottom:8px;}
+.mc-btn{padding:10px 14px;border-radius:4px;border:2px solid var(--border);background:var(--white);font-family:inherit;font-size:14px;text-align:left;cursor:pointer;transition:all .15s;}
+.mc-btn:hover:not(:disabled){border-color:var(--navy);background:var(--light);}
+.mc-btn.selected-mc{border-color:var(--navy);background:var(--navy);color:#fff;}
+.mc-btn:disabled{cursor:default;}
+.ans-btn{background:var(--gold);color:var(--navy);border:none;padding:8px 20px;border-radius:4px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;}
+.ans-btn:hover{background:#c49414;}
+.ans-btn:disabled{background:var(--border);color:#666;cursor:default;}
+.exp-area{margin-top:12px;display:none;}
+.exp-area.show{display:block;}
+.exp-ok{background:#e8f5e9;border-left:4px solid #1a6e3c;padding:10px 14px;border-radius:0 4px 4px 0;}
+.exp-ng{background:#fdecea;border-left:4px solid var(--crimson);padding:10px 14px;border-radius:0 4px 4px 0;}
+.exp-label{font-weight:700;font-size:12px;margin-bottom:4px;letter-spacing:1px;}
+.exp-ok .exp-label{color:#1a6e3c;}
+.exp-ng .exp-label{color:var(--crimson);}
+.exp-text{font-size:14px;line-height:1.75;}
+canvas#confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;display:none;}
+.result-card{background:var(--navy);color:#fff;border-radius:8px;padding:24px 20px;text-align:center;margin-top:8px;display:none;}
+.result-card.show{display:block;}
+.result-card .big-score{font-size:48px;font-weight:700;color:var(--gold);line-height:1;}
+.result-card .score-msg{font-size:15px;color:#c8d4e8;margin-top:6px;}
+.retry-btn{background:var(--crimson);color:#fff;border:none;padding:10px 28px;border-radius:4px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;margin-top:14px;}
+.nav-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:16px 0;border-top:2px solid var(--border);margin-top:32px;}
+.nav-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:13px;font-weight:700;}
+.nav-prev{background:var(--light);color:var(--navy);}
+.nav-next{background:var(--navy);color:#fff;}
+.nav-index{background:var(--gold);color:var(--navy);}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<header class="site-header"><span class="logo">GAMBA</span><span class="subtitle">民法Ⅱ ｜ 演習</span></header>
+<div class="ex-hero">
+  <div class="ex-badge">CHAPTER 38 演習</div>
+  <h1>不法行為②　特殊の不法行為</h1>
+  <p class="ex-sub">○×問題4問＋5択問題1問　全5問</p>
+</div>
+<div class="main-wrap">
+<div class="score-board">
+  <div><div class="score-label">現在のスコア</div><div class="score-val"><span id="cur-score">0</span> / 5</div></div>
+  <div style="font-size:13px;color:#aab4c8;">答え合わせしながら進もう</div>
+</div>
+
+<!-- Q1 -->
+<div class="q-card" id="qc-1">
+  <div class="q-num">Q1</div>
+  <span class="q-type">○×問題</span>
+  <p class="q-text">土地の工作物の設置又は保存に瑕疵があることによって第三者に損害が生じた場合、まず占有者が損害賠償責任を負い、占有者が損害の発生を防止するのに必要な注意をしたことを立証した場合には、所有者が無過失責任を負う。</p>
+  <div class="choices">
+    <button class="choice-btn" onclick="ansOX(1,'○')">○</button>
+    <button class="choice-btn" onclick="ansOX(1,'×')">×</button>
+  </div>
+  <button class="ans-btn" id="ans-btn-1" onclick="showExp(1)" disabled>解説を見る</button>
+  <div class="exp-area" id="exp-1">
+    <div class="exp-ok" id="exp-q1-ok">
+      <div class="exp-label">✅ 正解：○</div>
+      <p class="exp-text">工作物責任（717条）では、第一次的に<strong>占有者</strong>が責任を負い（中間責任）、占有者が「損害の発生を防止するのに必要な注意をした」ことを立証した場合は免責される。その場合、第二次的に<strong>所有者が無過失責任</strong>を負う。正しい。</p>
+    </div>
+    <div class="exp-ng" id="exp-q1-ng">
+      <div class="exp-label">❌ 不正解</div>
+      <p class="exp-text">正しい記述です。占有者が第一次的責任（中間責任）、所有者が第二次的責任（無過失責任）を負います（717条）。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q2 -->
+<div class="q-card" id="qc-2">
+  <div class="q-num">Q2</div>
+  <span class="q-type">○×問題</span>
+  <p class="q-text">使用者責任（715条）において、被用者が事業の執行につき第三者に損害を加えたか否かは、当該行為の外形から客観的に判断して使用者の職務の範囲内の行為かどうかにより判断する（外形標準説）。また、被用者の過失の有無は「被用者」を基準として判断する。</p>
+  <div class="choices">
+    <button class="choice-btn" onclick="ansOX(2,'○')">○</button>
+    <button class="choice-btn" onclick="ansOX(2,'×')">×</button>
+  </div>
+  <button class="ans-btn" id="ans-btn-2" onclick="showExp(2)" disabled>解説を見る</button>
+  <div class="exp-area" id="exp-2">
+    <div class="exp-ok" id="exp-q2-ok">
+      <div class="exp-label">✅ 正解：○</div>
+      <p class="exp-text">「事業の執行につき」の判断は<strong>外形標準説</strong>（行為の外形から客観的に判断）が判例・通説（最判昭37・11・8）。また、被用者の故意・過失の有無の判断は<strong>「被用者」を基準</strong>とする（最判平7・1・24）。どちらも正しい。</p>
+    </div>
+    <div class="exp-ng" id="exp-q2-ng">
+      <div class="exp-label">❌ 不正解</div>
+      <p class="exp-text">どちらも正しい記述です。事業執行性は外形標準説（最判昭37・11・8）、過失の基準は「被用者」（最判平7・1・24）。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q3 -->
+<div class="q-card" id="qc-3">
+  <div class="q-num">Q3</div>
+  <span class="q-type">○×問題</span>
+  <p class="q-text">共同不法行為において、共同行為者の一人が全額の賠償をしたときは、他の共同行為者に対して求償することができるが、共同行為者の一方について賠償責任を免除した場合、その免除の効力は他方にも及ぶ。</p>
+  <div class="choices">
+    <button class="choice-btn" onclick="ansOX(3,'○')">○</button>
+    <button class="choice-btn" onclick="ansOX(3,'×')">×</button>
+  </div>
+  <button class="ans-btn" id="ans-btn-3" onclick="showExp(3)" disabled>解説を見る</button>
+  <div class="exp-area" id="exp-3">
+    <div class="exp-ng" id="exp-q3-ok">
+      <div class="exp-label">✅ 正解：×</div>
+      <p class="exp-text">共同不法行為者の一人が全額賠償した場合の求償は認められる（最判昭41・11・18）。しかし、<strong>共同不法行為者の一方について責任を免除しても、他方の債務の免除の効力は及ばない</strong>（最判昭10・9・10）。「免除の効力が他方にも及ぶ」とする記述は誤り。</p>
+    </div>
+    <div class="exp-ok" id="exp-q3-ng">
+      <div class="exp-label">❌ 不正解</div>
+      <p class="exp-text">求償は認められます（○）が、一方の免除の効力は他方には及びません（×）（最判昭10・9・10）。後半が誤りです。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q4 -->
+<div class="q-card" id="qc-4">
+  <div class="q-num">Q4</div>
+  <span class="q-type">○×問題</span>
+  <p class="q-text">責任能力を有する未成年者が不法行為によって第三者に損害を加えた場合であっても、監督義務者の監督義務違反と損害との間に相当因果関係が認められるときは、監督義務者について民法709条に基づく不法行為が成立することがある。</p>
+  <div class="choices">
+    <button class="choice-btn" onclick="ansOX(4,'○')">○</button>
+    <button class="choice-btn" onclick="ansOX(4,'×')">×</button>
+  </div>
+  <button class="ans-btn" id="ans-btn-4" onclick="showExp(4)" disabled>解説を見る</button>
+  <div class="exp-area" id="exp-4">
+    <div class="exp-ok" id="exp-q4-ok">
+      <div class="exp-label">✅ 正解：○</div>
+      <p class="exp-text">加害者が<strong>責任能力を有する</strong>場合（例：16歳）には714条は適用されないが、<strong>監督義務者の監督義務違反と損害との間に相当因果関係が認められるときは、709条に基づく不法行為が成立する</strong>（最判昭49・3・22）。正しい。</p>
+    </div>
+    <div class="exp-ng" id="exp-q4-ng">
+      <div class="exp-label">❌ 不正解</div>
+      <p class="exp-text">正しい記述です。責任能力ある未成年者の場合でも714条ではなく709条で監督義務者の責任を問える場合があります（最判昭49・3・22）。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q5 -->
+<div class="q-card" id="qc-5">
+  <div class="q-num">Q5</div>
+  <span class="q-type">5択問題</span>
+  <p class="q-text">不法行為に関する次のア〜エの記述の正誤の組合せとして最も妥当なのはどれか（争いのあるときは、判例の見解による）。【裁判所職員 R1】</p>
+  <div class="mc-choices">
+    <button class="mc-btn" onclick="ansMC(5,1)">1. ア正・イ誤・ウ正・エ誤（ア：生命侵害の被害者の父母・配偶者・子以外の親族は、固有の慰謝料請求権は認められない）</button>
+    <button class="mc-btn" onclick="ansMC(5,2)">2. ア誤・イ正・ウ誤・エ誤（イ：未成年者が他人に損害を加えた場合、未成年者が責任能力を有するときは、監督義務者に714条はなく、709条で損害賠償責任が問われることがある。ウ：不法行為による損害賠償は請求を受けた日の翌日から遅滞になる）</button>
+    <button class="mc-btn" onclick="ansMC(5,3)">3. ア誤・イ正・ウ誤・エ正（エ：消滅時効期間は、被害者又はその法定代理人が損害及び加害者を知った時から3年、不法行為の時から20年）</button>
+    <button class="mc-btn" onclick="ansMC(5,4)">4. ア正・イ誤・ウ正・エ正</button>
+    <button class="mc-btn" onclick="ansMC(5,5)">5. ア正・イ正・ウ誤・エ正（ア：生命侵害の父母等以外の者でも711条類推で慰謝料請求可。イ：未成年者に責任能力があれば709条で監督義務者も責任を問われる場合あり）</button>
+  </div>
+  <button class="ans-btn" id="ans-btn-5" onclick="showExp(5)" disabled>解説を見る</button>
+  <div class="exp-area" id="exp-5">
+    <div class="exp-ok" id="exp-q5-ok">
+      <div class="exp-label">✅ 正解：3（ア誤・イ正・ウ誤・エ正）</div>
+      <p class="exp-text"><strong>ア.誤</strong> 生命侵害の場合、父母・配偶者・子以外の者でも<strong>711条の類推適用</strong>により固有の慰謝料請求権が認められる（最判昭49・12・17）。<br><strong>イ.正</strong> 未成年者が責任能力を有する場合は714条ではなく、監督義務者の監督義務違反と損害の間に相当因果関係があれば<strong>709条</strong>で責任を問われる（最判昭49・3・22）。<br><strong>ウ.誤</strong> 不法行為による損害賠償債務は、<strong>損害発生と同時に遅滞に陥る</strong>（最判昭37・9・4）。「請求を受けた日の翌日から」ではない。<br><strong>エ.正</strong> 消滅時効は損害及び加害者を知った時から3年、不法行為の時から20年（724条）。正しい。</p>
+    </div>
+    <div class="exp-ng" id="exp-q5-ng">
+      <div class="exp-label">❌ 不正解</div>
+      <p class="exp-text">正解は<strong>3（ア誤・イ正・ウ誤・エ正）</strong>。ア：711条類推で父母等以外も請求可（誤）。イ：責任能力ある未成年者→709条で監督義務者の責任あり（正）。ウ：損害発生と同時に遅滞（誤）。エ：3年・20年の時効（正）。</p>
+    </div>
+  </div>
+</div>
+
+<div class="result-card" id="result-card">
+  <div style="font-size:15px;color:#aab4c8;margin-bottom:8px;">最終スコア</div>
+  <div class="big-score" id="final-score">0</div>
+  <div style="font-size:20px;color:#aab4c8;">/ 5</div>
+  <div class="score-msg" id="score-msg"></div>
+  <button class="retry-btn" onclick="retryAll()">もう一度挑戦</button>
+</div>
+
+<div class="nav-row">
+  <a href="minpo2_ch38_kaisetsu.html" class="nav-btn nav-prev">← 解説に戻る</a>
+  <a href="minpo2_index.html" class="nav-btn nav-index">目次</a>
+  <a href="minpo2_ch39_enshu.html" class="nav-btn nav-next">ch39 演習へ →</a>
+</div>
+</div>
+
+<script>
+const correctOX={1:'○',2:'○',3:'×',4:'○'};
+const correctMC={5:3};
+let answered={},totalScore=0;
+const totalQ=5;
+function ansOX(qn,choice){if(answered[qn])return;answered[qn]=true;document.getElementById(`qc-${qn}`).querySelectorAll('.choice-btn').forEach(b=>{b.disabled=true;if(b.textContent===choice)b.classList.add(choice==='○'?'selected-o':'selected-x');});document.getElementById(`ans-btn-${qn}`).disabled=false;answered[`${qn}_ok`]=(choice===correctOX[qn]);if(answered[`${qn}_ok`]){totalScore++;document.getElementById('cur-score').textContent=totalScore;}checkAllDone();}
+function ansMC(qn,choice){if(answered[qn])return;answered[qn]=true;document.getElementById(`qc-${qn}`).querySelectorAll('.mc-btn').forEach((b,i)=>{b.disabled=true;if(i+1===choice)b.classList.add('selected-mc');});document.getElementById(`ans-btn-${qn}`).disabled=false;answered[`${qn}_ok`]=(choice===correctMC[qn]);if(answered[`${qn}_ok`]){totalScore++;document.getElementById('cur-score').textContent=totalScore;}checkAllDone();}
+function showExp(qn){const expArea=document.getElementById(`exp-${qn}`);expArea.classList.add('show');const isOK=answered[`${qn}_ok`];document.getElementById(`exp-q${qn}-ok`).style.display=isOK?'block':'none';document.getElementById(`exp-q${qn}-ng`).style.display=isOK?'none':'block';document.getElementById(`ans-btn-${qn}`).disabled=true;}
+function checkAllDone(){if(Object.keys(answered).filter(k=>!k.includes('_ok')).length===totalQ){setTimeout(()=>{const rc=document.getElementById('result-card');rc.classList.add('show');document.getElementById('final-score').textContent=totalScore;const msgs=['💪 基礎から見直してみよう','💪 基礎から見直してみよう','📖 もう一度テキストで確認しよう','📖 もう一度テキストで確認しよう','🌸 惜しい！あと一歩！','🎉 パーフェクト！完全制覇！'];document.getElementById('score-msg').textContent=msgs[totalScore];if(totalScore>=4)launchConfetti();},600);}}
+const canvas=document.getElementById('confetti'),ctx=canvas.getContext('2d');
+let pieces=[],animId=null;
+function launchConfetti(){canvas.style.display='block';canvas.width=window.innerWidth;canvas.height=window.innerHeight;pieces=[];const colors=['#1B2A4A','#C0392B','#D4A017','#ffffff','#4a90e2','#27ae60'];for(let i=0;i<160;i++)pieces.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,w:Math.random()*10+4,h:Math.random()*6+3,color:colors[Math.floor(Math.random()*colors.length)],speed:Math.random()*3+1.5,angle:Math.random()*Math.PI*2,spin:(Math.random()-.5)*.2});if(animId)cancelAnimationFrame(animId);animateConfetti();setTimeout(stopConfetti,4000);}
+function animateConfetti(){ctx.clearRect(0,0,canvas.width,canvas.height);pieces.forEach(p=>{ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.angle);ctx.fillStyle=p.color;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();p.y+=p.speed;p.angle+=p.spin;if(p.y>canvas.height){p.y=-10;p.x=Math.random()*canvas.width;}});animId=requestAnimationFrame(animateConfetti);}
+function stopConfetti(){if(animId){cancelAnimationFrame(animId);animId=null;}ctx.clearRect(0,0,canvas.width,canvas.height);canvas.style.display='none';pieces=[];}
+function retryAll(){stopConfetti();answered={};totalScore=0;document.getElementById('cur-score').textContent='0';document.getElementById('result-card').classList.remove('show');for(let qn=1;qn<=4;qn++){document.getElementById(`qc-${qn}`).querySelectorAll('.choice-btn').forEach(b=>{b.disabled=false;b.classList.remove('selected-o','selected-x');});document.getElementById(`ans-btn-${qn}`).disabled=true;const exp=document.getElementById(`exp-${qn}`);exp.classList.remove('show');document.getElementById(`exp-q${qn}-ok`).style.display='';document.getElementById(`exp-q${qn}-ng`).style.display='';}document.getElementById('qc-5').querySelectorAll('.mc-btn').forEach(b=>{b.disabled=false;b.classList.remove('selected-mc');});document.getElementById('ans-btn-5').disabled=true;document.getElementById('exp-5').classList.remove('show');document.getElementById('exp-q5-ok').style.display='';document.getElementById('exp-q5-ng').style.display='';}
+</script>
+</body>
+</html>

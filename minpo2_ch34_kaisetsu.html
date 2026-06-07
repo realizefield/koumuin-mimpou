@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法Ⅱ ch34｜消費貸借・使用貸借</title>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--bg:#F5F3EE;--white:#FFFFFF;--text:#1a1a1a;--gray:#666;--light:#EAE8E0;--border:#ddd8ce;}
+body{font-family:'BIZ UDGothic',Meiryo,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:15px;}
+.site-header{background:var(--navy);color:var(--white);padding:10px 20px;display:flex;align-items:center;gap:12px;}
+.site-header .logo{font-size:20px;font-weight:700;color:var(--gold);letter-spacing:2px;}
+.site-header .subtitle{font-size:12px;color:#aab4c8;}
+.chapter-hero{background:linear-gradient(135deg,var(--navy) 0%,#2d4270 100%);color:var(--white);padding:32px 20px 28px;position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;border:3px solid rgba(212,160,23,0.2);border-radius:50%;}
+.chapter-hero::after{content:'';position:absolute;right:-10px;top:-10px;width:100px;height:100px;border:2px solid rgba(212,160,23,0.15);border-radius:50%;}
+.ch-badge{display:inline-block;background:var(--gold);color:var(--navy);font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1px;margin-bottom:10px;}
+.chapter-hero h1{font-size:24px;font-weight:700;letter-spacing:1px;margin-bottom:8px;}
+.chapter-hero .lead{font-size:13px;color:#c8d4e8;line-height:1.7;max-width:560px;}
+.star-row{display:flex;gap:16px;margin-top:12px;}
+.star-item{font-size:12px;color:#aab4c8;}
+.star-item span{color:var(--gold);}
+.main-wrap{max-width:780px;margin:0 auto;padding:24px 16px 60px;}
+.part-header{background:var(--navy);color:var(--white);padding:10px 18px;margin:32px 0 20px;border-left:5px solid var(--gold);border-radius:0 4px 4px 0;font-size:17px;font-weight:700;letter-spacing:1px;}
+.section{margin-bottom:32px;}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--navy);}
+.sec-num{width:32px;height:32px;background:var(--navy);color:var(--gold);font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;}
+.sec-title{font-size:18px;font-weight:700;color:var(--navy);}
+.body-text{margin-bottom:12px;line-height:1.85;}
+.kw{color:var(--crimson);font-weight:700;}
+.kw-b{color:var(--navy);font-weight:700;}
+.point-box{background:var(--white);border:2px solid var(--navy);border-radius:6px;padding:16px 18px;margin:14px 0;}
+.point-box .box-title{font-weight:700;color:var(--navy);font-size:13px;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--light);}
+.point-box ul{padding-left:18px;}
+.point-box ul li{margin-bottom:6px;line-height:1.75;}
+.imp-box{background:#fff8e6;border-left:4px solid var(--gold);padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;}
+.imp-box .imp-label{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:4px;letter-spacing:1px;}
+.data-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+.data-table th{background:var(--navy);color:var(--white);padding:8px 10px;text-align:center;font-weight:700;}
+.data-table td{border:1px solid var(--border);padding:8px 10px;text-align:center;background:var(--white);}
+.data-table tr:nth-child(even) td{background:#f8f7f4;}
+.data-table .td-l{text-align:left;}
+.mini-test{background:var(--white);border:2px solid var(--navy);border-radius:8px;padding:18px;margin:24px 0;}
+.mini-test-title{font-weight:700;font-size:14px;color:var(--navy);margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--light);display:flex;align-items:center;gap:8px;}
+.mini-test-title::before{content:'📝';font-size:16px;}
+.mt-q{margin-bottom:16px;}
+.mt-q .q-text{font-size:14px;margin-bottom:10px;line-height:1.7;}
+.mblank{display:inline-block;min-width:80px;background:var(--light);border:2px solid var(--border);border-radius:4px;padding:2px 8px;text-align:center;color:var(--gray);font-size:13px;cursor:pointer;vertical-align:middle;transition:all .2s;}
+.mblank.filled{background:var(--navy);color:var(--white);border-color:var(--navy);}
+.mblank.correct{background:#1a6e3c;color:var(--white);border-color:#1a6e3c;}
+.mblank.wrong{background:var(--crimson);color:var(--white);border-color:var(--crimson);}
+.chip-bank{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;padding:10px;background:#f8f7f4;border-radius:6px;border:1px dashed var(--border);}
+.chip{display:inline-block;background:var(--navy);color:var(--white);padding:4px 12px;border-radius:20px;font-size:13px;cursor:pointer;transition:all .2s;user-select:none;}
+.chip:hover{background:var(--crimson);transform:translateY(-1px);}
+.chip.used{background:var(--border);color:var(--gray);cursor:default;transform:none;}
+.mt-check-btn{background:var(--crimson);color:var(--white);border:none;padding:8px 24px;border-radius:4px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;}
+.mt-check-btn:hover{background:#a93226;}
+.mt-result{margin-top:8px;font-weight:700;font-size:14px;padding:6px 12px;border-radius:4px;display:none;}
+.mt-result.ok{background:#e8f5e9;color:#1a6e3c;display:block;}
+.mt-result.ng{background:#fdecea;color:var(--crimson);display:block;}
+.mt-reset-btn{background:var(--navy);color:var(--white);border:none;padding:6px 16px;border-radius:4px;font-family:inherit;font-size:12px;cursor:pointer;margin-top:6px;}
+.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-top:2px solid var(--border);margin-top:40px;flex-wrap:wrap;gap:8px;}
+.nav-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:13px;font-weight:700;}
+.nav-prev{background:var(--light);color:var(--navy);}
+.nav-next{background:var(--navy);color:var(--white);}
+.nav-index{background:var(--gold);color:var(--navy);}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <span class="logo">GAMBA</span>
+  <span class="subtitle">民法Ⅱ ｜ 公務員試験対策</span>
+</header>
+<div class="chapter-hero">
+  <div class="ch-badge">CHAPTER 34</div>
+  <h1>消費貸借・使用貸借</h1>
+  <p class="lead">消費貸借は「お金を借りる契約」、使用貸借は「無償で物を借りる契約」。賃貸借との違いを意識しながら整理しよう。</p>
+  <div class="star-row">
+    <span class="star-item">重要度 <span>★★☆</span></span>
+    <span class="star-item">頻出度 <span>★★☆</span></span>
+  </div>
+</div>
+<div class="main-wrap">
+
+<div class="part-header">【消費貸借】</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">1</div><div class="sec-title">消費貸借とは？</div></div>
+  <p class="body-text">「<span class="kw">消費貸借</span>」とは、当事者の一方が種類・品質・数量の同じ物をもって返還することを約して相手方から金銭その他の物を<span class="kw">受け取ることによって</span>効力を生ずる契約です（587条）。現代ではとりあえず「<span class="kw-b">銀行などでお金を借りる契約</span>」と考えてよいです。</p>
+  <p class="body-text">金銭を受け取ることで効力が生じるため<span class="kw">要物契約</span>。借主が返還義務を負うだけなので<span class="kw">片務契約</span>、利息付きでない限り<span class="kw">無償契約</span>です。</p>
+
+  <div class="imp-box">
+    <div class="imp-label">POINT ― 書面でする消費貸借（諾成的消費貸借：587条の2）</div>
+    <p>書面でする消費貸借は、引き渡すことを約し返還することを約することで効力を生じる<span class="kw">諾成契約</span>。これにより貸主に<span class="kw">目的物引渡義務が発生</span>。ただし借主は<span class="kw">受け取るまで解除できる</span>（587条の2第2項）。当事者の一方が<span class="kw">破産手続開始の決定を受けたとき</span>はその効力を失う（587条の2第3項）。</p>
+  </div>
+
+  <div class="point-box">
+    <div class="box-title">📌 利息・返還時期</div>
+    <ul>
+      <li>貸主は<span class="kw">特約がなければ利息を請求できない</span>（無利息の原則：589条1項）</li>
+      <li>利息付きの場合、借主が目的物を<span class="kw">受け取った日以後</span>の利息を請求できる（589条2項）</li>
+      <li>返還時期の定めなし→貸主は<span class="kw">相当の期間を定めて催告</span>（ただし期間の定めのない催告も有効：大判昭5・1・29）</li>
+      <li>借主は返還時期の定めの有無にかかわらず<span class="kw">いつでも返還できる</span>（591条2項）</li>
+    </ul>
+  </div>
+
+  <div class="imp-box">
+    <div class="imp-label">POINT ― 準消費貸借</div>
+    <p>「<span class="kw">準消費貸借</span>」とは、金銭その他の物を給付する義務を負う者がある場合に、当事者がその物を消費貸借の目的とすることを約したもの（売買代金債務を貸金債権に変換する場合など）。<span class="kw">旧債務と新債務は同一性を有する</span>ため、旧債務が無効・取消しなら準消費貸借も無効。</p>
+  </div>
+</div>
+
+<div class="mini-test" id="mt1">
+  <div class="mini-test-title">ミニテスト①　消費貸借</div>
+  <div class="chip-bank" id="bank1">
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">要物契約</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">受け取るまで解除できる</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">特約がなければ利息を請求できない</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">いつでも返還できる</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">同一性を有する</span>
+  </div>
+  <div class="mt-q">
+    <p class="q-text">Q1. 通常の消費貸借は目的物の受取りで効力が生じる<span class="mblank" data-ans="要物契約" onclick="selectBlank(this,'mt1')">　　</span>。書面でする消費貸借（諾成的消費貸借）では借主は目的物を<span class="mblank" data-ans="受け取るまで解除できる" onclick="selectBlank(this,'mt1')">　　</span>。</p>
+    <p class="q-text">Q2. 貸主は<span class="mblank" data-ans="特約がなければ利息を請求できない" onclick="selectBlank(this,'mt1')">　　</span>。借主は返還時期の定めの有無にかかわらず<span class="mblank" data-ans="いつでも返還できる" onclick="selectBlank(this,'mt1')">　　</span>。準消費貸借では旧債務と新債務は<span class="mblank" data-ans="同一性を有する" onclick="selectBlank(this,'mt1')">　　</span>。</p>
+  </div>
+  <button class="mt-check-btn" onclick="checkQ('mt1',5)">答え合わせ</button>
+  <button class="mt-reset-btn" onclick="resetQ('mt1','bank1')">リセット</button>
+  <div class="mt-result" id="res-mt1"></div>
+</div>
+
+<div class="part-header">【使用貸借】</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">2</div><div class="sec-title">使用貸借とは？</div></div>
+  <p class="body-text">「<span class="kw">使用貸借</span>」は、当事者の一方がある物を引き渡すことを約し、相手方がその受け取った物について<span class="kw">無償</span>で使用収益して契約が終了したときに返還することを約することによって効力を生じる<span class="kw">諾成契約</span>です（593条）。友達にDVDを無料で貸すような場合が典型です。</p>
+
+  <div class="point-box">
+    <div class="box-title">📌 借主の義務</div>
+    <ul>
+      <li><span class="kw">用法遵守義務・善管注意義務</span>（594条）</li>
+      <li><span class="kw">無断転貸禁止</span>：貸主の承諾なく第三者に使用収益させた場合、貸主は<span class="kw">無催告解除</span>できる（594条3項）</li>
+      <li><span class="kw">費用負担</span>：借主は<span class="kw">通常の必要費</span>を負担（595条1項）。特別（非常）の必要費・有益費を支出したときは貸主に償還請求できる（595条2項）</li>
+      <li><span class="kw">書面による使用貸借</span>は、借主が借用物を受け取るまでの間でも貸主は<span class="kw">解除できない</span>（593条の2）</li>
+    </ul>
+  </div>
+
+  <div class="point-box">
+    <div class="box-title">📌 使用貸借の解除・終了</div>
+    <table class="data-table">
+      <tr><th></th><th>期間・目的あり</th><th>期間も目的もなし</th></tr>
+      <tr><td class="td-l"><strong>貸主</strong></td><td>目的達成に足りる期間経過後に解除可（598条1項）</td><td><span class="kw">いつでも</span>解除可（598条2項）</td></tr>
+      <tr><td class="td-l"><strong>借主</strong></td><td colspan="2"><span class="kw">いつでも</span>解除可（598条3項）</td></tr>
+    </table>
+    <p style="font-size:13px;margin-top:6px;">※使用借権は<span class="kw">借主の死亡</span>によって終了し<span class="kw">相続されない</span>（597条3項）。賃借権は相続の対象となる点と対照的。</p>
+    <p style="font-size:13px;">※使用貸借の借主は<span class="kw">対抗要件を備えることができない</span>（不動産賃借権は対抗要件を備えられる点と対照的）。</p>
+  </div>
+
+  <div class="imp-box">
+    <div class="imp-label">賃貸借 vs 使用貸借　まとめ</div>
+    <table class="data-table" style="margin-top:8px;">
+      <tr><th></th><th>賃貸借</th><th>使用貸借</th></tr>
+      <tr><td class="td-l">有償・無償</td><td>有償</td><td><span class="kw">無償</span></td></tr>
+      <tr><td class="td-l">修繕義務</td><td>貸主にあり</td><td><span class="kw">なし</span></td></tr>
+      <tr><td class="td-l">対抗要件</td><td>不動産は可</td><td><span class="kw">不可</span></td></tr>
+      <tr><td class="td-l">相続</td><td>賃借権は相続される</td><td><span class="kw">借主死亡で終了</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="mini-test" id="mt2">
+  <div class="mini-test-title">ミニテスト②　使用貸借</div>
+  <div class="chip-bank" id="bank2">
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">無償</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">通常の必要費</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">いつでも</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">相続されない</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">対抗要件を備えることができない</span>
+  </div>
+  <div class="mt-q">
+    <p class="q-text">Q1. 使用貸借は<span class="mblank" data-ans="無償" onclick="selectBlank(this,'mt2')">　　</span>で物を貸す諾成契約。借主は<span class="mblank" data-ans="通常の必要費" onclick="selectBlank(this,'mt2')">　　</span>を負担する。借主は<span class="mblank" data-ans="いつでも" onclick="selectBlank(this,'mt2')">　　</span>契約を解除できる。</p>
+    <p class="q-text">Q2. 使用借権は借主の死亡によって終了し<span class="mblank" data-ans="相続されない" onclick="selectBlank(this,'mt2')">　　</span>。また使用貸借の借主は<span class="mblank" data-ans="対抗要件を備えることができない" onclick="selectBlank(this,'mt2')">　　</span>。</p>
+  </div>
+  <button class="mt-check-btn" onclick="checkQ('mt2',5)">答え合わせ</button>
+  <button class="mt-reset-btn" onclick="resetQ('mt2','bank2')">リセット</button>
+  <div class="mt-result" id="res-mt2"></div>
+</div>
+
+<div class="chapter-nav">
+  <a href="minpo2_ch33_kaisetsu.html" class="nav-btn nav-prev">← ch33 売買・贈与</a>
+  <a href="minpo2_index.html" class="nav-btn nav-index">目次</a>
+  <a href="minpo2_ch35_kaisetsu.html" class="nav-btn nav-next">ch35 賃貸借 →</a>
+</div>
+</div>
+<script>
+let selectedBlank=null;
+function selectBlank(el,testId){document.querySelectorAll(`#${testId} .mblank`).forEach(b=>b.style.outline='');selectedBlank=el;el.style.outline='2px solid var(--crimson)';}
+function useChip(chip,bankId,testId){if(chip.classList.contains('used'))return;if(!selectedBlank){alert('先に埋める空欄をクリックしてください。');return;}if(selectedBlank.closest(`#${testId}`)===null){alert('同じテストの空欄を選んでください。');return;}selectedBlank.textContent=chip.textContent;selectedBlank.classList.add('filled');selectedBlank.style.outline='';chip.classList.add('used');selectedBlank=null;}
+function checkQ(testId,total){const blanks=document.querySelectorAll(`#${testId} .mblank`);let correct=0;blanks.forEach(b=>{if(b.textContent.trim()===b.getAttribute('data-ans')){b.classList.remove('wrong');b.classList.add('correct');correct++;}else{b.classList.remove('correct');b.classList.add('wrong');}});const res=document.getElementById(`res-${testId}`);if(correct===total){res.textContent=`✅ 全問正解！完璧です（${correct}/${total}）`;res.className='mt-result ok';}else{res.textContent=`❌ ${correct}/${total} 正解。赤くなった箇所を確認しよう。`;res.className='mt-result ng';}}
+function resetQ(testId,bankId){document.querySelectorAll(`#${testId} .mblank`).forEach(b=>{b.textContent='　　';b.className='mblank';b.style.outline='';});document.querySelectorAll(`#${bankId} .chip`).forEach(c=>c.classList.remove('used'));const res=document.getElementById(`res-${testId}`);res.className='mt-result';res.textContent='';selectedBlank=null;}
+</script>
+</body>
+</html>

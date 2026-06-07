@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法Ⅱ ch35 演習｜賃貸借</title>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--bg:#F5F3EE;--white:#fff;--light:#EAE8E0;--border:#ddd8ce;--text:#1a1a1a;}
+body{font-family:'BIZ UDGothic',Meiryo,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.8;}
+.site-header{background:var(--navy);color:#fff;padding:10px 20px;display:flex;align-items:center;gap:12px;}
+.logo{font-size:20px;font-weight:700;color:var(--gold);letter-spacing:2px;}
+.subtitle{font-size:12px;color:#aab4c8;}
+.ex-hero{background:linear-gradient(135deg,#2d1b4e 0%,var(--navy) 100%);color:#fff;padding:28px 20px;position:relative;overflow:hidden;}
+.ex-hero::before{content:'';position:absolute;right:-30px;top:-30px;width:160px;height:160px;border:3px solid rgba(212,160,23,0.2);border-radius:50%;}
+.ex-badge{display:inline-block;background:var(--crimson);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1px;margin-bottom:8px;}
+.ex-hero h1{font-size:20px;font-weight:700;}
+.ex-hero .ex-sub{font-size:13px;color:#c8d4e8;margin-top:6px;}
+.main-wrap{max-width:780px;margin:0 auto;padding:24px 16px 60px;}
+.score-board{background:var(--navy);color:#fff;border-radius:8px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.score-label{font-size:13px;color:#aab4c8;}
+.score-val{font-size:28px;font-weight:700;color:var(--gold);}
+.q-card{background:var(--white);border-radius:8px;border:1px solid var(--border);padding:20px;margin-bottom:20px;position:relative;}
+.q-num{position:absolute;top:-1px;left:-1px;background:var(--navy);color:var(--gold);font-size:12px;font-weight:700;padding:4px 12px;border-radius:8px 0 8px 0;}
+.q-type{display:inline-block;font-size:11px;color:#666;border:1px solid var(--border);padding:1px 8px;border-radius:10px;margin:28px 0 10px;}
+.q-text{font-size:15px;line-height:1.85;margin-bottom:14px;}
+.choices{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+.choice-btn{padding:8px 20px;border-radius:4px;border:2px solid var(--border);background:var(--white);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;}
+.choice-btn:hover:not(:disabled){border-color:var(--navy);background:var(--light);}
+.choice-btn.selected-o{border-color:var(--navy);background:var(--navy);color:#fff;}
+.choice-btn.selected-x{border-color:var(--crimson);background:var(--crimson);color:#fff;}
+.choice-btn:disabled{cursor:default;opacity:.7;}
+.mc-choices{display:flex;flex-direction:column;gap:8px;margin-bottom:8px;}
+.mc-btn{padding:10px 14px;border-radius:4px;border:2px solid var(--border);background:var(--white);font-family:inherit;font-size:14px;text-align:left;cursor:pointer;transition:all .15s;}
+.mc-btn:hover:not(:disabled){border-color:var(--navy);background:var(--light);}
+.mc-btn.selected-mc{border-color:var(--navy);background:var(--navy);color:#fff;}
+.mc-btn:disabled{cursor:default;}
+.ans-btn{background:var(--gold);color:var(--navy);border:none;padding:8px 20px;border-radius:4px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;}
+.ans-btn:hover{background:#c49414;}
+.ans-btn:disabled{background:var(--border);color:#666;cursor:default;}
+.exp-area{margin-top:12px;display:none;}
+.exp-area.show{display:block;}
+.exp-ok{background:#e8f5e9;border-left:4px solid #1a6e3c;padding:10px 14px;border-radius:0 4px 4px 0;}
+.exp-ng{background:#fdecea;border-left:4px solid var(--crimson);padding:10px 14px;border-radius:0 4px 4px 0;}
+.exp-label{font-weight:700;font-size:12px;margin-bottom:4px;letter-spacing:1px;}
+.exp-ok .exp-label{color:#1a6e3c;}
+.exp-ng .exp-label{color:var(--crimson);}
+.exp-text{font-size:14px;line-height:1.75;}
+canvas#confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;display:none;}
+.result-card{background:var(--navy);color:#fff;border-radius:8px;padding:24px 20px;text-align:center;margin-top:8px;display:none;}
+.result-card.show{display:block;}
+.result-card .big-score{font-size:48px;font-weight:700;color:var(--gold);line-height:1;}
+.result-card .score-msg{font-size:15px;color:#c8d4e8;margin-top:6px;}
+.retry-btn{background:var(--crimson);color:#fff;border:none;padding:10px 28px;border-radius:4px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;margin-top:14px;}
+.nav-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:16px 0;border-top:2px solid var(--border);margin-top:32px;}
+.nav-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:13px;font-weight:700;}
+.nav-prev{background:var(--light);color:var(--navy);}
+.nav-next{background:var(--navy);color:#fff;}
+.nav-index{background:var(--gold);color:var(--navy);}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<header class="site-header"><span class="logo">GAMBA</span><span class="subtitle">民法Ⅱ ｜ 演習</span></header>
+<div class="ex-hero">
+  <div class="ex-badge">CHAPTER 35 演習</div>
+  <h1>賃貸借</h1>
+  <p class="ex-sub">○×問題4問＋5択問題1問　全5問</p>
+</div>
+<div class="main-wrap">
+<div class="score-board">
+  <div><div class="score-label">現在のスコア</div><div class="score-val"><span id="cur-score">0</span> / 5</div></div>
+  <div style="font-size:13px;color:#aab4c8;">答え合わせしながら進もう</div>
+</div>
+
+<div class="q-card" id="qc-1">
+  <div class="q-num">Q1</div>
+  <span class="q-type">○×問題</span>
+  <p class="q-text">賃貸目的物が譲渡され、賃借人が対抗要件を備えている場合、賃貸人たる地位は当然に譲受人に移転し、費用償還債務や敷金返還債務も承継される。ただし、賃貸人たる地位の移転は所有権移転登記を具備しなければ賃借人に対抗することができない。</p>
+  <div class="choices">
+    <button class="choice-btn" onclick="ansOX(1,'○')">○</button>
+    <button class="choice-btn" onclick="ansOX(1,'×')">×</button>
+  </div>
+  <button class="ans-btn" id="ans-btn-1" onclick="showExp(1)" disabled>解説を見る</button>
+  <div class="exp-area" id="exp-1">
+    <div class="exp-ok" id="exp-q1-ok">
+      <div class="exp-label">✅ 正解：○</div>
+      <p class="exp-text">賃借人が対抗要件を備えている場合、賃貸人たる地位は<strong>当然に譲受人に移転</strong>し（605条の2第1項）、費用償還債務や敷金返還債務も承継される（605条の2第4項）。ただし<strong>所有権移転登記なしには賃借人に対抗できない</strong>（605条の2第3項）。どちらも正しい。</p>
+    </div>
+    <div class="exp-ng" id="exp-q1-ng">
+      <div class="exp-label">❌ 不正解</div>
+      <p class="exp-text">賃借人が対抗要件を備えていれば賃貸人たる地位は当然移転し費用・敷金債務も承継されます（605条の2）。所有権移転登記がなければ賃借人に対抗できません。どちらも正しい記述です。</p>
+    </div>
+  </div>
+</div>
+
+<div class="q-card" id="qc-2">
+  <div class="q-num">Q2</div>
+  <span class="q-type">○×問題</span>
+  <p class="q-text">賃貸目的物の明渡しと敷金の返還は同時履行の関係にあるため、賃借人は敷金の返還がなされるまで賃貸目的物の明渡しを拒否することができる。</p>
+  <div class="choices">
+    <button class="choice-btn" onclick="ansOX(2,'○')">○</button>
+    <button class="choice-btn" onclick="ansOX(2,'×')">×</button>
+  </div>
+  <button class="ans-btn" id="ans-btn-2" onclick="showExp(2)" disabled>解説を見る</button>
+  <div class="exp-area" id="exp-2">
+    <div class="exp-ng" id="exp-q2-ok">
+      <div class="exp-label">✅ 正解：×</div>
+      <p class="exp-text">明渡しと敷金の返還は<strong>同時履行の関係ではなく</strong>、<strong>明渡しが先履行</strong>である（最判昭49・9・2）。敷金返還債務は賃貸借終了後、目的物の返還を受けた時（明渡し時）に発生するため、賃借人は敷金の返還がないことを理由に明渡しを拒否することはできない。</p>
+    </div>
+    <div class="exp-ok" id="exp-q2-ng">
+      <div class="exp-label">❌ 不正解</div>
+      <p class="exp-text">明渡しと敷金返還は<strong>同時履行の関係ではなく</strong>、<strong>明渡しが先履行</strong>です（最判昭49・9・2）。明渡しを拒否することはできません。</p>
+    </div>
+  </div>
+</div>
+
+<div class="q-card" id="qc-3">
+  <div class="q-num">Q3</div>
+  <span class="q-type">○×問題</span>
+  <p class="q-text">賃貸人Aと賃借人Bが合意によって賃貸借契約を解除した場合、AはBから適法に転貸の承諾を受けていた転借人Cに対して、合意解除を対抗することができない。</p>
+  <div class="choices">
+    <button class="choice-btn" onclick="ansOX(3,'○')">○</button>
+    <button class="choice-btn" onclick="ansOX(3,'×')">×</button>
+  </div>
+  <button class="ans-btn" id="ans-btn-3" onclick="showExp(3)" disabled>解説を見る</button>
+  <div class="exp-area" id="exp-3">
+    <div class="exp-ok" id="exp-q3-ok">
+      <div class="exp-label">✅ 正解：○</div>
+      <p class="exp-text">賃貸借契約の<strong>合意解除</strong>（契約による解除）の場合、それをAはCに<strong>対抗できない</strong>（613条3項本文）。ただし、合意解除当時、貸主が借主の債務不履行による解除権を有していたときは対抗できる（613条3項ただし書）。正しい。</p>
+    </div>
+    <div class="exp-ng" id="exp-q3-ng">
+      <div class="exp-label">❌ 不正解</div>
+      <p class="exp-text">合意解除は転借人Cに<strong>対抗できません</strong>（613条3項本文）。正しい記述です。</p>
+    </div>
+  </div>
+</div>
+
+<div class="q-card" id="qc-4">
+  <div class="q-num">Q4</div>
+  <span class="q-type">○×問題</span>
+  <p class="q-text">賃借人が賃貸人の承諾なく賃借物を転貸した場合、賃貸人は無催告で賃貸借契約を解除することができるが、無断転貸・無断譲渡契約自体は有効であり、転借人の使用収益を理由に解除権が発生しない「特段の事情」の立証責任は賃借人側が負う。</p>
+  <div class="choices">
+    <button class="choice-btn" onclick="ansOX(4,'○')">○</button>
+    <button class="choice-btn" onclick="ansOX(4,'×')">×</button>
+  </div>
+  <button class="ans-btn" id="ans-btn-4" onclick="showExp(4)" disabled>解説を見る</button>
+  <div class="exp-area" id="exp-4">
+    <div class="exp-ok" id="exp-q4-ok">
+      <div class="exp-label">✅ 正解：○</div>
+      <p class="exp-text">無断転貸があると賃貸人は<strong>無催告解除</strong>できる（612条2項）。無断転貸・無断譲渡<strong>契約自体は有効</strong>。信頼関係破壊の法理（最判昭28・9・25）により<strong>特段の事情</strong>がある場合は解除権が発生しないが、その<strong>立証責任は賃借人側</strong>が負う。どれも正しい。</p>
+    </div>
+    <div class="exp-ng" id="exp-q4-ng">
+      <div class="exp-label">❌ 不正解</div>
+      <p class="exp-text">無催告解除可・契約自体は有効・特段の事情の立証責任は賃借人側。すべて正しい記述です。</p>
+    </div>
+  </div>
+</div>
+
+<div class="q-card" id="qc-5">
+  <div class="q-num">Q5</div>
+  <span class="q-type">5択問題</span>
+  <p class="q-text">民法に規定する賃貸借に関する記述として、判例、通説に照らして、妥当なのはどれか。【特別区 H28改題】</p>
+  <div class="mc-choices">
+    <button class="mc-btn" onclick="ansMC(5,1)">1. 賃貸人は、賃貸物の使用及び収益に必要な修繕をする義務を負い、特約によって修繕義務を免れることは一切できず、賃借人は、賃借物が修繕を要するときは、遅滞なくその旨を賃貸人に通知しなければならないが、賃貸人が既にこれを知っているときは、この限りでない。</button>
+    <button class="mc-btn" onclick="ansMC(5,2)">2. 賃貸人が賃貸物の保存に必要な行為をしようとするときは、賃借人はこれを拒むことができず、賃貸人が賃借人の意思に反して保存行為をしようとする場合において、そのために賃借人が賃借をした目的を達することができなくなるときであっても、賃借人は契約の解除をすることができない。</button>
+    <button class="mc-btn" onclick="ansMC(5,3)">3. 最高裁判所の判例では、民法は、賃貸人の承諾なく賃借人から第三者への賃借権の譲渡をしたときは、賃貸人は賃貸借契約を解除することができる旨を定めているが、小規模で閉鎖的な有限会社において、持分の譲渡及び役員の交代により実質的な経営者が交代した場合、当該賃借権の譲渡にあたるとした。</button>
+    <button class="mc-btn" onclick="ansMC(5,4)">4. 賃貸人たる地位が当然に移転する場面では、賃貸人たる地位を譲渡人（A）に留保する旨の合意をし、かつその不動産を譲受人（C）が譲渡人（A）に貸貸する旨の合意をしたときであっても、賃貸人たる地位の移転が生じる。</button>
+    <button class="mc-btn" onclick="ansMC(5,5)">5. 最高裁判所の判例では、土地の賃貸借契約において、適法な転貸借関係が存在する場合に、賃貸人が賃料の不払を理由に契約を解除するには、特段の事情のない限り、転借人に通知等をして賃料の代払の機会を与えなければならないものではないとした。</button>
+  </div>
+  <button class="ans-btn" id="ans-btn-5" onclick="showExp(5)" disabled>解説を見る</button>
+  <div class="exp-area" id="exp-5">
+    <div class="exp-ok" id="exp-q5-ok">
+      <div class="exp-label">✅ 正解：5</div>
+      <p class="exp-text"><strong>1.×</strong> 修繕義務の規定は任意規定であり、特約によって排除可能（最判昭29・6・25）。<br><strong>2.×</strong> 賃貸人の保存行為により賃借人が賃借目的を達することができなくなるときは、賃借人は<strong>契約の解除をすることができる</strong>（607条）。<br><strong>3.×</strong> 判例は小規模で閉鎖的な有限会社での持分譲渡・役員交代は<strong>賃借権の譲渡にあたらない</strong>とした（最判平8・10・14）。<br><strong>4.×</strong> 地位留保合意＋賃貸合意がある場合は<strong>賃貸人たる地位の移転が生じない</strong>（605条の2第2項）。<br><strong>5.○</strong> 転借人に延滞賃料の代払の機会を与えずに解除できる（最判昭37・3・29）。</p>
+    </div>
+    <div class="exp-ng" id="exp-q5-ng">
+      <div class="exp-label">❌ 不正解</div>
+      <p class="exp-text">正解は<strong>5番</strong>。適法転貸借がある場合でも、賃貸人は転借人に催告せずに解除できます（最判昭37・3・29）。1：修繕義務は任意規定（×）。2：保存行為で目的達成不能なら解除可（×）。3：小規模有限会社の役員交代は譲渡にあたらない（×）。4：地位留保合意があれば移転しない（×）。</p>
+    </div>
+  </div>
+</div>
+
+<div class="result-card" id="result-card">
+  <div style="font-size:15px;color:#aab4c8;margin-bottom:8px;">最終スコア</div>
+  <div class="big-score" id="final-score">0</div>
+  <div style="font-size:20px;color:#aab4c8;">/ 5</div>
+  <div class="score-msg" id="score-msg"></div>
+  <button class="retry-btn" onclick="retryAll()">もう一度挑戦</button>
+</div>
+<div class="nav-row">
+  <a href="minpo2_ch35_kaisetsu.html" class="nav-btn nav-prev">← 解説に戻る</a>
+  <a href="minpo2_index.html" class="nav-btn nav-index">目次</a>
+  <a href="minpo2_ch36_enshu.html" class="nav-btn nav-next">ch36 演習へ →</a>
+</div>
+</div>
+<script>
+const correctOX={1:'○',2:'×',3:'○',4:'○'};
+const correctMC={5:5};
+let answered={},totalScore=0;
+const totalQ=5;
+function ansOX(qn,choice){if(answered[qn])return;answered[qn]=true;document.getElementById(`qc-${qn}`).querySelectorAll('.choice-btn').forEach(b=>{b.disabled=true;if(b.textContent===choice)b.classList.add(choice==='○'?'selected-o':'selected-x');});document.getElementById(`ans-btn-${qn}`).disabled=false;answered[`${qn}_ok`]=(choice===correctOX[qn]);if(answered[`${qn}_ok`]){totalScore++;document.getElementById('cur-score').textContent=totalScore;}checkAllDone();}
+function ansMC(qn,choice){if(answered[qn])return;answered[qn]=true;document.getElementById(`qc-${qn}`).querySelectorAll('.mc-btn').forEach((b,i)=>{b.disabled=true;if(i+1===choice)b.classList.add('selected-mc');});document.getElementById(`ans-btn-${qn}`).disabled=false;answered[`${qn}_ok`]=(choice===correctMC[qn]);if(answered[`${qn}_ok`]){totalScore++;document.getElementById('cur-score').textContent=totalScore;}checkAllDone();}
+function showExp(qn){const expArea=document.getElementById(`exp-${qn}`);expArea.classList.add('show');const isOK=answered[`${qn}_ok`];document.getElementById(`exp-q${qn}-ok`).style.display=isOK?'block':'none';document.getElementById(`exp-q${qn}-ng`).style.display=isOK?'none':'block';document.getElementById(`ans-btn-${qn}`).disabled=true;}
+function checkAllDone(){if(Object.keys(answered).filter(k=>!k.includes('_ok')).length===totalQ){setTimeout(()=>{const rc=document.getElementById('result-card');rc.classList.add('show');document.getElementById('final-score').textContent=totalScore;const msgs=['💪 基礎から見直してみよう','💪 基礎から見直してみよう','📖 もう一度テキストで確認しよう','📖 もう一度テキストで確認しよう','🌸 惜しい！あと一歩！','🎉 パーフェクト！完全制覇！'];document.getElementById('score-msg').textContent=msgs[totalScore];if(totalScore>=4)launchConfetti();},600);}}
+const canvas=document.getElementById('confetti'),ctx=canvas.getContext('2d');
+let pieces=[],animId=null;
+function launchConfetti(){canvas.style.display='block';canvas.width=window.innerWidth;canvas.height=window.innerHeight;pieces=[];const colors=['#1B2A4A','#C0392B','#D4A017','#ffffff','#4a90e2','#27ae60'];for(let i=0;i<160;i++)pieces.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,w:Math.random()*10+4,h:Math.random()*6+3,color:colors[Math.floor(Math.random()*colors.length)],speed:Math.random()*3+1.5,angle:Math.random()*Math.PI*2,spin:(Math.random()-.5)*.2});if(animId)cancelAnimationFrame(animId);animateConfetti();setTimeout(stopConfetti,4000);}
+function animateConfetti(){ctx.clearRect(0,0,canvas.width,canvas.height);pieces.forEach(p=>{ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.angle);ctx.fillStyle=p.color;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();p.y+=p.speed;p.angle+=p.spin;if(p.y>canvas.height){p.y=-10;p.x=Math.random()*canvas.width;}});animId=requestAnimationFrame(animateConfetti);}
+function stopConfetti(){if(animId){cancelAnimationFrame(animId);animId=null;}ctx.clearRect(0,0,canvas.width,canvas.height);canvas.style.display='none';pieces=[];}
+function retryAll(){stopConfetti();answered={};totalScore=0;document.getElementById('cur-score').textContent='0';document.getElementById('result-card').classList.remove('show');for(let qn=1;qn<=4;qn++){document.getElementById(`qc-${qn}`).querySelectorAll('.choice-btn').forEach(b=>{b.disabled=false;b.classList.remove('selected-o','selected-x');});document.getElementById(`ans-btn-${qn}`).disabled=true;const exp=document.getElementById(`exp-${qn}`);exp.classList.remove('show');document.getElementById(`exp-q${qn}-ok`).style.display='';document.getElementById(`exp-q${qn}-ng`).style.display='';}document.getElementById('qc-5').querySelectorAll('.mc-btn').forEach(b=>{b.disabled=false;b.classList.remove('selected-mc');});document.getElementById('ans-btn-5').disabled=true;document.getElementById('exp-5').classList.remove('show');document.getElementById('exp-q5-ok').style.display='';document.getElementById('exp-q5-ng').style.display='';}
+</script>
+</body>
+</html>

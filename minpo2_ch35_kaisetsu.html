@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法Ⅱ ch35｜賃貸借</title>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--bg:#F5F3EE;--white:#FFFFFF;--text:#1a1a1a;--gray:#666;--light:#EAE8E0;--border:#ddd8ce;}
+body{font-family:'BIZ UDGothic',Meiryo,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:15px;}
+.site-header{background:var(--navy);color:var(--white);padding:10px 20px;display:flex;align-items:center;gap:12px;}
+.site-header .logo{font-size:20px;font-weight:700;color:var(--gold);letter-spacing:2px;}
+.site-header .subtitle{font-size:12px;color:#aab4c8;}
+.chapter-hero{background:linear-gradient(135deg,var(--navy) 0%,#2d4270 100%);color:var(--white);padding:32px 20px 28px;position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;border:3px solid rgba(212,160,23,0.2);border-radius:50%;}
+.chapter-hero::after{content:'';position:absolute;right:-10px;top:-10px;width:100px;height:100px;border:2px solid rgba(212,160,23,0.15);border-radius:50%;}
+.ch-badge{display:inline-block;background:var(--gold);color:var(--navy);font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1px;margin-bottom:10px;}
+.chapter-hero h1{font-size:24px;font-weight:700;letter-spacing:1px;margin-bottom:8px;}
+.chapter-hero .lead{font-size:13px;color:#c8d4e8;line-height:1.7;max-width:560px;}
+.star-row{display:flex;gap:16px;margin-top:12px;}
+.star-item{font-size:12px;color:#aab4c8;}
+.star-item span{color:var(--gold);}
+.main-wrap{max-width:780px;margin:0 auto;padding:24px 16px 60px;}
+.section{margin-bottom:32px;}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--navy);}
+.sec-num{width:32px;height:32px;background:var(--navy);color:var(--gold);font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;}
+.sec-title{font-size:18px;font-weight:700;color:var(--navy);}
+.body-text{margin-bottom:12px;line-height:1.85;}
+.kw{color:var(--crimson);font-weight:700;}
+.kw-b{color:var(--navy);font-weight:700;}
+.point-box{background:var(--white);border:2px solid var(--navy);border-radius:6px;padding:16px 18px;margin:14px 0;}
+.point-box .box-title{font-weight:700;color:var(--navy);font-size:13px;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--light);}
+.point-box ul{padding-left:18px;}
+.point-box ul li{margin-bottom:6px;line-height:1.75;}
+.imp-box{background:#fff8e6;border-left:4px solid var(--gold);padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;}
+.imp-box .imp-label{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:4px;letter-spacing:1px;}
+.hanrei-box{background:#f0f4ff;border-left:4px solid var(--navy);padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;}
+.hanrei-box .h-label{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:4px;letter-spacing:1px;}
+.data-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+.data-table th{background:var(--navy);color:var(--white);padding:8px 10px;text-align:center;font-weight:700;}
+.data-table td{border:1px solid var(--border);padding:8px 10px;text-align:center;background:var(--white);}
+.data-table tr:nth-child(even) td{background:#f8f7f4;}
+.data-table .td-l{text-align:left;}
+.mini-test{background:var(--white);border:2px solid var(--navy);border-radius:8px;padding:18px;margin:24px 0;}
+.mini-test-title{font-weight:700;font-size:14px;color:var(--navy);margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--light);display:flex;align-items:center;gap:8px;}
+.mini-test-title::before{content:'📝';font-size:16px;}
+.mt-q{margin-bottom:16px;}
+.mt-q .q-text{font-size:14px;margin-bottom:10px;line-height:1.7;}
+.mblank{display:inline-block;min-width:80px;background:var(--light);border:2px solid var(--border);border-radius:4px;padding:2px 8px;text-align:center;color:var(--gray);font-size:13px;cursor:pointer;vertical-align:middle;transition:all .2s;}
+.mblank.filled{background:var(--navy);color:var(--white);border-color:var(--navy);}
+.mblank.correct{background:#1a6e3c;color:var(--white);border-color:#1a6e3c;}
+.mblank.wrong{background:var(--crimson);color:var(--white);border-color:var(--crimson);}
+.chip-bank{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;padding:10px;background:#f8f7f4;border-radius:6px;border:1px dashed var(--border);}
+.chip{display:inline-block;background:var(--navy);color:var(--white);padding:4px 12px;border-radius:20px;font-size:13px;cursor:pointer;transition:all .2s;user-select:none;}
+.chip:hover{background:var(--crimson);transform:translateY(-1px);}
+.chip.used{background:var(--border);color:var(--gray);cursor:default;transform:none;}
+.mt-check-btn{background:var(--crimson);color:var(--white);border:none;padding:8px 24px;border-radius:4px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;}
+.mt-check-btn:hover{background:#a93226;}
+.mt-result{margin-top:8px;font-weight:700;font-size:14px;padding:6px 12px;border-radius:4px;display:none;}
+.mt-result.ok{background:#e8f5e9;color:#1a6e3c;display:block;}
+.mt-result.ng{background:#fdecea;color:var(--crimson);display:block;}
+.mt-reset-btn{background:var(--navy);color:var(--white);border:none;padding:6px 16px;border-radius:4px;font-family:inherit;font-size:12px;cursor:pointer;margin-top:6px;}
+.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-top:2px solid var(--border);margin-top:40px;flex-wrap:wrap;gap:8px;}
+.nav-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:13px;font-weight:700;}
+.nav-prev{background:var(--light);color:var(--navy);}
+.nav-next{background:var(--navy);color:var(--white);}
+.nav-index{background:var(--gold);color:var(--navy);}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <span class="logo">GAMBA</span>
+  <span class="subtitle">民法Ⅱ ｜ 公務員試験対策</span>
+</header>
+<div class="chapter-hero">
+  <div class="ch-badge">CHAPTER 35</div>
+  <h1>賃貸借</h1>
+  <p class="lead">売買と同様の超頻出テーマ。毎年どこかの試験種で必ず出題される。対抗要件・敷金・転貸・無断転貸・信頼関係破壊の法理まで確実に押さえよう。</p>
+  <div class="star-row">
+    <span class="star-item">重要度 <span>★★★</span></span>
+    <span class="star-item">頻出度 <span>★★★</span></span>
+  </div>
+</div>
+<div class="main-wrap">
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">1</div><div class="sec-title">賃貸借とは？</div></div>
+  <p class="body-text">「<span class="kw">賃貸借</span>」とは、当事者の一方がある物の<span class="kw">使用及び収益を相手方にさせることを約し</span>、相手方がこれに対してその<span class="kw">賃料を支払うこと及び引渡しを受けた物を契約が終了したときに返還することを約する</span>ことによって、その効力を生ずる契約です（601条）。<span class="kw">有償・双務・諾成・不要式</span>の契約です。賃借は債権なので、<span class="kw">売買契約の規定が準用</span>されます（559条）。</p>
+  <p class="body-text">賃貸借の<span class="kw">存続期間の上限は50年</span>（604条1項）。最短期間の制限はありません。</p>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">2</div><div class="sec-title">不動産賃借権の物権化（対抗要件）</div></div>
+  <p class="body-text">賃借権は本来債権ですが、<span class="kw">不動産の賃貸借に限っては</span>、対抗要件を備えることができ、その場合には賃借人は<span class="kw">新所有者に不動産賃借権を対抗</span>することができます。</p>
+  <div class="point-box">
+    <div class="box-title">📌 不動産賃借権の対抗要件</div>
+    <table class="data-table">
+      <tr><th>種類</th><th>対抗要件①</th><th>対抗要件②</th></tr>
+      <tr><td class="td-l"><span class="kw">土地賃貸借</span></td><td><span class="kw">借地上に建てた建物の登記</span>（借地借家法10条）</td><td>賃借権の登記（605条）</td></tr>
+      <tr><td class="td-l"><span class="kw">建物賃貸借</span></td><td><span class="kw">借家の引渡し</span>（借地借家法31条）</td><td>賃借権の登記（605条）</td></tr>
+    </table>
+    <p style="font-size:13px;margin-top:6px;">※他人名義の建物登記では土地賃貸借における有効な対抗要件とはならない</p>
+  </div>
+  <p class="body-text">対抗要件を備えた不動産賃借人は、第三者がその賃借権を侵害してきた場合、<span class="kw">妨害停止や返還の請求</span>をすることができます（605条の4）。</p>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">3</div><div class="sec-title">不動産の賃貸人たる地位の移転</div></div>
+  <div class="point-box">
+    <div class="box-title">📌 賃貸人の地位の移転（2ケース）</div>
+    <ul>
+      <li><strong>その１（当然移転）</strong>：賃貸目的物が譲渡され賃借人が対抗要件を備えている場合→<span class="kw">賃貸人たる地位は当然に譲受人に移転</span>する（605条の2第1項）。新賃貸人は費用償還債務や敷金返還債務も承継する。ただし<span class="kw">所有権移転登記をしなければ賃借人に対抗できない</span>（605条の2第3項）</li>
+      <li><strong>その２（留保合意）</strong>：賃貸人たる地位を譲渡人に留保する旨の合意をし、かつ譲受人が譲渡人に貸貸する旨の合意をした場合→<span class="kw">賃貸人たる地位の移転が生じない</span>（605条の2第2項本文）。ただしAC間の賃貸借が終了したら地位は当然にCへ移転する（605条の2第2項ただし書）</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">4</div><div class="sec-title">敷金</div></div>
+  <p class="body-text">「<span class="kw">敷金</span>」とは、いかなる名目によるかを問わず、賃料債務その他の賃貸借に基づいて生じた賃借人の賃貸人に対する金銭の給付を目的とする債務を担保する目的で、賃借人が賃貸人に交付する金銭をいいます（622条の2第1項カッコ書）。</p>
+  <div class="point-box">
+    <div class="box-title">📌 敷金返還債務の発生時期</div>
+    <ul>
+      <li>①<span class="kw">賃貸借が終了し、かつ、賃貸目的物の返還を受けたとき</span>（明渡し時）</li>
+      <li>②<span class="kw">賃借人が適法に賃借権を譲り渡したとき</span></li>
+    </ul>
+    <p style="font-size:13px;margin-top:6px;">※賃貸目的物の明渡しと敷金の返還は<span class="kw">同時履行の関係ではなく</span>、<span class="kw">明渡しが先履行</span>。よって敷金返還を理由に明渡しを拒否できない。敷金の返還請求権を被担保債権として賃貸目的物につき留置権を主張することもできない。</p>
+    <p style="font-size:13px;">※<span class="kw">敷金は賃貸権の譲受人に承継されない</span>（最判昭48・2・2）。また賃貸借契約終了後明渡し前に賃貸目的物がCに譲渡された場合、地位は当然移転せず敷金も承継されない。</p>
+  </div>
+  <p class="body-text">貸主は、賃借人が賃貸権に基づいて生じた金銭の給付を目的とする債務を履行しないとき（賃料を支払わないとき）は、<span class="kw">敷金をその債務の弁済に充てることができます</span>（622条の2第2項本文）。ただし<span class="kw">賃借人の側からは充当を請求することはできません</span>（622条の2第2項ただし書）。</p>
+</div>
+
+<div class="mini-test" id="mt1">
+  <div class="mini-test-title">ミニテスト①　賃貸借の基本・敷金</div>
+  <div class="chip-bank" id="bank1">
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">50年</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">借地上の建物登記</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">当然に移転</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">明渡しが先履行</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">充当を請求することはできない</span>
+  </div>
+  <div class="mt-q">
+    <p class="q-text">Q1. 賃貸借の存続期間の上限は<span class="mblank" data-ans="50年" onclick="selectBlank(this,'mt1')">　　</span>。土地賃貸借の対抗要件は<span class="mblank" data-ans="借地上の建物登記" onclick="selectBlank(this,'mt1')">　　</span>または賃借権の登記。賃借人が対抗要件を備えて賃貸目的物が譲渡された場合、賃貸人たる地位は<span class="mblank" data-ans="当然に移転" onclick="selectBlank(this,'mt1')">　　</span>する。</p>
+    <p class="q-text">Q2. 明渡しと敷金の返還は<span class="mblank" data-ans="明渡しが先履行" onclick="selectBlank(this,'mt1')">　　</span>の関係。賃借人の側からは敷金の<span class="mblank" data-ans="充当を請求することはできない" onclick="selectBlank(this,'mt1')">　　</span>。</p>
+  </div>
+  <button class="mt-check-btn" onclick="checkQ('mt1',5)">答え合わせ</button>
+  <button class="mt-reset-btn" onclick="resetQ('mt1','bank1')">リセット</button>
+  <div class="mt-result" id="res-mt1"></div>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">5</div><div class="sec-title">賃貸人・賃借人の義務</div></div>
+  <div class="point-box">
+    <div class="box-title">📌 賃貸人の義務</div>
+    <ul>
+      <li><span class="kw">使用収益させる義務</span>（601条）：賃貸人の中心的義務。没個性的な義務</li>
+      <li><span class="kw">修繕義務</span>（606条1項本文）：賃借物の使用収益に必要な修繕をする義務を負う。ただし賃借人の責めに帰すべき事由によって修繕が必要となった場合は除く（606条1項ただし書）。<span class="kw">任意規定</span>なので特約で排除可能（最判昭29・6・25）</li>
+      <li>賃借人が賃貸人に修繕が必要である旨を通知し、又は賃貸人がその旨を知ったにもかかわらず、相当の期間内に必要な修繕をしないとき等は、賃借人が修繕できる（607条の2）</li>
+    </ul>
+  </div>
+  <div class="point-box">
+    <div class="box-title">📌 賃借人の義務</div>
+    <ul>
+      <li><span class="kw">賃料支払義務</span>：<span class="kw">後払いが原則</span>（614条）</li>
+      <li><span class="kw">用法遵守義務・善管注意義務</span>（616条・594条1項・400条）</li>
+      <li><span class="kw">費用償還請求</span>：必要費は<span class="kw">直ちに</span>償還請求可（608条1項）、有益費は<span class="kw">賃貸借の終了の時</span>に請求可（608条2項）</li>
+      <li><span class="kw">収去義務・原状回復義務</span>：賃借人の責めに帰することができない事由による損傷は原状回復義務なし（621条ただし書）</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">6</div><div class="sec-title">賃借権の無断譲渡・無断転貸</div></div>
+  <p class="body-text">賃借人は、<span class="kw">賃貸人の承諾を得なければ</span>、その賃借権を譲り渡し、又は賃借物を転貸することができません（612条1項）。もし賃借人が賃貸人の承諾なくこれらの行為を行い、<span class="kw">第三者に賃借物の使用又は収益をさせてしまったとき</span>は、賃貸人は<span class="kw">契約の解除をすることができます</span>（612条2項）。解除は<span class="kw">無催告解除</span>です。なお、<span class="kw">無断譲渡・無断転貸契約自体は有効</span>です。</p>
+
+  <div class="hanrei-box">
+    <div class="h-label">信頼関係破壊の法理（最判昭28・9・25）</div>
+    <p>形式的には無断譲渡・無断転貸になっていても<span class="kw">当事者間の信頼関係が破壊されないような「特段の事情」があれば、解除権は発生しない</span>とするのが判例。特段の事情の立証責任は<span class="kw">賃借人側</span>が負う。</p>
+  </div>
+
+  <div class="imp-box">
+    <div class="imp-label">POINT ― 適法転貸の効果（613条）</div>
+    <p>賃借人が適法に賃借物を転貸したとき（承諾転貸）は、転借人は、賃借人と賃貸人との間の賃貸借（原賃貸借）に基づく賃借人の債務の範囲を限度として、<span class="kw">賃貸人に対して転貸借に基づく債務を直接履行する義務を負います</span>（613条1項）。具体的に請求される額は<span class="kw">賃料と転料のうち重なり合っている少ない方</span>。転借人は賃貸人に対して<span class="kw">一方的な義務を負うだけで権利は有しない</span>（修繕請求や費用償還請求不可：最判昭37・12・13）。</p>
+    <p style="margin-top:8px;">賃貸借契約の合意解除（契約による解除）やBの<span class="kw">賃借権の放棄の場合</span>には、それをAはCに<span class="kw">対抗できない</span>（613条3項本文）。ただし合意解除当時、貸主が借主の債務不履行による解除権を有していたときは対抗できる（613条3項ただし書）。</p>
+  </div>
+
+  <div class="imp-box">
+    <div class="imp-label">POINT ― 承諾転貸の問題点（3つの事例）</div>
+    <p>①<span class="kw">債務不履行解除の場合の催告</span>：賃貸人Aが賃借人Bの賃料不払を理由に解除するとき、<span class="kw">転借人Cへ延滞賃料を代わりに支払うよう催告せずに</span>AB間の賃貸借契約を解除できる（最判昭37・3・29）。<br>②<span class="kw">転貸借契約の終了時期</span>：AがBとの賃貸借契約を解除した場合、BC間の転貸借契約が終了する時期は<span class="kw">AがCに目的物の返還を請求した時</span>である（最判平9・2・25）。<br>③<span class="kw">土地の賃借人が借地上の建物を賃貸した場合</span>：土地の転貸に<span class="kw">あたらない</span>ため、Aは土地の賃貸借契約を解除できない（大判昭8・12・11）。ただし借地上に建てた<span class="kw">建物の譲渡</span>は土地賃借権の譲渡にあたるため解除できる（最判昭47・3・9）。</p>
+  </div>
+</div>
+
+<div class="mini-test" id="mt2">
+  <div class="mini-test-title">ミニテスト②　転貸・賃貸借の終了</div>
+  <div class="chip-bank" id="bank2">
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">無催告解除</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">特段の事情</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">少ない方</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">対抗できない</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">明渡しを請求した時</span>
+  </div>
+  <div class="mt-q">
+    <p class="q-text">Q1. 無断転貸があると貸主は<span class="mblank" data-ans="無催告解除" onclick="selectBlank(this,'mt2')">　　</span>できるが、信頼関係を破壊しない<span class="mblank" data-ans="特段の事情" onclick="selectBlank(this,'mt2')">　　</span>があれば解除権は発生しない。適法転貸の場合、賃貸人が請求できる額は賃料と転料のうち<span class="mblank" data-ans="少ない方" onclick="selectBlank(this,'mt2')">　　</span>。</p>
+    <p class="q-text">Q2. 合意解除・賃借権放棄は転借人に<span class="mblank" data-ans="対抗できない" onclick="selectBlank(this,'mt2')">　　</span>。債務不履行解除後に転貸借が終了する時期は賃貸人がCに目的物の<span class="mblank" data-ans="明渡しを請求した時" onclick="selectBlank(this,'mt2')">　　</span>。</p>
+  </div>
+  <button class="mt-check-btn" onclick="checkQ('mt2',5)">答え合わせ</button>
+  <button class="mt-reset-btn" onclick="resetQ('mt2','bank2')">リセット</button>
+  <div class="mt-result" id="res-mt2"></div>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">7</div><div class="sec-title">賃貸借契約の終了</div></div>
+  <div class="point-box">
+    <div class="box-title">📌 終了の方法</div>
+    <ul>
+      <li><span class="kw">期間満了</span>：<span class="kw">黙示の更新</span>が認められる（619条1項）。期間満了後も賃借人が使用収益を継続し、賃貸人が知りながら異議を述べないとき→<span class="kw">従前の賃貸借と同一条件で更新</span>したものとみなされる。ただし担保は消滅。敷金だけはこの限りでない（619条2項）</li>
+      <li><span class="kw">解約申入れ</span>：期間の定めのない賃貸借は各当事者がいつでも解約の申入れができ、次の期間を経過して終了（617条）：①土地の賃貸借＝1年、②建物の賃貸借＝3か月、③動産及び貸席の賃貸借＝1日</li>
+      <li><span class="kw">解除（信頼関係の破壊）</span>：賃借人の信頼関係が著しく破壊された場合→<span class="kw">無催告解除</span>（「告知解除」とも）。この解除は<span class="kw">将来に向かってのみ</span>効力を生じる（620条）</li>
+      <li><span class="kw">賃借物の一部滅失</span>：賃借物の全部が使用収益不能→賃貸借は当然終了（616条の2）。一部が賃借人の責めに帰せない事由で使用収益不能→賃料は<span class="kw">使用収益できなくなった割合に応じて当然に減額</span>（611条1項）</li>
+    </ul>
+  </div>
+</div>
+
+<div class="chapter-nav">
+  <a href="minpo2_ch34_kaisetsu.html" class="nav-btn nav-prev">← ch34 消費貸借・使用貸借</a>
+  <a href="minpo2_index.html" class="nav-btn nav-index">目次</a>
+  <a href="minpo2_ch36_kaisetsu.html" class="nav-btn nav-next">ch36 請負・委任 →</a>
+</div>
+</div>
+<script>
+let selectedBlank=null;
+function selectBlank(el,testId){document.querySelectorAll(`#${testId} .mblank`).forEach(b=>b.style.outline='');selectedBlank=el;el.style.outline='2px solid var(--crimson)';}
+function useChip(chip,bankId,testId){if(chip.classList.contains('used'))return;if(!selectedBlank){alert('先に埋める空欄をクリックしてください。');return;}if(selectedBlank.closest(`#${testId}`)===null){alert('同じテストの空欄を選んでください。');return;}selectedBlank.textContent=chip.textContent;selectedBlank.classList.add('filled');selectedBlank.style.outline='';chip.classList.add('used');selectedBlank=null;}
+function checkQ(testId,total){const blanks=document.querySelectorAll(`#${testId} .mblank`);let correct=0;blanks.forEach(b=>{if(b.textContent.trim()===b.getAttribute('data-ans')){b.classList.remove('wrong');b.classList.add('correct');correct++;}else{b.classList.remove('correct');b.classList.add('wrong');}});const res=document.getElementById(`res-${testId}`);if(correct===total){res.textContent=`✅ 全問正解！完璧です（${correct}/${total}）`;res.className='mt-result ok';}else{res.textContent=`❌ ${correct}/${total} 正解。赤くなった箇所を確認しよう。`;res.className='mt-result ng';}}
+function resetQ(testId,bankId){document.querySelectorAll(`#${testId} .mblank`).forEach(b=>{b.textContent='　　';b.className='mblank';b.style.outline='';});document.querySelectorAll(`#${bankId} .chip`).forEach(c=>c.classList.remove('used'));const res=document.getElementById(`res-${testId}`);res.className='mt-result';res.textContent='';selectedBlank=null;}
+</script>
+</body>
+</html>

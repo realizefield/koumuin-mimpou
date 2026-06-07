@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法Ⅱ ch38｜不法行為②（特殊の不法行為）</title>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--bg:#F5F3EE;--white:#FFFFFF;--text:#1a1a1a;--gray:#666;--light:#EAE8E0;--border:#ddd8ce;}
+body{font-family:'BIZ UDGothic',Meiryo,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:15px;}
+.site-header{background:var(--navy);color:var(--white);padding:10px 20px;display:flex;align-items:center;gap:12px;}
+.site-header .logo{font-size:20px;font-weight:700;color:var(--gold);letter-spacing:2px;}
+.site-header .subtitle{font-size:12px;color:#aab4c8;}
+.chapter-hero{background:linear-gradient(135deg,var(--navy) 0%,#2d4270 100%);color:var(--white);padding:32px 20px 28px;position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;border:3px solid rgba(212,160,23,0.2);border-radius:50%;}
+.chapter-hero::after{content:'';position:absolute;right:-10px;top:-10px;width:100px;height:100px;border:2px solid rgba(212,160,23,0.15);border-radius:50%;}
+.ch-badge{display:inline-block;background:var(--gold);color:var(--navy);font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1px;margin-bottom:10px;}
+.chapter-hero h1{font-size:24px;font-weight:700;letter-spacing:1px;margin-bottom:8px;}
+.chapter-hero .lead{font-size:13px;color:#c8d4e8;line-height:1.7;max-width:560px;}
+.star-row{display:flex;gap:16px;margin-top:12px;}
+.star-item{font-size:12px;color:#aab4c8;}
+.star-item span{color:var(--gold);}
+.main-wrap{max-width:780px;margin:0 auto;padding:24px 16px 60px;}
+.section{margin-bottom:32px;}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--navy);}
+.sec-num{width:32px;height:32px;background:var(--navy);color:var(--gold);font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;}
+.sec-title{font-size:18px;font-weight:700;color:var(--navy);}
+.body-text{margin-bottom:12px;line-height:1.85;}
+.kw{color:var(--crimson);font-weight:700;}
+.kw-b{color:var(--navy);font-weight:700;}
+.point-box{background:var(--white);border:2px solid var(--navy);border-radius:6px;padding:16px 18px;margin:14px 0;}
+.point-box .box-title{font-weight:700;color:var(--navy);font-size:13px;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--light);}
+.point-box ul{padding-left:18px;}
+.point-box ul li{margin-bottom:6px;line-height:1.75;}
+.imp-box{background:#fff8e6;border-left:4px solid var(--gold);padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;}
+.imp-box .imp-label{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:4px;letter-spacing:1px;}
+.hanrei-box{background:#f0f4ff;border-left:4px solid var(--navy);padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;}
+.hanrei-box .h-label{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:4px;letter-spacing:1px;}
+.data-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+.data-table th{background:var(--navy);color:var(--white);padding:8px 10px;text-align:center;font-weight:700;}
+.data-table td{border:1px solid var(--border);padding:8px 10px;text-align:center;background:var(--white);}
+.data-table tr:nth-child(even) td{background:#f8f7f4;}
+.data-table .td-l{text-align:left;}
+.mini-test{background:var(--white);border:2px solid var(--navy);border-radius:8px;padding:18px;margin:24px 0;}
+.mini-test-title{font-weight:700;font-size:14px;color:var(--navy);margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--light);display:flex;align-items:center;gap:8px;}
+.mini-test-title::before{content:'📝';font-size:16px;}
+.mt-q{margin-bottom:16px;}
+.mt-q .q-text{font-size:14px;margin-bottom:10px;line-height:1.7;}
+.mblank{display:inline-block;min-width:80px;background:var(--light);border:2px solid var(--border);border-radius:4px;padding:2px 8px;text-align:center;color:var(--gray);font-size:13px;cursor:pointer;vertical-align:middle;transition:all .2s;}
+.mblank.filled{background:var(--navy);color:var(--white);border-color:var(--navy);}
+.mblank.correct{background:#1a6e3c;color:var(--white);border-color:#1a6e3c;}
+.mblank.wrong{background:var(--crimson);color:var(--white);border-color:var(--crimson);}
+.chip-bank{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;padding:10px;background:#f8f7f4;border-radius:6px;border:1px dashed var(--border);}
+.chip{display:inline-block;background:var(--navy);color:var(--white);padding:4px 12px;border-radius:20px;font-size:13px;cursor:pointer;transition:all .2s;user-select:none;}
+.chip:hover{background:var(--crimson);transform:translateY(-1px);}
+.chip.used{background:var(--border);color:var(--gray);cursor:default;transform:none;}
+.mt-check-btn{background:var(--crimson);color:var(--white);border:none;padding:8px 24px;border-radius:4px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;}
+.mt-check-btn:hover{background:#a93226;}
+.mt-result{margin-top:8px;font-weight:700;font-size:14px;padding:6px 12px;border-radius:4px;display:none;}
+.mt-result.ok{background:#e8f5e9;color:#1a6e3c;display:block;}
+.mt-result.ng{background:#fdecea;color:var(--crimson);display:block;}
+.mt-reset-btn{background:var(--navy);color:var(--white);border:none;padding:6px 16px;border-radius:4px;font-family:inherit;font-size:12px;cursor:pointer;margin-top:6px;}
+.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-top:2px solid var(--border);margin-top:40px;flex-wrap:wrap;gap:8px;}
+.nav-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:13px;font-weight:700;}
+.nav-prev{background:var(--light);color:var(--navy);}
+.nav-next{background:var(--navy);color:var(--white);}
+.nav-index{background:var(--gold);color:var(--navy);}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <span class="logo">GAMBA</span>
+  <span class="subtitle">民法Ⅱ ｜ 公務員試験対策</span>
+</header>
+<div class="chapter-hero">
+  <div class="ch-badge">CHAPTER 38</div>
+  <h1>不法行為②　特殊の不法行為</h1>
+  <p class="lead">監督者責任・使用者責任・工作物責任・共同不法行為など、特殊な不法行為類型を攻略。「中間責任」という視点で整理するのがコツ。</p>
+  <div class="star-row">
+    <span class="star-item">重要度 <span>★★★</span></span>
+    <span class="star-item">頻出度 <span>★★★</span></span>
+  </div>
+</div>
+<div class="main-wrap">
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">1</div><div class="sec-title">責任無能力者の監督者責任（714条）</div></div>
+  <p class="body-text"><span class="kw">責任無能力者がその責任を負わない場合</span>において、その責任無能力者を監督する法定の義務を負う者（<span class="kw">監督義務者</span>）は、その責任無能力者が第三者に加えた損害を賠償する責任を負います（714条1項）。</p>
+  <div class="point-box">
+    <div class="box-title">📌 免責要件（中間責任）</div>
+    <ul>
+      <li>監督義務者が<span class="kw">その義務を怠らなかったとき</span>、又は<span class="kw">その義務を怠らなくても損害が生ずべきであったとき</span>は、責任を負わない（714条1項ただし書）</li>
+      <li>これは「<span class="kw">中間責任</span>」（過失責任と無過失責任の中間）。被害者が相手方の故意・過失を積極的に立証しなくてよいので楽</li>
+      <li>監督義務者に代わって責任無能力者を監督する者も、同様の責任を負う（714条2項）</li>
+    </ul>
+  </div>
+  <div class="hanrei-box">
+    <div class="h-label">重要判例①（最判平28・3・1）― 認知症の父が徘徊・事故</div>
+    <p>認知症の91歳の男性（A）が家を出て、JRの電車にひかれて事故が起きた。JRが遺族（Aの妻や長男）に損害賠償を求めた。判例は、<span class="kw">精神障害者と同居する配偶者であるからといって、その者が当然に法定の監督義務者に当たるとはいえない</span>と判示。監督義務を引き受けたとみるべき特段の事情が認められる場合には、衡平の見地から法定の監督義務者に準ずべき者として民法714条1項が類推適用される、とした。</p>
+  </div>
+  <div class="hanrei-box">
+    <div class="h-label">重要判例②（最判平27・4・9）― 小学校の校庭でサッカーボールを蹴り、はずんで道路に飛び出し80代の男性が転倒した事案</div>
+    <p><span class="kw">当該行為について具体的に予見可能であるなど特段の事情が認められない限り</span>、子に対する監督義務を尽くしていなかったとすべきではない、として親権者の監督義務違反を否定した。</p>
+  </div>
+  <div class="imp-box">
+    <div class="imp-label">POINT ― 加害者が責任能力を有する場合</div>
+    <p>加害者である未成年者が<span class="kw">責任能力を有する場合</span>（例：16歳）においても、<span class="kw">監督義務者の監督義務違反と損害との間に相当因果関係が認められるとき</span>は、監督義務者について民法709条に基づく不法行為が成立する（最判昭49・3・22）。714条は適用されないが709条が問題となる。</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">2</div><div class="sec-title">使用者責任（715条）</div></div>
+  <p class="body-text">ある事業のために他人を使用する者（<span class="kw">使用者</span>）は、被用者がその<span class="kw">事業の執行について</span>第三者に加えた損害を賠償する責任を負います（715条1項）。これを「<span class="kw">使用者責任</span>」と言います。</p>
+  <div class="point-box">
+    <div class="box-title">📌 使用者責任の要件</div>
+    <ul>
+      <li>ア. <span class="kw">ある事業のために他人を使用していること</span>（雇用・委任関係の有無、有償・無償、継続・臨時的等の区別を問わず、事実上の指揮監督関係があればよい。「事業」は非営利なものでも構わない）</li>
+      <li>イ. <span class="kw">事業の執行につきなされた行為であること</span>（外形標準説：行為の外形から客観的に判断して、使用者の職務の範囲内の行為とするのが判例・通説。<span class="kw">職務の範囲外の行為でも外形上職務行為と認められれば足りる</span>）</li>
+      <li>ウ. <span class="kw">使用者が被用者の選定・監督について相当の注意をしたとき</span>、又は<span class="kw">相当の注意をしても損害が生ずべきであったとき</span>は責任を負わない（免責規定、これも<span class="kw">中間責任</span>）</li>
+      <li>エ. <span class="kw">被用者には不法行為の要件が備わっていること</span>（被用者自身に709条の成立要件が必要）</li>
+    </ul>
+    <p style="margin-top:8px;font-size:13px;">※被用者の失火について使用者責任を認めるためには、<span class="kw">被用者Bの失火行為について故意又は重過失があったかどうかを見る</span>（最判昭37・11・8）。</p>
+    <p style="font-size:13px;">※被用者の過失について使用者責任を認めるには、<span class="kw">「被用者」に故意又は重過失があることが重過失とされる</span>（最判平7・1・24）。「使用者」を基準とするのではなく、あくまでも「被用者」を基準として故意・過失の有無を考える。</p>
+  </div>
+  <div class="imp-box">
+    <div class="imp-label">POINT ― 使用者の求償権</div>
+    <p>損害を賠償した使用者は、被用者に対して、<span class="kw">信義則上、相当な範囲内において</span>求償権を行使することができます（715条3項、最判昭51・7・8）。「全額」ではなく信義則上相当な範囲内です。</p>
+  </div>
+</div>
+
+<div class="mini-test" id="mt1">
+  <div class="mini-test-title">ミニテスト①　監督者責任・使用者責任</div>
+  <div class="chip-bank" id="bank1">
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">中間責任</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">外形標準説</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">信義則上相当な範囲</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">被用者</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">事業の執行</span>
+  </div>
+  <div class="mt-q">
+    <p class="q-text">Q1. 監督者責任は義務を怠らなかったことで免責できる<span class="mblank" data-ans="中間責任" onclick="selectBlank(this,'mt1')">　　</span>である。使用者責任は被用者が<span class="mblank" data-ans="事業の執行" onclick="selectBlank(this,'mt1')">　　</span>につき損害を加えた場合に成立し、職務範囲の判断は<span class="mblank" data-ans="外形標準説" onclick="selectBlank(this,'mt1')">　　</span>による。</p>
+    <p class="q-text">Q2. 使用者責任の成立に必要な故意・過失の有無は、<span class="mblank" data-ans="被用者" onclick="selectBlank(this,'mt1')">　　</span>を基準として判断する。損害を賠償した使用者の求償権の行使は<span class="mblank" data-ans="信義則上相当な範囲" onclick="selectBlank(this,'mt1')">　　</span>に限られる。</p>
+  </div>
+  <button class="mt-check-btn" onclick="checkQ('mt1',5)">答え合わせ</button>
+  <button class="mt-reset-btn" onclick="resetQ('mt1','bank1')">リセット</button>
+  <div class="mt-result" id="res-mt1"></div>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">3</div><div class="sec-title">請負人の加害行為に対する注文者の責任（716条）</div></div>
+  <p class="body-text">請負契約がある場合、<span class="kw">注文者は、請負人がその仕事について第三者に加えた損害を賠償する責任を負いません</span>。ただし、<span class="kw">注文又は指図についてその注文者に過失があったとき</span>は、その限度の責任を負います（716条）。請負人が注文者から独立して仕事を行うという性質があるので、注文者は原則として責任を負わないとしたわけです。</p>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">4</div><div class="sec-title">土地の工作物・竹木の瑕疵による責任（717条）</div></div>
+  <p class="body-text">土地の工作物の設置又は保存に瑕疵があることによって他人に損害を生じたときは、まず<span class="kw">占有者</span>が、次いで<span class="kw">所有者</span>が損害賠償責任を負います（717条1項）。</p>
+  <div class="point-box">
+    <div class="box-title">📌 工作物責任の特徴（責任の順番）</div>
+    <table class="data-table">
+      <tr><th>責任者</th><th>責任の性質</th><th>免責</th></tr>
+      <tr><td><span class="kw">占有者</span>（第一次的責任）</td><td>損失責任（中間責任）</td><td><span class="kw">損害の発生を防止するのに必要な注意をしたとき</span>免責可</td></tr>
+      <tr><td><span class="kw">所有者</span>（第二次的責任）</td><td><span class="kw">無過失責任</span></td><td>免責不可（必ず責任を負う）</td></tr>
+    </table>
+    <p style="font-size:13px;margin-top:6px;">※占有者又は所有者が被害者に対して損害賠償を支払った場合、損害の原因につき<span class="kw">他にその責任を負うべき者がいるとき</span>は、その者に対して求償権を行使することができる（717条3項）。</p>
+    <p style="font-size:13px;">※竹木の植栽又は支持に瑕疵がある場合も同様（717条2項）。</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">5</div><div class="sec-title">動物占有者の責任（718条）</div></div>
+  <p class="body-text">動物の<span class="kw">占有者</span>は、その動物が他人に加えた損害を賠償する責任を負います。ただし、<span class="kw">動物の種類及び性質に従い相当の注意をもってその管理をしたとき</span>は、責任を負いません（718条1項）。これも<span class="kw">中間責任</span>です。なお、所有者については明文規定がありません。</p>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="sec-num">6</div><div class="sec-title">共同不法行為（719条）</div></div>
+  <p class="body-text">数人が共同の不法行為によって他人に損害を加えたときは、各自が<span class="kw">連帯して</span>その損害を賠償する責任を負います（719条1項）。また、<span class="kw">行為を教唆した者（教唆者）及び幇助した者（幇助者）も、共同行為者とみなされるので、連帯責任を負う</span>（719条2項）。</p>
+  <div class="point-box">
+    <div class="box-title">📌 共同不法行為の重要ポイント</div>
+    <ul>
+      <li>共同不法行為者の責任は<span class="kw">連帯債務</span>であるため、自らの寄与度に応じた過失割合を定めて<span class="kw">減額を主張することはできません</span></li>
+      <li>共同不法行為者の一人が全額の賠償をしたときは、本来負担すべき責任の割合（原則は平等）に応じて、<span class="kw">他の共同行為者に対して求償できます</span>（最判昭41・11・18）</li>
+      <li>共同不法行為者の一方について<span class="kw">責任を免除しても他方の債務の免除の効力は及ばない</span>（最判昭10・9・10）</li>
+    </ul>
+  </div>
+</div>
+
+<div class="mini-test" id="mt2">
+  <div class="mini-test-title">ミニテスト②　工作物責任・共同不法行為</div>
+  <div class="chip-bank" id="bank2">
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">無過失責任</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">占有者</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">所有者</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">連帯して</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">教唆者・幇助者</span>
+  </div>
+  <div class="mt-q">
+    <p class="q-text">Q1. 工作物責任は第一次的に<span class="mblank" data-ans="占有者" onclick="selectBlank(this,'mt2')">　　</span>が（中間責任）、第二次的に<span class="mblank" data-ans="所有者" onclick="selectBlank(this,'mt2')">　　</span>が<span class="mblank" data-ans="無過失責任" onclick="selectBlank(this,'mt2')">　　</span>を負う。</p>
+    <p class="q-text">Q2. 共同不法行為では数人が<span class="mblank" data-ans="連帯して" onclick="selectBlank(this,'mt2')">　　</span>損害を賠償する責任を負い、<span class="mblank" data-ans="教唆者・幇助者" onclick="selectBlank(this,'mt2')">　　</span>も共同行為者とみなされ連帯責任を負う。</p>
+  </div>
+  <button class="mt-check-btn" onclick="checkQ('mt2',5)">答え合わせ</button>
+  <button class="mt-reset-btn" onclick="resetQ('mt2','bank2')">リセット</button>
+  <div class="mt-result" id="res-mt2"></div>
+</div>
+
+<div class="chapter-nav">
+  <a href="minpo2_ch37_kaisetsu.html" class="nav-btn nav-prev">← ch37 不法行為①</a>
+  <a href="minpo2_index.html" class="nav-btn nav-index">目次</a>
+  <a href="minpo2_ch39_kaisetsu.html" class="nav-btn nav-next">ch39 家族法 →</a>
+</div>
+</div>
+
+<script>
+let selectedBlank=null;
+function selectBlank(el,testId){document.querySelectorAll(`#${testId} .mblank`).forEach(b=>b.style.outline='');selectedBlank=el;el.style.outline='2px solid var(--crimson)';}
+function useChip(chip,bankId,testId){if(chip.classList.contains('used'))return;if(!selectedBlank){alert('先に埋める空欄をクリックしてください。');return;}if(selectedBlank.closest(`#${testId}`)===null){alert('同じテストの空欄を選んでください。');return;}selectedBlank.textContent=chip.textContent;selectedBlank.classList.add('filled');selectedBlank.style.outline='';chip.classList.add('used');selectedBlank=null;}
+function checkQ(testId,total){const blanks=document.querySelectorAll(`#${testId} .mblank`);let correct=0;blanks.forEach(b=>{if(b.textContent.trim()===b.getAttribute('data-ans')){b.classList.remove('wrong');b.classList.add('correct');correct++;}else{b.classList.remove('correct');b.classList.add('wrong');}});const res=document.getElementById(`res-${testId}`);if(correct===total){res.textContent=`✅ 全問正解！完璧です（${correct}/${total}）`;res.className='mt-result ok';}else{res.textContent=`❌ ${correct}/${total} 正解。赤くなった箇所を確認しよう。`;res.className='mt-result ng';}}
+function resetQ(testId,bankId){document.querySelectorAll(`#${testId} .mblank`).forEach(b=>{b.textContent='　　';b.className='mblank';b.style.outline='';});document.querySelectorAll(`#${bankId} .chip`).forEach(c=>c.classList.remove('used'));const res=document.getElementById(`res-${testId}`);res.className='mt-result';res.textContent='';selectedBlank=null;}
+</script>
+</body>
+</html>

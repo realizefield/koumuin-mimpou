@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMBA民法Ⅱ ch35 演習｜請負・委任</title>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#1B2A4A;
+  --crimson:#C0392B;
+  --gold:#D4A017;
+  --bg:#F5F3EE;
+  --white:#fff;
+  --light:#EAE8E0;
+  --border:#ddd8ce;
+  --text:#1a1a1a;
+}
+body{font-family:'BIZ UDGothic',Meiryo,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.8;}
+.site-header{background:var(--navy);color:#fff;padding:10px 20px;display:flex;align-items:center;gap:12px;}
+.logo{font-size:20px;font-weight:700;color:var(--gold);letter-spacing:2px;}
+.subtitle{font-size:12px;color:#aab4c8;}
+.ex-hero{background:linear-gradient(135deg,#2d1b4e 0%,var(--navy) 100%);color:#fff;padding:28px 20px;position:relative;overflow:hidden;}
+.ex-hero::before{content:'';position:absolute;right:-30px;top:-30px;width:160px;height:160px;border:3px solid rgba(212,160,23,0.2);border-radius:50%;}
+.ex-badge{display:inline-block;background:var(--crimson);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1px;margin-bottom:8px;}
+.ex-hero h1{font-size:22px;font-weight:700;letter-spacing:1px;}
+.ex-hero .ex-sub{font-size:13px;color:#c8d4e8;margin-top:6px;}
+.main-wrap{max-width:780px;margin:0 auto;padding:24px 16px 60px;}
+.score-board{background:var(--navy);color:#fff;border-radius:8px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.score-label{font-size:13px;color:#aab4c8;}
+.score-val{font-size:28px;font-weight:700;color:var(--gold);}
+.q-card{background:var(--white);border-radius:8px;border:1px solid var(--border);padding:20px;margin-bottom:20px;position:relative;}
+.q-num{position:absolute;top:-1px;left:-1px;background:var(--navy);color:var(--gold);font-size:12px;font-weight:700;padding:4px 12px;border-radius:8px 0 8px 0;}
+.q-type{display:inline-block;font-size:11px;color:var(--gray,#666);border:1px solid var(--border);padding:1px 8px;border-radius:10px;margin:28px 0 10px;}
+.q-text{font-size:15px;line-height:1.85;margin-bottom:14px;}
+.choices{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+.choice-btn{padding:8px 20px;border-radius:4px;border:2px solid var(--border);background:var(--white);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;}
+.choice-btn:hover:not(:disabled){border-color:var(--navy);background:var(--light);}
+.choice-btn.selected-o{border-color:var(--navy);background:var(--navy);color:#fff;}
+.choice-btn.selected-x{border-color:var(--crimson);background:var(--crimson);color:#fff;}
+.choice-btn:disabled{cursor:default;opacity:.7;}
+.mc-choices{display:flex;flex-direction:column;gap:8px;margin-bottom:8px;}
+.mc-btn{padding:10px 14px;border-radius:4px;border:2px solid var(--border);background:var(--white);font-family:inherit;font-size:14px;text-align:left;cursor:pointer;transition:all .15s;}
+.mc-btn:hover:not(:disabled){border-color:var(--navy);background:var(--light);}
+.mc-btn.selected-mc{border-color:var(--navy);background:var(--navy);color:#fff;}
+.mc-btn:disabled{cursor:default;}
+.ans-btn{background:var(--gold);color:var(--navy);border:none;padding:8px 20px;border-radius:4px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;}
+.ans-btn:hover{background:#c49414;}
+.ans-btn:disabled{background:var(--border);color:var(--gray,#666);cursor:default;}
+.exp-area{margin-top:12px;display:none;}
+.exp-area.show{display:block;}
+.exp-ok{background:#e8f5e9;border-left:4px solid #1a6e3c;padding:10px 14px;border-radius:0 4px 4px 0;}
+.exp-ng{background:#fdecea;border-left:4px solid var(--crimson);padding:10px 14px;border-radius:0 4px 4px 0;}
+.exp-label{font-weight:700;font-size:12px;margin-bottom:4px;letter-spacing:1px;}
+.exp-ok .exp-label{color:#1a6e3c;}
+.exp-ng .exp-label{color:var(--crimson);}
+.exp-text{font-size:14px;line-height:1.75;}
+/* confetti */
+canvas#confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;display:none;}
+/* 結果 */
+.result-card{background:var(--navy);color:#fff;border-radius:8px;padding:24px 20px;text-align:center;margin-top:8px;display:none;}
+.result-card.show{display:block;}
+.result-card .big-score{font-size:48px;font-weight:700;color:var(--gold);line-height:1;}
+.result-card .score-msg{font-size:15px;color:#c8d4e8;margin-top:6px;}
+.retry-btn{background:var(--crimson);color:#fff;border:none;padding:10px 28px;border-radius:4px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;margin-top:14px;}
+.nav-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:16px 0;border-top:2px solid var(--border);margin-top:32px;}
+.nav-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:13px;font-weight:700;}
+.nav-prev{background:var(--light);color:var(--navy);}
+.nav-next{background:var(--navy);color:#fff;}
+.nav-index{background:var(--gold);color:var(--navy);}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+
+<header class="site-header">
+  <span class="logo">GAMBA</span>
+  <span class="subtitle">民法Ⅱ ｜ 演習</span>
+</header>
+
+<div class="ex-hero">
+  <div class="ex-badge">CHAPTER 40 演習</div>
+  <h1>請負・委任</h1>
+  <p class="ex-sub">○×問題4問＋5択問題1問　全5問</p>
+</div>
+
+<div class="main-wrap">
+<div class="score-board">
+  <div><div class="score-label">現在のスコア</div><div class="score-val"><span id="cur-score">0</span> / 5</div></div>
+  <div style="font-size:13px;color:#aab4c8;">答え合わせしながら進もう</div>
+</div>
+
+<!-- Q1 -->
+<div class="q-card" id="qc-1">
+  <div class="q-num">Q1</div>
+  <span class="q-type">○×問題</span>
+  <p class="q-text">請負人が仕事を完成しない間は、注文者は、損害を賠償しなくても直ちに契約を解除することができる。</p>
+  <div class="choices">
+    <button class="choice-btn" onclick="ansOX(1,'○')">○</button>
+    <button class="choice-btn" onclick="ansOX(1,'×')">×</button>
+  </div>
+  <button class="ans-btn" id="ans-btn-1" onclick="showExp(1)" disabled>解説を見る</button>
+  <div class="exp-area" id="exp-1">
+    <div class="exp-ng" id="exp-q1-ok">
+      <div class="exp-label">✅ 正解：×</div>
+      <p class="exp-text">請負人が仕事を完成しない間は、注文者はいつでも解除できるが（641条）、<strong>損害を賠償して</strong>解除する必要がある。損害賠償は解除後に支払えばよいが、全く不要というわけではない。</p>
+    </div>
+    <div class="exp-ok" id="exp-q1-ng">
+      <div class="exp-label">❌ 不正解</div>
+      <p class="exp-text">注文者はいつでも解除できますが、<strong>損害を賠償して</strong>解除する必要があります（641条）。損害賠償なしに解除できるわけではありません。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q2 -->
+<div class="q-card" id="qc-2">
+  <div class="q-num">Q2</div>
+  <span class="q-type">○×問題</span>
+  <p class="q-text">請負人が材料の全部を供給した場合、完成した建物の所有権は原始的に請負人に帰属し、目的物の引渡しによって注文者に移転する。</p>
+  <div class="choices">
+    <button class="choice-btn" onclick="ansOX(2,'○')">○</button>
+    <button class="choice-btn" onclick="ansOX(2,'×')">×</button>
+  </div>
+  <button class="ans-btn" id="ans-btn-2" onclick="showExp(2)" disabled>解説を見る</button>
+  <div class="exp-area" id="exp-2">
+    <div class="exp-ok" id="exp-q2-ok">
+      <div class="exp-label">✅ 正解：○</div>
+      <p class="exp-text">請負人が材料の全部または主要部分を供給した場合、所有権は原始的に<strong>請負人</strong>に帰属し、<strong>引渡しによって注文者に移転</strong>する（大判明37・6・22）。請負人の報酬債権を確保するための扱いである。</p>
+    </div>
+    <div class="exp-ng" id="exp-q2-ng">
+      <div class="exp-label">❌ 不正解</div>
+      <p class="exp-text">請負人が材料の全部を供給した場合、所有権は<strong>原始的に請負人に帰属し、引渡しによって注文者に移転</strong>します（大判明37・6・22）。この問題は正しい記述です。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q3 -->
+<div class="q-card" id="qc-3">
+  <div class="q-num">Q3</div>
+  <span class="q-type">○×問題</span>
+  <p class="q-text">委任は、当事者の一方が法律行為を行うことを相手方に委託する契約であり、有償・双務・諾成の契約である。</p>
+  <div class="choices">
+    <button class="choice-btn" onclick="ansOX(3,'○')">○</button>
+    <button class="choice-btn" onclick="ansOX(3,'×')">×</button>
+  </div>
+  <button class="ans-btn" id="ans-btn-3" onclick="showExp(3)" disabled>解説を見る</button>
+  <div class="exp-area" id="exp-3">
+    <div class="exp-ng" id="exp-q3-ok">
+      <div class="exp-label">✅ 正解：×</div>
+      <p class="exp-text">委任は原則として<strong>無償・片務・諾成</strong>の契約である（643条）。報酬支払いの特約があれば有償・双務となるが、原則は無償・片務である。「有償・双務」とする記述は誤り。</p>
+    </div>
+    <div class="exp-ok" id="exp-q3-ng">
+      <div class="exp-label">❌ 不正解</div>
+      <p class="exp-text">委任は原則として<strong>無償・片務・諾成</strong>の契約です。有償・双務になるのは報酬支払いの特約がある場合だけです。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q4 -->
+<div class="q-card" id="qc-4">
+  <div class="q-num">Q4</div>
+  <span class="q-type">○×問題</span>
+  <p class="q-text">受任者は、有償・無償を問わず善管注意義務を負い、委任事務を処理するため自己に過失なく損害を受けたときは、委任者に対しその賠償を請求することができる。この場合、委任者は無過失責任を負う。</p>
+  <div class="choices">
+    <button class="choice-btn" onclick="ansOX(4,'○')">○</button>
+    <button class="choice-btn" onclick="ansOX(4,'×')">×</button>
+  </div>
+  <button class="ans-btn" id="ans-btn-4" onclick="showExp(4)" disabled>解説を見る</button>
+  <div class="exp-area" id="exp-4">
+    <div class="exp-ok" id="exp-q4-ok">
+      <div class="exp-label">✅ 正解：○</div>
+      <p class="exp-text">受任者は<strong>有償・無償を問わず善管注意義務</strong>を負う（644条）。また、委任事務処理のため自己に過失なく損害を受けたときは、委任者に対してその賠償を請求できる（650条3項）。この場合、委任者は<strong>無過失責任</strong>を負う。どちらも正しい記述である。</p>
+    </div>
+    <div class="exp-ng" id="exp-q4-ng">
+      <div class="exp-label">❌ 不正解</div>
+      <p class="exp-text">受任者は有償・無償を問わず善管注意義務を負い（644条）、自己に過失なく損害を受けたときは委任者に賠償請求できます（委任者の無過失責任：650条3項）。どちらも正しい記述です。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q5 -->
+<div class="q-card" id="qc-5">
+  <div class="q-num">Q5</div>
+  <span class="q-type">5択問題</span>
+  <p class="q-text">民法に規定する請負又は委任に関する記述として、通説に照らして妥当なのはどれか。【特別区 R1】</p>
+  <div class="mc-choices">
+    <button class="mc-btn" onclick="ansMC(5,1)">1. 請負は、当事者の一方がある仕事を完成することを約し、相手方がその仕事の結果に対してその報酬を支払うことを約することによって、その効力を生ずる有償、双務及び諾成契約である。</button>
+    <button class="mc-btn" onclick="ansMC(5,2)">2. 注文者が破産手続開始の決定を受けたとき、請負人は、契約の解除をすることができるが、この場合に、請負人は、既にした仕事の報酬に含まれていない費用について、破産財団の配当に加入することができない。</button>
+    <button class="mc-btn" onclick="ansMC(5,3)">3. 委任は、各当事者がいつでもその解除をすることができるが、当事者の一方が相手方に不利な時期に委任の解除をしたときは、当事者の一方は、必ず相手方の損害を賠償しなければならない。</button>
+    <button class="mc-btn" onclick="ansMC(5,4)">4. 委任たる地位が当然に移転する場面では、委任たる地位を譲渡人（Ａ）に留保する旨の合意をし、かつその不動産を譲受人（Ｃ）が譲渡人（Ａ）に貸する旨の合意をしたときであっても、委任たる地位の移転が生じる。</button>
+    <button class="mc-btn" onclick="ansMC(5,5)">5. 委任は、特約の有無にかかわらず、委任者又は受任者の死亡、委任者又は受任者が後見開始の審判を受けたこと及び受任者が破産手続開始の決定を受けたことによって終了する。</button>
+  </div>
+  <button class="ans-btn" id="ans-btn-5" onclick="showExp(5)" disabled>解説を見る</button>
+  <div class="exp-area" id="exp-5">
+    <div class="exp-ok" id="exp-q5-ok">
+      <div class="exp-label">✅ 正解：1</div>
+      <p class="exp-text"><strong>1.○</strong> 請負は有償・双務・諾成契約であり、正しい（632条）。<br><strong>2.×</strong> 請負人は既にした仕事の報酬及びその中に含まれていない費用について、<strong>破産財団の配当に加入することができる</strong>（642条2項）。<br><strong>3.×</strong> 不利な時期に解除した場合でも、<strong>やむを得ない事由</strong>があったときは損害賠償は不要（651条2項ただし書）。「必ず」は誤り。<br><strong>4.×</strong> 地位留保の合意＋譲受人が譲渡人に貸する合意があれば、<strong>賃貸人たる地位の移転は生じない</strong>（605条の2第2項）。<br><strong>5.×</strong> 委任者の<strong>後見開始の審判</strong>は委任の終了原因とならない（653条）。また特約があれば死亡でも終了しない場合がある。</p>
+    </div>
+    <div class="exp-ng" id="exp-q5-ng">
+      <div class="exp-label">❌ 不正解</div>
+      <p class="exp-text">正解は<strong>1番</strong>です。請負は有償・双務・諾成契約（632条）。2は破産財団への配当加入は可能。3はやむを得ない事由があれば損害賠償不要。4は地位留保合意があれば移転は生じない。5は委任者の後見開始は終了原因とならない。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 結果カード -->
+<div class="result-card" id="result-card">
+  <div style="font-size:15px;color:#aab4c8;margin-bottom:8px;">最終スコア</div>
+  <div class="big-score" id="final-score">0</div>
+  <div style="font-size:20px;color:#aab4c8;">/ 5</div>
+  <div class="score-msg" id="score-msg"></div>
+  <button class="retry-btn" onclick="retryAll()">もう一度挑戦</button>
+</div>
+
+<div class="nav-row">
+  <a href="minpo2_ch40_kaisetsu.html" class="nav-btn nav-prev">← 解説に戻る</a>
+  <a href="minpo2_index.html" class="nav-btn nav-index">目次</a>
+  <a href="minpo2_ch40_enshu.html" class="nav-btn nav-next">ch36 演習へ →</a>
+</div>
+</div>
+
+<script>
+// 正解定義
+const correctOX = {1:'×', 2:'○', 3:'×', 4:'○'};
+const correctMC = {5: 1};
+let answered = {};
+let totalScore = 0;
+const totalQ = 5;
+
+function ansOX(qn, choice) {
+  if (answered[qn]) return;
+  answered[qn] = true;
+  const card = document.getElementById(`qc-${qn}`);
+  const btns = card.querySelectorAll('.choice-btn');
+  btns.forEach(b => {
+    b.disabled = true;
+    if (b.textContent === choice) {
+      b.classList.add(choice === '○' ? 'selected-o' : 'selected-x');
+    }
+  });
+  document.getElementById(`ans-btn-${qn}`).disabled = false;
+  const isOK = (choice === correctOX[qn]);
+  if (isOK) {
+    totalScore++;
+    document.getElementById('cur-score').textContent = totalScore;
+  }
+  // 正誤フラグを保存
+  answered[`${qn}_ok`] = isOK;
+  checkAllDone();
+}
+
+function ansMC(qn, choice) {
+  if (answered[qn]) return;
+  answered[qn] = true;
+  const card = document.getElementById(`qc-${qn}`);
+  const btns = card.querySelectorAll('.mc-btn');
+  btns.forEach((b, i) => {
+    b.disabled = true;
+    if (i + 1 === choice) b.classList.add('selected-mc');
+  });
+  document.getElementById(`ans-btn-${qn}`).disabled = false;
+  const isOK = (choice === correctMC[qn]);
+  if (isOK) {
+    totalScore++;
+    document.getElementById('cur-score').textContent = totalScore;
+  }
+  answered[`${qn}_ok`] = isOK;
+  checkAllDone();
+}
+
+function showExp(qn) {
+  const expArea = document.getElementById(`exp-${qn}`);
+  expArea.classList.add('show');
+  const isOK = answered[`${qn}_ok`];
+  if (isOK) {
+    document.getElementById(`exp-q${qn}-ok`).style.display = 'block';
+    document.getElementById(`exp-q${qn}-ng`).style.display = 'none';
+  } else {
+    document.getElementById(`exp-q${qn}-ok`).style.display = 'none';
+    document.getElementById(`exp-q${qn}-ng`).style.display = 'block';
+  }
+  document.getElementById(`ans-btn-${qn}`).disabled = true;
+}
+
+function checkAllDone() {
+  if (Object.keys(answered).filter(k => !k.includes('_ok')).length === totalQ) {
+    setTimeout(() => {
+      const rc = document.getElementById('result-card');
+      rc.classList.add('show');
+      document.getElementById('final-score').textContent = totalScore;
+      let msg = '';
+      if (totalScore === 5) msg = '🎉 パーフェクト！完全制覇！';
+      else if (totalScore === 4) msg = '🌸 惜しい！あと一歩！';
+      else if (totalScore === 3) msg = '📖 もう一度テキストで確認しよう';
+      else msg = '💪 基礎から見直してみよう';
+      document.getElementById('score-msg').textContent = msg;
+      if (totalScore >= 4) launchConfetti();
+    }, 600);
+  }
+}
+
+// confetti
+const canvas = document.getElementById('confetti');
+const ctx = canvas.getContext('2d');
+let pieces = [];
+let animId = null;
+
+function launchConfetti() {
+  canvas.style.display = 'block';
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  pieces = [];
+  const colors = ['#1B2A4A','#C0392B','#D4A017','#ffffff','#4a90e2','#27ae60'];
+  for (let i = 0; i < 160; i++) {
+    pieces.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      w: Math.random() * 10 + 4,
+      h: Math.random() * 6 + 3,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      speed: Math.random() * 3 + 1.5,
+      angle: Math.random() * Math.PI * 2,
+      spin: (Math.random() - 0.5) * 0.2
+    });
+  }
+  if (animId) cancelAnimationFrame(animId);
+  animateConfetti();
+  setTimeout(stopConfetti, 4000);
+}
+
+function animateConfetti() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  pieces.forEach(p => {
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.angle);
+    ctx.fillStyle = p.color;
+    ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+    ctx.restore();
+    p.y += p.speed;
+    p.angle += p.spin;
+    if (p.y > canvas.height) { p.y = -10; p.x = Math.random() * canvas.width; }
+  });
+  animId = requestAnimationFrame(animateConfetti);
+}
+
+function stopConfetti() {
+  if (animId) { cancelAnimationFrame(animId); animId = null; }
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  canvas.style.display = 'none';
+  pieces = [];
+}
+
+function retryAll() {
+  stopConfetti();
+  answered = {};
+  totalScore = 0;
+  document.getElementById('cur-score').textContent = '0';
+  document.getElementById('result-card').classList.remove('show');
+  for (let qn = 1; qn <= 4; qn++) {
+    const card = document.getElementById(`qc-${qn}`);
+    card.querySelectorAll('.choice-btn').forEach(b => {
+      b.disabled = false;
+      b.classList.remove('selected-o','selected-x');
+    });
+    document.getElementById(`ans-btn-${qn}`).disabled = true;
+    const exp = document.getElementById(`exp-${qn}`);
+    exp.classList.remove('show');
+    document.getElementById(`exp-q${qn}-ok`).style.display = '';
+    document.getElementById(`exp-q${qn}-ng`).style.display = '';
+  }
+  // Q5
+  const card5 = document.getElementById('qc-5');
+  card5.querySelectorAll('.mc-btn').forEach(b => {
+    b.disabled = false;
+    b.classList.remove('selected-mc');
+  });
+  document.getElementById('ans-btn-5').disabled = true;
+  const exp5 = document.getElementById('exp-5');
+  exp5.classList.remove('show');
+  document.getElementById('exp-q5-ok').style.display = '';
+  document.getElementById('exp-q5-ng').style.display = '';
+}
+</script>
+</body>
+</html>
