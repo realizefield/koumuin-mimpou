@@ -3,385 +3,332 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GAMBA民法Ⅱ ch35 演習｜請負・委任</title>
-<link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap" rel="stylesheet">
+<title>GAMBA民法Ⅱ ch41 演習｜相続</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-:root{
-  --navy:#1B2A4A;
-  --crimson:#C0392B;
-  --gold:#D4A017;
-  --bg:#F5F3EE;
-  --white:#fff;
-  --light:#EAE8E0;
-  --border:#ddd8ce;
-  --text:#1a1a1a;
-}
-body{font-family:'BIZ UDGothic',Meiryo,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.8;}
-.site-header{background:var(--navy);color:#fff;padding:10px 20px;display:flex;align-items:center;gap:12px;}
-.logo{font-size:20px;font-weight:700;color:var(--gold);letter-spacing:2px;}
-.subtitle{font-size:12px;color:#aab4c8;}
-.ex-hero{background:linear-gradient(135deg,#2d1b4e 0%,var(--navy) 100%);color:#fff;padding:28px 20px;position:relative;overflow:hidden;}
-.ex-hero::before{content:'';position:absolute;right:-30px;top:-30px;width:160px;height:160px;border:3px solid rgba(212,160,23,0.2);border-radius:50%;}
-.ex-badge{display:inline-block;background:var(--crimson);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1px;margin-bottom:8px;}
-.ex-hero h1{font-size:22px;font-weight:700;letter-spacing:1px;}
-.ex-hero .ex-sub{font-size:13px;color:#c8d4e8;margin-top:6px;}
-.main-wrap{max-width:780px;margin:0 auto;padding:24px 16px 60px;}
-.score-board{background:var(--navy);color:#fff;border-radius:8px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.score-label{font-size:13px;color:#aab4c8;}
-.score-val{font-size:28px;font-weight:700;color:var(--gold);}
-.q-card{background:var(--white);border-radius:8px;border:1px solid var(--border);padding:20px;margin-bottom:20px;position:relative;}
-.q-num{position:absolute;top:-1px;left:-1px;background:var(--navy);color:var(--gold);font-size:12px;font-weight:700;padding:4px 12px;border-radius:8px 0 8px 0;}
-.q-type{display:inline-block;font-size:11px;color:var(--gray,#666);border:1px solid var(--border);padding:1px 8px;border-radius:10px;margin:28px 0 10px;}
-.q-text{font-size:15px;line-height:1.85;margin-bottom:14px;}
-.choices{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
-.choice-btn{padding:8px 20px;border-radius:4px;border:2px solid var(--border);background:var(--white);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;}
-.choice-btn:hover:not(:disabled){border-color:var(--navy);background:var(--light);}
-.choice-btn.selected-o{border-color:var(--navy);background:var(--navy);color:#fff;}
-.choice-btn.selected-x{border-color:var(--crimson);background:var(--crimson);color:#fff;}
-.choice-btn:disabled{cursor:default;opacity:.7;}
-.mc-choices{display:flex;flex-direction:column;gap:8px;margin-bottom:8px;}
-.mc-btn{padding:10px 14px;border-radius:4px;border:2px solid var(--border);background:var(--white);font-family:inherit;font-size:14px;text-align:left;cursor:pointer;transition:all .15s;}
-.mc-btn:hover:not(:disabled){border-color:var(--navy);background:var(--light);}
-.mc-btn.selected-mc{border-color:var(--navy);background:var(--navy);color:#fff;}
-.mc-btn:disabled{cursor:default;}
-.ans-btn{background:var(--gold);color:var(--navy);border:none;padding:8px 20px;border-radius:4px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;}
-.ans-btn:hover{background:#c49414;}
-.ans-btn:disabled{background:var(--border);color:var(--gray,#666);cursor:default;}
-.exp-area{margin-top:12px;display:none;}
-.exp-area.show{display:block;}
-.exp-ok{background:#e8f5e9;border-left:4px solid #1a6e3c;padding:10px 14px;border-radius:0 4px 4px 0;}
-.exp-ng{background:#fdecea;border-left:4px solid var(--crimson);padding:10px 14px;border-radius:0 4px 4px 0;}
-.exp-label{font-weight:700;font-size:12px;margin-bottom:4px;letter-spacing:1px;}
-.exp-ok .exp-label{color:#1a6e3c;}
-.exp-ng .exp-label{color:var(--crimson);}
-.exp-text{font-size:14px;line-height:1.75;}
-/* confetti */
-canvas#confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;display:none;}
-/* 結果 */
-.result-card{background:var(--navy);color:#fff;border-radius:8px;padding:24px 20px;text-align:center;margin-top:8px;display:none;}
-.result-card.show{display:block;}
-.result-card .big-score{font-size:48px;font-weight:700;color:var(--gold);line-height:1;}
-.result-card .score-msg{font-size:15px;color:#c8d4e8;margin-top:6px;}
-.retry-btn{background:var(--crimson);color:#fff;border:none;padding:10px 28px;border-radius:4px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;margin-top:14px;}
-.nav-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:16px 0;border-top:2px solid var(--border);margin-top:32px;}
-.nav-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:13px;font-weight:700;}
-.nav-prev{background:var(--light);color:var(--navy);}
-.nav-next{background:var(--navy);color:#fff;}
-.nav-index{background:var(--gold);color:var(--navy);}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#eef2f7;font-family:'BIZ UDGothic','Meiryo',sans-serif;color:#1B2A4A;line-height:1.8}
+  header{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:#fff;padding:20px 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+  header h1{font-size:1.2rem;font-weight:700}
+  header p{font-size:.8rem;opacity:.85;margin-top:2px}
+  .container{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+  .card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  h2{font-size:1.1rem;color:#1B2A4A;border-left:4px solid #C0392B;padding-left:10px;margin-bottom:16px}
+  p{margin-bottom:10px;font-size:.95rem}
+  .badge{display:inline-block;background:#C0392B;color:#fff;font-size:.7rem;padding:2px 8px;border-radius:10px;margin-right:6px}
+  .choices{list-style:none;padding:0}
+  .choices li{background:#f5f7fa;border:2px solid #ddd;border-radius:8px;padding:10px 14px;margin-bottom:8px;cursor:pointer;font-size:.9rem;transition:all .2s;display:flex;align-items:flex-start;gap:8px}
+  .choices li:hover{border-color:#1B2A4A;background:#e8edf4}
+  .choices li.correct-ans{border-color:#2e7d32 !important;background:#e8f5e9 !important}
+  .choices li.wrong-ans{border-color:#C0392B !important;background:#ffeaea !important}
+  .choices li.show-correct{border-color:#2e7d32;background:#e8f5e9}
+  .choice-mark{font-weight:700;min-width:20px}
+  .explanation{margin-top:14px;padding:14px;background:#fff8e1;border-radius:8px;border-left:3px solid #D4A017;font-size:.88rem;display:none;line-height:1.8}
+  .explanation.show{display:block}
+  .explanation strong{color:#C0392B}
+  .fill-q{background:#f5f7fa;border-radius:10px;padding:18px;margin-bottom:20px;border-left:4px solid #1B2A4A}
+  .fill-q .q-no{font-size:.8rem;color:#1B2A4A;font-weight:700;margin-bottom:8px}
+  .fill-sentence{font-size:.95rem;line-height:2.4;margin-bottom:8px}
+  .blank{display:inline-block;min-width:90px;height:28px;border-bottom:2px solid #1B2A4A;vertical-align:bottom;text-align:center;cursor:pointer;background:rgba(212,160,23,.1);border-radius:4px 4px 0 0;padding:0 6px;font-weight:700;color:#C0392B;font-size:.9rem;transition:background .2s}
+  .blank:hover{background:rgba(192,57,43,.1)}
+  .blank.filled{background:rgba(46,125,50,.1);border-bottom-color:#2e7d32}
+  .blank.wrong-fill{background:rgba(192,57,43,.15);border-bottom-color:#C0392B;animation:shake .3s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+  .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+  .chip{background:#1B2A4A;color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:.88rem;transition:all .2s;user-select:none}
+  .chip:hover{background:#C0392B;transform:translateY(-2px)}
+  .chip.used{opacity:.3;cursor:not-allowed;pointer-events:none}
+  .popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:#fff;border-radius:14px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,.25);z-index:200;min-width:280px;opacity:0;pointer-events:none;transition:all .25s}
+  .popup.show{opacity:1;pointer-events:all;transform:translate(-50%,-50%) scale(1)}
+  .popup h5{color:#1B2A4A;margin-bottom:10px;font-size:.95rem}
+  .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:199;opacity:0;pointer-events:none;transition:opacity .25s}
+  .popup-overlay.show{opacity:1;pointer-events:all}
+  .fill-btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+  .fill-btn{padding:8px 18px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;transition:all .2s}
+  .btn-check{background:#1B2A4A;color:#fff}.btn-check:hover{background:#C0392B}
+  .btn-hint{background:#D4A017;color:#fff}.btn-hint:hover{background:#b8860b}
+  .btn-reset{background:#eee;color:#333}.btn-reset:hover{background:#ddd}
+  .score-badge{display:inline-block;background:#C0392B;color:#fff;border-radius:20px;padding:4px 14px;font-size:.85rem;font-weight:700}
+  .total-score-card{background:linear-gradient(135deg,#1B2A4A,#C0392B);color:#fff;border-radius:12px;padding:24px;text-align:center;margin-bottom:20px}
+  .total-score-card h2{border-left:none;color:#fff;font-size:1.2rem;padding-left:0;margin-bottom:10px}
+  .score-display{font-size:2.5rem;font-weight:700;margin:10px 0}
+  .score-display span{font-size:1.2rem;opacity:.8}
+  .score-msg{font-size:1rem;opacity:.9}
+  canvas#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+  .nav-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .nav-btn{padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-size:.9rem;font-weight:700;text-decoration:none;display:inline-block}
+  .nav-prev{background:#1B2A4A;color:#fff}
+  .nav-next{background:#C0392B;color:#fff}
+  .nav-index{background:#D4A017;color:#fff}
 </style>
 </head>
 <body>
-<canvas id="confetti"></canvas>
-
-<header class="site-header">
-  <span class="logo">GAMBA</span>
-  <span class="subtitle">民法Ⅱ ｜ 演習</span>
+<canvas id="confetti-canvas"></canvas>
+<header>
+  <h1>⚔ GAMBA民法Ⅱ ch41｜相続【演習】</h1>
+  <p>民法Ⅱ 債権総論 ― 過去問で実力を確認しよう！</p>
 </header>
+<div class="container">
 
-<div class="ex-hero">
-  <div class="ex-badge">CHAPTER 41 演習</div>
-  <h1>請負・委任</h1>
-  <p class="ex-sub">○×問題4問＋5択問題1問　全5問</p>
+<div class="total-score-card">
+  <h2>📊 演習スコア</h2>
+  <div class="score-display"><span id="correct-count">0</span><span> / </span><span id="total-count">0</span></div>
+  <div class="score-msg" id="score-msg">問題に答えてスコアを確認しよう！</div>
 </div>
 
-<div class="main-wrap">
-<div class="score-board">
-  <div><div class="score-label">現在のスコア</div><div class="score-val"><span id="cur-score">0</span> / 5</div></div>
-  <div style="font-size:13px;color:#aab4c8;">答え合わせしながら進もう</div>
-</div>
-
-<!-- Q1 -->
-<div class="q-card" id="qc-1">
-  <div class="q-num">Q1</div>
-  <span class="q-type">○×問題</span>
-  <p class="q-text">請負人が仕事を完成しない間は、注文者は、損害を賠償しなくても直ちに契約を解除することができる。</p>
-  <div class="choices">
-    <button class="choice-btn" onclick="ansOX(1,'○')">○</button>
-    <button class="choice-btn" onclick="ansOX(1,'×')">×</button>
-  </div>
-  <button class="ans-btn" id="ans-btn-1" onclick="showExp(1)" disabled>解説を見る</button>
-  <div class="exp-area" id="exp-1">
-    <div class="exp-ng" id="exp-q1-ok">
-      <div class="exp-label">✅ 正解：×</div>
-      <p class="exp-text">請負人が仕事を完成しない間は、注文者はいつでも解除できるが（641条）、<strong>損害を賠償して</strong>解除する必要がある。損害賠償は解除後に支払えばよいが、全く不要というわけではない。</p>
-    </div>
-    <div class="exp-ok" id="exp-q1-ng">
-      <div class="exp-label">❌ 不正解</div>
-      <p class="exp-text">注文者はいつでも解除できますが、<strong>損害を賠償して</strong>解除する必要があります（641条）。損害賠償なしに解除できるわけではありません。</p>
-    </div>
-  </div>
-</div>
-
-<!-- Q2 -->
-<div class="q-card" id="qc-2">
-  <div class="q-num">Q2</div>
-  <span class="q-type">○×問題</span>
-  <p class="q-text">請負人が材料の全部を供給した場合、完成した建物の所有権は原始的に請負人に帰属し、目的物の引渡しによって注文者に移転する。</p>
-  <div class="choices">
-    <button class="choice-btn" onclick="ansOX(2,'○')">○</button>
-    <button class="choice-btn" onclick="ansOX(2,'×')">×</button>
-  </div>
-  <button class="ans-btn" id="ans-btn-2" onclick="showExp(2)" disabled>解説を見る</button>
-  <div class="exp-area" id="exp-2">
-    <div class="exp-ok" id="exp-q2-ok">
-      <div class="exp-label">✅ 正解：○</div>
-      <p class="exp-text">請負人が材料の全部または主要部分を供給した場合、所有権は原始的に<strong>請負人</strong>に帰属し、<strong>引渡しによって注文者に移転</strong>する（大判明37・6・22）。請負人の報酬債権を確保するための扱いである。</p>
-    </div>
-    <div class="exp-ng" id="exp-q2-ng">
-      <div class="exp-label">❌ 不正解</div>
-      <p class="exp-text">請負人が材料の全部を供給した場合、所有権は<strong>原始的に請負人に帰属し、引渡しによって注文者に移転</strong>します（大判明37・6・22）。この問題は正しい記述です。</p>
-    </div>
+<!-- 択一1 No.89 国家一般職H28 -->
+<div class="card" id="quiz-block-1">
+  <h2><span class="badge">過去問</span>No.89 相続（国家一般職 H28）</h2>
+  <p>相続に関するア〜オの記述のうち、妥当なものののみをすべて挙げているのはどれか（争いのあるときは、判例の見解による）。</p>
+  <p><strong>ア．</strong>被相続人の子が、相続の開始以前に死亡した場合、又は相続を放棄した場合には、被相続人の子の配偶者及び被相続人の子の子は、被相続人の子を代襲して相続人となることができる。</p>
+  <p><strong>イ．</strong>相続人が相続に関する被相続人の遺言書を破棄又は隠匿した場合において、相続人の当該行為が相続に関して不当な利益を目的とするものでなかったとしても、当該相続人は、民法891条5号所定の相続欠格者にあたる。</p>
+  <p><strong>ウ．</strong>相続人は、自己のために相続の開始があったことを知った時から3か月以内であれば、一度した相続の承認及び放棄を撤回することができる。</p>
+  <p><strong>エ．</strong>相続人は、遺産の分割までの間は、相続開始時に存した金銭を相続財産として保管している他の相続人に対し、自己の相続分に相当する金銭の支払を請求することはできない。</p>
+  <p><strong>オ．</strong>共同相続人間において遺産分割協議が成立した場合に、相続人の1人が他の相続人に対して当該遺産分割協議において負担した債務を履行しないときであっても、他の相続人は民法第541条によって当該遺産分割協議を解除することができない。</p>
+  <ul class="choices" data-correct="5">
+    <li data-idx="1"><span class="choice-mark">１</span>ア、ウ</li>
+    <li data-idx="2"><span class="choice-mark">２</span>ア、オ</li>
+    <li data-idx="3"><span class="choice-mark">３</span>イ、ウ</li>
+    <li data-idx="4"><span class="choice-mark">４</span>イ、エ</li>
+    <li data-idx="5"><span class="choice-mark">５</span>エ、オ</li>
+  </ul>
+  <div class="explanation" id="exp-q1">
+    <strong>正答５（エ・オ）</strong><br>
+    ア×：相続を<strong>放棄</strong>した場合は代襲原因にならない。代襲原因は①死亡②欠格③廃除の3つのみ（887条2項）。また配偶者は代襲者とはなり得ない。<br>
+    イ×：当該行為が<strong>相続に関して不当な利益を目的とするものでなかった場合</strong>には、891条5号の欠格者にあたらないとするのが判例（最判平9・1・28）。<br>
+    ウ×：一度した相続の承認・放棄は、たとえ熟慮期間中であっても<strong>撤回することができない</strong>（919条1項）。詐欺・強迫による場合は家庭裁判所に申述して取消し可能（別問題）。<br>
+    エ○：金銭は遺産分割の対象となるため、相続人は遺産分割前に他の相続人に対して自己の相続分に相当する金銭の支払を請求することはできない（最判平4・4・10参照）。<br>
+    オ○：遺産分割の<strong>法的安定性</strong>の観点から、遺産分割協議は民法541条によって解除することができないとするのが判例（最判平元・2・9）。
   </div>
 </div>
 
-<!-- Q3 -->
-<div class="q-card" id="qc-3">
-  <div class="q-num">Q3</div>
-  <span class="q-type">○×問題</span>
-  <p class="q-text">委任は、当事者の一方が法律行為を行うことを相手方に委託する契約であり、有償・双務・諾成の契約である。</p>
-  <div class="choices">
-    <button class="choice-btn" onclick="ansOX(3,'○')">○</button>
-    <button class="choice-btn" onclick="ansOX(3,'×')">×</button>
-  </div>
-  <button class="ans-btn" id="ans-btn-3" onclick="showExp(3)" disabled>解説を見る</button>
-  <div class="exp-area" id="exp-3">
-    <div class="exp-ng" id="exp-q3-ok">
-      <div class="exp-label">✅ 正解：×</div>
-      <p class="exp-text">委任は原則として<strong>無償・片務・諾成</strong>の契約である（643条）。報酬支払いの特約があれば有償・双務となるが、原則は無償・片務である。「有償・双務」とする記述は誤り。</p>
-    </div>
-    <div class="exp-ok" id="exp-q3-ng">
-      <div class="exp-label">❌ 不正解</div>
-      <p class="exp-text">委任は原則として<strong>無償・片務・諾成</strong>の契約です。有償・双務になるのは報酬支払いの特約がある場合だけです。</p>
-    </div>
-  </div>
-</div>
-
-<!-- Q4 -->
-<div class="q-card" id="qc-4">
-  <div class="q-num">Q4</div>
-  <span class="q-type">○×問題</span>
-  <p class="q-text">受任者は、有償・無償を問わず善管注意義務を負い、委任事務を処理するため自己に過失なく損害を受けたときは、委任者に対しその賠償を請求することができる。この場合、委任者は無過失責任を負う。</p>
-  <div class="choices">
-    <button class="choice-btn" onclick="ansOX(4,'○')">○</button>
-    <button class="choice-btn" onclick="ansOX(4,'×')">×</button>
-  </div>
-  <button class="ans-btn" id="ans-btn-4" onclick="showExp(4)" disabled>解説を見る</button>
-  <div class="exp-area" id="exp-4">
-    <div class="exp-ok" id="exp-q4-ok">
-      <div class="exp-label">✅ 正解：○</div>
-      <p class="exp-text">受任者は<strong>有償・無償を問わず善管注意義務</strong>を負う（644条）。また、委任事務処理のため自己に過失なく損害を受けたときは、委任者に対してその賠償を請求できる（650条3項）。この場合、委任者は<strong>無過失責任</strong>を負う。どちらも正しい記述である。</p>
-    </div>
-    <div class="exp-ng" id="exp-q4-ng">
-      <div class="exp-label">❌ 不正解</div>
-      <p class="exp-text">受任者は有償・無償を問わず善管注意義務を負い（644条）、自己に過失なく損害を受けたときは委任者に賠償請求できます（委任者の無過失責任：650条3項）。どちらも正しい記述です。</p>
-    </div>
+<!-- 択一2 No.90 国税専門官H26 -->
+<div class="card" id="quiz-block-2">
+  <h2><span class="badge">過去問</span>No.90 相続（国税専門官 H26）</h2>
+  <p>相続に関するア〜エの記述のうち、妥当なものののみをすべて挙げているのはどれか。</p>
+  <p><strong>ア．</strong>子のいないAの死亡前に、相続人となるべき兄Bが死亡し、Bの唯一の子であるCも死亡している場合、Cの子であるDがAを相続する。</p>
+  <p><strong>イ．</strong>Aが死亡し、その妻B及び子C・Dが相続人である場合に、Cが相続の放棄をしたときは、B及びDとも相続分が増加する。</p>
+  <p><strong>ウ．</strong>いったん遺言をした後であっても、遺言者は遺言の全部又は一部を自由に撤回することができる。ただし、遺言の撤回権をあらかじめ放棄している場合には、撤回は裁判所に届け出ない限り効力を生じない。</p>
+  <p><strong>エ．</strong>相続の放棄をした子は、初めから相続人とならなかったものとみなされるため、遺留分侵害額請求をすることはできない。</p>
+  <ul class="choices" data-correct="3">
+    <li data-idx="1"><span class="choice-mark">１</span>ア</li>
+    <li data-idx="2"><span class="choice-mark">２</span>ウ</li>
+    <li data-idx="3"><span class="choice-mark">３</span>エ</li>
+    <li data-idx="4"><span class="choice-mark">４</span>ア、イ</li>
+    <li data-idx="5"><span class="choice-mark">５</span>イ、エ</li>
+  </ul>
+  <div class="explanation" id="exp-q2">
+    <strong>正答３（エ）</strong><br>
+    ア×：兄弟姉妹（Bの系列）では代襲相続は可能だが、<strong>再代襲相続は認められていない</strong>。よって、CのさらにDがAを相続することはない。<br>
+    イ×：Cが相続放棄をすると、妻Bの相続分は<strong>2分の1のまま変わらない</strong>が、Dの相続分は4分の1から2分の1に増加する。Bとも増加するわけではない。<br>
+    ウ×：遺言の撤回権は<strong>放棄することができない</strong>（1026条）。そもそも撤回権をあらかじめ放棄するという前提が誤り。<br>
+    エ○：相続放棄をした者は相続開始の時に遡って<strong>初めから相続人でなかったものとみなされ</strong>（939条）、遺留分権利者から外れる（相続放棄した者は遺留分がない）。
   </div>
 </div>
 
-<!-- Q5 -->
-<div class="q-card" id="qc-5">
-  <div class="q-num">Q5</div>
-  <span class="q-type">5択問題</span>
-  <p class="q-text">民法に規定する請負又は委任に関する記述として、通説に照らして妥当なのはどれか。【特別区 R1】</p>
-  <div class="mc-choices">
-    <button class="mc-btn" onclick="ansMC(5,1)">1. 請負は、当事者の一方がある仕事を完成することを約し、相手方がその仕事の結果に対してその報酬を支払うことを約することによって、その効力を生ずる有償、双務及び諾成契約である。</button>
-    <button class="mc-btn" onclick="ansMC(5,2)">2. 注文者が破産手続開始の決定を受けたとき、請負人は、契約の解除をすることができるが、この場合に、請負人は、既にした仕事の報酬に含まれていない費用について、破産財団の配当に加入することができない。</button>
-    <button class="mc-btn" onclick="ansMC(5,3)">3. 委任は、各当事者がいつでもその解除をすることができるが、当事者の一方が相手方に不利な時期に委任の解除をしたときは、当事者の一方は、必ず相手方の損害を賠償しなければならない。</button>
-    <button class="mc-btn" onclick="ansMC(5,4)">4. 委任たる地位が当然に移転する場面では、委任たる地位を譲渡人（Ａ）に留保する旨の合意をし、かつその不動産を譲受人（Ｃ）が譲渡人（Ａ）に貸する旨の合意をしたときであっても、委任たる地位の移転が生じる。</button>
-    <button class="mc-btn" onclick="ansMC(5,5)">5. 委任は、特約の有無にかかわらず、委任者又は受任者の死亡、委任者又は受任者が後見開始の審判を受けたこと及び受任者が破産手続開始の決定を受けたことによって終了する。</button>
-  </div>
-  <button class="ans-btn" id="ans-btn-5" onclick="showExp(5)" disabled>解説を見る</button>
-  <div class="exp-area" id="exp-5">
-    <div class="exp-ok" id="exp-q5-ok">
-      <div class="exp-label">✅ 正解：1</div>
-      <p class="exp-text"><strong>1.○</strong> 請負は有償・双務・諾成契約であり、正しい（632条）。<br><strong>2.×</strong> 請負人は既にした仕事の報酬及びその中に含まれていない費用について、<strong>破産財団の配当に加入することができる</strong>（642条2項）。<br><strong>3.×</strong> 不利な時期に解除した場合でも、<strong>やむを得ない事由</strong>があったときは損害賠償は不要（651条2項ただし書）。「必ず」は誤り。<br><strong>4.×</strong> 地位留保の合意＋譲受人が譲渡人に貸する合意があれば、<strong>賃貸人たる地位の移転は生じない</strong>（605条の2第2項）。<br><strong>5.×</strong> 委任者の<strong>後見開始の審判</strong>は委任の終了原因とならない（653条）。また特約があれば死亡でも終了しない場合がある。</p>
-    </div>
-    <div class="exp-ng" id="exp-q5-ng">
-      <div class="exp-label">❌ 不正解</div>
-      <p class="exp-text">正解は<strong>1番</strong>です。請負は有償・双務・諾成契約（632条）。2は破産財団への配当加入は可能。3はやむを得ない事由があれば損害賠償不要。4は地位留保合意があれば移転は生じない。5は委任者の後見開始は終了原因とならない。</p>
-    </div>
+<!-- 択一3 No.91 国家一般職H28（放棄） -->
+<div class="card" id="quiz-block-3">
+  <h2><span class="badge">過去問</span>No.91 相続の放棄（国家一般職 R2）</h2>
+  <p>相続の放棄に関するア〜エの記述のうち、妥当なものののみをすべて挙げているのはどれか。</p>
+  <p><strong>ア．</strong>相続の放棄をしようとする者は、相続の開始前においては、その旨を家庭裁判所に申述しなければならないが、相続の開始後においては、その意思を外部に表示するだけで足りる。</p>
+  <p><strong>イ．</strong>相続の放棄をした者は、その放棄によって相続人となった者が相続財産の管理を始めることができるまで、善良な管理者の注意をもって、その財産の管理を継続しなければならない。</p>
+  <p><strong>ウ．</strong>被相続人の子が相続の放棄をしたときは、その者の子がこれを代襲して相続人となることはない。</p>
+  <p><strong>エ．</strong>一旦行った相続の放棄は、自己のために相続の開始があったことを知った時から3か月以内であっても、撤回することができない。</p>
+  <ul class="choices" data-correct="5">
+    <li data-idx="1"><span class="choice-mark">１</span>ア、イ</li>
+    <li data-idx="2"><span class="choice-mark">２</span>ア、ウ</li>
+    <li data-idx="3"><span class="choice-mark">３</span>イ、ウ</li>
+    <li data-idx="4"><span class="choice-mark">４</span>イ、エ</li>
+    <li data-idx="5"><span class="choice-mark">５</span>ウ、エ</li>
+  </ul>
+  <div class="explanation" id="exp-q3">
+    <strong>正答５（ウ・エ）</strong><br>
+    ア×：相続の放棄は相続の<strong>開始前においてはすることができない</strong>（相続開始後に家庭裁判所に申述）。開始後においても家庭裁判所に申述する必要がある（938条）。外部に意思表示するだけでは足りない。<br>
+    イ×：相続の放棄をした者は、その放棄によって相続人となった者が管理を始めることができるまで、<strong>自己の財産におけるのと同一の注意</strong>をもって財産の管理を継続しなければならない（940条1項）。善管注意義務ではない。<br>
+    ウ○：相続の<strong>放棄は代襲原因にならない</strong>。代襲原因は死亡・欠格・廃除のみ（887条2項）。<br>
+    エ○：一度した相続の承認・放棄は、<strong>熟慮期間中であっても撤回できない</strong>（919条1項）。
   </div>
 </div>
 
-<!-- 結果カード -->
-<div class="result-card" id="result-card">
-  <div style="font-size:15px;color:#aab4c8;margin-bottom:8px;">最終スコア</div>
-  <div class="big-score" id="final-score">0</div>
-  <div style="font-size:20px;color:#aab4c8;">/ 5</div>
-  <div class="score-msg" id="score-msg"></div>
-  <button class="retry-btn" onclick="retryAll()">もう一度挑戦</button>
+<!-- 穴埋め No.92 -->
+<div class="card" id="quiz-block-4">
+  <h2><span class="badge">重要</span>No.92 相続 重要ポイント整理</h2>
+
+  <div class="fill-q">
+    <div class="q-no">【1】法定相続分</div>
+    <div class="fill-sentence">
+      相続人が配偶者と子の場合：配偶者<span class="blank" data-group="a" data-ans="2分の1">　　　　</span>・子<span class="blank" data-group="b" data-ans="2分の1">　　　　</span>。相続人が配偶者と直系尊属の場合：配偶者<span class="blank" data-group="c" data-ans="3分の2">　　　　</span>・直系尊属<span class="blank" data-group="d" data-ans="3分の1">　　　　</span>。相続人が配偶者と兄弟姉妹の場合：配偶者<span class="blank" data-group="e" data-ans="4分の3">　　　　</span>・兄弟姉妹<span class="blank" data-group="f" data-ans="4分の1">　　　　</span>。
+    </div>
+  </div>
+
+  <div class="fill-q">
+    <div class="q-no">【2】遺留分率</div>
+    <div class="fill-sentence">
+      相続人が<span class="blank" data-group="g" data-ans="直系尊属のみ">　　　　　</span>の場合の遺留分率は被相続人の財産の<span class="blank" data-group="h" data-ans="3分の1">　　　　</span>。それ以外の場合の遺留分率は被相続人の財産の<span class="blank" data-group="i" data-ans="2分の1">　　　　</span>。なお、<span class="blank" data-group="j" data-ans="兄弟姉妹">　　　　</span>には遺留分がない。
+    </div>
+  </div>
+
+  <div class="word-bank" id="wb-q4">
+    <span class="chip" data-val="2分の1">2分の1</span>
+    <span class="chip" data-val="2分の1">2分の1</span>
+    <span class="chip" data-val="3分の2">3分の2</span>
+    <span class="chip" data-val="3分の1">3分の1</span>
+    <span class="chip" data-val="4分の3">4分の3</span>
+    <span class="chip" data-val="4分の1">4分の1</span>
+    <span class="chip" data-val="直系尊属のみ">直系尊属のみ</span>
+    <span class="chip" data-val="3分の1">3分の1</span>
+    <span class="chip" data-val="2分の1">2分の1</span>
+    <span class="chip" data-val="兄弟姉妹">兄弟姉妹</span>
+  </div>
+  <div class="fill-btns">
+    <button class="fill-btn btn-check" onclick="checkFill('q4')">採点する</button>
+    <button class="fill-btn btn-hint" onclick="hintFill('q4')">ヒント</button>
+    <button class="fill-btn btn-reset" onclick="resetFill('q4')">リセット</button>
+    <span class="score-badge" id="score-q4">0 / 10</span>
+  </div>
+  <div class="explanation" id="exp-q4">
+    <strong>解説</strong><br>
+    法定相続分と遺留分率は計算問題でも頻出。配偶者は<strong>常に相続人</strong>となり、それ以外の相続人（子→直系尊属→兄弟姉妹の順）と組み合わせて相続分が決まる。<br>
+    遺留分が認められないのは兄弟姉妹（及び代襲相続人の甥・姪）のみ。遺留分率は「直系尊属のみ=3分の1」「それ以外=2分の1」の2パターン。
+  </div>
 </div>
 
-<div class="nav-row">
-  <a href="minpo2_ch41_kaisetsu.html" class="nav-btn nav-prev">← 解説に戻る</a>
-  <a href="minpo2_index.html" class="nav-btn nav-index">目次</a>
-  <a href="minpo2_ch41_enshu.html" class="nav-btn nav-next">ch36 演習へ →</a>
+<!-- 択一5 総合 -->
+<div class="card" id="quiz-block-5">
+  <h2><span class="badge">総合</span>No.93 相続 総合確認</h2>
+  <p>相続に関する次の記述のうち、正しいものはどれか（争いのあるときは、判例の見解による）。</p>
+  <ul class="choices" data-correct="2">
+    <li data-idx="1"><span class="choice-mark">１</span>被相続人が「〇〇の土地を長男に相続させる」という遺言をした場合、長男は法定相続分を超える部分についても、登記なくして第三者に対抗できる。</li>
+    <li data-idx="2"><span class="choice-mark">２</span>遺言者は、いつでも遺言の方式に従ってその遺言の全部又は一部を撤回することができ、遺言の撤回権を放棄することはできない。</li>
+    <li data-idx="3"><span class="choice-mark">３</span>限定承認は、相続人が数人あるときは、相続人の一人がすることができる。</li>
+    <li data-idx="4"><span class="choice-mark">４</span>前の遺言が後の遺言と抵触するときは、その抵触する部分については、前の遺言で後の遺言を撤回したものとみなされる。</li>
+    <li data-idx="5"><span class="choice-mark">５</span>相続の放棄をした者の子は、代襲相続によって相続人となることができる。</li>
+  </ul>
+  <div class="explanation" id="exp-q5">
+    <strong>正答２</strong><br>
+    １×：法定相続分を<strong>超える部分</strong>については、登記等の対抗要件を備えなければ第三者に対抗できない（899条の2第1項）。<br>
+    ２○：遺言者はいつでも遺言を撤回でき（1022条）、<strong>遺言の撤回権を放棄することはできない</strong>（1026条）。<br>
+    ３×：相続人が数人あるときは、限定承認は<strong>共同相続人全員が共同</strong>してしなければならない（923条）。<br>
+    ４×：前の遺言が後の遺言と抵触するときは、<strong>後の遺言で前の遺言を撤回したものとみなされる</strong>（1023条1項）。前後が逆。<br>
+    ５×：相続放棄は<strong>代襲原因ではない</strong>。放棄をした者の子は代襲相続できない（887条2項）。
+  </div>
 </div>
+
+<div class="nav-btns">
+  <a href="minpo2_ch40_enshu.html" class="nav-btn nav-prev">← ch40 演習</a>
+  <a href="minpo2_index.html" class="nav-btn nav-index">📚 INDEX</a>
+</div>
+</div>
+
+<div class="popup-overlay" id="popup-overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup">
+  <h5 id="popup-title">語句を選んでください</h5>
+  <div id="popup-options"></div>
 </div>
 
 <script>
-// 正解定義
-const correctOX = {1:'×', 2:'○', 3:'×', 4:'○'};
-const correctMC = {5: 1};
-let answered = {};
-let totalScore = 0;
-const totalQ = 5;
-
-function ansOX(qn, choice) {
-  if (answered[qn]) return;
-  answered[qn] = true;
-  const card = document.getElementById(`qc-${qn}`);
-  const btns = card.querySelectorAll('.choice-btn');
-  btns.forEach(b => {
-    b.disabled = true;
-    if (b.textContent === choice) {
-      b.classList.add(choice === '○' ? 'selected-o' : 'selected-x');
-    }
-  });
-  document.getElementById(`ans-btn-${qn}`).disabled = false;
-  const isOK = (choice === correctOX[qn]);
-  if (isOK) {
-    totalScore++;
-    document.getElementById('cur-score').textContent = totalScore;
-  }
-  // 正誤フラグを保存
-  answered[`${qn}_ok`] = isOK;
-  checkAllDone();
+let totalCorrect=0,totalAnswered=0;
+function updateScore(){
+  document.getElementById('correct-count').textContent=totalCorrect;
+  document.getElementById('total-count').textContent=totalAnswered;
+  const rate=totalAnswered?Math.round(totalCorrect/totalAnswered*100):0;
+  let msg='';
+  if(totalAnswered===0)msg='問題に答えてスコアを確認しよう！';
+  else if(rate===100)msg='🎉 満点！素晴らしい！';
+  else if(rate>=80)msg='💪 よくできました！';
+  else if(rate>=60)msg='📖 もう少し復習しましょう。';
+  else msg='✏️ テキストに戻って確認しよう！';
+  document.getElementById('score-msg').textContent=msg;
+  if(rate===100&&totalAnswered>=5)launchConfetti();
 }
-
-function ansMC(qn, choice) {
-  if (answered[qn]) return;
-  answered[qn] = true;
-  const card = document.getElementById(`qc-${qn}`);
-  const btns = card.querySelectorAll('.mc-btn');
-  btns.forEach((b, i) => {
-    b.disabled = true;
-    if (i + 1 === choice) b.classList.add('selected-mc');
-  });
-  document.getElementById(`ans-btn-${qn}`).disabled = false;
-  const isOK = (choice === correctMC[qn]);
-  if (isOK) {
-    totalScore++;
-    document.getElementById('cur-score').textContent = totalScore;
-  }
-  answered[`${qn}_ok`] = isOK;
-  checkAllDone();
-}
-
-function showExp(qn) {
-  const expArea = document.getElementById(`exp-${qn}`);
-  expArea.classList.add('show');
-  const isOK = answered[`${qn}_ok`];
-  if (isOK) {
-    document.getElementById(`exp-q${qn}-ok`).style.display = 'block';
-    document.getElementById(`exp-q${qn}-ng`).style.display = 'none';
-  } else {
-    document.getElementById(`exp-q${qn}-ok`).style.display = 'none';
-    document.getElementById(`exp-q${qn}-ng`).style.display = 'block';
-  }
-  document.getElementById(`ans-btn-${qn}`).disabled = true;
-}
-
-function checkAllDone() {
-  if (Object.keys(answered).filter(k => !k.includes('_ok')).length === totalQ) {
-    setTimeout(() => {
-      const rc = document.getElementById('result-card');
-      rc.classList.add('show');
-      document.getElementById('final-score').textContent = totalScore;
-      let msg = '';
-      if (totalScore === 5) msg = '🎉 パーフェクト！完全制覇！';
-      else if (totalScore === 4) msg = '🌸 惜しい！あと一歩！';
-      else if (totalScore === 3) msg = '📖 もう一度テキストで確認しよう';
-      else msg = '💪 基礎から見直してみよう';
-      document.getElementById('score-msg').textContent = msg;
-      if (totalScore >= 4) launchConfetti();
-    }, 600);
-  }
-}
-
-// confetti
-const canvas = document.getElementById('confetti');
-const ctx = canvas.getContext('2d');
-let pieces = [];
-let animId = null;
-
-function launchConfetti() {
-  canvas.style.display = 'block';
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  pieces = [];
-  const colors = ['#1B2A4A','#C0392B','#D4A017','#ffffff','#4a90e2','#27ae60'];
-  for (let i = 0; i < 160; i++) {
-    pieces.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height - canvas.height,
-      w: Math.random() * 10 + 4,
-      h: Math.random() * 6 + 3,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      speed: Math.random() * 3 + 1.5,
-      angle: Math.random() * Math.PI * 2,
-      spin: (Math.random() - 0.5) * 0.2
+document.querySelectorAll('.choices').forEach(ul=>{
+  const correct=parseInt(ul.dataset.correct);
+  const blockId=ul.closest('[id^="quiz-block-"]').id;
+  const num=blockId.replace('quiz-block-','');
+  ul.querySelectorAll('li').forEach(li=>{
+    li.addEventListener('click',()=>{
+      if(ul.dataset.answered)return;
+      ul.dataset.answered='1';
+      totalAnswered++;
+      const idx=parseInt(li.dataset.idx);
+      if(idx===correct){li.classList.add('correct-ans');totalCorrect++;}
+      else{li.classList.add('wrong-ans');ul.querySelectorAll('li').forEach(l=>{if(parseInt(l.dataset.idx)===correct)l.classList.add('show-correct');});}
+      document.getElementById('exp-q'+num).classList.add('show');
+      updateScore();
     });
-  }
-  if (animId) cancelAnimationFrame(animId);
-  animateConfetti();
-  setTimeout(stopConfetti, 4000);
-}
-
-function animateConfetti() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  pieces.forEach(p => {
-    ctx.save();
-    ctx.translate(p.x, p.y);
-    ctx.rotate(p.angle);
-    ctx.fillStyle = p.color;
-    ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
-    ctx.restore();
-    p.y += p.speed;
-    p.angle += p.spin;
-    if (p.y > canvas.height) { p.y = -10; p.x = Math.random() * canvas.width; }
   });
-  animId = requestAnimationFrame(animateConfetti);
-}
-
-function stopConfetti() {
-  if (animId) { cancelAnimationFrame(animId); animId = null; }
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  canvas.style.display = 'none';
-  pieces = [];
-}
-
-function retryAll() {
-  stopConfetti();
-  answered = {};
-  totalScore = 0;
-  document.getElementById('cur-score').textContent = '0';
-  document.getElementById('result-card').classList.remove('show');
-  for (let qn = 1; qn <= 4; qn++) {
-    const card = document.getElementById(`qc-${qn}`);
-    card.querySelectorAll('.choice-btn').forEach(b => {
-      b.disabled = false;
-      b.classList.remove('selected-o','selected-x');
-    });
-    document.getElementById(`ans-btn-${qn}`).disabled = true;
-    const exp = document.getElementById(`exp-${qn}`);
-    exp.classList.remove('show');
-    document.getElementById(`exp-q${qn}-ok`).style.display = '';
-    document.getElementById(`exp-q${qn}-ng`).style.display = '';
-  }
-  // Q5
-  const card5 = document.getElementById('qc-5');
-  card5.querySelectorAll('.mc-btn').forEach(b => {
-    b.disabled = false;
-    b.classList.remove('selected-mc');
+});
+let selectedBlank=null;
+function openPopup(blank){
+  selectedBlank=blank;
+  const wb=document.getElementById('wb-q4');
+  const chips=[...wb.querySelectorAll('.chip:not(.used)')].map(c=>c.dataset.val);
+  if(chips.length===0)return;
+  document.getElementById('popup-title').textContent='語句を選んでください';
+  const opts=document.getElementById('popup-options');
+  opts.innerHTML='';
+  chips.forEach(v=>{
+    const btn=document.createElement('button');
+    btn.textContent=v;
+    btn.style.cssText='display:block;width:100%;margin-bottom:8px;padding:8px 12px;border-radius:8px;border:2px solid #1B2A4A;background:#fff;cursor:pointer;font-size:.9rem;text-align:left;';
+    btn.onclick=()=>{fillBlank(blank,v,'q4');closePopup();};
+    opts.appendChild(btn);
   });
-  document.getElementById('ans-btn-5').disabled = true;
-  const exp5 = document.getElementById('exp-5');
-  exp5.classList.remove('show');
-  document.getElementById('exp-q5-ok').style.display = '';
-  document.getElementById('exp-q5-ng').style.display = '';
+  document.getElementById('popup').classList.add('show');
+  document.getElementById('popup-overlay').classList.add('show');
 }
+function closePopup(){
+  document.getElementById('popup').classList.remove('show');
+  document.getElementById('popup-overlay').classList.remove('show');
+}
+function fillBlank(blank,val,qId){
+  const prev=blank.textContent.trim();
+  if(prev&&prev.length>1){
+    const wb=document.getElementById('wb-'+qId);
+    const chip=[...wb.querySelectorAll('.chip')].find(c=>c.dataset.val===prev&&c.classList.contains('used'));
+    if(chip)chip.classList.remove('used');
+  }
+  blank.textContent=val;
+  blank.classList.add('filled');
+  blank.classList.remove('wrong-fill');
+  const wb=document.getElementById('wb-'+qId);
+  const chip=[...wb.querySelectorAll('.chip:not(.used)')].find(c=>c.dataset.val===val);
+  if(chip)chip.classList.add('used');
+}
+document.querySelectorAll('.blank').forEach(b=>{b.addEventListener('click',()=>openPopup(b));});
+function checkFill(qId){
+  const card=document.getElementById('quiz-block-4');
+  const blanks=card.querySelectorAll('.blank');
+  let ok=0;
+  blanks.forEach(b=>{
+    if(b.textContent.trim()===b.dataset.ans){b.classList.add('filled');b.classList.remove('wrong-fill');ok++;}
+    else{b.classList.add('wrong-fill');b.classList.remove('filled');}
+  });
+  document.getElementById('score-q4').textContent=ok+' / '+blanks.length;
+  document.getElementById('exp-q4').classList.add('show');
+}
+function hintFill(qId){
+  const card=document.getElementById('quiz-block-4');
+  const blanks=card.querySelectorAll('.blank:not(.filled)');
+  if(blanks.length===0)return;
+  fillBlank(blanks[0],blanks[0].dataset.ans,qId);
+}
+function resetFill(qId){
+  const card=document.getElementById('quiz-block-4');
+  card.querySelectorAll('.blank').forEach(b=>{b.textContent='　　　';b.classList.remove('filled','wrong-fill');});
+  document.getElementById('wb-'+qId).querySelectorAll('.chip').forEach(c=>c.classList.remove('used'));
+  document.getElementById('score-q4').textContent='0 / '+card.querySelectorAll('.blank').length;
+  document.getElementById('exp-q4').classList.remove('show');
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const pieces=Array.from({length:120},()=>({x:Math.random()*canvas.width,y:-10,r:Math.random()*6+3,c:`hsl(${Math.random()*360},70%,60%)`,vx:(Math.random()-.5)*4,vy:Math.random()*4+2}));
+  let frame=0;
+  function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);pieces.forEach(p=>{p.x+=p.vx;p.y+=p.vy;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.c;ctx.fill();});if(++frame<120)requestAnimationFrame(draw);else ctx.clearRect(0,0,canvas.width,canvas.height);}
+  draw();
+}
+updateScore();
 </script>
 </body>
 </html>

@@ -3,28 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GAMBA民法Ⅱ ch35｜請負・委任</title>
+<title>GAMBA民法Ⅱ ch40｜親族</title>
 <link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{
-  --navy:#1B2A4A;
-  --crimson:#C0392B;
-  --gold:#D4A017;
-  --navy2:#243558;
-  --bg:#F5F3EE;
-  --white:#FFFFFF;
-  --text:#1a1a1a;
-  --gray:#666;
-  --light:#EAE8E0;
-  --border:#ddd8ce;
-}
+:root{--navy:#1B2A4A;--crimson:#C0392B;--gold:#D4A017;--bg:#F5F3EE;--white:#FFFFFF;--text:#1a1a1a;--gray:#666;--light:#EAE8E0;--border:#ddd8ce;}
 body{font-family:'BIZ UDGothic',Meiryo,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:15px;}
-
 .site-header{background:var(--navy);color:var(--white);padding:10px 20px;display:flex;align-items:center;gap:12px;}
 .site-header .logo{font-size:20px;font-weight:700;color:var(--gold);letter-spacing:2px;}
 .site-header .subtitle{font-size:12px;color:#aab4c8;}
-
 .chapter-hero{background:linear-gradient(135deg,var(--navy) 0%,#2d4270 100%);color:var(--white);padding:32px 20px 28px;position:relative;overflow:hidden;}
 .chapter-hero::before{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;border:3px solid rgba(212,160,23,0.2);border-radius:50%;}
 .chapter-hero::after{content:'';position:absolute;right:-10px;top:-10px;width:100px;height:100px;border:2px solid rgba(212,160,23,0.15);border-radius:50%;}
@@ -34,50 +21,28 @@ body{font-family:'BIZ UDGothic',Meiryo,sans-serif;background:var(--bg);color:var
 .star-row{display:flex;gap:16px;margin-top:12px;}
 .star-item{font-size:12px;color:#aab4c8;}
 .star-item span{color:var(--gold);}
-
 .main-wrap{max-width:780px;margin:0 auto;padding:24px 16px 60px;}
-
-/* パートヘッダー */
 .part-header{background:var(--navy);color:var(--white);padding:10px 18px;margin:32px 0 20px;border-left:5px solid var(--gold);border-radius:0 4px 4px 0;font-size:17px;font-weight:700;letter-spacing:1px;}
-
-/* セクションヘッダー */
 .section{margin-bottom:32px;}
 .section-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--navy);}
 .sec-num{width:32px;height:32px;background:var(--navy);color:var(--gold);font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;}
 .sec-title{font-size:18px;font-weight:700;color:var(--navy);}
-
 .body-text{margin-bottom:12px;line-height:1.85;}
 .kw{color:var(--crimson);font-weight:700;}
 .kw-b{color:var(--navy);font-weight:700;}
-.kw-g{color:var(--gold);font-weight:700;}
-
-/* ポイントボックス */
 .point-box{background:var(--white);border:2px solid var(--navy);border-radius:6px;padding:16px 18px;margin:14px 0;}
 .point-box .box-title{font-weight:700;color:var(--navy);font-size:13px;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--light);}
 .point-box ul{padding-left:18px;}
 .point-box ul li{margin-bottom:4px;line-height:1.75;}
-
-/* 重要ボックス */
 .imp-box{background:#fff8e6;border-left:4px solid var(--gold);padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;}
 .imp-box .imp-label{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:4px;letter-spacing:1px;}
-
-/* 判例ボックス */
 .hanrei-box{background:#f0f4ff;border-left:4px solid var(--navy);padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;}
 .hanrei-box .h-label{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:4px;letter-spacing:1px;}
-
-/* 表 */
 .data-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
 .data-table th{background:var(--navy);color:var(--white);padding:8px 10px;text-align:center;font-weight:700;}
 .data-table td{border:1px solid var(--border);padding:8px 10px;text-align:center;background:var(--white);}
 .data-table tr:nth-child(even) td{background:#f8f7f4;}
 .data-table .td-l{text-align:left;}
-
-/* 結論ボックス */
-.ketsuron{background:var(--navy);color:var(--white);padding:12px 16px;border-radius:4px;margin:14px 0;}
-.ketsuron .k-label{font-size:10px;color:var(--gold);font-weight:700;letter-spacing:2px;margin-bottom:4px;}
-.ketsuron p{font-size:14px;line-height:1.75;}
-
-/* ミニテスト */
 .mini-test{background:var(--white);border:2px solid var(--navy);border-radius:8px;padding:18px;margin:24px 0;}
 .mini-test-title{font-weight:700;font-size:14px;color:var(--navy);margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--light);display:flex;align-items:center;gap:8px;}
 .mini-test-title::before{content:'📝';font-size:16px;}
@@ -87,20 +52,16 @@ body{font-family:'BIZ UDGothic',Meiryo,sans-serif;background:var(--bg);color:var
 .mblank.filled{background:var(--navy);color:var(--white);border-color:var(--navy);}
 .mblank.correct{background:#1a6e3c;color:var(--white);border-color:#1a6e3c;}
 .mblank.wrong{background:var(--crimson);color:var(--white);border-color:var(--crimson);}
-
 .chip-bank{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;padding:10px;background:#f8f7f4;border-radius:6px;border:1px dashed var(--border);}
 .chip{display:inline-block;background:var(--navy);color:var(--white);padding:4px 12px;border-radius:20px;font-size:13px;cursor:pointer;transition:all .2s;user-select:none;}
 .chip:hover{background:var(--crimson);transform:translateY(-1px);}
 .chip.used{background:var(--border);color:var(--gray);cursor:default;transform:none;}
-
 .mt-check-btn{background:var(--crimson);color:var(--white);border:none;padding:8px 24px;border-radius:4px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;}
 .mt-check-btn:hover{background:#a93226;}
 .mt-result{margin-top:8px;font-weight:700;font-size:14px;padding:6px 12px;border-radius:4px;display:none;}
 .mt-result.ok{background:#e8f5e9;color:#1a6e3c;display:block;}
 .mt-result.ng{background:#fdecea;color:var(--crimson);display:block;}
 .mt-reset-btn{background:var(--navy);color:var(--white);border:none;padding:6px 16px;border-radius:4px;font-family:inherit;font-size:12px;cursor:pointer;margin-top:6px;}
-
-/* ナビゲーション */
 .chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-top:2px solid var(--border);margin-top:40px;flex-wrap:wrap;gap:8px;}
 .nav-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:13px;font-weight:700;}
 .nav-prev{background:var(--light);color:var(--navy);}
@@ -109,444 +70,203 @@ body{font-family:'BIZ UDGothic',Meiryo,sans-serif;background:var(--bg);color:var
 </style>
 </head>
 <body>
-
 <header class="site-header">
   <span class="logo">GAMBA</span>
   <span class="subtitle">民法Ⅱ ｜ 公務員試験対策</span>
 </header>
-
 <div class="chapter-hero">
   <div class="ch-badge">CHAPTER 40</div>
-  <h1>請負・委任</h1>
-  <p class="lead">請負は「結果」にこだわる契約、委任は「信頼関係」が命の契約。セットで出題されることが多いので、比較しながら押さえよう。</p>
+  <h1>親族</h1>
+  <p class="lead">範囲が膨大なのに1問しか出ない厄介なテーマ。婚姻・離婚・養子縁組の重要ポイントと内縁の扱いを中心にコンパクトに押さえよう。</p>
   <div class="star-row">
     <span class="star-item">重要度 <span>★★☆</span></span>
     <span class="star-item">頻出度 <span>★★☆</span></span>
   </div>
 </div>
-
 <div class="main-wrap">
 
-<!-- ========== 請負パート ========== -->
-<div class="part-header">【請負】</div>
+<div class="part-header">【婚姻】</div>
 
-<!-- 1 請負とは -->
 <div class="section">
-  <div class="section-header">
-    <div class="sec-num">1</div>
-    <div class="sec-title">請負とは？</div>
-  </div>
-  <p class="body-text">「<span class="kw">請負</span>」とは、当事者の一方がある<span class="kw">仕事を完成</span>させ、相手方がその<span class="kw">仕事の結果に対して報酬を支払う</span>ことを約束する契約です（632条）。家屋の建築、車の修理、物の運搬などが典型例です。</p>
-  <p class="body-text">請負は、<span class="kw-b">有償・双務・諾成・不要式</span>の契約です。とにかく<span class="kw">結果にこだわる</span>契約なので、人の個性は問題となりません。</p>
-
+  <div class="section-header"><div class="sec-num">1</div><div class="sec-title">婚姻の成立・障害・効力</div></div>
   <div class="point-box">
-    <div class="box-title">📌 報酬支払義務と仕事完成義務・目的物引渡義務との関係</div>
+    <div class="box-title">📌 婚姻の成立要件</div>
     <ul>
-      <li><span class="kw">仕事完成義務</span>は<span class="kw">先履行義務</span>（まず完成させる）</li>
-      <li>目的物の引渡しが必要な請負契約では、<span class="kw">目的物の引渡し</span>と<span class="kw">報酬の支払い</span>が<span class="kw">同時履行の関係</span>に立つ（633条・624条）</li>
-      <li>引渡しを要しないときは、報酬は<span class="kw">後払い</span>（633条・624条）</li>
+      <li>①<span class="kw">婚姻意思</span>：夫婦共同生活を営むという<span class="kw">実質的な意思</span>が必要（形式的意思では不可）</li>
+      <li>②<span class="kw">婚姻の届出</span>：受理されれば足りる（739条）</li>
+      <li>どちらか一方でも欠くと婚姻は<span class="kw">遡及的に無効</span>（742条）</li>
     </ul>
   </div>
-
-  <div class="imp-box">
-    <div class="imp-label">POINT</div>
-    <p>仕事完成前にも<span class="kw">報酬債権は抽象的に発生</span>しているので、その報酬債権を他人に<span class="kw">譲渡することができる</span>（536条2項）。ただし、仕事が完成しないと現実には支払ってもらえない。</p>
-  </div>
-
-  <div class="imp-box">
-    <div class="imp-label">POINT ― 注文者が受ける利益の割合に応じた報酬</div>
-    <p>①<span class="kw">注文者の責めに帰することができない事由</span>によって仕事が完成できなくなったとき、②<span class="kw">請負が仕事完成前に解除</span>されたときにおいて、請負人が既にした仕事の結果のうち<span class="kw">可分な部分の給付によって注文者が利益を受けるとき</span>は、その部分を<span class="kw">仕事の完成とみなす</span>。この場合、請負人は注文者が受ける利益の割合に応じて報酬を請求できる（634条）。</p>
-  </div>
-
   <div class="point-box">
-    <div class="box-title">📌 下請け自由の原則</div>
+    <div class="box-title">📌 婚姻障害事由（取消しの対象）</div>
     <ul>
-      <li>請負人が<span class="kw">下請負人を使用して仕事を完成させること</span>は当然可能（下請け自由の原則）</li>
-      <li>下請けが<span class="kw">特約で禁じられている場合</span>でも、下請け契約自体が<span class="kw">当然に無効になることはなく</span>、請負人が注文者に対して<span class="kw">特約違反の債務不履行責任</span>を負うにとどまる</li>
+      <li>①婚姻不適齢（18歳未満）、②重婚禁止、③再婚禁止期間（100日）、④近親婚、⑤詐欺・強迫</li>
+      <li><span class="kw">成年被後見人</span>は成年後見人の同意を得ることなく婚姻できる（738条）【超頻出】</li>
     </ul>
   </div>
-
-  <div class="point-box">
-    <div class="box-title">📌 所有権の帰属（材料の供給形態を基準）</div>
-    <table class="data-table">
-      <tr><th>供給者</th><th>所有権の帰属</th></tr>
-      <tr><td>注文者が材料の全部または主要部分を供給した場合</td><td>原始的に<span class="kw">注文者</span>に帰属（大判昭7・5・9）</td></tr>
-      <tr><td>請負人が材料の全部または主要部分を供給した場合</td><td>原始的に<span class="kw">請負人</span>に帰属し、<span class="kw">引渡しによって注文者に移転</span>（大判明37・6・22）</td></tr>
-      <tr><td>請負人が材料を供給したが、注文者が報酬の大部分を支払っていたとき</td><td>原始的に<span class="kw">注文者</span>に帰属（最判昭44・9・12）</td></tr>
-    </table>
+  <div class="imp-box">
+    <div class="imp-label">POINT ― 婚姻取消しの効力</div>
+    <p>婚姻取消しの効果は<span class="kw">遡及しない</span>（将来に向かってのみ効力を生じる）（748条1項）。子の嫡出性を保護するため。</p>
   </div>
-
-  <div class="hanrei-box">
-    <div class="h-label">判例</div>
-    <p>注文者と元請負人との間で、請負契約が<span class="kw">中途解約</span>された場合における<span class="kw">出来形部分の所有権は注文者に帰属するという特約</span>になっているときは、たとえ<span class="kw">下請負人が自ら材料を供給していても、注文者の所有物</span>になる（最判平5・10・19）。</p>
+  <div class="point-box">
+    <div class="box-title">📌 婚姻の効力</div>
+    <ul>
+      <li>夫婦は同一の氏を称する（750条）。夫婦別姓は認められていない</li>
+      <li>夫婦間でした契約はいつでも取り消せるが、<span class="kw">婚姻が実質的に破たん</span>しているときは適用されない（最判昭42・2・2）</li>
+      <li>婚姻前から有する財産及び婚姻中に自己の名で得た財産→<span class="kw">特有財産</span>（762条1項）</li>
+      <li>いずれに属するか明らかでない財産→<span class="kw">共有に属するものと推定</span>（762条2項）</li>
+    </ul>
   </div>
 </div>
 
 <!-- ミニテスト1 -->
 <div class="mini-test" id="mt1">
-  <div class="mini-test-title">ミニテスト①　請負とは・所有権の帰属</div>
+  <div class="mini-test-title">ミニテスト①　婚姻</div>
   <div class="chip-bank" id="bank1">
-    <span class="chip" onclick="useChip(this,'bank1','mt1')">結果</span>
-    <span class="chip" onclick="useChip(this,'bank1','mt1')">先履行</span>
-    <span class="chip" onclick="useChip(this,'bank1','mt1')">同時履行</span>
-    <span class="chip" onclick="useChip(this,'bank1','mt1')">注文者</span>
-    <span class="chip" onclick="useChip(this,'bank1','mt1')">請負人</span>
-    <span class="chip" onclick="useChip(this,'bank1','mt1')">引渡し</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">実質的な意思</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">遡及しない</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">不要</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">共有</span>
+    <span class="chip" onclick="useChip(this,'bank1','mt1')">特有財産</span>
   </div>
   <div class="mt-q">
-    <p class="q-text">Q1. 請負は仕事の<span class="mblank" data-ans="結果" onclick="selectBlank(this,'mt1')">　　</span>にこだわる契約であり、仕事完成義務は<span class="mblank" data-ans="先履行" onclick="selectBlank(this,'mt1')">　　</span>義務である。</p>
-    <p class="q-text">Q2. 目的物の引渡しが必要な請負では、目的物の引渡しと報酬の支払いは<span class="mblank" data-ans="同時履行" onclick="selectBlank(this,'mt1')">　　</span>の関係に立つ。</p>
-    <p class="q-text">Q3. 請負人が材料の全部を供給した場合、所有権は原始的に<span class="mblank" data-ans="請負人" onclick="selectBlank(this,'mt1')">　　</span>に帰属し、<span class="mblank" data-ans="引渡し" onclick="selectBlank(this,'mt1')">　　</span>によって<span class="mblank" data-ans="注文者" onclick="selectBlank(this,'mt1')">　　</span>に移転する。</p>
+    <p class="q-text">Q1. 婚姻意思は夫婦共同生活を営むという<span class="mblank" data-ans="実質的な意思" onclick="selectBlank(this,'mt1')">　　</span>でなければならない。</p>
+    <p class="q-text">Q2. 成年被後見人が婚姻するには成年後見人の同意は<span class="mblank" data-ans="不要" onclick="selectBlank(this,'mt1')">　　</span>。</p>
+    <p class="q-text">Q3. 婚姻取消しの効果は<span class="mblank" data-ans="遡及しない" onclick="selectBlank(this,'mt1')">　　</span>（将来効のみ）。</p>
+    <p class="q-text">Q4. 婚姻前から有する財産や自己の名で得た財産は<span class="mblank" data-ans="特有財産" onclick="selectBlank(this,'mt1')">　　</span>、属否不明の財産は<span class="mblank" data-ans="共有" onclick="selectBlank(this,'mt1')">　　</span>推定。</p>
   </div>
-  <button class="mt-check-btn" onclick="checkQ('mt1',6)">答え合わせ</button>
+  <button class="mt-check-btn" onclick="checkQ('mt1',5)">採点する</button>
   <button class="mt-reset-btn" onclick="resetQ('mt1','bank1')">リセット</button>
   <div class="mt-result" id="res-mt1"></div>
 </div>
 
-<!-- 2 請負人の担保責任 -->
-<div class="section">
-  <div class="section-header">
-    <div class="sec-num">2</div>
-    <div class="sec-title">請負人の担保責任（契約不適合責任）</div>
-  </div>
-  <p class="body-text">請負は有償契約であるため、<span class="kw">売買の規定が準用</span>されます（559条・562条〜564条）。したがって、引き渡された目的物が種類・品質・数量に関して<span class="kw">契約内容に適合しないとき</span>は、注文者は<span class="kw">履行の追完、報酬減額請求、損害賠償、解除</span>をすることができます。</p>
+<div class="part-header">【離婚・内縁】</div>
 
+<div class="section">
+  <div class="section-header"><div class="sec-num">2</div><div class="sec-title">離婚</div></div>
   <div class="point-box">
-    <div class="box-title">📌 報酬債権と損害賠償債権との相殺</div>
+    <div class="box-title">📌 協議離婚</div>
     <ul>
-      <li>注文者Bは、損害賠償を受け取るまでは、<span class="kw">信義則に反しない限り、報酬全体の支払いを拒絶できる</span>（同時履行関係：最判平9・2・14）</li>
-      <li>また、BはAに対して有する<span class="kw">損害賠償債権を自働債権として、報酬債権と相殺することができる</span>（最判昭51・3・4）</li>
-      <li>相殺後の残報酬債権については、<span class="kw">相殺の意思表示をした日の翌日から履行遅滞の責任</span>を負う（最判平9・7・15）</li>
+      <li>①<span class="kw">離婚意思</span>（<span class="kw">形式的意思</span>で足りる）と②<span class="kw">離婚の届出</span>が必要</li>
+      <li>成年被後見人が離婚するには成年後見人の同意を<span class="kw">要しない</span>（764条・738条）</li>
+      <li>離婚取消しは婚姻取消しと異なり<span class="kw">遡及する</span></li>
     </ul>
+  </div>
+  <div class="point-box">
+    <div class="box-title">📌 裁判上の離婚事由（770条）</div>
+    <ul>
+      <li>①配偶者の不貞行為、②悪意の遺棄、③3年以上の生死不明、④強度の精神病、⑤<span class="kw">一般的破綻事由</span></li>
+      <li>有責配偶者からの離婚請求も<span class="kw">一定の条件のもと例外的に認められる</span>（最大判昭62・9・2）</li>
+    </ul>
+  </div>
+  <div class="imp-box">
+    <div class="imp-label">POINT ― 財産分与</div>
+    <p>財産分与（768条）の請求に<span class="kw">離婚による慰謝料を含めることは可能</span>。ただし財産分与が慰謝料をすべて包含するとは解されず、足りなければ別途請求できる。</p>
   </div>
 </div>
 
-<!-- 3 担保責任の制限 -->
 <div class="section">
-  <div class="section-header">
-    <div class="sec-num">3</div>
-    <div class="sec-title">担保責任の制限</div>
-  </div>
-  <p class="body-text">請負人が種類または品質に関して契約内容に適合しない仕事の目的物を注文者に引き渡したときでも、<span class="kw">注文者の供した材料の性質または注文者の与えた指図によってその不適合が生じたとき</span>は、注文者は担保責任（履行の追完請求・報酬減額請求・損害賠償請求・解除）を<span class="kw">することができません</span>（636条本文）。</p>
-
-  <div class="imp-box">
-    <div class="imp-label">例外</div>
-    <p><span class="kw">請負人がその材料または指図が不適当であることを知りながら告げなかったとき</span>は、担保責任を<span class="kw">免れることはできない</span>（636条ただし書）。プロとして知っていたのに黙っていたのは失格！</p>
-  </div>
-
+  <div class="section-header"><div class="sec-num">3</div><div class="sec-title">内縁</div></div>
+  <p class="body-text">「<span class="kw">内縁</span>」とは、婚姻の実質を有しながら届出がない状態。その性質が許す限り婚姻の規定が準用される。</p>
   <div class="point-box">
-    <div class="box-title">📌 担保責任の期間制限（種類・品質の契約内容不適合）</div>
+    <div class="box-title">📌 内縁の重要ポイント</div>
     <ul>
-      <li>注文者が<span class="kw">契約内容不適合の事実を知った時から１年以内</span>にその旨を請負人に<span class="kw">通知</span>しないと、担保責任を追及できなくなる（637条1項）</li>
-      <li>ただし、<span class="kw">請負人が悪意または重大な過失</span>のときは通知不要（637条2項）</li>
+      <li>内縁配偶者には<span class="kw">相続権が認められない</span></li>
+      <li>一方が<span class="kw">死亡</span>した場合→財産分与（768条）の規定を<span class="kw">類推適用できない</span>（最決平12・3・10）</li>
+      <li>一方が<span class="kw">離婚（生前解消）</span>した場合→財産分与の規定を<span class="kw">類推適用できる</span></li>
+      <li>内縁の不当破棄→婚姻予約の不履行又は不法行為を理由として損害賠償請求可（最判昭33・4・11）</li>
     </ul>
-  </div>
-</div>
-
-<!-- 4 注文者の解除権 -->
-<div class="section">
-  <div class="section-header">
-    <div class="sec-num">4</div>
-    <div class="sec-title">注文者の解除権</div>
-  </div>
-  <p class="body-text">請負人が<span class="kw">仕事を完成しない間</span>は、注文者は、<span class="kw">いつでも損害を賠償して契約の解除をすることができます</span>（641条）。注文者が仕事の完成を望まなくなった場合にまで仕事を完成させることは無意味だからです。</p>
-  <p class="body-text">なお、賠償金は<span class="kw">解除後に支払えばOK</span>です（あらかじめ賠償金を支払う必要はない）。</p>
-
-  <div class="imp-box">
-    <div class="imp-label">POINT ― 注文者の破産</div>
-    <p>報酬を支払うべき<span class="kw">注文者が破産手続開始の決定を受けたとき</span>は、請負人または破産管財人は、契約の解除をすることができる（642条1項）。ただし、<span class="kw">請負人は、仕事を完成した後には解除することができない</span>（642条1項ただし書）。</p>
   </div>
 </div>
 
 <!-- ミニテスト2 -->
 <div class="mini-test" id="mt2">
-  <div class="mini-test-title">ミニテスト②　担保責任・注文者の解除権</div>
+  <div class="mini-test-title">ミニテスト②　離婚・内縁</div>
   <div class="chip-bank" id="bank2">
-    <span class="chip" onclick="useChip(this,'bank2','mt2')">準用</span>
-    <span class="chip" onclick="useChip(this,'bank2','mt2')">１年以内</span>
-    <span class="chip" onclick="useChip(this,'bank2','mt2')">できない</span>
-    <span class="chip" onclick="useChip(this,'bank2','mt2')">いつでも</span>
-    <span class="chip" onclick="useChip(this,'bank2','mt2')">完成した後</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">遡及する</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">遡及しない</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">相続権</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">類推適用できない</span>
+    <span class="chip" onclick="useChip(this,'bank2','mt2')">類推適用できる</span>
   </div>
   <div class="mt-q">
-    <p class="q-text">Q1. 請負人の担保責任については、売買の規定が<span class="mblank" data-ans="準用" onclick="selectBlank(this,'mt2')">　　</span>される。</p>
-    <p class="q-text">Q2. 種類・品質の契約内容不適合について、注文者は不適合の事実を知った時から<span class="mblank" data-ans="１年以内" onclick="selectBlank(this,'mt2')">　　</span>に通知しないと担保責任を追及できなくなる。</p>
-    <p class="q-text">Q3. 請負人が仕事を完成しない間は、注文者は<span class="mblank" data-ans="いつでも" onclick="selectBlank(this,'mt2')">　　</span>損害を賠償して解除できるが、注文者が破産した場合、請負人は仕事を<span class="mblank" data-ans="完成した後" onclick="selectBlank(this,'mt2')">　　</span>は解除<span class="mblank" data-ans="できない" onclick="selectBlank(this,'mt2')">　　</span>。</p>
+    <p class="q-text">Q1. 離婚取消しの効果は婚姻取消しと異なり<span class="mblank" data-ans="遡及する" onclick="selectBlank(this,'mt2')">　　</span>（婚姻継続）。</p>
+    <p class="q-text">Q2. 内縁配偶者には<span class="mblank" data-ans="相続権" onclick="selectBlank(this,'mt2')">　　</span>が認められない。</p>
+    <p class="q-text">Q3. 内縁の一方が<span class="kw">死亡</span>で解消した場合、財産分与（768条）の規定を<span class="mblank" data-ans="類推適用できない" onclick="selectBlank(this,'mt2')">　　</span>。</p>
+    <p class="q-text">Q4. 内縁の<span class="kw">離婚（生前解消）</span>の場合、財産分与の規定を<span class="mblank" data-ans="類推適用できる" onclick="selectBlank(this,'mt2')">　　</span>。</p>
   </div>
-  <button class="mt-check-btn" onclick="checkQ('mt2',5)">答え合わせ</button>
+  <button class="mt-check-btn" onclick="checkQ('mt2',4)">採点する</button>
   <button class="mt-reset-btn" onclick="resetQ('mt2','bank2')">リセット</button>
   <div class="mt-result" id="res-mt2"></div>
 </div>
 
-<!-- ========== 委任パート ========== -->
-<div class="part-header">【委任】</div>
+<div class="part-header">【親子・養子縁組】</div>
 
-<!-- 5 委任とは -->
 <div class="section">
-  <div class="section-header">
-    <div class="sec-num">5</div>
-    <div class="sec-title">委任とは？</div>
+  <div class="section-header"><div class="sec-num">4</div><div class="sec-title">嫡出子・認知</div></div>
+  <div class="point-box">
+    <div class="box-title">📌 推定される嫡出子（772条）</div>
+    <ul>
+      <li>婚姻成立の日から<span class="kw">200日経過後</span>、又は婚姻解消後<span class="kw">300日以内</span>に生まれた子</li>
+      <li>嫡出否認の訴え：<span class="kw">夫のみ</span>が提起可、夫が<span class="kw">子の出生を知った時から1年以内</span>（777条）</li>
+    </ul>
   </div>
-  <p class="body-text">「<span class="kw">委任</span>」は、当事者の一方が<span class="kw">法律行為を行うことを相手方に委託</span>し、相手方がこれを承諾することによって、その効力を生じる契約です（643条）。</p>
-  <p class="body-text">委任は、<span class="kw-b">無償・片務・諾成</span>の契約ですが、<span class="kw">報酬支払いの特約</span>をすれば例外的に<span class="kw">有償・双務契約</span>となります。また、<span class="kw-b">不要式の契約</span>なので、委任状などの書面の交付は必ずしも必要ありません。</p>
-  <p class="body-text">委任の特徴は、委任者と受任者の<span class="kw">信頼関係</span>のもとで成り立っている点にあります。請負は「結果」重視、委任は「信頼関係」重視。</p>
-
   <div class="imp-box">
-    <div class="imp-label">POINT ― 準委任</div>
-    <p>事実行為など<span class="kw">法律行為以外の事務</span>を委託する場合を「<span class="kw">準委任</span>」と言う。準委任の場合も<span class="kw">委任の規定が準用</span>される。医師との診療契約などが典型例。</p>
+    <div class="imp-label">POINT ― 認知</div>
+    <p>非嫡出子について父が認知することで親子関係が生じる。<span class="kw">母は通常認知不要</span>（出産の事実から当然に親子関係が生じる）。認知の効力は<span class="kw">出生の時に遡る</span>（784条）。</p>
   </div>
 </div>
 
-<!-- 6 受任者の義務 -->
 <div class="section">
-  <div class="section-header">
-    <div class="sec-num">6</div>
-    <div class="sec-title">受任者の義務</div>
-  </div>
-
-  <p class="body-text"><strong>（１）事務処理義務（自己処理義務）</strong><br>
-  受任者は、<span class="kw">自ら事務処理</span>をしなければならないのが原則（下請け自由の請負とは大違い）。ただし、復受任者を選任できる場合もある：<span class="kw">①委任者の許諾を得たとき</span>、または<span class="kw">②やむを得ない事由があるとき</span>（644条の2第1項）。</p>
-
+  <div class="section-header"><div class="sec-num">5</div><div class="sec-title">養子縁組</div></div>
   <div class="imp-box">
-    <div class="imp-label">POINT ― 復受任者</div>
-    <p>代理権を付与する委任において、受任者が代理権を有する復受任者を選任したときは、<span class="kw">復受任者は、委任者に対して、その権限の範囲内において、受任者と同一の権利を有し、義務を負う</span>（644条の2第2項）。</p>
+    <div class="imp-label">普通養子縁組 vs 特別養子縁組【頻出比較】</div>
+    <table class="data-table">
+      <tr><th></th><th>普通養子縁組</th><th>特別養子縁組</th></tr>
+      <tr><td class="td-l">成立</td><td>当事者の合意による届出</td><td><span class="kw">家庭裁判所の審判のみ</span></td></tr>
+      <tr><td class="td-l">実方との関係</td><td><span class="kw">継続</span>する</td><td><span class="kw">終了</span>する</td></tr>
+      <tr><td class="td-l">養親の要件</td><td>20歳以上</td><td><span class="kw">配偶者のある者</span>（一方が25歳以上）</td></tr>
+      <tr><td class="td-l">養子の年齢</td><td>制限なし</td><td>審判請求時<span class="kw">原則15歳未満</span>・成立時18歳未満</td></tr>
+      <tr><td class="td-l">離縁</td><td>原則自由</td><td><span class="kw">原則制限</span>（限定的に認められる）</td></tr>
+    </table>
   </div>
-
-  <p class="body-text"><strong>（２）善管注意義務</strong><br>
-  受任者は、<span class="kw">有償・無償を問わず、善管注意義務</span>を負います（644条）。たとえ無償委任であっても善管注意義務を負う。ただし、<span class="kw">無償寄託の場合</span>の受寄者は善管注意義務を<span class="kw">負わない</span>（寄託との違いに注意！）。</p>
-
-  <p class="body-text"><strong>（３）報告義務（2つ）</strong><br>
-  受任者は、<span class="kw">①委任者の請求があるときはいつでも</span>委任事務の処理の状況を報告し、<span class="kw">②委任が終了した後は、遅滞なく</span>その経過及び結果を報告しなければなりません（645条）。</p>
-
-  <p class="body-text"><strong>（４）受取物の引渡義務等</strong><br>
-  受任者は、委任事務を処理するにあたって受け取った金銭その他の物及び収取した果実を<span class="kw">委任者に引き渡さなければなりません</span>（646条1項）。また、受任者が委任者のために自己の名で取得した権利は、<span class="kw">委任者に移転しなければなりません</span>（646条2項）。さらに、受任者が委任者に引き渡すべき金銭等を<span class="kw">自己のために消費したとき</span>は、消費した日以後の<span class="kw">利息を支払い、損害があれば賠償する責任</span>を負います（647条）。</p>
 </div>
 
 <!-- ミニテスト3 -->
 <div class="mini-test" id="mt3">
-  <div class="mini-test-title">ミニテスト③　受任者の義務</div>
+  <div class="mini-test-title">ミニテスト③　親子・養子縁組</div>
   <div class="chip-bank" id="bank3">
-    <span class="chip" onclick="useChip(this,'bank3','mt3')">信頼関係</span>
-    <span class="chip" onclick="useChip(this,'bank3','mt3')">善管注意義務</span>
-    <span class="chip" onclick="useChip(this,'bank3','mt3')">有償・無償</span>
-    <span class="chip" onclick="useChip(this,'bank3','mt3')">許諾</span>
-    <span class="chip" onclick="useChip(this,'bank3','mt3')">やむを得ない事由</span>
+    <span class="chip" onclick="useChip(this,'bank3','mt3')">200日</span>
+    <span class="chip" onclick="useChip(this,'bank3','mt3')">300日</span>
+    <span class="chip" onclick="useChip(this,'bank3','mt3')">1年以内</span>
+    <span class="chip" onclick="useChip(this,'bank3','mt3')">継続</span>
+    <span class="chip" onclick="useChip(this,'bank3','mt3')">終了</span>
+    <span class="chip" onclick="useChip(this,'bank3','mt3')">15歳未満</span>
   </div>
   <div class="mt-q">
-    <p class="q-text">Q1. 委任は委任者と受任者の<span class="mblank" data-ans="信頼関係" onclick="selectBlank(this,'mt3')">　　</span>のもとで成り立つ。受任者が復受任者を選任できるのは、①委任者の<span class="mblank" data-ans="許諾" onclick="selectBlank(this,'mt3')">　　</span>を得たとき、または②<span class="mblank" data-ans="やむを得ない事由" onclick="selectBlank(this,'mt3')">　　</span>があるとき。</p>
-    <p class="q-text">Q2. 受任者は<span class="mblank" data-ans="有償・無償" onclick="selectBlank(this,'mt3')">　　</span>を問わず<span class="mblank" data-ans="善管注意義務" onclick="selectBlank(this,'mt3')">　　</span>を負う。</p>
+    <p class="q-text">Q1. 婚姻成立から<span class="mblank" data-ans="200日" onclick="selectBlank(this,'mt3')">　　</span>経過後、又は婚姻解消後<span class="mblank" data-ans="300日" onclick="selectBlank(this,'mt3')">　　</span>以内に生まれた子は推定される嫡出子。</p>
+    <p class="q-text">Q2. 嫡出否認の訴えは夫が子の出生を知った時から<span class="mblank" data-ans="1年以内" onclick="selectBlank(this,'mt3')">　　</span>に提起しなければならない。</p>
+    <p class="q-text">Q3. 普通養子縁組では実方との親族関係は<span class="mblank" data-ans="継続" onclick="selectBlank(this,'mt3')">　　</span>するが、特別養子縁組では<span class="mblank" data-ans="終了" onclick="selectBlank(this,'mt3')">　　</span>する。</p>
+    <p class="q-text">Q4. 特別養子縁組の審判請求時における養子の年齢は原則として<span class="mblank" data-ans="15歳未満" onclick="selectBlank(this,'mt3')">　　</span>でなければならない。</p>
   </div>
-  <button class="mt-check-btn" onclick="checkQ('mt3',5)">答え合わせ</button>
+  <button class="mt-check-btn" onclick="checkQ('mt3',6)">採点する</button>
   <button class="mt-reset-btn" onclick="resetQ('mt3','bank3')">リセット</button>
   <div class="mt-result" id="res-mt3"></div>
 </div>
 
-<!-- 7 受任者の権利 -->
-<div class="section">
-  <div class="section-header">
-    <div class="sec-num">7</div>
-    <div class="sec-title">受任者の権利</div>
-  </div>
-
-  <p class="body-text"><strong>（１）報酬請求権</strong><br>
-  委任は原則無償契約なので、特約がなければ報酬を請求できません（648条1項）。報酬支払いの特約がある場合でも、受任者は<span class="kw">委任事務を履行した後</span>でなければ請求できません（<span class="kw">後払い</span>：648条2項）。</p>
-
-  <div class="point-box">
-    <div class="box-title">📌 割合的報酬（労務報酬型の委任）</div>
-    <p style="margin-bottom:8px;"><strong>事務処理の労務に対して報酬が支払われる委任（労務報酬型）</strong>では、次の場合に<span class="kw">既に履行した割合に応じて</span>報酬を請求できる（648条3項）：</p>
-    <ul>
-      <li>①<span class="kw">委任者の責めに帰することができない事由</span>によって委任事務の履行をすることができなくなったとき</li>
-      <li>②<span class="kw">委任が履行の中途で終了した</span>とき</li>
-    </ul>
-    <p style="margin-top:8px;"><strong>委任事務の履行により得られる成果に対して報酬が支払われる委任（成果報酬型）</strong>では、<span class="kw">請負の規定が準用</span>されるため、①注文者の責めに帰することができない事由によって仕事が完成できなくなったときや、②委任が仕事完成前に解除されたときは、<span class="kw">委任者が受ける利益の割合に応じて</span>報酬を請求できる（648条の2）。</p>
-  </div>
-
-  <p class="body-text"><strong>（２）立替費用償還請求権・代弁済請求権・損害賠償請求権</strong></p>
-  <div class="point-box">
-    <div class="box-title">📌 受任者の権利まとめ</div>
-    <ul>
-      <li><span class="kw">立替費用償還請求権</span>：受任者は、委任事務処理のために必要と認められる費用を支出したときは、委任者に対し、<span class="kw">その費用及び支出の日以後における利息の償還を請求できる</span>（650条1項）</li>
-      <li><span class="kw">代弁済請求権</span>：必要と認められる債務を負担したときは、委任者に対し、<span class="kw">自己に代わってその弁済をすることを請求できる</span>（650条2項）。弁済期にないときは<span class="kw">相当の担保を供させること</span>もできる</li>
-      <li><span class="kw">損害賠償請求権</span>：受任者は、委任事務処理のため<span class="kw">自己に過失なく損害を受けたとき</span>は、委任者に対し、その賠償を請求できる（650条3項）。委任者にとっては<span class="kw">無過失責任</span>！</li>
-    </ul>
-  </div>
-</div>
-
-<!-- 8 委任者の義務 -->
-<div class="section">
-  <div class="section-header">
-    <div class="sec-num">8</div>
-    <div class="sec-title">委任者の義務</div>
-  </div>
-  <p class="body-text">委任事務を処理するために費用を要するときは、委任者は、<span class="kw">受任者の請求により、その前払いをしなければなりません</span>（649条）。いわゆる「<span class="kw">費用前払義務</span>」です。受任者の側から見れば「費用前払請求権」となります。</p>
-</div>
-
-<!-- ミニテスト4 -->
-<div class="mini-test" id="mt4">
-  <div class="mini-test-title">ミニテスト④　受任者の権利・委任者の義務</div>
-  <div class="chip-bank" id="bank4">
-    <span class="chip" onclick="useChip(this,'bank4','mt4')">後払い</span>
-    <span class="chip" onclick="useChip(this,'bank4','mt4')">無過失責任</span>
-    <span class="chip" onclick="useChip(this,'bank4','mt4')">前払い</span>
-    <span class="chip" onclick="useChip(this,'bank4','mt4')">利息</span>
-    <span class="chip" onclick="useChip(this,'bank4','mt4')">割合</span>
-  </div>
-  <div class="mt-q">
-    <p class="q-text">Q1. 受任者は委任事務を履行した後に報酬を請求できる（<span class="mblank" data-ans="後払い" onclick="selectBlank(this,'mt4')">　　</span>）。委任が履行の中途で終了したときは既に履行した<span class="mblank" data-ans="割合" onclick="selectBlank(this,'mt4')">　　</span>に応じて報酬を請求できる。</p>
-    <p class="q-text">Q2. 受任者が費用を支出したときは、その費用及び支出日以後の<span class="mblank" data-ans="利息" onclick="selectBlank(this,'mt4')">　　</span>の償還を請求できる。受任者が過失なく損害を受けたときは委任者に賠償を請求できる（委任者にとっては<span class="mblank" data-ans="無過失責任" onclick="selectBlank(this,'mt4')">　　</span>）。</p>
-    <p class="q-text">Q3. 委任者は受任者の請求により費用の<span class="mblank" data-ans="前払い" onclick="selectBlank(this,'mt4')">　　</span>をしなければならない。</p>
-  </div>
-  <button class="mt-check-btn" onclick="checkQ('mt4',5)">答え合わせ</button>
-  <button class="mt-reset-btn" onclick="resetQ('mt4','bank4')">リセット</button>
-  <div class="mt-result" id="res-mt4"></div>
-</div>
-
-<!-- 9 委任の終了 -->
-<div class="section">
-  <div class="section-header">
-    <div class="sec-num">9</div>
-    <div class="sec-title">委任の終了</div>
-  </div>
-  <p class="body-text">委任は、<span class="kw">各当事者がいつでも解除することができます</span>（651条1項）。「<span class="kw">無理由解除</span>」とも呼ばれます。信頼関係を失った以上、契約を継続させること自体が害となるからです。</p>
-
-  <div class="point-box">
-    <div class="box-title">📌 委任の解除と損害賠償</div>
-    <table class="data-table">
-      <tr><th>場面</th><th>損害賠償</th></tr>
-      <tr><td class="td-l">原則（いつでも解除）</td><td>不要</td></tr>
-      <tr><td class="td-l">①<span class="kw">相手方に不利な時期</span>に解除したとき<br>②<span class="kw">委任者が受任者の利益</span>（専ら報酬を得ることによるものを除く）<span class="kw">をも目的とする委任</span>を解除したとき</td><td><span class="kw">相手方の損害賠償が必要</span></td></tr>
-      <tr><td class="td-l">例外の例外：①②の場合でも<span class="kw">やむを得ない事由</span>があったとき</td><td>不要</td></tr>
-    </table>
-  </div>
-
-  <div class="imp-box">
-    <div class="imp-label">POINT</div>
-    <p>委任契約の解除には<span class="kw">遡及効がありません</span>（652条・620条）。賃貸借と同じく「<span class="kw">告知</span>」あるいは「<span class="kw">告知解除</span>」となります。</p>
-  </div>
-
-  <div class="point-box">
-    <div class="box-title">📌 委任の終了原因まとめ</div>
-    <table class="data-table">
-      <tr><th></th><th>解除（651条）</th><th>死亡（653条）</th><th>破産（653条）</th><th>後見開始の審判（653条）</th></tr>
-      <tr><td><strong>委任者</strong></td><td>○</td><td>○</td><td>○</td><td>×（終了せず）</td></tr>
-      <tr><td><strong>受任者</strong></td><td>○</td><td>○</td><td>○</td><td>○</td></tr>
-    </table>
-    <p style="margin-top:8px;font-size:13px;color:var(--gray);">※委任者の死亡は任意規定。「委任者が死亡しても委任契約は終了しない」旨の特約があれば有効（最判平4・9・22）。</p>
-  </div>
-</div>
-
-<!-- 10 委任の終了後の処分 -->
-<div class="section">
-  <div class="section-header">
-    <div class="sec-num">10</div>
-    <div class="sec-title">委任の終了後の処分</div>
-  </div>
-  <p class="body-text">委任が終了した場合において、<span class="kw">急迫の事情があるとき</span>は、受任者は、委任者が委任事務を処理することができるに至るまで、<span class="kw">必要な処分をしなければなりません</span>（654条）。受任者が終了直後に委任事務を中止すると委任者に不測の損害を与えるおそれがあるからです。</p>
-</div>
-
-<!-- 11 委任の終了の対抗要件 -->
-<div class="section">
-  <div class="section-header">
-    <div class="sec-num">11</div>
-    <div class="sec-title">委任の終了の対抗要件</div>
-  </div>
-  <p class="body-text">委任の終了の事由は、<span class="kw">①これを相手方に通知したとき</span>、または<span class="kw">②相手方がこれを知っていたとき</span>でなければ、これをもってその相手方に<span class="kw">対抗することができません</span>（655条）。</p>
-  <p class="body-text">委任の終了を知らない相手方を保護するための規定です。</p>
-</div>
-
-<!-- ミニテスト5 -->
-<div class="mini-test" id="mt5">
-  <div class="mini-test-title">ミニテスト⑤　委任の終了・対抗要件</div>
-  <div class="chip-bank" id="bank5">
-    <span class="chip" onclick="useChip(this,'bank5','mt5')">いつでも</span>
-    <span class="chip" onclick="useChip(this,'bank5','mt5')">遡及効</span>
-    <span class="chip" onclick="useChip(this,'bank5','mt5')">通知</span>
-    <span class="chip" onclick="useChip(this,'bank5','mt5')">知っていた</span>
-    <span class="chip" onclick="useChip(this,'bank5','mt5')">やむを得ない事由</span>
-  </div>
-  <div class="mt-q">
-    <p class="q-text">Q1. 委任は各当事者が<span class="mblank" data-ans="いつでも" onclick="selectBlank(this,'mt5')">　　</span>解除できる。相手方に不利な時期に解除した場合でも、<span class="mblank" data-ans="やむを得ない事由" onclick="selectBlank(this,'mt5')">　　</span>があったときは損害賠償が不要。</p>
-    <p class="q-text">Q2. 委任契約の解除には<span class="mblank" data-ans="遡及効" onclick="selectBlank(this,'mt5')">　　</span>がない。委任の終了事由は、①相手方に<span class="mblank" data-ans="通知" onclick="selectBlank(this,'mt5')">　　</span>したとき、または②相手方がこれを<span class="mblank" data-ans="知っていた" onclick="selectBlank(this,'mt5')">　　</span>ときでなければ対抗できない。</p>
-  </div>
-  <button class="mt-check-btn" onclick="checkQ('mt5',5)">答え合わせ</button>
-  <button class="mt-reset-btn" onclick="resetQ('mt5','bank5')">リセット</button>
-  <div class="mt-result" id="res-mt5"></div>
-</div>
-
-<!-- ナビゲーション -->
 <div class="chapter-nav">
-  <a href="minpo2_ch34_kaisetsu.html" class="nav-btn nav-prev">← ch34 賃貸借</a>
+  <a href="minpo2_ch39_kaisetsu.html" class="nav-btn nav-prev">← ch39 不法行為</a>
   <a href="minpo2_index.html" class="nav-btn nav-index">目次</a>
-  <a href="minpo2_ch40_kaisetsu.html" class="nav-btn nav-next">ch36 消費貸借・使用貸借等 →</a>
+  <a href="minpo2_ch41_kaisetsu.html" class="nav-btn nav-next">ch41 相続 →</a>
 </div>
-
-</div><!-- /main-wrap -->
+</div>
 
 <script>
-let selectedBlank = null;
-
-function selectBlank(el, testId) {
-  const blanks = document.querySelectorAll(`#${testId} .mblank`);
-  blanks.forEach(b => b.style.outline = '');
-  selectedBlank = el;
-  el.style.outline = '2px solid var(--crimson)';
-}
-
-function useChip(chip, bankId, testId) {
-  if (chip.classList.contains('used')) return;
-  if (!selectedBlank) {
-    alert('先に埋める空欄をクリックしてください。');
-    return;
-  }
-  if (selectedBlank.closest(`#${testId}`) === null) {
-    alert('同じテストの空欄を選んでください。');
-    return;
-  }
-  selectedBlank.textContent = chip.textContent;
-  selectedBlank.classList.add('filled');
-  selectedBlank.style.outline = '';
-  chip.classList.add('used');
-  selectedBlank = null;
-}
-
-function checkQ(testId, total) {
-  const blanks = document.querySelectorAll(`#${testId} .mblank`);
-  let correct = 0;
-  blanks.forEach(b => {
-    const ans = b.getAttribute('data-ans');
-    if (b.textContent.trim() === ans) {
-      b.classList.remove('wrong');
-      b.classList.add('correct');
-      correct++;
-    } else {
-      b.classList.remove('correct');
-      b.classList.add('wrong');
-    }
-  });
-  const res = document.getElementById(`res-${testId}`);
-  if (correct === total) {
-    res.textContent = `✅ 全問正解！完璧です（${correct}/${total}）`;
-    res.className = 'mt-result ok';
-  } else {
-    res.textContent = `❌ ${correct}/${total} 正解。赤くなった箇所を確認しよう。`;
-    res.className = 'mt-result ng';
-  }
-}
-
-function resetQ(testId, bankId) {
-  const blanks = document.querySelectorAll(`#${testId} .mblank`);
-  blanks.forEach(b => {
-    b.textContent = '　　';
-    b.className = 'mblank';
-    b.style.outline = '';
-  });
-  const chips = document.querySelectorAll(`#${bankId} .chip`);
-  chips.forEach(c => c.classList.remove('used'));
-  const res = document.getElementById(`res-${testId}`);
-  res.className = 'mt-result';
-  res.textContent = '';
-  selectedBlank = null;
-}
+let selectedBlank=null;
+function selectBlank(el,testId){document.querySelectorAll(`#${testId} .mblank`).forEach(b=>b.style.outline='');selectedBlank=el;el.style.outline='2px solid var(--crimson)';}
+function useChip(chip,bankId,testId){if(chip.classList.contains('used'))return;if(!selectedBlank){alert('先に埋める空欄をクリックしてください。');return;}if(selectedBlank.closest(`#${testId}`)===null){alert('同じテストの空欄を選んでください。');return;}selectedBlank.textContent=chip.textContent;selectedBlank.classList.add('filled');selectedBlank.style.outline='';chip.classList.add('used');selectedBlank=null;}
+function checkQ(testId,total){const blanks=document.querySelectorAll(`#${testId} .mblank`);let correct=0;blanks.forEach(b=>{const ans=b.getAttribute('data-ans');if(b.textContent.trim()===ans){b.classList.remove('wrong');b.classList.add('correct');correct++;}else{b.classList.remove('correct');b.classList.add('wrong');}});const res=document.getElementById(`res-${testId}`);if(correct===total){res.textContent=`✅ 全問正解！完璧です（${correct}/${total}）`;res.className='mt-result ok';}else{res.textContent=`❌ ${correct}/${total} 正解。赤くなった箇所を確認しよう。`;res.className='mt-result ng';}}
+function resetQ(testId,bankId){document.querySelectorAll(`#${testId} .mblank`).forEach(b=>{b.textContent='　　';b.className='mblank';b.style.outline='';});document.querySelectorAll(`#${bankId} .chip`).forEach(c=>c.classList.remove('used'));const res=document.getElementById(`res-${testId}`);res.className='mt-result';res.textContent='';selectedBlank=null;}
 </script>
 </body>
 </html>
