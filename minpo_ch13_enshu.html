@@ -385,11 +385,70 @@ const CORRECT_ANSWERS = {
 };
 
 const EXPLANATIONS_5 = {
-  1: { correct: true,  text: '正解です。即時取得が適用されるのは動産のみです。道路運送車両法による<strong>登録済みの自動車</strong>には適用されませんが、<strong>未登録自動車や登録を抹消された自動車</strong>には即時取得の適用があります（最判昭62・4・24）。' },
-  2: { correct: false, text: '誤りです。競売（強制競売）による競落も「<strong>取引行為</strong>」に含まれます。したがって、執行債務者の所有に属しない動産が競売に付された場合であっても、競落人が即時取得の要件を充たせば動産の所有権を取得できます。' },
-  3: { correct: false, text: '誤りです。即時取得が認められるには取引行為が「<strong>有効</strong>」でなければなりません。制限行為能力者との取引は完全に有効とは言えないため、その直接の相手方Bは即時取得できません。ただし、BからさらにCが取得した場合、BC間の取引が有効であればCは即時取得できます。' },
-  4: { correct: false, text: '誤りです。設問の記述は概ね正しいですが、「指図による占有移転」については即時取得が<strong>認められます</strong>。即時取得が認められないのは「<strong>占有改定</strong>」のみです。占有改定は外形上の変化がないため、真の権利者保護の観点から除外されています。' },
-  5: { correct: false, text: '誤りです。前半は正しいですが、後半が誤りです。占有者が盗品を<strong>競売・公の市場・同種物を販売する商人</strong>から善意で買い受けた場合（194条）、被害者はその占有者が支払った<strong>代価を弁償しなければ</strong>回復請求できません。善意で競売から取得した占有者を保護する規定です。' }
+  1: {
+    correct: true,
+    text: `<strong>✅ 正しい記述です。</strong><br><br>
+即時取得（民法192条）が適用されるのは<strong>動産のみ</strong>です。不動産には登記という公示制度があるため適用されません。<br><br>
+自動車については、道路運送車両法によって<strong>登録制度</strong>が設けられており、登録された自動車は「登録」という公示方法があるため、即時取得の適用対象から外れます。<br><br>
+しかし、<strong>未登録自動車</strong>や<strong>登録が抹消された自動車</strong>は、公示方法がなく動産と同様に扱われるため、即時取得の適用があります（最判昭62・4・24）。<br><br>
+<span style="background:#e8f5ee;padding:4px 8px;border-radius:4px;">📌 ポイント：「登録あり＝即時取得なし」「登録なし＝即時取得あり」と整理しよう。</span>`
+  },
+  2: {
+    correct: false,
+    text: `<strong>❌ 誤った記述です。</strong><br><br>
+この肢が間違いである理由を、「取引行為」の意味から丁寧に確認しましょう。<br><br>
+<strong>【「取引行為」とは？】</strong><br>
+即時取得が成立するには、<em>当事者の意思に基づく法律行為（売買・贈与・交換など）</em>による取得であることが必要です。相続や木の伐採のように、意思に基づかない取得には適用されません。<br><br>
+<strong>【競売（強制競売）は「取引行為」にあたるか？】</strong><br>
+強制競売は、裁判所が債務者の財産を強制的に売却する手続きです。「強制的」という言葉から「取引行為ではない」と思いがちですが、判例はこれを<strong>「取引行為」に含まれる</strong>と解しています。<br><br>
+その理由は、競落人（買受人）は<em>自らの意思で入札し、売買に相当する法律関係を形成している</em>からです。競売という手続きの性質上、当事者間の法律関係は「売買」に準じるものと評価されます。<br><br>
+したがって、執行債務者の所有に属しない動産が競売に付された場合であっても、<strong>競落人が即時取得の要件（善意・無過失・占有取得など）を満たせば、動産の所有権を取得できます。</strong><br><br>
+<span style="background:#fdecea;padding:4px 8px;border-radius:4px;">⚠️ 「強制競売＝取引行為ではない」は誤り。競落人の意思に基づく法律行為として「取引行為」に含まれる。</span>`
+  },
+  3: {
+    correct: false,
+    text: `<strong>❌ 誤った記述です。</strong><br><br>
+即時取得が認められるには、取引行為が<strong>「有効」</strong>であることが必要です。<br><br>
+<strong>【なぜ有効でなければならないか？】</strong><br>
+即時取得は「無権利者と取引をした人を保護する制度」ですが、その前提として取引自体が法律上有効である必要があります。取り消しうる行為は「有効とは言えない」状態のため、即時取得の要件を満たしません。<br><br>
+<strong>【制限行為能力者との取引の場合】</strong><br>
+・A（制限行為能力者）→ B：AB間の取引は取消可能 →「有効な取引行為」とはいえない → Bは即時取得<strong>できない</strong><br>
+・B → C：BC間の取引が有効 → Cは即時取得<strong>できる</strong>（転得者は保護される）<br><br>
+<span style="background:#fdecea;padding:4px 8px;border-radius:4px;">⚠️ 直接の相手方（B）は即時取得不可。さらに先のCは即時取得可。</span>`
+  },
+  4: {
+    correct: false,
+    text: `<strong>❌ 誤った記述です。</strong><br><br>
+「占有改定を除くすべて」という部分が誤りです。正確には<strong>占有改定のみ</strong>即時取得が認められず、<strong>指図による占有移転は認められます。</strong><br><br>
+<strong>【各引渡し類型と即時取得の可否】</strong><br>
+① 現実の引渡し　→ 即時取得<span style="color:var(--green);font-weight:bold;">○</span><br>
+② 簡易の引渡し　→ 即時取得<span style="color:var(--green);font-weight:bold;">○</span><br>
+③ <strong>占有改定</strong>　→ 即時取得<span style="color:var(--crimson);font-weight:bold;">✕</span>（外形上の変化なし。真の権利者が権利を失ったと気づけないため）<br>
+④ 指図による占有移転 → 即時取得<span style="color:var(--green);font-weight:bold;">○</span><br><br>
+<span style="background:#fdecea;padding:4px 8px;border-radius:4px;">⚠️ 即時取得が認められないのは「占有改定」のみ。「指図による占有移転」は認められる点に注意。</span>`
+  },
+  5: {
+    correct: false,
+    text: `<strong>❌ 誤った記述です。</strong><br><br>
+前半（2年間・無償の回復請求）は正しいですが、<strong>後半（競売で善意取得した場合も無償）が誤り</strong>です。<br><br>
+<strong>【民法193条・194条の整理】</strong><br>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;">
+  <tr style="background:var(--navy);color:#fff;">
+    <th style="padding:6px 10px;">場面</th>
+    <th style="padding:6px 10px;">回復請求</th>
+  </tr>
+  <tr style="background:#f4f6fa;">
+    <td style="padding:6px 10px;border:1px solid var(--border);">盗品・遺失物を一般的に即時取得した場合（193条）</td>
+    <td style="padding:6px 10px;border:1px solid var(--border);color:var(--green);font-weight:bold;">無償で2年間、回復請求できる</td>
+  </tr>
+  <tr>
+    <td style="padding:6px 10px;border:1px solid var(--border);">競売・公の市場・商人から<strong>善意で</strong>買い受けた場合（194条）</td>
+    <td style="padding:6px 10px;border:1px solid var(--border);color:var(--crimson);font-weight:bold;">代価を弁償しなければ回復請求できない</td>
+  </tr>
+</table>
+善意で競売から取得した人は、正規の手続きで代金を払っています。その人に「無償で返せ」とするのは酷であるため、194条は被害者に<strong>代価の弁償を義務づけ</strong>ています。<br><br>
+<span style="background:#fdecea;padding:4px 8px;border-radius:4px;">⚠️ 競売での善意取得 → 無償ではなく「代価弁償あり」で回復請求可。</span>`
+  }
 };
 
 let answered = {};
@@ -465,7 +524,19 @@ function answerChoice(qid, num, btn) {
     exp.classList.add('wrong');
   }
 
-  expText.innerHTML = EXPLANATIONS_5[num].text + (isCorrect ? '' : '<br><br><strong>【正答（肢' + correct + '）の解説】</strong><br>' + EXPLANATIONS_5[correct].text);
+  if (isCorrect) {
+    expText.innerHTML = EXPLANATIONS_5[num].text;
+  } else {
+    expText.innerHTML =
+      '<div style="margin-bottom:16px;padding-bottom:14px;border-bottom:1px dashed var(--crimson);">' +
+      '<div style="font-size:12px;font-weight:bold;color:var(--crimson);margin-bottom:6px;letter-spacing:0.05em;">▼ あなたが選んだ肢' + num + 'が誤りの理由</div>' +
+      EXPLANATIONS_5[num].text +
+      '</div>' +
+      '<div>' +
+      '<div style="font-size:12px;font-weight:bold;color:var(--green);margin-bottom:6px;letter-spacing:0.05em;">▼ 正答・肢' + correct + 'の解説</div>' +
+      EXPLANATIONS_5[correct].text +
+      '</div>';
+  }
   exp.style.display = 'block';
   updateScore();
 }
